@@ -1,0 +1,51 @@
+/* ═══════════════════════════════════════════════════
+   TAJWEED COLORS — quran.com standard color scheme
+   Used by: quran.com, islamicfinder, Al-Quran apps
+═══════════════════════════════════════════════════ */
+
+/* Hamzah Wasl + Lam Shamsiyah → Gray */
+.tajweed [data-type="ham_wasl"],
+.tajweed [data-type="laam_shamsiyah"]          { color: #9b9b9b; }
+
+/* Madd (Elongations) → Blues */
+.tajweed [data-type="madda_normal"]             { color: #537FFF; }
+.tajweed [data-type="madda_permissible"]        { color: #4050FF; }
+.tajweed [data-type="madda_necessary"]          { color: #000EBC; }
+.tajweed [data-type="madda_obligatory"]         { color: #2144C1; }
+
+/* Qalqalah → Red */
+.tajweed [data-type="qalaqah"]                 { color: #DD0008; }
+
+/* Ikhfa Shafawi / Idgham Shafawi → Magenta */
+.tajweed [data-type="ikhafa_shafawi"],
+.tajweed [data-type="idgham_shafawi"]          { color: #D500B7; }
+
+/* Ikhfa → Deep Purple */
+.tajweed [data-type="ikhafa"]                  { color: #9400A8; }
+
+/* Idgham (all) + Ghunnah → Green */
+.tajweed [data-type="idgham_ghunnah"],
+.tajweed [data-type="idgham_wo_ghunnah"],
+.tajweed [data-type="idgham_mutajanisayn"],
+.tajweed [data-type="idgham_mutaqaribayn"],
+.tajweed [data-type="ghunnah"]                 { color: #169200; }
+
+/* Iqlab → Cyan */
+.tajweed [data-type="iqlab"]                   { color: #26BFFD; }
+
+/* ── Tajweed Legend ── */
+.tj-legend {
+  display: flex; flex-wrap: wrap; gap: .32rem;
+  padding: .65rem .85rem; border-radius: 12px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.07);
+  direction: rtl; margin-top: .4rem;
+}
+.tj-chip {
+  display: flex; align-items: center; gap: .28rem;
+  font-size: .65rem; font-family: 'Noto Nastaliq Urdu', serif;
+  color: rgba(255,255,255,.55); padding: .15rem .42rem;
+  border-radius: 20px; background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1); line-height: 1.6;
+}
+.tj-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }

@@ -1,225 +1,832 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<b:blog>
-  <head>
-    <title>Darood Sharif Counter – 80 Times Islamic Recitation Tracker</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="Recite 80 Darood Sharif easily with this digital Islamic counter. Includes  Urdu/English toggle, dark mode, and more."/>
-    <meta name="keywords" content="Darood Sharif, Darood Counter, Islamic Tasbeeh, Digital Counter, 80 Darood, Recitation Tracker, Islamic Tool"/>
-    <meta name="robots" content="index, follow"/>
-    <meta name="author" content="Islamic Tools Team"/>
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+<title>اذکار و دعائیں</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#030b04;--surf:#081509;--surf2:#0d200f;
+  --gold:#d4a017;--gold2:#f0c842;
+  --g1:#3cb371;--g2:#5cdb95;--g3:#a8f0c0;
+  --text:#dff0df;--arabic:#f8f0e0;--text2:#6ea06e;
+  --bdr:rgba(60,179,113,0.16);
+  --r-namaz:#3cb371;--r-fajr:#f59e0b;--r-jumma:#a855f7;
+  --r-asr:#f0c842;--r-tauheed:#22d3ee;--r-tasbeeh:#ec4899;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh;background:var(--bg);
+  font-family:'Noto Nastaliq Urdu','Amiri',serif;
+  color:var(--text);display:flex;flex-direction:column;
+  align-items:center;overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse at 20% 10%,rgba(60,179,113,.06) 0%,transparent 60%),
+    radial-gradient(ellipse at 80% 90%,rgba(60,179,113,.04) 0%,transparent 60%);
+}
 
-    <!-- Open Graph Meta -->
-    <meta property="og:title" content="Darood Sharif Counter – 80 Times Islamic Recitation Tracker"/>
-    <meta property="og:description" content="Count and complete 80 Darood Sharif, dark mode, and language switch. A simple digital tasbeeh tool for Muslims."/>
-    <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhvRJSzAam84Kh6YDvx58-keNRx0j0WlC3Zz1mIDo1eKBJrru6hq9kiz6IjDuUTzmez7-Dbd-95YmUKLI2uNGXRyr-cqOb0Ezsmd5WyvHnd0omZkzJN6GQRPfKEHzPIoEnB714OcResRS5rVYZQge5z4lZL9v5sBKHY0Uz5LikWhCBxCU-_RNqIMh9-MQM/s600/7dc6bda3f26f6096b46c0a3e0dab9287.png"/>
-    <meta property="og:url" content="https://darood-counter.blogspot.com/"/>
-    <meta property="og:type" content="website"/>
+/* ── SECTION CHIPS ── */
+.chips-wrap{
+  position:sticky;top:0;z-index:100;
+  width:100%;max-width:480px;
+  background:rgba(3,11,4,.96);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--bdr);
+  padding:.5rem .6rem .5rem;
+  display:flex;align-items:center;gap:.35rem;
+}
+.chips-row{
+  display:flex;gap:.3rem;overflow-x:auto;flex:1;
+  scrollbar-width:none;padding-bottom:1px;
+}
+.chips-row::-webkit-scrollbar{display:none}
+.chip{
+  flex-shrink:0;
+  padding:.32rem .6rem;border-radius:20px;
+  border:1px solid var(--bdr);background:transparent;
+  color:var(--text2);font-family:'Noto Nastaliq Urdu',serif;
+  font-size:.72rem;cursor:pointer;transition:all .22s;
+  line-height:1.4;white-space:nowrap;
+}
+.chip.active{border-color:var(--g1);background:rgba(60,179,113,.15);color:var(--g2)}
+.menu-btn{
+  flex-shrink:0;background:rgba(60,179,113,.1);
+  border:1px solid var(--bdr);color:var(--g1);
+  width:34px;height:34px;border-radius:50%;
+  font-size:1rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+.menu-btn:hover{background:rgba(60,179,113,.2)}
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:title" content="Darood Sharif Counter – 80 Recitations Tracker"/>
-    <meta name="twitter:description" content="Digital counter for 80 Darood Sharif recitations. Includes dark mode,  and language toggle."/>
-    <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhvRJSzAam84Kh6YDvx58-keNRx0j0WlC3Zz1mIDo1eKBJrru6hq9kiz6IjDuUTzmez7-Dbd-95YmUKLI2uNGXRyr-cqOb0Ezsmd5WyvHnd0omZkzJN6GQRPfKEHzPIoEnB714OcResRS5rVYZQge5z4lZL9v5sBKHY0Uz5LikWhCBxCU-_RNqIMh9-MQM/s600/7dc6bda3f26f6096b46c0a3e0dab9287.png"/>
+/* progress */
+.prog-wrap{width:100%;max-width:480px;height:2px;background:rgba(60,179,113,.08);position:sticky;top:49px;z-index:99}
+.prog-fill{height:100%;background:linear-gradient(to left,var(--gold),var(--g1));transition:width .4s}
 
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Darood Sharif Counter",
-      "url": "https://darood-counter.blogspot.com/",
-      "applicationCategory": "ReligiousTool",
-      "operatingSystem": "All",
-      "description": "Easily count 80 Darood Sharif, language toggle and dark mode. A spiritual digital tool for Muslims."
-    }
-    </script>
+/* ── STEP PANEL ── */
+.step-panel{
+  position:relative;z-index:1;width:100%;max-width:480px;
+  padding:1rem .9rem 1rem;
+  display:flex;flex-direction:column;align-items:center;gap:.8rem;
+  animation:fadeUp .28s ease;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
 
-    <style>
-      #navbar-iframe, .Header, .header, #header, .navbar, .footer-outer, .b-navbar, .comments, .post, .widget {
-        display: none !important;
-        visibility: hidden;
-        height: 0;
-      }
+.sec-badge{
+  display:flex;align-items:center;gap:.45rem;
+  font-family:'Amiri',serif;font-size:.72rem;
+  color:var(--text2);letter-spacing:.5px;direction:ltr;
+}
+.sec-dot{width:6px;height:6px;border-radius:50%;background:var(--g1)}
 
-      html, body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(to bottom, #001f1f, #004d4d);
-        font-family: 'Segoe UI', sans-serif;
-        color: #fff;
-        transition: background 0.4s, color 0.4s;
-      }
+.info-strip{
+  width:100%;border-radius:24px;
+  padding:.3rem 1rem;font-size:.78rem;
+  direction:rtl;display:flex;align-items:center;gap:.4rem;
+  justify-content:center;
+}
 
-      .container {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        max-width: 90%;
-      }
+/* dua card */
+.dua-card{
+  width:100%;background:rgba(8,21,9,.7);
+  border:1px solid var(--bdr);border-radius:18px;
+  padding:1.1rem 1.1rem .9rem;text-align:center;
+  backdrop-filter:blur(6px);
+}
+.arabic{
+  font-family:'Amiri',serif;font-size:1.38rem;
+  line-height:2.5;color:var(--arabic);
+  direction:rtl;word-break:break-word;
+}
+.arabic.xl{font-size:1.7rem;line-height:2.7}
+.dua-name{
+  margin-top:.6rem;
+  font-family:'Noto Nastaliq Urdu',serif;
+  font-size:.83rem;color:var(--text2);direction:rtl;
+}
 
-      .header-image {
-        width: 200px;
-        height: auto;
-        margin-bottom: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px #009966;
-      }
+/* fazilat toggle */
+.faz-toggle{
+  width:100%;background:transparent;
+  border:1px solid rgba(60,179,113,.12);
+  border-radius:30px;padding:.35rem .9rem;
+  color:var(--text2);font-family:'Noto Nastaliq Urdu',serif;
+  font-size:.75rem;cursor:pointer;transition:all .2s;
+  display:flex;align-items:center;justify-content:center;gap:.4rem;
+}
+.faz-toggle:hover{border-color:var(--g1);color:var(--g2)}
+.faz-body{
+  width:100%;background:rgba(60,179,113,.06);
+  border:1px solid rgba(60,179,113,.15);
+  border-right:3px solid var(--g1);
+  border-radius:12px;padding:.7rem .9rem;
+  font-family:'Noto Nastaliq Urdu',serif;
+  font-size:.85rem;color:#b0d8b0;
+  direction:rtl;line-height:2.2;text-align:right;
+  display:none;animation:fadeUp .2s ease;
+}
+.faz-body.open{display:block}
 
-      h1 {
-        font-size: 24px;
-        margin: 20px 0;
-        color: #e6ffe6;
-        font-weight: normal;
-        line-height: 1.5;
-      }
+/* ring counter */
+.ring-wrap{
+  position:relative;width:170px;height:170px;
+  cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;
+}
+.ring-wrap svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg);pointer-events:none}
+.rbg{fill:none;stroke:rgba(255,255,255,.06);stroke-width:8}
+.rfill{fill:none;stroke-width:8;stroke-linecap:round;stroke-dasharray:477;stroke-dashoffset:477;transition:stroke-dashoffset .3s cubic-bezier(.4,0,.2,1)}
+.ring-inner{
+  position:absolute;inset:12px;
+  background:radial-gradient(circle at 38% 32%,#102014,#030b04);
+  border-radius:50%;
+  border:1px solid rgba(60,179,113,.18);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:inset 0 0 22px rgba(0,0,0,.55);
+  transition:transform .1s;
+}
+.ring-wrap:active .ring-inner{transform:scale(.93)}
+.rnum{font-family:'Amiri',serif;font-size:2.9rem;font-weight:700;color:var(--gold2);line-height:1}
+.rof{font-size:.75rem;color:var(--text2);margin-top:3px;direction:ltr}
+.rhint{font-size:.55rem;color:rgba(110,160,110,.4);letter-spacing:2px;margin-top:5px;direction:ltr;text-transform:uppercase}
 
-      .circle {
-        width: 160px;
-        height: 160px;
-        background: radial-gradient(circle, #66ff99, #009966);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 40px;
-        font-weight: bold;
-        cursor: pointer;
-        box-shadow: 0 0 20px #00ff99;
-        transition: transform 0.2s ease;
-        animation: glow 2s infinite;
-        margin: 0 auto;
-        -webkit-tap-highlight-color: transparent;
-      }
+/* controls */
+.controls{width:100%;display:flex;align-items:center;justify-content:space-between;gap:.55rem;direction:ltr}
+.ctrl{
+  background:rgba(60,179,113,.07);border:1px solid var(--bdr);
+  color:var(--text2);border-radius:40px;padding:.48rem .9rem;
+  font-size:.8rem;font-family:'Amiri',serif;cursor:pointer;transition:all .18s;
+}
+.ctrl:hover{background:rgba(60,179,113,.15);color:var(--g2);border-color:var(--g1)}
+.ctrl:active{transform:scale(.95)}
+.ctrl.next{background:rgba(60,179,113,.15);border-color:rgba(60,179,113,.4);color:var(--g2);padding:.48rem 1.3rem}
+.ctrl.next:hover{background:rgba(60,179,113,.25)}
+.ctrl:disabled{opacity:.25;cursor:not-allowed}
 
-      .circle:active {
-        transform: scale(0.95);
-      }
+/* dam box */
+.dam-box{
+  width:100%;background:rgba(60,179,113,.08);
+  border:1px solid rgba(60,179,113,.25);border-radius:14px;
+  padding:.85rem 1rem;font-family:'Noto Nastaliq Urdu',serif;
+  font-size:.9rem;color:#90f0b8;direction:rtl;line-height:2.2;text-align:right;
+}
 
-      @keyframes glow {
-        0% { box-shadow: 0 0 10px #00ff99; }
-        50% { box-shadow: 0 0 25px #00ff99; }
-        100% { box-shadow: 0 0 10px #00ff99; }
-      }
+/* ── TASBEEH ── */
+.tasbeeh-panel{
+  width:100%;max-width:480px;padding:1rem .9rem;
+  display:flex;flex-direction:column;align-items:center;gap:.9rem;
+  animation:fadeUp .28s ease;
+}
+.tasbeeh-phases{display:flex;gap:.4rem;width:100%;direction:ltr}
+.phase-chip{
+  flex:1;padding:.42rem .3rem;border-radius:20px;
+  border:1px solid var(--bdr);background:transparent;
+  color:var(--text2);font-family:'Amiri',serif;
+  font-size:.75rem;text-align:center;line-height:1.6;cursor:pointer;
+  transition:all .22s;
+}
+.phase-chip.done{background:rgba(60,179,113,.15);border-color:var(--g1);color:var(--g2)}
+.phase-chip.cur{border-color:var(--r-tasbeeh);background:rgba(236,72,153,.15);color:#fda4cf}
 
-      .complete {
-        margin-top: 20px;
-        color: #ccffcc;
-        font-size: 18px;
-        font-style: italic;
-      }
+/* asr image */
+.asr-img{
+  width:100%;border-radius:16px;
+  border:1px solid rgba(240,200,66,.25);
+  box-shadow:0 0 30px rgba(240,200,66,.1);
+}
 
-      .buttons {
-        margin-top: 25px;
-        display: flex;
-        gap: 12px;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
+/* ── KAHF ── */
+.kahf-panel{
+  position:relative;z-index:1;
+  width:100%;max-width:480px;
+  padding:.8rem .85rem 3rem;animation:fadeUp .28s ease;
+}
+.kahf-head{
+  text-align:center;padding:1.1rem 1rem .9rem;
+  border-bottom:1px solid var(--bdr);margin-bottom:.8rem;
+}
+.kahf-title{font-family:'Amiri',serif;font-size:1.6rem;color:var(--gold2);line-height:2.2;direction:rtl}
+.kahf-sub{font-family:'Noto Nastaliq Urdu',serif;font-size:.8rem;color:var(--text2);direction:rtl;line-height:2;margin-top:.3rem}
+.ruku-sep{
+  text-align:center;margin:1.2rem 0 .5rem;
+  font-family:'Amiri',serif;font-size:.75rem;color:var(--g1);letter-spacing:1.5px;direction:ltr;
+}
+.ruku-sep::before,.ruku-sep::after{content:'';display:inline-block;width:35px;height:1px;background:rgba(60,179,113,.25);vertical-align:middle;margin:0 7px}
+.kahf-text{
+  font-family:'Amiri',serif;font-size:1.3rem;line-height:2.6;
+  color:#f0e8d5;direction:rtl;text-align:justify;
+  padding:.3rem .2rem;word-break:break-word;
+}
 
-      .buttons button {
-        background: #008066;
-        color: #fff;
-        border: none;
-        padding: 10px 16px;
-        border-radius: 8px;
-        font-size: 14px;
-        cursor: pointer;
-        box-shadow: 0 0 5px #00cc99;
-        transition: background 0.3s;
-      }
+/* ── DRAWER ── */
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.7);backdrop-filter:blur(4px)}
+.overlay.open{display:block}
+.drawer{
+  position:fixed;top:0;right:-100%;width:min(320px,87vw);height:100vh;
+  background:#081509;border-left:1px solid var(--bdr);
+  z-index:201;display:flex;flex-direction:column;
+  padding:1.1rem .9rem;gap:.3rem;overflow-y:auto;
+  transition:right .3s cubic-bezier(.4,0,.2,1);direction:rtl;
+}
+.drawer.open{right:0}
+.dr-title{font-family:'Noto Nastaliq Urdu',serif;font-size:.95rem;color:var(--gold2);padding:.2rem 0 .7rem;border-bottom:1px solid var(--bdr);margin-bottom:.3rem;text-align:right}
+.dr-item{
+  display:flex;align-items:center;gap:.6rem;
+  padding:.58rem .65rem;border-radius:11px;cursor:pointer;
+  transition:background .18s;border:1px solid transparent;direction:rtl;
+}
+.dr-item:hover{background:rgba(60,179,113,.08);border-color:var(--bdr)}
+.dr-item.active{background:rgba(60,179,113,.14);border-color:rgba(60,179,113,.35)}
+.dr-icon{font-size:1.1rem;flex-shrink:0}
+.dr-name{font-family:'Noto Nastaliq Urdu',serif;font-size:.9rem;color:var(--text);flex:1;text-align:right;line-height:1.7}
+.dr-count{font-family:'Amiri',serif;font-size:.68rem;color:var(--g1);background:rgba(60,179,113,.1);border-radius:20px;padding:1px 6px;white-space:nowrap;direction:ltr}
 
-      .buttons button:hover {
-        background: #00b386;
-      }
+/* ── COMPLETE ── */
+.comp-screen{display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.94);flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;gap:.9rem}
+.comp-screen.show{display:flex;animation:fadeUp .5s ease}
+.comp-btn{background:rgba(60,179,113,.22);border:1px solid rgba(60,179,113,.45);color:var(--g2);border-radius:40px;padding:.65rem 1.8rem;font-family:'Noto Nastaliq Urdu',serif;font-size:.9rem;cursor:pointer;margin-top:.4rem;transition:background .2s}
+.comp-btn:hover{background:rgba(60,179,113,.35)}
 
-      body.dark {
-        background: linear-gradient(to bottom, #000000, #1a1a1a);
-        color: #ccc;
-      }
+@keyframes pulse-g{0%{box-shadow:0 0 0 0 rgba(60,179,113,.35)}70%{box-shadow:0 0 0 15px rgba(60,179,113,0)}100%{box-shadow:0 0 0 0 rgba(60,179,113,0)}}
+@keyframes pulse-p{0%{box-shadow:0 0 0 0 rgba(168,85,247,.35)}70%{box-shadow:0 0 0 15px rgba(168,85,247,0)}100%{box-shadow:0 0 0 0 rgba(168,85,247,0)}}
+@keyframes pulse-t{0%{box-shadow:0 0 0 0 rgba(236,72,153,.35)}70%{box-shadow:0 0 0 15px rgba(236,72,153,0)}100%{box-shadow:0 0 0 0 rgba(236,72,153,0)}}
+.ring-inner.pg{animation:pulse-g .33s ease-out}
+.ring-inner.pp{animation:pulse-p .33s ease-out}
+.ring-inner.pt{animation:pulse-t .33s ease-out}
+</style>
+</head>
+<body>
 
-      body.dark .circle {
-        background: radial-gradient(circle, #cccccc, #888);
-        box-shadow: 0 0 20px #ffffff;
-        color: #000;
-      }
+<!-- CHIPS NAV -->
+<div class="chips-wrap" id="chipsWrap">
+  <div class="chips-row" id="chipsRow">
+    <button class="chip active" data-sec="namaz">🕌 ہر نماز</button>
+    <button class="chip" data-sec="fajr">🌅 فجر/مغرب</button>
+    <button class="chip" data-sec="jumma">🌙 جمعہ</button>
+    <button class="chip" data-sec="asr">☀️ عصر درود</button>
+    <button class="chip" data-sec="kahf">📖 سورۃ الکہف</button>
+    <button class="chip" data-sec="tauheed">☝️ توحید</button>
+    <button class="chip" data-sec="tasbeeh">📿 تسبیح</button>
+  </div>
+  <button class="menu-btn" id="menuBtn">☰</button>
+</div>
+<div class="prog-wrap"><div class="prog-fill" id="progFill"></div></div>
 
-      body.dark .complete {
-        color: #ddd;
-      }
+<div id="mainContent" style="position:relative;z-index:1;width:100%;max-width:480px"></div>
 
-      body.dark .buttons button {
-        background: #444;
-        color: #fff;
-        box-shadow: 0 0 5px #888;
-      }
-    </style>
-  </head>
+<!-- DRAWER -->
+<div class="overlay" id="overlay"></div>
+<div class="drawer" id="drawer">
+  <div class="dr-title">تمام اذکار</div>
+  <div id="drList"></div>
+  <div style="margin-top:auto;padding-top:1rem;direction:ltr">
+    <button class="ctrl" style="width:100%" id="closeDrawer">✕ بند کریں</button>
+  </div>
+</div>
 
-  <body>
-    <main class="container">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhvRJSzAam84Kh6YDvx58-keNRx0j0WlC3Zz1mIDo1eKBJrru6hq9kiz6IjDuUTzmez7-Dbd-95YmUKLI2uNGXRyr-cqOb0Ezsmd5WyvHnd0omZkzJN6GQRPfKEHzPIoEnB714OcResRS5rVYZQge5z4lZL9v5sBKHY0Uz5LikWhCBxCU-_RNqIMh9-MQM/s600/7dc6bda3f26f6096b46c0a3e0dab9287.png" 
-           alt="Digital Darood Sharif Counter Icon" class="header-image"/>
+<!-- COMPLETE -->
+<div class="comp-screen" id="compScreen">
+  <div style="font-size:3rem">🌿</div>
+  <div style="font-family:'Amiri',serif;font-size:1.5rem;color:var(--gold2);direction:rtl;line-height:2">اَلْحَمْدُ لِلَّهِ</div>
+  <div style="font-family:'Noto Nastaliq Urdu',serif;font-size:1.1rem;color:var(--g2);line-height:2" id="compMsg"></div>
+  <button class="comp-btn" id="restartBtn">↺ دوبارہ شروع کریں</button>
+</div>
 
-      <h1 id="heading">درود شریف کاؤنٹر<br/>Darood Sharif Counter</h1>
-      <section class="circle" onclick="incrementCounter()">0</section>
-      <div id="message" class="complete"></div>
+<script>
+// ════════════════════════════════════════════════
+// DATA
+// ════════════════════════════════════════════════
 
-      <div class="buttons">
-        <button onclick="resetCounter()">🔄 Reset</button>
-        <button onclick="toggleDarkMode()">🌓 Toggle Mode</button>
-        <button onclick="toggleLanguage()">🌐 Switch Language</button>
+/* SECTION 1 — ہر نماز کے بعد */
+const NAMAZ = [
+  {
+    name:'بِسْمِ اللَّهِ', target:1,
+    arabic:`بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ`,
+    faz:'ہر بھلائی کا آغاز اللہ کے نام سے — یہ برکت اور رحمت کا دروازہ کھولتا ہے۔'
+  },
+  {
+    name:'آيَةُ الْكُرْسِيّ', target:1,
+    arabic:`اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ`,
+    faz:'قرآن کی سب سے عظیم آیت۔ ہر فرض نماز کے بعد پڑھنے والے اور جنت کے درمیان صرف موت حائل ہے۔'
+  },
+  {
+    name:'سورۃ الحشر — آخری ۳ آیات', target:1,
+    arabic:`هُوَ اللَّهُ الَّذِي لَا إِلَٰهَ إِلَّا هُوَ ۖ عَالِمُ الْغَيْبِ وَالشَّهَادَةِ ۖ هُوَ الرَّحْمَٰنُ الرَّحِيمُ ﴿٢٢﴾\nهُوَ اللَّهُ الَّذِي لَا إِلَٰهَ إِلَّا هُوَ الْمَلِكُ الْقُدُّوسُ السَّلَامُ الْمُؤْمِنُ الْمُهَيْمِنُ الْعَزِيزُ الْجَبَّارُ الْمُتَكَبِّرُ ۚ سُبْحَانَ اللَّهِ عَمَّا يُشْرِكُونَ ﴿٢٣﴾\nهُوَ اللَّهُ الْخَالِقُ الْبَارِئُ الْمُصَوِّرُ ۖ لَهُ الْأَسْمَاءُ الْحُسْنَىٰ ۚ يُسَبِّحُ لَهُ مَا فِي السَّمَاوَاتِ وَالْأَرْضِ ۖ وَهُوَ الْعَزِيزُ الْحَكِيمُ ﴿٢٤﴾`,
+    faz:'صبح پڑھنے پر ۷۰ ہزار فرشتے شام تک دعائے مغفرت کرتے ہیں۔ اس دن وفات ہو تو شہید کا درجہ ملتا ہے۔'
+  },
+  {
+    name:'شرکِ خفی سے حفاظت', target:3,
+    arabic:`اللَّهُمَّ إِنِّي أَعُوذُ بِكَ أَنْ أُشْرِكَ بِكَ وَأَنَا أَعْلَمُ، وَأَسْتَغْفِرُكَ لِمَا لَا أَعْلَمُ`,
+    faz:'ریاکاری اور چھوٹے شرک سے حفاظت۔ یہ کلمۂ توحید کی تکمیل کرتی ہے اور بندے کو پاک رکھتی ہے۔'
+  },
+  {
+    name:'شیطان سے پناہ', target:3,
+    arabic:`أَعُوذُ بِاللَّهِ السَّمِيعِ الْعَلِيمِ مِنَ الشَّيْطَانِ الرَّجِيمِ`,
+    faz:'اللہ شیطان کے وسوسوں، تکبر اور فتنوں سے بچاتا ہے — یہ مسنون دعا ہے۔'
+  },
+  {
+    name:'توکل اور حفاظت کی جامع دعا', target:1,
+    arabic:`اللَّهُمَّ أَنْتَ رَبِّي، لَا إِلَٰهَ إِلَّا أَنْتَ، عَلَيْكَ تَوَكَّلْتُ، وَأَنْتَ رَبُّ الْعَرْشِ الْعَظِيمِ، مَا شَاءَ اللَّهُ كَانَ، وَمَا لَمْ يَشَأْ لَمْ يَكُنْ، لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ الْعَلِيِّ الْعَظِيمِ، أَعْلَمُ أَنَّ اللَّهَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ، وَأَنَّ اللَّهَ قَدْ أَحَاطَ بِكُلِّ شَيْءٍ عِلْمًا، اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ شَرِّ نَفْسِي، وَمِنْ شَرِّ كُلِّ دَابَّةٍ أَنْتَ آخِذٌ بِنَاصِيَتِهَا، إِنَّ رَبِّي عَلَىٰ صِرَاطٍ مُسْتَقِيمٍ`,
+    faz:'"دعائے ابو الدرداء" — اللہ پر بھروسے، اس کی قدرت کے اقرار اور ہر شر سے پناہ کا بہترین مجموعہ۔'
+  },
+  {
+    name:'حَسْبِيَ اللَّهُ — ۷ مرتبہ', target:7,
+    arabic:`حَسْبِيَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ، عَلَيْهِ تَوَكَّلْتُ، وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ`,
+    faz:'۷ مرتبہ پڑھنے پر اللہ دنیا و آخرت کی تمام پریشانیوں کے لیے کافی ہو جاتا ہے۔ (صحیح — شعیب ارنؤوط)'
+  },
+  {
+    name:'ایمان پر رضا کی دعا', target:3,
+    arabic:`رَضِيتُ بِاللَّهِ رَبًّا، وَبِالْإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيًّا`,
+    faz:'صحیح حدیث: جو یہ کہے، اس کے لیے جنت واجب ہو جاتی ہے۔'
+  },
+  {
+    name:'دُرُودِ ابراہیمی', target:3,
+    arabic:`اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ.\nاللَّهُمَّ بَارِكْ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ، كَمَا بَارَكْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ`,
+    faz:'سب سے افضل درود جو نبی ﷺ نے صحابہ کو سکھایا۔ ہر درود پر اللہ کی ۱۰ رحمتیں، ۱۰ گناہ معاف، ۱۰ درجے بلند۔'
+  },
+  {
+    name:'سورۃ الشرح — ۷ مرتبہ', target:7,
+    arabic:`بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\nأَلَمْ نَشْرَحْ لَكَ صَدْرَكَ ﴿١﴾ وَوَضَعْنَا عَنْكَ وِزْرَكَ ﴿٢﴾ الَّذِي أَنْقَضَ ظَهْرَكَ ﴿٣﴾ وَرَفَعْنَا لَكَ ذِكْرَكَ ﴿٤﴾ فَإِنَّ مَعَ الْعُسْرِ يُسْرًا ﴿٥﴾ إِنَّ مَعَ الْعُسْرِ يُسْرًا ﴿٦﴾ فَإِذَا فَرَغْتَ فَانْصَبْ ﴿٧﴾ وَإِلَىٰ رَبِّكَ فَارْغَبْ ﴿٨﴾`,
+    faz:'"ہر مشکل کے ساتھ آسانی ہے" — شرحِ صدر، غم و پریشانی دور ہوتی ہے۔'
+  }
+];
+
+/* SECTION 2 — فجر اور مغرب */
+const FAJR = [
+  {
+    name:'جہنم سے حفاظت — ۷ مرتبہ', target:7,
+    arabic:`اللَّهُمَّ أَجِرْنِي مِنَ النَّارِ`,
+    faz:'۷ مرتبہ پڑھنے والے کے لیے جہنم کی آگ پناہ مانگتی ہے۔ (ابن باز رحمہ اللہ — مستحب)'
+  },
+  {
+    name:'حفاظت کی دعا', target:3,
+    arabic:`بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ`,
+    faz:'صبح و شام ۳ مرتبہ پڑھنے والے کو کوئی اچانک آفت نہیں پہنچ سکتی۔'
+  },
+  {
+    name:'ہر مخلوق کے شر سے پناہ', target:3,
+    arabic:`اللَّهُمَّ إِنِّي أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ`,
+    faz:'ہر قسم کے زہریلے، جسمانی اور روحانی شر سے حفاظت ہوتی ہے۔'
+  },
+  {
+    name:'اختتامی درود شریف', target:3,
+    arabic:`اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ.\nاللَّهُمَّ بَارِكْ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ، كَمَا بَارَكْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ`,
+    faz:'دعا کے اختتام پر درود قبولیتِ دعا کا ذریعہ ہے۔ نبی ﷺ نے فرمایا: پہلے حمد، پھر درود، پھر دعا۔'
+  }
+];
+
+/* SECTION 3 — جمعہ کا وِرد */
+const JUMMA = [
+  {
+    name:'دُرُودِ شریف — اوّل', target:1,
+    arabic:`اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ`,
+    faz:'سب سے پہلے درود — پھر سورتیں پڑھیں۔'
+  },
+  {
+    name:'سورۃ الْفَاتِحَة — ۷ مرتبہ', target:7,
+    arabic:`بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\nاَلْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ ﴿١﴾ الرَّحْمَٰنِ الرَّحِيمِ ﴿٢﴾ مَالِكِ يَوْمِ الدِّينِ ﴿٣﴾ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ﴿٤﴾ اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ ﴿٥﴾ صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ ﴿٦﴾`,
+    faz:'سورۃ الفاتحہ — قرآن کی سب سے جامع سورت — ۷ مرتبہ'
+  },
+  {
+    name:'سورۃ الْإِخْلَاص — ۷ مرتبہ', target:7,
+    arabic:`بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\nقُلْ هُوَ اللَّهُ أَحَدٌ ﴿١﴾ اللَّهُ الصَّمَدُ ﴿٢﴾ لَمْ يَلِدْ وَلَمْ يُولَدْ ﴿٣﴾ وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ ﴿٤﴾`,
+    faz:'ایک مرتبہ تلاوت ثلثِ قرآن کے برابر — ۷ مرتبہ'
+  },
+  {
+    name:'سورۃ الْفَلَق — ۷ مرتبہ', target:7,
+    arabic:`بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\nقُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ﴿١﴾ مِنْ شَرِّ مَا خَلَقَ ﴿٢﴾ وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ ﴿٣﴾ وَمِنْ شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ﴿٤﴾ وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ ﴿٥﴾`,
+    faz:'جادو، نظرِ بد اور حسد سے حفاظت — ۷ مرتبہ'
+  },
+  {
+    name:'سورۃ النَّاس — ۷ مرتبہ', target:7,
+    arabic:`بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\nقُلْ أَعُوذُ بِرَبِّ النَّاسِ ﴿١﴾ مَلِكِ النَّاسِ ﴿٢﴾ إِلَٰهِ النَّاسِ ﴿٣﴾ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ﴿٤﴾ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ﴿٥﴾ مِنَ الْجِنَّةِ وَالنَّاسِ ﴿٦﴾`,
+    faz:'وسوسوں اور جنات کے شر سے حفاظت — ۷ مرتبہ'
+  },
+  {
+    name:'دُرُودِ شریف — آخر', target:1,
+    arabic:`اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ`,
+    faz:'سورتوں کے بعد آخری درود — پھر دَم کریں۔'
+  },
+  {
+    name:'دَم کریں', target:1, isDm:true,
+    arabic:``, faz:'ہاتھوں پر پھونک کر پہلے خود پر، پھر گھر والوں پر دَم کریں۔'
+  }
+];
+
+/* SECTION 4 — عصر درود (image + ×80) */
+const ASR_IMG = 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhvRJSzAam84Kh6YDvx58-keNRx0j0WlC3Zz1mIDo1eKBJrru6hq9kiz6IjDuUTzmez7-Dbd-95YmUKLI2uNGXRyr-cqOb0Ezsmd5WyvHnd0omZkzJN6GQRPfKEHzPIoEnB714OcResRS5rVYZQge5z4lZL9v5sBKHY0Uz5LikWhCBxCU-_RNqIMh9-MQM/s600/7dc6bda3f26f6096b46c0a3e0dab9287.png';
+
+/* SECTION 6 — توحید */
+const TAUHEED = {
+  name:'توحید کی عظیم دعا', target:1,
+  arabic:`لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ،\nأَحَدٌ صَمَدٌ،\nلَمْ يَلِدْ وَلَمْ يُولَدْ،\nوَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ`,
+  faz:'خالص توحید کا اقرار — اللہ کے نزدیک سب سے افضل ذکر — گناہ مٹتے اور نیکیاں بڑھتی ہیں۔'
+};
+
+/* SECTION 7 — تسبیحِ فاطمہ */
+const TASBEEH_PHASES = [
+  { arabic:`سُبْحَانَ اللَّهِ`, urdu:'سبحان اللہ', target:33, color:'#3cb371' },
+  { arabic:`اَلْحَمْدُ لِلَّهِ`, urdu:'الحمد للہ',  target:33, color:'#f0c842' },
+  { arabic:`اَللَّهُ أَكْبَرُ`,  urdu:'اللہ اکبر',  target:34, color:'#ec4899' }
+];
+
+/* SURAH KAHF */
+const KAHF_RUKUS = [
+  {r:'رکوع ۱',t:`بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\nاَلْحَمْدُ لِلَّهِ الَّذِي أَنْزَلَ عَلَىٰ عَبْدِهِ الْكِتَابَ وَلَمْ يَجْعَلْ لَهُ عِوَجًا ﴿١﴾ قَيِّمًا لِيُنْذِرَ بَأْسًا شَدِيدًا مِنْ لَدُنْهُ وَيُبَشِّرَ الْمُؤْمِنِينَ الَّذِينَ يَعْمَلُونَ الصَّالِحَاتِ أَنَّ لَهُمْ أَجْرًا حَسَنًا ﴿٢﴾ مَاكِثِينَ فِيهِ أَبَدًا ﴿٣﴾ وَيُنْذِرَ الَّذِينَ قَالُوا اتَّخَذَ اللَّهُ وَلَدًا ﴿٤﴾ مَا لَهُمْ بِهِ مِنْ عِلْمٍ وَلَا لِآبَائِهِمْ ۚ كَبُرَتْ كَلِمَةً تَخْرُجُ مِنْ أَفْوَاهِهِمْ ۚ إِنْ يَقُولُونَ إِلَّا كَذِبًا ﴿٥﴾ فَلَعَلَّكَ بَاخِعٌ نَفْسَكَ عَلَىٰ آثَارِهِمْ إِنْ لَمْ يُؤْمِنُوا بِهَٰذَا الْحَدِيثِ أَسَفًا ﴿٦﴾ إِنَّا جَعَلْنَا مَا عَلَى الْأَرْضِ زِينَةً لَهَا لِنَبْلُوَهُمْ أَيُّهُمْ أَحْسَنُ عَمَلًا ﴿٧﴾ وَإِنَّا لَجَاعِلُونَ مَا عَلَيْهَا صَعِيدًا جُرُزًا ﴿٨﴾`},
+  {r:'رکوع ۲',t:`أَمْ حَسِبْتَ أَنَّ أَصْحَابَ الْكَهْفِ وَالرَّقِيمِ كَانُوا مِنْ آيَاتِنَا عَجَبًا ﴿٩﴾ إِذْ أَوَى الْفِتْيَةُ إِلَى الْكَهْفِ فَقَالُوا رَبَّنَا آتِنَا مِنْ لَدُنْكَ رَحْمَةً وَهَيِّئْ لَنَا مِنْ أَمْرِنَا رَشَدًا ﴿١٠﴾ فَضَرَبْنَا عَلَىٰ آذَانِهِمْ فِي الْكَهْفِ سِنِينَ عَدَدًا ﴿١١﴾ ثُمَّ بَعَثْنَاهُمْ لِنَعْلَمَ أَيُّ الْحِزْبَيْنِ أَحْصَىٰ لِمَا لَبِثُوا أَمَدًا ﴿١٢﴾ نَحْنُ نَقُصُّ عَلَيْكَ نَبَأَهُمْ بِالْحَقِّ ۚ إِنَّهُمْ فِتْيَةٌ آمَنُوا بِرَبِّهِمْ وَزِدْنَاهُمْ هُدًى ﴿١٣﴾ وَرَبَطْنَا عَلَىٰ قُلُوبِهِمْ إِذْ قَامُوا فَقَالُوا رَبُّنَا رَبُّ السَّمَاوَاتِ وَالْأَرْضِ لَنْ نَدْعُوَ مِنْ دُونِهِ إِلَٰهًا لَقَدْ قُلْنَا إِذًا شَطَطًا ﴿١٤﴾ هَٰؤُلَاءِ قَوْمُنَا اتَّخَذُوا مِنْ دُونِهِ آلِهَةً ۖ لَوْلَا يَأْتُونَ عَلَيْهِمْ بِسُلْطَانٍ بَيِّنٍ ۖ فَمَنْ أَظْلَمُ مِمَّنِ افْتَرَىٰ عَلَى اللَّهِ كَذِبًا ﴿١٥﴾ وَإِذِ اعْتَزَلْتُمُوهُمْ وَمَا يَعْبُدُونَ إِلَّا اللَّهَ فَأْوُوا إِلَى الْكَهْفِ يَنْشُرْ لَكُمْ رَبُّكُمْ مِنْ رَحْمَتِهِ وَيُهَيِّئْ لَكُمْ مِنْ أَمْرِكُمْ مِرْفَقًا ﴿١٦﴾ وَتَرَى الشَّمْسَ إِذَا طَلَعَتْ تَزَاوَرُ عَنْ كَهْفِهِمْ ذَاتَ الْيَمِينِ وَإِذَا غَرَبَتْ تَقْرِضُهُمْ ذَاتَ الشِّمَالِ وَهُمْ فِي فَجْوَةٍ مِنْهُ ۚ ذَٰلِكَ مِنْ آيَاتِ اللَّهِ ۗ مَنْ يَهْدِ اللَّهُ فَهُوَ الْمُهْتَدِ ۖ وَمَنْ يُضْلِلْ فَلَنْ تَجِدَ لَهُ وَلِيًّا مُرْشِدًا ﴿١٧﴾`},
+  {r:'رکوع ۳',t:`وَتَحْسَبُهُمْ أَيْقَاظًا وَهُمْ رُقُودٌ ۚ وَنُقَلِّبُهُمْ ذَاتَ الْيَمِينِ وَذَاتَ الشِّمَالِ ۖ وَكَلْبُهُمْ بَاسِطٌ ذِرَاعَيْهِ بِالْوَصِيدِ ۚ لَوِ اطَّلَعْتَ عَلَيْهِمْ لَوَلَّيْتَ مِنْهُمْ فِرَارًا وَلَمُلِئْتَ مِنْهُمْ رُعْبًا ﴿١٨﴾ وَكَذَٰلِكَ بَعَثْنَاهُمْ لِيَتَسَاءَلُوا بَيْنَهُمْ ۚ قَالَ قَائِلٌ مِنْهُمْ كَمْ لَبِثْتُمْ ۖ قَالُوا لَبِثْنَا يَوْمًا أَوْ بَعْضَ يَوْمٍ ۚ قَالُوا رَبُّكُمْ أَعْلَمُ بِمَا لَبِثْتُمْ فَابْعَثُوا أَحَدَكُمْ بِوَرِقِكُمْ هَٰذِهِ إِلَى الْمَدِينَةِ فَلْيَنْظُرْ أَيُّهَا أَزْكَىٰ طَعَامًا فَلْيَأْتِكُمْ بِرِزْقٍ مِنْهُ وَلْيَتَلَطَّفْ وَلَا يُشْعِرَنَّ بِكُمْ أَحَدًا ﴿١٩﴾ إِنَّهُمْ إِنْ يَظْهَرُوا عَلَيْكُمْ يَرْجُمُوكُمْ أَوْ يُعِيدُوكُمْ فِي مِلَّتِهِمْ وَلَنْ تُفْلِحُوا إِذًا أَبَدًا ﴿٢٠﴾ وَكَذَٰلِكَ أَعْثَرْنَا عَلَيْهِمْ لِيَعْلَمُوا أَنَّ وَعْدَ اللَّهِ حَقٌّ وَأَنَّ السَّاعَةَ لَا رَيْبَ فِيهَا ۚ إِذْ يَتَنَازَعُونَ بَيْنَهُمْ أَمْرَهُمْ ۖ فَقَالُوا ابْنُوا عَلَيْهِمْ بُنْيَانًا ۖ رَبُّهُمْ أَعْلَمُ بِهِمْ ۚ قَالَ الَّذِينَ غَلَبُوا عَلَىٰ أَمْرِهِمْ لَنَتَّخِذَنَّ عَلَيْهِمْ مَسْجِدًا ﴿٢١﴾ سَيَقُولُونَ ثَلَاثَةٌ رَابِعُهُمْ كَلْبُهُمْ ۖ وَيَقُولُونَ خَمْسَةٌ سَادِسُهُمْ كَلْبُهُمْ رَجْمًا بِالْغَيْبِ ۖ وَيَقُولُونَ سَبْعَةٌ وَثَامِنُهُمْ كَلْبُهُمْ ۚ قُلْ رَبِّي أَعْلَمُ بِعِدَّتِهِمْ مَا يَعْلَمُهُمْ إِلَّا قَلِيلٌ ۗ فَلَا تُمَارِ فِيهِمْ إِلَّا مِرَاءً ظَاهِرًا وَلَا تَسْتَفْتِ فِيهِمْ مِنْهُمْ أَحَدًا ﴿٢٢﴾`},
+  {r:'رکوع ۴',t:`وَلَا تَقُولَنَّ لِشَيْءٍ إِنِّي فَاعِلٌ ذَٰلِكَ غَدًا ﴿٢٣﴾ إِلَّا أَنْ يَشَاءَ اللَّهُ ۚ وَاذْكُرْ رَبَّكَ إِذَا نَسِيتَ وَقُلْ عَسَىٰ أَنْ يَهْدِيَنِ رَبِّي لِأَقْرَبَ مِنْ هَٰذَا رَشَدًا ﴿٢٤﴾ وَلَبِثُوا فِي كَهْفِهِمْ ثَلَاثَ مِائَةٍ سِنِينَ وَازْدَادُوا تِسْعًا ﴿٢٥﴾ قُلِ اللَّهُ أَعْلَمُ بِمَا لَبِثُوا ۖ لَهُ غَيْبُ السَّمَاوَاتِ وَالْأَرْضِ ۖ أَبْصِرْ بِهِ وَأَسْمِعْ ۚ مَا لَهُمْ مِنْ دُونِهِ مِنْ وَلِيٍّ وَلَا يُشْرِكُ فِي حُكْمِهِ أَحَدًا ﴿٢٦﴾ وَاتْلُ مَا أُوحِيَ إِلَيْكَ مِنْ كِتَابِ رَبِّكَ ۖ لَا مُبَدِّلَ لِكَلِمَاتِهِ وَلَنْ تَجِدَ مِنْ دُونِهِ مُلْتَحَدًا ﴿٢٧﴾ وَاصْبِرْ نَفْسَكَ مَعَ الَّذِينَ يَدْعُونَ رَبَّهُمْ بِالْغَدَاةِ وَالْعَشِيِّ يُرِيدُونَ وَجْهَهُ ۖ وَلَا تَعْدُ عَيْنَاكَ عَنْهُمْ ۖ تُرِيدُ زِينَةَ الْحَيَاةِ الدُّنْيَا ۖ وَلَا تُطِعْ مَنْ أَغْفَلْنَا قَلْبَهُ عَنْ ذِكْرِنَا وَاتَّبَعَ هَوَاهُ وَكَانَ أَمْرُهُ فُرُطًا ﴿٢٨﴾ وَقُلِ الْحَقُّ مِنْ رَبِّكُمْ ۖ فَمَنْ شَاءَ فَلْيُؤْمِنْ وَمَنْ شَاءَ فَلْيَكْفُرْ ۚ إِنَّا أَعْتَدْنَا لِلظَّالِمِينَ نَارًا أَحَاطَ بِهِمْ سُرَادِقُهَا ۚ وَإِنْ يَسْتَغِيثُوا يُغَاثُوا بِمَاءٍ كَالْمُهْلِ يَشْوِي الْوُجُوهَ ۚ بِئْسَ الشَّرَابُ وَسَاءَتْ مُرْتَفَقًا ﴿٢٩﴾ إِنَّ الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ إِنَّا لَا نُضِيعُ أَجْرَ مَنْ أَحْسَنَ عَمَلًا ﴿٣٠﴾ أُولَٰئِكَ لَهُمْ جَنَّاتُ عَدْنٍ تَجْرِي مِنْ تَحْتِهِمُ الْأَنْهَارُ يُحَلَّوْنَ فِيهَا مِنْ أَسَاوِرَ مِنْ ذَهَبٍ وَيَلْبَسُونَ ثِيَابًا خُضْرًا مِنْ سُنْدُسٍ وَإِسْتَبْرَقٍ مُتَّكِئِينَ فِيهَا عَلَى الْأَرَائِكِ ۚ نِعْمَ الثَّوَابُ وَحَسُنَتْ مُرْتَفَقًا ﴿٣١﴾`},
+  {r:'رکوع ۵',t:`وَاضْرِبْ لَهُمْ مَثَلًا رَجُلَيْنِ جَعَلْنَا لِأَحَدِهِمَا جَنَّتَيْنِ مِنْ أَعْنَابٍ وَحَفَفْنَاهُمَا بِنَخْلٍ وَجَعَلْنَا بَيْنَهُمَا زَرْعًا ﴿٣٢﴾ كِلْتَا الْجَنَّتَيْنِ آتَتْ أُكُلَهَا وَلَمْ تَظْلِمْ مِنْهُ شَيْئًا ۚ وَفَجَّرْنَا خِلَالَهُمَا نَهَرًا ﴿٣٣﴾ وَكَانَ لَهُ ثَمَرٌ فَقَالَ لِصَاحِبِهِ وَهُوَ يُحَاوِرُهُ أَنَا أَكْثَرُ مِنْكَ مَالًا وَأَعَزُّ نَفَرًا ﴿٣٤﴾ وَدَخَلَ جَنَّتَهُ وَهُوَ ظَالِمٌ لِنَفْسِهِ قَالَ مَا أَظُنُّ أَنْ تَبِيدَ هَٰذِهِ أَبَدًا ﴿٣٥﴾ وَمَا أَظُنُّ السَّاعَةَ قَائِمَةً وَلَئِنْ رُدِدْتُّ إِلَىٰ رَبِّي لَأَجِدَنَّ خَيْرًا مِنْهَا مُنْقَلَبًا ﴿٣٦﴾ قَالَ لَهُ صَاحِبُهُ وَهُوَ يُحَاوِرُهُ أَكَفَرْتَ بِالَّذِي خَلَقَكَ مِنْ تُرَابٍ ثُمَّ مِنْ نُطْفَةٍ ثُمَّ سَوَّاكَ رَجُلًا ﴿٣٧﴾ لَٰكِنَّا هُوَ اللَّهُ رَبِّي وَلَا أُشْرِكُ بِرَبِّي أَحَدًا ﴿٣٨﴾ وَلَوْلَا إِذْ دَخَلْتَ جَنَّتَكَ قُلْتَ مَا شَاءَ اللَّهُ لَا قُوَّةَ إِلَّا بِاللَّهِ ۚ إِنْ تَرَنِ أَنَا أَقَلَّ مِنْكَ مَالًا وَوَلَدًا ﴿٣٩﴾ فَعَسَىٰ رَبِّي أَنْ يُؤْتِيَنِ خَيْرًا مِنْ جَنَّتِكَ وَيُرْسِلَ عَلَيْهَا حُسْبَانًا مِنَ السَّمَاءِ فَتُصْبِحَ صَعِيدًا زَلَقًا ﴿٤٠﴾ أَوْ يُصْبِحَ مَاؤُهَا غَوْرًا فَلَنْ تَسْتَطِيعَ لَهُ طَلَبًا ﴿٤١﴾ وَأُحِيطَ بِثَمَرِهِ فَأَصْبَحَ يُقَلِّبُ كَفَّيْهِ عَلَىٰ مَا أَنْفَقَ فِيهَا وَهِيَ خَاوِيَةٌ عَلَىٰ عُرُوشِهَا وَيَقُولُ يَا لَيْتَنِي لَمْ أُشْرِكْ بِرَبِّي أَحَدًا ﴿٤٢﴾ وَلَمْ تَكُنْ لَهُ فِئَةٌ يَنْصُرُونَهُ مِنْ دُونِ اللَّهِ وَمَا كَانَ مُنْتَصِرًا ﴿٤٣﴾ هُنَالِكَ الْوَلَايَةُ لِلَّهِ الْحَقِّ ۚ هُوَ خَيْرٌ ثَوَابًا وَخَيْرٌ عُقْبًا ﴿٤٤﴾`},
+  {r:'رکوع ۶',t:`وَاضْرِبْ لَهُمْ مَثَلَ الْحَيَاةِ الدُّنْيَا كَمَاءٍ أَنْزَلْنَاهُ مِنَ السَّمَاءِ فَاخْتَلَطَ بِهِ نَبَاتُ الْأَرْضِ فَأَصْبَحَ هَشِيمًا تَذْرُوهُ الرِّيَاحُ ۗ وَكَانَ اللَّهُ عَلَىٰ كُلِّ شَيْءٍ مُقْتَدِرًا ﴿٤٥﴾ الْمَالُ وَالْبَنُونَ زِينَةُ الْحَيَاةِ الدُّنْيَا ۖ وَالْبَاقِيَاتُ الصَّالِحَاتُ خَيْرٌ عِنْدَ رَبِّكَ ثَوَابًا وَخَيْرٌ أَمَلًا ﴿٤٦﴾ وَيَوْمَ نُسَيِّرُ الْجِبَالَ وَتَرَى الْأَرْضَ بَارِزَةً وَحَشَرْنَاهُمْ فَلَمْ نُغَادِرْ مِنْهُمْ أَحَدًا ﴿٤٧﴾ وَعُرِضُوا عَلَىٰ رَبِّكَ صَفًّا لَقَدْ جِئْتُمُونَا كَمَا خَلَقْنَاكُمْ أَوَّلَ مَرَّةٍ ۚ بَلْ زَعَمْتُمْ أَلَّنْ نَجْعَلَ لَكُمْ مَوْعِدًا ﴿٤٨﴾ وَوُضِعَ الْكِتَابُ فَتَرَى الْمُجْرِمِينَ مُشْفِقِينَ مِمَّا فِيهِ وَيَقُولُونَ يَا وَيْلَتَنَا مَالِ هَٰذَا الْكِتَابِ لَا يُغَادِرُ صَغِيرَةً وَلَا كَبِيرَةً إِلَّا أَحْصَاهَا ۚ وَوَجَدُوا مَا عَمِلُوا حَاضِرًا ۗ وَلَا يَظْلِمُ رَبُّكَ أَحَدًا ﴿٤٩﴾`},
+  {r:'رکوع ۷',t:`وَإِذْ قُلْنَا لِلْمَلَائِكَةِ اسْجُدُوا لِآدَمَ فَسَجَدُوا إِلَّا إِبْلِيسَ كَانَ مِنَ الْجِنِّ فَفَسَقَ عَنْ أَمْرِ رَبِّهِ ۗ أَفَتَتَّخِذُونَهُ وَذُرِّيَّتَهُ أَوْلِيَاءَ مِنْ دُونِي وَهُمْ لَكُمْ عَدُوٌّ ۚ بِئْسَ لِلظَّالِمِينَ بَدَلًا ﴿٥٠﴾ مَا أَشْهَدْتُهُمْ خَلْقَ السَّمَاوَاتِ وَالْأَرْضِ وَلَا خَلْقَ أَنْفُسِهِمْ وَمَا كُنْتُ مُتَّخِذَ الْمُضِلِّينَ عَضُدًا ﴿٥١﴾ وَيَوْمَ يَقُولُ نَادُوا شُرَكَائِيَ الَّذِينَ زَعَمْتُمْ فَدَعَوْهُمْ فَلَمْ يَسْتَجِيبُوا لَهُمْ وَجَعَلْنَا بَيْنَهُمْ مَوْبِقًا ﴿٥٢﴾ وَرَأَى الْمُجْرِمُونَ النَّارَ فَظَنُّوا أَنَّهُمْ مُوَاقِعُوهَا وَلَمْ يَجِدُوا عَنْهَا مَصْرِفًا ﴿٥٣﴾`},
+  {r:'رکوع ۸',t:`وَلَقَدْ صَرَّفْنَا فِي هَٰذَا الْقُرْآنِ لِلنَّاسِ مِنْ كُلِّ مَثَلٍ ۚ وَكَانَ الْإِنْسَانُ أَكْثَرَ شَيْءٍ جَدَلًا ﴿٥٤﴾ وَمَا مَنَعَ النَّاسَ أَنْ يُؤْمِنُوا إِذْ جَاءَهُمُ الْهُدَىٰ وَيَسْتَغْفِرُوا رَبَّهُمْ إِلَّا أَنْ تَأْتِيَهُمْ سُنَّةُ الْأَوَّلِينَ أَوْ يَأْتِيَهُمُ الْعَذَابُ قُبُلًا ﴿٥٥﴾ وَمَا نُرْسِلُ الْمُرْسَلِينَ إِلَّا مُبَشِّرِينَ وَمُنْذِرِينَ ۚ وَيُجَادِلُ الَّذِينَ كَفَرُوا بِالْبَاطِلِ لِيُدْحِضُوا بِهِ الْحَقَّ وَاتَّخَذُوا آيَاتِي وَمَا أُنْذِرُوا هُزُوًا ﴿٥٦﴾ وَمَنْ أَظْلَمُ مِمَّنْ ذُكِّرَ بِآيَاتِ رَبِّهِ فَأَعْرَضَ عَنْهَا وَنَسِيَ مَا قَدَّمَتْ يَدَاهُ ۚ إِنَّا جَعَلْنَا عَلَىٰ قُلُوبِهِمْ أَكِنَّةً أَنْ يَفْقَهُوهُ وَفِي آذَانِهِمْ وَقْرًا ۗ وَإِنْ تَدْعُهُمْ إِلَى الْهُدَىٰ فَلَنْ يَهْتَدُوا إِذًا أَبَدًا ﴿٥٧﴾ وَرَبُّكَ الْغَفُورُ ذُو الرَّحْمَةِ ۚ لَوْ يُؤَاخِذُهُمْ بِمَا كَسَبُوا لَعَجَّلَ لَهُمُ الْعَذَابَ ۚ بَلْ لَهُمْ مَوْعِدٌ لَنْ يَجِدُوا مِنْ دُونِهِ مَوْئِلًا ﴿٥٨﴾ وَتِلْكَ الْقُرَىٰ أَهْلَكْنَاهُمْ لَمَّا ظَلَمُوا وَجَعَلْنَا لِمَهْلِكِهِمْ مَوْعِدًا ﴿٥٩﴾`},
+  {r:'رکوع ۹',t:`وَإِذْ قَالَ مُوسَىٰ لِفَتَاهُ لَا أَبْرَحُ حَتَّىٰ أَبْلُغَ مَجْمَعَ الْبَحْرَيْنِ أَوْ أَمْضِيَ حُقُبًا ﴿٦٠﴾ فَلَمَّا بَلَغَا مَجْمَعَ بَيْنِهِمَا نَسِيَا حُوتَهُمَا فَاتَّخَذَ سَبِيلَهُ فِي الْبَحْرِ سَرَبًا ﴿٦١﴾ فَلَمَّا جَاوَزَا قَالَ لِفَتَاهُ آتِنَا غَدَاءَنَا لَقَدْ لَقِينَا مِنْ سَفَرِنَا هَٰذَا نَصَبًا ﴿٦٢﴾ قَالَ أَرَأَيْتَ إِذْ أَوَيْنَا إِلَى الصَّخْرَةِ فَإِنِّي نَسِيتُ الْحُوتَ وَمَا أَنْسَانِيهُ إِلَّا الشَّيْطَانُ أَنْ أَذْكُرَهُ ۚ وَاتَّخَذَ سَبِيلَهُ فِي الْبَحْرِ عَجَبًا ﴿٦٣﴾ قَالَ ذَٰلِكَ مَا كُنَّا نَبْغِ ۚ فَارْتَدَّا عَلَىٰ آثَارِهِمَا قَصَصًا ﴿٦٤﴾ فَوَجَدَا عَبْدًا مِنْ عِبَادِنَا آتَيْنَاهُ رَحْمَةً مِنْ عِنْدِنَا وَعَلَّمْنَاهُ مِنْ لَدُنَّا عِلْمًا ﴿٦٥﴾ قَالَ لَهُ مُوسَىٰ هَلْ أَتَّبِعُكَ عَلَىٰ أَنْ تُعَلِّمَنِ مِمَّا عُلِّمْتَ رُشْدًا ﴿٦٦﴾ قَالَ إِنَّكَ لَنْ تَسْتَطِيعَ مَعِيَ صَبْرًا ﴿٦٧﴾ وَكَيْفَ تَصْبِرُ عَلَىٰ مَا لَمْ تُحِطْ بِهِ خُبْرًا ﴿٦٨﴾ قَالَ سَتَجِدُنِي إِنْ شَاءَ اللَّهُ صَابِرًا وَلَا أَعْصِي لَكَ أَمْرًا ﴿٦٩﴾ قَالَ فَإِنِ اتَّبَعْتَنِي فَلَا تَسْأَلْنِي عَنْ شَيْءٍ حَتَّىٰ أُحْدِثَ لَكَ مِنْهُ ذِكْرًا ﴿٧٠﴾`},
+  {r:'رکوع ۱۰',t:`فَانْطَلَقَا حَتَّىٰ إِذَا رَكِبَا فِي السَّفِينَةِ خَرَقَهَا ۖ قَالَ أَخَرَقْتَهَا لِتُغْرِقَ أَهْلَهَا لَقَدْ جِئْتَ شَيْئًا إِمْرًا ﴿٧١﴾ قَالَ أَلَمْ أَقُلْ إِنَّكَ لَنْ تَسْتَطِيعَ مَعِيَ صَبْرًا ﴿٧٢﴾ قَالَ لَا تُؤَاخِذْنِي بِمَا نَسِيتُ وَلَا تُرْهِقْنِي مِنْ أَمْرِي عُسْرًا ﴿٧٣﴾ فَانْطَلَقَا حَتَّىٰ إِذَا لَقِيَا غُلَامًا فَقَتَلَهُ ۖ قَالَ أَقَتَلْتَ نَفْسًا زَكِيَّةً بِغَيْرِ نَفْسٍ لَقَدْ جِئْتَ شَيْئًا نُكْرًا ﴿٧٤﴾ قَالَ أَلَمْ أَقُلْ لَكَ إِنَّكَ لَنْ تَسْتَطِيعَ مَعِيَ صَبْرًا ﴿٧٥﴾ قَالَ إِنْ سَأَلْتُكَ عَنْ شَيْءٍ بَعْدَهَا فَلَا تُصَاحِبْنِي ۖ قَدْ بَلَغْتَ مِنْ لَدُنِّي عُذْرًا ﴿٧٦﴾ فَانْطَلَقَا حَتَّىٰ إِذَا أَتَيَا أَهْلَ قَرْيَةٍ اسْتَطْعَمَا أَهْلَهَا فَأَبَوْا أَنْ يُضَيِّفُوهُمَا فَوَجَدَا فِيهَا جِدَارًا يُرِيدُ أَنْ يَنْقَضَّ فَأَقَامَهُ ۖ قَالَ لَوْ شِئْتَ لَاتَّخَذْتَ عَلَيْهِ أَجْرًا ﴿٧٧﴾ قَالَ هَٰذَا فِرَاقُ بَيْنِي وَبَيْنِكَ ۚ سَأُنَبِّئُكَ بِتَأْوِيلِ مَا لَمْ تَسْتَطِعْ عَلَيْهِ صَبْرًا ﴿٧٨﴾ أَمَّا السَّفِينَةُ فَكَانَتْ لِمَسَاكِينَ يَعْمَلُونَ فِي الْبَحْرِ فَأَرَدْتُّ أَنْ أَعِيبَهَا وَكَانَ وَرَاءَهُمْ مَلِكٌ يَأْخُذُ كُلَّ سَفِينَةٍ غَصْبًا ﴿٧٩﴾ وَأَمَّا الْغُلَامُ فَكَانَ أَبَوَاهُ مُؤْمِنَيْنِ فَخَشِينَا أَنْ يُرْهِقَهُمَا طُغْيَانًا وَكُفْرًا ﴿٨٠﴾ فَأَرَدْنَا أَنْ يُبْدِلَهُمَا رَبُّهُمَا خَيْرًا مِنْهُ زَكَاةً وَأَقْرَبَ رُحْمًا ﴿٨١﴾ وَأَمَّا الْجِدَارُ فَكَانَ لِغُلَامَيْنِ يَتِيمَيْنِ فِي الْمَدِينَةِ وَكَانَ تَحْتَهُ كَنْزٌ لَهُمَا وَكَانَ أَبُوهُمَا صَالِحًا ۚ فَأَرَادَ رَبُّكَ أَنْ يَبْلُغَا أَشُدَّهُمَا وَيَسْتَخْرِجَا كَنْزَهُمَا رَحْمَةً مِنْ رَبِّكَ ۚ وَمَا فَعَلْتُهُ عَنْ أَمْرِي ۚ ذَٰلِكَ تَأْوِيلُ مَا لَمْ تَسْطِعْ عَلَيْهِ صَبْرًا ﴿٨٢﴾`},
+  {r:'رکوع ۱۱',t:`وَيَسْأَلُونَكَ عَنْ ذِي الْقَرْنَيْنِ ۖ قُلْ سَأَتْلُو عَلَيْكُمْ مِنْهُ ذِكْرًا ﴿٨٣﴾ إِنَّا مَكَّنَّا لَهُ فِي الْأَرْضِ وَآتَيْنَاهُ مِنْ كُلِّ شَيْءٍ سَبَبًا ﴿٨٤﴾ فَأَتْبَعَ سَبَبًا ﴿٨٥﴾ حَتَّىٰ إِذَا بَلَغَ مَغْرِبَ الشَّمْسِ وَجَدَهَا تَغْرُبُ فِي عَيْنٍ حَمِئَةٍ وَوَجَدَ عِنْدَهَا قَوْمًا ۗ قُلْنَا يَا ذَا الْقَرْنَيْنِ إِمَّا أَنْ تُعَذِّبَ وَإِمَّا أَنْ تَتَّخِذَ فِيهِمْ حُسْنًا ﴿٨٦﴾ قَالَ أَمَّا مَنْ ظَلَمَ فَسَوْفَ نُعَذِّبُهُ ثُمَّ يُرَدُّ إِلَىٰ رَبِّهِ فَيُعَذِّبُهُ عَذَابًا نُكْرًا ﴿٨٧﴾ وَأَمَّا مَنْ آمَنَ وَعَمِلَ صَالِحًا فَلَهُ جَزَاءً الْحُسْنَىٰ ۖ وَسَنَقُولُ لَهُ مِنْ أَمْرِنَا يُسْرًا ﴿٨٨﴾ ثُمَّ أَتْبَعَ سَبَبًا ﴿٨٩﴾ حَتَّىٰ إِذَا بَلَغَ مَطْلِعَ الشَّمْسِ وَجَدَهَا تَطْلُعُ عَلَىٰ قَوْمٍ لَمْ نَجْعَلْ لَهُمْ مِنْ دُونِهَا سِتْرًا ﴿٩٠﴾ كَذَٰلِكَ وَقَدْ أَحَطْنَا بِمَا لَدَيْهِ خُبْرًا ﴿٩١﴾ ثُمَّ أَتْبَعَ سَبَبًا ﴿٩٢﴾ حَتَّىٰ إِذَا بَلَغَ بَيْنَ السَّدَّيْنِ وَجَدَ مِنْ دُونِهِمَا قَوْمًا لَا يَكَادُونَ يَفْقَهُونَ قَوْلًا ﴿٩٣﴾ قَالُوا يَا ذَا الْقَرْنَيْنِ إِنَّ يَأْجُوجَ وَمَأْجُوجَ مُفْسِدُونَ فِي الْأَرْضِ فَهَلْ نَجْعَلُ لَكَ خَرْجًا عَلَىٰ أَنْ تَجْعَلَ بَيْنَنَا وَبَيْنَهُمْ سَدًّا ﴿٩٤﴾ قَالَ مَا مَكَّنِّي فِيهِ رَبِّي خَيْرٌ فَأَعِينُونِي بِقُوَّةٍ أَجْعَلْ بَيْنَكُمْ وَبَيْنَهُمْ رَدْمًا ﴿٩٥﴾ آتُونِي زُبَرَ الْحَدِيدِ ۖ حَتَّىٰ إِذَا سَاوَىٰ بَيْنَ الصَّدَفَيْنِ قَالَ انْفُخُوا ۖ حَتَّىٰ إِذَا جَعَلَهُ نَارًا قَالَ آتُونِي أُفْرِغْ عَلَيْهِ قِطْرًا ﴿٩٦﴾ فَمَا اسْطَاعُوا أَنْ يَظْهَرُوهُ وَمَا اسْتَطَاعُوا لَهُ نَقْبًا ﴿٩٧﴾ قَالَ هَٰذَا رَحْمَةٌ مِنْ رَبِّي ۖ فَإِذَا جَاءَ وَعْدُ رَبِّي جَعَلَهُ دَكَّاءَ ۖ وَكَانَ وَعْدُ رَبِّي حَقًّا ﴿٩٨﴾`},
+  {r:'رکوع ۱۲',t:`وَتَرَكْنَا بَعْضَهُمْ يَوْمَئِذٍ يَمُوجُ فِي بَعْضٍ ۖ وَنُفِخَ فِي الصُّورِ فَجَمَعْنَاهُمْ جَمْعًا ﴿٩٩﴾ وَعَرَضْنَا جَهَنَّمَ يَوْمَئِذٍ لِلْكَافِرِينَ عَرْضًا ﴿١٠٠﴾ الَّذِينَ كَانَتْ أَعْيُنُهُمْ فِي غِطَاءٍ عَنْ ذِكْرِي وَكَانُوا لَا يَسْتَطِيعُونَ سَمْعًا ﴿١٠١﴾ أَفَحَسِبَ الَّذِينَ كَفَرُوا أَنْ يَتَّخِذُوا عِبَادِي مِنْ دُونِي أَوْلِيَاءَ ۚ إِنَّا أَعْتَدْنَا جَهَنَّمَ لِلْكَافِرِينَ نُزُلًا ﴿١٠٢﴾ قُلْ هَلْ نُنَبِّئُكُمْ بِالْأَخْسَرِينَ أَعْمَالًا ﴿١٠٣﴾ الَّذِينَ ضَلَّ سَعْيُهُمْ فِي الْحَيَاةِ الدُّنْيَا وَهُمْ يَحْسَبُونَ أَنَّهُمْ يُحْسِنُونَ صُنْعًا ﴿١٠٤﴾ أُولَٰئِكَ الَّذِينَ كَفَرُوا بِآيَاتِ رَبِّهِمْ وَلِقَائِهِ فَحَبِطَتْ أَعْمَالُهُمْ فَلَا نُقِيمُ لَهُمْ يَوْمَ الْقِيَامَةِ وَزْنًا ﴿١٠٥﴾ ذَٰلِكَ جَزَاؤُهُمْ جَهَنَّمُ بِمَا كَفَرُوا وَاتَّخَذُوا آيَاتِي وَرُسُلِي هُزُوًا ﴿١٠٦﴾ إِنَّ الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ كَانَتْ لَهُمْ جَنَّاتُ الْفِرْدَوْسِ نُزُلًا ﴿١٠٧﴾ خَالِدِينَ فِيهَا لَا يَبْغُونَ عَنْهَا حِوَلًا ﴿١٠٨﴾ قُلْ لَوْ كَانَ الْبَحْرُ مِدَادًا لِكَلِمَاتِ رَبِّي لَنَفِدَ الْبَحْرُ قَبْلَ أَنْ تَنْفَدَ كَلِمَاتُ رَبِّي وَلَوْ جِئْنَا بِمِثْلِهِ مَدَدًا ﴿١٠٩﴾ قُلْ إِنَّمَا أَنَا بَشَرٌ مِثْلُكُمْ يُوحَىٰ إِلَيَّ أَنَّمَا إِلَٰهُكُمْ إِلَٰهٌ وَاحِدٌ ۖ فَمَنْ كَانَ يَرْجُو لِقَاءَ رَبِّهِ فَلْيَعْمَلْ عَمَلًا صَالِحًا وَلَا يُشْرِكْ بِعِبَادَةِ رَبِّهِ أَحَدًا ﴿١١٠﴾`}
+];
+
+const SECTIONS_META = [
+  {id:'namaz', icon:'🕌', title:'ہر نماز کے بعد', data:NAMAZ,   color:'var(--r-namaz)'},
+  {id:'fajr',  icon:'🌅', title:'فجر / مغرب',     data:FAJR,    color:'var(--r-fajr)'},
+  {id:'jumma', icon:'🌙', title:'جمعہ کا وِرد',   data:JUMMA,   color:'var(--r-jumma)'},
+  {id:'asr',   icon:'☀️', title:'جمعہ عصر درود', data:null,    color:'var(--r-asr)'},
+  {id:'kahf',  icon:'📖', title:'سورۃ الکہف',     data:null,    color:'var(--g1)'},
+  {id:'tauheed',icon:'☝️',title:'توحید کی دعا',  data:[TAUHEED],color:'var(--r-tauheed)'},
+  {id:'tasbeeh',icon:'📿',title:'تسبیحِ فاطمہ',  data:null,    color:'var(--r-tasbeeh)'}
+];
+
+// ════ STATE ════
+let sec = 'namaz';
+let S = {
+  namaz:  {idx:0,cnt:0,done:new Array(NAMAZ.length).fill(false)},
+  fajr:   {idx:0,cnt:0,done:new Array(FAJR.length).fill(false)},
+  jumma:  {idx:0,cnt:0,done:new Array(JUMMA.length).fill(false)},
+  asr:    {cnt:0,done:false},
+  tauheed:{idx:0,cnt:0,done:[false]},
+  tasbeeh:{phase:0,cnt:0,phaseDone:[false,false,false]}
+};
+try {
+  const p = JSON.parse(sessionStorage.getItem('adhkar_v1')||'{}');
+  if(p.sec) sec = p.sec;
+  ['namaz','fajr','jumma','asr','tauheed','tasbeeh'].forEach(k=>{ if(p[k]) Object.assign(S[k],p[k]); });
+  if(!S.namaz.done||S.namaz.done.length!==NAMAZ.length) S.namaz.done=new Array(NAMAZ.length).fill(false);
+  if(!S.fajr.done||S.fajr.done.length!==FAJR.length)   S.fajr.done=new Array(FAJR.length).fill(false);
+  if(!S.jumma.done||S.jumma.done.length!==JUMMA.length) S.jumma.done=new Array(JUMMA.length).fill(false);
+} catch(e){}
+const save=()=>{try{sessionStorage.setItem('adhkar_v1',JSON.stringify({sec,...S}))}catch(e){}};
+
+// ════ AUDIO ════
+let ac;
+const beep=(f=780,d=.08,v=.18)=>{try{if(!ac)ac=new(window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.frequency.value=f;o.type='sine';g.gain.setValueAtTime(v,ac.currentTime);g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+d);o.start();o.stop(ac.currentTime+d)}catch(e){}};
+const vib=p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
+const CIRC=2*Math.PI*76; // r=76 ≈ 477.5
+
+// ════ RENDER ════
+function render(){
+  // chips
+  document.querySelectorAll('.chip').forEach(c=>{
+    c.classList.toggle('active',c.dataset.sec===sec);
+  });
+
+  const mc = document.getElementById('mainContent');
+
+  if(sec==='kahf')   { renderKahf(mc); return; }
+  if(sec==='asr')    { renderAsr(mc);  return; }
+  if(sec==='tasbeeh'){ renderTasbeeh(mc); return; }
+
+  const meta = SECTIONS_META.find(s=>s.id===sec);
+  const steps = meta.data;
+  const st = S[sec];
+  const step = steps[st.idx];
+  const total = steps.length;
+  const count = st.cnt;
+  const pct = Math.min(count/step.target,1);
+  const offset = CIRC*(1-pct);
+  const done = count>=step.target;
+
+  document.getElementById('progFill').style.width=((st.idx+(done?1:count/step.target))/total*100)+'%';
+
+  let h = `<div class="step-panel">
+    <div class="sec-badge">
+      <div class="sec-dot" style="background:${meta.color}"></div>
+      <span>${meta.icon} ${meta.title} — ${st.idx+1} از ${total}</span>
+      <div class="sec-dot" style="background:${meta.color}"></div>
+    </div>`;
+
+  // dam step
+  if(step.isDm){
+    h+=`<div class="dam-box">
+      <strong>🫁 دَم کریں</strong><br/><br/>
+      ہاتھوں پر پھونک کر پہلے اپنے آپ پر دَم کریں — ہاتھ پورے جسم پر پھیریں۔<br/>
+      پھر گھر والوں پر دَم کریں۔ اگر غائب ہوں تو دل میں خیال لا کر دَم کریں۔
+    </div>
+    <div style="margin:.3rem 0">
+      <div id="dmBtn" style="width:120px;height:120px;margin:0 auto;border-radius:50%;background:radial-gradient(circle at 35% 30%,#102014,#030b04);border:1px solid rgba(60,179,113,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer">
+        ${done?`<div style="font-size:1.8rem">✅</div><div style="font-size:.7rem;color:var(--g2);margin-top:3px">مکمل</div>`:`<div style="font-size:1.9rem">🫁</div><div style="font-size:.65rem;color:var(--text2);margin-top:3px">تسلیم کریں</div>`}
       </div>
+    </div>`;
+  } else {
+    h+=`<div class="dua-card">
+      <div class="arabic">${step.arabic.replace(/\n/g,'<br/><br/>')}</div>
+      <div class="dua-name">${step.name} — ${step.target>1?`×${step.target}`:'یک مرتبہ'}</div>
+    </div>
+    <button class="faz-toggle" onclick="toggleFaz(this)">
+      <span>✨</span> فضیلت دیکھیں
+    </button>
+    <div class="faz-body">${step.faz}</div>`;
 
-    </main>
+    // ring
+    h+=`<div class="ring-wrap" id="rw">
+      <svg viewBox="0 0 176 176">
+        <circle class="rbg" cx="88" cy="88" r="76"/>
+        <circle class="rfill" id="rf" cx="88" cy="88" r="76"
+          style="stroke:${meta.color};stroke-dashoffset:${offset}"/>
+      </svg>
+      <div class="ring-inner" id="ri">
+        ${done
+          ?`<div style="font-size:1.5rem">✅</div><div class="rof">مکمل</div>`
+          :`<div class="rnum" id="rn">${count}</div>
+            <div class="rof">از ${step.target}</div>
+            <div class="rhint">tap to count</div>`}
+      </div>
+    </div>`;
+  }
 
-    <script>
-      let count = 0;
-      const maxCount = 80;
-      const circle = document.querySelector('.circle');
-      const message = document.getElementById('message');
-      const heading = document.getElementById('heading');
-      let isUrdu = true;
+  const isLast = st.idx===total-1;
+  h+=`<div class="controls">
+    <button class="ctrl" id="prevB" ${st.idx===0?'disabled':''}>← پچھلا</button>
+    <button class="ctrl" id="undoB">↩</button>
+    <button class="ctrl next" id="nextB">${done?(isLast?'🌿 ختم':'اگلا →'):'آگے →'}</button>
+  </div></div>`;
 
-      function incrementCounter() {
-        if (count < maxCount) {
-          count++;
-          circle.textContent = count;
-          if (count === maxCount) {
-            showCompleteMessage();
-          }
-        }
+  mc.innerHTML=h;
+  mc.style.animation='none'; void mc.offsetWidth;
+
+  document.getElementById('rw')?.addEventListener('click',tap);
+  document.getElementById('dmBtn')?.addEventListener('click',()=>{if(!done){S[sec].done[st.idx]=true;save();render();}});
+  document.getElementById('prevB')?.addEventListener('click',()=>{if(st.idx>0){st.idx--;st.cnt=0;save();render();}});
+  document.getElementById('undoB')?.addEventListener('click',doUndo);
+  document.getElementById('nextB')?.addEventListener('click',goNext);
+  renderDrawer();
+}
+
+function renderAsr(mc){
+  const cnt=S.asr.cnt, target=80, done=S.asr.done;
+  const pct=Math.min(cnt/target,1), offset=CIRC*(1-pct);
+  document.getElementById('progFill').style.width=(pct*100)+'%';
+
+  mc.innerHTML=`<div class="step-panel">
+    <div class="sec-badge">
+      <div class="sec-dot" style="background:var(--r-asr)"></div>
+      <span>☀️ جمعہ عصر کے بعد — ۸۰ مرتبہ</span>
+      <div class="sec-dot" style="background:var(--r-asr)"></div>
+    </div>
+    <div class="urdu-note" style="border-right-color:var(--r-asr)">
+      جمعہ کے دن نمازِ عصر کے بعد جگہ سے اٹھنے سے پہلے ۸۰ مرتبہ پڑھیں — ۸۰ سال کے گناہ معاف، ۸۰ سال کا ثواب
+    </div>
+    <img class="asr-img" src="${ASR_IMG}" alt="درودِ نبی اُمّی" loading="lazy"/>
+    <div class="ring-wrap" id="rw">
+      <svg viewBox="0 0 176 176">
+        <circle class="rbg" cx="88" cy="88" r="76"/>
+        <circle class="rfill" id="rf" cx="88" cy="88" r="76"
+          style="stroke:var(--r-asr);stroke-dashoffset:${offset}"/>
+      </svg>
+      <div class="ring-inner" id="ri">
+        ${done
+          ?`<div style="font-size:1.5rem">✅</div><div class="rof" style="color:var(--gold2)">مکمل!</div>`
+          :`<div class="rnum" id="rn" style="color:var(--gold2)">${cnt}</div>
+            <div class="rof">از ۸۰</div>
+            <div class="rhint">tap to count</div>`}
+      </div>
+    </div>
+    <div class="controls">
+      <button class="ctrl" onclick="doUndo()">↩ واپس</button>
+      <button class="ctrl next" style="border-color:rgba(240,200,66,.4);color:var(--gold2)" onclick="resetAsr()">↺ دوبارہ</button>
+    </div>
+  </div>`;
+  document.getElementById('rw').addEventListener('click',tap);
+  renderDrawer();
+}
+
+function renderTasbeeh(mc){
+  const ph=S.tasbeeh.phase, cnt=S.tasbeeh.cnt;
+  const phase=TASBEEH_PHASES[ph];
+  const target=phase.target, pct=Math.min(cnt/target,1), offset=CIRC*(1-pct);
+  const done=cnt>=target;
+  document.getElementById('progFill').style.width=((ph+(done?1:pct))/3*100)+'%';
+
+  const chips = TASBEEH_PHASES.map((p,i)=>`
+    <div class="phase-chip ${i<ph?'done':''} ${i===ph?'cur':''}" style="${i===ph?`border-color:${p.color};color:${p.color}`:''}">
+      ${i<ph?'✓ ':''}<span style="font-family:'Amiri',serif;font-size:1rem">${p.arabic}</span><br/>
+      <span style="font-size:.6rem">${p.urdu} ×${p.target}</span>
+    </div>`).join('');
+
+  mc.innerHTML=`<div class="tasbeeh-panel">
+    <div class="sec-badge">
+      <div class="sec-dot" style="background:var(--r-tasbeeh)"></div>
+      <span>📿 تسبیحِ فاطمہؓ — مرحلہ ${ph+1} از ۳</span>
+      <div class="sec-dot" style="background:var(--r-tasbeeh)"></div>
+    </div>
+    <div class="tasbeeh-phases" dir="ltr">${chips}</div>
+    <div class="dua-card" style="border-color:rgba(236,72,153,.2)">
+      <div class="arabic xl" style="color:#fce7f3">${phase.arabic}</div>
+      <div class="dua-name" style="color:#f0abcf">${phase.urdu} — ×${target}</div>
+    </div>
+    <div class="faz-body open" style="display:block">
+      نبی کریم ﷺ نے سیدہ فاطمہؓ اور حضرت علیؓ کو یہ تسبیح سکھائی جب انہوں نے خادم مانگا۔ فرمایا: یہ خادم سے بہتر ہے — تھکاوٹ دور ہوتی ہے، طاقت ملتی ہے۔ (صحیح بخاری و مسلم)
+    </div>
+    <div class="ring-wrap" id="rw">
+      <svg viewBox="0 0 176 176">
+        <circle class="rbg" cx="88" cy="88" r="76"/>
+        <circle class="rfill" id="rf" cx="88" cy="88" r="76"
+          style="stroke:${phase.color};stroke-dashoffset:${offset}"/>
+      </svg>
+      <div class="ring-inner" id="ri" style="border-color:rgba(236,72,153,.2)">
+        ${done
+          ?`<div style="font-size:1.5rem">✅</div><div class="rof">مکمل</div>`
+          :`<div class="rnum" id="rn" style="color:${phase.color}">${cnt}</div>
+            <div class="rof">از ${target}</div>
+            <div class="rhint">tap to count</div>`}
+      </div>
+    </div>
+    <div class="controls">
+      <button class="ctrl" onclick="doUndo()">↩</button>
+      <button class="ctrl next" style="border-color:rgba(236,72,153,.4);color:#fda4cf" id="nextB">
+        ${done?(ph===2?'🌿 ختم':'اگلا ←'):'آگے →'}
+      </button>
+    </div>
+  </div>`;
+  document.getElementById('rw').addEventListener('click',tap);
+  document.getElementById('nextB').addEventListener('click',()=>{
+    if(done){
+      if(ph===2){
+        document.getElementById('compMsg').textContent='ماشاءاللہ! تسبیحِ فاطمہؓ مکمل ہوگئی 📿';
+        document.getElementById('compScreen').classList.add('show');
+      } else {
+        S.tasbeeh.phaseDone[ph]=true;
+        S.tasbeeh.phase++;
+        S.tasbeeh.cnt=0;
+        save();render();
       }
+    }
+  });
+  renderDrawer();
+}
 
-      function showCompleteMessage() {
-        message.textContent = isUrdu
-          ? "ماشاءاللہ! 80 درود شریف مکمل ہوگئے 🌸"
-          : "MashaAllah! 80 Darood Sharif completed 🌸";
-      }
+function renderKahf(mc){
+  document.getElementById('progFill').style.width='100%';
+  let h=`<div class="kahf-panel">
+    <div class="kahf-head">
+      <div class="kahf-title">سُورَةُ الْكَهْفِ</div>
+      <div class="kahf-sub">مکمل سورۃ — ۱۱۰ آیات — ۱۲ رکوع<br/>ہر جمعہ تلاوت سنت ہے — اوپر سے نیچے سکرول کریں</div>
+    </div>`;
+  KAHF_RUKUS.forEach(r=>{
+    h+=`<div class="ruku-sep">${r.r}</div><div class="kahf-text">${r.t.replace(/\n/g,'<br/>')}</div>`;
+  });
+  h+=`<div style="text-align:center;padding:2rem 0 .5rem;font-family:'Amiri',serif;font-size:1.1rem;color:var(--gold2);direction:rtl;line-height:2">۞ صَدَقَ اللَّهُ الْعَظِيمُ ۞</div></div>`;
+  mc.innerHTML=h;
+  renderDrawer();
+}
 
-      function resetCounter() {
-        count = 0;
-        circle.textContent = 0;
-        message.textContent = '';
-      }
+// ════ TAP ════
+function tap(){
+  const isTasbeeh=sec==='tasbeeh', isAsr=sec==='asr';
+  let cnt,target,color='var(--r-namaz)';
 
-      function toggleDarkMode() {
-        document.body.classList.toggle('dark');
-      }
+  if(isAsr){
+    if(S.asr.done) return;
+    cnt=S.asr.cnt; target=80; color='var(--r-asr)';
+  } else if(isTasbeeh){
+    const ph=S.tasbeeh.phase;
+    if(S.tasbeeh.cnt>=TASBEEH_PHASES[ph].target) return;
+    cnt=S.tasbeeh.cnt; target=TASBEEH_PHASES[ph].target; color=TASBEEH_PHASES[ph].color;
+  } else {
+    const st=S[sec]; const step=SECTIONS_META.find(s=>s.id===sec).data[st.idx];
+    if(st.cnt>=step.target) return;
+    cnt=st.cnt; target=step.target; color=SECTIONS_META.find(s=>s.id===sec).color;
+  }
 
-      function toggleLanguage() {
-        isUrdu = !isUrdu;
-        heading.innerHTML = isUrdu
-          ? "درود شریف کاؤنٹر<br/>Darood Sharif Counter"
-          : "Darood Sharif Counter<br/>درود شریف کاؤنٹر";
-        if (count === maxCount) {
-          showCompleteMessage();
-        }
-      }
-    </script>
-    
-  </body>
-</b:blog>
+  if(cnt>=target) return;
+
+  // increment
+  if(isAsr) S.asr.cnt++;
+  else if(isTasbeeh) S.tasbeeh.cnt++;
+  else S[sec].cnt++;
+  save();
+
+  beep(isTasbeeh?660:isAsr?800:780,.08); vib(20);
+
+  const ri=document.getElementById('ri');
+  if(ri){ ri.classList.remove('pg','pp','pt'); void ri.offsetWidth;
+    ri.classList.add(isTasbeeh?'pt':sec==='jumma'?'pp':'pg'); }
+
+  const nc=isAsr?S.asr.cnt:isTasbeeh?S.tasbeeh.cnt:S[sec].cnt;
+  document.getElementById('rn')&&(document.getElementById('rn').textContent=nc);
+  document.getElementById('rf')&&(document.getElementById('rf').style.strokeDashoffset=CIRC*(1-nc/target));
+
+  if(nc>=target){
+    beep(isTasbeeh?520:600,.3,.25); vib([40,30,70]);
+    if(isAsr) S.asr.done=true;
+    else if(isTasbeeh) { /* handled by next button */ }
+    else { S[sec].done[S[sec].idx]=true; }
+    save(); setTimeout(render,320);
+  }
+}
+
+function doUndo(){
+  if(sec==='asr'){if(S.asr.cnt>0){S.asr.cnt--;S.asr.done=false;save();render();}}
+  else if(sec==='tasbeeh'){if(S.tasbeeh.cnt>0){S.tasbeeh.cnt--;save();render();}}
+  else{const st=S[sec];if(st.cnt>0){st.cnt--;st.done[st.idx]=false;save();render();}}
+}
+function resetAsr(){S.asr={cnt:0,done:false};save();render();}
+
+function goNext(){
+  const steps=SECTIONS_META.find(s=>s.id===sec).data;
+  const st=S[sec];
+  if(st.idx===steps.length-1){
+    document.getElementById('compMsg').textContent={
+      namaz:'ماشاءاللہ! ہر نماز کے بعد کے اذکار مکمل 🌿',
+      fajr:'ماشاءاللہ! فجر/مغرب کے اذکار مکمل 🌅',
+      jumma:'ماشاءاللہ! جمعہ کا وِرد مکمل ہوگیا 🌙',
+      tauheed:'ماشاءاللہ! توحید کی دعا مکمل ☝️'
+    }[sec]||'اَلْحَمْدُ لِلَّهِ';
+    document.getElementById('compScreen').classList.add('show');
+  } else {
+    st.idx++; st.cnt=0; save(); render();
+  }
+}
+
+function toggleFaz(btn){
+  const body=btn.nextElementSibling;
+  body.classList.toggle('open');
+  btn.querySelector('span:last-child') && (btn.textContent=body.classList.contains('open')?'▲ فضیلت چھپائیں':'✨ فضیلت دیکھیں');
+  if(!btn.querySelector('span')) btn.textContent=body.classList.contains('open')?'▲ فضیلت چھپائیں':'✨ فضیلت دیکھیں';
+}
+
+// ════ DRAWER ════
+function renderDrawer(){
+  const list=document.getElementById('drList');
+  let h='';
+  SECTIONS_META.forEach(sm=>{
+    const isActive=sec===sm.id;
+    let countText='';
+    if(sm.id==='asr') countText='×۸۰';
+    else if(sm.id==='kahf') countText='۱۱۰';
+    else if(sm.id==='tasbeeh') countText='۳+۳+۳';
+    else countText=`${sm.data.length} اذکار`;
+    h+=`<div class="dr-item${isActive?' active':''}" data-sec="${sm.id}">
+      <span class="dr-icon">${sm.icon}</span>
+      <span class="dr-name">${sm.title}</span>
+      <span class="dr-count" style="color:${sm.color}">${countText}</span>
+    </div>`;
+  });
+  list.innerHTML=h;
+  list.querySelectorAll('.dr-item').forEach(el=>{
+    el.addEventListener('click',()=>{
+      sec=el.dataset.sec; save(); closeDrawer(); render(); window.scrollTo(0,0);
+    });
+  });
+}
+
+document.getElementById('menuBtn').addEventListener('click',()=>{
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('overlay').classList.add('open');
+  renderDrawer();
+});
+function closeDrawer(){
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+}
+document.getElementById('overlay').addEventListener('click',closeDrawer);
+document.getElementById('closeDrawer').addEventListener('click',closeDrawer);
+
+document.querySelectorAll('.chip').forEach(c=>{
+  c.addEventListener('click',()=>{sec=c.dataset.sec;save();render();window.scrollTo(0,0);});
+});
+
+document.getElementById('restartBtn').addEventListener('click',()=>{
+  if(sec==='namaz')   S.namaz  ={idx:0,cnt:0,done:new Array(NAMAZ.length).fill(false)};
+  if(sec==='fajr')    S.fajr   ={idx:0,cnt:0,done:new Array(FAJR.length).fill(false)};
+  if(sec==='jumma')   S.jumma  ={idx:0,cnt:0,done:new Array(JUMMA.length).fill(false)};
+  if(sec==='asr')     S.asr    ={cnt:0,done:false};
+  if(sec==='tauheed') S.tauheed={idx:0,cnt:0,done:[false]};
+  if(sec==='tasbeeh') S.tasbeeh={phase:0,cnt:0,phaseDone:[false,false,false]};
+  save();
+  document.getElementById('compScreen').classList.remove('show');
+  render();
+});
+
+document.addEventListener('keydown',e=>{
+  if(e.code==='Space'||e.code==='Enter'){e.preventDefault();tap();}
+  if(e.code==='Backspace') doUndo();
+  if(e.code==='ArrowRight') document.getElementById('nextB')?.click();
+  if(e.code==='ArrowLeft')  document.getElementById('prevB')?.click();
+});
+
+render();
+</script>
+</body>
+</html>
