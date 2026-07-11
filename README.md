@@ -1,51 +1,47 @@
-# Darood Sharif Counter – 80 Times Islamic Recitation Tracker
+# 🌙 Islamic Azkar Pro
 
-A simple and spiritual web-based Islamic tool to count 80 recitations of **Darood Sharif** with visual progress, dark mode, and Urdu/English language toggle.
+A modern Islamic Azkar web application built with **HTML, CSS, and JavaScript**.
 
-![Darood Counter Preview](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhvRJSzAam84Kh6YDvx58-keNRx0j0WlC3Zz1mIDo1eKBJrru6hq9kiz6IjDuUTzmez7-Dbd-95YmUKLI2uNGXRyr-cqOb0Ezsmd5WyvHnd0omZkzJN6GQRPfKEHzPIoEnB714OcResRS5rVYZQge5z4lZL9v5sBKHY0Uz5LikWhCBxCU-_RNqIMh9-MQM/s600/7dc6bda3f26f6096b46c0a3e0dab9287.png)
+Islamic Azkar Pro provides a clean and responsive interface for reading authentic daily adhkar, Quranic verses with Tajweed support, and using an interactive digital tasbeeh counter.
 
----
+## ✨ Features
 
-## 🔮 Features
+- 🕌 Daily Islamic Azkar
+- 🌅 Morning & Evening Adhkar
+- 📖 Post-Prayer Azkar
+- 📿 Digital Tasbeeh Counter
+- 📖 Surah Al-Kahf
+- 🎨 Quran Tajweed Color Support
+- 📱 Responsive Design
+- 🌙 Premium Dark Theme
+- ⚡ Lightweight & Fast
 
-- 📿 Click-based counter up to **80 Darood Sharif**
-- 🌙 **Dark mode** support
-- 🌐 Toggle between **Urdu and English**
-- 🔄 Reset functionality
+## 📂 Project Structure
 
----
+```text
+.
+├── index.html
+├── data.js
+├── main.css
+├── tajweed.css
+├── README.md
+└── LICENSE
+```
 
-## 🌐 Live Demo
+## 🚀 Getting Started
 
-**👉 [Visit Now](https://darood-counter.blogspot.com/)**
+Clone the repository:
 
----
+```bash
+git clone https://github.com/jamamjadalone/islamic-azkar-pro.git
+```
 
-## 📁 Download
+Open `index.html` in your browser.
 
-You can download all files as a `.zip` from the **Releases** section.
+## 🤝 Contributing
 
----
+Contributions are welcome! Please read the Contributing Guide before submitting a pull request.
 
-## ⚙️ How to Use
+## 📄 License
 
-1. Download or clone this repository.
-2. Open `index.html` in your browser.
-3. Click the green circle to count Darood Sharif.
-4. Use buttons to toggle language, theme, or reset.
-
----
-
-## 📜 License
-
-This project is open-source and free to use for all Muslims 🌙
-
----
-
-## 📈 Keywords (SEO)
-
-`Darood Sharif Counter`, `Digital Tasbeeh`, `Islamic Tools`, `Darood Tracker`, `80 Darood`, `Islamic Web App`, `Tasbeeh Counter`, `Urdu English Counter`, `Dark Mode`
-
----
-
-> Developed with ❤️ by Islamic Tools Team
+This project is licensed under the MIT License.
