@@ -2,830 +2,973 @@
 <html lang="ur" dir="rtl">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
-<title>اذکار و دعائیں</title>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="tajweed.css"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes"/>
+<title>Islamic Azkar App | درود شریف کاؤنٹر | سورۃ الکہف تجوید | Darood Sharif Counter</title>
+<meta name="description" content="درود شریف ۸۰ مرتبہ کاؤنٹر، فجر و مغرب کے مکمل اذکار، جمعہ وِرد، سورۃ الکہف تجوید کے ساتھ، تسبیحِ فاطمہؓ — مکمل اسلامی ایپ۔ 80x Darood counter, Fajr Maghrib Azkar, Surah Kahf with tajweed, Tasbeeh."/>
+<meta name="keywords" content="درود شریف, Darood Sharif Counter, Islamic Azkar, سورۃ الکہف, Surah Kahf Tajweed, تسبیح, Tasbeeh, Pakistani Islamic App, اذکار, quran tajweed online"/>
+<meta name="robots" content="index,follow"/>
+<meta name="author" content="jamamjadalone"/>
+<meta name="theme-color" content="#010c02"/>
+<link rel="canonical" href="https://jamamjadalone.github.io/islamic-azkar-app/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Islamic Azkar App — درود شریف کاؤنٹر + سورۃ الکہف تجوید"/>
+<meta property="og:description" content="فجر/مغرب اذکار، جمعہ وِرد، ۸۰ مرتبہ عصر درود، سورۃ الکہف تجوید کے ساتھ — مکمل اسلامی ایپ۔"/>
+<meta property="og:url" content="https://jamamjadalone.github.io/islamic-azkar-app/"/>
+<meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhvRJSzAam84Kh6YDvx58-keNRx0j0WlC3Zz1mIDo1eKBJrru6hq9kiz6IjDuUTzmez7-Dbd-95YmUKLI2uNGXRyr-cqOb0Ezsmd5WyvHnd0omZkzJN6GQRPfKEHzPIoEnB714OcResRS5rVYZQge5z4lZL9v5sBKHY0Uz5LikWhCBxCU-_RNqIMh9-MQM/s600/7dc6bda3f26f6096b46c0a3e0dab9287.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Islamic Azkar App — Darood Sharif Counter + Surah Kahf Tajweed"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Islamic Azkar App","alternateName":"درود شریف کاؤنٹر","url":"https://jamamjadalone.github.io/islamic-azkar-app/","applicationCategory":"LifestyleApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0"},"inLanguage":["ur","en"]}</script>
+<link rel="manifest" href="manifest.json"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;700&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet"/>
 <style>
+/* ══════════════════════════════════════════════════
+   TOKENS
+══════════════════════════════════════════════════ */
 :root{
-  --bg:#030b04;--surf:#081509;--surf2:#0d200f;
-  --gold:#d4a017;--gold2:#f0c842;
-  --g1:#3cb371;--g2:#5cdb95;--g3:#a8f0c0;
-  --text:#dff0df;--arabic:#f8f0e0;--text2:#6ea06e;
-  --bdr:rgba(60,179,113,0.16);
-  --r-namaz:#3cb371;--r-fajr:#f59e0b;--r-jumma:#a855f7;
-  --r-asr:#f0c842;--r-tauheed:#22d3ee;--r-tasbeeh:#ec4899;
+  --bg:#010c02; --surf:#071209;
+  --gold:#d4a017; --gold2:#f0c840;
+  --g1:#3cb371;  --g2:#5cdb95;
+  --text:#dff0df; --text2:#5e9a6e; --text3:#3a6045;
+  --ar:#f0eadb;
+  --bdr:rgba(60,179,113,.16); --bdr2:rgba(60,179,113,.07);
+  --r:18px;
+  --qs:1.52rem; /* quran font size — zoomed by JS */
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  min-height:100vh;background:var(--bg);
-  font-family:'Noto Nastaliq Urdu','Amiri',serif;
-  color:var(--text);display:flex;flex-direction:column;
-  align-items:center;overflow-x:hidden;
-}
-body::before{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:
-    radial-gradient(ellipse at 20% 10%,rgba(60,179,113,.06) 0%,transparent 60%),
-    radial-gradient(ellipse at 80% 90%,rgba(60,179,113,.04) 0%,transparent 60%);
-}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{min-height:100vh;background:var(--bg);font-family:'Noto Nastaliq Urdu',serif;color:var(--text);display:flex;flex-direction:column;align-items:center;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse at 15% 12%,rgba(60,179,113,.06) 0%,transparent 52%),radial-gradient(ellipse at 85% 85%,rgba(60,179,113,.04) 0%,transparent 52%),repeating-linear-gradient(60deg,transparent,transparent 70px,rgba(60,179,113,.012) 70px,rgba(60,179,113,.012) 71px),repeating-linear-gradient(-60deg,transparent,transparent 70px,rgba(60,179,113,.012) 70px,rgba(60,179,113,.012) 71px)}
 
-/* ── SECTION CHIPS ── */
-.chips-wrap{
-  position:sticky;top:0;z-index:100;
-  width:100%;max-width:480px;
-  background:rgba(3,11,4,.96);backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--bdr);
-  padding:.5rem .6rem .5rem;
-  display:flex;align-items:center;gap:.35rem;
-}
-.chips-row{
-  display:flex;gap:.3rem;overflow-x:auto;flex:1;
-  scrollbar-width:none;padding-bottom:1px;
-}
-.chips-row::-webkit-scrollbar{display:none}
-.chip{
-  flex-shrink:0;
-  padding:.32rem .6rem;border-radius:20px;
-  border:1px solid var(--bdr);background:transparent;
-  color:var(--text2);font-family:'Noto Nastaliq Urdu',serif;
-  font-size:.72rem;cursor:pointer;transition:all .22s;
-  line-height:1.4;white-space:nowrap;
-}
-.chip.active{border-color:var(--g1);background:rgba(60,179,113,.15);color:var(--g2)}
-.menu-btn{
-  flex-shrink:0;background:rgba(60,179,113,.1);
-  border:1px solid var(--bdr);color:var(--g1);
-  width:34px;height:34px;border-radius:50%;
-  font-size:1rem;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-}
-.menu-btn:hover{background:rgba(60,179,113,.2)}
+/* ── NAV ── */
+.nav{position:sticky;top:0;z-index:100;width:100%;max-width:540px;background:rgba(1,12,2,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr);padding:.44rem .5rem;display:flex;align-items:center;gap:.28rem}
+.chips{display:flex;gap:.2rem;overflow-x:auto;flex:1;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex-shrink:0;padding:.28rem .5rem;border-radius:20px;border:1px solid var(--bdr);background:transparent;color:var(--text3);font-family:'Noto Nastaliq Urdu',serif;font-size:.68rem;cursor:pointer;transition:all .2s;line-height:1.5;white-space:nowrap}
+.chip:hover{border-color:var(--g1);color:var(--g2)}
+.chip.active{border-color:var(--g1);background:rgba(60,179,113,.14);color:var(--g2);box-shadow:0 0 8px rgba(60,179,113,.18)}
+.menu-btn{flex-shrink:0;background:rgba(60,179,113,.1);border:1px solid var(--bdr);color:var(--g1);width:33px;height:33px;border-radius:50%;font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.menu-btn:hover{background:rgba(60,179,113,.22)}
 
-/* progress */
-.prog-wrap{width:100%;max-width:480px;height:2px;background:rgba(60,179,113,.08);position:sticky;top:49px;z-index:99}
-.prog-fill{height:100%;background:linear-gradient(to left,var(--gold),var(--g1));transition:width .4s}
+/* ── PROGRESS ── */
+.prog{width:100%;max-width:540px;height:2px;background:rgba(60,179,113,.06);position:sticky;top:46px;z-index:99;overflow:hidden}
+.prog-bar{height:100%;background:linear-gradient(to left,var(--gold),var(--g1));transition:width .45s ease;box-shadow:0 0 5px rgba(60,179,113,.4)}
+
+/* ── ZOOM BAR ── */
+.zoom-bar{position:sticky;top:48px;z-index:98;width:100%;max-width:540px;display:flex;align-items:center;justify-content:space-between;padding:.3rem .75rem;background:rgba(1,12,2,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--bdr2);direction:ltr}
+.zgroup{display:flex;align-items:center;gap:.32rem}
+.zb{background:rgba(60,179,113,.1);border:1px solid var(--bdr);color:var(--g1);width:27px;height:27px;border-radius:50%;font-size:.9rem;cursor:pointer;transition:all .18s;display:flex;align-items:center;justify-content:center;font-weight:700;line-height:1}
+.zb:hover{background:rgba(60,179,113,.22)}
+.zlbl{font-family:monospace;font-size:.68rem;color:var(--text3);min-width:36px;text-align:center}
+.zreset{background:transparent;border:1px solid var(--bdr2);color:var(--text3);border-radius:20px;padding:.15rem .52rem;font-size:.64rem;cursor:pointer;transition:all .18s}
+.zreset:hover{border-color:var(--g1);color:var(--g2)}
+.vmodes{display:flex;gap:.22rem}
+.vm{padding:.22rem .52rem;border-radius:20px;border:1px solid var(--bdr2);background:transparent;color:var(--text3);font-size:.65rem;font-family:'Noto Nastaliq Urdu',serif;cursor:pointer;transition:all .2s;white-space:nowrap}
+.vm.active{background:rgba(60,179,113,.14);border-color:var(--g1);color:var(--g2)}
+
+/* ── MAIN ── */
+#mc{position:relative;z-index:1;width:100%;max-width:540px;padding-bottom:2rem}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes glowPulse{0%,100%{opacity:.75}50%{opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
 
 /* ── STEP PANEL ── */
-.step-panel{
-  position:relative;z-index:1;width:100%;max-width:480px;
-  padding:1rem .9rem 1rem;
-  display:flex;flex-direction:column;align-items:center;gap:.8rem;
-  animation:fadeUp .28s ease;
-}
-@keyframes fadeUp{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+.sp{padding:.9rem .85rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.8rem;animation:fadeUp .25s ease}
+.step-badge{display:flex;align-items:center;gap:.38rem;font-family:'Noto Naskh Arabic',serif;font-size:.7rem;color:var(--text3);direction:ltr}
+.sdot{width:5px;height:5px;border-radius:50%}
+.sec-label{width:100%;border-radius:30px;padding:.26rem .9rem;font-family:'Noto Nastaliq Urdu',serif;font-size:.76rem;direction:rtl;display:flex;align-items:center;gap:.4rem;justify-content:center;border:1px solid var(--bdr);color:var(--text2);background:rgba(60,179,113,.05)}
 
-.sec-badge{
-  display:flex;align-items:center;gap:.45rem;
-  font-family:'Amiri',serif;font-size:.72rem;
-  color:var(--text2);letter-spacing:.5px;direction:ltr;
-}
-.sec-dot{width:6px;height:6px;border-radius:50%;background:var(--g1)}
+/* ── DUA CARD ── */
+.dua-card{width:100%;background:rgba(7,18,9,.82);border:1px solid var(--bdr);border-top:2px solid rgba(60,179,113,.22);border-radius:var(--r);padding:1.15rem 1.05rem 1rem;text-align:center;position:relative;overflow:hidden}
+.dua-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(60,179,113,.35),transparent)}
 
-.info-strip{
-  width:100%;border-radius:24px;
-  padding:.3rem 1rem;font-size:.78rem;
-  direction:rtl;display:flex;align-items:center;gap:.4rem;
-  justify-content:center;
-}
+/* ══ ARABIC / QURAN FONTS ══
+   Scheherazade New = quran.com style Uthmani script
+   Noto Naskh Arabic = azkar / duas
+*/
+.ar{font-family:'Scheherazade New','Noto Naskh Arabic',serif;font-size:var(--qs);line-height:2.8;color:var(--ar);direction:rtl;word-break:break-word;text-align:justify;transition:font-size .2s ease}
+.ar.center{text-align:center}
+.ar.xl{font-size:calc(var(--qs)*1.15);line-height:2.9;text-align:center}
+.ar.big{font-size:calc(var(--qs)*1.3);line-height:2.95;text-align:center;color:var(--gold2);text-shadow:0 0 20px rgba(212,160,23,.22)}
+.bismi{font-family:'Scheherazade New',serif;font-size:calc(var(--qs)*.92);line-height:2.5;color:var(--gold2);direction:rtl;display:block;margin-bottom:.32rem;text-shadow:0 0 16px rgba(212,160,23,.28);transition:font-size .2s}
+.dua-name{margin-top:.62rem;font-family:'Noto Nastaliq Urdu',serif;font-size:.8rem;color:var(--text2);direction:rtl;border-top:1px solid var(--bdr2);padding-top:.52rem;line-height:1.9}
 
-/* dua card */
-.dua-card{
-  width:100%;background:rgba(8,21,9,.7);
-  border:1px solid var(--bdr);border-radius:18px;
-  padding:1.1rem 1.1rem .9rem;text-align:center;
-  backdrop-filter:blur(6px);
-}
-.arabic{
-  font-family:'Amiri',serif;font-size:1.38rem;
-  line-height:2.5;color:var(--arabic);
-  direction:rtl;word-break:break-word;
-}
-.arabic.xl{font-size:1.7rem;line-height:2.7}
-.dua-name{
-  margin-top:.6rem;
-  font-family:'Noto Nastaliq Urdu',serif;
-  font-size:.83rem;color:var(--text2);direction:rtl;
-}
+/* ══ TAJWEED COLORS — quran.com standard ══ */
+.tajweed [data-type="ham_wasl"],
+.tajweed [data-type="laam_shamsiyah"]        {color:#9b9b9b}
+.tajweed [data-type="madda_normal"]          {color:#537FFF}
+.tajweed [data-type="madda_permissible"]     {color:#4050FF}
+.tajweed [data-type="madda_necessary"]       {color:#000EBC}
+.tajweed [data-type="madda_obligatory"]      {color:#2144C1}
+.tajweed [data-type="qalaqah"]               {color:#DD0008}
+.tajweed [data-type="ikhafa_shafawi"],
+.tajweed [data-type="idgham_shafawi"]        {color:#D500B7}
+.tajweed [data-type="ikhafa"]                {color:#9400A8}
+.tajweed [data-type="idgham_ghunnah"],
+.tajweed [data-type="idgham_wo_ghunnah"],
+.tajweed [data-type="idgham_mutajanisayn"],
+.tajweed [data-type="idgham_mutaqaribayn"],
+.tajweed [data-type="ghunnah"]               {color:#169200}
+.tajweed [data-type="iqlab"]                 {color:#26BFFD}
 
-/* fazilat toggle */
-.faz-toggle{
-  width:100%;background:transparent;
-  border:1px solid rgba(60,179,113,.12);
-  border-radius:30px;padding:.35rem .9rem;
-  color:var(--text2);font-family:'Noto Nastaliq Urdu',serif;
-  font-size:.75rem;cursor:pointer;transition:all .2s;
-  display:flex;align-items:center;justify-content:center;gap:.4rem;
-}
-.faz-toggle:hover{border-color:var(--g1);color:var(--g2)}
-.faz-body{
-  width:100%;background:rgba(60,179,113,.06);
-  border:1px solid rgba(60,179,113,.15);
-  border-right:3px solid var(--g1);
-  border-radius:12px;padding:.7rem .9rem;
-  font-family:'Noto Nastaliq Urdu',serif;
-  font-size:.85rem;color:#b0d8b0;
-  direction:rtl;line-height:2.2;text-align:right;
-  display:none;animation:fadeUp .2s ease;
-}
+/* Tajweed legend */
+.tj-legend{display:flex;flex-wrap:wrap;gap:.3rem;padding:.6rem .8rem;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);direction:rtl;margin-top:.35rem}
+.tj-chip{display:flex;align-items:center;gap:.26rem;font-size:.63rem;font-family:'Noto Nastaliq Urdu',serif;color:rgba(255,255,255,.5);padding:.14rem .4rem;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);line-height:1.6}
+.tj-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+
+/* ── FAZILAT ── */
+.faz-btn{width:100%;background:transparent;border:1px solid rgba(60,179,113,.12);border-radius:30px;padding:.3rem .85rem;color:var(--text3);font-family:'Noto Nastaliq Urdu',serif;font-size:.73rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:.35rem}
+.faz-btn:hover{border-color:var(--g1);color:var(--g2)}
+.faz-body{display:none;width:100%;background:rgba(60,179,113,.05);border:1px solid rgba(60,179,113,.13);border-right:3px solid var(--g1);border-radius:12px;padding:.65rem .9rem;font-family:'Noto Nastaliq Urdu',serif;font-size:.82rem;color:#b0d8b0;direction:rtl;line-height:2.15;text-align:right;animation:fadeUp .2s ease}
 .faz-body.open{display:block}
+.faz-ref{font-family:'Noto Naskh Arabic',serif;font-size:.68rem;color:var(--g2);display:block;margin-top:.25rem}
 
-/* ring counter */
-.ring-wrap{
-  position:relative;width:170px;height:170px;
-  cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;
-}
+/* ── RING COUNTER ── */
+.ring-wrap{position:relative;width:168px;height:168px;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none}
 .ring-wrap svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg);pointer-events:none}
-.rbg{fill:none;stroke:rgba(255,255,255,.06);stroke-width:8}
-.rfill{fill:none;stroke-width:8;stroke-linecap:round;stroke-dasharray:477;stroke-dashoffset:477;transition:stroke-dashoffset .3s cubic-bezier(.4,0,.2,1)}
-.ring-inner{
-  position:absolute;inset:12px;
-  background:radial-gradient(circle at 38% 32%,#102014,#030b04);
-  border-radius:50%;
-  border:1px solid rgba(60,179,113,.18);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  box-shadow:inset 0 0 22px rgba(0,0,0,.55);
-  transition:transform .1s;
-}
-.ring-wrap:active .ring-inner{transform:scale(.93)}
-.rnum{font-family:'Amiri',serif;font-size:2.9rem;font-weight:700;color:var(--gold2);line-height:1}
-.rof{font-size:.75rem;color:var(--text2);margin-top:3px;direction:ltr}
-.rhint{font-size:.55rem;color:rgba(110,160,110,.4);letter-spacing:2px;margin-top:5px;direction:ltr;text-transform:uppercase}
+.rbg{fill:none;stroke:rgba(255,255,255,.05);stroke-width:7}
+.rfill{fill:none;stroke-width:7;stroke-linecap:round;stroke-dasharray:465;stroke-dashoffset:465;transition:stroke-dashoffset .3s cubic-bezier(.4,0,.2,1)}
+.ring-inner{position:absolute;inset:12px;background:radial-gradient(circle at 38% 32%,#0d1e0f,var(--bg));border-radius:50%;border:1px solid rgba(60,179,113,.16);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:inset 0 0 22px rgba(0,0,0,.6);transition:transform .1s,box-shadow .14s}
+.ring-wrap:active .ring-inner{transform:scale(.91)}
+.rnum{font-family:'Noto Naskh Arabic',serif;font-size:2.85rem;font-weight:700;color:var(--gold2);line-height:1}
+.rof{font-size:.72rem;color:var(--text2);margin-top:3px;direction:ltr}
+.rhint{font-size:.52rem;color:rgba(90,150,100,.35);letter-spacing:2px;margin-top:4px;direction:ltr;text-transform:uppercase}
+@keyframes pg{0%{box-shadow:0 0 0 0 rgba(60,179,113,.38)}70%{box-shadow:0 0 0 15px rgba(60,179,113,0)}100%{box-shadow:0 0 0 0 rgba(60,179,113,0)}}
+@keyframes pa{0%{box-shadow:0 0 0 0 rgba(240,200,66,.38)}70%{box-shadow:0 0 0 15px rgba(240,200,66,0)}100%{box-shadow:0 0 0 0 rgba(240,200,66,0)}}
+@keyframes ps{0%{box-shadow:0 0 0 0 rgba(236,72,153,.38)}70%{box-shadow:0 0 0 15px rgba(236,72,153,0)}100%{box-shadow:0 0 0 0 rgba(236,72,153,0)}}
+@keyframes pj{0%{box-shadow:0 0 0 0 rgba(168,85,247,.38)}70%{box-shadow:0 0 0 15px rgba(168,85,247,0)}100%{box-shadow:0 0 0 0 rgba(168,85,247,0)}}
+.ring-inner.pg{animation:pg .3s ease-out}
+.ring-inner.pa{animation:pa .3s ease-out}
+.ring-inner.ps{animation:ps .3s ease-out}
+.ring-inner.pj{animation:pj .3s ease-out}
 
-/* controls */
-.controls{width:100%;display:flex;align-items:center;justify-content:space-between;gap:.55rem;direction:ltr}
-.ctrl{
-  background:rgba(60,179,113,.07);border:1px solid var(--bdr);
-  color:var(--text2);border-radius:40px;padding:.48rem .9rem;
-  font-size:.8rem;font-family:'Amiri',serif;cursor:pointer;transition:all .18s;
-}
-.ctrl:hover{background:rgba(60,179,113,.15);color:var(--g2);border-color:var(--g1)}
-.ctrl:active{transform:scale(.95)}
-.ctrl.next{background:rgba(60,179,113,.15);border-color:rgba(60,179,113,.4);color:var(--g2);padding:.48rem 1.3rem}
-.ctrl.next:hover{background:rgba(60,179,113,.25)}
-.ctrl:disabled{opacity:.25;cursor:not-allowed}
+/* ── CONTROLS ── */
+.ctrls{width:100%;display:flex;align-items:center;justify-content:space-between;gap:.45rem;direction:ltr}
+.btn{background:rgba(60,179,113,.07);border:1px solid var(--bdr);color:var(--text2);border-radius:40px;padding:.44rem .85rem;font-size:.78rem;font-family:'Noto Naskh Arabic',serif;cursor:pointer;transition:all .17s}
+.btn:hover{background:rgba(60,179,113,.14);color:var(--g2);border-color:var(--g1)}
+.btn:active{transform:scale(.94)}
+.btn.next{background:rgba(60,179,113,.14);border-color:rgba(60,179,113,.38);color:var(--g2);padding:.44rem 1.25rem}
+.btn.next:hover{background:rgba(60,179,113,.24)}
+.btn:disabled{opacity:.22;cursor:not-allowed;pointer-events:none}
+.dam-box{width:100%;background:rgba(60,179,113,.07);border:1px solid rgba(60,179,113,.2);border-radius:14px;padding:.8rem .95rem;font-family:'Noto Nastaliq Urdu',serif;font-size:.86rem;color:#90f0b8;direction:rtl;line-height:2.15;text-align:right}
+.urdu-note{width:100%;background:rgba(212,160,23,.055);border:1px solid rgba(212,160,23,.15);border-right:3px solid var(--gold);border-radius:12px;padding:.7rem .9rem;font-family:'Noto Nastaliq Urdu',serif;font-size:.83rem;color:#d4c490;direction:rtl;line-height:2.1;text-align:right}
+.asr-img{width:100%;max-width:360px;border-radius:14px;border:1px solid rgba(240,200,66,.2);box-shadow:0 0 24px rgba(240,200,66,.1);display:block;margin:0 auto}
 
-/* dam box */
-.dam-box{
-  width:100%;background:rgba(60,179,113,.08);
-  border:1px solid rgba(60,179,113,.25);border-radius:14px;
-  padding:.85rem 1rem;font-family:'Noto Nastaliq Urdu',serif;
-  font-size:.9rem;color:#90f0b8;direction:rtl;line-height:2.2;text-align:right;
-}
+/* ── QURAN READER (quran.com style) ── */
+.quran-panel{position:relative;z-index:1;width:100%;max-width:540px;padding:.75rem .82rem 3.5rem;animation:fadeUp .25s ease}
+.quran-hd{text-align:center;padding:1rem .9rem .9rem;border-bottom:1px solid var(--bdr);margin-bottom:.75rem}
+.quran-title{font-family:'Scheherazade New',serif;font-size:2rem;color:var(--gold2);direction:rtl;line-height:2.2;text-shadow:0 0 20px rgba(212,160,23,.28)}
+.quran-meta{font-family:'Noto Nastaliq Urdu',serif;font-size:.78rem;color:var(--text2);direction:rtl;line-height:2;margin-top:.3rem}
+.quran-bism{font-family:'Scheherazade New',serif;font-size:calc(var(--qs)*1.18);line-height:2.6;color:var(--gold2);text-align:center;direction:rtl;padding:.7rem .5rem;text-shadow:0 0 18px rgba(212,160,23,.25);transition:font-size .2s ease}
+.ruku-sep{text-align:center;margin:1.2rem 0 .45rem;font-family:'Noto Naskh Arabic',serif;font-size:.72rem;color:var(--g1);letter-spacing:1.5px;direction:ltr;display:flex;align-items:center;justify-content:center;gap:9px}
+.ruku-sep::before,.ruku-sep::after{content:'';display:block;width:35px;height:1px;background:linear-gradient(90deg,transparent,rgba(60,179,113,.28))}
+.ruku-sep::after{background:linear-gradient(90deg,rgba(60,179,113,.28),transparent)}
+
+/* Verse-by-verse (quran.com default) */
+.vblock{display:flex;align-items:baseline;flex-direction:row-reverse;gap:.5rem;padding:.52rem .35rem;border-bottom:1px solid rgba(255,255,255,.04);direction:rtl}
+.vtxt{font-family:'Scheherazade New',serif;font-size:var(--qs);line-height:2.8;color:var(--ar);direction:rtl;flex:1;word-break:break-word;transition:font-size .2s ease}
+.vnum{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:rgba(60,179,113,.12);border:1px solid rgba(60,179,113,.25);display:flex;align-items:center;justify-content:center;font-family:'Noto Naskh Arabic',serif;font-size:.63rem;color:var(--g2);direction:ltr}
+
+/* Paragraph mode (quran.com reading mode) */
+.para-block{font-family:'Scheherazade New',serif;font-size:var(--qs);line-height:2.85;color:var(--ar);direction:rtl;text-align:justify;padding:.28rem .18rem;word-break:break-word;transition:font-size .2s ease}
+.vnum-inline{font-family:'Noto Naskh Arabic',serif;font-size:.72rem;color:var(--g2);background:rgba(60,179,113,.1);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;margin:0 .15rem;vertical-align:middle;direction:ltr}
+
+/* Loading */
+.q-loading{text-align:center;padding:2rem;font-family:'Noto Nastaliq Urdu',serif;font-size:.9rem;color:var(--text2);direction:rtl}
+.spinner{width:32px;height:32px;border:3px solid var(--bdr);border-top-color:var(--g1);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto .8rem}
+.q-error{background:rgba(139,26,26,.1);border:1px solid rgba(139,26,26,.25);border-radius:12px;padding:.8rem 1rem;font-family:'Noto Nastaliq Urdu',serif;font-size:.82rem;color:#ff9090;direction:rtl;text-align:right;margin:.5rem 0}
 
 /* ── TASBEEH ── */
-.tasbeeh-panel{
-  width:100%;max-width:480px;padding:1rem .9rem;
-  display:flex;flex-direction:column;align-items:center;gap:.9rem;
-  animation:fadeUp .28s ease;
-}
-.tasbeeh-phases{display:flex;gap:.4rem;width:100%;direction:ltr}
-.phase-chip{
-  flex:1;padding:.42rem .3rem;border-radius:20px;
-  border:1px solid var(--bdr);background:transparent;
-  color:var(--text2);font-family:'Amiri',serif;
-  font-size:.75rem;text-align:center;line-height:1.6;cursor:pointer;
-  transition:all .22s;
-}
-.phase-chip.done{background:rgba(60,179,113,.15);border-color:var(--g1);color:var(--g2)}
-.phase-chip.cur{border-color:var(--r-tasbeeh);background:rgba(236,72,153,.15);color:#fda4cf}
-
-/* asr image */
-.asr-img{
-  width:100%;border-radius:16px;
-  border:1px solid rgba(240,200,66,.25);
-  box-shadow:0 0 30px rgba(240,200,66,.1);
-}
-
-/* ── KAHF ── */
-.kahf-panel{
-  position:relative;z-index:1;
-  width:100%;max-width:480px;
-  padding:.8rem .85rem 3rem;animation:fadeUp .28s ease;
-}
-.kahf-head{
-  text-align:center;padding:1.1rem 1rem .9rem;
-  border-bottom:1px solid var(--bdr);margin-bottom:.8rem;
-}
-.kahf-title{font-family:'Amiri',serif;font-size:1.6rem;color:var(--gold2);line-height:2.2;direction:rtl}
-.kahf-sub{font-family:'Noto Nastaliq Urdu',serif;font-size:.8rem;color:var(--text2);direction:rtl;line-height:2;margin-top:.3rem}
-.ruku-sep{
-  text-align:center;margin:1.2rem 0 .5rem;
-  font-family:'Amiri',serif;font-size:.75rem;color:var(--g1);letter-spacing:1.5px;direction:ltr;
-}
-.ruku-sep::before,.ruku-sep::after{content:'';display:inline-block;width:35px;height:1px;background:rgba(60,179,113,.25);vertical-align:middle;margin:0 7px}
-.kahf-text{
-  font-family:'Amiri',serif;font-size:1.3rem;line-height:2.6;
-  color:#f0e8d5;direction:rtl;text-align:justify;
-  padding:.3rem .2rem;word-break:break-word;
-}
+.tsb-phases{display:flex;gap:.35rem;width:100%;direction:ltr}
+.ph-chip{flex:1;padding:.38rem .22rem;border-radius:16px;border:1px solid var(--bdr);background:transparent;color:var(--text3);font-family:'Noto Naskh Arabic',serif;font-size:.7rem;text-align:center;line-height:1.7;cursor:pointer;transition:all .2s}
 
 /* ── DRAWER ── */
-.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.7);backdrop-filter:blur(4px)}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.72);backdrop-filter:blur(5px)}
 .overlay.open{display:block}
-.drawer{
-  position:fixed;top:0;right:-100%;width:min(320px,87vw);height:100vh;
-  background:#081509;border-left:1px solid var(--bdr);
-  z-index:201;display:flex;flex-direction:column;
-  padding:1.1rem .9rem;gap:.3rem;overflow-y:auto;
-  transition:right .3s cubic-bezier(.4,0,.2,1);direction:rtl;
-}
+.drawer{position:fixed;top:0;right:-100%;width:min(300px,86vw);height:100vh;background:#071209;border-left:1px solid var(--bdr);z-index:201;display:flex;flex-direction:column;overflow-y:auto;transition:right .28s cubic-bezier(.4,0,.2,1);direction:rtl}
 .drawer.open{right:0}
-.dr-title{font-family:'Noto Nastaliq Urdu',serif;font-size:.95rem;color:var(--gold2);padding:.2rem 0 .7rem;border-bottom:1px solid var(--bdr);margin-bottom:.3rem;text-align:right}
-.dr-item{
-  display:flex;align-items:center;gap:.6rem;
-  padding:.58rem .65rem;border-radius:11px;cursor:pointer;
-  transition:background .18s;border:1px solid transparent;direction:rtl;
-}
-.dr-item:hover{background:rgba(60,179,113,.08);border-color:var(--bdr)}
-.dr-item.active{background:rgba(60,179,113,.14);border-color:rgba(60,179,113,.35)}
-.dr-icon{font-size:1.1rem;flex-shrink:0}
-.dr-name{font-family:'Noto Nastaliq Urdu',serif;font-size:.9rem;color:var(--text);flex:1;text-align:right;line-height:1.7}
-.dr-count{font-family:'Amiri',serif;font-size:.68rem;color:var(--g1);background:rgba(60,179,113,.1);border-radius:20px;padding:1px 6px;white-space:nowrap;direction:ltr}
+.dr-head{padding:1rem .9rem .8rem;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#071209;z-index:1}
+.dr-title{font-family:'Noto Nastaliq Urdu',serif;font-size:.9rem;color:var(--gold2)}
+.dr-close{background:rgba(60,179,113,.07);border:1px solid var(--bdr);color:var(--text2);width:26px;height:26px;border-radius:50%;font-size:.76rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s}
+.dr-close:hover{background:rgba(60,179,113,.18);color:var(--g2)}
+.dr-body{padding:.6rem .8rem;flex:1}
+.dr-item{display:flex;align-items:center;gap:.5rem;padding:.52rem .6rem;border-radius:10px;cursor:pointer;transition:background .16s;border:1px solid transparent;direction:rtl;margin-bottom:.12rem}
+.dr-item:hover{background:rgba(60,179,113,.07);border-color:var(--bdr)}
+.dr-item.active{background:rgba(60,179,113,.13);border-color:rgba(60,179,113,.28)}
+.dr-icon{font-size:1rem;flex-shrink:0}
+.dr-name{font-family:'Noto Nastaliq Urdu',serif;font-size:.85rem;color:var(--text);flex:1;text-align:right;line-height:1.8}
+.dr-ct{font-family:'Noto Naskh Arabic',serif;font-size:.65rem;background:rgba(60,179,113,.09);border-radius:20px;padding:1px 6px;white-space:nowrap;direction:ltr;color:var(--g1)}
 
-/* ── COMPLETE ── */
-.comp-screen{display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.94);flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;gap:.9rem}
-.comp-screen.show{display:flex;animation:fadeUp .5s ease}
-.comp-btn{background:rgba(60,179,113,.22);border:1px solid rgba(60,179,113,.45);color:var(--g2);border-radius:40px;padding:.65rem 1.8rem;font-family:'Noto Nastaliq Urdu',serif;font-size:.9rem;cursor:pointer;margin-top:.4rem;transition:background .2s}
-.comp-btn:hover{background:rgba(60,179,113,.35)}
+/* ── COMPLETION ── */
+.comp{display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.96);flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;gap:.85rem}
+.comp.show{display:flex;animation:fadeUp .4s ease}
+.comp-btn{background:rgba(60,179,113,.2);border:1px solid rgba(60,179,113,.4);color:var(--g2);border-radius:40px;padding:.62rem 1.7rem;font-family:'Noto Nastaliq Urdu',serif;font-size:.87rem;cursor:pointer;margin-top:.35rem;transition:background .2s}
+.comp-btn:hover{background:rgba(60,179,113,.32)}
 
-@keyframes pulse-g{0%{box-shadow:0 0 0 0 rgba(60,179,113,.35)}70%{box-shadow:0 0 0 15px rgba(60,179,113,0)}100%{box-shadow:0 0 0 0 rgba(60,179,113,0)}}
-@keyframes pulse-p{0%{box-shadow:0 0 0 0 rgba(168,85,247,.35)}70%{box-shadow:0 0 0 15px rgba(168,85,247,0)}100%{box-shadow:0 0 0 0 rgba(168,85,247,0)}}
-@keyframes pulse-t{0%{box-shadow:0 0 0 0 rgba(236,72,153,.35)}70%{box-shadow:0 0 0 15px rgba(236,72,153,0)}100%{box-shadow:0 0 0 0 rgba(236,72,153,0)}}
-.ring-inner.pg{animation:pulse-g .33s ease-out}
-.ring-inner.pp{animation:pulse-p .33s ease-out}
-.ring-inner.pt{animation:pulse-t .33s ease-out}
+@media(max-width:360px){:root{--qs:1.3rem}.ring-wrap{width:155px;height:155px}.rnum{font-size:2.5rem}.chip{font-size:.66rem;padding:.26rem .44rem}}
 </style>
 </head>
 <body>
 
-<!-- CHIPS NAV -->
-<div class="chips-wrap" id="chipsWrap">
-  <div class="chips-row" id="chipsRow">
-    <button class="chip active" data-sec="namaz">🕌 ہر نماز</button>
+<!-- ══ NAV ══ -->
+<nav class="nav">
+  <div class="chips" id="chips">
+    <button class="chip active" data-sec="asr">☀️ عصر درود</button>
     <button class="chip" data-sec="fajr">🌅 فجر/مغرب</button>
     <button class="chip" data-sec="jumma">🌙 جمعہ</button>
-    <button class="chip" data-sec="asr">☀️ عصر درود</button>
-    <button class="chip" data-sec="kahf">📖 سورۃ الکہف</button>
     <button class="chip" data-sec="tauheed">☝️ توحید</button>
+    <button class="chip" data-sec="kahf">📖 سورۃ الکہف</button>
     <button class="chip" data-sec="tasbeeh">📿 تسبیح</button>
   </div>
   <button class="menu-btn" id="menuBtn">☰</button>
-</div>
-<div class="prog-wrap"><div class="prog-fill" id="progFill"></div></div>
+</nav>
+<div class="prog"><div class="prog-bar" id="progBar" style="width:0%"></div></div>
 
-<div id="mainContent" style="position:relative;z-index:1;width:100%;max-width:480px"></div>
-
-<!-- DRAWER -->
-<div class="overlay" id="overlay"></div>
-<div class="drawer" id="drawer">
-  <div class="dr-title">تمام اذکار</div>
-  <div id="drList"></div>
-  <div style="margin-top:auto;padding-top:1rem;direction:ltr">
-    <button class="ctrl" style="width:100%" id="closeDrawer">✕ بند کریں</button>
+<!-- ══ ZOOM BAR ══ -->
+<div class="zoom-bar">
+  <div class="zgroup">
+    <button class="zb" id="zOut">−</button>
+    <span class="zlbl" id="zlbl">100%</span>
+    <button class="zb" id="zIn">+</button>
+    <button class="zreset" id="zReset">Reset</button>
+  </div>
+  <div class="vmodes" id="vmodes" style="display:none">
+    <button class="vm active" data-vm="verse">آیت بہ آیت</button>
+    <button class="vm" data-vm="para">پیراگراف</button>
   </div>
 </div>
 
-<!-- COMPLETE -->
-<div class="comp-screen" id="compScreen">
-  <div style="font-size:3rem">🌿</div>
-  <div style="font-family:'Amiri',serif;font-size:1.5rem;color:var(--gold2);direction:rtl;line-height:2">اَلْحَمْدُ لِلَّهِ</div>
-  <div style="font-family:'Noto Nastaliq Urdu',serif;font-size:1.1rem;color:var(--g2);line-height:2" id="compMsg"></div>
+<main id="mc"></main>
+
+<!-- ══ DRAWER ══ -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer">
+  <div class="dr-head">
+    <div class="dr-title">🕌 تمام اذکار</div>
+    <button class="dr-close" id="closeDrawer">✕</button>
+  </div>
+  <div class="dr-body"><div id="drList"></div></div>
+</aside>
+
+<!-- ══ COMPLETION ══ -->
+<div class="comp" id="compScreen">
+  <div style="font-size:3rem;animation:glowPulse 2s infinite">🌿</div>
+  <div style="font-family:'Scheherazade New',serif;font-size:1.45rem;color:var(--gold2);direction:rtl;line-height:2">اَلْحَمْدُ لِلَّهِ</div>
+  <div style="font-family:'Noto Nastaliq Urdu',serif;font-size:1rem;color:var(--g2);line-height:2.1" id="compMsg"></div>
   <button class="comp-btn" id="restartBtn">↺ دوبارہ شروع کریں</button>
 </div>
 
-<!-- Offline Quran Data -->
-<script src="data/quran.js"></script>
-<script src="data/quran-kahf.js"></script>
-
 <script>
-// ════════════════════════════════════════════════
-// QURAN LOADER (inline - no extra file needed)
-// ════════════════════════════════════════════════
-window.renderQuranHTML = function(key, element) {
-  if (!element || !window.QURAN) return;
-  const html = window.QURAN[key];
-  if (html) {
-    element.innerHTML = html;
-  } else if (key === '18') {
-    // Kahf loaded from separate file
-    setTimeout(() => {
-      if (window.QURAN && window.QURAN['18']) {
-        element.innerHTML = window.QURAN['18'];
-      }
-    }, 100);
-  }
-};
+/* ══════════════════════════════════════════════════════════
+   ISLAMIC AZKAR APP
+   Arabic: Indo-Pak Rasm (alqurankarim.net style)
+   Quran Tajweed: fetched live from api.quran.com (free public API)
+   Font: Scheherazade New (quran.com style) + Noto Naskh Arabic
+══════════════════════════════════════════════════════════ */
 
-// ════════════════════════════════════════════════
-// DATA (with isQuran flags for offline loading)
-// ════════════════════════════════════════════════
-
-/* SECTION 1 — ہر نماز کے بعد */
-const NAMAZ = [
-  {
-    name:'بِسْمِ اللَّهِ', target:1,
-    arabic:`بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ`,
-    faz:'ہر بھلائی کا آغاز اللہ کے نام سے — یہ برکت اور رحمت کا دروازہ کھولتا ہے۔'
-  },
-  {
-    name:'آيَةُ الْكُرْسِيّ', target:1, isQuran:true, quranKey:'2:255',
-    arabic:`اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ`,
-    faz:'قرآن کی سب سے عظیم آیت۔ ہر فرض نماز کے بعد پڑھنے والے اور جنت کے درمیان صرف موت حائل ہے۔'
-  },
-  {
-    name:'سورۃ الحشر — آخری ۳ آیات', target:1, isQuran:true, quranKey:'59:22-24',
-    arabic:`هُوَ اللَّهُ الَّذِي لَا إِلَٰهَ إِلَّا هُوَ ۖ عَالِمُ الْغَيْبِ وَالشَّهَادَةِ ۖ هُوَ الرَّحْمَٰنُ الرَّحِيمُ ﴿٢٢﴾\nهُوَ اللَّهُ الَّذِي لَا إِلَٰهَ إِلَّا هُوَ الْمَلِكُ الْقُدُّوسُ السَّلَامُ الْمُؤْمِنُ الْمُهَيْمِنُ الْعَزِيزُ الْجَبَّارُ الْمُتَكَبِّرُ ۚ سُبْحَانَ اللَّهِ عَمَّا يُشْرِكُونَ ﴿٢٣﴾\nهُوَ اللَّهُ الْخَالِقُ الْبَارِئُ الْمُصَوِّرُ ۖ لَهُ الْأَسْمَاءُ الْحُسْنَىٰ ۚ يُسَبِّحُ لَهُ مَا فِي السَّمَاوَاتِ وَالْأَرْضِ ۖ وَهُوَ الْعَزِيزُ الْحَكِيمُ ﴿٢٤﴾`,
-    faz:'صبح پڑھنے پر ۷۰ ہزار فرشتے شام تک دعائے مغفرت کرتے ہیں۔ اس دن وفات ہو تو شہید کا درجہ ملتا ہے۔'
-  },
-  {
-    name:'شرکِ خفی سے حفاظت', target:3,
-    arabic:`اللَّهُمَّ إِنِّي أَعُوذُ بِكَ أَنْ أُشْرِكَ بِكَ وَأَنَا أَعْلَمُ، وَأَسْتَغْفِرُكَ لِمَا لَا أَعْلَمُ`,
-    faz:'ریاکاری اور چھوٹے شرک سے حفاظت۔ یہ کلمۂ توحید کی تکمیل کرتی ہے اور بندے کو پاک رکھتی ہے۔'
-  },
-  {
-    name:'شیطان سے پناہ', target:3,
-    arabic:`أَعُوذُ بِاللَّهِ السَّمِيعِ الْعَلِيمِ مِنَ الشَّيْطَانِ الرَّجِيمِ`,
-    faz:'اللہ شیطان کے وسوسوں، تکبر اور فتنوں سے بچاتا ہے — یہ مسنون دعا ہے۔'
-  },
-  {
-    name:'توکل اور حفاظت کی جامع دعا', target:1,
-    arabic:`اللَّهُمَّ أَنْتَ رَبِّي، لَا إِلَٰهَ إِلَّا أَنْتَ، عَلَيْكَ تَوَكَّلْتُ، وَأَنْتَ رَبُّ الْعَرْشِ الْعَظِيمِ، مَا شَاءَ اللَّهُ كَانَ، وَمَا لَمْ يَشَأْ لَمْ يَكُنْ، لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ الْعَلِيِّ الْعَظِيمِ، أَعْلَمُ أَنَّ اللَّهَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ، وَأَنَّ اللَّهَ قَدْ أَحَاطَ بِكُلِّ شَيْءٍ عِلْمًا، اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ شَرِّ نَفْسِي، وَمِنْ شَرِّ كُلِّ دَابَّةٍ أَنْتَ آخِذٌ بِنَاصِيَتِهَا، إِنَّ رَبِّي عَلَىٰ صِرَاطٍ مُسْتَقِيمٍ`,
-    faz:'"دعائے ابو الدرداء" — اللہ پر بھروسے، اس کی قدرت کے اقرار اور ہر شر سے پناہ کا بہترین مجموعہ۔'
-  },
-  {
-    name:'حَسْبِيَ اللَّهُ — ۷ مرتبہ', target:7,
-    arabic:`حَسْبِيَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ، عَلَيْهِ تَوَكَّلْتُ، وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ`,
-    faz:'۷ مرتبہ پڑھنے پر اللہ دنیا و آخرت کی تمام پریشانیوں کے لیے کافی ہو جاتا ہے۔ (صحیح — شعیب ارنؤوط)'
-  },
-  {
-    name:'ایمان پر رضا کی دعا', target:3,
-    arabic:`رَضِيتُ بِاللَّهِ رَبًّا، وَبِالْإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيًّا`,
-    faz:'صحیح حدیث: جو یہ کہے، اس کے لیے جنت واجب ہو جاتی ہے۔'
-  },
-  {
-    name:'دُرُودِ ابراہیمی', target:3,
-    arabic:`اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ.\nاللَّهُمَّ بَارِكْ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ، كَمَا بَارَكْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ`,
-    faz:'سب سے افضل درود جو نبی ﷺ نے صحابہ کو سکھایا۔ ہر درود پر اللہ کی ۱۰ رحمتیں، ۱۰ گناہ معاف، ۱۰ درجے بلند۔'
-  },
-  {
-    name:'سورۃ الشرح — ۷ مرتبہ', target:7, isQuran:true, quranKey:'94',
-    arabic:`بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\nأَلَمْ نَشْرَحْ لَكَ صَدْرَكَ ﴿١﴾ وَوَضَعْنَا عَنْكَ وِزْرَكَ ﴿٢﴾ الَّذِي أَنْقَضَ ظَهْرَكَ ﴿٣﴾ وَرَفَعْنَا لَكَ ذِكْرَكَ ﴿٤﴾ فَإِنَّ مَعَ الْعُسْرِ يُسْرًا ﴿٥﴾ إِنَّ مَعَ الْعُسْرِ يُسْرًا ﴿٦﴾ فَإِذَا فَرَغْتَ فَانْصَبْ ﴿٧﴾ وَإِلَىٰ رَبِّكَ فَارْغَبْ ﴿٨﴾`,
-    faz:'"ہر مشکل کے ساتھ آسانی ہے" — شرحِ صدر، غم و پریشانی دور ہوتی ہے۔'
-  }
-];
-
-/* SECTION 2 — فجر اور مغرب */
+/* ── DATA ── */
 const FAJR = [
-  {
-    name:'جہنم سے حفاظت — ۷ مرتبہ', target:7,
-    arabic:`اللَّهُمَّ أَجِرْنِي مِنَ النَّارِ`,
-    faz:'۷ مرتبہ پڑھنے والے کے لیے جہنم کی آگ پناہ مانگتی ہے۔ (ابن باز رحمہ اللہ — مستحب)'
-  },
-  {
-    name:'حفاظت کی دعا', target:3,
-    arabic:`بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ`,
-    faz:'صبح و شام ۳ مرتبہ پڑھنے والے کو کوئی اچانک آفت نہیں پہنچ سکتی۔'
-  },
-  {
-    name:'ہر مخلوق کے شر سے پناہ', target:3,
-    arabic:`اللَّهُمَّ إِنِّي أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ`,
-    faz:'ہر قسم کے زہریلے، جسمانی اور روحانی شر سے حفاظت ہوتی ہے۔'
-  },
-  {
-    name:'اختتامی درود شریف', target:3,
-    arabic:`اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ.\nاللَّهُمَّ بَارِكْ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ، كَمَا بَارَكْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ`,
-    faz:'دعا کے اختتام پر درود قبولیتِ دعا کا ذریعہ ہے۔ نبی ﷺ نے فرمایا: پہلے حمد، پھر درود، پھر دعا۔'
-  }
+  {grp:'نماز کے بعد کے اذکار',name:'بِسْمِ اللّٰهِ',isQ:false,
+   ar:`بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ`,
+   target:1,faz:'ہر بھلائی اللہ کے نام سے شروع کرنا سنت ہے — برکت اور رحمت کا دروازہ کھلتا ہے۔',ref:''},
+  {grp:'نماز کے بعد کے اذکار',name:'آیَةُ الْکُرْسِیّ',isQ:true,ch:2,vs:255,ve:255,
+   ar:`اَللّٰهُ لَاۤ اِلٰهَ اِلَّا هُوَ ۚ اَلْحَیُّ الْقَیُّوْمُ ۚ لَا تَاْخُذُهٗ سِنَةٌ وَّ لَا نَوْمٌ ۚ لَهٗ مَا فِی السَّمٰوٰتِ وَ مَا فِی الْاَرْضِ ۗ مَنْ ذَا الَّذِیْ یَشْفَعُ عِنْدَهٗۤ اِلَّا بِاِذْنِهٖ ۚ یَعْلَمُ مَا بَیْنَ اَیْدِیْهِمْ وَ مَا خَلْفَهُمْ ۚ وَ لَا یُحِیْطُوْنَ بِشَیْءٍ مِّنْ عِلْمِهٖۤ اِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِیُّهُ السَّمٰوٰتِ وَ الْاَرْضَ ۚ وَ لَا یَئُوْدُهٗ حِفْظُهُمَا ۚ وَ هُوَ الْعَلِیُّ الْعَظِیْمُ`,
+   target:1,faz:'قرآن کی سب سے عظیم آیت۔ ہر فرض نماز کے بعد پڑھنے والے اور جنت کے درمیان صرف موت حائل ہے۔',ref:'(نسائی الکبریٰ — صحیح)'},
+  {grp:'نماز کے بعد کے اذکار',name:'سورۃ الحشر — آخری ۳ آیات',isQ:true,ch:59,vs:22,ve:24,
+   ar:`هُوَ اللّٰهُ الَّذِیْ لَاۤ اِلٰهَ اِلَّا هُوَ ۚ عٰلِمُ الْغَیْبِ وَ الشَّهَادَةِ ۚ هُوَ الرَّحْمٰنُ الرَّحِیْمُ ﴿۲۲﴾\nهُوَ اللّٰهُ الَّذِیْ لَاۤ اِلٰهَ اِلَّا هُوَ ۚ اَلْمَلِكُ الْقُدُّوْسُ السَّلٰمُ الْمُؤْمِنُ الْمُهَیْمِنُ الْعَزِیْزُ الْجَبَّارُ الْمُتَكَبِّرُ ۚ سُبْحٰنَ اللّٰهِ عَمَّا یُشْرِكُوْنَ ﴿۲۳﴾\nهُوَ اللّٰهُ الْخَالِقُ الْبَارِئُ الْمُصَوِّرُ ۚ لَهُ الْاَسْمَآءُ الْحُسْنٰی ۚ یُسَبِّحُ لَهٗ مَا فِی السَّمٰوٰتِ وَ الْاَرْضِ ۚ وَ هُوَ الْعَزِیْزُ الْحَكِیْمُ ﴿۲۴﴾`,
+   target:1,faz:'صبح پڑھنے پر ۷۰ ہزار فرشتے شام تک دعائے مغفرت کرتے ہیں۔ اس دن وفات ہو تو شہادت کا درجہ۔',ref:'(ترمذی — حسن)'},
+  {grp:'نماز کے بعد کے اذکار',name:'شرکِ خفی سے حفاظت — ۳ مرتبہ',isQ:false,
+   ar:`اَللّٰهُمَّ اِنِّیْ اَعُوْذُ بِكَ اَنْ اُشْرِكَ بِكَ وَ اَنَا اَعْلَمُ ۙ وَ اَسْتَغْفِرُكَ لِمَا لَاۤ اَعْلَمُ`,
+   target:3,faz:'ریاکاری اور چھوٹے شرک سے حفاظت — کلمۂ توحید کی تکمیل کرتی ہے۔',ref:'(صحیح الجامع)'},
+  {grp:'نماز کے بعد کے اذکار',name:'شیطانِ رجیم سے پناہ — ۳ مرتبہ',isQ:false,
+   ar:`اَعُوْذُ بِاللّٰهِ السَّمِیْعِ الْعَلِیْمِ مِنَ الشَّیْطٰنِ الرَّجِیْمِ`,
+   target:3,faz:'اللہ تعالیٰ شیطان کے وسوسوں، تکبر اور فتنوں سے بچاتا ہے۔',ref:'(ابو داؤد — حسن)'},
+  {grp:'نماز کے بعد کے اذکار',name:'توکل اور ہر شر سے حفاظت',isQ:false,
+   ar:`اَللّٰهُمَّ اَنْتَ رَبِّیْ ۙ لَاۤ اِلٰهَ اِلَّاۤ اَنْتَ ۙ عَلَیْكَ تَوَكَّلْتُ ۙ وَ اَنْتَ رَبُّ الْعَرْشِ الْعَظِیْمِ ۙ مَا شَآءَ اللّٰهُ كَانَ ۙ وَ مَا لَمْ یَشَاْ لَمْ یَكُنْ ۙ لَا حَوْلَ وَ لَا قُوَّةَ اِلَّا بِاللّٰهِ الْعَلِیِّ الْعَظِیْمِ ۙ اَعْلَمُ اَنَّ اللّٰهَ عَلٰی كُلِّ شَیْءٍ قَدِیْرٌ ۙ وَّ اَنَّ اللّٰهَ قَدْ اَحَاطَ بِكُلِّ شَیْءٍ عِلْمًا ۙ اَللّٰهُمَّ اِنِّیْ اَعُوْذُ بِكَ مِنْ شَرِّ نَفْسِیْ ۙ وَ مِنْ شَرِّ كُلِّ دَآبَّةٍ اَنْتَ اٰخِذٌۢ بِنَاصِیَتِهَا ۙ اِنَّ رَبِّیْ عَلٰی صِرَاطٍ مُّسْتَقِیْمٍ`,
+   target:1,faz:'"دعائے ابو الدرداء" — اللہ پر بھروسے اور ہر شر سے پناہ کا جامع مجموعہ۔',ref:''},
+  {grp:'نماز کے بعد کے اذکار',name:'حَسْبِیَ اللّٰهُ — ۷ مرتبہ',isQ:false,
+   ar:`حَسْبِیَ اللّٰهُ لَاۤ اِلٰهَ اِلَّا هُوَ ۚ عَلَیْهِ تَوَكَّلْتُ ۚ وَ هُوَ رَبُّ الْعَرْشِ الْعَظِیْمِ`,
+   target:7,faz:'صبح و شام ۷ مرتبہ پڑھنے پر اللہ دنیا و آخرت کی تمام پریشانیوں کے لیے کافی ہو جاتا ہے۔',ref:'(ابو داؤد — صحیح)'},
+  {grp:'نماز کے بعد کے اذکار',name:'ایمان پر رضا — ۳ مرتبہ',isQ:false,
+   ar:`رَضِیْتُ بِاللّٰهِ رَبًّا ۙ وَّ بِالْاِسْلَامِ دِیْنًا ۙ وَّ بِمُحَمَّدٍ صَلَّی اللّٰهُ عَلَیْهِ وَسَلَّمَ نَبِیًّا`,
+   target:3,faz:'جو شخص صبح و شام ۳ مرتبہ یہ کہے، اس کے لیے جنت واجب ہو جاتی ہے۔',ref:'(مسلم — صحیح)'},
+  {grp:'نماز کے بعد کے اذکار',name:'دُرُودِ ابراہیمی — ۳ مرتبہ',isQ:false,
+   ar:`اَللّٰهُمَّ صَلِّ عَلٰی مُحَمَّدٍ وَّ عَلٰۤی اٰلِ مُحَمَّدٍ ۙ كَمَا صَلَّیْتَ عَلٰۤی اِبْرٰهِیْمَ وَ عَلٰۤی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ\nاَللّٰهُمَّ بَارِكْ عَلٰی مُحَمَّدٍ وَّ عَلٰۤی اٰلِ مُحَمَّدٍ ۙ كَمَا بٰرَكْتَ عَلٰۤی اِبْرٰهِیْمَ وَ عَلٰۤی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ`,
+   target:3,faz:'سب سے افضل درود — ایک درود پر ۱۰ رحمتیں، ۱۰ گناہ معاف، ۱۰ درجے بلند۔',ref:'(بخاری — صحیح)'},
+  {grp:'نماز کے بعد کے اذکار',name:'سورۃ الانشراح — ۷ مرتبہ',isQ:true,ch:94,vs:1,ve:8,
+   ar:`بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ\nاَلَمْ نَشْرَحْ لَكَ صَدْرَكَۙ ﴿۱﴾ وَ وَضَعْنَا عَنْكَ وِزْرَكَۙ ﴿۲﴾ الَّذِیْۤ اَنْقَضَ ظَهْرَكَۙ ﴿۳﴾ وَ رَفَعْنَا لَكَ ذِكْرَكَؕ ﴿۴﴾ فَاِنَّ مَعَ الْعُسْرِ یُسْرًاۙ ﴿۵﴾ اِنَّ مَعَ الْعُسْرِ یُسْرًاؕ ﴿۶﴾ فَاِذَا فَرَغْتَ فَانْصَبْۙ ﴿۷﴾ وَ اِلٰی رَبِّكَ فَارْغَبْ ﴿۸﴾`,
+   target:7,faz:'"ہر تکلیف کے ساتھ آسانی ہے" — شرحِ صدر اور غم دور ہوتا ہے۔',ref:''},
+  {grp:'فجر اور مغرب کے مخصوص اذکار',name:'جہنم سے حفاظت — ۷ مرتبہ',isQ:false,
+   ar:`اَللّٰهُمَّ اَجِرْنِیْ مِنَ النَّارِ`,
+   target:7,faz:'فجر و مغرب کے بعد ۷ مرتبہ پڑھنے والے کے لیے جہنم کی آگ اللہ سے پناہ مانگتی ہے۔',ref:'(ابو داؤد)'},
+  {grp:'فجر اور مغرب کے مخصوص اذکار',name:'ہر ضرر سے حفاظت — ۳ مرتبہ',isQ:false,
+   ar:`بِسْمِ اللّٰهِ الَّذِیْ لَا یَضُرُّ مَعَ اسْمِهٖ شَیْءٌ فِی الْاَرْضِ وَ لَا فِی السَّمَآءِ وَ هُوَ السَّمِیْعُ الْعَلِیْمُ`,
+   target:3,faz:'صبح و شام ۳ مرتبہ پڑھنے والے کو کوئی اچانک آفت نہیں پہنچ سکتی۔',ref:'(ترمذی — حسن)'},
+  {grp:'فجر اور مغرب کے مخصوص اذکار',name:'مخلوق کے شر سے پناہ — ۳ مرتبہ',isQ:false,
+   ar:`اَللّٰهُمَّ اِنِّیْ اَعُوْذُ بِكَلِمٰتِ اللّٰهِ التَّآمَّاتِ مِنْ شَرِّ مَا خَلَقَ`,
+   target:3,faz:'ہر قسم کے شر سے مکمل حفاظت۔',ref:'(مسلم — صحیح)'},
+  {grp:'فجر اور مغرب کے مخصوص اذکار',name:'اختتامی دُرُودِ ابراہیمی — ۳ مرتبہ',isQ:false,
+   ar:`اَللّٰهُمَّ صَلِّ عَلٰی مُحَمَّدٍ وَّ عَلٰۤی اٰلِ مُحَمَّدٍ ۙ كَمَا صَلَّیْتَ عَلٰۤی اِبْرٰهِیْمَ وَ عَلٰۤی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ\nاَللّٰهُمَّ بَارِكْ عَلٰی مُحَمَّدٍ وَّ عَلٰۤی اٰلِ مُحَمَّدٍ ۙ كَمَا بٰرَكْتَ عَلٰۤی اِبْرٰهِیْمَ وَ عَلٰۤی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ`,
+   target:3,faz:'اختتامِ وِرد پر درود — قبولیتِ دعا کا ذریعہ ہے۔',ref:'(ترمذی — حسن)'}
 ];
 
-/* SECTION 3 — جمعہ کا وِرد */
 const JUMMA = [
-  {
-    name:'دُرُودِ شریف — اوّل', target:1,
-    arabic:`اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ`,
-    faz:'سب سے پہلے درود — پھر سورتیں پڑھیں۔'
-  },
-  {
-    name:'سورۃ الْفَاتِحَة — ۷ مرتبہ', target:7, isQuran:true, quranKey:'1',
-    arabic:`بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\nاَلْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ ﴿١﴾ الرَّحْمَٰنِ الرَّحِيمِ ﴿٢﴾ مَالِكِ يَوْمِ الدِّينِ ﴿٣﴾ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ﴿٤﴾ اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ ﴿٥﴾ صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ ﴿٦﴾`,
-    faz:'سورۃ الفاتحہ — قرآن کی سب سے جامع سورت — ۷ مرتبہ'
-  },
-  {
-    name:'سورۃ الْإِخْلَاص — ۷ مرتبہ', target:7, isQuran:true, quranKey:'112',
-    arabic:`بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\nقُلْ هُوَ اللَّهُ أَحَدٌ ﴿١﴾ اللَّهُ الصَّمَدُ ﴿٢﴾ لَمْ يَلِدْ وَلَمْ يُولَدْ ﴿٣﴾ وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ ﴿٤﴾`,
-    faz:'ایک مرتبہ تلاوت ثلثِ قرآن کے برابر — ۷ مرتبہ'
-  },
-  {
-    name:'سورۃ الْفَلَق — ۷ مرتبہ', target:7, isQuran:true, quranKey:'113',
-    arabic:`بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\nقُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ﴿١﴾ مِنْ شَرِّ مَا خَلَقَ ﴿٢﴾ وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ ﴿٣﴾ وَمِنْ شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ﴿٤﴾ وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ ﴿٥﴾`,
-    faz:'جادو، نظرِ بد اور حسد سے حفاظت — ۷ مرتبہ'
-  },
-  {
-    name:'سورۃ النَّاس — ۷ مرتبہ', target:7, isQuran:true, quranKey:'114',
-    arabic:`بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\nقُلْ أَعُوذُ بِرَبِّ النَّاسِ ﴿١﴾ مَلِكِ النَّاسِ ﴿٢﴾ إِلَٰهِ النَّاسِ ﴿٣﴾ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ﴿٤﴾ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ﴿٥﴾ مِنَ الْجِنَّةِ وَالنَّاسِ ﴿٦﴾`,
-    faz:'وسوسوں اور جنات کے شر سے حفاظت — ۷ مرتبہ'
-  },
-  {
-    name:'دُرُودِ شریف — آخر', target:1,
-    arabic:`اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ`,
-    faz:'سورتوں کے بعد آخری درود — پھر دَم کریں۔'
-  },
-  {
-    name:'دَم کریں', target:1, isDm:true,
-    arabic:``, faz:'ہاتھوں پر پھونک کر پہلے خود پر، پھر گھر والوں پر دَم کریں۔'
-  }
+  {name:'دُرُودِ ابراہیمی — اوّل',isQ:false,
+   ar:`اَللّٰهُمَّ صَلِّ عَلٰی مُحَمَّدٍ وَّ عَلٰۤی اٰلِ مُحَمَّدٍ ۙ كَمَا صَلَّیْتَ عَلٰۤی اِبْرٰهِیْمَ وَ عَلٰۤی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ`,
+   target:1,faz:'سب سے پہلے درود پڑھیں — پھر سورتوں کی تلاوت کریں۔',ref:'(بخاری)'},
+  {name:'سورۃ الْفَاتِحَة — ۷ مرتبہ',isQ:true,ch:1,vs:1,ve:7,
+   ar:`بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ\nاَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِیْنَۙ ﴿۱﴾ اَلرَّحْمٰنِ الرَّحِیْمِۙ ﴿۲﴾ مٰلِكِ یَوْمِ الدِّیْنِؕ ﴿۳﴾ اِیَّاكَ نَعْبُدُ وَ اِیَّاكَ نَسْتَعِیْنُؕ ﴿۴﴾ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِیْمَۙ ﴿۵﴾ صِرَاطَ الَّذِیْنَ اَنْعَمْتَ عَلَیْهِمْ غَیْرِ الْمَغْضُوْبِ عَلَیْهِمْ وَ لَا الضَّآلِّیْنَ ﴿۶﴾`,
+   target:7,faz:'اُمّ القرآن — سب سے جامع سورت — شفاء بھی ہے۔',ref:'(بخاری)'},
+  {name:'سورۃ الْإِخْلَاص — ۷ مرتبہ',isQ:true,ch:112,vs:1,ve:4,
+   ar:`بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ\nقُلْ هُوَ اللّٰهُ اَحَدٌۚ ﴿۱﴾ اَللّٰهُ الصَّمَدُۚ ﴿۲﴾ لَمْ یَلِدْ ۬ۙ وَ لَمْ یُوْلَدْۙ ﴿۳﴾ وَ لَمْ یَكُنْ لَّهٗ كُفُوًا اَحَدٌ ﴿۴﴾`,
+   target:7,faz:'ایک مرتبہ پڑھنا ثلثِ قرآن کے برابر — اللہ اس کے پڑھنے والے سے محبت کرتا ہے۔',ref:'(بخاری)'},
+  {name:'سورۃ الْفَلَق — ۷ مرتبہ',isQ:true,ch:113,vs:1,ve:5,
+   ar:`بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ\nقُلْ اَعُوْذُ بِرَبِّ الْفَلَقِۙ ﴿۱﴾ مِنْ شَرِّ مَا خَلَقَۙ ﴿۲﴾ وَ مِنْ شَرِّ غَاسِقٍ اِذَا وَقَبَۙ ﴿۳﴾ وَ مِنْ شَرِّ النَّفّٰثٰتِ فِی الْعُقَدِۙ ﴿۴﴾ وَ مِنْ شَرِّ حَاسِدٍ اِذَا حَسَدَ ﴿۵﴾`,
+   target:7,faz:'جادو، نظرِ بد اور ہر شر سے حفاظت کی بہترین سورت۔',ref:'(مسلم)'},
+  {name:'سورۃ النَّاس — ۷ مرتبہ',isQ:true,ch:114,vs:1,ve:6,
+   ar:`بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ\nقُلْ اَعُوْذُ بِرَبِّ النَّاسِۙ ﴿۱﴾ مَلِكِ النَّاسِۙ ﴿۲﴾ اِلٰهِ النَّاسِۙ ﴿۳﴾ مِنْ شَرِّ الْوَسْوَاسِ ۬ۙ الْخَنَّاسِۙ ﴿۴﴾ الَّذِیْ یُوَسْوِسُ فِیْ صُدُوْرِ النَّاسِۙ ﴿۵﴾ مِنَ الْجِنَّةِ وَ النَّاسِ ﴿۶﴾`,
+   target:7,faz:'وسوسوں، جنات اور انسانوں کے شر سے حفاظت۔',ref:'(مسلم)'},
+  {name:'دُرُودِ ابراہیمی — آخر',isQ:false,
+   ar:`اَللّٰهُمَّ صَلِّ عَلٰی مُحَمَّدٍ وَّ عَلٰۤی اٰلِ مُحَمَّدٍ ۙ كَمَا صَلَّیْتَ عَلٰۤی اِبْرٰهِیْمَ وَ عَلٰۤی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ`,
+   target:1,faz:'سورتوں کے بعد آخری درود — پھر دَم کریں۔',ref:'(ترمذی)'},
+  {name:'دَم کریں',isDm:true,isQ:false,ar:'',target:1,faz:'ہاتھوں پر تین بار پھونکیں — پھر پورے جسم پر ملیں۔ پہلے خود پر، پھر گھر والوں پر۔',ref:''}
 ];
 
-/* SECTION 4 — عصر درود */
-const ASR_IMG = 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhvRJSzAam84Kh6YDvx58-keNRx0j0WlC3Zz1mIDo1eKBJrru6hq9kiz6IjDuUTzmez7-Dbd-95YmUKLI2uNGXRyr-cqOb0Ezsmd5WyvHnd0omZkzJN6GQRPfKEHzPIoEnB714OcResRS5rVYZQge5z4lZL9v5sBKHY0Uz5LikWhCBxCU-_RNqIMh9-MQM/s600/7dc6bda3f26f6096b46c0a3e0dab9287.png';
+const TAUHEED = [
+  {name:'لَاۤ اِلٰهَ اِلَّا اللّٰهُ — توحید کا اقرار',isQ:false,
+   ar:`لَاۤ اِلٰهَ اِلَّا اللّٰهُ وَحْدَهٗ لَا شَرِیْكَ لَهٗ،\nاَحَدٌ صَمَدٌ،\nلَمْ یَلِدْ وَ لَمْ یُوْلَدْ،\nوَ لَمْ یَكُنْ لَّهٗ كُفُوًا اَحَدٌ`,
+   target:1,faz:'خالص توحید کا اقرار — سب سے افضل ذکر — گناہ مٹتے اور نیکیاں بڑھتی ہیں۔',ref:'(بخاری، مسلم)'},
+  {name:'لَاۤ اِلٰهَ اِلَّا اللّٰهُ — ۱۰۰ مرتبہ',isQ:false,
+   ar:`لَاۤ اِلٰهَ اِلَّا اللّٰهُ وَحْدَهٗ لَا شَرِیْكَ لَهٗ ۙ لَهُ الْمُلْكُ وَ لَهُ الْحَمْدُ وَ هُوَ عَلٰی كُلِّ شَیْءٍ قَدِیْرٌ`,
+   target:100,faz:'۱۰۰ مرتبہ پڑھنے پر ۱۰۰ نیکیاں، ۱۰۰ گناہ معاف، تمام دن شیطان سے حفاظت۔',ref:'(بخاری)'},
+  {name:'سُبْحٰنَ اللّٰهِ وَ بِحَمْدِهٖ — ۱۰۰ مرتبہ',isQ:false,
+   ar:`سُبْحٰنَ اللّٰهِ وَ بِحَمْدِهٖ`,
+   target:100,faz:'قیامت کے دن کوئی اس سے افضل عمل نہیں لائے گا۔',ref:'(مسلم)'},
+  {name:'سُبْحٰنَ اللّٰهِ الْعَظِیْمِ',isQ:false,
+   ar:`سُبْحٰنَ اللّٰهِ الْعَظِیْمِ وَ بِحَمْدِهٖ`,
+   target:1,faz:'میزان میں بہت بھاری، زبان پر ہلکا — یہ دو کلمے رحمان کو بہت پسند ہیں۔',ref:'(بخاری)'},
+  {name:'اَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِیْنَ — ۳۳ مرتبہ',isQ:false,
+   ar:`اَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِیْنَ`,
+   target:33,faz:'"الحمد للہ" میزان کو بھر دیتا ہے۔',ref:'(مسلم)'},
+  {name:'لَا حَوْلَ وَ لَا قُوَّةَ — کنزِ جنت',isQ:false,
+   ar:`لَا حَوْلَ وَ لَا قُوَّةَ اِلَّا بِاللّٰهِ الْعَلِیِّ الْعَظِیْمِ`,
+   target:1,faz:'یہ جنت کے خزانوں میں سے ایک خزانہ ہے۔ ۷۰ بیماریوں کی دوا — سب سے چھوٹی بیماری فکر و غم ہے۔',ref:'(ترمذی — صحیح)'}
+];
 
-/* SECTION 6 — توحید */
-const TAUHEED = {
-  name:'توحید کی عظیم دعا', target:1,
-  arabic:`لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ،\nأَحَدٌ صَمَدٌ،\nلَمْ يَلِدْ وَلَمْ يُولَدْ،\nوَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ`,
-  faz:'خالص توحید کا اقرار — اللہ کے نزدیک سب سے افضل ذکر — گناہ مٹتے اور نیکیاں بڑھتی ہیں۔'
+const ASR_TEXT = `اَللّٰهُمَّ صَلِّ عَلٰی مُحَمَّدٍ النَّبِیِّ الْاُمِّیِّ وَ عَلٰۤی اٰلِهٖ وَ سَلِّمْ تَسْلِیْمًا`;
+const ASR_IMG  = 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhvRJSzAam84Kh6YDvx58-keNRx0j0WlC3Zz1mIDo1eKBJrru6hq9kiz6IjDuUTzmez7-Dbd-95YmUKLI2uNGXRyr-cqOb0Ezsmd5WyvHnd0omZkzJN6GQRPfKEHzPIoEnB714OcResRS5rVYZQge5z4lZL9v5sBKHY0Uz5LikWhCBxCU-_RNqIMh9-MQM/s600/7dc6bda3f26f6096b46c0a3e0dab9287.png';
+
+const TSB = [
+  {ar:`سُبْحٰنَ اللّٰهِ`,   label:'سبحان اللہ',target:33,color:'#3cb371'},
+  {ar:`اَلْحَمْدُ لِلّٰهِ`,label:'الحمد للہ', target:33,color:'#f0c840'},
+  {ar:`اَللّٰهُ اَكْبَرُ`, label:'اللہ اکبر', target:34,color:'#ec4899'}
+];
+
+/* Surah Kahf ruku boundaries */
+const KAHF_RUKUS = [
+  {num:'رکوع ۱', from:1,  to:8},
+  {num:'رکوع ۲', from:9,  to:17},
+  {num:'رکوع ۳', from:18, to:22},
+  {num:'رکوع ۴', from:23, to:31},
+  {num:'رکوع ۵', from:32, to:44},
+  {num:'رکوع ۶', from:45, to:49},
+  {num:'رکوع ۷', from:50, to:53},
+  {num:'رکوع ۸', from:54, to:59},
+  {num:'رکوع ۹', from:60, to:70},
+  {num:'رکوع ۱۰',from:71, to:82},
+  {num:'رکوع ۱۱',from:83, to:98},
+  {num:'رکوع ۱۲',from:99, to:110}
+];
+
+/* ══════════════════════════════
+   QURAN API (quran.com public)
+══════════════════════════════ */
+const QAPI = {
+  base: 'https://api.quran.com/api/v4',
+  
+  cacheGet(k) {
+    try { const v=localStorage.getItem('qc_'+k); return v?JSON.parse(v):null; } catch(e){return null;}
+  },
+  cacheSet(k,v) {
+    try { localStorage.setItem('qc_'+k, JSON.stringify(v)); } catch(e){}
+  },
+
+  async fetchRange(ch, vs, ve) {
+    const k = `${ch}_${vs}_${ve}`;
+    const cached = this.cacheGet(k);
+    if (cached) return cached;
+    try {
+      const url = `${this.base}/verses/by_range/${ch}:${vs}/${ch}:${ve}?fields=text_uthmani_tajweed&per_page=286`;
+      const r = await fetch(url);
+      if (!r.ok) throw new Error('API error');
+      const d = await r.json();
+      const verses = d.verses || [];
+      if (verses.length) this.cacheSet(k, verses);
+      return verses;
+    } catch(e) { return null; }
+  },
+
+  async fetchChapter(ch) {
+    const k = `ch_${ch}`;
+    const cached = this.cacheGet(k);
+    if (cached) return cached;
+    try {
+      let all = [], page = 1, total = 1;
+      while (page <= total) {
+        const url = `${this.base}/verses/by_chapter/${ch}?fields=text_uthmani_tajweed&per_page=50&page=${page}`;
+        const r = await fetch(url);
+        if (!r.ok) throw new Error('API error');
+        const d = await r.json();
+        all = all.concat(d.verses || []);
+        total = d.pagination ? d.pagination.total_pages : 1;
+        page++;
+      }
+      if (all.length) this.cacheSet(k, all);
+      return all;
+    } catch(e) { return null; }
+  },
+
+  renderVerses(verses, mode) {
+    if (!verses || !verses.length) return null;
+    if (mode === 'para') {
+      return `<div class="para-block tajweed">${
+        verses.map(v => `${v.text_uthmani_tajweed} <span class="vnum-inline">${v.verse_number}</span>`).join(' ')
+      }</div>`;
+    }
+    return verses.map(v => `
+      <div class="vblock tajweed">
+        <div class="vnum">${v.verse_number}</div>
+        <div class="vtxt">${v.text_uthmani_tajweed}</div>
+      </div>`).join('');
+  }
 };
 
-/* SECTION 7 — تسبیحِ فاطمہ */
-const TASBEEH_PHASES = [
-  { arabic:`سُبْحَانَ اللَّهِ`, urdu:'سبحان اللہ', target:33, color:'#3cb371' },
-  { arabic:`اَلْحَمْدُ لِلَّهِ`, urdu:'الحمد للہ',  target:33, color:'#f0c842' },
-  { arabic:`اَللَّهُ أَكْبَرُ`,  urdu:'اللہ اکبر',  target:34, color:'#ec4899' }
-];
+/* ══════════════════════════════
+   STATE
+══════════════════════════════ */
+const CIRC = 2 * Math.PI * 74;
+let sec = 'asr';
+let viewMode = 'verse';
+let zoomPct = 100;
+const BASE_QS = 1.52;
 
-/* SURAH KAHF - now loaded from offline data */
-const KAHF_RUKUS = []; // placeholder - actual text comes from quran-kahf.js
-
-const SECTIONS_META = [
-  {id:'namaz', icon:'🕌', title:'ہر نماز کے بعد', data:NAMAZ,   color:'var(--r-namaz)'},
-  {id:'fajr',  icon:'🌅', title:'فجر / مغرب',     data:FAJR,    color:'var(--r-fajr)'},
-  {id:'jumma', icon:'🌙', title:'جمعہ کا وِرد',   data:JUMMA,   color:'var(--r-jumma)'},
-  {id:'asr',   icon:'☀️', title:'جمعہ عصر درود', data:null,    color:'var(--r-asr)'},
-  {id:'kahf',  icon:'📖', title:'سورۃ الکہف',     data:null,    color:'var(--g1)'},
-  {id:'tauheed',icon:'☝️',title:'توحید کی دعا',  data:[TAUHEED],color:'var(--r-tauheed)'},
-  {id:'tasbeeh',icon:'📿',title:'تسبیحِ فاطمہ',  data:null,    color:'var(--r-tasbeeh)'}
-];
-
-// ════ STATE ════
-let sec = 'namaz';
 let S = {
-  namaz:  {idx:0,cnt:0,done:new Array(NAMAZ.length).fill(false)},
   fajr:   {idx:0,cnt:0,done:new Array(FAJR.length).fill(false)},
   jumma:  {idx:0,cnt:0,done:new Array(JUMMA.length).fill(false)},
+  tauheed:{idx:0,cnt:0,done:new Array(TAUHEED.length).fill(false)},
   asr:    {cnt:0,done:false},
-  tauheed:{idx:0,cnt:0,done:[false]},
-  tasbeeh:{phase:0,cnt:0,phaseDone:[false,false,false]}
+  tasbeeh:{ph:0,cnt:0,sets:0}
 };
-try {
-  const p = JSON.parse(sessionStorage.getItem('adhkar_v1')||'{}');
-  if(p.sec) sec = p.sec;
-  ['namaz','fajr','jumma','asr','tauheed','tasbeeh'].forEach(k=>{ if(p[k]) Object.assign(S[k],p[k]); });
-  if(!S.namaz.done||S.namaz.done.length!==NAMAZ.length) S.namaz.done=new Array(NAMAZ.length).fill(false);
-  if(!S.fajr.done||S.fajr.done.length!==FAJR.length)   S.fajr.done=new Array(FAJR.length).fill(false);
-  if(!S.jumma.done||S.jumma.done.length!==JUMMA.length) S.jumma.done=new Array(JUMMA.length).fill(false);
-} catch(e){}
-const save=()=>{try{sessionStorage.setItem('adhkar_v1',JSON.stringify({sec,...S}))}catch(e){}};
 
-// ════ AUDIO ════
-let ac;
-const beep=(f=780,d=.08,v=.18)=>{try{if(!ac)ac=new(window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.frequency.value=f;o.type='sine';g.gain.setValueAtTime(v,ac.currentTime);g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+d);o.start();o.stop(ac.currentTime+d)}catch(e){}};
-const vib=p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
-const CIRC=2*Math.PI*76;
+(()=>{
+  try {
+    const p = JSON.parse(localStorage.getItem('azk_v5')||'{}');
+    if(p.sec) sec=p.sec;
+    if(p.viewMode) viewMode=p.viewMode;
+    if(p.zoomPct) zoomPct=p.zoomPct;
+    ['fajr','jumma','tauheed','asr','tasbeeh'].forEach(k=>{if(p[k])Object.assign(S[k],p[k]);});
+    if(!S.fajr.done||S.fajr.done.length!==FAJR.length)     S.fajr.done    = new Array(FAJR.length).fill(false);
+    if(!S.jumma.done||S.jumma.done.length!==JUMMA.length)   S.jumma.done   = new Array(JUMMA.length).fill(false);
+    if(!S.tauheed.done||S.tauheed.done.length!==TAUHEED.length) S.tauheed.done = new Array(TAUHEED.length).fill(false);
+    if(!S.tasbeeh.phaseDone) S.tasbeeh.phaseDone=[false,false,false];
+  } catch(e){}
+})();
 
-// ════ RENDER ════
-function render(){
-  document.querySelectorAll('.chip').forEach(c=>{
-    c.classList.toggle('active',c.dataset.sec===sec);
+const save=()=>{try{localStorage.setItem('azk_v5',JSON.stringify({sec,viewMode,zoomPct,...S}))}catch(e){}};
+
+/* ══════════════════════════════
+   ZOOM
+══════════════════════════════ */
+function applyZoom(pct) {
+  zoomPct = Math.max(60, Math.min(220, pct));
+  document.documentElement.style.setProperty('--qs', (BASE_QS * zoomPct / 100).toFixed(3) + 'rem');
+  const lbl = document.getElementById('zlbl');
+  if(lbl) lbl.textContent = zoomPct + '%';
+  save();
+}
+applyZoom(zoomPct);
+
+document.getElementById('zIn').addEventListener('click',   ()=>applyZoom(zoomPct+10));
+document.getElementById('zOut').addEventListener('click',  ()=>applyZoom(zoomPct-10));
+document.getElementById('zReset').addEventListener('click',()=>applyZoom(100));
+document.querySelectorAll('.vm').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    viewMode = btn.dataset.vm;
+    document.querySelectorAll('.vm').forEach(b=>b.classList.toggle('active', b.dataset.vm===viewMode));
+    save();
+    if(sec==='kahf') render();
   });
+});
 
-  const mc = document.getElementById('mainContent');
+/* ══════════════════════════════
+   AUDIO
+══════════════════════════════ */
+let ac;
+const beep=(f=760,d=.08,v=.16)=>{
+  try{
+    if(!ac) ac=new(window.AudioContext||window.webkitAudioContext)();
+    const o=ac.createOscillator(),g=ac.createGain();
+    o.connect(g);g.connect(ac.destination);
+    o.frequency.value=f;o.type='sine';
+    g.gain.setValueAtTime(v,ac.currentTime);
+    g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+d);
+    o.start();o.stop(ac.currentTime+d);
+  }catch(e){}
+};
+const vib=p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
 
-  if(sec==='kahf')   { renderKahf(mc); return; }
-  if(sec==='asr')    { renderAsr(mc);  return; }
-  if(sec==='tasbeeh'){ renderTasbeeh(mc); return; }
+/* ══════════════════════════════
+   RENDER HELPERS
+══════════════════════════════ */
+function toggleFaz(btn) {
+  const b = btn.nextElementSibling;
+  b.classList.toggle('open');
+  btn.textContent = b.classList.contains('open') ? '▲ فضیلت چھپائیں' : '✨ فضیلت دیکھیں';
+}
 
-  const meta = SECTIONS_META.find(s=>s.id===sec);
-  const steps = meta.data;
-  const st = S[sec];
-  const step = steps[st.idx];
+function buildRing(cnt, target, color, done, cls='') {
+  const off = CIRC * (1 - Math.min(cnt/target,1));
+  return `<div class="ring-wrap" id="rw">
+    <svg viewBox="0 0 172 172">
+      <circle class="rbg" cx="86" cy="86" r="74"/>
+      <circle class="rfill" id="rf" cx="86" cy="86" r="74"
+        style="stroke:${color};stroke-dashoffset:${done?0:off};${color!=='var(--g1)'?'filter:drop-shadow(0 0 5px '+color+'66)':''}"/>
+    </svg>
+    <div class="ring-inner" id="ri" style="border-color:${color}25">
+      ${done
+        ? `<div style="font-size:1.55rem">✅</div><div class="rof">مکمل</div>`
+        : `<div class="rnum" id="rn" style="color:${color}">${cnt}</div>
+           <div class="rof">از ${target}</div>
+           <div class="rhint">tap to count</div>`}
+    </div>
+  </div>`;
+}
+
+function buildDuaCard(step, fallback=false) {
+  const txt = step.ar || '';
+  const hasBismi = txt.startsWith('بِسْمِ اللّٰهِ');
+  let bismi='', body=txt;
+  if(hasBismi){
+    const nl=txt.indexOf('\n');
+    if(nl>-1){bismi=txt.slice(0,nl);body=txt.slice(nl+1);}
+    else{bismi=txt;body='';}
+  }
+  return `<div class="dua-card">
+    ${bismi?`<span class="bismi">${bismi}</span>`:''}
+    <div class="ar">${body.replace(/\n/g,'<br/><br/>')}</div>
+    <div class="dua-name">${step.name}</div>
+  </div>
+  ${fallback?`<div class="q-error" style="font-size:.72rem">⚠️ API دستیاب نہیں — تجوید کے بغیر متن دکھایا جا رہا ہے</div>`:''}`;
+}
+
+function tjLegend() {
+  const items = [
+    ['#537FFF','مدّ (نارمل)'],['#DD0008','قلقلہ'],
+    ['#169200','غنہ/ادغام'],['#9400A8','اخفاء'],
+    ['#26BFFD','اقلاب'],['#D500B7','اخفاء شفوی'],
+    ['#9b9b9b','ہمزۃ الوصل']
+  ];
+  return `<div class="tj-legend">${
+    items.map(([c,l])=>`<div class="tj-chip"><div class="tj-dot" style="background:${c}"></div>${l}</div>`).join('')
+  }</div>`;
+}
+
+/* ══════════════════════════════
+   MAIN RENDER
+══════════════════════════════ */
+async function render() {
+  document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('active', c.dataset.sec===sec));
+  const vmodes = document.getElementById('vmodes');
+  if(vmodes) vmodes.style.display = sec==='kahf' ? 'flex' : 'none';
+
+  const mc = document.getElementById('mc');
+  if(!mc) return;
+
+  if(sec==='kahf')    { await renderKahf(mc);    return; }
+  if(sec==='asr')     { renderAsr(mc);            return; }
+  if(sec==='tasbeeh') { renderTasbeeh(mc);        return; }
+
+  const DATA  = {fajr:FAJR, jumma:JUMMA, tauheed:TAUHEED};
+  const steps = DATA[sec];
+  const st    = S[sec];
+  const step  = steps[st.idx];
   const total = steps.length;
-  const count = st.cnt;
-  const pct = Math.min(count/step.target,1);
-  const offset = CIRC*(1-pct);
-  const done = count>=step.target;
+  const cnt   = st.cnt;
+  const done  = cnt >= step.target;
+  const pct   = Math.min(cnt/step.target, 1);
 
-  document.getElementById('progFill').style.width=((st.idx+(done?1:count/step.target))/total*100)+'%';
+  document.getElementById('progBar').style.width =
+    ((st.idx + (done ? 1 : pct)) / total * 100) + '%';
 
-  let h = `<div class="step-panel">
-    <div class="sec-badge">
-      <div class="sec-dot" style="background:${meta.color}"></div>
-      <span>${meta.icon} ${meta.title} — ${st.idx+1} از ${total}</span>
-      <div class="sec-dot" style="background:${meta.color}"></div>
-    </div>`;
+  const color = sec==='jumma'?'#a855f7':'var(--g1)';
+  const grpLabel = (sec==='fajr' && step.grp)
+    ? `<div class="sec-label">📌 ${step.grp}</div>` : '';
 
-  // dam step
-  if(step.isDm){
-    h+=`<div class="dam-box">
-      <strong>🫁 دَم کریں</strong><br/><br/>
-      ہاتھوں پر پھونک کر پہلے اپنے آپ پر دَم کریں — ہاتھ پورے جسم پر پھیریں۔<br/>
-      پھر گھر والوں پر دَم کریں۔ اگر غائب ہوں تو دل میں خیال لا کر دَم کریں۔
+  let h = `<div class="sp">
+    <div class="step-badge">
+      <div class="sdot" style="background:${color}"></div>
+      <span>${st.idx+1} / ${total}</span>
+      <div class="sdot" style="background:${color}"></div>
     </div>
-    <div style="margin:.3rem 0">
-      <div id="dmBtn" style="width:120px;height:120px;margin:0 auto;border-radius:50%;background:radial-gradient(circle at 35% 30%,#102014,#030b04);border:1px solid rgba(60,179,113,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer">
-        ${done?`<div style="font-size:1.8rem">✅</div><div style="font-size:.7rem;color:var(--g2);margin-top:3px">مکمل</div>`:`<div style="font-size:1.9rem">🫁</div><div style="font-size:.65rem;color:var(--text2);margin-top:3px">تسلیم کریں</div>`}
+    ${grpLabel}`;
+
+  if(step.isDm) {
+    h += `<div class="dam-box">
+        <strong>🫁 دَم کریں</strong><br/><br/>
+        ہاتھوں پر تین بار پھونکیں — پھر پورے جسم پر ملیں۔ پہلے خود پر، پھر گھر والوں پر دَم کریں۔
       </div>
-    </div>`;
+      <div style="margin:.45rem 0">
+        <div id="dmBtn" style="width:112px;height:112px;margin:0 auto;border-radius:50%;
+          background:radial-gradient(circle at 38% 32%,#0d1e0f,var(--bg));
+          border:1px solid rgba(60,179,113,.25);
+          display:flex;flex-direction:column;align-items:center;justify-content:center;
+          cursor:pointer;-webkit-tap-highlight-color:transparent;">
+          ${done
+            ? `<div style="font-size:1.9rem">✅</div><div style="font-size:.68rem;color:var(--g2);margin-top:3px">مکمل</div>`
+            : `<div style="font-size:2rem">🫁</div><div style="font-size:.65rem;color:var(--text2);margin-top:3px">تسلیم</div>`}
+        </div>
+      </div>
+      <div class="faz-body open" style="display:block">${step.faz}</div>`;
+
+  } else if(step.isQ) {
+    /* Quranic step — show loading then fetch tajweed */
+    h += `<div id="quranArea"><div class="q-loading"><div class="spinner"></div>تجوید لوڈ ہو رہا ہے…</div></div>
+      <button class="faz-btn" onclick="toggleFaz(this)">✨ فضیلت دیکھیں</button>
+      <div class="faz-body">${step.faz}${step.ref?`<span class="faz-ref">${step.ref}</span>`:''}</div>
+      ${buildRing(cnt, step.target, color, done)}`;
   } else {
-    // ---- QURAN vs NON-QURAN RENDERING ----
-    h+=`<div class="dua-card">
-      <div class="arabic" ${step.isQuran ? 'id="quranVerse"' : ''}>${step.isQuran ? '' : step.arabic.replace(/\n/g,'<br/><br/>')}</div>
-      <div class="dua-name">${step.name} — ${step.target>1?`×${step.target}`:'یک مرتبہ'}</div>
-    </div>
-    <button class="faz-toggle" onclick="toggleFaz(this)">
-      <span>✨</span> فضیلت دیکھیں
-    </button>
-    <div class="faz-body">${step.faz}</div>`;
-
-    // ring
-    h+=`<div class="ring-wrap" id="rw">
-      <svg viewBox="0 0 176 176">
-        <circle class="rbg" cx="88" cy="88" r="76"/>
-        <circle class="rfill" id="rf" cx="88" cy="88" r="76"
-          style="stroke:${meta.color};stroke-dashoffset:${offset}"/>
-      </svg>
-      <div class="ring-inner" id="ri">
-        ${done
-          ?`<div style="font-size:1.5rem">✅</div><div class="rof">مکمل</div>`
-          :`<div class="rnum" id="rn">${count}</div>
-            <div class="rof">از ${step.target}</div>
-            <div class="rhint">tap to count</div>`}
-      </div>
-    </div>`;
+    h += buildDuaCard(step);
+    h += `<button class="faz-btn" onclick="toggleFaz(this)">✨ فضیلت دیکھیں</button>
+      <div class="faz-body">${step.faz}${step.ref?`<span class="faz-ref">${step.ref}</span>`:''}</div>
+      ${buildRing(cnt, step.target, color, done)}`;
   }
 
-  const isLast = st.idx===total-1;
-  h+=`<div class="controls">
-    <button class="ctrl" id="prevB" ${st.idx===0?'disabled':''}>← پچھلا</button>
-    <button class="ctrl" id="undoB">↩</button>
-    <button class="ctrl next" id="nextB">${done?(isLast?'🌿 ختم':'اگلا →'):'آگے →'}</button>
+  const isLast = st.idx === total-1;
+  h += `<div class="ctrls">
+    <button class="btn" id="prevB" ${st.idx===0?'disabled':''}>← پچھلا</button>
+    <button class="btn" id="undoB">↩</button>
+    <button class="btn next" id="nextB">${done?(isLast?'🌿 ختم':'اگلا →'):'آگے →'}</button>
   </div></div>`;
 
-  mc.innerHTML=h;
-  mc.style.animation='none'; void mc.offsetWidth;
+  mc.innerHTML = h;
 
-  // Load Quran tajweed HTML if this is a Quranic verse
-  if(step.isQuran && step.quranKey) {
-    const quranEl = document.getElementById('quranVerse');
-    if(quranEl && window.QURAN) {
-      renderQuranHTML(step.quranKey, quranEl);
+  /* Attach events */
+  document.getElementById('rw')?.addEventListener('click', tap);
+  document.getElementById('dmBtn')?.addEventListener('click',()=>{
+    if(!done){S[sec].done[st.idx]=true;save();render();}
+  });
+  document.getElementById('prevB')?.addEventListener('click',()=>{
+    if(st.idx>0){st.idx--;st.cnt=0;save();render();}
+  });
+  document.getElementById('undoB')?.addEventListener('click', doUndo);
+  document.getElementById('nextB')?.addEventListener('click', goNext);
+
+  /* Fetch tajweed for Quranic step */
+  if(step.isQ) {
+    const verses = await QAPI.fetchRange(step.ch, step.vs, step.ve);
+    const area = document.getElementById('quranArea');
+    if(!area) return;
+    if(verses && verses.length) {
+      area.innerHTML = (QAPI.renderVerses(verses, 'verse') || '') + tjLegend();
+    } else {
+      area.innerHTML = buildDuaCard(step, true);
     }
   }
 
-  document.getElementById('rw')?.addEventListener('click',tap);
-  document.getElementById('dmBtn')?.addEventListener('click',()=>{if(!done){S[sec].done[st.idx]=true;save();render();}});
-  document.getElementById('prevB')?.addEventListener('click',()=>{if(st.idx>0){st.idx--;st.cnt=0;save();render();}});
-  document.getElementById('undoB')?.addEventListener('click',doUndo);
-  document.getElementById('nextB')?.addEventListener('click',goNext);
   renderDrawer();
 }
 
-function renderAsr(mc){
-  const cnt=S.asr.cnt, target=80, done=S.asr.done;
-  const pct=Math.min(cnt/target,1), offset=CIRC*(1-pct);
-  document.getElementById('progFill').style.width=(pct*100)+'%';
-
-  mc.innerHTML=`<div class="step-panel">
-    <div class="sec-badge">
-      <div class="sec-dot" style="background:var(--r-asr)"></div>
-      <span>☀️ جمعہ عصر کے بعد — ۸۰ مرتبہ</span>
-      <div class="sec-dot" style="background:var(--r-asr)"></div>
+/* ══════════════════════════════
+   ASR RENDER
+══════════════════════════════ */
+function renderAsr(mc) {
+  const cnt=S.asr.cnt, done=S.asr.done;
+  const off = CIRC*(1-Math.min(cnt/80,1));
+  document.getElementById('progBar').style.width=(Math.min(cnt/80,1)*100)+'%';
+  mc.innerHTML=`<div class="sp">
+    <div class="step-badge">
+      <div class="sdot" style="background:#f0c840"></div>
+      <span>☀️ جمعہ — نمازِ عصر کے بعد — ۸۰ مرتبہ</span>
+      <div class="sdot" style="background:#f0c840"></div>
     </div>
-    <div class="urdu-note" style="border-right-color:var(--r-asr)">
-      جمعہ کے دن نمازِ عصر کے بعد جگہ سے اٹھنے سے پہلے ۸۰ مرتبہ پڑھیں — ۸۰ سال کے گناہ معاف، ۸۰ سال کا ثواب
+    <div class="urdu-note">
+      جمعہ کے دن نمازِ عصر کے بعد جگہ سے اٹھنے سے پہلے ۸۰ مرتبہ پڑھیں —
+      <strong>۸۰ سال کے گناہ معاف، ۸۰ سال کا ثواب</strong>
+      <span style="font-size:.7rem;color:var(--gold);display:block;margin-top:.2rem">
+        (القول البديع — الإمام السخاوي)
+      </span>
     </div>
-    <img class="asr-img" src="${ASR_IMG}" alt="درودِ نبی اُمّی" loading="lazy"/>
+    <img class="asr-img" src="${ASR_IMG}" alt="درود شریف" loading="lazy"
+      onerror="this.style.display='none';document.getElementById('asrFb').style.display='block'"/>
+    <div id="asrFb" class="dua-card" style="display:none">
+      <div class="ar big">${ASR_TEXT}</div>
+      <div class="dua-name">درودِ نبی اُمّی ﷺ — ۸۰ مرتبہ</div>
+    </div>
     <div class="ring-wrap" id="rw">
-      <svg viewBox="0 0 176 176">
-        <circle class="rbg" cx="88" cy="88" r="76"/>
-        <circle class="rfill" id="rf" cx="88" cy="88" r="76"
-          style="stroke:var(--r-asr);stroke-dashoffset:${offset}"/>
+      <svg viewBox="0 0 172 172">
+        <circle class="rbg" cx="86" cy="86" r="74"/>
+        <circle class="rfill" id="rf" cx="86" cy="86" r="74"
+          style="stroke:#f0c840;stroke-dashoffset:${done?0:off};filter:drop-shadow(0 0 5px rgba(240,200,64,.45))"/>
       </svg>
-      <div class="ring-inner" id="ri">
+      <div class="ring-inner" id="ri" style="border-color:rgba(240,200,64,.2)">
         ${done
-          ?`<div style="font-size:1.5rem">✅</div><div class="rof" style="color:var(--gold2)">مکمل!</div>`
-          :`<div class="rnum" id="rn" style="color:var(--gold2)">${cnt}</div>
+          ?`<div style="font-size:1.55rem">✅</div><div class="rof" style="color:#f0c840">مکمل!</div>`
+          :`<div class="rnum" id="rn" style="color:#f0c840">${cnt}</div>
             <div class="rof">از ۸۰</div>
             <div class="rhint">tap to count</div>`}
       </div>
     </div>
-    <div class="controls">
-      <button class="ctrl" onclick="doUndo()">↩ واپس</button>
-      <button class="ctrl next" style="border-color:rgba(240,200,66,.4);color:var(--gold2)" onclick="resetAsr()">↺ دوبارہ</button>
+    <div class="ctrls">
+      <button class="btn" id="undoB">↩ واپس</button>
+      <button class="btn next" style="border-color:rgba(240,200,64,.38);color:#f0c840"
+        id="asrReset">↺ دوبارہ</button>
     </div>
   </div>`;
-  document.getElementById('rw').addEventListener('click',tap);
+  document.getElementById('rw').addEventListener('click', tap);
+  document.getElementById('undoB').addEventListener('click', doUndo);
+  document.getElementById('asrReset').addEventListener('click',()=>{S.asr={cnt:0,done:false};save();renderAsr(mc);});
   renderDrawer();
 }
 
-function renderTasbeeh(mc){
-  const ph=S.tasbeeh.phase, cnt=S.tasbeeh.cnt;
-  const phase=TASBEEH_PHASES[ph];
-  const target=phase.target, pct=Math.min(cnt/target,1), offset=CIRC*(1-pct);
-  const done=cnt>=target;
-  document.getElementById('progFill').style.width=((ph+(done?1:pct))/3*100)+'%';
-
-  const chips = TASBEEH_PHASES.map((p,i)=>`
-    <div class="phase-chip ${i<ph?'done':''} ${i===ph?'cur':''}" style="${i===ph?`border-color:${p.color};color:${p.color}`:''}">
-      ${i<ph?'✓ ':''}<span style="font-family:'Amiri',serif;font-size:1rem">${p.arabic}</span><br/>
-      <span style="font-size:.6rem">${p.urdu} ×${p.target}</span>
+/* ══════════════════════════════
+   TASBEEH RENDER
+══════════════════════════════ */
+function renderTasbeeh(mc) {
+  const {ph,cnt,sets}=S.tasbeeh, phase=TSB[ph], target=phase.target, done=cnt>=target;
+  const off=CIRC*(1-Math.min(cnt/target,1));
+  document.getElementById('progBar').style.width=((ph+(done?1:cnt/target))/3*100)+'%';
+  const chips=TSB.map((p,i)=>`
+    <div class="ph-chip" onclick="if(${i}!==${ph}){S.tasbeeh={ph:${i},cnt:0,sets:0};save();renderTasbeeh(document.getElementById('mc'));}"
+      style="${i===ph?`border-color:${p.color};color:${p.color};background:${p.color}18`:
+               i<ph ?'border-color:var(--g1);color:var(--g1);background:rgba(60,179,113,.12)':''}">
+      <div style="font-family:'Scheherazade New',serif;font-size:.95rem">${p.ar}</div>
+      <div style="font-size:.6rem;margin-top:2px">${p.label} ×${p.target}</div>
+      ${i<ph?'<div style="font-size:.65rem">✓</div>':''}
     </div>`).join('');
-
-  mc.innerHTML=`<div class="tasbeeh-panel">
-    <div class="sec-badge">
-      <div class="sec-dot" style="background:var(--r-tasbeeh)"></div>
-      <span>📿 تسبیحِ فاطمہؓ — مرحلہ ${ph+1} از ۳</span>
-      <div class="sec-dot" style="background:var(--r-tasbeeh)"></div>
+  mc.innerHTML=`<div class="sp">
+    <div class="step-badge">
+      <div class="sdot" style="background:${phase.color}"></div>
+      <span>📿 تسبیحِ فاطمہؓ — مرحلہ ${ph+1}/3 — سیٹ ${sets+1}</span>
+      <div class="sdot" style="background:${phase.color}"></div>
     </div>
-    <div class="tasbeeh-phases" dir="ltr">${chips}</div>
-    <div class="dua-card" style="border-color:rgba(236,72,153,.2)">
-      <div class="arabic xl" style="color:#fce7f3">${phase.arabic}</div>
-      <div class="dua-name" style="color:#f0abcf">${phase.urdu} — ×${target}</div>
+    <div class="tsb-phases">${chips}</div>
+    <div class="dua-card" style="border-top-color:${phase.color}45">
+      <div class="ar xl" style="color:#f8f2e4">${phase.ar}</div>
+      <div class="dua-name" style="color:${phase.color}">${phase.label} — × ${target}</div>
     </div>
     <div class="faz-body open" style="display:block">
-      نبی کریم ﷺ نے سیدہ فاطمہؓ اور حضرت علیؓ کو یہ تسبیح سکھائی جب انہوں نے خادم مانگا۔ فرمایا: یہ خادم سے بہتر ہے — تھکاوٹ دور ہوتی ہے، طاقت ملتی ہے۔ (صحیح بخاری و مسلم)
+      نبی کریم ﷺ نے سیدہ فاطمہؓ اور علیؓ کو یہ تسبیح سکھائی جب انہوں نے خادم مانگا — فرمایا: "یہ خادم سے بہتر ہے۔"
+      <span class="faz-ref">(صحیح بخاری و مسلم)</span>
     </div>
     <div class="ring-wrap" id="rw">
-      <svg viewBox="0 0 176 176">
-        <circle class="rbg" cx="88" cy="88" r="76"/>
-        <circle class="rfill" id="rf" cx="88" cy="88" r="76"
-          style="stroke:${phase.color};stroke-dashoffset:${offset}"/>
+      <svg viewBox="0 0 172 172">
+        <circle class="rbg" cx="86" cy="86" r="74"/>
+        <circle class="rfill" id="rf" cx="86" cy="86" r="74"
+          style="stroke:${phase.color};stroke-dashoffset:${done?0:off};filter:drop-shadow(0 0 5px ${phase.color}55)"/>
       </svg>
-      <div class="ring-inner" id="ri" style="border-color:rgba(236,72,153,.2)">
+      <div class="ring-inner" id="ri" style="border-color:${phase.color}28">
         ${done
-          ?`<div style="font-size:1.5rem">✅</div><div class="rof">مکمل</div>`
+          ?`<div style="font-size:1.55rem">✅</div><div class="rof">مکمل</div>`
           :`<div class="rnum" id="rn" style="color:${phase.color}">${cnt}</div>
-            <div class="rof">از ${target}</div>
-            <div class="rhint">tap to count</div>`}
+            <div class="rof">از ${target}</div><div class="rhint">tap to count</div>`}
       </div>
     </div>
-    <div class="controls">
-      <button class="ctrl" onclick="doUndo()">↩</button>
-      <button class="ctrl next" style="border-color:rgba(236,72,153,.4);color:#fda4cf" id="nextB">
+    <div class="ctrls">
+      <button class="btn" id="undoB">↩</button>
+      <button class="btn next" id="nextB" style="border-color:${phase.color}55;color:${phase.color}">
         ${done?(ph===2?'🌿 ختم':'اگلا ←'):'آگے →'}
       </button>
     </div>
   </div>`;
-  document.getElementById('rw').addEventListener('click',tap);
+  document.getElementById('rw').addEventListener('click', tap);
+  document.getElementById('undoB').addEventListener('click', doUndo);
   document.getElementById('nextB').addEventListener('click',()=>{
-    if(done){
-      if(ph===2){
-        document.getElementById('compMsg').textContent='ماشاءاللہ! تسبیحِ فاطمہؓ مکمل ہوگئی 📿';
-        document.getElementById('compScreen').classList.add('show');
-      } else {
-        S.tasbeeh.phaseDone[ph]=true;
-        S.tasbeeh.phase++;
-        S.tasbeeh.cnt=0;
-        save();render();
-      }
-    }
+    if(!done)return;
+    if(ph<2){S.tasbeeh.ph++;S.tasbeeh.cnt=0;save();renderTasbeeh(mc);}
+    else{document.getElementById('compMsg').textContent='ماشاءاللہ! تسبیحِ فاطمہؓ مکمل ہوگئی 📿';document.getElementById('compScreen').classList.add('show');}
   });
   renderDrawer();
 }
 
-function renderKahf(mc){
-  document.getElementById('progFill').style.width='100%';
-  
-  let h=`<div class="kahf-panel">
-    <div class="kahf-head">
-      <div class="kahf-title">سُورَةُ الْكَهْفِ</div>
-      <div class="kahf-sub">مکمل سورۃ — ۱۱۰ آیات — ۱۲ رکوع<br/>ہر جمعہ تلاوت سنت ہے — اوپر سے نیچے سکرول کریں</div>
-    </div>`;
-  
-  // Use offline Quran data for Kahf
-  if(window.QURAN && window.QURAN['18']) {
-    // Split by Bismillah or verse markers to create ruku sections
-    const fullHtml = window.QURAN['18'];
-    h += `<div class="kahf-text">${fullHtml}</div>`;
-  } else {
-    // Fallback: show loading message
-    h += `<div class="kahf-text" style="text-align:center;padding:2rem;">
-      <p>لوڈ ہو رہا ہے... براہ کرم چند لمحے انتظار کریں</p>
-      <p style="font-size:0.8rem;color:var(--text2);margin-top:1rem;">
-        اگر آف لائن ڈیٹا موجود نہیں ہے تو node scripts/build-quran.js چلائیں
-      </p>
-    </div>`;
-  }
-  
-  h+=`<div style="text-align:center;padding:2rem 0 .5rem;font-family:'Amiri',serif;font-size:1.1rem;color:var(--gold2);direction:rtl;line-height:2">۞ صَدَقَ اللَّهُ الْعَظِيمُ ۞</div></div>`;
-  mc.innerHTML=h;
+/* ══════════════════════════════
+   SURAH KAHF RENDER
+══════════════════════════════ */
+async function renderKahf(mc) {
+  document.getElementById('progBar').style.width='100%';
+  mc.innerHTML=`<div class="quran-panel">
+    <div class="quran-hd">
+      <div class="quran-title">سُورَةُ الْكَهْفِ</div>
+      <div class="quran-meta">مکمل سورۃ — ۱۱۰ آیات — ۱۲ رکوع<br/>ہر جمعہ تلاوت سنت ہے</div>
+    </div>
+    <div class="quran-bism">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <div class="q-loading" id="kahfLoading"><div class="spinner"></div>سورۃ الکہف تجوید کے ساتھ لوڈ ہو رہی ہے…</div>
+    <div id="kahfContent" style="display:none"></div>
+    <div id="kahfError" class="q-error" style="display:none">
+      ⚠️ انٹرنیٹ کنیکشن کی ضرورت ہے — تجوید لوڈ نہیں ہو سکی۔ براہ کرم انٹرنیٹ آن کر کے دوبارہ کوشش کریں۔
+      <br/><button onclick="renderKahf(document.getElementById('mc'))" style="margin-top:.5rem;padding:.3rem .8rem;border-radius:20px;border:1px solid var(--g1);background:transparent;color:var(--g2);cursor:pointer">↺ دوبارہ کوشش کریں</button>
+    </div>
+    ${tjLegend()}
+  </div>`;
   renderDrawer();
+
+  /* Fetch all 110 verses */
+  const verses = await QAPI.fetchChapter(18);
+  const loading = document.getElementById('kahfLoading');
+  const content = document.getElementById('kahfContent');
+  const errEl   = document.getElementById('kahfError');
+  if(!loading||!content||!errEl) return;
+
+  if(verses && verses.length) {
+    loading.style.display='none';
+    content.style.display='block';
+    /* Build ruku-separated HTML */
+    let html='';
+    KAHF_RUKUS.forEach(ruku=>{
+      const rvs = verses.filter(v=>v.verse_number>=ruku.from && v.verse_number<=ruku.to);
+      if(!rvs.length) return;
+      html += `<div class="ruku-sep">${ruku.num}</div>`;
+      if(viewMode==='para') {
+        html += `<div class="para-block tajweed">${
+          rvs.map(v=>`${v.text_uthmani_tajweed} <span class="vnum-inline">${v.verse_number}</span>`).join(' ')
+        }</div>`;
+      } else {
+        html += rvs.map(v=>`
+          <div class="vblock tajweed">
+            <div class="vnum">${v.verse_number}</div>
+            <div class="vtxt">${v.text_uthmani_tajweed}</div>
+          </div>`).join('');
+      }
+    });
+    html += `<div style="text-align:center;padding:2rem 0 .5rem;font-family:'Scheherazade New',serif;font-size:1.1rem;color:var(--gold2);direction:rtl;line-height:2.1">۞ صَدَقَ اللَّهُ الْعَظِيمُ ۞</div>`;
+    content.innerHTML = html;
+  } else {
+    loading.style.display='none';
+    errEl.style.display='block';
+  }
 }
 
-// ════ TAP ════
-function tap(){
-  const isTasbeeh=sec==='tasbeeh', isAsr=sec==='asr';
-  let cnt,target,color='var(--r-namaz)';
-
-  if(isAsr){
-    if(S.asr.done) return;
-    cnt=S.asr.cnt; target=80; color='var(--r-asr)';
-  } else if(isTasbeeh){
-    const ph=S.tasbeeh.phase;
-    if(S.tasbeeh.cnt>=TASBEEH_PHASES[ph].target) return;
-    cnt=S.tasbeeh.cnt; target=TASBEEH_PHASES[ph].target; color=TASBEEH_PHASES[ph].color;
-  } else {
-    const st=S[sec]; const step=SECTIONS_META.find(s=>s.id===sec).data[st.idx];
-    if(st.cnt>=step.target) return;
-    cnt=st.cnt; target=step.target; color=SECTIONS_META.find(s=>s.id===sec).color;
-  }
-
+/* ══════════════════════════════
+   TAP (counter)
+══════════════════════════════ */
+function tap() {
+  const isTsb=sec==='tasbeeh', isAsr=sec==='asr';
+  let cnt, target;
+  if(isAsr)      {if(S.asr.done)return;cnt=S.asr.cnt;target=80;}
+  else if(isTsb) {const t=TSB[S.tasbeeh.ph];if(S.tasbeeh.cnt>=t.target)return;cnt=S.tasbeeh.cnt;target=t.target;}
+  else           {const st=S[sec];const d={fajr:FAJR,jumma:JUMMA,tauheed:TAUHEED}[sec][st.idx];if(st.cnt>=d.target)return;cnt=st.cnt;target=d.target;}
   if(cnt>=target) return;
 
-  // increment
-  if(isAsr) S.asr.cnt++;
-  else if(isTasbeeh) S.tasbeeh.cnt++;
-  else S[sec].cnt++;
+  if(isAsr)      S.asr.cnt++;
+  else if(isTsb) S.tasbeeh.cnt++;
+  else           S[sec].cnt++;
   save();
 
-  beep(isTasbeeh?660:isAsr?800:780,.08); vib(20);
+  beep(isTsb?640:isAsr?800:760,.08);
+  vib(18);
 
   const ri=document.getElementById('ri');
-  if(ri){ ri.classList.remove('pg','pp','pt'); void ri.offsetWidth;
-    ri.classList.add(isTasbeeh?'pt':sec==='jumma'?'pp':'pg'); }
+  if(ri){ri.classList.remove('pg','pa','ps','pj');void ri.offsetWidth;ri.classList.add(isAsr?'pa':isTsb?'ps':sec==='jumma'?'pj':'pg');}
 
-  const nc=isAsr?S.asr.cnt:isTasbeeh?S.tasbeeh.cnt:S[sec].cnt;
-  document.getElementById('rn')&&(document.getElementById('rn').textContent=nc);
-  document.getElementById('rf')&&(document.getElementById('rf').style.strokeDashoffset=CIRC*(1-nc/target));
+  const nc=isAsr?S.asr.cnt:isTsb?S.tasbeeh.cnt:S[sec].cnt;
+  const rn=document.getElementById('rn');
+  if(rn) rn.textContent=nc;
+  const rf=document.getElementById('rf');
+  if(rf) rf.style.strokeDashoffset=CIRC*(1-nc/target);
 
-  if(nc>=target){
-    beep(isTasbeeh?520:600,.3,.25); vib([40,30,70]);
-    if(isAsr) S.asr.done=true;
-    else if(isTasbeeh) { /* handled by next button */ }
-    else { S[sec].done[S[sec].idx]=true; }
-    save(); setTimeout(render,320);
+  if(nc>=target) {
+    beep(isTsb?500:560,.3,.2);
+    vib([35,25,60]);
+    if(isAsr)       S.asr.done=true;
+    else if(!isTsb) S[sec].done[S[sec].idx]=true;
+    save();
+
+    setTimeout(()=>{
+      if(isTsb) {
+        const {ph}=S.tasbeeh;
+        if(ph<2){S.tasbeeh.ph++;S.tasbeeh.cnt=0;save();renderTasbeeh(document.getElementById('mc'));}
+        else{document.getElementById('compMsg').textContent='ماشاءاللہ! تسبیحِ فاطمہؓ مکمل ہوگئی 📿';document.getElementById('compScreen').classList.add('show');}
+        return;
+      }
+      if(isAsr){render();return;}
+      const DATA={fajr:FAJR,jumma:JUMMA,tauheed:TAUHEED};
+      const st=S[sec];
+      if(st.idx<DATA[sec].length-1){st.idx++;st.cnt=0;save();render();window.scrollTo(0,0);}
+      else{
+        document.getElementById('compMsg').textContent={
+          fajr:'ماشاءاللہ! فجر/مغرب کے اذکار مکمل 🌅',
+          jumma:'ماشاءاللہ! جمعہ کا مکمل وِرد ادا ہوگیا 🌙',
+          tauheed:'ماشاءاللہ! ذکرِ توحید مکمل ہوگیا ☝️'
+        }[sec];
+        document.getElementById('compScreen').classList.add('show');
+      }
+    }, 750);
   }
 }
 
-function doUndo(){
-  if(sec==='asr'){if(S.asr.cnt>0){S.asr.cnt--;S.asr.done=false;save();render();}}
-  else if(sec==='tasbeeh'){if(S.tasbeeh.cnt>0){S.tasbeeh.cnt--;save();render();}}
-  else{const st=S[sec];if(st.cnt>0){st.cnt--;st.done[st.idx]=false;save();render();}}
+function doUndo() {
+  if(sec==='asr') {
+    if(S.asr.cnt>0){S.asr.cnt--;S.asr.done=false;save();renderAsr(document.getElementById('mc'));}
+  } else if(sec==='tasbeeh') {
+    if(S.tasbeeh.cnt>0){S.tasbeeh.cnt--;save();renderTasbeeh(document.getElementById('mc'));}
+  } else {
+    const st=S[sec];
+    if(st.cnt>0){st.cnt--;st.done[st.idx]=false;save();render();}
+  }
 }
-function resetAsr(){S.asr={cnt:0,done:false};save();render();}
 
-function goNext(){
-  const steps=SECTIONS_META.find(s=>s.id===sec).data;
+function goNext() {
+  const DATA={fajr:FAJR,jumma:JUMMA,tauheed:TAUHEED};
   const st=S[sec];
-  if(st.idx===steps.length-1){
+  if(st.idx===DATA[sec].length-1){
     document.getElementById('compMsg').textContent={
-      namaz:'ماشاءاللہ! ہر نماز کے بعد کے اذکار مکمل 🌿',
       fajr:'ماشاءاللہ! فجر/مغرب کے اذکار مکمل 🌅',
-      jumma:'ماشاءاللہ! جمعہ کا وِرد مکمل ہوگیا 🌙',
-      tauheed:'ماشاءاللہ! توحید کی دعا مکمل ☝️'
-    }[sec]||'اَلْحَمْدُ لِلَّهِ';
+      jumma:'ماشاءاللہ! جمعہ کا مکمل وِرد ادا ہوگیا 🌙',
+      tauheed:'ماشاءاللہ! ذکرِ توحید مکمل ہوگیا ☝️'
+    }[sec];
     document.getElementById('compScreen').classList.add('show');
-  } else {
-    st.idx++; st.cnt=0; save(); render();
-  }
+  } else {st.idx++;st.cnt=0;save();render();window.scrollTo(0,0);}
 }
 
-function toggleFaz(btn){
-  const body=btn.nextElementSibling;
-  body.classList.toggle('open');
-  if(body.classList.contains('open')){
-    btn.innerHTML='<span>▲</span> فضیلت چھپائیں';
-  } else {
-    btn.innerHTML='<span>✨</span> فضیلت دیکھیں';
-  }
-}
+/* ══════════════════════════════
+   DRAWER
+══════════════════════════════ */
+const SECS=[
+  {id:'asr',    icon:'☀️',title:'جمعہ عصر درود ×۸۰',   ct:'×80'},
+  {id:'fajr',   icon:'🌅',title:'فجر / مغرب اذکار',    ct:FAJR.length+' اذکار'},
+  {id:'jumma',  icon:'🌙',title:'جمعہ کا مکمل وِرد',    ct:JUMMA.length+' اذکار'},
+  {id:'tauheed',icon:'☝️',title:'توحید کے اذکار',       ct:TAUHEED.length+' اذکار'},
+  {id:'kahf',   icon:'📖',title:'سورۃ الکہف — تجوید',   ct:'۱۱۰ آیات'},
+  {id:'tasbeeh',icon:'📿',title:'تسبیحِ فاطمہؓ',        ct:'۳۳+۳۳+۳۴'}
+];
 
-// ════ DRAWER ════
-function renderDrawer(){
+function renderDrawer() {
   const list=document.getElementById('drList');
-  let h='';
-  SECTIONS_META.forEach(sm=>{
-    const isActive=sec===sm.id;
-    let countText='';
-    if(sm.id==='asr') countText='×۸۰';
-    else if(sm.id==='kahf') countText='۱۱۰';
-    else if(sm.id==='tasbeeh') countText='۳+۳+۳';
-    else countText=`${sm.data.length} اذکار`;
-    h+=`<div class="dr-item${isActive?' active':''}" data-sec="${sm.id}">
-      <span class="dr-icon">${sm.icon}</span>
-      <span class="dr-name">${sm.title}</span>
-      <span class="dr-count" style="color:${sm.color}">${countText}</span>
+  if(!list) return;
+  list.innerHTML=SECS.map(m=>{
+    let prog='';
+    if(['fajr','jumma','tauheed'].includes(m.id)&&S[m.id]?.done){
+      const d=S[m.id].done.filter(Boolean).length;
+      const tot={fajr:FAJR.length,jumma:JUMMA.length,tauheed:TAUHEED.length}[m.id];
+      if(d>0)prog=`<span style="color:var(--g2);font-size:.65rem">${d}/${tot}</span>`;
+    }
+    if(m.id==='asr'&&S.asr.done)prog=`<span style="color:var(--g2);font-size:.7rem">✓</span>`;
+    return `<div class="dr-item${sec===m.id?' active':''}" data-sec="${m.id}">
+      <span class="dr-icon">${m.icon}</span>
+      <span class="dr-name">${m.title}</span>
+      <span class="dr-ct">${m.ct}</span>${prog}
     </div>`;
-  });
-  list.innerHTML=h;
-  list.querySelectorAll('.dr-item').forEach(el=>{
-    el.addEventListener('click',()=>{
-      sec=el.dataset.sec; save(); closeDrawer(); render(); window.scrollTo(0,0);
-    });
-  });
+  }).join('');
+  list.querySelectorAll('.dr-item').forEach(el=>el.addEventListener('click',()=>{
+    sec=el.dataset.sec;save();closeDrawer();render();window.scrollTo(0,0);
+  }));
 }
 
+/* ══════════════════════════════
+   EVENT LISTENERS
+══════════════════════════════ */
 document.getElementById('menuBtn').addEventListener('click',()=>{
   document.getElementById('drawer').classList.add('open');
   document.getElementById('overlay').classList.add('open');
@@ -835,33 +978,53 @@ function closeDrawer(){
   document.getElementById('drawer').classList.remove('open');
   document.getElementById('overlay').classList.remove('open');
 }
-document.getElementById('overlay').addEventListener('click',closeDrawer);
-document.getElementById('closeDrawer').addEventListener('click',closeDrawer);
+document.getElementById('overlay').addEventListener('click', closeDrawer);
+document.getElementById('closeDrawer').addEventListener('click', closeDrawer);
 
-document.querySelectorAll('.chip').forEach(c=>{
-  c.addEventListener('click',()=>{sec=c.dataset.sec;save();render();window.scrollTo(0,0);});
+document.getElementById('chips').addEventListener('click',e=>{
+  const chip=e.target.closest('.chip');
+  if(!chip)return;
+  sec=chip.dataset.sec;save();render();window.scrollTo(0,0);
 });
 
 document.getElementById('restartBtn').addEventListener('click',()=>{
-  if(sec==='namaz')   S.namaz  ={idx:0,cnt:0,done:new Array(NAMAZ.length).fill(false)};
-  if(sec==='fajr')    S.fajr   ={idx:0,cnt:0,done:new Array(FAJR.length).fill(false)};
-  if(sec==='jumma')   S.jumma  ={idx:0,cnt:0,done:new Array(JUMMA.length).fill(false)};
-  if(sec==='asr')     S.asr    ={cnt:0,done:false};
-  if(sec==='tauheed') S.tauheed={idx:0,cnt:0,done:[false]};
-  if(sec==='tasbeeh') S.tasbeeh={phase:0,cnt:0,phaseDone:[false,false,false]};
+  if(sec==='asr')     S.asr      ={cnt:0,done:false};
+  if(sec==='fajr')    S.fajr     ={idx:0,cnt:0,done:new Array(FAJR.length).fill(false)};
+  if(sec==='jumma')   S.jumma    ={idx:0,cnt:0,done:new Array(JUMMA.length).fill(false)};
+  if(sec==='tauheed') S.tauheed  ={idx:0,cnt:0,done:new Array(TAUHEED.length).fill(false)};
+  if(sec==='tasbeeh') S.tasbeeh  ={ph:0,cnt:0,sets:0};
   save();
   document.getElementById('compScreen').classList.remove('show');
   render();
 });
 
+/* keyboard shortcuts */
 document.addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA') return;
   if(e.code==='Space'||e.code==='Enter'){e.preventDefault();tap();}
   if(e.code==='Backspace') doUndo();
   if(e.code==='ArrowRight') document.getElementById('nextB')?.click();
   if(e.code==='ArrowLeft')  document.getElementById('prevB')?.click();
+  if(e.code==='Equal'||e.code==='NumpadAdd')    applyZoom(zoomPct+10);
+  if(e.code==='Minus'||e.code==='NumpadSubtract') applyZoom(zoomPct-10);
 });
 
+/* Register service worker */
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  });
+}
+
+/* Boot */
 render();
 </script>
+
+<!-- Hidden SEO content for crawlers -->
+<div style="display:none" aria-hidden="true">
+  <h1>Islamic Azkar App — Darood Sharif Counter — درود شریف کاؤنٹر</h1>
+  <h2>Surah Kahf with Tajweed — سورۃ الکہف تجوید کے ساتھ — 80x Darood Sharif Jummah Asr</h2>
+  <p>Free Islamic web app for Pakistani Muslims. Features: Darood Sharif 80 times counter for Jummah Asr prayer, complete Fajr and Maghrib Azkar with Ayat ul Kursi tajweed, Jummah Wird with Surah Fatiha Ikhlas Falaq Naas in tajweed colors, full Surah Al-Kahf with quran.com tajweed colors, Tasbeeh-e-Fatima counter, Tauheed Azkar. Arabic text in Indo-Pak Rasm encoding. Tajweed from quran.com API. Font: Scheherazade New.</p>
+</div>
 </body>
 </html>
