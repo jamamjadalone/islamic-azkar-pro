@@ -43,7 +43,44 @@
   --bdr:rgba(60,179,113,.16);--bdr2:rgba(60,179,113,.07);
   --r:18px;
   --qs:1.52rem;
+  --qfont:'Hafs Uthmanic','Scheherazade New','Noto Naskh Arabic',serif;
 }
+
+/* ══════════════════════════════════════════════════
+   LOCAL QURAN FONTS — Pakistani Islamic apps standard
+   Place these .ttf files in /fonts/ folder in your repo
+══════════════════════════════════════════════════ */
+@font-face{
+  font-family:'Hafs Uthmanic';
+  src:url('fonts/hafs.ttf') format('truetype');
+  font-display:swap;
+}
+@font-face{
+  font-family:'Al Qalam Quran';
+  src:url('fonts/al-qalam.ttf') format('truetype');
+  font-display:swap;
+}
+@font-face{
+  font-family:'PDMS Saleem';
+  src:url('fonts/pdms-saleem.ttf') format('truetype');
+  font-display:swap;
+}
+@font-face{
+  font-family:'Muhammadi';
+  src:url('fonts/muhammadi.ttf') format('truetype');
+  font-display:swap;
+}
+@font-face{
+  font-family:'Al Mushaf';
+  src:url('fonts/al-mushaf.ttf') format('truetype');
+  font-display:swap;
+}
+@font-face{
+  font-family:'Al Majeed';
+  src:url('fonts/al-majeed.ttf') format('truetype');
+  font-display:swap;
+}
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
@@ -83,6 +120,24 @@ body::before{
 .zreset{background:transparent;border:1px solid var(--bdr2);color:var(--text3);border-radius:20px;padding:.15rem .52rem;font-size:.64rem;cursor:pointer;transition:all .18s}
 .zreset:hover{border-color:var(--g1);color:var(--g2)}
 .vmodes{display:none;gap:.22rem}
+
+/* ══ FONT PICKER ══ */
+.font-lbl{font-size:.8rem}
+.font-select{
+  background:rgba(60,179,113,.1);
+  border:1px solid var(--bdr);
+  color:var(--g2);
+  border-radius:20px;
+  padding:.2rem .5rem;
+  font-size:.65rem;
+  font-family:'Noto Nastaliq Urdu',serif;
+  cursor:pointer;
+  outline:none;
+  max-width:120px;
+}
+.font-select:hover{border-color:var(--g1)}
+.font-select option{background:#071209;color:var(--text)}
+
 .vm{padding:.22rem .52rem;border-radius:20px;border:1px solid var(--bdr2);background:transparent;color:var(--text3);font-size:.65rem;font-family:'Noto Nastaliq Urdu',serif;cursor:pointer;transition:all .2s;white-space:nowrap}
 .vm.active{background:rgba(60,179,113,.14);border-color:var(--g1);color:var(--g2)}
 
@@ -120,11 +175,11 @@ body::before{
    Scheherazade New = renders Uthmani Quranic script like quran.com
    Noto Naskh Arabic = for azkar / duas (Indo-Pak style)
 */
-.ar{font-family:'Scheherazade New','Noto Naskh Arabic',serif;font-size:var(--qs);line-height:2.8;color:var(--ar);direction:rtl;word-break:break-word;text-align:justify;transition:font-size .2s ease}
+.ar{font-family:var(--qfont);font-size:var(--qs);line-height:2.8;color:var(--ar);direction:rtl;word-break:break-word;text-align:justify;transition:font-size .2s ease}
 .ar.center{text-align:center}
 .ar.xl{font-size:calc(var(--qs)*1.15);line-height:2.9;text-align:center}
 .ar.big{font-size:calc(var(--qs)*1.3);line-height:2.95;text-align:center;color:var(--gold2);text-shadow:0 0 20px rgba(212,160,23,.22)}
-.bismi{font-family:'Scheherazade New',serif;font-size:calc(var(--qs)*.92);line-height:2.5;color:var(--gold2);direction:rtl;display:block;margin-bottom:.32rem;text-shadow:0 0 16px rgba(212,160,23,.28);transition:font-size .2s}
+.bismi{font-family:var(--qfont);font-size:calc(var(--qs)*.92);line-height:2.5;color:var(--gold2);direction:rtl;display:block;margin-bottom:.32rem;text-shadow:0 0 16px rgba(212,160,23,.28);transition:font-size .2s}
 .dua-name{margin-top:.62rem;font-family:'Noto Nastaliq Urdu',serif;font-size:.8rem;color:var(--text2);direction:rtl;border-top:1px solid var(--bdr2);padding-top:.52rem;line-height:1.9}
 
 /* ── FAZILAT ── */
@@ -168,9 +223,9 @@ body::before{
 /* ── QURAN READER ── */
 .quran-panel{position:relative;z-index:1;width:100%;max-width:540px;padding:.75rem .82rem 3.5rem;animation:fadeUp .25s ease}
 .quran-hd{text-align:center;padding:1rem .9rem .9rem;border-bottom:1px solid var(--bdr);margin-bottom:.75rem}
-.quran-title{font-family:'Scheherazade New',serif;font-size:2rem;color:var(--gold2);direction:rtl;line-height:2.2;text-shadow:0 0 20px rgba(212,160,23,.28)}
+.quran-title{font-family:var(--qfont);font-size:2rem;color:var(--gold2);direction:rtl;line-height:2.2;text-shadow:0 0 20px rgba(212,160,23,.28)}
 .quran-meta{font-family:'Noto Nastaliq Urdu',serif;font-size:.78rem;color:var(--text2);direction:rtl;line-height:2;margin-top:.3rem}
-.quran-bism{font-family:'Scheherazade New',serif;font-size:calc(var(--qs)*1.18);line-height:2.6;color:var(--gold2);text-align:center;direction:rtl;padding:.7rem .5rem;text-shadow:0 0 18px rgba(212,160,23,.25);transition:font-size .2s ease}
+.quran-bism{font-family:var(--qfont);font-size:calc(var(--qs)*1.18);line-height:2.6;color:var(--gold2);text-align:center;direction:rtl;padding:.7rem .5rem;text-shadow:0 0 18px rgba(212,160,23,.25);transition:font-size .2s ease}
 .ruku-sep{text-align:center;margin:1.2rem 0 .45rem;font-family:'Noto Naskh Arabic',serif;font-size:.72rem;color:var(--g1);letter-spacing:1.5px;direction:ltr;display:flex;align-items:center;justify-content:center;gap:9px}
 .ruku-sep::before,.ruku-sep::after{content:'';display:block;width:35px;height:1px;background:linear-gradient(90deg,transparent,rgba(60,179,113,.28))}
 .ruku-sep::after{background:linear-gradient(90deg,rgba(60,179,113,.28),transparent)}
@@ -193,11 +248,11 @@ tajweed.slnt{color:#9b9b9b}
 
 /* verse-by-verse mode */
 .vblock{display:flex;align-items:baseline;flex-direction:row-reverse;gap:.5rem;padding:.52rem .35rem;border-bottom:1px solid rgba(255,255,255,.04);direction:rtl}
-.vtxt{font-family:'Scheherazade New',serif;font-size:var(--qs);line-height:2.8;color:var(--ar);direction:rtl;flex:1;word-break:break-word;transition:font-size .2s ease}
+.vtxt{font-family:var(--qfont);font-size:var(--qs);line-height:2.8;color:var(--ar);direction:rtl;flex:1;word-break:break-word;transition:font-size .2s ease}
 .vnum{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:rgba(60,179,113,.12);border:1px solid rgba(60,179,113,.25);display:flex;align-items:center;justify-content:center;font-family:'Noto Naskh Arabic',serif;font-size:.63rem;color:var(--g2);direction:ltr}
 
 /* paragraph mode */
-.para-block{font-family:'Scheherazade New',serif;font-size:var(--qs);line-height:2.85;color:var(--ar);direction:rtl;text-align:justify;padding:.28rem .18rem;word-break:break-word;transition:font-size .2s ease}
+.para-block{font-family:var(--qfont);font-size:var(--qs);line-height:2.85;color:var(--ar);direction:rtl;text-align:justify;padding:.28rem .18rem;word-break:break-word;transition:font-size .2s ease}
 .vnum-inline{font-family:'Noto Naskh Arabic',serif;font-size:.7rem;color:var(--g2);background:rgba(60,179,113,.1);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;margin:0 .15rem;vertical-align:middle;direction:ltr}
 
 /* ── TASBEEH ── */
@@ -252,6 +307,18 @@ tajweed.slnt{color:#9b9b9b}
     <button class="zb" id="zIn">+</button>
     <button class="zreset" id="zReset">Reset</button>
   </div>
+  <div class="zgroup">
+    <span class="font-lbl">🖋️</span>
+    <select id="fontPicker" class="font-select">
+      <option value="hafs">حفص عثمانی</option>
+      <option value="alqalam">القلم قرآن</option>
+      <option value="pdms">پی ڈی ایم ایس سلیم</option>
+      <option value="muhammadi">محمدی قرآنی</option>
+      <option value="almushaf">المصحف</option>
+      <option value="almajeed">المجید قرآنی</option>
+      <option value="scheherazade">Scheherazade (آن لائن)</option>
+    </select>
+  </div>
   <div class="vmodes" id="vmodes">
     <button class="vm active" data-vm="verse">آیت بہ آیت</button>
     <button class="vm" data-vm="para">پیراگراف</button>
@@ -281,7 +348,7 @@ tajweed.slnt{color:#9b9b9b}
 
 <div class="comp" id="compScreen">
   <div style="font-size:3rem;animation:glowPulse 2s infinite">🌿</div>
-  <div style="font-family:'Scheherazade New',serif;font-size:1.45rem;color:var(--gold2);direction:rtl;line-height:2">اَلْحَمْدُ لِلَّهِ</div>
+  <div style="font-family:var(--qfont);font-size:1.45rem;color:var(--gold2);direction:rtl;line-height:2">اَلْحَمْدُ لِلَّهِ</div>
   <div style="font-family:'Noto Nastaliq Urdu',serif;font-size:1rem;color:var(--g2);line-height:2.1" id="compMsg"></div>
   <button class="comp-btn" id="restartBtn">↺ دوبارہ شروع کریں</button>
 </div>
@@ -576,6 +643,38 @@ document.querySelectorAll('.vm').forEach(b=>b.addEventListener('click',()=>{
   save();if(sec==='kahf')render();
 }));
 
+/* ══ QURAN FONT SWITCHER ══
+   Local Pakistani/Islamic Quran fonts — place .ttf files
+   in /fonts/ folder. Falls back to Google Fonts online
+   Scheherazade New if a local font file is missing.
+*/
+const FONT_MAP={
+  hafs:        "'Hafs Uthmanic','Scheherazade New',serif",
+  alqalam:     "'Al Qalam Quran','Scheherazade New',serif",
+  pdms:        "'PDMS Saleem','Scheherazade New',serif",
+  muhammadi:   "'Muhammadi','Scheherazade New',serif",
+  almushaf:    "'Al Mushaf','Scheherazade New',serif",
+  almajeed:    "'Al Majeed','Scheherazade New',serif",
+  scheherazade:"'Scheherazade New',serif"
+};
+let currentFont='hafs';
+try{
+  const savedFont=localStorage.getItem('azk_font');
+  if(savedFont && FONT_MAP[savedFont]) currentFont=savedFont;
+}catch(e){}
+
+function applyFont(key){
+  if(!FONT_MAP[key]) key='hafs';
+  currentFont=key;
+  document.documentElement.style.setProperty('--qfont', FONT_MAP[key]);
+  try{localStorage.setItem('azk_font', key);}catch(e){}
+  const picker=document.getElementById('fontPicker');
+  if(picker) picker.value=key;
+}
+applyFont(currentFont);
+document.getElementById('fontPicker').addEventListener('change', e=>applyFont(e.target.value));
+
+
 /* ══ AUTO SCROLL (Surah Kahf) — pure JS, zero dependency ══
    Speed levels 1-9 → pixels/second. Level 5 = comfortable
    default reading pace. Uses requestAnimationFrame for
@@ -749,7 +848,7 @@ function renderTasbeeh(mc){
   const{ph,cnt,sets}=S.tasbeeh,phase=TSB[ph],target=phase.target,done=cnt>=target;
   const off=CIRC*(1-Math.min(cnt/target,1));
   document.getElementById('progBar').style.width=((ph+(done?1:cnt/target))/3*100)+'%';
-  const chips=TSB.map((p,i)=>`<div class="ph-chip" onclick="if(${i}!==${ph}){S.tasbeeh={ph:${i},cnt:0,sets:0};save();renderTasbeeh(document.getElementById('mc'));}" style="${i===ph?`border-color:${p.color};color:${p.color};background:${p.color}18`:i<ph?'border-color:var(--g1);color:var(--g1);background:rgba(60,179,113,.12)':''}"><div style="font-family:'Scheherazade New',serif;font-size:.95rem">${p.ar}</div><div style="font-size:.6rem;margin-top:2px">${p.label} ×${p.target}</div>${i<ph?'<div>✓</div>':''}</div>`).join('');
+  const chips=TSB.map((p,i)=>`<div class="ph-chip" onclick="if(${i}!==${ph}){S.tasbeeh={ph:${i},cnt:0,sets:0};save();renderTasbeeh(document.getElementById('mc'));}" style="${i===ph?`border-color:${p.color};color:${p.color};background:${p.color}18`:i<ph?'border-color:var(--g1);color:var(--g1);background:rgba(60,179,113,.12)':''}"><div style="font-family:var(--qfont);font-size:.95rem">${p.ar}</div><div style="font-size:.6rem;margin-top:2px">${p.label} ×${p.target}</div>${i<ph?'<div>✓</div>':''}</div>`).join('');
   mc.innerHTML=`<div class="sp">
     <div class="step-badge"><div class="sdot" style="background:${phase.color}"></div><span>📿 تسبیحِ فاطمہؓ — مرحلہ ${ph+1}/3 — سیٹ ${sets+1}</span><div class="sdot" style="background:${phase.color}"></div></div>
     <div class="tsb-phases">${chips}</div>
@@ -790,7 +889,7 @@ function renderKahf(mc){
       h+=ruku.verses.map(v=>`<div class="vblock"><div class="vnum">${v.n}</div><div class="vtxt">${v.t}</div></div>`).join('');
     }
   });
-  h+=`<div style="text-align:center;padding:2rem 0 .5rem;font-family:'Scheherazade New',serif;font-size:1.1rem;color:var(--gold2);direction:rtl;line-height:2.1">۞ صَدَقَ اللَّهُ الْعَظِيمُ ۞</div>
+  h+=`<div style="text-align:center;padding:2rem 0 .5rem;font-family:var(--qfont);font-size:1.1rem;color:var(--gold2);direction:rtl;line-height:2.1">۞ صَدَقَ اللَّهُ الْعَظِيمُ ۞</div>
     <div class="tj-legend">
       <div class="tj-chip"><div class="tj-dot" style="background:#537FFF"></div>مدّ</div>
       <div class="tj-chip"><div class="tj-dot" style="background:#FF6B6B"></div>قلقلہ</div>
