@@ -22,7 +22,7 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"WebApplication","name":"Islamic Azkar Pro","alternateName":"درود شریف کاؤنٹر","url":"https://jamamjadalone.github.io/islamic-azkar-pro/","applicationCategory":"LifestyleApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"PKR"},"inLanguage":["ur","en"],"description":"Complete offline Islamic Azkar app — Darood Sharif 80x counter, Fajr/Maghrib Azkar, Jummah Wird, Surah Al-Kahf, Tasbeeh-e-Fatima. No internet required after first load."},
 {"@type":"WebSite","url":"https://jamamjadalone.github.io/islamic-azkar-pro/","name":"Islamic Azkar Pro"},
-{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"جمعہ کے دن عصر کے بعد کتنی بار درود پڑھیں؟","acceptedAnswer":{"@type":"Answer","text":"جمعہ کے دن نمازِ عصر کے بعد ۸۰ مرتبہ درود شریف پڑھنے پر ۸۰ سال کے گناہ معاف اور ۸۰ سال کا ثواب ملتا ہے۔"}},{"@type":"Question","name":"Does this app work offline?","acceptedAnswer":{"@type":"Answer","text":"Yes, Islamic Azkar Pro works completely offline after the first load. No API required."}}]}
+{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"جمعہ کے دن عصر کے بعد کتنی بار درود پڑھیں؟","acceptedAnswer":{"@type":"Answer","text":"جمعہ کے دن نمازِ عصر کے بعد ۸۰ مرتبہ درود شریف پڑھنے کی فضیلت کا مفہوم ہے کہ ۸۰ سال کے گناہ معاف اور ۸۰ سال کا ثواب ملتا ہے۔"}},{"@type":"Question","name":"Does this app work offline?","acceptedAnswer":{"@type":"Answer","text":"Yes, Islamic Azkar Pro works completely offline after the first load. No API required."}}]}
 ]}
 </script>
 <link rel="manifest" href="manifest.json"/>
@@ -43,13 +43,18 @@
   --bdr:rgba(60,179,113,.16);--bdr2:rgba(60,179,113,.07);
   --r:18px;
   --qs:1.52rem;
-  --qfont:'Hafs Uthmanic','Scheherazade New','Noto Naskh Arabic',serif;
+  --qfont:'Al Majeed','Scheherazade New','Noto Naskh Arabic',serif;
 }
 
 /* ══════════════════════════════════════════════════
    LOCAL QURAN FONTS — Pakistani Islamic apps standard
    Place these .ttf files in /fonts/ folder in your repo
 ══════════════════════════════════════════════════ */
+@font-face{
+  font-family:'Al Majeed';
+  src:url('fonts/al-majeed.ttf') format('truetype');
+  font-display:swap;
+}
 @font-face{
   font-family:'Hafs Uthmanic';
   src:url('fonts/hafs.ttf') format('truetype');
@@ -73,11 +78,6 @@
 @font-face{
   font-family:'Al Mushaf';
   src:url('fonts/al-mushaf.ttf') format('truetype');
-  font-display:swap;
-}
-@font-face{
-  font-family:'Al Majeed';
-  src:url('fonts/al-majeed.ttf') format('truetype');
   font-display:swap;
 }
 
@@ -111,49 +111,54 @@ body::before{
 .prog{width:100%;max-width:540px;height:2px;background:rgba(60,179,113,.06);position:sticky;top:46px;z-index:99;overflow:hidden}
 .prog-bar{height:100%;background:linear-gradient(to left,var(--gold),var(--g1));transition:width .45s ease;box-shadow:0 0 5px rgba(60,179,113,.4)}
 
-/* ── ZOOM BAR ── */
-.zoom-bar{position:sticky;top:48px;z-index:98;width:100%;max-width:540px;display:flex;align-items:center;justify-content:space-between;padding:.3rem .75rem;background:rgba(1,12,2,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--bdr2);direction:ltr}
-.zgroup{display:flex;align-items:center;gap:.32rem}
-.zb{background:rgba(60,179,113,.1);border:1px solid var(--bdr);color:var(--g1);width:27px;height:27px;border-radius:50%;font-size:.9rem;cursor:pointer;transition:all .18s;display:flex;align-items:center;justify-content:center;font-weight:700}
+/* ── ZOOM & CONTROL BAR ── */
+.zoom-bar{position:sticky;top:48px;z-index:98;width:100%;max-width:540px;display:flex;align-items:center;justify-content:space-between;padding:.3rem .5rem;background:rgba(1,12,2,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--bdr2);direction:ltr;gap:.25rem;overflow-x:auto}
+.zgroup{display:flex;align-items:center;gap:.28rem;flex-shrink:0}
+.zb{background:rgba(60,179,113,.1);border:1px solid var(--bdr);color:var(--g1);width:25px;height:25px;border-radius:50%;font-size:.85rem;cursor:pointer;transition:all .18s;display:flex;align-items:center;justify-content:center;font-weight:700}
 .zb:hover{background:rgba(60,179,113,.22)}
-.zlbl{font-family:monospace;font-size:.68rem;color:var(--text3);min-width:36px;text-align:center}
-.zreset{background:transparent;border:1px solid var(--bdr2);color:var(--text3);border-radius:20px;padding:.15rem .52rem;font-size:.64rem;cursor:pointer;transition:all .18s}
+.zlbl{font-family:monospace;font-size:.64rem;color:var(--text3);min-width:32px;text-align:center}
+.zreset{background:transparent;border:1px solid var(--bdr2);color:var(--text3);border-radius:20px;padding:.12rem .45rem;font-size:.6rem;cursor:pointer;transition:all .18s}
 .zreset:hover{border-color:var(--g1);color:var(--g2)}
-.vmodes{display:none;gap:.22rem}
+.vmodes{display:none;gap:.2rem;flex-shrink:0}
 
-/* ══ FONT PICKER ══ */
-.font-lbl{font-size:.8rem}
+/* ══ SELECT CONTROL ══ */
+.font-lbl{font-size:.75rem}
 .font-select{
   background:rgba(60,179,113,.1);
   border:1px solid var(--bdr);
   color:var(--g2);
   border-radius:20px;
-  padding:.2rem .5rem;
-  font-size:.65rem;
+  padding:.18rem .45rem;
+  font-size:.63rem;
   font-family:'Noto Nastaliq Urdu',serif;
   cursor:pointer;
   outline:none;
-  max-width:120px;
+  max-width:115px;
 }
 .font-select:hover{border-color:var(--g1)}
 .font-select option{background:#071209;color:var(--text)}
 
-.vm{padding:.22rem .52rem;border-radius:20px;border:1px solid var(--bdr2);background:transparent;color:var(--text3);font-size:.65rem;font-family:'Noto Nastaliq Urdu',serif;cursor:pointer;transition:all .2s;white-space:nowrap}
+.vm{padding:.2rem .48rem;border-radius:20px;border:1px solid var(--bdr2);background:transparent;color:var(--text3);font-size:.62rem;font-family:'Noto Nastaliq Urdu',serif;cursor:pointer;transition:all .2s;white-space:nowrap}
 .vm.active{background:rgba(60,179,113,.14);border-color:var(--g1);color:var(--g2)}
 
+/* ══ SCRIPT TOGGLE (UTHMANI / INDO-PAK) ══ */
+#scriptBtns{display:none;gap:.2rem;flex-shrink:0}
+.scr-btn{padding:.16rem .5rem;border-radius:20px;border:1px solid var(--bdr);background:transparent;color:var(--text3);font-size:.6rem;font-family:'Noto Nastaliq Urdu',serif;cursor:pointer;transition:all .2s;white-space:nowrap}
+.scr-btn.active{background:rgba(60,179,113,.14);border-color:var(--g1);color:var(--g2)}
+.scr-btn:hover{border-color:var(--g1);color:var(--g2)}
+
 /* ── AUTO SCROLL BAR (Surah Kahf) ── */
-.scroll-bar{position:sticky;top:83px;z-index:97;width:100%;max-width:540px;display:flex;align-items:center;gap:.5rem;padding:.32rem .75rem;background:rgba(1,12,2,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--bdr2);direction:ltr}
-.sc-play{flex-shrink:0;width:32px;height:32px;border-radius:50%;background:rgba(60,179,113,.15);border:1px solid rgba(60,179,113,.35);color:var(--g2);font-size:.8rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.scroll-bar{position:sticky;top:83px;z-index:97;width:100%;max-width:540px;display:flex;align-items:center;gap:.4rem;padding:.3rem .65rem;background:rgba(1,12,2,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--bdr2);direction:ltr}
+.sc-play{flex-shrink:0;width:30px;height:30px;border-radius:50%;background:rgba(60,179,113,.15);border:1px solid rgba(60,179,113,.35);color:var(--g2);font-size:.78rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
 .sc-play:hover{background:rgba(60,179,113,.25)}
 .sc-play.playing{background:rgba(212,160,23,.2);border-color:rgba(212,160,23,.4);color:var(--gold2)}
-.sc-speed{flex-shrink:0;display:flex;align-items:center;gap:.25rem}
-.sb{width:22px;height:22px;border-radius:50%;background:rgba(60,179,113,.08);border:1px solid var(--bdr);color:var(--g1);font-size:.75rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s}
+.sc-speed{flex-shrink:0;display:flex;align-items:center;gap:.2rem}
+.sb{width:22px;height:22px;border-radius:50%;background:rgba(60,179,113,.08);border:1px solid var(--bdr);color:var(--g1);font-size:.72rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s}
 .sb:hover{background:rgba(60,179,113,.18)}
-.sc-lbl{font-family:'Noto Nastaliq Urdu',serif;font-size:.62rem;color:var(--text3);min-width:52px;text-align:center;direction:rtl}
+.sc-lbl{font-family:'Noto Nastaliq Urdu',serif;font-size:.6rem;color:var(--text3);min-width:48px;text-align:center;direction:rtl}
 #scSlider{flex:1;height:3px;-webkit-appearance:none;appearance:none;background:rgba(60,179,113,.15);border-radius:3px;outline:none;cursor:pointer}
-#scSlider::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--g1);cursor:pointer;box-shadow:0 0 6px rgba(60,179,113,.5)}
-#scSlider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--g1);border:none;cursor:pointer;box-shadow:0 0 6px rgba(60,179,113,.5)}
-
+#scSlider::-webkit-slider-thumb{-webkit-appearance:none;width:13px;height:13px;border-radius:50%;background:var(--g1);cursor:pointer;box-shadow:0 0 6px rgba(60,179,113,.5)}
+#scSlider::-moz-range-thumb{width:13px;height:13px;border-radius:50%;background:var(--g1);border:none;cursor:pointer;box-shadow:0 0 6px rgba(60,179,113,.5)}
 
 #mc{position:relative;z-index:1;width:100%;max-width:540px;padding-bottom:2rem}
 
@@ -171,10 +176,6 @@ body::before{
 .dua-card{width:100%;background:rgba(7,18,9,.82);border:1px solid var(--bdr);border-top:2px solid rgba(60,179,113,.22);border-radius:var(--r);padding:1.15rem 1.05rem 1rem;text-align:center;position:relative;overflow:hidden}
 .dua-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(60,179,113,.35),transparent)}
 
-/* ── ARABIC TEXT ──
-   Scheherazade New = renders Uthmani Quranic script like quran.com
-   Noto Naskh Arabic = for azkar / duas (Indo-Pak style)
-*/
 .ar{font-family:var(--qfont);font-size:var(--qs);line-height:2.8;color:var(--ar);direction:rtl;word-break:break-word;text-align:justify;transition:font-size .2s ease}
 .ar.center{text-align:center}
 .ar.xl{font-size:calc(var(--qs)*1.15);line-height:2.9;text-align:center}
@@ -230,25 +231,28 @@ body::before{
 .ruku-sep::before,.ruku-sep::after{content:'';display:block;width:35px;height:1px;background:linear-gradient(90deg,transparent,rgba(60,179,113,.28))}
 .ruku-sep::after{background:linear-gradient(90deg,rgba(60,179,113,.28),transparent)}
 
-/* ══ TAJWEED COLORS — Pakistani Tajweed (4 rules only) ══
-   Only these 4 categories from the verified quran.com data
-   are coloured. All other detected categories are left
-   uncoloured (plain text colour) as requested.
-   ── Qalqala → Sky Blue
-   ── Ghunna  → Peach
-   ── Ikhfa   → Pink
-   Note: the source data has no separate "Tafkheem" tag —
-   the closest verified category is Madd (elongation), so
-   Green is applied there as the nearest available mapping.
+/* ══ TAJWEED MODES (SURAH KAHF ONLY) ══
+   - Off (off): All tags plain/uncolored
+   - Pakistani Tajweed (taj4): 4 exact rules colored only
+   - Uthmani Classic (classic): All rules colored
 */
-tajweed.qalaqah{color:#29B6F6}
-tajweed.ghunnah,tajweed.idgham_ghunnah{color:#F4A261}
-tajweed.ikhafa,tajweed.ikhafa_shafawi{color:#EC4899}
-tajweed.madda_normal,tajweed.madda_permissible,tajweed.madda_necessary,tajweed.madda_obligatory{color:#4CAF50}
-/* Ignored categories — no special colour, render as normal text */
-tajweed.ham_wasl,tajweed.laam_shamsiyah,tajweed.iqlab,tajweed.idgham_wo_ghunnah,tajweed.idgham_shafawi,tajweed.idgham_mutajanisayn,tajweed.idgham_mutaqaribayn,tajweed.slnt{color:inherit}
+.quran-panel[data-tajweed="off"] tajweed{color:inherit !important}
+.quran-panel[data-tajweed="taj4"] tajweed.qalaqah{color:#29B6F6}
+.quran-panel[data-tajweed="taj4"] tajweed.ghunnah,.quran-panel[data-tajweed="taj4"] tajweed.idgham_ghunnah{color:#F4A261}
+.quran-panel[data-tajweed="taj4"] tajweed.ikhafa,.quran-panel[data-tajweed="taj4"] tajweed.ikhafa_shafawi{color:#EC4899}
+.quran-panel[data-tajweed="taj4"] tajweed.madda_normal,.quran-panel[data-tajweed="taj4"] tajweed.madda_permissible,.quran-panel[data-tajweed="taj4"] tajweed.madda_necessary,.quran-panel[data-tajweed="taj4"] tajweed.madda_obligatory{color:#4CAF50}
+.quran-panel[data-tajweed="taj4"] tajweed.ham_wasl,.quran-panel[data-tajweed="taj4"] tajweed.laam_shamsiyah,.quran-panel[data-tajweed="taj4"] tajweed.iqlab,.quran-panel[data-tajweed="taj4"] tajweed.idgham_wo_ghunnah,.quran-panel[data-tajweed="taj4"] tajweed.idgham_shafawi,.quran-panel[data-tajweed="taj4"] tajweed.idgham_mutajanisayn,.quran-panel[data-tajweed="taj4"] tajweed.idgham_mutaqaribayn,.quran-panel[data-tajweed="taj4"] tajweed.slnt{color:inherit}
+
+.quran-panel[data-tajweed="classic"] tajweed.qalaqah{color:#29B6F6}
+.quran-panel[data-tajweed="classic"] tajweed.ghunnah,.quran-panel[data-tajweed="classic"] tajweed.idgham_ghunnah{color:#F4A261}
+.quran-panel[data-tajweed="classic"] tajweed.ikhafa,.quran-panel[data-tajweed="classic"] tajweed.ikhafa_shafawi{color:#EC4899}
+.quran-panel[data-tajweed="classic"] tajweed.madda_normal,.quran-panel[data-tajweed="classic"] tajweed.madda_permissible,.quran-panel[data-tajweed="classic"] tajweed.madda_necessary,.quran-panel[data-tajweed="classic"] tajweed.madda_obligatory{color:#4CAF50}
+.quran-panel[data-tajweed="classic"] tajweed.iqlab{color:#9C27B0}
+.quran-panel[data-tajweed="classic"] tajweed.idgham_wo_ghunnah,.quran-panel[data-tajweed="classic"] tajweed.idgham_shafawi,.quran-panel[data-tajweed="classic"] tajweed.idgham_mutajanisayn,.quran-panel[data-tajweed="classic"] tajweed.idgham_mutaqaribayn{color:#FFB74D}
+.quran-panel[data-tajweed="classic"] tajweed.ham_wasl,.quran-panel[data-tajweed="classic"] tajweed.laam_shamsiyah,.quran-panel[data-tajweed="classic"] tajweed.slnt{color:#90A4AE}
+
 .tj-legend{display:flex;flex-wrap:wrap;gap:.3rem;padding:.65rem .8rem;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);direction:rtl;margin:.6rem 0}
-.tj-chip{display:flex;align-items:center;gap:.26rem;font-size:.62rem;font-family:'Noto Nastaliq Urdu',serif;color:rgba(255,255,255,.55);padding:.14rem .4rem;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);line-height:1.6}
+.tj-chip{display:flex;align-items:center;gap:.26rem;font-size:.62rem;font-family:'Noto Nastaliq Urdu',serif;color:rgba(255,255,255,.7);padding:.14rem .4rem;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);line-height:1.6}
 .tj-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 
 /* verse-by-verse mode */
@@ -315,13 +319,25 @@ tajweed.ham_wasl,tajweed.laam_shamsiyah,tajweed.iqlab,tajweed.idgham_wo_ghunnah,
   <div class="zgroup">
     <span class="font-lbl">🖋️</span>
     <select id="fontPicker" class="font-select">
+      <option value="almajeed" selected>المجید قرآنی</option>
       <option value="hafs">حفص عثمانی</option>
       <option value="alqalam">القلم قرآن</option>
       <option value="pdms">پی ڈی ایم ایس سلیم</option>
       <option value="muhammadi">محمدی قرآنی</option>
       <option value="almushaf">المصحف</option>
-      <option value="almajeed">المجید قرآنی</option>
       <option value="scheherazade">Scheherazade (آن لائن)</option>
+    </select>
+  </div>
+  <div class="zgroup" id="scriptBtns">
+    <button class="scr-btn" id="btnUthmani" data-script="uthmani">رسمِ عثمانی</button>
+    <button class="scr-btn active" id="btnIndopak" data-script="indopak">رسمِ ہند-پاک</button>
+  </div>
+  <div class="zgroup">
+    <span class="font-lbl">🎨</span>
+    <select id="tajPicker" class="font-select">
+      <option value="off">تجوید بند</option>
+      <option value="classic">عثمانی تجوید (مکمل)</option>
+      <option value="taj4" selected>پاکستانی تجوید (۴ اصول)</option>
     </select>
   </div>
   <div class="vmodes" id="vmodes">
@@ -362,10 +378,12 @@ tajweed.ham_wasl,tajweed.laam_shamsiyah,tajweed.iqlab,tajweed.idgham_wo_ghunnah,
 /* ══════════════════════════════════════════════════════
    ISLAMIC AZKAR PRO
    ✅ 100% Offline — Zero API dependency
-   ✅ All Arabic text embedded
-   ✅ Surah Kahf full 110 ayat embedded
-   ✅ Scheherazade New font (quran.com style rendering)
-   ✅ Indo-Pak Rasm for azkar/duas
+   ✅ Full Surah Kahf: Uthmani (Tajweed) + Indo-Pak (Plain)
+   ✅ DEFAULT = INDO-PAK (Pakistani Script)
+   ✅ Toggle between scripts
+   ✅ 3 Tajweed modes (Off / Classic / Pakistani) - Only Uthmani
+   ✅ Al Majeed default font
+   ✅ Auto-scroll bug fixed
 ══════════════════════════════════════════════════════ */
 
 /* ─── FAJR / MAGHRIB DATA ─── */
@@ -374,89 +392,89 @@ const FAJR=[
    ar:`بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ`,
    target:1,faz:'ہر بھلائی اللہ کے نام سے شروع کرنا سنت ہے — برکت اور رحمت کا دروازہ کھلتا ہے۔',ref:''},
   {grp:'نماز کے بعد کے اذکار',name:'آیَةُ الْکُرْسِیّ — البقرة: ٢٥٥',
-   ar:`اَللّٰهُ لَاۤ اِلٰهَ اِلَّا هُوَ ۚ اَلْحَیُّ الْقَیُّوْمُ ۚ لَا تَاْخُذُهٗ سِنَةٌ وَّ لَا نَوْمٌ ۚ لَهٗ مَا فِی السَّمٰوٰتِ وَ مَا فِی الْاَرْضِ ۗ مَنْ ذَا الَّذِیْ یَشْفَعُ عِنْدَهٗۤ اِلَّا بِاِذْنِهٖ ۚ یَعْلَمُ مَا بَیْنَ اَیْدِیْهِمْ وَ مَا خَلْفَهُمْ ۚ وَ لَا یُحِیْطُوْنَ بِشَیْءٍ مِّنْ عِلْمِهٖۤ اِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِیُّهُ السَّمٰوٰتِ وَ الْاَرْضَ ۚ وَ لَا یَئُوْدُهٗ حِفْظُهُمَا ۚ وَ هُوَ الْعَلِیُّ الْعَظِیْمُ`,
-   target:1,faz:'قرآن کی سب سے عظیم آیت۔ ہر فرض نماز کے بعد پڑھنے والے اور جنت کے درمیان صرف موت حائل ہے۔',ref:'(نسائی الکبریٰ — صحیح)'},
+   ar:`اَللّٰهُ لَاۤ اِلٰهَ اِلَّا هُوَ ۚ اَلْمَیُّ الْقَیُّوْمُ ۚ لَا تَاْخُذُهٗ سِنَةٌ وَّ لَا نَوْمٌ ۚ لَهٗ مَا فِی السَّمٰوٰتِ وَ مَا فِی الْاَرْضِ ۗ مَنْ ذَا الَّذِیْ یَشْفَعُ عِنْدَهٗۤ اِلَّا بِاِذْنِهٖ ۚ یَعْلَمُ مَا بَیْنَ اَیْدِیْهِمْ وَ مَا خَلْفَهُمْ ۚ وَ لَا یُحِیْطُوْنَ بِشَیْءٍ مِّنْ عِلْمِهٖۤ اِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِیُّهُ السَّمٰوٰتِ وَ الْاَرْضَ ۚ وَ لَا یَئُوْدُهٗ حِفْظُهُمَا ۚ وَ هُوَ الْعَلِیُّ الْعَظِیْمُ`,
+   target:1,faz:'قرآن کی سب سے عظیم آیت۔ ہر فرض نماز کے بعد پڑھنے کی فضیلت کا مفہوم یہ ہے کہ پڑھنے والے اور جنت کے درمیان صرف موت حائل ہے۔',ref:'(نسائی الکبریٰ — صحیح)'},
   {grp:'نماز کے بعد کے اذکار',name:'سورۃ الحشر — آخری ۳ آیات',
    ar:`هُوَ اللّٰهُ الَّذِیْ لَاۤ اِلٰهَ اِلَّا هُوَ ۚ عٰلِمُ الْغَیْبِ وَ الشَّهَادَةِ ۚ هُوَ الرَّحْمٰنُ الرَّحِیْمُ ﴿۲۲﴾\nهُوَ اللّٰهُ الَّذِیْ لَاۤ اِلٰهَ اِلَّا هُوَ ۚ اَلْمَلِكُ الْقُدُّوْسُ السَّلٰمُ الْمُؤْمِنُ الْمُهَیْمِنُ الْعَزِیْزُ الْجَبَّارُ الْمُتَكَبِّرُ ۚ سُبْحٰنَ اللّٰهِ عَمَّا یُشْرِكُوْنَ ﴿۲۳﴾\nهُوَ اللّٰهُ الْخَالِقُ الْبَارِئُ الْمُصَوِّرُ ۚ لَهُ الْاَسْمَآءُ الْحُسْنٰی ۚ یُسَبِّحُ لَهٗ مَا فِی السَّمٰوٰتِ وَ الْاَرْضِ ۚ وَ هُوَ الْعَزِیْزُ الْحَكِیْمُ ﴿۲۴﴾`,
-   target:1,faz:'صبح پڑھنے پر ۷۰ ہزار فرشتے شام تک دعائے مغفرت کرتے ہیں۔ اس دن وفات ہو تو شہادت کا درجہ۔',ref:'(ترمذی — حسن)'},
+   target:1,faz:'صبح پڑھنے پر ۷۰ ہزار فرشتے شام تک دعائے مغفرت کرتے ہیں — روایت کا مفہوم ہے کہ اس دن وفات ہو تو شہادت کا درجہ حاصل ہوتا ہے۔',ref:'(ترمذی — حسن)'},
   {grp:'نماز کے بعد کے اذکار',name:'شرکِ خفی سے حفاظت — ۳ مرتبہ',
    ar:`اَللّٰهُمَّ اِنِّیْ اَعُوْذُ بِكَ اَنْ اُشْرِكَ بِكَ وَ اَنَا اَعْلَمُ ۙ وَ اَسْتَغْفِرُكَ لِمَا لَاۤ اَعْلَمُ`,
    target:3,faz:'ریاکاری اور چھوٹے شرک سے حفاظت — کلمۂ توحید کی تکمیل کرتی ہے۔',ref:'(صحیح الجامع)'},
   {grp:'نماز کے بعد کے اذکار',name:'شیطانِ رجیم سے پناہ — ۳ مرتبہ',
    ar:`اَعُوْذُ بِاللّٰهِ السَّمِیْعِ الْعَلِیْمِ مِنَ الشَّیْطٰنِ الرَّجِیْمِ`,
-   target:3,faz:'اللہ تعالیٰ شیطان کے وسوسوں، تکبر اور فتنوں سے بچاتا ہے۔',ref:'(ابو داؤد — حسن)'},
-  {grp:'نماز کے بعد کے اذکار',name:'توکل اور ہر شر سے حفاظت',
-   ar:`اَللّٰهُمَّ اَنْتَ رَبِّیْ ۙ لَاۤ اِلٰهَ اِلَّاۤ اَنْتَ ۙ عَلَیْكَ تَوَكَّلْتُ ۙ وَ اَنْتَ رَبُّ الْعَرْشِ الْعَظِیْمِ ۙ مَا شَآءَ اللّٰهُ كَانَ ۙ وَ مَا لَمْ یَشَاْ لَمْ یَكُنْ ۙ لَا حَوْلَ وَ لَا قُوَّةَ اِلَّا بِاللّٰهِ الْعَلِیِّ الْعَظِیْمِ ۙ اَعْلَمُ اَنَّ اللّٰهَ عَلٰی كُلِّ شَیْءٍ قَدِیْرٌ ۙ وَّ اَنَّ اللّٰهَ قَدْ اَحَاطَ بِكُلِّ شَیْءٍ عِلْمًا ۙ اَللّٰهُمَّ اِنِّیْ اَعُوْذُ بِكَ مِنْ شَرِّ نَفْسِیْ ۙ وَ مِنْ شَرِّ كُلِّ دَآبَّةٍ اَنْتَ اٰخِذٌۢ بِنَاصِیَتِهَا ۙ اِنَّ رَبِّیْ عَلٰی صِرَاطٍ مُّسْتَقِیْمٍ`,
-   target:1,faz:'"دعائے ابو الدرداء" — اللہ پر بھروسے اور ہر شر سے پناہ کا جامع مجموعہ۔',ref:''},
+   target:3,faz:'روایت کے مفہوم کے مطابق اللہ تعالیٰ بندے کو شیطان کے وسوسوں اور فتنوں سے اپنی پناہ میں رکھتا ہے۔',ref:'(ابو داؤد — حسن)'},
+  {grp:'نماز کے بعد کے اذکار',name:'توکل اور ہر شر سے حفاظت (دعائے ابو الدرداء)',
+   ar:`اَللّٰهُمَّ اَنْتَ رَبِّیْ ۙ لَاۤ اِلٰهَ اِلَّاۤ اَنْتَ ۙ عَلَیْكَ تَوَكَّلْتُ ۙ وَ اَنْتَ رَبُّ الْعَرْشِ الْكَرِیْمِ ۙ مَا شَآءَ اللّٰهُ كَانَ ۙ وَ مَا لَمْ یَشَاْ لَمْ یَكُنْ ۙ وَ لَا حَوْلَ وَ لَا قُوَّةَ اِلَّا بِاللّٰهِ الْعَلِیِّ الْعَظِیْمِ ۙ اَعْلَمُ اَنَّ اللّٰهَ عَلٰی كُلِّ شَیْءٍ قَدِیْرٌ ۙ وَّ اَنَّ اللّٰهَ قَدْ اَحَاطَ بِكُلِّ شَیْءٍ عِلْمًا ۙ اَللّٰهُمَّ اِنِّیْ اَعُوْذُ بِكَ مِنْ شَرِّ نَفْسِیْ ۙ وَ مِنْ شَرِّ كُلِّ دَآبَّةٍ اَنْتَ اٰخِذٌۢ بِنَاصِیَتِهَا ۙ اِنَّ رَبِّیْ عَلٰی صِرَاطٍ مُّسْتَقِیْمٍ`,
+   target:1,faz:'"دعائے ابو الدرداء" — اللہ پر کامل توکل، اس کی عظمت کے اقرار اور ہر قسم کی بلا و شر سے حفاظت کی جامع دعا۔',ref:''},
   {grp:'نماز کے بعد کے اذکار',name:'حَسْبِیَ اللّٰهُ — ۷ مرتبہ',
    ar:`حَسْبِیَ اللّٰهُ لَاۤ اِلٰهَ اِلَّا هُوَ ۚ عَلَیْهِ تَوَكَّلْتُ ۚ وَ هُوَ رَبُّ الْعَرْشِ الْعَظِیْمِ`,
-   target:7,faz:'صبح و شام ۷ مرتبہ پڑھنے پر اللہ دنیا و آخرت کی تمام پریشانیوں کے لیے کافی ہو جاتا ہے۔',ref:'(ابو داؤد — صحیح)'},
+   target:7,faz:'صبح و شام ۷ مرتبہ پڑھنے کی فضیلت کا مفہوم یہ ہے کہ اللہ تعالیٰ بندے کی تمام پریشانیوں کا کفیل ہو جاتا ہے۔',ref:'(ابو داؤد — صحیح)'},
   {grp:'نماز کے بعد کے اذکار',name:'ایمان پر رضا — ۳ مرتبہ',
    ar:`رَضِیْتُ بِاللّٰهِ رَبًّا ۙ وَّ بِالْاِسْلَامِ دِیْنًا ۙ وَّ بِمُحَمَّدٍ صَلَّی اللّٰهُ عَلَیْهِ وَسَلَّمَ نَبِیًّا`,
-   target:3,faz:'جو شخص صبح و شام ۳ مرتبہ یہ کہے، اس کے لیے جنت واجب ہو جاتی ہے۔',ref:'(مسلم — صحیح)'},
+   target:3,faz:'حدیث کے مفہوم کے مطابق جو شخص صبح و شام ۳ مرتبہ یہ کلمات ادا کرے، اللہ تعالیٰ اس کو اپنی رضا سے سرفراز فرماتا ہے۔',ref:'(مسلم — صحیح)'},
   {grp:'نماز کے بعد کے اذکار',name:'دُرُودِ ابراہیمی — ۳ مرتبہ',
    ar:`اَللّٰهُمَّ صَلِّ عَلٰی مُحَمَّدٍ وَّ عَلٰۤی اٰلِ مُحَمَّدٍ ۙ كَمَا صَلَّیْتَ عَلٰۤی اِبْرٰهِیْمَ وَ عَلٰۤی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ\nاَللّٰهُمَّ بَارِكْ عَلٰی مُحَمَّدٍ وَّ عَلٰۤی اٰلِ مُحَمَّدٍ ۙ كَمَا بٰرَكْتَ عَلٰۤی اِبْرٰهِیْمَ وَ عَلٰۤی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ`,
-   target:3,faz:'سب سے افضل درود — ایک درود پر ۱۰ رحمتیں، ۱۰ گناہ معاف، ۱۰ درجے بلند۔',ref:'(بخاری — صحیح)'},
+   target:3,faz:'سب سے افضل درود — روایت کا مفہوم یہ ہے کہ ایک بار درود بھیجنے پر ۱۰ رحمتیں نازل ہوتی ہیں اور ۱۰ درجات بلند ہوتے ہیں۔',ref:'(بخاری — صحیح)'},
   {grp:'نماز کے بعد کے اذکار',name:'سورۃ الانشراح — ۷ مرتبہ',
    ar:`بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ\nاَلَمْ نَشْرَحْ لَكَ صَدْرَكَۙ ﴿۱﴾ وَ وَضَعْنَا عَنْكَ وِزْرَكَۙ ﴿۲﴾ الَّذِیْۤ اَنْقَضَ ظَهْرَكَۙ ﴿۳﴾ وَ رَفَعْنَا لَكَ ذِكْرَكَؕ ﴿۴﴾ فَاِنَّ مَعَ الْعُسْرِ یُسْرًاۙ ﴿۵﴾ اِنَّ مَعَ الْعُسْرِ یُسْرًاؕ ﴿۶﴾ فَاِذَا فَرَغْتَ فَانْصَبْۙ ﴿۷﴾ وَ اِلٰی رَبِّكَ فَارْغَبْ ﴿۸﴾`,
-   target:7,faz:'"ہر تکلیف کے ساتھ آسانی ہے" — شرحِ صدر اور غم دور ہوتا ہے۔',ref:''},
+   target:7,faz:'"ہر دشواری کے ساتھ آسانی ہے" — شرحِ صدر، تسلی اور فکری و قلبی سکون کا باعث۔',ref:''},
   {grp:'فجر اور مغرب کے مخصوص اذکار',name:'جہنم سے حفاظت — ۷ مرتبہ',
    ar:`اَللّٰهُمَّ اَجِرْنِیْ مِنَ النَّارِ`,
-   target:7,faz:'فجر و مغرب کے بعد ۷ مرتبہ پڑھنے والے کے لیے جہنم کی آگ اللہ سے پناہ مانگتی ہے۔',ref:'(ابو داؤد)'},
+   target:7,faz:'فجر و مغرب کے بعد ۷ مرتبہ پڑھنے سے متعلق روایت کا مفہوم ہے کہ بندے کے لیے جہنم کی آگ سے نجات کی بشارت ملتی ہے۔',ref:'(ابو داؤد)'},
   {grp:'فجر اور مغرب کے مخصوص اذکار',name:'ہر ضرر سے حفاظت — ۳ مرتبہ',
    ar:`بِسْمِ اللّٰهِ الَّذِیْ لَا یَضُرُّ مَعَ اسْمِهٖ شَیْءٌ فِی الْاَرْضِ وَ لَا فِی السَّمَآءِ وَ هُوَ السَّمِیْعُ الْعَلِیْمُ`,
-   target:3,faz:'صبح و شام ۳ مرتبہ پڑھنے والے کو کوئی اچانک آفت نہیں پہنچ سکتی۔',ref:'(ترمذی — حسن)'},
+   target:3,faz:'صبح و شام ۳ مرتبہ پڑھنے کی فضیلت کا مفہوم ہے کہ کوئی ناگہانی آفت یا نقصان اثر نہیں کرتا۔',ref:'(ترمذی — حسن)'},
   {grp:'فجر اور مغرب کے مخصوص اذکار',name:'مخلوق کے شر سے پناہ — ۳ مرتبہ',
    ar:`اَللّٰهُمَّ اِنِّیْ اَعُوْذُ بِكَلِمٰتِ اللّٰهِ التَّآمَّاتِ مِنْ شَرِّ مَا خَلَقَ`,
-   target:3,faz:'ہر قسم کے شر سے مکمل حفاظت۔',ref:'(مسلم — صحیح)'},
+   target:3,faz:'تمام مخلوقات اور زہریلی چیزوں کے شر سے مکمل حفاظت کا نبوی وِرد۔',ref:'(مسلم — صحیح)'},
   {grp:'فجر اور مغرب کے مخصوص اذکار',name:'اختتامی دُرُودِ ابراہیمی — ۳ مرتبہ',
    ar:`اَللّٰهُمَّ صَلِّ عَلٰی مُحَمَّدٍ وَّ عَلٰۤی اٰلِ مُحَمَّدٍ ۙ كَمَا صَلَّیْتَ عَلٰۤی اِبْرٰهِیْمَ وَ عَلٰۤی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ\nاَللّٰهُمَّ بَارِكْ عَلٰی مُحَمَّدٍ وَّ عَلٰۤی اٰلِ مُحَمَّدٍ ۙ كَمَا بٰرَكْتَ عَلٰۤی اِبْرٰهِیْمَ وَ عَلٰۤی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ`,
-   target:3,faz:'اختتامِ وِرد پر درود — قبولیتِ دعا کا ذریعہ ہے۔',ref:'(ترمذی — حسن)'}
+   target:3,faz:'اذکار کے اختتام پر درودِ پاک — روایت کے مفہوم کے مطابق دعاؤں کی مقبولیت کا سبب ہے۔',ref:'(ترمذی — حسن)'}
 ];
 
 /* ─── JUMMA DATA ─── */
 const JUMMA=[
   {name:'دُرُودِ ابراہیمی — اوّل',
    ar:`اَللّٰهُمَّ صَلِّ عَلٰی مُحَمَّدٍ وَّ عَلٰۤی اٰلِ مُحَمَّدٍ ۙ كَمَا صَلَّیْتَ عَلٰۤی اِبْرٰهِیْمَ وَ عَلٰۤی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ`,
-   target:1,faz:'سب سے پہلے درود پڑھیں — پھر سورتوں کی تلاوت کریں۔',ref:'(بخاری)'},
+   target:1,faz:'وِرد کی شروعات درود پاک سے کریں — حدیث کا مفہوم ہے کہ درود سے دعا اول و آخر محفوظ ہو جاتی ہے۔',ref:'(بخاری)'},
   {name:'سورۃ الْفَاتِحَة — ۷ مرتبہ',
    ar:`بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ\nاَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِیْنَۙ ﴿۱﴾ اَلرَّحْمٰنِ الرَّحِیْمِۙ ﴿۲﴾ مٰلِكِ یَوْمِ الدِّیْنِؕ ﴿۳﴾ اِیَّاكَ نَعْبُدُ وَ اِیَّاكَ نَسْتَعِیْنُؕ ﴿۴﴾ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِیْمَۙ ﴿۵﴾ صِرَاطَ الَّذِیْنَ اَنْعَمْتَ عَلَیْهِمْ غَیْرِ الْمَغْضُوْبِ عَلَیْهِمْ وَ لَا الضَّآلِّیْنَ ﴿۶﴾`,
-   target:7,faz:'اُمّ القرآن — سب سے جامع سورت — شفاء بھی ہے۔',ref:'(بخاری)'},
+   target:7,faz:'سورۃ الفاتحہ — امّ الکتاب اور شفائے کاملہ۔',ref:'(بخاری)'},
   {name:'سورۃ الْإِخْلَاص — ۷ مرتبہ',
    ar:`بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ\nقُلْ هُوَ اللّٰهُ اَحَدٌۚ ﴿۱﴾ اَللّٰهُ الصَّمَدُۚ ﴿۲﴾ لَمْ یَلِدْ ۬ۙ وَ لَمْ یُوْلَدْۙ ﴿۳﴾ وَ لَمْ یَكُنْ لَّهٗ كُفُوًا اَحَدٌ ﴿۴﴾`,
-   target:7,faz:'ایک مرتبہ پڑھنا ثلثِ قرآن کے برابر — اللہ اس کے پڑھنے والے سے محبت کرتا ہے۔',ref:'(بخاری)'},
+   target:7,faz:'روایت کا مفہوم یہ ہے کہ سورۃ الاخلاص کی تلاوت ایک تہائی قرآن پاک پڑھنے کے ثواب کے برابر ہے۔',ref:'(بخاری)'},
   {name:'سورۃ الْفَلَق — ۷ مرتبہ',
    ar:`بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ\nقُلْ اَعُوْذُ بِرَبِّ الْفَلَقِۙ ﴿۱﴾ مِنْ شَرِّ مَا خَلَقَۙ ﴿۲﴾ وَ مِنْ شَرِّ غَاسِقٍ اِذَا وَقَبَۙ ﴿۳﴾ وَ مِنْ شَرِّ النَّفّٰثٰتِ فِی الْعُقَدِۙ ﴿۴﴾ وَ مِنْ شَرِّ حَاسِدٍ اِذَا حَسَدَ ﴿۵﴾`,
-   target:7,faz:'جادو، نظرِ بد اور ہر شر سے حفاظت کی بہترین سورت۔',ref:'(مسلم)'},
+   target:7,faz:'حسد، نظرِ بد اور باطنی شرور سے پناہ مانگنے کی بہترین سورت۔',ref:'(مسلم)'},
   {name:'سورۃ النَّاس — ۷ مرتبہ',
    ar:`بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ\nقُلْ اَعُوْذُ بِرَبِّ النَّاسِۙ ﴿۱﴾ مَلِكِ النَّاسِۙ ﴿۲﴾ اِلٰهِ النَّاسِۙ ﴿۳﴾ مِنْ شَرِّ الْوَسْوَاسِ ۬ۙ الْخَنَّاسِۙ ﴿۴﴾ الَّذِیْ یُوَسْوِسُ فِیْ صُدُوْرِ النَّاسِۙ ﴿۵﴾ مِنَ الْجِنَّةِ وَ النَّاسِ ﴿۶﴾`,
-   target:7,faz:'وسوسوں، جنات اور انسانوں کے شر سے حفاظت۔',ref:'(مسلم)'},
+   target:7,faz:'شیطانی وسوسوں اور مخلوق کے شر سے پناہ کا نبوی نسخہ۔',ref:'(مسلم)'},
   {name:'دُرُودِ ابراہیمی — آخر',
    ar:`اَللّٰهُمَّ صَلِّ عَلٰی مُحَمَّدٍ وَّ عَلٰۤی اٰلِ مُحَمَّدٍ ۙ كَمَا صَلَّیْتَ عَلٰۤی اِبْرٰهِیْمَ وَ عَلٰۤی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ`,
-   target:1,faz:'سورتوں کے بعد آخری درود — پھر دَم کریں۔',ref:'(ترمذی)'},
-  {isDm:true,name:'دَم کریں',ar:'',target:1,faz:'ہاتھوں پر تین بار پھونکیں — پھر پورے جسم پر ملیں۔ پہلے خود پر، پھر گھر والوں پر دَم کریں۔',ref:''}
+   target:1,faz:'آخری درود پڑھ کر وِرد مکمل کریں اور دَم کریں۔',ref:'(ترمذی)'},
+  {isDm:true,name:'دَم کریں',ar:'',target:1,faz:'ہاتھوں پر ۳ بار پھونکیں — پھر پورے جسم پر ملیں۔ پہلے خود پر، پھر اہلیہ و بچوں پر دَم کریں۔',ref:''}
 ];
 
 /* ─── TAUHEED DATA ─── */
 const TAUHEED=[
   {name:'لَاۤ اِلٰهَ اِلَّا اللّٰهُ — توحید کا اقرار',
    ar:`لَاۤ اِلٰهَ اِلَّا اللّٰهُ وَحْدَهٗ لَا شَرِیْكَ لَهٗ،\nاَحَدٌ صَمَدٌ،\nلَمْ یَلِدْ وَ لَمْ یُوْلَدْ،\nوَ لَمْ یَكُنْ لَّهٗ كُفُوًا اَحَدٌ`,
-   target:1,faz:'خالص توحید کا اقرار — سب سے افضل ذکر۔',ref:'(بخاری، مسلم)'},
+   target:1,faz:'خالص توحید کا اقرار — روایت کے مفہوم کے مطابق افضل ترین ذکر کلمۂ توحید ہے۔',ref:'(بخاری، مسلم)'},
   {name:'لَاۤ اِلٰهَ اِلَّا اللّٰهُ — ۱۰۰ مرتبہ',
    ar:`لَاۤ اِلٰهَ اِلَّا اللّٰهُ وَحْدَهٗ لَا شَرِیْكَ لَهٗ ۙ لَهُ الْمُلْكُ وَ لَهُ الْحَمْدُ وَ هُوَ عَلٰی كُلِّ شَیْءٍ قَدِیْرٌ`,
-   target:100,faz:'۱۰۰ مرتبہ پڑھنے پر ۱۰۰ نیکیاں، ۱۰۰ گناہ معاف، تمام دن شیطان سے حفاظت۔',ref:'(بخاری)'},
+   target:100,faz:'حدیث کے مفہوم کے مطابق ۱۰۰ بار پڑھنے پر گناہ معاف، نیکیاں درج اور تمام دن شیطان سے حفاظت رہتی ہے۔',ref:'(بخاری)'},
   {name:'سُبْحٰنَ اللّٰهِ وَ بِحَمْدِهٖ — ۱۰۰ مرتبہ',
    ar:`سُبْحٰنَ اللّٰهِ وَ بِحَمْدِهٖ`,
-   target:100,faz:'قیامت کے دن کوئی اس سے افضل عمل نہیں لائے گا۔',ref:'(مسلم)'},
+   target:100,faz:'روایت کے مفہوم کے مطابق قیامت کے دن اس ذکر سے بڑھ کر کوئی عمل لانے والا نہیں ہوگا۔',ref:'(مسلم)'},
   {name:'سُبْحٰنَ اللّٰهِ الْعَظِیْمِ',
    ar:`سُبْحٰنَ اللّٰهِ الْعَظِیْمِ وَ بِحَمْدِهٖ`,
-   target:1,faz:'میزان میں بہت بھاری، زبان پر ہلکا — رحمان کو بہت پسند ہے۔',ref:'(بخاری)'},
+   target:1,faz:'حدیث کا مفہوم ہے: دو کلمے زبان پر ہلکے، میزان میں بھاری اور رحمان کو نہایت محبوب ہیں۔',ref:'(بخاری)'},
   {name:'اَلْحَمْدُ لِلّٰهِ — ۳۳ مرتبہ',
    ar:`اَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِیْنَ`,
-   target:33,faz:'"الحمد للہ" میزان کو بھر دیتا ہے۔',ref:'(مسلم)'},
+   target:33,faz:'روایت کے مفہوم کے مطابق "الحمد للہ" کا ورد میزان کو نیکیوں سے بھر دیتا ہے۔',ref:'(مسلم)'},
   {name:'لَا حَوْلَ وَ لَا قُوَّةَ — کنزِ جنت',
    ar:`لَا حَوْلَ وَ لَا قُوَّةَ اِلَّا بِاللّٰهِ الْعَلِیِّ الْعَظِیْمِ`,
-   target:1,faz:'یہ جنت کے خزانوں میں سے ایک خزانہ ہے — ۷۰ بیماریوں کی دوا ہے۔',ref:'(ترمذی — صحیح)'}
+   target:1,faz:'حدیث کے مفہوم کے مطابق یہ مبارک کلمہ جنت کے خزانوں میں سے ایک خزانہ ہے۔',ref:'(ترمذی — صحیح)'}
 ];
 
 /* ─── ASR DUROOD ─── */
@@ -470,14 +488,20 @@ const TSB=[
   {ar:`اَللّٰهُ اَكْبَرُ`, label:'اللہ اکبر', target:34,color:'#ec4899'}
 ];
 
-/* ─── SURAH AL-KAHF — Full 110 Ayat — Embedded (No API) ─── */
-const KAHF_DATA=[
+/* ═══════════════════════════════════════════════════════════════
+   SURAH AL-KAHF — TWO COMPLETE DATASETS
+   1. KAHF_UTHMANI  : Uthmani script with Tajweed tags (colored)
+   2. KAHF_INDOPAK  : Indo-Pak script (plain text, no tags) — DEFAULT
+═══════════════════════════════════════════════════════════════ */
+
+/* ─── 1. UTHMANI (with Tajweed tags) ─── */
+const KAHF_UTHMANI=[
   {r:'رکوع ۱',verses:[
     {n:1,t:`ٱلْحَمْدُ لِلَّهِ <tajweed class="ham_wasl">ٱ</tajweed>لَّذ<tajweed class="madda_obligatory">ِىٓ</tajweed> أَ<tajweed class="ikhafa">نز</tajweed>َلَ عَلَىٰ عَ<tajweed class="qalaqah">بْ</tajweed>دِهِ <tajweed class="ham_wasl">ٱ</tajweed>لْكِتَ<tajweed class="madda_normal">ـٰ</tajweed>بَ وَلَمْ يَ<tajweed class="qalaqah">جْ</tajweed>عَل لَّهُ<tajweed class="madda_normal">ۥ</tajweed> عِوَجَاۜ`},
     {n:2,t:`قَيِّ<tajweed class="idgham_wo_ghunnah">مًا ل</tajweed>ِّيُ<tajweed class="ikhafa">نذ</tajweed>ِرَ بَأْ<tajweed class="ikhafa">سًا ش</tajweed>َدِي<tajweed class="idgham_ghunnah">دًا م</tajweed>ّ<tajweed class="idgham_wo_ghunnah">ِن ل</tajweed>َّدُنْهُ وَيُبَشِّرَ <tajweed class="ham_wasl">ٱ</tajweed>لْمُؤْمِنِينَ <tajweed class="ham_wasl">ٱ</tajweed>لَّذِينَ يَعْمَلُونَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>صَّ<tajweed class="madda_normal">ـٰ</tajweed>لِحَ<tajweed class="madda_normal">ـٰ</tajweed>تِ أَ<tajweed class="ghunnah">نّ</tajweed>َ لَهُمْ أَ<tajweed class="qalaqah">جْ</tajweed>رًا حَسَنًا`},
     {n:3,t:`مَّ<tajweed class="madda_normal">ـٰ</tajweed>كِثِينَ فِيهِ أَبَدًا`},
     {n:4,t:`وَيُ<tajweed class="ikhafa">نذ</tajweed>ِرَ <tajweed class="ham_wasl">ٱ</tajweed>لَّذِينَ قَالُو<tajweed class="slnt">اْ</tajweed> <tajweed class="ham_wasl">ٱ</tajweed>تَّخَذَ <tajweed class="ham_wasl">ٱ</tajweed>للَّهُ وَلَدًا`},
-    {n:5,t:`مَّا لَه<tajweed class="ikhafa_shafawi">ُم ب</tajweed>ِه<tajweed class="madda_normal">ِۦ</tajweed> مِنْ عِلْ<tajweed class="idgham_ghunnah">مٍ و</tajweed>َلَا لِأَب<tajweed class="madda_obligatory">َا</tajweed>ٓئِهِمْ‌ۚ كَبُرَتْ كَلِمَ<tajweed class="ikhafa">ةً ت</tajweed>َخْرُجُ مِنْ أَفْو<tajweed class="madda_normal">َٲ</tajweed>هِهِمْ‌ۚ إ<tajweed class="idgham_ghunnah">ِن ي</tajweed>َقُولُونَ إِلَّا كَذِبًا`},
+    {n:5,t:`مَّا لَه<tajweed class="ikhafa_shafawi">ُم ب</tajweed>ِه<tajweed class="madda_normal">ِۦ</tajweed> مِنْ عِلْ<tajweed class="idgham_ghunnah">مٍ و</tajweed>َلَا لِأَب<tajweed class="madda_obligatory">َا</tajweed>ٓئِهِمْۚ كَبُرَتْ كَلِمَ<tajweed class="ikhafa">ةً ت</tajweed>َخْرُجُ مِنْ أَفْو<tajweed class="madda_normal">َٲ</tajweed>هِهِمْۚ إ<tajweed class="idgham_ghunnah">ِن ي</tajweed>َقُولُونَ إِلَّا كَذِبًا`},
     {n:6,t:`فَلَعَلَّكَ بَ<tajweed class="madda_normal">ـٰ</tajweed>خِ<tajweed class="idgham_ghunnah">عٌ ن</tajweed>َّفْسَكَ عَلَ<tajweed class="madda_obligatory">ىٰٓ</tajweed> ءَاثَ<tajweed class="madda_normal">ـٰ</tajweed>رِهِمْ إ<tajweed class="idgham_wo_ghunnah">ِن ل</tajweed>َّمْ يُؤْمِنُو<tajweed class="slnt">اْ</tajweed> بِهَ<tajweed class="madda_normal">ـٰ</tajweed>ذَا <tajweed class="ham_wasl">ٱ</tajweed>لْحَدِيثِ أَسَفًا`},
     {n:7,t:`إِ<tajweed class="ghunnah">نّ</tajweed>َا جَعَلْنَا مَا عَلَى <tajweed class="ham_wasl">ٱ</tajweed>لْأَرْضِ زِينَ<tajweed class="idgham_wo_ghunnah">ةً ل</tajweed>َّهَا لِنَ<tajweed class="qalaqah">بْ</tajweed>لُوَهُمْ أَيُّهُمْ أَحْسَنُ عَمَلاً`},
     {n:8,t:`وَإِ<tajweed class="ghunnah">نّ</tajweed>َا لَجَ<tajweed class="madda_normal">ـٰ</tajweed>عِلُونَ مَا عَلَيْهَا صَعِي<tajweed class="ikhafa">دًا ج</tajweed>ُرُزًا`}
@@ -487,72 +511,72 @@ const KAHF_DATA=[
     {n:10,t:`إِذْ أَوَى <tajweed class="ham_wasl">ٱ</tajweed>لْفِتْيَةُ إِلَى <tajweed class="ham_wasl">ٱ</tajweed>لْكَهْفِ فَقَالُو<tajweed class="slnt">اْ</tajweed> رَبَّن<tajweed class="madda_obligatory">َآ</tajweed> ءَاتِنَا م<tajweed class="idgham_wo_ghunnah">ِن ل</tajweed>َّدُ<tajweed class="ikhafa">نك</tajweed>َ رَحْمَ<tajweed class="idgham_ghunnah">ةً و</tajweed>َهَيِّئْ لَنَا مِنْ أَمْرِنَا رَشَدًا`},
     {n:11,t:`فَضَرَ<tajweed class="qalaqah">بْ</tajweed>نَا عَلَ<tajweed class="madda_obligatory">ىٰٓ</tajweed> ءَاذَانِهِمْ فِى <tajweed class="ham_wasl">ٱ</tajweed>لْكَهْفِ سِنِينَ عَدَدًا`},
     {n:12,t:`ثُ<tajweed class="ghunnah">مّ</tajweed>َ بَعَثْنَ<tajweed class="madda_normal">ـٰ</tajweed>هُمْ لِنَعْلَمَ أَىُّ <tajweed class="ham_wasl">ٱ</tajweed>لْحِزْبَيْنِ أَحْصَىٰ لِمَا لَبِث<tajweed class="madda_obligatory">ُوٓ</tajweed><tajweed class="slnt">اْ</tajweed> أَمَدًا`},
-    {n:13,t:`نَّحْنُ نَقُصُّ عَلَيْكَ نَبَأَه<tajweed class="ikhafa_shafawi">ُم ب</tajweed>ِ<tajweed class="ham_wasl">ٱ</tajweed>لْحَقِّ‌ۚ إِ<tajweed class="ghunnah">نّ</tajweed>َهُمْ فِتْيَةٌ ءَامَنُو<tajweed class="slnt">اْ</tajweed> بِرَبِّهِمْ وَزِ<tajweed class="qalaqah">دْ</tajweed>نَ<tajweed class="madda_normal">ـٰ</tajweed>هُمْ هُدًى`},
-    {n:14,t:`وَرَبَ<tajweed class="qalaqah">طْ</tajweed>نَا عَلَىٰ قُلُوبِهِمْ إِذْ قَامُو<tajweed class="slnt">اْ</tajweed> فَقَالُو<tajweed class="slnt">اْ</tajweed> رَبُّنَا رَبُّ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>سَّمَ<tajweed class="madda_normal">ـٰ</tajweed>و<tajweed class="madda_normal">َٲ</tajweed>تِ وَ<tajweed class="ham_wasl">ٱ</tajweed>لْأَرْضِ ل<tajweed class="idgham_ghunnah">َن ن</tajweed>َّ<tajweed class="qalaqah">دْ</tajweed>عُوَ<tajweed class="slnt">اْ</tajweed> مِ<tajweed class="ikhafa">ن د</tajweed>ُونِه<tajweed class="madda_obligatory">ِۦٓ</tajweed> إِلَ<tajweed class="madda_normal">ـٰ</tajweed><tajweed class="idgham_wo_ghunnah">هًا‌ۖ ل</tajweed>َّقَ<tajweed class="qalaqah">دْ</tajweed> قُلْن<tajweed class="madda_obligatory">َآ</tajweed> إِ<tajweed class="ikhafa">ذًا ش</tajweed>َطَطًا`},
-    {n:15,t:`هَ<tajweed class="madda_obligatory">ـٰٓ</tajweed>ؤُل<tajweed class="madda_obligatory">َا</tajweed>ٓءِ قَوْمُنَا <tajweed class="ham_wasl">ٱ</tajweed>تَّخَذُو<tajweed class="slnt">اْ</tajweed> مِ<tajweed class="ikhafa">ن د</tajweed>ُونِه<tajweed class="madda_obligatory">ِۦٓ</tajweed> ءَالِهَ<tajweed class="idgham_wo_ghunnah">ةً‌ۖ ل</tajweed>َّوْلَا يَأْتُونَ عَلَيْه<tajweed class="ikhafa_shafawi">ِم ب</tajweed>ِسُلْطَ<tajweed class="madda_normal">ـٰ</tajweed><tajweed class="iqlab">نِۭ ب</tajweed>َيِّ<tajweed class="ikhafa">نٍ‌ۖ ف</tajweed>َمَنْ أَظْلَمُ مِ<tajweed class="ghunnah">مّ</tajweed>َنِ <tajweed class="ham_wasl">ٱ</tajweed>فْتَرَىٰ عَلَى <tajweed class="ham_wasl">ٱ</tajweed>للَّهِ كَذِبًا`},
+    {n:13,t:`نَّحْنُ نَقُصُّ عَلَيْكَ نَبَأَه<tajweed class="ikhafa_shafawi">ُم ب</tajweed>ِ<tajweed class="ham_wasl">ٱ</tajweed>لْحَقِّۚ إِ<tajweed class="ghunnah">نّ</tajweed>َهُمْ فِتْيَةٌ ءَامَنُو<tajweed class="slnt">اْ</tajweed> بِرَبِّهِمْ وَزِ<tajweed class="qalaqah">دْ</tajweed>نَ<tajweed class="madda_normal">ـٰ</tajweed>هُمْ هُدًى`},
+    {n:14,t:`وَرَبَ<tajweed class="qalaqah">طْ</tajweed>نَا عَلَىٰ قُلُوبِهِمْ إِذْ قَامُو<tajweed class="slnt">اْ</tajweed> فَقَالُو<tajweed class="slnt">اْ</tajweed> رَبُّنَا رَبُّ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>سَّمَ<tajweed class="madda_normal">ـٰ</tajweed>و<tajweed class="madda_normal">َٲ</tajweed>تِ وَ<tajweed class="ham_wasl">ٱ</tajweed>لْأَرْضِ ل<tajweed class="idgham_ghunnah">َن ن</tajweed>َّ<tajweed class="qalaqah">دْ</tajweed>عُوَ<tajweed class="slnt">اْ</tajweed> مِ<tajweed class="ikhafa">ن د</tajweed>ُونِه<tajweed class="madda_obligatory">ِۦٓ</tajweed> إِلَ<tajweed class="madda_normal">ـٰ</tajweed><tajweed class="idgham_wo_ghunnah">هًاۖ ل</tajweed>َّقَ<tajweed class="qalaqah">دْ</tajweed> قُلْن<tajweed class="madda_obligatory">َآ</tajweed> إِ<tajweed class="ikhafa">ذًا ش</tajweed>َطَطًا`},
+    {n:15,t:`هَ<tajweed class="madda_obligatory">ـٰٓ</tajweed>ؤُل<tajweed class="madda_obligatory">َا</tajweed>ٓءِ قَوْمُنَا <tajweed class="ham_wasl">ٱ</tajweed>تَّخَذُو<tajweed class="slnt">اْ</tajweed> مِ<tajweed class="ikhafa">ن د</tajweed>ُونِه<tajweed class="madda_obligatory">ِۦٓ</tajweed> ءَالِهَ<tajweed class="idgham_wo_ghunnah">ةًۖ ل</tajweed>َّوْلَا يَأْتُونَ عَلَيْه<tajweed class="ikhafa_shafawi">ِم ب</tajweed>ِسُلْطَ<tajweed class="madda_normal">ـٰ</tajweed><tajweed class="iqlab">نِۭ ب</tajweed>َيِّ<tajweed class="ikhafa">نٍۖ ف</tajweed>َمَنْ أَظْلَمُ مِ<tajweed class="ghunnah">مّ</tajweed>َنِ <tajweed class="ham_wasl">ٱ</tajweed>فْتَرَىٰ عَلَى <tajweed class="ham_wasl">ٱ</tajweed>للَّهِ كَذِبًا`},
     {n:16,t:`وَإِذِ <tajweed class="ham_wasl">ٱ</tajweed>عْتَزَلْتُمُوهُمْ وَمَا يَعْبُدُونَ إِلَّا <tajweed class="ham_wasl">ٱ</tajweed>للَّهَ فَأْوُ<tajweed class="madda_obligatory">ۥٓاْ</tajweed> إِلَى <tajweed class="ham_wasl">ٱ</tajweed>لْكَهْفِ يَ<tajweed class="ikhafa">نش</tajweed>ُرْ لَكُمْ رَبُّك<tajweed class="idgham_shafawi">ُم م</tajweed>ّ<tajweed class="idgham_wo_ghunnah">ِن ر</tajweed>َّحْمَتِه<tajweed class="madda_normal">ِۦ</tajweed> وَيُهَيِّئْ لَك<tajweed class="idgham_shafawi">ُم م</tajweed>ِّنْ أَمْرِك<tajweed class="idgham_shafawi">ُم م</tajweed>ِّرْفَقًا`},
-    {n:17,t:`۞ وَتَرَى <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>شَّمْسَ إِذَا طَلَعَت تَّز<tajweed class="madda_normal">َٲ</tajweed>وَرُ عَ<tajweed class="ikhafa">ن ك</tajweed>َهْفِهِمْ ذَاتَ <tajweed class="ham_wasl">ٱ</tajweed>لْيَمِينِ وَإِذَا غَرَبَت تَّ<tajweed class="qalaqah">قْ</tajweed>رِضُهُمْ ذَاتَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>شِّمَالِ وَهُمْ فِى فَ<tajweed class="qalaqah">جْ</tajweed>وَ<tajweed class="idgham_ghunnah">ةٍ م</tajweed>ِّنْهُ‌ۚ ذ<tajweed class="madda_normal">َٲ</tajweed>لِكَ مِنْ ءَايَ<tajweed class="madda_normal">ـٰ</tajweed>تِ <tajweed class="ham_wasl">ٱ</tajweed>للَّهِ‌ۗ م<tajweed class="idgham_ghunnah">َن ي</tajweed>َهْدِ <tajweed class="ham_wasl">ٱ</tajweed>للَّهُ فَهُوَ <tajweed class="ham_wasl">ٱ</tajweed>لْمُهْتَدِ‌ۖ وَم<tajweed class="idgham_ghunnah">َن ي</tajweed>ُضْلِلْ فَلَ<tajweed class="ikhafa">ن ت</tajweed>َجِدَ لَهُ<tajweed class="madda_normal">ۥ</tajweed> وَلِي<tajweed class="idgham_ghunnah">ًّا م</tajweed>ُّرْشِدًا`}
+    {n:17,t:`۞ وَتَرَى <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>شَّمْسَ إِذَا طَلَعَت تَّز<tajweed class="madda_normal">َٲ</tajweed>وَرُ عَ<tajweed class="ikhafa">ن ك</tajweed>َهْفِهِمْ ذَاتَ <tajweed class="ham_wasl">ٱ</tajweed>لْيَمِينِ وَإِذَا غَرَبَت تَّ<tajweed class="qalaqah">قْ</tajweed>رِضُهُمْ ذَاتَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>شِّمَالِ وَهُمْ فِى فَ<tajweed class="qalaqah">جْ</tajweed>وَ<tajweed class="idgham_ghunnah">ةٍ م</tajweed>ِّنْهُۚ ذ<tajweed class="madda_normal">َٲ</tajweed>لِكَ مِنْ ءَايَ<tajweed class="madda_normal">ـٰ</tajweed>تِ <tajweed class="ham_wasl">ٱ</tajweed>للَّهِۗ م<tajweed class="idgham_ghunnah">َن ي</tajweed>َهْدِ <tajweed class="ham_wasl">ٱ</tajweed>للَّهُ فَهُوَ <tajweed class="ham_wasl">ٱ</tajweed>لْمُهْتَدِۖ وَم<tajweed class="idgham_ghunnah">َن ي</tajweed>ُضْلِلْ فَلَ<tajweed class="ikhafa">ن ت</tajweed>َجِدَ لَهُ<tajweed class="madda_normal">ۥ</tajweed> وَلِي<tajweed class="idgham_ghunnah">ًّا م</tajweed>ُّرْشِدًا`}
   ]},
   {r:'رکوع ۳',verses:[
-    {n:18,t:`وَتَحْسَبُهُمْ أَيْقَا<tajweed class="idgham_ghunnah">ظًا و</tajweed>َهُمْ رُقُو<tajweed class="idgham_ghunnah">دٌ‌ۚ و</tajweed>َنُقَلِّبُهُمْ ذَاتَ <tajweed class="ham_wasl">ٱ</tajweed>لْيَمِينِ وَذَاتَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>شِّمَالِ‌ۖ وَكَلْبُه<tajweed class="ikhafa_shafawi">ُم ب</tajweed>َ<tajweed class="madda_normal">ـٰ</tajweed>سِ<tajweed class="ikhafa">طٌ ذ</tajweed>ِرَاعَيْهِ بِ<tajweed class="ham_wasl">ٱ</tajweed>لْوَصِيدِ‌ۚ لَوِ <tajweed class="ham_wasl">ٱ</tajweed>طَّلَعْتَ عَلَيْهِمْ لَوَلَّيْتَ مِنْهُمْ فِرَا<tajweed class="idgham_ghunnah">رًا و</tajweed>َلَمُلِئْتَ مِنْهُمْ رُعْبًا`},
-    {n:19,t:`وَكَذ<tajweed class="madda_normal">َٲ</tajweed>لِكَ بَعَثْنَ<tajweed class="madda_normal">ـٰ</tajweed>هُمْ لِيَتَس<tajweed class="madda_obligatory">َا</tajweed>ٓءَلُو<tajweed class="slnt">اْ</tajweed> بَيْنَهُمْ‌ۚ قَالَ ق<tajweed class="madda_obligatory">َا</tajweed>ٓئِ<tajweed class="idgham_ghunnah">لٌ م</tajweed>ِّنْهُمْ كَمْ لَبِثْتُمْ‌ۖ قَالُو<tajweed class="slnt">اْ</tajweed> لَبِثْنَا يَوْمًا أَوْ بَعْضَ يَوْ<tajweed class="ikhafa">مٍ‌ۚ ق</tajweed>َالُو<tajweed class="slnt">اْ</tajweed> رَبُّكُمْ أَعْلَمُ بِمَا لَبِثْتُمْ فَ<tajweed class="ham_wasl">ٱ</tajweed><tajweed class="qalaqah">بْ</tajweed>عَث<tajweed class="madda_obligatory">ُوٓ</tajweed><tajweed class="slnt">اْ</tajweed> أَحَدَك<tajweed class="ikhafa_shafawi">ُم ب</tajweed>ِوَرِقِكُمْ هَ<tajweed class="madda_normal">ـٰ</tajweed>ذِه<tajweed class="madda_obligatory">ِۦٓ</tajweed> إِلَى <tajweed class="ham_wasl">ٱ</tajweed>لْمَدِينَةِ فَلْيَ<tajweed class="ikhafa">نظ</tajweed>ُرْ أَيُّه<tajweed class="madda_obligatory">َآ</tajweed> أَزْكَىٰ طَعَا<tajweed class="ikhafa">مًا ف</tajweed>َلْيَأْتِك<tajweed class="ikhafa_shafawi">ُم ب</tajweed>ِرِزْ<tajweed class="idgham_ghunnah">قٍ م</tajweed>ِّنْهُ وَلْيَتَلَطَّفْ وَلَا يُشْعِرَ<tajweed class="ghunnah">نّ</tajweed>َ بِكُمْ أَحَدًا`},
+    {n:18,t:`وَتَحْسَبُهُمْ أَيْقَا<tajweed class="idgham_ghunnah">ظًا و</tajweed>َهُمْ رُقُو<tajweed class="idgham_ghunnah">دٌۚ و</tajweed>َنُقَلِّبُهُمْ ذَاتَ <tajweed class="ham_wasl">ٱ</tajweed>لْيَمِينِ وَذَاتَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>شِّمَالِۖ وَكَلْبُه<tajweed class="ikhafa_shafawi">ُم ب</tajweed>َ<tajweed class="madda_normal">ـٰ</tajweed>سِ<tajweed class="ikhafa">طٌ ذ</tajweed>ِرَاعَيْهِ بِ<tajweed class="ham_wasl">ٱ</tajweed>لْوَصِيدِۚ لَوِ <tajweed class="ham_wasl">ٱ</tajweed>طَّلَعْتَ عَلَيْهِمْ لَوَلَّيْتَ مِنْهُمْ فِرَا<tajweed class="idgham_ghunnah">رًا و</tajweed>َلَمُلِئْتَ مِنْهُمْ رُعْبًا`},
+    {n:19,t:`وَكَذ<tajweed class="madda_normal">َٲ</tajweed>لِكَ بَعَثْنَ<tajweed class="madda_normal">ـٰ</tajweed>هُمْ لِيَتَس<tajweed class="madda_obligatory">َا</tajweed>ٓءَلُو<tajweed class="slnt">اْ</tajweed> بَيْنَهُمْۚ قَالَ ق<tajweed class="madda_obligatory">َا</tajweed>ٓئِ<tajweed class="idgham_ghunnah">لٌ م</tajweed>ِّنْهُمْ كَمْ لَبِثْتُمْۖ قَالُو<tajweed class="slnt">اْ</tajweed> لَبِثْنَا يَوْمًا أَوْ بَعْضَ يَوْ<tajweed class="ikhafa">مٍۚ ق</tajweed>َالُو<tajweed class="slnt">اْ</tajweed> رَبُّكُمْ أَعْلَمُ بِمَا لَبِثْتُمْ فَ<tajweed class="ham_wasl">ٱ</tajweed><tajweed class="qalaqah">بْ</tajweed>عَث<tajweed class="madda_obligatory">ُوٓ</tajweed><tajweed class="slnt">اْ</tajweed> أَحَدَك<tajweed class="ikhafa_shafawi">ُم ب</tajweed>ِوَرِقِكُمْ هَ<tajweed class="madda_normal">ـٰ</tajweed>ذِه<tajweed class="madda_obligatory">ِۦٓ</tajweed> إِلَى <tajweed class="ham_wasl">ٱ</tajweed>لْمَدِينَةِ فَلْيَ<tajweed class="ikhafa">نظ</tajweed>ُرْ أَيُّه<tajweed class="madda_obligatory">َآ</tajweed> أَزْكَىٰ طَعَا<tajweed class="ikhafa">مًا ف</tajweed>َلْيَأْتِك<tajweed class="ikhafa_shafawi">ُم ب</tajweed>ِرِزْ<tajweed class="idgham_ghunnah">قٍ م</tajweed>ِّنْهُ وَلْيَتَلَطَّفْ وَلَا يُشْعِرَ<tajweed class="ghunnah">نّ</tajweed>َ بِكُمْ أَحَدًا`},
     {n:20,t:`إِ<tajweed class="ghunnah">نّ</tajweed>َهُمْ إ<tajweed class="idgham_ghunnah">ِن ي</tajweed>َظْهَرُو<tajweed class="slnt">اْ</tajweed> عَلَيْكُمْ يَرْجُمُوكُمْ أَوْ يُعِيدُوكُمْ فِى مِلَّتِهِمْ وَلَ<tajweed class="ikhafa">ن ت</tajweed>ُفْلِح<tajweed class="madda_obligatory">ُوٓ</tajweed><tajweed class="slnt">اْ</tajweed> إِذًا أَبَدًا`},
-    {n:21,t:`وَكَذ<tajweed class="madda_normal">َٲ</tajweed>لِكَ أَعْثَرْنَا عَلَيْهِمْ لِيَعْلَم<tajweed class="madda_obligatory">ُوٓ</tajweed><tajweed class="slnt">اْ</tajweed> أَ<tajweed class="ghunnah">نّ</tajweed>َ وَعْدَ <tajweed class="ham_wasl">ٱ</tajweed>للَّهِ حَ<tajweed class="idgham_ghunnah">قٌّ و</tajweed>َأَ<tajweed class="ghunnah">نّ</tajweed>َ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>سَّاعَةَ لَا رَيْبَ فِيه<tajweed class="madda_obligatory">َآ</tajweed> إِذْ يَتَنَ<tajweed class="madda_normal">ـٰ</tajweed>زَعُونَ بَيْنَهُمْ أَمْرَهُمْ‌ۖ فَقَالُو<tajweed class="slnt">اْ</tajweed> <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="qalaqah">بْ</tajweed>نُو<tajweed class="slnt">اْ</tajweed> عَلَيْه<tajweed class="ikhafa_shafawi">ِم ب</tajweed>ُنْيَ<tajweed class="madda_normal">ـٰ</tajweed><tajweed class="idgham_wo_ghunnah">نًا‌ۖ ر</tajweed>َّبُّهُمْ أَعْلَمُ بِهِمْ‌ۚ قَالَ <tajweed class="ham_wasl">ٱ</tajweed>لَّذِينَ غَلَبُو<tajweed class="slnt">اْ</tajweed> عَلَ<tajweed class="madda_obligatory">ىٰٓ</tajweed> أَمْرِهِمْ لَنَتَّخِذَ<tajweed class="ghunnah">نّ</tajweed>َ عَلَيْه<tajweed class="idgham_shafawi">ِم م</tajweed>َّسْجِدًا`},
-    {n:22,t:`سَيَقُولُونَ ثَلَ<tajweed class="madda_normal">ـٰ</tajweed>ثَ<tajweed class="idgham_wo_ghunnah">ةٌ ر</tajweed>َّابِعُهُمْ كَلْبُهُمْ وَيَقُولُونَ خَمْسَ<tajweed class="ikhafa">ةٌ س</tajweed>َادِسُهُمْ كَلْبُهُمْ رَ<tajweed class="qalaqah">جْ</tajweed>م<tajweed class="iqlab">َۢا ب</tajweed>ِ<tajweed class="ham_wasl">ٱ</tajweed>لْغَيْبِ‌ۖ وَيَقُولُونَ سَ<tajweed class="qalaqah">بْ</tajweed>عَ<tajweed class="idgham_ghunnah">ةٌ و</tajweed>َثَامِنُهُمْ كَلْبُهُمْ‌ۚ قُ<tajweed class="idgham_mutaqaribayn">ل</tajweed> رَّبّ<tajweed class="madda_obligatory">ِىٓ</tajweed> أَعْلَمُ بِعِدَّتِه<tajweed class="idgham_shafawi">ِم م</tajweed>َّا يَعْلَمُهُمْ إِلَّا قَلِي<tajweed class="ikhafa">لٌ‌ۗ ف</tajweed>َلَا تُمَارِ فِيهِمْ إِلَّا مِر<tajweed class="madda_obligatory">َا</tajweed>ٓ<tajweed class="ikhafa">ءً ظ</tajweed>َ<tajweed class="madda_normal">ـٰ</tajweed>هِ<tajweed class="idgham_ghunnah">رًا و</tajweed>َلَا تَسْتَفْتِ فِيه<tajweed class="idgham_shafawi">ِم م</tajweed>ِّنْهُمْ أَحَدًا`}
+    {n:21,t:`وَكَذ<tajweed class="madda_normal">َٲ</tajweed>لِكَ أَعْثَرْنَا عَلَيْهِمْ لِيَعْلَم<tajweed class="madda_obligatory">ُوٓ</tajweed><tajweed class="slnt">اْ</tajweed> أَ<tajweed class="ghunnah">نّ</tajweed>َ وَعْدَ <tajweed class="ham_wasl">ٱ</tajweed>للَّهِ حَ<tajweed class="idgham_ghunnah">قٌّ و</tajweed>َأَ<tajweed class="ghunnah">نّ</tajweed>َ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>سَّاعَةَ لَا رَيْبَ فِيه<tajweed class="madda_obligatory">َآ</tajweed> إِذْ يَتَنَ<tajweed class="madda_normal">ـٰ</tajweed>زَعُونَ بَيْنَهُمْ أَمْرَهُمْۖ فَقَالُو<tajweed class="slnt">اْ</tajweed> <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="qalaqah">بْ</tajweed>نُو<tajweed class="slnt">اْ</tajweed> عَلَيْه<tajweed class="ikhafa_shafawi">ِم ب</tajweed>ُنْيَ<tajweed class="madda_normal">ـٰ</tajweed><tajweed class="idgham_wo_ghunnah">نًاۖ ر</tajweed>َّبُّهُمْ أَعْلَمُ بِهِمْۚ قَالَ <tajweed class="ham_wasl">ٱ</tajweed>لَّذِينَ غَلَبُو<tajweed class="slnt">اْ</tajweed> عَلَ<tajweed class="madda_obligatory">ىٰٓ</tajweed> أَمْرِهِمْ لَنَتَّخِذَ<tajweed class="ghunnah">نّ</tajweed>َ عَلَيْه<tajweed class="idgham_shafawi">ِم م</tajweed>َّسْجِدًا`},
+    {n:22,t:`سَيَقُولُونَ ثَلَ<tajweed class="madda_normal">ـٰ</tajweed>ثَ<tajweed class="idgham_wo_ghunnah">ةٌ ر</tajweed>َّابِعُهُمْ كَلْبُهُمْ وَيَقُولُونَ خَمْسَ<tajweed class="ikhafa">ةٌ س</tajweed>َادِسُهُمْ كَلْبُهُمْ رَ<tajweed class="qalaqah">جْ</tajweed>م<tajweed class="iqlab">َۢا ب</tajweed>ِ<tajweed class="ham_wasl">ٱ</tajweed>لْغَيْبِۖ وَيَقُولُونَ سَ<tajweed class="qalaqah">بْ</tajweed>عَ<tajweed class="idgham_ghunnah">ةٌ و</tajweed>َثَامِنُهُمْ كَلْبُهُمْۚ قُ<tajweed class="idgham_mutaqaribayn">ل</tajweed> رَّبّ<tajweed class="madda_obligatory">ِىٓ</tajweed> أَعْلَمُ بِعِدَّتِه<tajweed class="idgham_shafawi">ِم م</tajweed>َّا يَعْلَمُهُمْ إِلَّا قَلِي<tajweed class="ikhafa">لٌۗ ف</tajweed>َلَا تُمَارِ فِيهِمْ إِلَّا مِر<tajweed class="madda_obligatory">َا</tajweed>ٓ<tajweed class="ikhafa">ءً ظ</tajweed>َ<tajweed class="madda_normal">ـٰ</tajweed>هِ<tajweed class="idgham_ghunnah">رًا و</tajweed>َلَا تَسْتَفْتِ فِيه<tajweed class="idgham_shafawi">ِم م</tajweed>ِّنْهُمْ أَحَدًا`}
   ]},
   {r:'رکوع ۴',verses:[
     {n:23,t:`وَلَا تَقُولَ<tajweed class="ghunnah">نّ</tajweed>َ لِشَ<tajweed class="slnt">اْ</tajweed>ىْءٍ إِ<tajweed class="ghunnah">نّ</tajweed>ِى فَاعِ<tajweed class="ikhafa">لٌ ذ</tajweed><tajweed class="madda_normal">َٲ</tajweed>لِكَ غَدًا`},
-    {n:24,t:`إِلّ<tajweed class="madda_obligatory">َآ</tajweed> أ<tajweed class="idgham_ghunnah">َن ي</tajweed>َش<tajweed class="madda_obligatory">َا</tajweed>ٓءَ <tajweed class="ham_wasl">ٱ</tajweed>للَّهُ‌ۚ وَ<tajweed class="ham_wasl">ٱ</tajweed>ذْكُر رَّبَّكَ إِذَا نَسِيتَ وَقُلْ عَسَ<tajweed class="madda_obligatory">ىٰٓ</tajweed> أ<tajweed class="idgham_ghunnah">َن ي</tajweed>َهْدِيَنِ رَبِّى لِأَ<tajweed class="qalaqah">قْ</tajweed>رَبَ مِنْ هَ<tajweed class="madda_normal">ـٰ</tajweed>ذَا رَشَدًا`},
+    {n:24,t:`إِلّ<tajweed class="madda_obligatory">َآ</tajweed> أ<tajweed class="idgham_ghunnah">َن ي</tajweed>َش<tajweed class="madda_obligatory">َا</tajweed>ٓءَ <tajweed class="ham_wasl">ٱ</tajweed>للَّهُۚ وَ<tajweed class="ham_wasl">ٱ</tajweed>ذْكُر رَّبَّكَ إِذَا نَسِیتَ وَقُلْ عَسَ<tajweed class="madda_obligatory">ىٰٓ</tajweed> أ<tajweed class="idgham_ghunnah">َن ي</tajweed>َهْدِيَنِ رَبِّى لِأَ<tajweed class="qalaqah">قْ</tajweed>رَبَ مِنْ هَ<tajweed class="madda_normal">ـٰ</tajweed>ذَا رَشَدًا`},
     {n:25,t:`وَلَبِثُو<tajweed class="slnt">اْ</tajweed> فِى كَهْفِهِمْ ثَلَ<tajweed class="madda_normal">ـٰ</tajweed>ثَ مِ<tajweed class="slnt">اْ</tajweed>ئَ<tajweed class="ikhafa">ةٍ س</tajweed>ِنِينَ وَ<tajweed class="ham_wasl">ٱ</tajweed>زْدَادُو<tajweed class="slnt">اْ</tajweed> تِسْعًا`},
-    {n:26,t:`قُلِ <tajweed class="ham_wasl">ٱ</tajweed>للَّهُ أَعْلَمُ بِمَا لَبِثُو<tajweed class="slnt">اْ‌ۖ</tajweed> لَهُ<tajweed class="madda_normal">ۥ</tajweed> غَيْبُ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>سَّمَ<tajweed class="madda_normal">ـٰ</tajweed>و<tajweed class="madda_normal">َٲ</tajweed>تِ وَ<tajweed class="ham_wasl">ٱ</tajweed>لْأَرْضِ‌ۖ أَ<tajweed class="qalaqah">بْ</tajweed>صِرْ بِه<tajweed class="madda_normal">ِۦ</tajweed> وَأَسْمِعْ‌ۚ مَا لَه<tajweed class="idgham_shafawi">ُم م</tajweed>ِّ<tajweed class="ikhafa">ن د</tajweed>ُونِه<tajweed class="madda_normal">ِۦ</tajweed> م<tajweed class="idgham_ghunnah">ِن و</tajweed>َلِ<tajweed class="idgham_ghunnah">ىٍّ و</tajweed>َلَا يُشْرِكُ فِى حُكْمِه<tajweed class="madda_obligatory">ِۦٓ</tajweed> أَحَدًا`},
-    {n:27,t:`وَ<tajweed class="ham_wasl">ٱ</tajweed>تْلُ م<tajweed class="madda_obligatory">َآ</tajweed> أُوحِىَ إِلَيْكَ مِ<tajweed class="ikhafa">ن ك</tajweed>ِتَابِ رَبِّكَ‌ۖ لَا مُبَدِّلَ لِكَلِمَ<tajweed class="madda_normal">ـٰ</tajweed>تِه<tajweed class="madda_normal">ِۦ</tajweed> وَلَ<tajweed class="ikhafa">ن ت</tajweed>َجِدَ مِ<tajweed class="ikhafa">ن د</tajweed>ُونِه<tajweed class="madda_normal">ِۦ</tajweed> مُلْتَحَدًا`},
-    {n:28,t:`وَ<tajweed class="ham_wasl">ٱ</tajweed>صْبِرْ نَفْسَكَ مَعَ <tajweed class="ham_wasl">ٱ</tajweed>لَّذِينَ يَ<tajweed class="qalaqah">دْ</tajweed>عُونَ رَبَّه<tajweed class="ikhafa_shafawi">ُم ب</tajweed>ِ<tajweed class="ham_wasl">ٱ</tajweed>لْغَدَ<tajweed class="slnt">و</tajweed><tajweed class="madda_normal">ٲ</tajweed>ةِ وَ<tajweed class="ham_wasl">ٱ</tajweed>لْعَشِىِّ يُرِيدُونَ وَ<tajweed class="qalaqah">جْ</tajweed>هَهُ<tajweed class="madda_normal">ۥ</tajweed>‌ۖ وَلَا تَعْدُ عَيْنَاكَ عَنْهُمْ تُرِيدُ زِينَةَ <tajweed class="ham_wasl">ٱ</tajweed>لْحَيَ<tajweed class="slnt">و</tajweed><tajweed class="madda_normal">ٲ</tajweed>ةِ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>دُّنْيَا‌ۖ وَلَا تُطِعْ مَنْ أَغْفَلْنَا قَلْبَهُ<tajweed class="madda_normal">ۥ</tajweed> عَ<tajweed class="ikhafa">ن ذ</tajweed>ِكْرِنَا وَ<tajweed class="ham_wasl">ٱ</tajweed>تَّبَعَ هَوَ<tajweed class="madda_normal">ٮٰ</tajweed>هُ وَكَانَ أَمْرُهُ<tajweed class="madda_normal">ۥ</tajweed> فُرُطًا`},
-    {n:29,t:`وَقُلِ <tajweed class="ham_wasl">ٱ</tajweed>لْحَقُّ م<tajweed class="idgham_wo_ghunnah">ِن ر</tajweed>َّبِّكُمْ‌ۖ فَمَ<tajweed class="ikhafa">ن ش</tajweed><tajweed class="madda_obligatory">َا</tajweed>ٓءَ فَلْيُؤْم<tajweed class="idgham_ghunnah">ِن و</tajweed>َمَ<tajweed class="ikhafa">ن ش</tajweed><tajweed class="madda_obligatory">َا</tajweed>ٓءَ فَلْيَكْفُرْ‌ۚ إِ<tajweed class="ghunnah">نّ</tajweed><tajweed class="madda_obligatory">َآ</tajweed> أَعْتَ<tajweed class="qalaqah">دْ</tajweed>نَا لِلظَّ<tajweed class="madda_normal">ـٰ</tajweed>لِمِينَ نَارًا أَحَاطَ بِهِمْ سُرَادِقُهَا‌ۚ وَإ<tajweed class="idgham_ghunnah">ِن ي</tajweed>َسْتَغِيثُو<tajweed class="slnt">اْ</tajweed> يُغَاثُو<tajweed class="slnt">اْ</tajweed> بِم<tajweed class="madda_obligatory">َا</tajweed>ٓ<tajweed class="ikhafa">ءٍ ك</tajweed>َ<tajweed class="ham_wasl">ٱ</tajweed>لْمُهْلِ يَشْوِى <tajweed class="ham_wasl">ٱ</tajweed>لْوُجُوهَ‌ۚ بِئْسَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>شَّرَابُ وَس<tajweed class="madda_obligatory">َا</tajweed>ٓءَتْ مُرْتَفَقًا`},
+    {n:26,t:`قُلِ <tajweed class="ham_wasl">ٱ</tajweed>للَّهُ أَعْلَمُ بِمَا لَبِثُو<tajweed class="slnt">اْۖ</tajweed> لَهُ<tajweed class="madda_normal">ۥ</tajweed> غَيْبُ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>سَّمَ<tajweed class="madda_normal">ـٰ</tajweed>و<tajweed class="madda_normal">َٲ</tajweed>تِ وَ<tajweed class="ham_wasl">ٱ</tajweed>لْأَرْضِۖ أَ<tajweed class="qalaqah">بْ</tajweed>صِرْ بِه<tajweed class="madda_normal">ِۦ</tajweed> وَأَسْمِعْۚ مَا لَه<tajweed class="idgham_shafawi">ُم م</tajweed>ِّ<tajweed class="ikhafa">ن د</tajweed>ُونِه<tajweed class="madda_normal">ِۦ</tajweed> م<tajweed class="idgham_ghunnah">ِن و</tajweed>َلِ<tajweed class="idgham_ghunnah">ىٍّ و</tajweed>َلَا يُشْرِكُ فِى حُكْمِه<tajweed class="madda_obligatory">ِۦٓ</tajweed> أَحَدًا`},
+    {n:27,t:`وَ<tajweed class="ham_wasl">ٱ</tajweed>تْلُ م<tajweed class="madda_obligatory">َآ</tajweed> أُوحِىَ إِلَيْكَ مِ<tajweed class="ikhafa">ن ك</tajweed>ِتَابِ رَبِّكَۖ لَا مُبَدِّلَ لِكَلِمَ<tajweed class="madda_normal">ـٰ</tajweed>تِه<tajweed class="madda_normal">ِۦ</tajweed> وَلَ<tajweed class="ikhafa">ن ت</tajweed>َجِدَ مِ<tajweed class="ikhafa">ن د</tajweed>ُونِه<tajweed class="madda_normal">ِۦ</tajweed> مُلْتَحَدًا`},
+    {n:28,t:`وَ<tajweed class="ham_wasl">ٱ</tajweed>صْبِرْ نَفْسَكَ مَعَ <tajweed class="ham_wasl">ٱ</tajweed>لَّذِينَ يَ<tajweed class="qalaqah">دْ</tajweed>عُونَ رَبَّه<tajweed class="ikhafa_shafawi">ُم ب</tajweed>ِ<tajweed class="ham_wasl">ٱ</tajweed>لْغَدَ<tajweed class="slnt">و</tajweed><tajweed class="madda_normal">ٲ</tajweed>ةِ وَ<tajweed class="ham_wasl">ٱ</tajweed>لْعَشِىِّ يُرِيدُونَ وَ<tajweed class="qalaqah">جْ</tajweed>هَهُ<tajweed class="madda_normal">ۥ</tajweed>ۖ وَلَا تَعْدُ عَيْنَاكَ عَنْهُمْ تُرِيدُ زِينَةَ <tajweed class="ham_wasl">ٱ</tajweed>لْحَيَ<tajweed class="slnt">و</tajweed><tajweed class="madda_normal">ٲ</tajweed>ةِ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>دُّنْيَاۖ وَلَا تُطِعْ مَنْ أَغْفَلْنَا قَلْبَهُ<tajweed class="madda_normal">ۥ</tajweed> عَ<tajweed class="ikhafa">ن ذ</tajweed>ِكْرِنَا وَ<tajweed class="ham_wasl">ٱ</tajweed>تَّبَعَ هَوَ<tajweed class="madda_normal">ٮٰ</tajweed>هُ وَكَانَ أَمْرُهُ<tajweed class="madda_normal">ۥ</tajweed> فُرُطًا`},
+    {n:29,t:`وَقُلِ <tajweed class="ham_wasl">ٱ</tajweed>لْحَقُّ م<tajweed class="idgham_wo_ghunnah">ِن ر</tajweed>َّبِّكُمْۖ فَمَ<tajweed class="ikhafa">ن ش</tajweed><tajweed class="madda_obligatory">َا</tajweed>ٓءَ فَلْيُؤْم<tajweed class="idgham_ghunnah">ِن و</tajweed>َمَ<tajweed class="ikhafa">ن ش</tajweed><tajweed class="madda_obligatory">َا</tajweed>ٓءَ فَلْيَكْفُرْۚ إِ<tajweed class="ghunnah">نّ</tajweed><tajweed class="madda_obligatory">َآ</tajweed> أَعْتَ<tajweed class="qalaqah">دْ</tajweed>نَا لِلظَّ<tajweed class="madda_normal">ـٰ</tajweed>لِمِينَ نَارًا أَحَاطَ بِهِمْ سُرَادِقُهَاۚ وَإ<tajweed class="idgham_ghunnah">ِن ي</tajweed>َسْتَغِيثُو<tajweed class="slnt">اْ</tajweed> يُغَاثُو<tajweed class="slnt">اْ</tajweed> بِم<tajweed class="madda_obligatory">َا</tajweed>ٓ<tajweed class="ikhafa">ءٍ ك</tajweed>َ<tajweed class="ham_wasl">ٱ</tajweed>لْمُهْلِ يَشْوِى <tajweed class="ham_wasl">ٱ</tajweed>لْوُجُوهَۚ بِئْسَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>شَّرَابُ وَس<tajweed class="madda_obligatory">َا</tajweed>ٓءَتْ مُرْتَفَقًا`},
     {n:30,t:`إِ<tajweed class="ghunnah">نّ</tajweed>َ <tajweed class="ham_wasl">ٱ</tajweed>لَّذِينَ ءَامَنُو<tajweed class="slnt">اْ</tajweed> وَعَمِلُو<tajweed class="slnt">اْ</tajweed> <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>صَّ<tajweed class="madda_normal">ـٰ</tajweed>لِحَ<tajweed class="madda_normal">ـٰ</tajweed>تِ إِ<tajweed class="ghunnah">نّ</tajweed>َا لَا نُضِيعُ أَ<tajweed class="qalaqah">جْ</tajweed>رَ مَنْ أَحْسَنَ عَمَلاً`},
-    {n:31,t:`أُ<tajweed class="slnt">وْ</tajweed>لَ<tajweed class="madda_obligatory">ـٰٓ</tajweed>ئِكَ لَهُمْ جَ<tajweed class="ghunnah">نّ</tajweed>َ<tajweed class="madda_normal">ـٰ</tajweed>تُ عَ<tajweed class="qalaqah">دْ</tajweed><tajweed class="ikhafa">نٍ ت</tajweed>َ<tajweed class="qalaqah">جْ</tajweed>رِى مِ<tajweed class="ikhafa">ن ت</tajweed>َحْتِهِمُ <tajweed class="ham_wasl">ٱ</tajweed>لْأَنْهَ<tajweed class="madda_normal">ـٰ</tajweed>رُ يُحَلَّوْنَ فِيهَا مِنْ أَسَاوِرَ مِ<tajweed class="ikhafa">ن ذ</tajweed>َهَ<tajweed class="idgham_ghunnah">بٍ و</tajweed>َيَلْبَسُونَ ثِيَابًا خُضْ<tajweed class="idgham_ghunnah">رًا م</tajweed>ِّ<tajweed class="ikhafa">ن س</tajweed>ُ<tajweed class="ikhafa">ند</tajweed>ُ<tajweed class="idgham_ghunnah">سٍ و</tajweed>َإِسْتَ<tajweed class="qalaqah">بْ</tajweed>رَ<tajweed class="idgham_ghunnah">قٍ م</tajweed>ُّتَّكِــِٔينَ فِيهَا عَلَى <tajweed class="ham_wasl">ٱ</tajweed>لْأَر<tajweed class="madda_obligatory">َا</tajweed>ٓئِكِ‌ۚ نِعْمَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>ثَّوَابُ وَحَسُنَتْ مُرْتَفَقًا`}
+    {n:31,t:`أُ<tajweed class="slnt">وْ</tajweed>لَ<tajweed class="madda_obligatory">ـٰٓ</tajweed>ئِكَ لَهُمْ جَ<tajweed class="ghunnah">نّ</tajweed>َ<tajweed class="madda_normal">ـٰ</tajweed>تُ عَ<tajweed class="qalaqah">دْ</tajweed><tajweed class="ikhafa">نٍ ت</tajweed>َ<tajweed class="qalaqah">جْ</tajweed>رِى مِ<tajweed class="ikhafa">ن ت</tajweed>َحْتِهِمُ <tajweed class="ham_wasl">ٱ</tajweed>لْأَنْهَ<tajweed class="madda_normal">ـٰ</tajweed>رُ يُحَلَّوْنَ فِيهَا مِنْ أَسَاوِرَ مِ<tajweed class="ikhafa">ن ذ</tajweed>َهَ<tajweed class="idgham_ghunnah">بٍ و</tajweed>َيَلْبَسُونَ ثِيَابًا خُضْ<tajweed class="idgham_ghunnah">رًا م</tajweed>ِّ<tajweed class="ikhafa">ن س</tajweed>ُ<tajweed class="ikhafa">ند</tajweed>ُ<tajweed class="idgham_ghunnah">سٍ و</tajweed>َإِسْتَ<tajweed class="qalaqah">بْ</tajweed>رَ<tajweed class="idgham_ghunnah">قٍ م</tajweed>ُّتَّكِــِٔينَ فِيهَا عَلَى <tajweed class="ham_wasl">ٱ</tajweed>لْأَر<tajweed class="madda_obligatory">َا</tajweed>ٓئِكِۚ نِعْمَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>ثَّوَابُ وَحَسُنَتْ مُرْتَفَقًا`}
   ]},
   {r:'رکوع ۵',verses:[
     {n:32,t:`۞ وَ<tajweed class="ham_wasl">ٱ</tajweed>ضْرِ<tajweed class="qalaqah">بْ</tajweed> لَه<tajweed class="idgham_shafawi">ُم م</tajweed>َّثَل<tajweed class="idgham_wo_ghunnah">اً ر</tajweed>َّجُلَيْنِ جَعَلْنَا لِأَحَدِهِمَا جَ<tajweed class="ghunnah">نّ</tajweed>َتَيْنِ مِنْ أَعْنَ<tajweed class="madda_normal">ـٰ</tajweed><tajweed class="idgham_ghunnah">بٍ و</tajweed>َحَفَفْنَ<tajweed class="madda_normal">ـٰ</tajweed>هُمَا بِنَخْ<tajweed class="idgham_ghunnah">لٍ و</tajweed>َجَعَلْنَا بَيْنَهُمَا زَرْعًا`},
-    {n:33,t:`كِلْتَا <tajweed class="ham_wasl">ٱ</tajweed>لْجَ<tajweed class="ghunnah">نّ</tajweed>َتَيْنِ ءَاتَتْ أُكُلَهَا وَلَمْ تَظْل<tajweed class="idgham_shafawi">ِم م</tajweed>ِّنْهُ شَيْـ<tajweed class="idgham_ghunnah">ـًٔا‌ۚ و</tajweed>َفَجَّرْنَا خِلَ<tajweed class="madda_normal">ـٰ</tajweed>لَهُمَا نَهَرًا`},
+    {n:33,t:`كِلْتَا <tajweed class="ham_wasl">ٱ</tajweed>لْجَ<tajweed class="ghunnah">نّ</tajweed>َتَيْنِ ءَاتَتْ أُكُلَهَا وَلَمْ تَظْل<tajweed class="idgham_shafawi">ِم م</tajweed>ِّنْهُ شَيْـ<tajweed class="idgham_ghunnah">ـًٔاۚ و</tajweed>َفَجَّرْنَا خِلَ<tajweed class="madda_normal">ـٰ</tajweed>لَهُمَا نَهَرًا`},
     {n:34,t:`وَكَانَ لَهُ<tajweed class="madda_normal">ۥ</tajweed> ثَمَ<tajweed class="ikhafa">رٌ ف</tajweed>َقَالَ لِصَ<tajweed class="madda_normal">ـٰ</tajweed>حِبِه<tajweed class="madda_normal">ِۦ</tajweed> وَهُوَ يُحَاوِرُهُ<tajweed class="madda_obligatory">ۥٓ</tajweed> أَنَا۟ أَكْثَرُ مِ<tajweed class="ikhafa">نك</tajweed>َ مَال<tajweed class="idgham_ghunnah">اً و</tajweed>َأَعَزُّ نَفَرًا`},
     {n:35,t:`وَدَخَلَ جَ<tajweed class="ghunnah">نّ</tajweed>َتَهُ<tajweed class="madda_normal">ۥ</tajweed> وَهُوَ ظَالِ<tajweed class="idgham_wo_ghunnah">مٌ ل</tajweed>ِّنَفْسِه<tajweed class="madda_normal">ِۦ</tajweed> قَالَ م<tajweed class="madda_obligatory">َآ</tajweed> أَظُ<tajweed class="ghunnah">نّ</tajweed>ُ أَ<tajweed class="ikhafa">ن ت</tajweed>َبِيدَ هَ<tajweed class="madda_normal">ـٰ</tajweed>ذِه<tajweed class="madda_obligatory">ِۦٓ</tajweed> أَبَدًا`},
     {n:36,t:`وَم<tajweed class="madda_obligatory">َآ</tajweed> أَظُ<tajweed class="ghunnah">نّ</tajweed>ُ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>سَّاعَةَ ق<tajweed class="madda_obligatory">َا</tajweed>ٓئِمَ<tajweed class="idgham_ghunnah">ةً و</tajweed>َلَئ<tajweed class="idgham_wo_ghunnah">ِن ر</tajweed>ُّدِ<tajweed class="idgham_mutajanisayn">د</tajweed>تُّ إِلَىٰ رَبِّى لَأَجِدَ<tajweed class="ghunnah">نّ</tajweed>َ خَيْ<tajweed class="idgham_ghunnah">رًا م</tajweed>ِّنْهَا مُ<tajweed class="ikhafa">نق</tajweed>َلَبًا`},
     {n:37,t:`قَالَ لَهُ<tajweed class="madda_normal">ۥ</tajweed> صَاحِبُهُ<tajweed class="madda_normal">ۥ</tajweed> وَهُوَ يُحَاوِرُهُ<tajweed class="madda_obligatory">ۥٓ</tajweed> أَكَفَرْتَ بِ<tajweed class="ham_wasl">ٱ</tajweed>لَّذِى خَلَقَكَ مِ<tajweed class="ikhafa">ن ت</tajweed>ُرَا<tajweed class="ikhafa">بٍ ث</tajweed>ُ<tajweed class="ghunnah">مّ</tajweed>َ م<tajweed class="idgham_ghunnah">ِن ن</tajweed>ُّ<tajweed class="qalaqah">طْ</tajweed>فَ<tajweed class="ikhafa">ةٍ ث</tajweed>ُ<tajweed class="ghunnah">مّ</tajweed>َ سَوَّ<tajweed class="madda_normal">ٮٰ</tajweed>كَ رَجُلاً`},
     {n:38,t:`لَّ<tajweed class="madda_normal">ـٰ</tajweed>كِ<tajweed class="ghunnah">نّ</tajweed>َا۟ هُوَ <tajweed class="ham_wasl">ٱ</tajweed>للَّهُ رَبِّى وَل<tajweed class="madda_obligatory">َآ</tajweed> أُشْرِكُ بِرَبّ<tajweed class="madda_obligatory">ِىٓ</tajweed> أَحَدًا`},
-    {n:39,t:`وَلَوْل<tajweed class="madda_obligatory">َآ</tajweed> إِذْ دَخَلْتَ جَ<tajweed class="ghunnah">نّ</tajweed>َتَكَ قُلْتَ مَا ش<tajweed class="madda_obligatory">َا</tajweed>ٓءَ <tajweed class="ham_wasl">ٱ</tajweed>للَّهُ لَا قُوَّةَ إِلَّا بِ<tajweed class="ham_wasl">ٱ</tajweed>للَّهِ‌ۚ إِ<tajweed class="ikhafa">ن ت</tajweed>َرَنِ أَنَا۟ أَقَلَّ مِ<tajweed class="ikhafa">نك</tajweed>َ مَال<tajweed class="idgham_ghunnah">اً و</tajweed>َوَلَدًا`},
+    {n:39,t:`وَلَوْل<tajweed class="madda_obligatory">َآ</tajweed> إِذْ دَخَلْتَ جَ<tajweed class="ghunnah">نّ</tajweed>َتَكَ قُلْتَ مَا ش<tajweed class="madda_obligatory">َا</tajweed>ٓءَ <tajweed class="ham_wasl">ٱ</tajweed>للَّهُ لَا قُوَّةَ إِلَّا بِ<tajweed class="ham_wasl">ٱ</tajweed>للَّهِۚ إِ<tajweed class="ikhafa">ن ت</tajweed>َرَنِ أَنَا۟ أَقَلَّ مِ<tajweed class="ikhafa">نك</tajweed>َ مَال<tajweed class="idgham_ghunnah">اً و</tajweed>َوَلَدًا`},
     {n:40,t:`فَعَسَىٰ رَبّ<tajweed class="madda_obligatory">ِىٓ</tajweed> أ<tajweed class="idgham_ghunnah">َن ي</tajweed>ُؤْتِيَنِ خَيْ<tajweed class="idgham_ghunnah">رًا م</tajweed>ِّ<tajweed class="ikhafa">ن ج</tajweed>َ<tajweed class="ghunnah">نّ</tajweed>َتِكَ وَيُرْسِلَ عَلَيْهَا حُسْبَا<tajweed class="idgham_ghunnah">نًا م</tajweed>ِّنَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>سَّم<tajweed class="madda_obligatory">َا</tajweed>ٓءِ فَتُصْبِحَ صَعِي<tajweed class="ikhafa">دًا ز</tajweed>َلَقًا`},
     {n:41,t:`أَوْ يُصْبِحَ م<tajweed class="madda_obligatory">َا</tajweed>ٓؤُهَا غَوْ<tajweed class="ikhafa">رًا ف</tajweed>َلَ<tajweed class="ikhafa">ن ت</tajweed>َسْتَطِيعَ لَهُ<tajweed class="madda_normal">ۥ</tajweed> طَلَبًا`},
     {n:42,t:`وَأُحِيطَ بِثَمَرِه<tajweed class="madda_normal">ِۦ</tajweed> فَأَصْبَحَ يُقَلِّبُ كَفَّيْهِ عَلَىٰ م<tajweed class="madda_obligatory">َآ</tajweed> أَ<tajweed class="ikhafa">نف</tajweed>َقَ فِيهَا وَهِىَ خَاوِيَةٌ عَلَىٰ عُرُوشِهَا وَيَقُولُ يَ<tajweed class="madda_normal">ـٰ</tajweed>لَيْتَنِى لَمْ أُشْرِكْ بِرَبّ<tajweed class="madda_obligatory">ِىٓ</tajweed> أَحَدًا`},
     {n:43,t:`وَلَمْ تَك<tajweed class="idgham_wo_ghunnah">ُن ل</tajweed>َّهُ<tajweed class="madda_normal">ۥ</tajweed> فِئَ<tajweed class="idgham_ghunnah">ةٌ ي</tajweed>َ<tajweed class="ikhafa">نص</tajweed>ُرُونَهُ<tajweed class="madda_normal">ۥ</tajweed> مِ<tajweed class="ikhafa">ن د</tajweed>ُونِ <tajweed class="ham_wasl">ٱ</tajweed>للَّهِ وَمَا كَانَ مُ<tajweed class="ikhafa">نت</tajweed>َصِرًا`},
-    {n:44,t:`هُنَالِكَ <tajweed class="ham_wasl">ٱ</tajweed>لْوَلَ<tajweed class="madda_normal">ـٰ</tajweed>يَةُ لِلَّهِ <tajweed class="ham_wasl">ٱ</tajweed>لْحَقِّ‌ۚ هُوَ خَيْ<tajweed class="ikhafa">رٌ ث</tajweed>َوَا<tajweed class="idgham_ghunnah">بًا و</tajweed>َخَيْرٌ عُ<tajweed class="qalaqah">قْ</tajweed>بًا`}
+    {n:44,t:`هُنَالِكَ <tajweed class="ham_wasl">ٱ</tajweed>لْوَلَ<tajweed class="madda_normal">ـٰ</tajweed>يَةُ لِلَّهِ <tajweed class="ham_wasl">ٱ</tajweed>لْحَقِّۚ هُوَ خَيْ<tajweed class="ikhafa">رٌ ث</tajweed>َوَا<tajweed class="idgham_ghunnah">بًا و</tajweed>َخَيْرٌ عُ<tajweed class="qalaqah">قْ</tajweed>بًا`}
   ]},
   {r:'رکوع ۶',verses:[
-    {n:45,t:`وَ<tajweed class="ham_wasl">ٱ</tajweed>ضْرِ<tajweed class="qalaqah">بْ</tajweed> لَه<tajweed class="idgham_shafawi">ُم م</tajweed>َّثَلَ <tajweed class="ham_wasl">ٱ</tajweed>لْحَيَ<tajweed class="slnt">و</tajweed><tajweed class="madda_normal">ٲ</tajweed>ةِ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>دُّنْيَا كَم<tajweed class="madda_obligatory">َا</tajweed>ٓءٍ أَ<tajweed class="ikhafa">نز</tajweed>َلْنَ<tajweed class="madda_normal">ـٰ</tajweed>هُ مِنَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>سَّم<tajweed class="madda_obligatory">َا</tajweed>ٓءِ فَ<tajweed class="ham_wasl">ٱ</tajweed>خْتَلَطَ بِه<tajweed class="madda_normal">ِۦ</tajweed> نَبَاتُ <tajweed class="ham_wasl">ٱ</tajweed>لْأَرْضِ فَأَصْبَحَ هَشِي<tajweed class="ikhafa">مًا ت</tajweed>َذْرُوهُ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>رِّيَ<tajweed class="madda_normal">ـٰ</tajweed>حُ‌ۗ وَكَانَ <tajweed class="ham_wasl">ٱ</tajweed>للَّهُ عَلَىٰ كُلِّ ش<tajweed class="idgham_ghunnah">َىْءٍ م</tajweed>ُّ<tajweed class="qalaqah">قْ</tajweed>تَدِرًا`},
-    {n:46,t:`ٱلْمَالُ وَ<tajweed class="ham_wasl">ٱ</tajweed>لْبَنُونَ زِينَةُ <tajweed class="ham_wasl">ٱ</tajweed>لْحَيَ<tajweed class="slnt">و</tajweed><tajweed class="madda_normal">ٲ</tajweed>ةِ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>دُّنْيَا‌ۖ وَ<tajweed class="ham_wasl">ٱ</tajweed>لْبَ<tajweed class="madda_normal">ـٰ</tajweed>قِيَ<tajweed class="madda_normal">ـٰ</tajweed>تُ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>صَّ<tajweed class="madda_normal">ـٰ</tajweed>لِحَ<tajweed class="madda_normal">ـٰ</tajweed>تُ خَيْرٌ عِ<tajweed class="ikhafa">ند</tajweed>َ رَبِّكَ ثَوَا<tajweed class="idgham_ghunnah">بًا و</tajweed>َخَيْرٌ أَمَلاً`},
+    {n:45,t:`وَ<tajweed class="ham_wasl">ٱ</tajweed>ضْرِ<tajweed class="qalaqah">بْ</tajweed> لَه<tajweed class="idgham_shafawi">ُم م</tajweed>َّثَلَ <tajweed class="ham_wasl">ٱ</tajweed>لْحَيَ<tajweed class="slnt">و</tajweed><tajweed class="madda_normal">ٲ</tajweed>ةِ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>دُّنْيَا كَم<tajweed class="madda_obligatory">َا</tajweed>ٓءٍ أَ<tajweed class="ikhafa">نز</tajweed>َلْنَ<tajweed class="madda_normal">ـٰ</tajweed>هُ مِنَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>سَّم<tajweed class="madda_obligatory">َا</tajweed>ٓءِ فَ<tajweed class="ham_wasl">ٱ</tajweed>خْتَلَطَ بِه<tajweed class="madda_normal">ِۦ</tajweed> نَبَاتُ <tajweed class="ham_wasl">ٱ</tajweed>لْأَرْضِ فَأَصْبَحَ هَشِي<tajweed class="ikhafa">مًا ت</tajweed>َذْرُوهُ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>رِّيَ<tajweed class="madda_normal">ـٰ</tajweed>حُۗ وَكَانَ <tajweed class="ham_wasl">ٱ</tajweed>للَّهُ عَلَىٰ كُلِّ ش<tajweed class="idgham_ghunnah">َىْءٍ م</tajweed>ُّ<tajweed class="qalaqah">قْ</tajweed>تَدِرًا`},
+    {n:46,t:`ٱلْمَالُ وَ<tajweed class="ham_wasl">ٱ</tajweed>لْبَنُونَ زِينَةُ <tajweed class="ham_wasl">ٱ</tajweed>لْحَيَ<tajweed class="slnt">و</tajweed><tajweed class="madda_normal">ٲ</tajweed>ةِ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>دُّنْيَاۖ وَ<tajweed class="ham_wasl">ٱ</tajweed>لْبَ<tajweed class="madda_normal">ـٰ</tajweed>قِيَ<tajweed class="madda_normal">ـٰ</tajweed>تُ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>صَّ<tajweed class="madda_normal">ـٰ</tajweed>لِحَ<tajweed class="madda_normal">ـٰ</tajweed>تُ خَيْرٌ عِ<tajweed class="ikhafa">ند</tajweed>َ رَبِّكَ ثَوَا<tajweed class="idgham_ghunnah">بًا و</tajweed>َخَيْرٌ أَمَلاً`},
     {n:47,t:`وَيَوْمَ نُسَيِّرُ <tajweed class="ham_wasl">ٱ</tajweed>لْجِبَالَ وَتَرَى <tajweed class="ham_wasl">ٱ</tajweed>لْأَرْضَ بَارِزَ<tajweed class="idgham_ghunnah">ةً و</tajweed>َحَشَرْنَ<tajweed class="madda_normal">ـٰ</tajweed>هُمْ فَلَمْ نُغَادِرْ مِنْهُمْ أَحَدًا`},
-    {n:48,t:`وَعُرِضُو<tajweed class="slnt">اْ</tajweed> عَلَىٰ رَبِّكَ صَف<tajweed class="idgham_wo_ghunnah">ًّا ل</tajweed>َّقَ<tajweed class="qalaqah">دْ</tajweed> جِئْتُمُونَا كَمَا خَلَ<tajweed class="qalaqah">قْ</tajweed>نَ<tajweed class="madda_normal">ـٰ</tajweed>كُمْ أَوَّلَ مَرَّ<tajweed class="iqlab">ةِۭ‌ۚ ب</tajweed>َلْ زَعَمْتُمْ أَلّ<tajweed class="idgham_ghunnah">َن ن</tajweed>َّ<tajweed class="qalaqah">جْ</tajweed>عَلَ لَك<tajweed class="idgham_shafawi">ُم م</tajweed>َّوْعِدًا`},
-    {n:49,t:`وَوُضِعَ <tajweed class="ham_wasl">ٱ</tajweed>لْكِتَ<tajweed class="madda_normal">ـٰ</tajweed>بُ فَتَرَى <tajweed class="ham_wasl">ٱ</tajweed>لْمُ<tajweed class="qalaqah">جْ</tajweed>رِمِينَ مُشْفِقِينَ مِ<tajweed class="ghunnah">مّ</tajweed>َا فِيهِ وَيَقُولُونَ يَ<tajweed class="madda_normal">ـٰ</tajweed>وَيْلَتَنَا مَالِ هَ<tajweed class="madda_normal">ـٰ</tajweed>ذَا <tajweed class="ham_wasl">ٱ</tajweed>لْكِتَ<tajweed class="madda_normal">ـٰ</tajweed>بِ لَا يُغَادِرُ صَغِيرَ<tajweed class="idgham_ghunnah">ةً و</tajweed>َلَا كَبِيرَةً إِلّ<tajweed class="madda_obligatory">َآ</tajweed> أَحْصَ<tajweed class="madda_normal">ـٰ</tajweed>هَا‌ۚ وَوَجَدُو<tajweed class="slnt">اْ</tajweed> مَا عَمِلُو<tajweed class="slnt">اْ</tajweed> حَاضِ<tajweed class="idgham_ghunnah">رًا‌ۗ و</tajweed>َلَا يَظْلِمُ رَبُّكَ أَحَدًا`}
+    {n:48,t:`وَعُرِضُو<tajweed class="slnt">اْ</tajweed> عَلَىٰ رَبِّكَ صَف<tajweed class="idgham_wo_ghunnah">ًّا ل</tajweed>َّقَ<tajweed class="qalaqah">دْ</tajweed> جِئْتُمُونَا كَمَا خَلَ<tajweed class="qalaqah">قْ</tajweed>نَ<tajweed class="madda_normal">ـٰ</tajweed>كُمْ أَوَّلَ مَرَّ<tajweed class="iqlab">ةِۭۚ ب</tajweed>َلْ زَعَمْتُمْ أَلّ<tajweed class="idgham_ghunnah">َن ن</tajweed>َّ<tajweed class="qalaqah">جْ</tajweed>عَلَ لَك<tajweed class="idgham_shafawi">ُم م</tajweed>َّوْعِدًا`},
+    {n:49,t:`وَوُضِعَ <tajweed class="ham_wasl">ٱ</tajweed>لْكِتَ<tajweed class="madda_normal">ـٰ</tajweed>بُ فَتَرَى <tajweed class="ham_wasl">ٱ</tajweed>لْمُ<tajweed class="qalaqah">جْ</tajweed>رِمِينَ مُشْفِقِينَ مِ<tajweed class="ghunnah">مّ</tajweed>َا فِيهِ وَيَقُولُونَ يَ<tajweed class="madda_normal">ـٰ</tajweed>وَيْلَتَنَا مَالِ هَ<tajweed class="madda_normal">ـٰ</tajweed>ذَا <tajweed class="ham_wasl">ٱ</tajweed>لْكِتَ<tajweed class="madda_normal">ـٰ</tajweed>بِ لَا يُغَادِرُ صَغِيرَ<tajweed class="idgham_ghunnah">ةً و</tajweed>َلَا كَبِيرَةً إِلّ<tajweed class="madda_obligatory">َآ</tajweed> أَحْصَ<tajweed class="madda_normal">ـٰ</tajweed>هَاۚ وَوَجَدُو<tajweed class="slnt">اْ</tajweed> مَا عَمِلُو<tajweed class="slnt">اْ</tajweed> حَاضِ<tajweed class="idgham_ghunnah">رًاۗ و</tajweed>َلَا يَظْلِمُ رَبُّكَ أَحَدًا`}
   ]},
   {r:'رکوع ۷',verses:[
-    {n:50,t:`وَإِذْ قُلْنَا لِلْمَلَ<tajweed class="madda_obligatory">ـٰٓ</tajweed>ئِكَةِ <tajweed class="ham_wasl">ٱ</tajweed>سْجُدُو<tajweed class="slnt">اْ</tajweed> لِأَدَمَ فَسَجَد<tajweed class="madda_obligatory">ُوٓ</tajweed><tajweed class="slnt">اْ</tajweed> إِلّ<tajweed class="madda_obligatory">َآ</tajweed> إِ<tajweed class="qalaqah">بْ</tajweed>لِيسَ كَانَ مِنَ <tajweed class="ham_wasl">ٱ</tajweed>لْجِ<tajweed class="ghunnah">نّ</tajweed>ِ فَفَسَقَ عَنْ أَمْرِ رَبِّه<tajweed class="madda_obligatory">ِۦٓ‌ۗ</tajweed> أَفَتَتَّخِذُونَهُ<tajweed class="madda_normal">ۥ</tajweed> وَذُرِّيَّتَهُ<tajweed class="madda_obligatory">ۥٓ</tajweed> أَوْلِي<tajweed class="madda_obligatory">َا</tajweed>ٓءَ مِ<tajweed class="ikhafa">ن د</tajweed>ُونِى وَهُمْ لَكُمْ عَدُو<tajweed class="iqlab">ُّۢ‌ۚ ب</tajweed>ِئْسَ لِلظَّ<tajweed class="madda_normal">ـٰ</tajweed>لِمِينَ بَدَلاً`},
+    {n:50,t:`وَإِذْ قُلْنَا لِلْمَلَ<tajweed class="madda_obligatory">ـٰٓ</tajweed>ئِكَةِ <tajweed class="ham_wasl">ٱ</tajweed>سْجُدُو<tajweed class="slnt">اْ</tajweed> لِأَدَمَ فَسَجَد<tajweed class="madda_obligatory">ُوٓ</tajweed><tajweed class="slnt">اْ</tajweed> إِلّ<tajweed class="madda_obligatory">َآ</tajweed> إِ<tajweed class="qalaqah">بْ</tajweed>لِيسَ كَانَ مِنَ <tajweed class="ham_wasl">ٱ</tajweed>لْجِ<tajweed class="ghunnah">نّ</tajweed>ِ فَفَسَقَ عَنْ أَمْرِ رَبِّه<tajweed class="madda_obligatory">ِۦٓۗ</tajweed> أَفَتَتَّخِذُونَهُ<tajweed class="madda_normal">ۥ</tajweed> وَذُرِّيَّتَهُ<tajweed class="madda_obligatory">ۥٓ</tajweed> أَوْلِي<tajweed class="madda_obligatory">َا</tajweed>ٓءَ مِ<tajweed class="ikhafa">ن د</tajweed>ُونِى وَهُمْ لَكُمْ عَدُو<tajweed class="iqlab">ُّۢۚ ب</tajweed>ِئْسَ لِلظَّ<tajweed class="madda_normal">ـٰ</tajweed>لِمِينَ بَدَلاً`},
     {n:51,t:`۞ مّ<tajweed class="madda_obligatory">َآ</tajweed> أَشْهَ<tajweed class="idgham_mutajanisayn">د</tajweed>تُّهُمْ خَلْقَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>سَّمَ<tajweed class="madda_normal">ـٰ</tajweed>و<tajweed class="madda_normal">َٲ</tajweed>تِ وَ<tajweed class="ham_wasl">ٱ</tajweed>لْأَرْضِ وَلَا خَلْقَ أَ<tajweed class="ikhafa">نف</tajweed>ُسِهِمْ وَمَا كُ<tajweed class="ikhafa">نت</tajweed>ُ مُتَّخِذَ <tajweed class="ham_wasl">ٱ</tajweed>لْمُضِلِّينَ عَضُدًا`},
     {n:52,t:`وَيَوْمَ يَقُولُ نَادُو<tajweed class="slnt">اْ</tajweed> شُرَك<tajweed class="madda_obligatory">َا</tajweed>ٓءِىَ <tajweed class="ham_wasl">ٱ</tajweed>لَّذِينَ زَعَمْتُمْ فَدَعَوْهُمْ فَلَمْ يَسْتَجِيبُو<tajweed class="slnt">اْ</tajweed> لَهُمْ وَجَعَلْنَا بَيْنَه<tajweed class="idgham_shafawi">ُم م</tajweed>َّوْبِقًا`},
     {n:53,t:`وَرَءَا <tajweed class="ham_wasl">ٱ</tajweed>لْمُ<tajweed class="qalaqah">جْ</tajweed>رِمُونَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed><tajweed class="ghunnah">نّ</tajweed>َارَ فَظَ<tajweed class="ghunnah">نّ</tajweed><tajweed class="madda_obligatory">ُوٓ</tajweed><tajweed class="slnt">اْ</tajweed> أَ<tajweed class="ghunnah">نّ</tajweed>َه<tajweed class="idgham_shafawi">ُم م</tajweed>ُّوَاقِعُوهَا وَلَمْ يَجِدُو<tajweed class="slnt">اْ</tajweed> عَنْهَا مَصْرِفًا`}
   ]},
   {r:'رکوع ۸',verses:[
-    {n:54,t:`وَلَقَ<tajweed class="qalaqah">دْ</tajweed> صَرَّفْنَا فِى هَ<tajweed class="madda_normal">ـٰ</tajweed>ذَا <tajweed class="ham_wasl">ٱ</tajweed>لْقُرْءَانِ لِل<tajweed class="ghunnah">نّ</tajweed>َاسِ مِ<tajweed class="ikhafa">ن ك</tajweed>ُلِّ مَثَ<tajweed class="idgham_ghunnah">لٍ‌ۚ و</tajweed>َكَانَ <tajweed class="ham_wasl">ٱ</tajweed>لْإِ<tajweed class="ikhafa">نس</tajweed>َ<tajweed class="madda_normal">ـٰ</tajweed>نُ أَكْثَرَ ش<tajweed class="ikhafa">َىْءٍ ج</tajweed>َدَلاً`},
+    {n:54,t:`وَلَقَ<tajweed class="qalaqah">دْ</tajweed> صَرَّفْنَا فِى هَ<tajweed class="madda_normal">ـٰ</tajweed>ذَا <tajweed class="ham_wasl">ٱ</tajweed>لْقُرْءَانِ لِل<tajweed class="ghunnah">نّ</tajweed>َاسِ مِ<tajweed class="ikhafa">ن ك</tajweed>ُلِّ مَثَ<tajweed class="idgham_ghunnah">لٍۚ و</tajweed>َكَانَ <tajweed class="ham_wasl">ٱ</tajweed>لْإِ<tajweed class="ikhafa">نس</tajweed>َ<tajweed class="madda_normal">ـٰ</tajweed>نُ أَكْثَرَ ش<tajweed class="ikhafa">َىْءٍ ج</tajweed>َدَلاً`},
     {n:55,t:`وَمَا مَنَعَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed><tajweed class="ghunnah">نّ</tajweed>َاسَ أ<tajweed class="idgham_ghunnah">َن ي</tajweed>ُؤْمِن<tajweed class="madda_obligatory">ُوٓ</tajweed><tajweed class="slnt">اْ</tajweed> إِذْ ج<tajweed class="madda_obligatory">َا</tajweed>ٓءَهُمُ <tajweed class="ham_wasl">ٱ</tajweed>لْهُدَىٰ وَيَسْتَغْفِرُو<tajweed class="slnt">اْ</tajweed> رَبَّهُمْ إِلّ<tajweed class="madda_obligatory">َآ</tajweed> أَ<tajweed class="ikhafa">ن ت</tajweed>َأْتِيَهُمْ سُ<tajweed class="ghunnah">نّ</tajweed>َةُ <tajweed class="ham_wasl">ٱ</tajweed>لْأَوَّلِينَ أَوْ يَأْتِيَهُمُ <tajweed class="ham_wasl">ٱ</tajweed>لْعَذَابُ قُبُلاً`},
-    {n:56,t:`وَمَا نُرْسِلُ <tajweed class="ham_wasl">ٱ</tajweed>لْمُرْسَلِينَ إِلَّا مُبَشِّرِينَ وَمُ<tajweed class="ikhafa">نذ</tajweed>ِرِينَ‌ۚ وَيُجَ<tajweed class="madda_normal">ـٰ</tajweed>دِلُ <tajweed class="ham_wasl">ٱ</tajweed>لَّذِينَ كَفَرُو<tajweed class="slnt">اْ</tajweed> بِ<tajweed class="ham_wasl">ٱ</tajweed>لْبَ<tajweed class="madda_normal">ـٰ</tajweed>طِلِ لِيُ<tajweed class="qalaqah">دْ</tajweed>حِضُو<tajweed class="slnt">اْ</tajweed> بِهِ <tajweed class="ham_wasl">ٱ</tajweed>لْحَقَّ‌ۖ وَ<tajweed class="ham_wasl">ٱ</tajweed>تَّخَذ<tajweed class="madda_obligatory">ُوٓ</tajweed><tajweed class="slnt">اْ</tajweed> ءَايَ<tajweed class="madda_normal">ـٰ</tajweed>تِى وَم<tajweed class="madda_obligatory">َآ</tajweed> أُ<tajweed class="ikhafa">نذ</tajweed>ِرُو<tajweed class="slnt">اْ</tajweed> هُزُوًا`},
-    {n:57,t:`وَمَنْ أَظْلَمُ مِ<tajweed class="ghunnah">مّ</tajweed>َ<tajweed class="ikhafa">ن ذ</tajweed>ُكِّرَ بِـَٔـايَ<tajweed class="madda_normal">ـٰ</tajweed>تِ رَبِّه<tajweed class="madda_normal">ِۦ</tajweed> فَأَعْرَضَ عَنْهَا وَنَسِىَ مَا قَدَّمَتْ يَدَاهُ‌ۚ إِ<tajweed class="ghunnah">نّ</tajweed>َا جَعَلْنَا عَلَىٰ قُلُوبِهِمْ أَكِ<tajweed class="ghunnah">نّ</tajweed>َةً أ<tajweed class="idgham_ghunnah">َن ي</tajweed>َفْقَهُوهُ وَف<tajweed class="madda_obligatory">ِىٓ</tajweed> ءَاذَانِهِمْ وَ<tajweed class="qalaqah">قْ</tajweed><tajweed class="idgham_ghunnah">رًا‌ۖ و</tajweed>َإِ<tajweed class="ikhafa">ن ت</tajweed>َ<tajweed class="qalaqah">دْ</tajweed>عُهُمْ إِلَى <tajweed class="ham_wasl">ٱ</tajweed>لْهُدَىٰ فَل<tajweed class="idgham_ghunnah">َن ي</tajweed>َهْتَد<tajweed class="madda_obligatory">ُوٓ</tajweed><tajweed class="slnt">اْ</tajweed> إِذًا أَبَدًا`},
-    {n:58,t:`وَرَبُّكَ <tajweed class="ham_wasl">ٱ</tajweed>لْغَفُورُ ذُو <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>رَّحْمَةِ‌ۖ لَوْ يُؤَاخِذُه<tajweed class="ikhafa_shafawi">ُم ب</tajweed>ِمَا كَسَبُو<tajweed class="slnt">اْ</tajweed> لَعَجَّلَ لَهُمُ <tajweed class="ham_wasl">ٱ</tajweed>لْعَذَابَ‌ۚ بَل لَّه<tajweed class="idgham_shafawi">ُم م</tajweed>َّوْعِ<tajweed class="idgham_wo_ghunnah">دٌ ل</tajweed>ّ<tajweed class="idgham_ghunnah">َن ي</tajweed>َجِدُو<tajweed class="slnt">اْ</tajweed> مِ<tajweed class="ikhafa">ن د</tajweed>ُونِه<tajweed class="madda_normal">ِۦ</tajweed> مَوْئِلاً`},
+    {n:56,t:`وَمَا نُرْسِلُ <tajweed class="ham_wasl">ٱ</tajweed>لْمُرْسَلِينَ إِلَّا مُبَشِّرِينَ وَمُ<tajweed class="ikhafa">نذ</tajweed>ِرِينَۚ وَيُجَ<tajweed class="madda_normal">ـٰ</tajweed>دِلُ <tajweed class="ham_wasl">ٱ</tajweed>لَّذِينَ كَفَرُو<tajweed class="slnt">اْ</tajweed> بِ<tajweed class="ham_wasl">ٱ</tajweed>لْبَ<tajweed class="madda_normal">ـٰ</tajweed>طِلِ لِيُ<tajweed class="qalaqah">دْ</tajweed>حِضُو<tajweed class="slnt">اْ</tajweed> بِهِ <tajweed class="ham_wasl">ٱ</tajweed>لْحَقَّۖ وَ<tajweed class="ham_wasl">ٱ</tajweed>تَّخَذ<tajweed class="madda_obligatory">ُوٓ</tajweed><tajweed class="slnt">اْ</tajweed> ءَايَ<tajweed class="madda_normal">ـٰ</tajweed>تِى وَم<tajweed class="madda_obligatory">َآ</tajweed> أُ<tajweed class="ikhafa">نذ</tajweed>ِرُو<tajweed class="slnt">اْ</tajweed> هُزُوًا`},
+    {n:57,t:`وَمَنْ أَظْلَمُ مِ<tajweed class="ghunnah">مّ</tajweed>َ<tajweed class="ikhafa">ن ذ</tajweed>ُكِّرَ بِـَٔـايَ<tajweed class="madda_normal">ـٰ</tajweed>تِ رَبِّه<tajweed class="madda_normal">ِۦ</tajweed> فَأَعْرَضَ عَنْهَا وَنَسِىَ مَا قَدَّمَتْ يَدَاهُۚ إِ<tajweed class="ghunnah">نّ</tajweed>َا جَعَلْنَا عَلَىٰ قُلُوبِهِمْ أَكِ<tajweed class="ghunnah">نّ</tajweed>َةً أ<tajweed class="idgham_ghunnah">َن ي</tajweed>َفْقَهُوهُ وَف<tajweed class="madda_obligatory">ِىٓ</tajweed> ءَاذَانِهِمْ وَ<tajweed class="qalaqah">قْ</tajweed><tajweed class="idgham_ghunnah">رًاۖ و</tajweed>َإِ<tajweed class="ikhafa">ن ت</tajweed>َ<tajweed class="qalaqah">دْ</tajweed>عُهُمْ إِلَى <tajweed class="ham_wasl">ٱ</tajweed>لْهُدَىٰ فَل<tajweed class="idgham_ghunnah">َن ي</tajweed>َهْتَد<tajweed class="madda_obligatory">ُوٓ</tajweed><tajweed class="slnt">اْ</tajweed> إِذًا أَبَدًا`},
+    {n:58,t:`وَرَبُّكَ <tajweed class="ham_wasl">ٱ</tajweed>لْغَفُورُ ذُو <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>رَّحْمَةِۖ لَوْ يُؤَاخِذُه<tajweed class="ikhafa_shafawi">ُم ب</tajweed>ِمَا كَسَبُو<tajweed class="slnt">اْ</tajweed> لَعَجَّلَ لَهُمُ <tajweed class="ham_wasl">ٱ</tajweed>لْعَذَابَۚ بَل لَّه<tajweed class="idgham_shafawi">ُم م</tajweed>َّوْعِ<tajweed class="idgham_wo_ghunnah">دٌ ل</tajweed>ّ<tajweed class="idgham_ghunnah">َن ي</tajweed>َجِدُو<tajweed class="slnt">اْ</tajweed> مِ<tajweed class="ikhafa">ن د</tajweed>ُونِه<tajweed class="madda_normal">ِۦ</tajweed> مَوْئِلاً`},
     {n:59,t:`وَتِلْكَ <tajweed class="ham_wasl">ٱ</tajweed>لْقُرَ<tajweed class="madda_obligatory">ىٰٓ</tajweed> أَهْلَكْنَ<tajweed class="madda_normal">ـٰ</tajweed>هُمْ لَ<tajweed class="ghunnah">مّ</tajweed>َا ظَلَمُو<tajweed class="slnt">اْ</tajweed> وَجَعَلْنَا لِمَهْلِكِه<tajweed class="idgham_shafawi">ِم م</tajweed>َّوْعِدًا`}
   ]},
   {r:'رکوع ۹',verses:[
     {n:60,t:`وَإِذْ قَالَ مُوسَىٰ لِفَتَ<tajweed class="madda_normal">ـٰ</tajweed>هُ ل<tajweed class="madda_obligatory">َآ</tajweed> أَ<tajweed class="qalaqah">بْ</tajweed>رَحُ حَتَّ<tajweed class="madda_obligatory">ىٰٓ</tajweed> أَ<tajweed class="qalaqah">بْ</tajweed>لُغَ مَ<tajweed class="qalaqah">جْ</tajweed>مَعَ <tajweed class="ham_wasl">ٱ</tajweed>لْبَحْرَيْنِ أَوْ أَمْضِىَ حُقُبًا`},
     {n:61,t:`فَلَ<tajweed class="ghunnah">مّ</tajweed>َا بَلَغَا مَ<tajweed class="qalaqah">جْ</tajweed>مَعَ بَيْنِهِمَا نَسِيَا حُوتَهُمَا فَ<tajweed class="ham_wasl">ٱ</tajweed>تَّخَذَ سَبِيلَهُ<tajweed class="madda_normal">ۥ</tajweed> فِى <tajweed class="ham_wasl">ٱ</tajweed>لْبَحْرِ سَرَبًا`},
     {n:62,t:`فَلَ<tajweed class="ghunnah">مّ</tajweed>َا جَاوَزَا قَالَ لِفَتَ<tajweed class="madda_normal">ـٰ</tajweed>هُ ءَاتِنَا غَد<tajweed class="madda_obligatory">َا</tajweed>ٓءَنَا لَقَ<tajweed class="qalaqah">دْ</tajweed> لَقِينَا مِ<tajweed class="ikhafa">ن س</tajweed>َفَرِنَا هَ<tajweed class="madda_normal">ـٰ</tajweed>ذَا نَصَبًا`},
-    {n:63,t:`قَالَ أَرَءَيْتَ إِذْ أَوَيْن<tajweed class="madda_obligatory">َآ</tajweed> إِلَى <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>صَّخْرَةِ فَإِ<tajweed class="ghunnah">نّ</tajweed>ِى نَسِيتُ <tajweed class="ham_wasl">ٱ</tajweed>لْحُوتَ وَم<tajweed class="madda_obligatory">َآ</tajweed> أَنْسَ<tajweed class="madda_normal">ـٰ</tajweed>نِيهُ إِلَّا <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>شَّيْطَ<tajweed class="madda_normal">ـٰ</tajweed>نُ أَنْ أَذْكُرَهُ<tajweed class="madda_normal">ۥ</tajweed>‌ۚ وَ<tajweed class="ham_wasl">ٱ</tajweed>تَّخَذَ سَبِيلَهُ<tajweed class="madda_normal">ۥ</tajweed> فِى <tajweed class="ham_wasl">ٱ</tajweed>لْبَحْرِ عَجَبًا`},
-    {n:64,t:`قَالَ ذ<tajweed class="madda_normal">َٲ</tajweed>لِكَ مَا كُ<tajweed class="ghunnah">نّ</tajweed>َا نَ<tajweed class="qalaqah">بْ</tajweed>غِ‌ۚ فَ<tajweed class="ham_wasl">ٱ</tajweed>رْتَدَّا عَلَ<tajweed class="madda_obligatory">ىٰٓ</tajweed> ءَاثَارِهِمَا قَصَصًا`},
+    {n:63,t:`قَالَ أَرَءَيْتَ إِذْ أَوَيْن<tajweed class="madda_obligatory">َآ</tajweed> إِلَى <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>صَّخْرَةِ فَإِ<tajweed class="ghunnah">نّ</tajweed>ِى نَسِيتُ <tajweed class="ham_wasl">ٱ</tajweed>لْحُوتَ وَم<tajweed class="madda_obligatory">َآ</tajweed> أَنْسَ<tajweed class="madda_normal">ـٰ</tajweed>نِيهُ إِلَّا <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>شَّيْطَ<tajweed class="madda_normal">ـٰ</tajweed>نُ أَنْ أَذْكُرَهُ<tajweed class="madda_normal">ۥ</tajweed>ۚ وَ<tajweed class="ham_wasl">ٱ</tajweed>تَّخَذَ سَبِيلَهُ<tajweed class="madda_normal">ۥ</tajweed> فِى <tajweed class="ham_wasl">ٱ</tajweed>لْبَحْرِ عَجَبًا`},
+    {n:64,t:`قَالَ ذ<tajweed class="madda_normal">َٲ</tajweed>لِكَ مَا كُ<tajweed class="ghunnah">نّ</tajweed>َا نَ<tajweed class="qalaqah">بْ</tajweed>غِۚ فَ<tajweed class="ham_wasl">ٱ</tajweed>رْتَدَّا عَلَ<tajweed class="madda_obligatory">ىٰٓ</tajweed> ءَاثَارِهِمَا قَصَصًا`},
     {n:65,t:`فَوَجَدَا عَ<tajweed class="qalaqah">بْ</tajweed><tajweed class="idgham_ghunnah">دًا م</tajweed>ِّنْ عِبَادِن<tajweed class="madda_obligatory">َآ</tajweed> ءَاتَيْنَ<tajweed class="madda_normal">ـٰ</tajweed>هُ رَحْمَ<tajweed class="idgham_ghunnah">ةً م</tajweed>ِّنْ عِ<tajweed class="ikhafa">ند</tajweed>ِنَا وَعَلَّمْنَ<tajweed class="madda_normal">ـٰ</tajweed>هُ م<tajweed class="idgham_wo_ghunnah">ِن ل</tajweed>َّدُ<tajweed class="ghunnah">نّ</tajweed>َا عِلْمًا`},
     {n:66,t:`قَالَ لَهُ<tajweed class="madda_normal">ۥ</tajweed> مُوسَىٰ هَلْ أَتَّبِعُكَ عَلَ<tajweed class="madda_obligatory">ىٰٓ</tajweed> أَ<tajweed class="ikhafa">ن ت</tajweed>ُعَلِّمَنِ مِ<tajweed class="ghunnah">مّ</tajweed>َا عُلِّمْتَ رُشْدًا`},
     {n:67,t:`قَالَ إِ<tajweed class="ghunnah">نّ</tajweed>َكَ لَ<tajweed class="ikhafa">ن ت</tajweed>َسْتَطِيعَ مَعِىَ صَ<tajweed class="qalaqah">بْ</tajweed>رًا`},
@@ -561,26 +585,26 @@ const KAHF_DATA=[
     {n:70,t:`قَالَ فَإِنِ <tajweed class="ham_wasl">ٱ</tajweed>تَّبَعْتَنِى فَلَا تَسْــَٔلْنِى عَ<tajweed class="ikhafa">ن ش</tajweed>َىْءٍ حَتَّ<tajweed class="madda_obligatory">ىٰٓ</tajweed> أُحْدِثَ لَكَ مِنْهُ ذِكْرًا`}
   ]},
   {r:'رکوع ۱۰',verses:[
-    {n:71,t:`فَ<tajweed class="ham_wasl">ٱ</tajweed><tajweed class="ikhafa">نط</tajweed>َلَقَا حَتَّ<tajweed class="madda_obligatory">ىٰٓ</tajweed> إِذَا رَكِبَا فِى <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>سَّفِينَةِ خَرَقَهَا‌ۖ قَالَ أَخَرَ<tajweed class="qalaqah">قْ</tajweed>تَهَا لِتُغْرِقَ أَهْلَهَا لَقَ<tajweed class="qalaqah">دْ</tajweed> جِئْتَ شَيْــًٔا إِمْرًا`},
+    {n:71,t:`فَ<tajweed class="ham_wasl">ٱ</tajweed><tajweed class="ikhafa">نط</tajweed>َلَقَا حَتَّ<tajweed class="madda_obligatory">ىٰٓ</tajweed> إِذَا رَكِبَا فِى <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>سَّفِينَةِ خَرَقَهَاۖ قَالَ أَخَرَ<tajweed class="qalaqah">قْ</tajweed>تَهَا لِتُغْرِقَ أَهْلَهَا لَقَ<tajweed class="qalaqah">دْ</tajweed> جِئْتَ شَيْــًٔا إِمْرًا`},
     {n:72,t:`قَالَ أَلَمْ أَقُلْ إِ<tajweed class="ghunnah">نّ</tajweed>َكَ لَ<tajweed class="ikhafa">ن ت</tajweed>َسْتَطِيعَ مَعِىَ صَ<tajweed class="qalaqah">بْ</tajweed>رًا`},
     {n:73,t:`قَالَ لَا تُؤَاخِذْنِى بِمَا نَسِيتُ وَلَا تُرْهِ<tajweed class="qalaqah">قْ</tajweed>نِى مِنْ أَمْرِى عُسْرًا`},
     {n:74,t:`فَ<tajweed class="ham_wasl">ٱ</tajweed><tajweed class="ikhafa">نط</tajweed>َلَقَا حَتَّ<tajweed class="madda_obligatory">ىٰٓ</tajweed> إِذَا لَقِيَا غُلَ<tajweed class="madda_normal">ـٰ</tajweed><tajweed class="ikhafa">مًا ف</tajweed>َقَتَلَهُ<tajweed class="madda_normal">ۥ</tajweed> قَالَ أَقَتَلْتَ نَفْ<tajweed class="ikhafa">سًا ز</tajweed>َكِيَّ<tajweed class="iqlab">ةَۢ ب</tajweed>ِغَيْرِ نَفْ<tajweed class="idgham_wo_ghunnah">سٍ ل</tajweed>َّقَ<tajweed class="qalaqah">دْ</tajweed> جِئْتَ شَيْـ<tajweed class="idgham_ghunnah">ـًٔا ن</tajweed>ُّكْرًا`},
     {n:75,t:`۞ قَالَ أَلَمْ أَقُل لَّكَ إِ<tajweed class="ghunnah">نّ</tajweed>َكَ لَ<tajweed class="ikhafa">ن ت</tajweed>َسْتَطِيعَ مَعِىَ صَ<tajweed class="qalaqah">بْ</tajweed>رًا`},
-    {n:76,t:`قَالَ إِ<tajweed class="ikhafa">ن س</tajweed>َأَلْتُكَ عَ<tajweed class="ikhafa">ن ش</tajweed>َىْ<tajweed class="iqlab">ءِۭ ب</tajweed>َعْدَهَا فَلَا تُصَ<tajweed class="madda_normal">ـٰ</tajweed>حِ<tajweed class="qalaqah">بْ</tajweed>نِى‌ۖ قَ<tajweed class="qalaqah">دْ</tajweed> بَلَغْتَ م<tajweed class="idgham_wo_ghunnah">ِن ل</tajweed>َّدُ<tajweed class="ghunnah">نّ</tajweed>ِى عُذْرًا`},
-    {n:77,t:`فَ<tajweed class="ham_wasl">ٱ</tajweed><tajweed class="ikhafa">نط</tajweed>َلَقَا حَتَّ<tajweed class="madda_obligatory">ىٰٓ</tajweed> إِذ<tajweed class="madda_obligatory">َآ</tajweed> أَتَي<tajweed class="madda_obligatory">َآ</tajweed> أَهْلَ قَرْيَةٍ <tajweed class="ham_wasl">ٱ</tajweed>سْتَ<tajweed class="qalaqah">طْ</tajweed>عَم<tajweed class="madda_obligatory">َآ</tajweed> أَهْلَهَا فَأَبَوْ<tajweed class="slnt">اْ</tajweed> أ<tajweed class="idgham_ghunnah">َن ي</tajweed>ُضَيِّفُوهُمَا فَوَجَدَا فِيهَا جِدَا<tajweed class="idgham_ghunnah">رًا ي</tajweed>ُرِيدُ أ<tajweed class="idgham_ghunnah">َن ي</tajweed>َ<tajweed class="ikhafa">نق</tajweed>َضَّ فَأَقَامَهُ<tajweed class="madda_normal">ۥ</tajweed>‌ۖ قَالَ لَوْ شِئْتَ لَتَّخَذْتَ عَلَيْهِ أَ<tajweed class="qalaqah">جْ</tajweed>رًا`},
-    {n:78,t:`قَالَ هَ<tajweed class="madda_normal">ـٰ</tajweed>ذَا فِرَاقُ بَيْنِى وَبَيْنِكَ‌ۚ سَأُنَبِّئُكَ بِتَأْوِيلِ مَا لَمْ تَسْتَطِع عَّلَيْهِ صَ<tajweed class="qalaqah">بْ</tajweed>رًا`},
+    {n:76,t:`قَالَ إِ<tajweed class="ikhafa">ن س</tajweed>َأَلْتُكَ عَ<tajweed class="ikhafa">ن ش</tajweed>َىْ<tajweed class="iqlab">ءِۭ ب</tajweed>َعْدَهَا فَلَا تُصَ<tajweed class="madda_normal">ـٰ</tajweed>حِ<tajweed class="qalaqah">بْ</tajweed>نِىۖ قَ<tajweed class="qalaqah">دْ</tajweed> بَلَغْتَ م<tajweed class="idgham_wo_ghunnah">ِن ل</tajweed>َّدُ<tajweed class="ghunnah">نّ</tajweed>ِى عُذْرًا`},
+    {n:77,t:`فَ<tajweed class="ham_wasl">ٱ</tajweed><tajweed class="ikhafa">نط</tajweed>َلَقَا حَتَّ<tajweed class="madda_obligatory">ىٰٓ</tajweed> إِذ<tajweed class="madda_obligatory">َآ</tajweed> أَتَي<tajweed class="madda_obligatory">َآ</tajweed> أَهْلَ قَرْيَةٍ <tajweed class="ham_wasl">ٱ</tajweed>سْتَ<tajweed class="qalaqah">طْ</tajweed>عَم<tajweed class="madda_obligatory">َآ</tajweed> أَهْلَهَا فَأَبَوْ<tajweed class="slnt">اْ</tajweed> أ<tajweed class="idgham_ghunnah">َن ي</tajweed>ُضَيِّفُوهُمَا فَوَجَدَا فِيهَا جِدَا<tajweed class="idgham_ghunnah">رًا ي</tajweed>ُرِيدُ أ<tajweed class="idgham_ghunnah">َن ي</tajweed>َ<tajweed class="ikhafa">نق</tajweed>َضَّ فَأَقَامَهُ<tajweed class="madda_normal">ۥ</tajweed>ۖ قَالَ لَوْ شِئْتَ لَتَّخَذْتَ عَلَيْهِ أَ<tajweed class="qalaqah">جْ</tajweed>رًا`},
+    {n:78,t:`قَالَ هَ<tajweed class="madda_normal">ـٰ</tajweed>ذَا فِرَاقُ بَيْنِى وَبَيْنِكَۚ سَأُنَبِّئُكَ بِتَأْوِيلِ مَا لَمْ تَسْتَطِع عَّلَيْهِ صَ<tajweed class="qalaqah">بْ</tajweed>رًا`},
     {n:79,t:`أَ<tajweed class="ghunnah">مّ</tajweed>َا <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>سَّفِينَةُ فَكَانَتْ لِمَسَ<tajweed class="madda_normal">ـٰ</tajweed>كِينَ يَعْمَلُونَ فِى <tajweed class="ham_wasl">ٱ</tajweed>لْبَحْرِ فَأَرَ<tajweed class="idgham_mutajanisayn">د</tajweed>تُّ أَنْ أَعِيبَهَا وَكَانَ وَر<tajweed class="madda_obligatory">َا</tajweed>ٓءَه<tajweed class="idgham_shafawi">ُم م</tajweed>َّلِ<tajweed class="idgham_ghunnah">كٌ ي</tajweed>َأْخُذُ كُلَّ سَفِينَةٍ غَصْبًا`},
     {n:80,t:`وَأَ<tajweed class="ghunnah">مّ</tajweed>َا <tajweed class="ham_wasl">ٱ</tajweed>لْغُلَ<tajweed class="madda_normal">ـٰ</tajweed>مُ فَكَانَ أَبَوَاهُ مُؤْمِنَيْنِ فَخَشِين<tajweed class="madda_obligatory">َآ</tajweed> أ<tajweed class="idgham_ghunnah">َن ي</tajweed>ُرْهِقَهُمَا طُغْيَ<tajweed class="madda_normal">ـٰ</tajweed><tajweed class="idgham_ghunnah">نًا و</tajweed>َكُفْرًا`},
     {n:81,t:`فَأَرَ<tajweed class="qalaqah">دْ</tajweed>ن<tajweed class="madda_obligatory">َآ</tajweed> أ<tajweed class="idgham_ghunnah">َن ي</tajweed>ُ<tajweed class="qalaqah">بْ</tajweed>دِلَهُمَا رَبُّهُمَا خَيْ<tajweed class="idgham_ghunnah">رًا م</tajweed>ِّنْهُ زَكَ<tajweed class="slnt">و</tajweed><tajweed class="madda_normal">ٲ</tajweed><tajweed class="idgham_ghunnah">ةً و</tajweed>َأَ<tajweed class="qalaqah">قْ</tajweed>رَبَ رُحْمًا`},
-    {n:82,t:`وَأَ<tajweed class="ghunnah">مّ</tajweed>َا <tajweed class="ham_wasl">ٱ</tajweed>لْجِدَارُ فَكَانَ لِغُلَ<tajweed class="madda_normal">ـٰ</tajweed>مَيْنِ يَتِيمَيْنِ فِى <tajweed class="ham_wasl">ٱ</tajweed>لْمَدِينَةِ وَكَانَ تَحْتَهُ<tajweed class="madda_normal">ۥ</tajweed> كَن<tajweed class="idgham_wo_ghunnah">زٌ ل</tajweed>َّهُمَا وَكَانَ أَبُوهُمَا صَ<tajweed class="madda_normal">ـٰ</tajweed>لِ<tajweed class="ikhafa">حًا ف</tajweed>َأَرَادَ رَبُّكَ أ<tajweed class="idgham_ghunnah">َن ي</tajweed>َ<tajweed class="qalaqah">بْ</tajweed>لُغ<tajweed class="madda_obligatory">َآ</tajweed> أَشُدَّهُمَا وَيَسْتَخْرِجَا كَ<tajweed class="ikhafa">نز</tajweed>َهُمَا رَحْمَ<tajweed class="idgham_ghunnah">ةً م</tajweed>ّ<tajweed class="idgham_wo_ghunnah">ِن ر</tajweed>َّبِّكَ‌ۚ وَمَا فَعَلْتُهُ<tajweed class="madda_normal">ۥ</tajweed> عَنْ أَمْرِى‌ۚ ذ<tajweed class="madda_normal">َٲ</tajweed>لِكَ تَأْوِيلُ مَا لَمْ تَسْطِع عَّلَيْهِ صَ<tajweed class="qalaqah">بْ</tajweed>رًا`}
+    {n:82,t:`وَأَ<tajweed class="ghunnah">مّ</tajweed>َا <tajweed class="ham_wasl">ٱ</tajweed>لْجِدَارُ فَكَانَ لِغُلَ<tajweed class="madda_normal">ـٰ</tajweed>مَيْنِ يَتِيمَيْنِ فِى <tajweed class="ham_wasl">ٱ</tajweed>لْمَدِينَةِ وَكَانَ تَحْتَهُ<tajweed class="madda_normal">ۥ</tajweed> كَن<tajweed class="idgham_wo_ghunnah">زٌ ل</tajweed>َّهُمَا وَكَانَ أَبُوهُمَا صَ<tajweed class="madda_normal">ـٰ</tajweed>لِ<tajweed class="ikhafa">حًا ف</tajweed>َأَرَادَ رَبُّكَ أ<tajweed class="idgham_ghunnah">َن ي</tajweed>َ<tajweed class="qalaqah">بْ</tajweed>لُغ<tajweed class="madda_obligatory">َآ</tajweed> أَشُدَّهُمَا وَيَسْتَخْرِجَا كَ<tajweed class="ikhafa">نز</tajweed>َهُمَا رَحْمَ<tajweed class="idgham_ghunnah">ةً م</tajweed>ّ<tajweed class="idgham_wo_ghunnah">ِن ر</tajweed>َّبِّكَۚ وَمَا فَعَلْتُهُ<tajweed class="madda_normal">ۥ</tajweed> عَنْ أَمْرِىۚ ذ<tajweed class="madda_normal">َٲ</tajweed>لِكَ تَأْوِيلُ مَا لَمْ تَسْطِع عَّلَيْهِ صَ<tajweed class="qalaqah">بْ</tajweed>رًا`}
   ]},
   {r:'رکوع ۱۱',verses:[
-    {n:83,t:`وَيَسْــَٔلُونَكَ عَ<tajweed class="ikhafa">ن ذ</tajweed>ِى <tajweed class="ham_wasl">ٱ</tajweed>لْقَرْنَيْنِ‌ۖ قُلْ سَأَتْلُو<tajweed class="slnt">اْ</tajweed> عَلَيْك<tajweed class="idgham_shafawi">ُم م</tajweed>ِّنْهُ ذِكْرًا`},
+    {n:83,t:`وَيَسْــَٔلُونَكَ عَ<tajweed class="ikhafa">ن ذ</tajweed>ِى <tajweed class="ham_wasl">ٱ</tajweed>لْقَرْنَيْنِۖ قُلْ سَأَتْلُو<tajweed class="slnt">اْ</tajweed> عَلَيْك<tajweed class="idgham_shafawi">ُم م</tajweed>ِّنْهُ ذِكْرًا`},
     {n:84,t:`إِ<tajweed class="ghunnah">نّ</tajweed>َا مَكَّ<tajweed class="ghunnah">نّ</tajweed>َا لَهُ<tajweed class="madda_normal">ۥ</tajweed> فِى <tajweed class="ham_wasl">ٱ</tajweed>لْأَرْضِ وَءَاتَيْنَ<tajweed class="madda_normal">ـٰ</tajweed>هُ مِ<tajweed class="ikhafa">ن ك</tajweed>ُلِّ ش<tajweed class="ikhafa">َىْءٍ س</tajweed>َبَبًا`},
     {n:85,t:`فَأَتْبَعَ سَبَبًا`},
-    {n:86,t:`حَتَّ<tajweed class="madda_obligatory">ىٰٓ</tajweed> إِذَا بَلَغَ مَغْرِبَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>شَّمْسِ وَجَدَهَا تَغْرُبُ فِى عَيْنٍ حَمِئَ<tajweed class="idgham_ghunnah">ةٍ و</tajweed>َوَجَدَ عِ<tajweed class="ikhafa">ند</tajweed>َهَا قَوْ<tajweed class="ikhafa">مًا‌ۗ ق</tajweed>ُلْنَا يَ<tajweed class="madda_normal">ـٰ</tajweed>ذَا <tajweed class="ham_wasl">ٱ</tajweed>لْقَرْنَيْنِ إِ<tajweed class="ghunnah">مّ</tajweed><tajweed class="madda_obligatory">َآ</tajweed> أَ<tajweed class="ikhafa">ن ت</tajweed>ُعَذِّبَ وَإِ<tajweed class="ghunnah">مّ</tajweed><tajweed class="madda_obligatory">َآ</tajweed> أَ<tajweed class="ikhafa">ن ت</tajweed>َتَّخِذَ فِيهِمْ حُسْنًا`},
+    {n:86,t:`حَتَّ<tajweed class="madda_obligatory">ىٰٓ</tajweed> إِذَا بَلَغَ مَغْرِبَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>شَّمْسِ وَجَدَهَا تَغْرُبُ فِى عَيْنٍ حَمِئَ<tajweed class="idgham_ghunnah">ةٍ و</tajweed>َوَجَدَ عِ<tajweed class="ikhafa">ند</tajweed>َهَا قَوْ<tajweed class="ikhafa">مًاۗ ق</tajweed>ُلْنَا يَ<tajweed class="madda_normal">ـٰ</tajweed>ذَا <tajweed class="ham_wasl">ٱ</tajweed>لْقَرْنَيْنِ إِ<tajweed class="ghunnah">مّ</tajweed><tajweed class="madda_obligatory">َآ</tajweed> أَ<tajweed class="ikhafa">ن ت</tajweed>ُعَذِّبَ وَإِ<tajweed class="ghunnah">مّ</tajweed><tajweed class="madda_obligatory">َآ</tajweed> أَ<tajweed class="ikhafa">ن ت</tajweed>َتَّخِذَ فِيهِمْ حُسْنًا`},
     {n:87,t:`قَالَ أَ<tajweed class="ghunnah">مّ</tajweed>َا مَ<tajweed class="ikhafa">ن ظ</tajweed>َلَمَ فَسَوْفَ نُعَذِّبُهُ<tajweed class="madda_normal">ۥ</tajweed> ثُ<tajweed class="ghunnah">مّ</tajweed>َ يُرَدُّ إِلَىٰ رَبِّه<tajweed class="madda_normal">ِۦ</tajweed> فَيُعَذِّبُهُ<tajweed class="madda_normal">ۥ</tajweed> عَذَا<tajweed class="idgham_ghunnah">بًا ن</tajweed>ُّكْرًا`},
-    {n:88,t:`وَأَ<tajweed class="ghunnah">مّ</tajweed>َا مَنْ ءَامَنَ وَعَمِلَ صَ<tajweed class="madda_normal">ـٰ</tajweed>لِ<tajweed class="ikhafa">حًا ف</tajweed>َلَهُ<tajweed class="madda_normal">ۥ</tajweed> جَز<tajweed class="madda_obligatory">َا</tajweed>ٓءً <tajweed class="ham_wasl">ٱ</tajweed>لْحُسْنَىٰ‌ۖ وَسَنَقُولُ لَهُ<tajweed class="madda_normal">ۥ</tajweed> مِنْ أَمْرِنَا يُسْرًا`},
+    {n:88,t:`وَأَ<tajweed class="ghunnah">مّ</tajweed>َا مَنْ ءَامَنَ وَعَمِلَ صَ<tajweed class="madda_normal">ـٰ</tajweed>لِ<tajweed class="ikhafa">حًا ف</tajweed>َلَهُ<tajweed class="madda_normal">ۥ</tajweed> جَز<tajweed class="madda_obligatory">َا</tajweed>ٓءً <tajweed class="ham_wasl">ٱ</tajweed>لْحُسْنَىٰۖ وَسَنَقُولُ لَهُ<tajweed class="madda_normal">ۥ</tajweed> مِنْ أَمْرِنَا يُسْرًا`},
     {n:89,t:`ثُ<tajweed class="ghunnah">مّ</tajweed>َ أَتْبَعَ سَبَبًا`},
     {n:90,t:`حَتَّ<tajweed class="madda_obligatory">ىٰٓ</tajweed> إِذَا بَلَغَ مَ<tajweed class="qalaqah">طْ</tajweed>لِعَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>شَّمْسِ وَجَدَهَا تَ<tajweed class="qalaqah">طْ</tajweed>لُعُ عَلَىٰ قَوْ<tajweed class="idgham_wo_ghunnah">مٍ ل</tajweed>َّمْ نَ<tajweed class="qalaqah">جْ</tajweed>عَل لَّه<tajweed class="idgham_shafawi">ُم م</tajweed>ِّ<tajweed class="ikhafa">ن د</tajweed>ُونِهَا سِتْرًا`},
     {n:91,t:`كَذ<tajweed class="madda_normal">َٲ</tajweed>لِكَ وَقَ<tajweed class="qalaqah">دْ</tajweed> أَحَ<tajweed class="qalaqah">طْ</tajweed>نَا بِمَا لَدَيْهِ خُ<tajweed class="qalaqah">بْ</tajweed>رًا`},
@@ -588,15 +612,15 @@ const KAHF_DATA=[
     {n:93,t:`حَتَّ<tajweed class="madda_obligatory">ىٰٓ</tajweed> إِذَا بَلَغَ بَيْنَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>سَّدَّيْنِ وَجَدَ مِ<tajweed class="ikhafa">ن د</tajweed>ُونِهِمَا قَوْ<tajweed class="idgham_wo_ghunnah">مًا ل</tajweed>َّا يَكَادُونَ يَفْقَهُونَ قَوْلاً`},
     {n:94,t:`قَالُو<tajweed class="slnt">اْ</tajweed> يَ<tajweed class="madda_normal">ـٰ</tajweed>ذَا <tajweed class="ham_wasl">ٱ</tajweed>لْقَرْنَيْنِ إِ<tajweed class="ghunnah">نّ</tajweed>َ يَأْجُوجَ وَمَأْجُوجَ مُفْسِدُونَ فِى <tajweed class="ham_wasl">ٱ</tajweed>لْأَرْضِ فَهَلْ نَ<tajweed class="qalaqah">جْ</tajweed>عَلُ لَكَ خَرْجًا عَلَ<tajweed class="madda_obligatory">ىٰٓ</tajweed> أَ<tajweed class="ikhafa">ن ت</tajweed>َ<tajweed class="qalaqah">جْ</tajweed>عَلَ بَيْنَنَا وَبَيْنَهُمْ سَدًّا`},
     {n:95,t:`قَالَ مَا مَكَّ<tajweed class="ghunnah">نّ</tajweed>ِى فِيهِ رَبِّى خَيْ<tajweed class="ikhafa">رٌ ف</tajweed>َأَعِينُونِى بِقُوَّةٍ أَ<tajweed class="qalaqah">جْ</tajweed>عَلْ بَيْنَكُمْ وَبَيْنَهُمْ رَ<tajweed class="qalaqah">دْ</tajweed>مًا`},
-    {n:96,t:`ءَاتُونِى زُبَرَ <tajweed class="ham_wasl">ٱ</tajweed>لْحَدِيدِ‌ۖ حَتَّ<tajweed class="madda_obligatory">ىٰٓ</tajweed> إِذَا سَاوَىٰ بَيْنَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>صَّدَفَيْنِ قَالَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="ikhafa">نف</tajweed>ُخُو<tajweed class="slnt">اْ‌ۖ</tajweed> حَتَّ<tajweed class="madda_obligatory">ىٰٓ</tajweed> إِذَا جَعَلَهُ<tajweed class="madda_normal">ۥ</tajweed> نَا<tajweed class="ikhafa">رًا ق</tajweed>َالَ ءَاتُون<tajweed class="madda_obligatory">ِىٓ</tajweed> أُفْرِغْ عَلَيْهِ قِ<tajweed class="qalaqah">طْ</tajweed>رًا`},
+    {n:96,t:`ءَاتُونِى زُبَرَ <tajweed class="ham_wasl">ٱ</tajweed>لْحَدِيدِۖ حَتَّ<tajweed class="madda_obligatory">ىٰٓ</tajweed> إِذَا سَاوَىٰ بَيْنَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>صَّدَفَيْنِ قَالَ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="ikhafa">نف</tajweed>ُخُو<tajweed class="slnt">اْۖ</tajweed> حَتَّ<tajweed class="madda_obligatory">ىٰٓ</tajweed> إِذَا جَعَلَهُ<tajweed class="madda_normal">ۥ</tajweed> نَا<tajweed class="ikhafa">رًا ق</tajweed>َالَ ءَاتُون<tajweed class="madda_obligatory">ِىٓ</tajweed> أُفْرِغْ عَلَيْهِ قِ<tajweed class="qalaqah">طْ</tajweed>رًا`},
     {n:97,t:`فَمَا <tajweed class="ham_wasl">ٱ</tajweed>سْطَ<tajweed class="madda_normal">ـٰ</tajweed>ع<tajweed class="madda_obligatory">ُوٓ</tajweed><tajweed class="slnt">اْ</tajweed> أ<tajweed class="idgham_ghunnah">َن ي</tajweed>َظْهَرُوهُ وَمَا <tajweed class="ham_wasl">ٱ</tajweed>سْتَطَ<tajweed class="madda_normal">ـٰ</tajweed>عُو<tajweed class="slnt">اْ</tajweed> لَهُ<tajweed class="madda_normal">ۥ</tajweed> نَ<tajweed class="qalaqah">قْ</tajweed>بًا`},
-    {n:98,t:`قَالَ هَ<tajweed class="madda_normal">ـٰ</tajweed>ذَا رَحْمَ<tajweed class="idgham_ghunnah">ةٌ م</tajweed>ّ<tajweed class="idgham_wo_ghunnah">ِن ر</tajweed>َّبِّى‌ۖ فَإِذَا ج<tajweed class="madda_obligatory">َا</tajweed>ٓءَ وَعْدُ رَبِّى جَعَلَهُ<tajweed class="madda_normal">ۥ</tajweed> دَكّ<tajweed class="madda_obligatory">َا</tajweed>ٓءَ‌ۖ وَكَانَ وَعْدُ رَبِّى حَقًّا`}
+    {n:98,t:`قَالَ هَ<tajweed class="madda_normal">ـٰ</tajweed>ذَا رَحْمَ<tajweed class="idgham_ghunnah">ةٌ م</tajweed>ّ<tajweed class="idgham_wo_ghunnah">ِن ر</tajweed>َّبِّىۖ فَإِذَا ج<tajweed class="madda_obligatory">َا</tajweed>ٓءَ وَعْدُ رَبِّى جَعَلَهُ<tajweed class="madda_normal">ۥ</tajweed> دَكّ<tajweed class="madda_obligatory">َا</tajweed>ٓءَۖ وَكَانَ وَعْدُ رَبِّى حَقًّا`}
   ]},
   {r:'رکوع ۱۲',verses:[
-    {n:99,t:`۞ وَتَرَكْنَا بَعْضَهُمْ يَوْمَئِ<tajweed class="idgham_ghunnah">ذٍ ي</tajweed>َمُوجُ فِى بَعْ<tajweed class="idgham_ghunnah">ضٍ‌ۖ و</tajweed>َنُفِخَ فِى <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>صُّورِ فَجَمَعْنَ<tajweed class="madda_normal">ـٰ</tajweed>هُمْ جَمْعًا`},
+    {n:99,t:`۞ وَتَرَكْنَا بَعْضَهُمْ يَوْمَئِ<tajweed class="idgham_ghunnah">ذٍ ي</tajweed>َمُوجُ فِى بَعْ<tajweed class="idgham_ghunnah">ضٍۖ و</tajweed>َنُفِخَ فِى <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>صُّورِ فَجَمَعْنَ<tajweed class="madda_normal">ـٰ</tajweed>هُمْ جَمْعًا`},
     {n:100,t:`وَعَرَضْنَا جَهَ<tajweed class="ghunnah">نّ</tajweed>َمَ يَوْمَئِ<tajweed class="idgham_wo_ghunnah">ذٍ ل</tajweed>ِّلْكَ<tajweed class="madda_normal">ـٰ</tajweed>فِرِينَ عَرْضًا`},
     {n:101,t:`ٱلَّذِينَ كَانَتْ أَعْيُنُهُمْ فِى غِط<tajweed class="madda_obligatory">َا</tajweed>ٓءٍ عَ<tajweed class="ikhafa">ن ذ</tajweed>ِكْرِى وَكَانُو<tajweed class="slnt">اْ</tajweed> لَا يَسْتَطِيعُونَ سَمْعًا`},
-    {n:102,t:`أَفَحَسِبَ <tajweed class="ham_wasl">ٱ</tajweed>لَّذِينَ كَفَر<tajweed class="madda_obligatory">ُوٓ</tajweed><tajweed class="slnt">اْ</tajweed> أ<tajweed class="idgham_ghunnah">َن ي</tajweed>َتَّخِذُو<tajweed class="slnt">اْ</tajweed> عِبَادِى مِ<tajweed class="ikhafa">ن د</tajweed>ُون<tajweed class="madda_obligatory">ِىٓ</tajweed> أَوْلِي<tajweed class="madda_obligatory">َا</tajweed>ٓءَ‌ۚ إِ<tajweed class="ghunnah">نّ</tajweed><tajweed class="madda_obligatory">َآ</tajweed> أَعْتَ<tajweed class="qalaqah">دْ</tajweed>نَا جَهَ<tajweed class="ghunnah">نّ</tajweed>َمَ لِلْكَ<tajweed class="madda_normal">ـٰ</tajweed>فِرِينَ نُزُلاً`},
+    {n:102,t:`أَفَحَسِبَ <tajweed class="ham_wasl">ٱ</tajweed>لَّذِينَ كَفَر<tajweed class="madda_obligatory">ُوٓ</tajweed><tajweed class="slnt">اْ</tajweed> أ<tajweed class="idgham_ghunnah">َن ي</tajweed>َتَّخِذُو<tajweed class="slnt">اْ</tajweed> عِبَادِى مِ<tajweed class="ikhafa">ن د</tajweed>ُون<tajweed class="madda_obligatory">ِىٓ</tajweed> أَوْلِي<tajweed class="madda_obligatory">َا</tajweed>ٓءَۚ إِ<tajweed class="ghunnah">نّ</tajweed><tajweed class="madda_obligatory">َآ</tajweed> أَعْتَ<tajweed class="qalaqah">دْ</tajweed>نَا جَهَ<tajweed class="ghunnah">نّ</tajweed>َمَ لِلْكَ<tajweed class="madda_normal">ـٰ</tajweed>فِرِينَ نُزُلاً`},
     {n:103,t:`قُلْ هَلْ نُنَبِّئُك<tajweed class="ikhafa_shafawi">ُم ب</tajweed>ِ<tajweed class="ham_wasl">ٱ</tajweed>لْأَخْسَرِينَ أَعْمَ<tajweed class="madda_normal">ـٰ</tajweed>لاً`},
     {n:104,t:`ٱلَّذِينَ ضَلَّ سَعْيُهُمْ فِى <tajweed class="ham_wasl">ٱ</tajweed>لْحَيَ<tajweed class="slnt">و</tajweed><tajweed class="madda_normal">ٲ</tajweed>ةِ <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>دُّنْيَا وَهُمْ يَحْسَبُونَ أَ<tajweed class="ghunnah">نّ</tajweed>َهُمْ يُحْسِنُونَ صُنْعًا`},
     {n:105,t:`أُ<tajweed class="slnt">وْ</tajweed>لَ<tajweed class="madda_obligatory">ـٰٓ</tajweed>ئِكَ <tajweed class="ham_wasl">ٱ</tajweed>لَّذِينَ كَفَرُو<tajweed class="slnt">اْ</tajweed> بِـَٔـايَ<tajweed class="madda_normal">ـٰ</tajweed>تِ رَبِّهِمْ وَلِق<tajweed class="madda_obligatory">َا</tajweed>ٓئِه<tajweed class="madda_normal">ِۦ</tajweed> فَحَبِطَتْ أَعْمَ<tajweed class="madda_normal">ـٰ</tajweed>لُهُمْ فَلَا نُقِيمُ لَهُمْ يَوْمَ <tajweed class="ham_wasl">ٱ</tajweed>لْقِيَ<tajweed class="madda_normal">ـٰ</tajweed>مَةِ وَزْنًا`},
@@ -604,34 +628,176 @@ const KAHF_DATA=[
     {n:107,t:`إِ<tajweed class="ghunnah">نّ</tajweed>َ <tajweed class="ham_wasl">ٱ</tajweed>لَّذِينَ ءَامَنُو<tajweed class="slnt">اْ</tajweed> وَعَمِلُو<tajweed class="slnt">اْ</tajweed> <tajweed class="ham_wasl">ٱ</tajweed><tajweed class="laam_shamsiyah">ل</tajweed>صَّ<tajweed class="madda_normal">ـٰ</tajweed>لِحَ<tajweed class="madda_normal">ـٰ</tajweed>تِ كَانَتْ لَهُمْ جَ<tajweed class="ghunnah">نّ</tajweed>َ<tajweed class="madda_normal">ـٰ</tajweed>تُ <tajweed class="ham_wasl">ٱ</tajweed>لْفِرْدَوْسِ نُزُلاً`},
     {n:108,t:`خَ<tajweed class="madda_normal">ـٰ</tajweed>لِدِينَ فِيهَا لَا يَ<tajweed class="qalaqah">بْ</tajweed>غُونَ عَنْهَا حِوَلاً`},
     {n:109,t:`قُل لَّوْ كَانَ <tajweed class="ham_wasl">ٱ</tajweed>لْبَحْرُ مِدَا<tajweed class="idgham_wo_ghunnah">دًا ل</tajweed>ِّكَلِمَ<tajweed class="madda_normal">ـٰ</tajweed>تِ رَبِّى لَنَفِدَ <tajweed class="ham_wasl">ٱ</tajweed>لْبَحْرُ قَ<tajweed class="qalaqah">بْ</tajweed>لَ أَ<tajweed class="ikhafa">ن ت</tajweed>َ<tajweed class="ikhafa">نف</tajweed>َدَ كَلِمَ<tajweed class="madda_normal">ـٰ</tajweed>تُ رَبِّى وَلَوْ جِئْنَا بِمِثْلِه<tajweed class="madda_normal">ِۦ</tajweed> مَدَدًا`},
-    {n:110,t:`قُلْ إِ<tajweed class="ghunnah">نّ</tajweed>َم<tajweed class="madda_obligatory">َآ</tajweed> أَنَا۟ بَشَ<tajweed class="idgham_ghunnah">رٌ م</tajweed>ِّثْلُكُمْ يُوحَ<tajweed class="madda_obligatory">ىٰٓ</tajweed> إِلَىَّ أَ<tajweed class="ghunnah">نّ</tajweed>َم<tajweed class="madda_obligatory">َآ</tajweed> إِلَ<tajweed class="madda_normal">ـٰ</tajweed>هُكُمْ إِلَ<tajweed class="madda_normal">ـٰ</tajweed><tajweed class="idgham_ghunnah">هٌ و</tajweed><tajweed class="madda_normal">َٲ</tajweed>حِ<tajweed class="ikhafa">دٌ‌ۖ ف</tajweed>َمَ<tajweed class="ikhafa">ن ك</tajweed>َانَ يَرْجُو<tajweed class="slnt">اْ</tajweed> لِق<tajweed class="madda_obligatory">َا</tajweed>ٓءَ رَبِّه<tajweed class="madda_normal">ِۦ</tajweed> فَلْيَعْمَلْ عَمَل<tajweed class="ikhafa">اً ص</tajweed>َ<tajweed class="madda_normal">ـٰ</tajweed>لِ<tajweed class="idgham_ghunnah">حًا و</tajweed>َلَا يُشْرِكْ بِعِبَادَةِ رَبِّه<tajweed class="madda_obligatory">ِۦٓ</tajweed> أَحَدَۢا`}
+    {n:110,t:`قُلْ إِ<tajweed class="ghunnah">نّ</tajweed>َم<tajweed class="madda_obligatory">َآ</tajweed> أَنَا۟ بَشَ<tajweed class="idgham_ghunnah">رٌ م</tajweed>ِّثْلُكُمْ يُوحَ<tajweed class="madda_obligatory">ىٰٓ</tajweed> إِلَىَّ أَ<tajweed class="ghunnah">نّ</tajweed>َم<tajweed class="madda_obligatory">َآ</tajweed> إِلَ<tajweed class="madda_normal">ـٰ</tajweed>هُكُمْ إِلَ<tajweed class="madda_normal">ـٰ</tajweed><tajweed class="idgham_ghunnah">هٌ و</tajweed><tajweed class="madda_normal">َٲ</tajweed>حِ<tajweed class="ikhafa">دٌۖ ف</tajweed>َمَ<tajweed class="ikhafa">ن ك</tajweed>َانَ يَرْجُو<tajweed class="slnt">اْ</tajweed> لِق<tajweed class="madda_obligatory">َا</tajweed>ٓءَ رَبِّه<tajweed class="madda_normal">ِۦ</tajweed> فَلْيَعْمَلْ عَمَل<tajweed class="ikhafa">اً ص</tajweed>َ<tajweed class="madda_normal">ـٰ</tajweed>لِ<tajweed class="idgham_ghunnah">حًا و</tajweed>َلَا يُشْرِكْ بِعِبَادَةِ رَبِّه<tajweed class="madda_obligatory">ِۦٓ</tajweed> أَحَدَۢا`}
+  ]}
+];
+
+/* ─── 2. INDO-PAK (Plain text, no tags — extracted from DawateIslami data) ─── */
+const KAHF_INDOPAK = [
+  {r:'رکوع ۱', verses:[
+    {n:1, t:'اَلْحَمْدُ لِلّٰهِ الَّذِیْۤ اَنْزَلَ عَلٰی عَبْدِهِ الْكِتٰبَ وَلَمْ یَجْعَلْ لَّهٗ عِوَجًا ۟ؕٚ'},
+    {n:2, t:'قَیِّمًا لِّیُنْذِرَ بَاْسًا شَدِیْدًا مِّنْ لَّدُنْهُ وَیُبَشِّرَ الْمُؤْمِنِیْنَ الَّذِیْنَ یَعْمَلُوْنَ الصّٰلِحٰتِ اَنَّ لَهُمْ اَجْرًا حَسَنًا ۟ۙ'},
+    {n:3, t:'مَّاكِثِیْنَ فِیْهِ اَبَدًا ۟ۙ'},
+    {n:4, t:'وَّیُنْذِرَ الَّذِیْنَ قَالُوا اتَّخَذَ اللّٰهُ وَلَدًا ۟ۗ'},
+    {n:5, t:'مَا لَهُمْ بِهٖ مِنْ عِلْمٍ وَّلَا لِاٰبَآىِٕهِمْ ؕ— كَبُرَتْ كَلِمَةً تَخْرُجُ مِنْ اَفْوَاهِهِمْ ؕ— اِنْ یَّقُوْلُوْنَ اِلَّا كَذِبًا ۟'},
+    {n:6, t:'فَلَعَلَّكَ بَاخِعٌ نَّفْسَكَ عَلٰۤی اٰثَارِهِمْ اِنْ لَّمْ یُؤْمِنُوْا بِهٰذَا الْحَدِیْثِ اَسَفًا ۟'},
+    {n:7, t:'اِنَّا جَعَلْنَا مَا عَلَی الْاَرْضِ زِیْنَةً لَّهَا لِنَبْلُوَهُمْ اَیُّهُمْ اَحْسَنُ عَمَلًا ۟'},
+    {n:8, t:'وَاِنَّا لَجٰعِلُوْنَ مَا عَلَیْهَا صَعِیْدًا جُرُزًا ۟ؕ'}
+  ]},
+  {r:'رکوع ۲', verses:[
+    {n:9, t:'اَمْ حَسِبْتَ اَنَّ اَصْحٰبَ الْكَهْفِ وَالرَّقِیْمِ كَانُوْا مِنْ اٰیٰتِنَا عَجَبًا ۟'},
+    {n:10, t:'اِذْ اَوَی الْفِتْیَةُ اِلَی الْكَهْفِ فَقَالُوْا رَبَّنَاۤ اٰتِنَا مِنْ لَّدُنْكَ رَحْمَةً وَّهَیِّئْ لَنَا مِنْ اَمْرِنَا رَشَدًا ۟'},
+    {n:11, t:'فَضَرَبْنَا عَلٰۤی اٰذَانِهِمْ فِی الْكَهْفِ سِنِیْنَ عَدَدًا ۟ۙ'},
+    {n:12, t:'ثُمَّ بَعَثْنٰهُمْ لِنَعْلَمَ اَیُّ الْحِزْبَیْنِ اَحْصٰی لِمَا لَبِثُوْۤا اَمَدًا ۟۠'},
+    {n:13, t:'نَحْنُ نَقُصُّ عَلَیْكَ نَبَاَهُمْ بِالْحَقِّ ؕ— اِنَّهُمْ فِتْیَةٌ اٰمَنُوْا بِرَبِّهِمْ وَزِدْنٰهُمْ هُدًی ۟ۗۖ'},
+    {n:14, t:'وَّرَبَطْنَا عَلٰی قُلُوْبِهِمْ اِذْ قَامُوْا فَقَالُوْا رَبُّنَا رَبُّ السَّمٰوٰتِ وَالْاَرْضِ لَنْ نَّدْعُوَاۡ مِنْ دُوْنِهٖۤ اِلٰهًا لَّقَدْ قُلْنَاۤ اِذًا شَطَطًا ۟'},
+    {n:15, t:'هٰۤؤُلَآءِ قَوْمُنَا اتَّخَذُوْا مِنْ دُوْنِهٖۤ اٰلِهَةً ؕ— لَوْلَا یَاْتُوْنَ عَلَیْهِمْ بِسُلْطٰنٍ بَیِّنٍ ؕ— فَمَنْ اَظْلَمُ مِمَّنِ افْتَرٰی عَلَی اللّٰهِ كَذِبًا ۟ؕ'},
+    {n:16, t:'وَاِذِ اعْتَزَلْتُمُوْهُمْ وَمَا یَعْبُدُوْنَ اِلَّا اللّٰهَ فَاْوٗۤا اِلَی الْكَهْفِ یَنْشُرْ لَكُمْ رَبُّكُمْ مِّنْ رَّحْمَتِهٖ وَیُهَیِّئْ لَكُمْ مِّنْ اَمْرِكُمْ مِّرْفَقًا ۟'},
+    {n:17, t:'وَتَرَی الشَّمْسَ اِذَا طَلَعَتْ تَّزٰوَرُ عَنْ كَهْفِهِمْ ذَاتَ الْیَمِیْنِ وَاِذَا غَرَبَتْ تَّقْرِضُهُمْ ذَاتَ الشِّمَالِ وَهُمْ فِیْ فَجْوَةٍ مِّنْهُ ؕ— ذٰلِكَ مِنْ اٰیٰتِ اللّٰهِ ؕ— مَنْ یَّهْدِ اللّٰهُ فَهُوَ الْمُهْتَدِ ۚ— وَمَنْ یُّضْلِلْ فَلَنْ تَجِدَ لَهٗ وَلِیًّا مُّرْشِدًا ۟۠'}
+  ]},
+  {r:'رکوع ۳', verses:[
+    {n:18, t:'وَتَحْسَبُهُمْ اَیْقَاظًا وَّهُمْ رُقُوْدٌ ۖۗ— وَّنُقَلِّبُهُمْ ذَاتَ الْیَمِیْنِ وَذَاتَ الشِّمَالِ ۖۗ— وَكَلْبُهُمْ بَاسِطٌ ذِرَاعَیْهِ بِالْوَصِیْدِ ؕ— لَوِ اطَّلَعْتَ عَلَیْهِمْ لَوَلَّیْتَ مِنْهُمْ فِرَارًا وَّلَمُلِئْتَ مِنْهُمْ رُعْبًا ۟'},
+    {n:19, t:'وَكَذٰلِكَ بَعَثْنٰهُمْ لِیَتَسَآءَلُوْا بَیْنَهُمْ ؕ— قَالَ قَآىِٕلٌ مِّنْهُمْ كَمْ لَبِثْتُمْ ؕ— قَالُوْا لَبِثْنَا یَوْمًا اَوْ بَعْضَ یَوْمٍ ؕ— قَالُوْا رَبُّكُمْ اَعْلَمُ بِمَا لَبِثْتُمْ ؕ— فَابْعَثُوْۤا اَحَدَكُمْ بِوَرِقِكُمْ هٰذِهٖۤ اِلَی الْمَدِیْنَةِ فَلْیَنْظُرْ اَیُّهَاۤ اَزْكٰی طَعَامًا فَلْیَاْتِكُمْ بِرِزْقٍ مِّنْهُ  وَلَا یُشْعِرَنَّ بِكُمْ اَحَدًا ۟'},
+    {n:20, t:'اِنَّهُمْ اِنْ یَّظْهَرُوْا عَلَیْكُمْ یَرْجُمُوْكُمْ اَوْ یُعِیْدُوْكُمْ فِیْ مِلَّتِهِمْ وَلَنْ تُفْلِحُوْۤا اِذًا اَبَدًا ۟'},
+    {n:21, t:'وَكَذٰلِكَ اَعْثَرْنَا عَلَیْهِمْ لِیَعْلَمُوْۤا اَنَّ وَعْدَ اللّٰهِ حَقٌّ وَّاَنَّ السَّاعَةَ لَا رَیْبَ فِیْهَا ۚۗ— اِذْ یَتَنَازَعُوْنَ بَیْنَهُمْ اَمْرَهُمْ فَقَالُوا ابْنُوْا عَلَیْهِمْ بُنْیَانًا ؕ— رَبُّهُمْ اَعْلَمُ بِهِمْ ؕ— قَالَ الَّذِیْنَ غَلَبُوْا عَلٰۤی اَمْرِهِمْ لَنَتَّخِذَنَّ عَلَیْهِمْ مَّسْجِدًا ۟'},
+    {n:22, t:'سَیَقُوْلُوْنَ ثَلٰثَةٌ رَّابِعُهُمْ كَلْبُهُمْ ۚ— وَیَقُوْلُوْنَ خَمْسَةٌ سَادِسُهُمْ كَلْبُهُمْ رَجْمًا بِالْغَیْبِ ۚ— وَیَقُوْلُوْنَ سَبْعَةٌ وَّثَامِنُهُمْ كَلْبُهُمْ ؕ— قُلْ رَّبِّیْۤ اَعْلَمُ بِعِدَّتِهِمْ مَّا یَعْلَمُهُمْ اِلَّا قَلِیْلٌ ۫۬— فَلَا تُمَارِ فِیْهِمْ اِلَّا مِرَآءً ظَاهِرًا ۪— وَّلَا تَسْتَفْتِ فِیْهِمْ مِّنْهُمْ اَحَدًا ۟۠'}
+  ]},
+  {r:'رکوع ۴', verses:[
+    {n:23, t:'وَلَا تَقُوْلَنَّ لِشَایْءٍ اِنِّیْ فَاعِلٌ ذٰلِكَ غَدًا ۟ۙ'},
+    {n:24, t:'اِلَّاۤ اَنْ یَّشَآءَ اللّٰهُ ؗ— وَاذْكُرْ رَّبَّكَ اِذَا نَسِیْتَ وَقُلْ عَسٰۤی اَنْ یَّهْدِیَنِ رَبِّیْ لِاَقْرَبَ مِنْ هٰذَا رَشَدًا ۟'},
+    {n:25, t:'وَلَبِثُوْا فِیْ كَهْفِهِمْ ثَلٰثَ مِائَةٍ سِنِیْنَ وَازْدَادُوْا تِسْعًا ۟'},
+    {n:26, t:'قُلِ اللّٰهُ اَعْلَمُ بِمَا لَبِثُوْا ۚ— لَهٗ غَیْبُ السَّمٰوٰتِ وَالْاَرْضِ ؕ— اَبْصِرْ بِهٖ وَاَسْمِعْ ؕ— مَا لَهُمْ مِّنْ دُوْنِهٖ مِنْ وَّلِیٍّ ؗ— وَّلَا یُشْرِكُ فِیْ حُكْمِهٖۤ اَحَدًا ۟'},
+    {n:27, t:'وَاتْلُ مَاۤ اُوْحِیَ اِلَیْكَ مِنْ كِتَابِ رَبِّكَ ؕ— لَا مُبَدِّلَ لِكَلِمٰتِهٖ ۫ۚ— وَلَنْ تَجِدَ مِنْ دُوْنِهٖ مُلْتَحَدًا ۟'},
+    {n:28, t:'وَاصْبِرْ نَفْسَكَ مَعَ الَّذِیْنَ یَدْعُوْنَ رَبَّهُمْ بِالْغَدٰوةِ وَالْعَشِیِّ یُرِیْدُوْنَ وَجْهَهٗ وَلَا تَعْدُ عَیْنٰكَ عَنْهُمْ ۚ— تُرِیْدُ زِیْنَةَ الْحَیٰوةِ الدُّنْیَا ۚ— وَلَا تُطِعْ مَنْ اَغْفَلْنَا قَلْبَهٗ عَنْ ذِكْرِنَا وَاتَّبَعَ هَوٰىهُ وَكَانَ اَمْرُهٗ فُرُطًا ۟'},
+    {n:29, t:'وَقُلِ الْحَقُّ مِنْ رَّبِّكُمْ ۫— فَمَنْ شَآءَ فَلْیُؤْمِنْ وَّمَنْ شَآءَ فَلْیَكْفُرْ ۚ— اِنَّاۤ اَعْتَدْنَا لِلظّٰلِمِیْنَ نَارًا اَحَاطَ بِهِمْ سُرَادِقُهَا ؕ— وَاِنْ یَّسْتَغِیْثُوْا یُغَاثُوْا بِمَآءٍ كَالْمُهْلِ یَشْوِی الْوُجُوْهَ ؕ— بِئْسَ الشَّرَابُ ؕ— وَسَآءَتْ مُرْتَفَقًا ۟'},
+    {n:30, t:'اِنَّ الَّذِیْنَ اٰمَنُوْا وَعَمِلُوا الصّٰلِحٰتِ اِنَّا لَا نُضِیْعُ اَجْرَ مَنْ اَحْسَنَ عَمَلًا ۟ۚ'},
+    {n:31, t:'اُولٰٓىِٕكَ لَهُمْ جَنّٰتُ عَدْنٍ تَجْرِیْ مِنْ تَحْتِهِمُ الْاَنْهٰرُ یُحَلَّوْنَ فِیْهَا مِنْ اَسَاوِرَ مِنْ ذَهَبٍ وَّیَلْبَسُوْنَ ثِیَابًا خُضْرًا مِّنْ سُنْدُسٍ وَّاِسْتَبْرَقٍ مُّتَّكِـِٕیْنَ فِیْهَا عَلَی الْاَرَآىِٕكِ ؕ— نِعْمَ الثَّوَابُ ؕ— وَحَسُنَتْ مُرْتَفَقًا ۟۠'}
+  ]},
+  {r:'رکوع ۵', verses:[
+    {n:32, t:'وَاضْرِبْ لَهُمْ مَّثَلًا رَّجُلَیْنِ جَعَلْنَا لِاَحَدِهِمَا جَنَّتَیْنِ مِنْ اَعْنَابٍ وَّحَفَفْنٰهُمَا بِنَخْلٍ وَّجَعَلْنَا بَیْنَهُمَا زَرْعًا ۟ؕ'},
+    {n:33, t:'كِلْتَا الْجَنَّتَیْنِ اٰتَتْ اُكُلَهَا وَلَمْ تَظْلِمْ مِّنْهُ شَیْـًٔا ۙ— وَّفَجَّرْنَا خِلٰلَهُمَا نَهَرًا ۟ۙ'},
+    {n:34, t:'وَّكَانَ لَهٗ ثَمَرٌ ۚ— فَقَالَ لِصَاحِبِهٖ وَهُوَ یُحَاوِرُهٗۤ اَنَا اَكْثَرُ مِنْكَ مَالًا وَّاَعَزُّ نَفَرًا ۟'},
+    {n:35, t:'وَدَخَلَ جَنَّتَهٗ وَهُوَ ظَالِمٌ لِّنَفْسِهٖ ۚ— قَالَ مَاۤ اَظُنُّ اَنْ تَبِیْدَ هٰذِهٖۤ اَبَدًا ۟ۙ'},
+    {n:36, t:'وَّمَاۤ اَظُنُّ السَّاعَةَ قَآىِٕمَةً ۙ— وَّلَىِٕنْ رُّدِدْتُّ اِلٰی رَبِّیْ لَاَجِدَنَّ خَیْرًا مِّنْهَا مُنْقَلَبًا ۟ۚ'},
+    {n:37, t:'قَالَ لَهٗ صَاحِبُهٗ وَهُوَ یُحَاوِرُهٗۤ اَكَفَرْتَ بِالَّذِیْ خَلَقَكَ مِنْ تُرَابٍ ثُمَّ مِنْ نُّطْفَةٍ ثُمَّ سَوّٰىكَ رَجُلًا ۟ؕ'},
+    {n:38, t:'لٰكِنَّاۡ هُوَ اللّٰهُ رَبِّیْ وَلَاۤ اُشْرِكُ بِرَبِّیْۤ اَحَدًا ۟'},
+    {n:39, t:'وَلَوْلَاۤ اِذْ دَخَلْتَ جَنَّتَكَ قُلْتَ مَا شَآءَ اللّٰهُ ۙ— لَا قُوَّةَ اِلَّا بِاللّٰهِ ۚ— اِنْ تَرَنِ اَنَا اَقَلَّ مِنْكَ مَالًا وَّوَلَدًا ۟ۚ'},
+    {n:40, t:'فَعَسٰی رَبِّیْۤ اَنْ یُّؤْتِیَنِ خَیْرًا مِّنْ جَنَّتِكَ وَیُرْسِلَ عَلَیْهَا حُسْبَانًا مِّنَ السَّمَآءِ فَتُصْبِحَ صَعِیْدًا زَلَقًا ۟ۙ'},
+    {n:41, t:'اَوْ یُصْبِحَ مَآؤُهَا غَوْرًا فَلَنْ تَسْتَطِیْعَ لَهٗ طَلَبًا ۟'},
+    {n:42, t:'وَاُحِیْطَ بِثَمَرِهٖ فَاَصْبَحَ یُقَلِّبُ كَفَّیْهِ عَلٰی مَاۤ اَنْفَقَ فِیْهَا وَهِیَ خَاوِیَةٌ عَلٰی عُرُوْشِهَا وَیَقُوْلُ یٰلَیْتَنِیْ لَمْ اُشْرِكْ بِرَبِّیْۤ اَحَدًا ۟'},
+    {n:43, t:'وَلَمْ تَكُنْ لَّهٗ فِئَةٌ یَّنْصُرُوْنَهٗ مِنْ دُوْنِ اللّٰهِ وَمَا كَانَ مُنْتَصِرًا ۟ؕ'},
+    {n:44, t:'هُنَالِكَ الْوَلَایَةُ لِلّٰهِ الْحَقِّ ؕ— هُوَ خَیْرٌ ثَوَابًا وَّخَیْرٌ عُقْبًا ۟۠'}
+  ]},
+  {r:'رکوع ۶', verses:[
+    {n:45, t:'وَاضْرِبْ لَهُمْ مَّثَلَ الْحَیٰوةِ الدُّنْیَا كَمَآءٍ اَنْزَلْنٰهُ مِنَ السَّمَآءِ فَاخْتَلَطَ بِهٖ نَبَاتُ الْاَرْضِ فَاَصْبَحَ هَشِیْمًا تَذْرُوْهُ الرِّیٰحُ ؕ— وَكَانَ اللّٰهُ عَلٰی كُلِّ شَیْءٍ مُّقْتَدِرًا ۟'},
+    {n:46, t:'اَلْمَالُ وَالْبَنُوْنَ زِیْنَةُ الْحَیٰوةِ الدُّنْیَا ۚ— وَالْبٰقِیٰتُ الصّٰلِحٰتُ خَیْرٌ عِنْدَ رَبِّكَ ثَوَابًا وَّخَیْرٌ اَمَلًا ۟'},
+    {n:47, t:'وَیَوْمَ نُسَیِّرُ الْجِبَالَ وَتَرَی الْاَرْضَ بَارِزَةً ۙ— وَّحَشَرْنٰهُمْ فَلَمْ نُغَادِرْ مِنْهُمْ اَحَدًا ۟ۚ'},
+    {n:48, t:'وَعُرِضُوْا عَلٰی رَبِّكَ صَفًّا ؕ— لَقَدْ جِئْتُمُوْنَا كَمَا خَلَقْنٰكُمْ اَوَّلَ مَرَّةٍ ؗ— بَلْ زَعَمْتُمْ اَلَّنْ نَّجْعَلَ لَكُمْ مَّوْعِدًا ۟'},
+    {n:49, t:'وَوُضِعَ الْكِتٰبُ فَتَرَی الْمُجْرِمِیْنَ مُشْفِقِیْنَ مِمَّا فِیْهِ وَیَقُوْلُوْنَ یٰوَیْلَتَنَا مَالِ هٰذَا الْكِتٰبِ لَا یُغَادِرُ صَغِیْرَةً وَّلَا كَبِیْرَةً اِلَّاۤ اَحْصٰىهَا ۚ— وَوَجَدُوْا مَا عَمِلُوْا حَاضِرًا ؕ— وَلَا یَظْلِمُ رَبُّكَ اَحَدًا ۟۠'}
+  ]},
+  {r:'رکوع ۷', verses:[
+    {n:50, t:'وَاِذْ قُلْنَا لِلْمَلٰٓىِٕكَةِ اسْجُدُوْا لِاٰدَمَ فَسَجَدُوْۤا اِلَّاۤ اِبْلِیْسَ ؕ— كَانَ مِنَ الْجِنِّ فَفَسَقَ عَنْ اَمْرِ رَبِّهٖ ؕ— اَفَتَتَّخِذُوْنَهٗ وَذُرِّیَّتَهٗۤ اَوْلِیَآءَ مِنْ دُوْنِیْ وَهُمْ لَكُمْ عَدُوٌّ ؕ— بِئْسَ لِلظّٰلِمِیْنَ بَدَلًا ۟'},
+    {n:51, t:'مَاۤ اَشْهَدْتُّهُمْ خَلْقَ السَّمٰوٰتِ وَالْاَرْضِ وَلَا خَلْقَ اَنْفُسِهِمْ ۪— وَمَا كُنْتُ مُتَّخِذَ الْمُضِلِّیْنَ عَضُدًا ۟'},
+    {n:52, t:'وَیَوْمَ یَقُوْلُ نَادُوْا شُرَكَآءِیَ الَّذِیْنَ زَعَمْتُمْ فَدَعَوْهُمْ فَلَمْ یَسْتَجِیْبُوْا لَهُمْ وَجَعَلْنَا بَیْنَهُمْ مَّوْبِقًا ۟'},
+    {n:53, t:'وَرَاَ الْمُجْرِمُوْنَ النَّارَ فَظَنُّوْۤا اَنَّهُمْ مُّوَاقِعُوْهَا وَلَمْ یَجِدُوْا عَنْهَا مَصْرِفًا ۟۠'}
+  ]},
+  {r:'رکوع ۸', verses:[
+    {n:54, t:'وَلَقَدْ صَرَّفْنَا فِیْ هٰذَا الْقُرْاٰنِ لِلنَّاسِ مِنْ كُلِّ مَثَلٍ ؕ— وَكَانَ الْاِنْسَانُ اَكْثَرَ شَیْءٍ جَدَلًا ۟'},
+    {n:55, t:'وَمَا مَنَعَ النَّاسَ اَنْ یُّؤْمِنُوْۤا اِذْ جَآءَهُمُ الْهُدٰی وَیَسْتَغْفِرُوْا رَبَّهُمْ اِلَّاۤ اَنْ تَاْتِیَهُمْ سُنَّةُ الْاَوَّلِیْنَ اَوْ یَاْتِیَهُمُ الْعَذَابُ قُبُلًا ۟'},
+    {n:56, t:'وَمَا نُرْسِلُ الْمُرْسَلِیْنَ اِلَّا مُبَشِّرِیْنَ وَمُنْذِرِیْنَ ۚ— وَیُجَادِلُ الَّذِیْنَ كَفَرُوْا بِالْبَاطِلِ لِیُدْحِضُوْا بِهِ الْحَقَّ وَاتَّخَذُوْۤا اٰیٰتِیْ وَمَاۤ اُنْذِرُوْا هُزُوًا ۟'},
+    {n:57, t:'وَمَنْ اَظْلَمُ مِمَّنْ ذُكِّرَ بِاٰیٰتِ رَبِّهٖ فَاَعْرَضَ عَنْهَا وَنَسِیَ مَا قَدَّمَتْ یَدٰهُ ؕ— اِنَّا جَعَلْنَا عَلٰی قُلُوْبِهِمْ اَكِنَّةً اَنْ یَّفْقَهُوْهُ وَفِیْۤ اٰذَانِهِمْ وَقْرًا ؕ— وَاِنْ تَدْعُهُمْ اِلَی الْهُدٰی فَلَنْ یَّهْتَدُوْۤا اِذًا اَبَدًا ۟'},
+    {n:58, t:'وَرَبُّكَ الْغَفُوْرُ ذُو الرَّحْمَةِ ؕ— لَوْ یُؤَاخِذُهُمْ بِمَا كَسَبُوْا لَعَجَّلَ لَهُمُ الْعَذَابَ ؕ— بَلْ لَّهُمْ مَّوْعِدٌ لَّنْ یَّجِدُوْا مِنْ دُوْنِهٖ مَوْىِٕلًا ۟'},
+    {n:59, t:'وَتِلْكَ الْقُرٰۤی اَهْلَكْنٰهُمْ لَمَّا ظَلَمُوْا وَجَعَلْنَا لِمَهْلِكِهِمْ مَّوْعِدًا ۟۠'}
+  ]},
+  {r:'رکوع ۹', verses:[
+    {n:60, t:'وَاِذْ قَالَ مُوْسٰی لِفَتٰىهُ لَاۤ اَبْرَحُ حَتّٰۤی اَبْلُغَ مَجْمَعَ الْبَحْرَیْنِ اَوْ اَمْضِیَ حُقُبًا ۟'},
+    {n:61, t:'فَلَمَّا بَلَغَا مَجْمَعَ بَیْنِهِمَا نَسِیَا حُوْتَهُمَا فَاتَّخَذَ سَبِیْلَهٗ فِی الْبَحْرِ سَرَبًا ۟'},
+    {n:62, t:'فَلَمَّا جَاوَزَا قَالَ لِفَتٰىهُ اٰتِنَا غَدَآءَنَا ؗ— لَقَدْ لَقِیْنَا مِنْ سَفَرِنَا هٰذَا نَصَبًا ۟'},
+    {n:63, t:'قَالَ اَرَءَیْتَ اِذْ اَوَیْنَاۤ اِلَی الصَّخْرَةِ فَاِنِّیْ نَسِیْتُ الْحُوْتَ ؗ— وَمَاۤ اَنْسٰىنِیْهُ اِلَّا الشَّیْطٰنُ اَنْ اَذْكُرَهٗ ۚ— وَاتَّخَذَ سَبِیْلَهٗ فِی الْبَحْرِ ۖۗ— عَجَبًا ۟'},
+    {n:64, t:'قَالَ ذٰلِكَ مَا كُنَّا نَبْغِ ۖۗ— فَارْتَدَّا عَلٰۤی اٰثَارِهِمَا قَصَصًا ۟ۙ'},
+    {n:65, t:'فَوَجَدَا عَبْدًا مِّنْ عِبَادِنَاۤ اٰتَیْنٰهُ رَحْمَةً مِّنْ عِنْدِنَا وَعَلَّمْنٰهُ مِنْ لَّدُنَّا عِلْمًا ۟'},
+    {n:66, t:'قَالَ لَهٗ مُوْسٰی هَلْ اَتَّبِعُكَ عَلٰۤی اَنْ تُعَلِّمَنِ مِمَّا عُلِّمْتَ رُشْدًا ۟'},
+    {n:67, t:'قَالَ اِنَّكَ لَنْ تَسْتَطِیْعَ مَعِیَ صَبْرًا ۟'},
+    {n:68, t:'وَكَیْفَ تَصْبِرُ عَلٰی مَا لَمْ تُحِطْ بِهٖ خُبْرًا ۟'},
+    {n:69, t:'قَالَ سَتَجِدُنِیْۤ اِنْ شَآءَ اللّٰهُ صَابِرًا وَّلَاۤ اَعْصِیْ لَكَ اَمْرًا ۟'},
+    {n:70, t:'قَالَ فَاِنِ اتَّبَعْتَنِیْ فَلَا تَسْـَٔلْنِیْ عَنْ شَیْءٍ حَتّٰۤی اُحْدِثَ لَكَ مِنْهُ ذِكْرًا ۟۠'}
+  ]},
+  {r:'رکوع ۱۰', verses:[
+    {n:71, t:'فَانْطَلَقَا ۫— حَتّٰۤی اِذَا رَكِبَا فِی السَّفِیْنَةِ خَرَقَهَا ؕ— قَالَ اَخَرَقْتَهَا لِتُغْرِقَ اَهْلَهَا ۚ— لَقَدْ جِئْتَ شَیْـًٔا اِمْرًا ۟'},
+    {n:72, t:'قَالَ اَلَمْ اَقُلْ اِنَّكَ لَنْ تَسْتَطِیْعَ مَعِیَ صَبْرًا ۟'},
+    {n:73, t:'قَالَ لَا تُؤَاخِذْنِیْ بِمَا نَسِیْتُ وَلَا تُرْهِقْنِیْ مِنْ اَمْرِیْ عُسْرًا ۟'},
+    {n:74, t:'فَانْطَلَقَا ۫— حَتّٰۤی اِذَا لَقِیَا غُلٰمًا فَقَتَلَهٗ ۙ— قَالَ اَقَتَلْتَ نَفْسًا زَكِیَّةً بِغَیْرِ نَفْسٍ ؕ— لَقَدْ جِئْتَ شَیْـًٔا نُّكْرًا ۟'},
+    {n:75, t:'قَالَ اَلَمْ اَقُلْ لَّكَ اِنَّكَ لَنْ تَسْتَطِیْعَ مَعِیَ صَبْرًا ۟'},
+    {n:76, t:'قَالَ اِنْ سَاَلْتُكَ عَنْ شَیْ بَعْدَهَا فَلَا تُصٰحِبْنِیْ ۚ— قَدْ بَلَغْتَ مِنْ لَّدُنِّیْ عُذْرًا ۟'},
+    {n:77, t:'فَانْطَلَقَا ۫— حَتّٰۤی اِذَاۤ اَتَیَاۤ اَهْلَ قَرْیَةِ ١سْتَطْعَمَاۤ اَهْلَهَا فَاَبَوْا اَنْ یُّضَیِّفُوْهُمَا فَوَجَدَا فِیْهَا جِدَارًا یُّرِیْدُ اَنْ یَّنْقَضَّ فَاَقَامَهٗ ؕ— قَالَ لَوْ شِئْتَ لَتَّخَذْتَ عَلَیْهِ اَجْرًا ۟'},
+    {n:78, t:'قَالَ هٰذَا فِرَاقُ بَیْنِیْ وَبَیْنِكَ ۚ— سَاُنَبِّئُكَ بِتَاْوِیْلِ مَا لَمْ تَسْتَطِعْ عَّلَیْهِ صَبْرًا ۟'},
+    {n:79, t:'اَمَّا السَّفِیْنَةُ فَكَانَتْ لِمَسٰكِیْنَ یَعْمَلُوْنَ فِی الْبَحْرِ فَاَرَدْتُّ اَنْ اَعِیْبَهَا وَكَانَ وَرَآءَهُمْ مَّلِكٌ یَّاْخُذُ كُلَّ سَفِیْنَةٍ غَصْبًا ۟'},
+    {n:80, t:'وَاَمَّا الْغُلٰمُ فَكَانَ اَبَوٰهُ مُؤْمِنَیْنِ فَخَشِیْنَاۤ اَنْ یُّرْهِقَهُمَا طُغْیَانًا وَّكُفْرًا ۟ۚ'},
+    {n:81, t:'فَاَرَدْنَاۤ اَنْ یُّبْدِلَهُمَا رَبُّهُمَا خَیْرًا مِّنْهُ زَكٰوةً وَّاَقْرَبَ رُحْمًا ۟'},
+    {n:82, t:'وَاَمَّا الْجِدَارُ فَكَانَ لِغُلٰمَیْنِ یَتِیْمَیْنِ فِی الْمَدِیْنَةِ وَكَانَ تَحْتَهٗ كَنْزٌ لَّهُمَا وَكَانَ اَبُوْهُمَا صَالِحًا ۚ— فَاَرَادَ رَبُّكَ اَنْ یَّبْلُغَاۤ اَشُدَّهُمَا وَیَسْتَخْرِجَا كَنْزَهُمَا ۖۗ— رَحْمَةً مِّنْ رَّبِّكَ ۚ— وَمَا فَعَلْتُهٗ عَنْ اَمْرِیْ ؕ— ذٰلِكَ تَاْوِیْلُ مَا لَمْ تَسْطِعْ عَّلَیْهِ صَبْرًا ۟ؕ۠'}
+  ]},
+  {r:'رکوع ۱۱', verses:[
+    {n:83, t:'وَیَسْـَٔلُوْنَكَ عَنْ ذِی الْقَرْنَیْنِ ؕ— قُلْ سَاَتْلُوْا عَلَیْكُمْ مِّنْهُ ذِكْرًا ۟ؕ'},
+    {n:84, t:'اِنَّا مَكَّنَّا لَهٗ فِی الْاَرْضِ وَاٰتَیْنٰهُ مِنْ كُلِّ شَیْءٍ سَبَبًا ۟ۙ'},
+    {n:85, t:'فَاَتْبَعَ سَبَبًا ۟'},
+    {n:86, t:'حَتّٰۤی اِذَا بَلَغَ مَغْرِبَ الشَّمْسِ وَجَدَهَا تَغْرُبُ فِیْ عَیْنٍ حَمِئَةٍ وَّوَجَدَ عِنْدَهَا قَوْمًا ؕ۬— قُلْنَا یٰذَا الْقَرْنَیْنِ اِمَّاۤ اَنْ تُعَذِّبَ وَاِمَّاۤ اَنْ تَتَّخِذَ فِیْهِمْ حُسْنًا ۟'},
+    {n:87, t:'قَالَ اَمَّا مَنْ ظَلَمَ فَسَوْفَ نُعَذِّبُهٗ ثُمَّ یُرَدُّ اِلٰی رَبِّهٖ فَیُعَذِّبُهٗ عَذَابًا نُّكْرًا ۟'},
+    {n:88, t:'وَاَمَّا مَنْ اٰمَنَ وَعَمِلَ صَالِحًا فَلَهٗ جَزَآءَ ١لْحُسْنٰی ۚ— وَسَنَقُوْلُ لَهٗ مِنْ اَمْرِنَا یُسْرًا ۟ؕ'},
+    {n:89, t:'ثُمَّ اَتْبَعَ سَبَبًا ۟'},
+    {n:90, t:'حَتّٰۤی اِذَا بَلَغَ مَطْلِعَ الشَّمْسِ وَجَدَهَا تَطْلُعُ عَلٰی قَوْمٍ لَّمْ نَجْعَلْ لَّهُمْ مِّنْ دُوْنِهَا سِتْرًا ۟ۙ'},
+    {n:91, t:'كَذٰلِكَ ؕ— وَقَدْ اَحَطْنَا بِمَا لَدَیْهِ خُبْرًا ۟'},
+    {n:92, t:'ثُمَّ اَتْبَعَ سَبَبًا ۟'},
+    {n:93, t:'حَتّٰۤی اِذَا بَلَغَ بَیْنَ السَّدَّیْنِ وَجَدَ مِنْ دُوْنِهِمَا قَوْمًا ۙ— لَّا یَكَادُوْنَ یَفْقَهُوْنَ قَوْلًا ۟'},
+    {n:94, t:'قَالُوْا یٰذَا الْقَرْنَیْنِ اِنَّ یَاْجُوْجَ وَمَاْجُوْجَ مُفْسِدُوْنَ فِی الْاَرْضِ فَهَلْ نَجْعَلُ لَكَ خَرْجًا عَلٰۤی اَنْ تَجْعَلَ بَیْنَنَا وَبَیْنَهُمْ سَدًّا ۟'},
+    {n:95, t:'قَالَ مَا مَكَّنِّیْ فِیْهِ رَبِّیْ خَیْرٌ فَاَعِیْنُوْنِیْ بِقُوَّةٍ اَجْعَلْ بَیْنَكُمْ وَبَیْنَهُمْ رَدْمًا ۟ۙ'},
+    {n:96, t:'اٰتُوْنِیْ زُبَرَ الْحَدِیْدِ ؕ— حَتّٰۤی اِذَا سَاوٰی بَیْنَ الصَّدَفَیْنِ قَالَ انْفُخُوْا ؕ— حَتّٰۤی اِذَا جَعَلَهٗ نَارًا ۙ— قَالَ اٰتُوْنِیْۤ اُفْرِغْ عَلَیْهِ قِطْرًا ۟ؕ'},
+    {n:97, t:'فَمَا اسْطَاعُوْۤا اَنْ یَّظْهَرُوْهُ وَمَا اسْتَطَاعُوْا لَهٗ نَقْبًا ۟'},
+    {n:98, t:'قَالَ هٰذَا رَحْمَةٌ مِّنْ رَّبِّیْ ۚ— فَاِذَا جَآءَ وَعْدُ رَبِّیْ جَعَلَهٗ دَكَّآءَ ۚ— وَكَانَ وَعْدُ رَبِّیْ حَقًّا ۟ؕ'}
+  ]},
+  {r:'رکوع ۱۲', verses:[
+    {n:99, t:'وَتَرَكْنَا بَعْضَهُمْ یَوْمَىِٕذٍ یَّمُوْجُ فِیْ بَعْضٍ وَّنُفِخَ فِی الصُّوْرِ فَجَمَعْنٰهُمْ جَمْعًا ۟ۙ'},
+    {n:100, t:'وَّعَرَضْنَا جَهَنَّمَ یَوْمَىِٕذٍ لِّلْكٰفِرِیْنَ عَرْضَا ۟ۙ'},
+    {n:101, t:'١لَّذِیْنَ كَانَتْ اَعْیُنُهُمْ فِیْ غِطَآءٍ عَنْ ذِكْرِیْ وَكَانُوْا لَا یَسْتَطِیْعُوْنَ سَمْعًا ۟۠'},
+    {n:102, t:'اَفَحَسِبَ الَّذِیْنَ كَفَرُوْۤا اَنْ یَّتَّخِذُوْا عِبَادِیْ مِنْ دُوْنِیْۤ اَوْلِیَآءَ ؕ— اِنَّاۤ اَعْتَدْنَا جَهَنَّمَ لِلْكٰفِرِیْنَ نُزُلًا ۟'},
+    {n:103, t:'قُلْ هَلْ نُنَبِّئُكُمْ بِالْاَخْسَرِیْنَ اَعْمَالًا ۟ؕ'},
+    {n:104, t:'اَلَّذِیْنَ ضَلَّ سَعْیُهُمْ فِی الْحَیٰوةِ الدُّنْیَا وَهُمْ یَحْسَبُوْنَ اَنَّهُمْ یُحْسِنُوْنَ صُنْعًا ۟'},
+    {n:105, t:'اُولٰٓىِٕكَ الَّذِیْنَ كَفَرُوْا بِاٰیٰتِ رَبِّهِمْ وَلِقَآىِٕهٖ فَحَبِطَتْ اَعْمَالُهُمْ فَلَا نُقِیْمُ لَهُمْ یَوْمَ الْقِیٰمَةِ وَزْنًا ۟'},
+    {n:106, t:'ذٰلِكَ جَزَآؤُهُمْ جَهَنَّمُ بِمَا كَفَرُوْا وَاتَّخَذُوْۤا اٰیٰتِیْ وَرُسُلِیْ هُزُوًا ۟'},
+    {n:107, t:'اِنَّ الَّذِیْنَ اٰمَنُوْا وَعَمِلُوا الصّٰلِحٰتِ كَانَتْ لَهُمْ جَنّٰتُ الْفِرْدَوْسِ نُزُلًا ۟ۙ'},
+    {n:108, t:'خٰلِدِیْنَ فِیْهَا لَا یَبْغُوْنَ عَنْهَا حِوَلًا ۟'},
+    {n:109, t:'قُلْ لَّوْ كَانَ الْبَحْرُ مِدَادًا لِّكَلِمٰتِ رَبِّیْ لَنَفِدَ الْبَحْرُ قَبْلَ اَنْ تَنْفَدَ كَلِمٰتُ رَبِّیْ وَلَوْ جِئْنَا بِمِثْلِهٖ مَدَدًا ۟'},
+    {n:110, t:'قُلْ اِنَّمَاۤ اَنَا بَشَرٌ مِّثْلُكُمْ یُوْحٰۤی اِلَیَّ اَنَّمَاۤ اِلٰهُكُمْ اِلٰهٌ وَّاحِدٌ ۚ— فَمَنْ كَانَ یَرْجُوْا لِقَآءَ رَبِّهٖ فَلْیَعْمَلْ عَمَلًا صَالِحًا وَّلَا یُشْرِكْ بِعِبَادَةِ رَبِّهٖۤ اَحَدًا ۟۠'}
   ]}
 ];
 
 /* ══ STATE ══ */
 const CIRC=2*Math.PI*74;
 let sec='asr',viewMode='verse',zoomPct=100;
-const BASE_QS=1.52;
 let S={
   fajr:   {idx:0,cnt:0,done:new Array(FAJR.length).fill(false)},
   jumma:  {idx:0,cnt:0,done:new Array(JUMMA.length).fill(false)},
   tauheed:{idx:0,cnt:0,done:new Array(TAUHEED.length).fill(false)},
   asr:    {cnt:0,done:false},
-  tasbeeh:{ph:0,cnt:0,sets:0}
+  tasbeeh:{ph:0,cnt:0,sets:0},
+  tajMode:'taj4',
+  scriptMode:'indopak'   // <-- DEFAULT = INDO-PAK (Pakistani Script)
 };
 try{
   const p=JSON.parse(localStorage.getItem('azk_pro_v1')||'{}');
   if(p.sec)sec=p.sec;
   if(p.viewMode)viewMode=p.viewMode;
   if(p.zoomPct)zoomPct=p.zoomPct;
+  if(p.tajMode) S.tajMode = p.tajMode;
+  if(p.scriptMode) S.scriptMode = p.scriptMode;
   ['fajr','jumma','tauheed','asr','tasbeeh'].forEach(k=>{if(p[k])Object.assign(S[k],p[k]);});
   if(!S.fajr.done||S.fajr.done.length!==FAJR.length)S.fajr.done=new Array(FAJR.length).fill(false);
   if(!S.jumma.done||S.jumma.done.length!==JUMMA.length)S.jumma.done=new Array(JUMMA.length).fill(false);
   if(!S.tauheed.done||S.tauheed.done.length!==TAUHEED.length)S.tauheed.done=new Array(TAUHEED.length).fill(false);
 }catch(e){}
-const save=()=>{try{localStorage.setItem('azk_pro_v1',JSON.stringify({sec,viewMode,zoomPct,...S}))}catch(e){}};
+const save=()=>{try{localStorage.setItem('azk_pro_v1',JSON.stringify({sec,viewMode,zoomPct,tajMode:S.tajMode,scriptMode:S.scriptMode,...S}))}catch(e){}};
 
 /* ══ ZOOM ══ */
+const BASE_QS=1.52;
 function applyZoom(pct){
   zoomPct=Math.max(60,Math.min(220,pct));
   document.documentElement.style.setProperty('--qs',(BASE_QS*zoomPct/100).toFixed(3)+'rem');
@@ -648,28 +814,23 @@ document.querySelectorAll('.vm').forEach(b=>b.addEventListener('click',()=>{
   save();if(sec==='kahf')render();
 }));
 
-/* ══ QURAN FONT SWITCHER ══
-   Local Pakistani/Islamic Quran fonts — place .ttf files
-   in /fonts/ folder. Falls back to Google Fonts online
-   Scheherazade New if a local font file is missing.
-*/
+/* ══ FONT SWITCHER ══ */
 const FONT_MAP={
+  almajeed:    "'Al Majeed','Scheherazade New',serif",
   hafs:        "'Hafs Uthmanic','Scheherazade New',serif",
   alqalam:     "'Al Qalam Quran','Scheherazade New',serif",
   pdms:        "'PDMS Saleem','Scheherazade New',serif",
   muhammadi:   "'Muhammadi','Scheherazade New',serif",
   almushaf:    "'Al Mushaf','Scheherazade New',serif",
-  almajeed:    "'Al Majeed','Scheherazade New',serif",
   scheherazade:"'Scheherazade New',serif"
 };
-let currentFont='hafs';
+let currentFont='almajeed';
 try{
   const savedFont=localStorage.getItem('azk_font');
   if(savedFont && FONT_MAP[savedFont]) currentFont=savedFont;
 }catch(e){}
-
 function applyFont(key){
-  if(!FONT_MAP[key]) key='hafs';
+  if(!FONT_MAP[key]) key='almajeed';
   currentFont=key;
   document.documentElement.style.setProperty('--qfont', FONT_MAP[key]);
   try{localStorage.setItem('azk_font', key);}catch(e){}
@@ -679,22 +840,46 @@ function applyFont(key){
 applyFont(currentFont);
 document.getElementById('fontPicker').addEventListener('change', e=>applyFont(e.target.value));
 
+/* ══ TAJWEED PICKER ══ */
+document.getElementById('tajPicker').value = S.tajMode || 'taj4';
+document.getElementById('tajPicker').addEventListener('change', function(e){
+  S.tajMode = e.target.value;
+  save();
+  if(sec === 'kahf') render();
+});
 
-/* ══ AUTO SCROLL (Surah Kahf) — pure JS, zero dependency ══
-   Speed levels 1-9 → pixels/second. Level 5 = comfortable
-   default reading pace. Uses requestAnimationFrame for
-   smooth, battery-friendly scrolling. Pauses automatically
-   if the user scrolls or touches the screen manually.
-*/
+/* ══ SCRIPT TOGGLE ══ */
+function updateScriptBtns(){
+  const uth = document.getElementById('btnUthmani');
+  const ind = document.getElementById('btnIndopak');
+  if(!uth || !ind) return;
+  uth.classList.toggle('active', S.scriptMode === 'uthmani');
+  ind.classList.toggle('active', S.scriptMode === 'indopak');
+}
+document.getElementById('btnUthmani').addEventListener('click', function(){
+  if(S.scriptMode === 'uthmani') return;
+  S.scriptMode = 'uthmani';
+  save();
+  updateScriptBtns();
+  if(sec === 'kahf') render();
+});
+document.getElementById('btnIndopak').addEventListener('click', function(){
+  if(S.scriptMode === 'indopak') return;
+  S.scriptMode = 'indopak';
+  save();
+  updateScriptBtns();
+  if(sec === 'kahf') render();
+});
+updateScriptBtns();
+
+/* ══ AUTO SCROLL ══ */
 let scPlaying=false, scRAF=null, scLastTs=0, scSpeed=5;
 const SPEED_PX = {1:8,2:14,3:20,4:27,5:35,6:45,7:58,8:75,9:95};
 const SPEED_LBL = {1:'بہت آہستہ',2:'آہستہ',3:'آہستہ',4:'قدرے آہستہ',5:'درمیانی',6:'قدرے تیز',7:'تیز',8:'تیز',9:'بہت تیز'};
-
 try{
   const sp=JSON.parse(localStorage.getItem('azk_scroll_speed')||'5');
   if(sp>=1&&sp<=9) scSpeed=sp;
 }catch(e){}
-
 function updateScrollUI(){
   const lbl=document.getElementById('scLbl');
   const slider=document.getElementById('scSlider');
@@ -704,7 +889,6 @@ function updateScrollUI(){
   if(playBtn) playBtn.classList.toggle('playing',scPlaying);
   if(playBtn) playBtn.textContent=scPlaying?'❚❚':'▶';
 }
-
 function scrollStep(ts){
   if(!scPlaying) return;
   if(!scLastTs) scLastTs=ts;
@@ -712,14 +896,10 @@ function scrollStep(ts){
   scLastTs=ts;
   const pxPerSec=SPEED_PX[scSpeed]||35;
   window.scrollBy(0, pxPerSec*dt);
-
-  /* stop automatically at bottom of page */
   const atBottom=(window.innerHeight+window.scrollY)>=(document.body.scrollHeight-6);
   if(atBottom){ stopAutoScroll(); return; }
-
   scRAF=requestAnimationFrame(scrollStep);
 }
-
 function startAutoScroll(){
   if(scPlaying) return;
   scPlaying=true;
@@ -741,17 +921,12 @@ function setScrollSpeed(v){
   try{localStorage.setItem('azk_scroll_speed',JSON.stringify(scSpeed));}catch(e){}
   updateScrollUI();
 }
-
 document.getElementById('scPlay').addEventListener('click', toggleAutoScroll);
 document.getElementById('scSlower').addEventListener('click', ()=>setScrollSpeed(scSpeed-1));
 document.getElementById('scFaster').addEventListener('click', ()=>setScrollSpeed(scSpeed+1));
 document.getElementById('scSlider').addEventListener('input', e=>setScrollSpeed(parseInt(e.target.value,10)));
-
-/* Pause auto-scroll the moment the user manually scrolls or touches the screen */
-let scUserScrollLock=false;
-window.addEventListener('wheel', ()=>{ if(scPlaying && !scUserScrollLock) stopAutoScroll(); }, {passive:true});
-window.addEventListener('touchstart', ()=>{ if(scPlaying) stopAutoScroll(); }, {passive:true});
-
+window.addEventListener('wheel', e=>{ if(scPlaying && !e.target.closest('.scroll-bar')) stopAutoScroll(); }, {passive:true});
+window.addEventListener('touchmove', e=>{ if(scPlaying && !e.target.closest('.scroll-bar')) stopAutoScroll(); }, {passive:true});
 updateScrollUI();
 
 /* ══ AUDIO ══ */
@@ -761,7 +936,6 @@ const vib=p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
 
 /* ══ HELPERS ══ */
 function toggleFaz(b){const x=b.nextElementSibling;x.classList.toggle('open');b.textContent=x.classList.contains('open')?'▲ فضیلت چھپائیں':'✨ فضیلت دیکھیں';}
-
 function ring(cnt,target,color,done){
   const off=CIRC*(1-Math.min(cnt/target,1));
   return `<div class="ring-wrap" id="rw">
@@ -781,24 +955,23 @@ function render(){
   document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('active',c.dataset.sec===sec));
   const vm=document.getElementById('vmodes');
   if(vm)vm.style.display=sec==='kahf'?'flex':'none';
-  const scb=document.getElementById('scrollBar');
+  const scb=document.getElementById('scriptBtns');
   if(scb)scb.style.display=sec==='kahf'?'flex':'none';
+  const scrollB=document.getElementById('scrollBar');
+  if(scrollB)scrollB.style.display=sec==='kahf'?'flex':'none';
   if(sec!=='kahf') stopAutoScroll();
   const mc=document.getElementById('mc');
   if(!mc)return;
   if(sec==='kahf'){renderKahf(mc);return;}
   if(sec==='asr'){renderAsr(mc);return;}
   if(sec==='tasbeeh'){renderTasbeeh(mc);return;}
-
   const DATA={fajr:FAJR,jumma:JUMMA,tauheed:TAUHEED};
   const steps=DATA[sec],st=S[sec],step=steps[st.idx];
   const total=steps.length,cnt=st.cnt,done=cnt>=step.target;
   const color=sec==='jumma'?'#a855f7':'var(--g1)';
   document.getElementById('progBar').style.width=((st.idx+(done?1:cnt/step.target))/total*100)+'%';
-
   const grp=(sec==='fajr'&&step.grp)?`<div class="sec-label">📌 ${step.grp}</div>`:'';
   let h=`<div class="sp"><div class="step-badge"><div class="sdot" style="background:${color}"></div><span>${st.idx+1} / ${total}</span><div class="sdot" style="background:${color}"></div></div>${grp}`;
-
   if(step.isDm){
     h+=`<div class="dam-box"><strong>🫁 دَم کریں</strong><br/><br/>ہاتھوں پر تین بار پھونکیں — پھر پورے جسم پر ملیں۔<br/>پہلے خود پر، پھر گھر والوں پر دَم کریں۔</div>
     <div style="margin:.45rem 0"><div id="dmBtn" style="width:112px;height:112px;margin:0 auto;border-radius:50%;background:radial-gradient(circle at 38% 32%,#0d1e0f,var(--bg));border:1px solid rgba(60,179,113,.25);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;">
@@ -825,14 +998,12 @@ function render(){
   document.getElementById('nextB')?.addEventListener('click',goNext);
   renderDrawer();
 }
-
-/* ── ASR ── */
 function renderAsr(mc){
   const cnt=S.asr.cnt,done=S.asr.done,off=CIRC*(1-Math.min(cnt/80,1));
   document.getElementById('progBar').style.width=(Math.min(cnt/80,1)*100)+'%';
   mc.innerHTML=`<div class="sp">
     <div class="step-badge"><div class="sdot" style="background:#f0c840"></div><span>☀️ جمعہ — نمازِ عصر کے بعد — ۸۰ مرتبہ</span><div class="sdot" style="background:#f0c840"></div></div>
-    <div class="urdu-note">جمعہ کے دن نمازِ عصر کے بعد جگہ سے اٹھنے سے پہلے ۸۰ مرتبہ پڑھیں —<br/><strong>۸۰ سال کے گناہ معاف، ۸۰ سال کا ثواب</strong><span style="font-size:.7rem;color:var(--gold);display:block;margin-top:.2rem">(القول البديع — الإمام السخاوي)</span></div>
+    <div class="urdu-note">جمعہ کے دن نمازِ عصر کے بعد جگہ سے اٹھنے سے پہلے ۸۰ مرتبہ پڑھیں —<br/><strong>روایت کے مفہوم کے مطابق ۸۰ سال کے گناہ معاف اور ۸۰ سال کا ثواب ملتا ہے</strong><span style="font-size:.7rem;color:var(--gold);display:block;margin-top:.2rem">(القول البديع — الإمام السخاوي)</span></div>
     <img class="asr-img" src="${ASR_IMG}" alt="درود شریف" loading="lazy" onerror="this.style.display='none';document.getElementById('asrFb').style.display='block'"/>
     <div id="asrFb" class="dua-card" style="display:none"><div class="ar big">${ASR_TEXT}</div><div class="dua-name">درودِ نبی اُمّی ﷺ — ۸۰ مرتبہ</div></div>
     <div class="ring-wrap" id="rw"><svg viewBox="0 0 172 172"><circle class="rbg" cx="86" cy="86" r="74"/><circle class="rfill" id="rf" cx="86" cy="86" r="74" style="stroke:#f0c840;stroke-dashoffset:${done?0:off};filter:drop-shadow(0 0 5px rgba(240,200,64,.45))"/></svg>
@@ -847,18 +1018,16 @@ function renderAsr(mc){
   document.getElementById('asrReset').addEventListener('click',()=>{S.asr={cnt:0,done:false};save();renderAsr(mc);});
   renderDrawer();
 }
-
-/* ── TASBEEH ── */
 function renderTasbeeh(mc){
-  const{ph,cnt,sets}=S.tasbeeh,phase=TSB[ph],target=phase.target,done=cnt>=target;
+  const{ph,cnt}=S.tasbeeh,phase=TSB[ph],target=phase.target,done=cnt>=target;
   const off=CIRC*(1-Math.min(cnt/target,1));
   document.getElementById('progBar').style.width=((ph+(done?1:cnt/target))/3*100)+'%';
   const chips=TSB.map((p,i)=>`<div class="ph-chip" onclick="if(${i}!==${ph}){S.tasbeeh={ph:${i},cnt:0,sets:0};save();renderTasbeeh(document.getElementById('mc'));}" style="${i===ph?`border-color:${p.color};color:${p.color};background:${p.color}18`:i<ph?'border-color:var(--g1);color:var(--g1);background:rgba(60,179,113,.12)':''}"><div style="font-family:var(--qfont);font-size:.95rem">${p.ar}</div><div style="font-size:.6rem;margin-top:2px">${p.label} ×${p.target}</div>${i<ph?'<div>✓</div>':''}</div>`).join('');
   mc.innerHTML=`<div class="sp">
-    <div class="step-badge"><div class="sdot" style="background:${phase.color}"></div><span>📿 تسبیحِ فاطمہؓ — مرحلہ ${ph+1}/3 — سیٹ ${sets+1}</span><div class="sdot" style="background:${phase.color}"></div></div>
+    <div class="step-badge"><div class="sdot" style="background:${phase.color}"></div><span>📿 تسبیحِ فاطمہؓ — مرحلہ ${ph+1}/3</span><div class="sdot" style="background:${phase.color}"></div></div>
     <div class="tsb-phases">${chips}</div>
     <div class="dua-card" style="border-top-color:${phase.color}45"><div class="ar xl" style="color:#f8f2e4">${phase.ar}</div><div class="dua-name" style="color:${phase.color}">${phase.label} — × ${target}</div></div>
-    <div class="faz-body open" style="display:block">نبی کریم ﷺ نے سیدہ فاطمہؓ اور علیؓ کو یہ تسبیح سکھائی — فرمایا: "یہ خادم سے بہتر ہے۔"<span class="faz-ref">(صحیح بخاری و مسلم)</span></div>
+    <div class="faz-body open" style="display:block">روایت کے مفہوم کے مطابق نبی کریم ﷺ نے سیدہ فاطمہؓ اور سیدنا علیؓ کو یہ مبارک تسبیح سکھائی — اور اس کا مفہوم یہ ہے کہ یہ ذکر خادم سے بہتر ثابت ہوتا ہے۔<span class="faz-ref">(صحیح بخاری و مسلم)</span></div>
     <div class="ring-wrap" id="rw"><svg viewBox="0 0 172 172"><circle class="rbg" cx="86" cy="86" r="74"/><circle class="rfill" id="rf" cx="86" cy="86" r="74" style="stroke:${phase.color};stroke-dashoffset:${done?0:off};filter:drop-shadow(0 0 5px ${phase.color}55)"/></svg>
       <div class="ring-inner" id="ri" style="border-color:${phase.color}28">
         ${done?`<div style="font-size:1.55rem">✅</div><div class="rof">مکمل</div>`:`<div class="rnum" id="rn" style="color:${phase.color}">${cnt}</div><div class="rof">از ${target}</div><div class="rhint">tap to count</div>`}
@@ -875,34 +1044,40 @@ function renderTasbeeh(mc){
   });
   renderDrawer();
 }
-
-/* ── SURAH KAHF — 100% Embedded, Zero API ── */
 function renderKahf(mc){
   document.getElementById('progBar').style.width='100%';
-  let h=`<div class="quran-panel">
+  const dataset = (S.scriptMode === 'indopak') ? KAHF_INDOPAK : KAHF_UTHMANI;
+  const scriptLabel = (S.scriptMode === 'indopak') ? 'رسمِ ہند-پاک' : 'رسمِ عثمانی';
+  let tajVal = 'off';
+  if(S.scriptMode === 'uthmani') tajVal = S.tajMode || 'taj4';
+  else tajVal = 'off'; // Indo-Pak has no tags, so force off.
+  const hd = `<div class="quran-panel" data-tajweed="${tajVal}">
     <div class="quran-hd">
       <div class="quran-title">سُورَةُ الْكَهْفِ</div>
-      <div class="quran-meta">مکمل سورۃ — ۱۱۰ آیات — ۱۲ رکوع — تجوید کے رنگ کے ساتھ<br/>ہر جمعہ تلاوت سنت ہے • مکمل آف لائن — بغیر انٹرنیٹ</div>
+      <div class="quran-meta">مکمل سورۃ — ۱۱۰ آیات — ۱۲ رکوع (${scriptLabel})<br/>ہر جمعہ تلاوت سنت ہے • ۱۰۰٪ آف لائن — بغیر انٹرنیٹ کے</div>
     </div>
     <div class="quran-bism">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>`;
-
-  KAHF_DATA.forEach(ruku=>{
-    h+=`<div class="ruku-sep">${ruku.r}</div>`;
+  let body = '';
+  dataset.forEach(ruku=>{
+    body+=`<div class="ruku-sep">${ruku.r}</div>`;
     if(viewMode==='para'){
-      h+=`<div class="para-block">${ruku.verses.map(v=>`${v.t} <span class="vnum-inline">${v.n}</span>`).join(' ')}</div>`;
+      body+=`<div class="para-block">${ruku.verses.map(v=>`${v.t} <span class="vnum-inline">${v.n}</span>`).join(' ')}</div>`;
     } else {
-      h+=ruku.verses.map(v=>`<div class="vblock"><div class="vnum">${v.n}</div><div class="vtxt">${v.t}</div></div>`).join('');
+      body+=ruku.verses.map(v=>`<div class="vblock"><div class="vnum">${v.n}</div><div class="vtxt">${v.t}</div></div>`).join('');
     }
   });
-  h+=`<div style="text-align:center;padding:2rem 0 .5rem;font-family:var(--qfont);font-size:1.1rem;color:var(--gold2);direction:rtl;line-height:2.1">۞ صَدَقَ اللَّهُ الْعَظِيمُ ۞</div>
-    <div class="tj-legend">
-      <div class="tj-chip"><div class="tj-dot" style="background:#4CAF50"></div>مدّ (تفخیم کی جگہ)</div>
-      <div class="tj-chip"><div class="tj-dot" style="background:#29B6F6"></div>قلقلہ</div>
-      <div class="tj-chip"><div class="tj-dot" style="background:#F4A261"></div>غنہ</div>
-      <div class="tj-chip"><div class="tj-dot" style="background:#EC4899"></div>اخفاء</div>
-    </div>
-  </div>`;
-  mc.innerHTML=h;
+  let legend = '';
+  if(S.scriptMode === 'uthmani' && tajVal !== 'off'){
+    if(tajVal === 'taj4'){
+      legend = `<div class="tj-legend"><div class="tj-chip"><div class="tj-dot" style="background:#4CAF50"></div>مدّ (تفخیم)</div><div class="tj-chip"><div class="tj-dot" style="background:#29B6F6"></div>قلقلہ</div><div class="tj-chip"><div class="tj-dot" style="background:#F4A261"></div>غنہ</div><div class="tj-chip"><div class="tj-dot" style="background:#EC4899"></div>اخفاء</div></div>`;
+    } else {
+      legend = `<div class="tj-legend"><div class="tj-chip"><div class="tj-dot" style="background:#4CAF50"></div>مدّ</div><div class="tj-chip"><div class="tj-dot" style="background:#29B6F6"></div>قلقلہ</div><div class="tj-chip"><div class="tj-dot" style="background:#F4A261"></div>غنہ</div><div class="tj-chip"><div class="tj-dot" style="background:#EC4899"></div>اخفاء</div><div class="tj-chip"><div class="tj-dot" style="background:#9C27B0"></div>اقلاب</div><div class="tj-chip"><div class="tj-dot" style="background:#FFB74D"></div>ادغام</div><div class="tj-chip"><div class="tj-dot" style="background:#90A4AE"></div>سکون / ہمزۃ الوصل</div></div>`;
+    }
+  } else {
+    legend = `<div class="tj-legend"><div class="tj-chip">تجوید بند / رسمِ ہند-پاک</div></div>`;
+  }
+  const footer = `<div style="text-align:center;padding:2rem 0 .5rem;font-family:var(--qfont);font-size:1.1rem;color:var(--gold2);direction:rtl;line-height:2.1">۞ صَدَقَ اللَّهُ الْعَظِيمُ ۞</div>${legend}</div>`;
+  mc.innerHTML = hd + body + footer;
   renderDrawer();
 }
 
@@ -935,13 +1110,11 @@ function tap(){
     },750);
   }
 }
-
 function doUndo(){
   if(sec==='asr'){if(S.asr.cnt>0){S.asr.cnt--;S.asr.done=false;save();renderAsr(document.getElementById('mc'));}}
   else if(sec==='tasbeeh'){if(S.tasbeeh.cnt>0){S.tasbeeh.cnt--;save();renderTasbeeh(document.getElementById('mc'));}}
   else{const st=S[sec];if(st.cnt>0){st.cnt--;st.done[st.idx]=false;save();render();}}
 }
-
 function goNext(){
   const DATA={fajr:FAJR,jumma:JUMMA,tauheed:TAUHEED},st=S[sec];
   if(st.idx===DATA[sec].length-1){document.getElementById('compMsg').textContent={fajr:'ماشاءاللہ! فجر/مغرب کے اذکار مکمل 🌅',jumma:'ماشاءاللہ! جمعہ کا مکمل وِرد ادا ہوگیا 🌙',tauheed:'ماشاءاللہ! ذکرِ توحید مکمل ہوگیا ☝️'}[sec];document.getElementById('compScreen').classList.add('show');}
@@ -983,7 +1156,7 @@ document.getElementById('restartBtn').addEventListener('click',()=>{
   save();document.getElementById('compScreen').classList.remove('show');render();
 });
 document.addEventListener('keydown',e=>{
-  if(e.target.tagName==='INPUT')return;
+  if(e.target.tagName==='INPUT'||e.target.tagName==='SELECT')return;
   if(e.code==='Space'||e.code==='Enter'){e.preventDefault();tap();}
   if(e.code==='Backspace')doUndo();
   if(e.code==='ArrowRight')document.getElementById('nextB')?.click();
@@ -997,7 +1170,7 @@ render();
 <div style="display:none" aria-hidden="true">
 <h1>Islamic Azkar Pro — Darood Sharif Counter — درود شریف کاؤنٹر</h1>
 <h2>Surah Kahf Offline — سورۃ الکہف آف لائن — 80 Darood Jummah Asr Pakistan</h2>
-<p>Complete offline Islamic Azkar app for Pakistani Muslims. No internet required. Features: Darood Sharif 80 times counter for Jummah Asr, complete Fajr Maghrib Azkar with Ayat ul Kursi, Jummah Wird with all 4 surahs, full Surah Al-Kahf 110 verses embedded offline, Tasbeeh-e-Fatima counter, Tauheed Azkar. Scheherazade New font for Quranic text. Works on GitHub Pages without any API.</p>
+<p>Complete offline Islamic Azkar app for Pakistani Muslims. No internet required. Features: Darood Sharif 80 times counter for Jummah Asr, complete Fajr Maghrib Azkar with Ayat ul Kursi, Jummah Wird with all 4 surahs, full Surah Al-Kahf 110 verses embedded offline, Tasbeeh-e-Fatima counter, Tauheed Azkar. Al Majeed font for Quranic text. Works on GitHub Pages without any API.</p>
 </div>
 </body>
 </html>
