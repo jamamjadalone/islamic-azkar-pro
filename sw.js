@@ -1,7 +1,7 @@
 /* Islamic Azkar Pro — Service Worker
    100% offline app shell. Cache-first with network fallback.
    Updated automatically on each deploy via a cache version bump. */
-const CACHE = 'azk-pro-v1';
+const CACHE = 'azk-pro-v2';
 const CORE = [
   './',
   './index.html',

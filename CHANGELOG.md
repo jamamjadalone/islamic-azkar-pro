@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Consolidated the app into a single self-contained `index.html` (HTML + CSS + JS + data)
 - All Quranic and azkar data now loads from the bundled file (no external fetch at runtime)
 - Social preview (`og:image` / `twitter:image`) now points to the bundled app icon
+- Pakistani (Indo-Pak) Surah Al-Kahf verses now end with the standard ﴿N﴾ verse markers (matching the Fajr/Maghrib style)
 
 ### Fixed
 
