@@ -1,0 +1,34 @@
+{
+  "name": "Islamic Azkar Pro — درود شریف کاؤنٹر",
+  "short_name": "Azkar Pro",
+  "description": "Complete offline Islamic Azkar app — Darood Sharif 80x counter, Fajr/Maghrib Azkar, Jummah Wird, full Surah Al-Kahf, Tasbeeh-e-Fatima and Tauheed Azkar. 100% offline, works from GitHub Pages.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#010c02",
+  "theme_color": "#010c02",
+  "lang": "ur",
+  "dir": "rtl",
+  "categories": ["lifestyle", "books", "religion"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

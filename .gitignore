@@ -1,23 +1,33 @@
 # Logs
 *.log
+npm-debug.log*
 
 # Environment
 .env
 .env.local
+.env.*.local
 
-# IDE
+# IDE / Editors
 .vscode/
 .idea/
+*.swp
+*.swo
 
-# macOS
+# OS
 .DS_Store
-
-# Windows
 Thumbs.db
+Desktop.ini
 
-# Build
+# Build / Output
 dist/
 build/
+out/
+coverage/
 
 # Node
 node_modules/
+npm-debug.log*
+
+# Static analysis
+.sass-cache/
+.eslintcache
