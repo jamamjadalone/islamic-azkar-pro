@@ -299,6 +299,59 @@ body::before{
 .comp-btn{background:rgba(60,179,113,.2);border:1px solid rgba(60,179,113,.4);color:var(--g2);border-radius:40px;padding:.62rem 1.7rem;font-family:'Noto Nastaliq Urdu',serif;font-size:.87rem;cursor:pointer;margin-top:.35rem;transition:background .2s}
 .comp-btn:hover{background:rgba(60,179,113,.32)}
 
+/* ── CUSTOM / MANUAL AZKAR ── */
+.cust-panel{width:100%;max-width:540px;padding:.5rem .75rem 3.5rem;direction:rtl;display:flex;flex-direction:column;gap:.85rem}
+.cust-header{display:flex;flex-direction:column;gap:.5rem;text-align:right;background:rgba(7,18,9,.85);border:1px solid var(--bdr);border-radius:14px;padding:.9rem 1rem}
+.cust-title{font-family:'Noto Nastaliq Urdu',serif;font-size:1.15rem;color:var(--gold2);display:flex;align-items:center;justify-content:space-between}
+.cust-desc{font-family:'Noto Nastaliq Urdu',serif;font-size:.78rem;color:var(--text2);line-height:2}
+.cust-top-btns{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.2rem}
+.btn-primary{background:rgba(60,179,113,.18);border:1px solid rgba(60,179,113,.4);color:var(--g2);border-radius:24px;padding:.42rem .95rem;font-size:.8rem;font-family:'Noto Nastaliq Urdu',serif;cursor:pointer;display:inline-flex;align-items:center;gap:.35rem;transition:all .18s}
+.btn-primary:hover{background:rgba(60,179,113,.28);color:#fff;border-color:var(--g1)}
+.btn-gold{background:rgba(212,160,23,.15);border:1px solid rgba(212,160,23,.38);color:var(--gold2);border-radius:24px;padding:.42rem .95rem;font-size:.8rem;font-family:'Noto Nastaliq Urdu',serif;cursor:pointer;display:inline-flex;align-items:center;gap:.35rem;transition:all .18s}
+.btn-gold:hover{background:rgba(212,160,23,.25);color:#fff}
+.cust-list{display:flex;flex-direction:column;gap:.7rem}
+.cust-empty{text-align:center;padding:2.2rem 1.2rem;background:rgba(7,18,9,.6);border:1px dashed var(--bdr);border-radius:14px;font-family:'Noto Nastaliq Urdu',serif;color:var(--text2);line-height:2.1}
+.cust-card{background:linear-gradient(180deg,rgba(13,30,15,.75),rgba(7,18,9,.85));border:1px solid var(--bdr);border-radius:14px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.55rem;transition:all .18s}
+.cust-card:hover{border-color:rgba(60,179,113,.35)}
+.cust-card.is-done{border-color:rgba(60,179,113,.35);background:linear-gradient(180deg,rgba(20,45,22,.6),rgba(7,18,9,.85))}
+.cust-card-hd{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.cust-card-title{font-family:'Noto Nastaliq Urdu',serif;font-size:1.02rem;color:var(--gold2);line-height:1.7}
+.cust-badge{font-family:'Noto Naskh Arabic',serif;font-size:.68rem;padding:2px 8px;border-radius:20px;background:rgba(60,179,113,.12);border:1px solid rgba(60,179,113,.25);color:var(--g2);direction:ltr}
+.cust-card-ar{font-family:var(--qfont);font-size:calc(var(--qs)*0.88);color:var(--ar);line-height:2.3;text-align:right;max-height:130px;overflow-y:auto;padding-left:4px;word-break:break-word}
+.cust-bar-wrap{width:100%;height:5px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden;margin-top:.2rem}
+.cust-bar-fill{height:100%;background:var(--g1);border-radius:4px;transition:width .3s}
+.cust-card-acts{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.4rem;margin-top:.35rem;border-top:1px solid rgba(255,255,255,.05);padding-top:.55rem}
+.cust-act-group{display:flex;align-items:center;gap:.35rem}
+.btn-sm{background:rgba(255,255,255,.05);border:1px solid var(--bdr2);color:var(--text2);padding:.26rem .62rem;border-radius:18px;font-size:.72rem;font-family:'Noto Nastaliq Urdu',serif;cursor:pointer;transition:all .15s}
+.btn-sm:hover{background:rgba(60,179,113,.15);color:var(--g2);border-color:var(--bdr)}
+.btn-sm.danger:hover{background:rgba(239,68,68,.18);color:#fca5a5;border-color:rgba(239,68,68,.35)}
+.btn-play{background:rgba(60,179,113,.2);border:1px solid rgba(60,179,113,.4);color:var(--g2);font-weight:600;padding:.32rem .95rem}
+.btn-play:hover{background:rgba(60,179,113,.32);color:#fff}
+
+/* ── MODALS ── */
+.app-modal{display:none;position:fixed;inset:0;z-index:220;background:rgba(0,0,0,.82);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:1rem;direction:rtl}
+.app-modal.open{display:flex;animation:fadeUp .2s ease}
+.modal-box{background:#071209;border:1px solid rgba(60,179,113,.28);box-shadow:0 12px 40px rgba(0,0,0,.8);border-radius:16px;width:100%;max-width:480px;max-height:88vh;display:flex;flex-direction:column;overflow:hidden}
+.modal-hd{padding:.85rem 1rem .75rem;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;background:#0d1e0f}
+.modal-title{font-family:'Noto Nastaliq Urdu',serif;font-size:1.02rem;color:var(--gold2)}
+.modal-close{background:transparent;border:none;color:var(--text2);font-size:1.2rem;cursor:pointer;padding:.2rem .4rem}
+.modal-close:hover{color:#fff}
+.modal-body{padding:1rem;overflow-y:auto;display:flex;flex-direction:column;gap:.85rem}
+.form-grp{display:flex;flex-direction:column;gap:.35rem;text-align:right}
+.form-lbl{font-family:'Noto Nastaliq Urdu',serif;font-size:.82rem;color:var(--text2)}
+.form-input,.form-textarea{background:rgba(0,0,0,.5);border:1px solid var(--bdr);color:var(--text);border-radius:10px;padding:.55rem .75rem;font-family:'Noto Nastaliq Urdu',serif;font-size:.86rem;outline:none;transition:border-color .18s;direction:rtl}
+.form-textarea{font-family:var(--qfont);font-size:1.25rem;line-height:2.2;min-height:95px;resize:vertical}
+.form-input:focus,.form-textarea:focus{border-color:var(--g1);box-shadow:0 0 0 2px rgba(60,179,113,.2)}
+.quick-targets{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.2rem}
+.q-chip{background:rgba(60,179,113,.08);border:1px solid var(--bdr);color:var(--text2);padding:.22rem .55rem;border-radius:12px;font-size:.72rem;cursor:pointer;font-family:'Noto Naskh Arabic',serif;direction:ltr;transition:all .15s}
+.q-chip:hover,.q-chip.active{background:rgba(60,179,113,.24);color:var(--g2);border-color:var(--g1)}
+.modal-ft{padding:.75rem 1rem;border-top:1px solid var(--bdr);display:flex;align-items:center;justify-content:flex-end;gap:.5rem;background:#0a170c}
+.import-filter{display:flex;gap:.35rem;overflow-x:auto;padding-bottom:.4rem;margin-bottom:.4rem;border-bottom:1px solid rgba(255,255,255,.05)}
+.import-item{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:.65rem .75rem;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;gap:.25rem}
+.import-item:hover{background:rgba(60,179,113,.1);border-color:var(--bdr)}
+.import-item-name{font-family:'Noto Nastaliq Urdu',serif;font-size:.85rem;color:var(--gold2)}
+.import-item-ar{font-family:var(--qfont);font-size:.98rem;color:var(--ar);line-height:1.9;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
 @media(max-width:360px){:root{--qs:1.3rem}.ring-wrap{width:155px;height:155px}.rnum{font-size:2.5rem}.chip{font-size:.66rem;padding:.26rem .44rem}}
 </style>
 </head>
@@ -312,6 +365,7 @@ body::before{
     <button class="chip" data-sec="tauheed">☝️ توحید</button>
     <button class="chip" data-sec="kahf">📖 سورۃ الکہف</button>
     <button class="chip" data-sec="tasbeeh">📿 تسبیح</button>
+    <button class="chip" data-sec="custom">📝 ذاتی اذکار</button>
   </div>
   <button class="menu-btn" id="menuBtn">☰</button>
 </nav>
@@ -367,6 +421,67 @@ body::before{
 <main id="mc"></main>
 
 <div class="overlay" id="overlay"></div>
+<!-- Custom Azkar Add / Edit Modal -->
+<div class="app-modal" id="customModal">
+  <div class="modal-box">
+    <div class="modal-hd">
+      <div class="modal-title" id="customModalTitle">➕ نیا ذاتی ذکر شامل کریں</div>
+      <button class="modal-close" id="closeCustomModalBtn">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="custEditId" value=""/>
+      <div class="form-grp">
+        <label class="form-lbl">عنوان / نام:</label>
+        <input type="text" class="form-input" id="custName" placeholder="مثلاً: درود شریف، استغفار، تیسرا کلمہ"/>
+      </div>
+      <div class="form-grp">
+        <label class="form-lbl">عربی متن یا دعا:</label>
+        <textarea class="form-textarea" id="custAr" placeholder="یہاں دعا یا ذکر کا متن پیسٹ / ٹائپ کریں..."></textarea>
+      </div>
+      <div class="form-grp">
+        <label class="form-lbl">تسبیح کا ہدف (Target Count):</label>
+        <input type="number" class="form-input" id="custTarget" min="1" max="100000" value="100" style="direction:ltr;text-align:center;font-weight:700;font-size:1.1rem"/>
+        <div class="quick-targets">
+          <span style="font-size:.7rem;color:var(--text3);line-height:1.8">فوری ہدف:</span>
+          <button type="button" class="q-chip" data-tgt="33">33</button>
+          <button type="button" class="q-chip" data-tgt="70">70</button>
+          <button type="button" class="q-chip" data-tgt="100">100</button>
+          <button type="button" class="q-chip" data-tgt="313">313</button>
+          <button type="button" class="q-chip" data-tgt="500">500</button>
+          <button type="button" class="q-chip" data-tgt="1000">1000</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ft">
+      <button class="btn" id="cancelCustomModalBtn">منسوخ</button>
+      <button class="btn next" id="saveCustomModalBtn">محفوظ کریں ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- Import From App Azkar Modal -->
+<div class="app-modal" id="importModal">
+  <div class="modal-box" style="max-width:520px">
+    <div class="modal-hd">
+      <div class="modal-title">📥 ایپ کے اذکار سے امپورٹ کریں</div>
+      <button class="modal-close" id="closeImportModalBtn">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="import-filter" id="importFilters">
+        <button class="q-chip active" data-filter="all">تمام</button>
+        <button class="q-chip" data-filter="fajr">فجر/مغرب</button>
+        <button class="q-chip" data-filter="jumma">جمعہ وِرد</button>
+        <button class="q-chip" data-filter="tauheed">توحید</button>
+        <button class="q-chip" data-filter="durood">درود و تسبیح</button>
+      </div>
+      <div id="importListContainer" style="display:flex;flex-direction:column;gap:.45rem;max-height:360px;overflow-y:auto;padding-left:4px"></div>
+    </div>
+    <div class="modal-ft">
+      <button class="btn" id="cancelImportModalBtn">بند کریں</button>
+    </div>
+  </div>
+</div>
+
 <aside class="drawer" id="drawer">
   <div class="dr-head">
     <div class="dr-title">🕌 تمام اذکار</div>
@@ -804,6 +919,66 @@ try{
 }catch(e){}
 const save=()=>{try{localStorage.setItem('azk_pro_v1',JSON.stringify({sec,viewMode,zoomPct,tajMode:S.tajMode,scriptMode:S.scriptMode,...S}))}catch(e){}};
 
+/* ══ CUSTOM / MANUAL AZKAR DATA & STORAGE ══ */
+let customActiveId = null;
+let customAzkar = [];
+
+const DEFAULT_CUSTOM_AZKAR = [
+  {
+    id: 'c_default_1',
+    name: 'استغفار — توبہ و استغفار',
+    ar: 'أَسْتَغْفِرُ اللّٰهَ رَبِّيْ مِنْ كُلِّ ذَنْبٍ وَّأَتُوْبُ إِلَيْهِ',
+    target: 100,
+    cnt: 0,
+    done: false
+  },
+  {
+    id: 'c_default_2',
+    name: 'تیسرا کلمہ — تمجید',
+    ar: 'سُبْحَانَ اللّٰهِ وَالْحَمْدُ لِلّٰهِ وَلَا إِلٰهَ إِلَّا اللّٰهُ وَاللّٰهُ أَكْبَرُ ۚ وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللّٰهِ الْعَلِیِّ الْعَظِیْمِ',
+    target: 100,
+    cnt: 0,
+    done: false
+  },
+  {
+    id: 'c_default_3',
+    name: 'درودِ پاک — کثرتِ درود',
+    ar: 'اَللّٰهُمَّ صَلِّ عَلٰی مُحَمَّدٍ وَّعَلٰۤی اٰلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلٰۤی اِبْرٰهِيْمَ وَعَلٰۤی اٰلِ اِبْرٰهِيْمَ اِنَّكَ حَمِيْدٌ مَّجِيْدٌ',
+    target: 100,
+    cnt: 0,
+    done: false
+  }
+];
+
+function loadCustomAzkar(){
+  try{
+    const raw=localStorage.getItem('azk_manual_azkar_v1');
+    if(raw){
+      customAzkar=JSON.parse(raw);
+    }else{
+      customAzkar=JSON.parse(JSON.stringify(DEFAULT_CUSTOM_AZKAR));
+      saveCustomAzkar();
+    }
+  }catch(e){
+    customAzkar=JSON.parse(JSON.stringify(DEFAULT_CUSTOM_AZKAR));
+  }
+  if(navigator.storage&&navigator.storage.persist){
+    navigator.storage.persist().catch(()=>{});
+  }
+}
+
+function saveCustomAzkar(){
+  try{
+    localStorage.setItem('azk_manual_azkar_v1',JSON.stringify(customAzkar));
+  }catch(e){}
+}
+
+function getActiveCustomItem(){
+  if(!customActiveId)return null;
+  return customAzkar.find(x=>x.id===customActiveId)||null;
+}
+loadCustomAzkar();
+
 /* ══ ZOOM ══ */
 const BASE_QS=1.52;
 function applyZoom(pct){
@@ -973,6 +1148,7 @@ function render(){
   if(sec==='kahf'){renderKahf(mc);return;}
   if(sec==='asr'){renderAsr(mc);return;}
   if(sec==='tasbeeh'){renderTasbeeh(mc);return;}
+  if(sec==='custom'){renderCustom(mc);return;}
   const DATA={fajr:FAJR,jumma:JUMMA,tauheed:TAUHEED};
   const steps=DATA[sec],st=S[sec],step=steps[st.idx];
   const total=steps.length,cnt=st.cnt,done=cnt>=step.target;
@@ -1090,27 +1266,326 @@ function renderKahf(mc){
   renderDrawer();
 }
 
+/* ══ MANUAL / CUSTOM AZKAR RENDER & ACTIONS ══ */
+function renderCustom(mc){
+  if(sec!=='custom')return;
+  document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('active',c.dataset.sec==='custom'));
+  const vm=document.getElementById('vmodes');if(vm)vm.style.display='none';
+  const scb=document.getElementById('scriptBtns');if(scb)scb.style.display='none';
+  const scrollB=document.getElementById('scrollBar');if(scrollB)scrollB.style.display='none';
+  stopAutoScroll();
+
+  if(customActiveId){
+    // Counter Mode
+    const item=getActiveCustomItem();
+    if(!item){customActiveId=null;renderCustom(mc);return;}
+    const cnt=item.cnt,target=item.target,done=item.done||cnt>=target;
+    document.getElementById('progBar').style.width=(Math.min(cnt/target,1)*100)+'%';
+    mc.innerHTML=`<div class="sp">
+      <div style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-bottom:.3rem">
+        <button class="btn-sm" onclick="backToCustomList()">← اذکار کی فہرست</button>
+        <div class="step-badge" style="margin:0"><div class="sdot" style="background:var(--g1)"></div><span>${item.name}</span><div class="sdot" style="background:var(--g1)"></div></div>
+      </div>
+      <div class="dua-card">
+        <div class="ar" style="font-size:calc(var(--qs)*1.05)">${item.ar.replace(/\n/g,'<br/><br/>')}</div>
+        <div class="dua-name">${item.name} — ہدف: ${item.target} مرتبہ</div>
+      </div>
+      ${ring(cnt,target,'var(--g1)',done)}
+      <div class="ctrls">
+        <button class="btn" onclick="backToCustomList()">← فہرست</button>
+        <button class="btn" id="undoB">↩ واپس</button>
+        <button class="btn next" onclick="resetActiveCustom()">↺ دوبارہ</button>
+      </div>
+    </div>`;
+    document.getElementById('rw')?.addEventListener('click',tap);
+    document.getElementById('undoB')?.addEventListener('click',doUndo);
+    renderDrawer();
+    return;
+  }
+
+  // List Mode
+  const total=customAzkar.length;
+  const doneCount=customAzkar.filter(x=>x.done||x.cnt>=x.target).length;
+  document.getElementById('progBar').style.width=total>0?(doneCount/total*100)+'%':'0%';
+
+  let listHtml='';
+  if(!total){
+    listHtml=`<div class="cust-empty">
+      <div style="font-size:2.2rem;margin-bottom:.4rem">📿</div>
+      <strong>ابھی تک کوئی ذاتی ذکر شامل نہیں کیا گیا ہے۔</strong><br/>
+      اوپر دیے گئے بٹن سے نیا ذکر خود لکھیں یا ایپ کے اذکار سے منتخب کریں۔
+    </div>`;
+  } else {
+    listHtml=`<div class="cust-list">${customAzkar.map(item=>{
+      const isDone=item.done||item.cnt>=item.target;
+      const pct=Math.min(100,Math.round((item.cnt/item.target)*100));
+      return `
+        <div class="cust-card${isDone?' is-done':''}">
+          <div class="cust-card-hd">
+            <span class="cust-card-title">${item.name}</span>
+            <span class="cust-badge">${isDone?'✅ مکمل':`${item.cnt} / ${item.target}`}</span>
+          </div>
+          <div class="cust-card-ar">${item.ar}</div>
+          <div class="cust-bar-wrap"><div class="cust-bar-fill" style="width:${pct}%;background:${isDone?'var(--g2)':'var(--g1)'}"></div></div>
+          <div class="cust-card-acts">
+            <div class="cust-act-group">
+              <button class="btn-sm btn-play" onclick="startCustomCount('${item.id}')">${isDone?'↺ پھر سے پڑھیں':'▶ تسبیح پڑھیں'}</button>
+              <button class="btn-sm" onclick="resetCustomCount('${item.id}')" title="شمار صفر کریں">↺ ری سیٹ</button>
+            </div>
+            <div class="cust-act-group">
+              <button class="btn-sm" onclick="openAddCustomModal('${item.id}')" title="ترمیم">✏️ ایڈٹ</button>
+              <button class="btn-sm danger" onclick="deleteCustomItem('${item.id}')" title="حذف کریں">🗑️</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('')}</div>`;
+  }
+
+  mc.innerHTML=`
+    <div class="cust-panel">
+      <div class="cust-header">
+        <div class="cust-title">
+          <span>📝 ذاتی اذکار و تسبیحات</span>
+          <span class="cust-badge" style="font-size:.75rem">${doneCount}/${total} مکمل</span>
+        </div>
+        <div class="cust-desc">اپنا متن ٹائپ کریں یا ایپ کے اذکار امپورٹ کریں — یہ اذکار آپ کے براؤزر میں ہمیشہ محفوظ رہیں گے۔</div>
+        <div class="cust-top-btns">
+          <button class="btn-primary" onclick="openAddCustomModal()">➕ نیا ذاتی ذکر</button>
+          <button class="btn-gold" onclick="openImportModal()">📥 ایپ سے امپورٹ کریں</button>
+        </div>
+      </div>
+      ${listHtml}
+    </div>
+  `;
+  renderDrawer();
+}
+
+/* ══ MODAL & IMPORT MANAGEMENT ══ */
+function openAddCustomModal(editId=null){
+  const m=document.getElementById('customModal');
+  const t=document.getElementById('customModalTitle');
+  const eid=document.getElementById('custEditId');
+  const name=document.getElementById('custName');
+  const ar=document.getElementById('custAr');
+  const tgt=document.getElementById('custTarget');
+  if(editId){
+    const item=customAzkar.find(x=>x.id===editId);
+    if(item){
+      t.textContent='✏️ ذکر میں ترمیم کریں';
+      eid.value=item.id;
+      name.value=item.name;
+      ar.value=item.ar;
+      tgt.value=item.target;
+    }
+  } else {
+    t.textContent='➕ نیا ذاتی ذکر شامل کریں';
+    eid.value='';
+    name.value='';
+    ar.value='';
+    tgt.value='100';
+  }
+  m.classList.add('open');
+  name.focus();
+}
+
+function closeCustomModal(){
+  document.getElementById('customModal').classList.remove('open');
+}
+
+function setCustTarget(val){
+  document.getElementById('custTarget').value=val;
+}
+
+function saveCustomForm(){
+  const eid=document.getElementById('custEditId').value;
+  const name=document.getElementById('custName').value.trim();
+  const ar=document.getElementById('custAr').value.trim();
+  const tgt=parseInt(document.getElementById('custTarget').value,10);
+  if(!name){alert('براہ کرم ذکر کا نام / عنوان درج کریں۔');return;}
+  if(!ar){alert('براہ کرم عربی متن یا دعا درج کریں۔');return;}
+  if(!tgt||tgt<1){alert('براہ کرم درست تعداد درج کریں۔');return;}
+
+  if(eid){
+    const item=customAzkar.find(x=>x.id===eid);
+    if(item){
+      item.name=name;
+      item.ar=ar;
+      item.target=tgt;
+      if(item.cnt>=tgt)item.done=true;else item.done=false;
+    }
+  } else {
+    const newItem={
+      id:'c_'+Date.now()+'_'+Math.random().toString(36).substr(2,4),
+      name:name,
+      ar:ar,
+      target:tgt,
+      cnt:0,
+      done:false
+    };
+    customAzkar.unshift(newItem);
+  }
+  saveCustomAzkar();
+  closeCustomModal();
+  renderCustom(document.getElementById('mc'));
+  renderDrawer();
+}
+
+/* ── IMPORT CATALOG ── */
+function getImportCatalog(){
+  const catalog=[];
+  FAJR.forEach(f=>{
+    if(!f.isDm&&f.ar){catalog.push({sec:'fajr',secName:'فجر/مغرب',name:f.name,ar:f.ar,target:f.target||100});}
+  });
+  JUMMA.forEach(j=>{
+    if(j.ar){catalog.push({sec:'jumma',secName:'جمعہ وِرد',name:j.name,ar:j.ar,target:j.target||100});}
+  });
+  TAUHEED.forEach(t=>{
+    if(t.ar){catalog.push({sec:'tauheed',secName:'توحید',name:t.name,ar:t.ar,target:t.target||100});}
+  });
+  catalog.push({sec:'durood',secName:'عصر درود',name:'درودِ نبی اُمّی ﷺ (۸۰ مرتبہ)',ar:ASR_TEXT,target:80});
+  TSB.forEach(t=>{
+    catalog.push({sec:'durood',secName:'تسبیحِ فاطمہؓ',name:t.label,ar:t.ar,target:t.target||33});
+  });
+  return catalog;
+}
+
+let activeImportFilter='all';
+function openImportModal(){
+  activeImportFilter='all';
+  document.querySelectorAll('#importFilters button').forEach(b=>b.classList.toggle('active',b.dataset.filter==='all'));
+  renderImportList('all');
+  document.getElementById('importModal').classList.add('open');
+}
+
+function closeImportModal(){
+  document.getElementById('importModal').classList.remove('open');
+}
+
+function filterImportList(filter,btn){
+  activeImportFilter=filter;
+  document.querySelectorAll('#importFilters button').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  renderImportList(filter);
+}
+
+function renderImportList(filter){
+  const container=document.getElementById('importListContainer');
+  if(!container)return;
+  const catalog=getImportCatalog();
+  const list=(filter==='all')?catalog:catalog.filter(x=>x.sec===filter);
+  if(!list.length){
+    container.innerHTML='<div style="text-align:center;padding:1rem;color:var(--text2)">کوئی ذکر نہیں ملا۔</div>';
+    return;
+  }
+  container.innerHTML=list.map((item,idx)=>`
+    <div class="import-item">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <span class="import-item-name">${item.name}</span>
+        <span class="cust-badge">${item.secName} • ×${item.target}</span>
+      </div>
+      <div class="import-item-ar">${item.ar}</div>
+      <button class="btn-sm btn-play" style="align-self:flex-end;margin-top:2px" onclick="selectImportItem(${idx}, '${filter}')">📥 فہرست میں شامل کریں</button>
+    </div>
+  `).join('');
+}
+
+function selectImportItem(idx, filter){
+  const catalog=getImportCatalog();
+  const list=(filter==='all')?catalog:catalog.filter(x=>x.sec===filter);
+  const selected=list[idx];
+  if(!selected)return;
+  closeImportModal();
+  const m=document.getElementById('customModal');
+  document.getElementById('customModalTitle').textContent='📥 امپورٹ شدہ ذکر کی تصدیق';
+  document.getElementById('custEditId').value='';
+  document.getElementById('custName').value=selected.name;
+  document.getElementById('custAr').value=selected.ar;
+  document.getElementById('custTarget').value=selected.target||100;
+  m.classList.add('open');
+}
+
+/* ── CUSTOM USER ACTIONS ── */
+function startCustomCount(id){
+  customActiveId=id;
+  renderCustom(document.getElementById('mc'));
+  window.scrollTo(0,0);
+}
+
+function backToCustomList(){
+  customActiveId=null;
+  renderCustom(document.getElementById('mc'));
+  window.scrollTo(0,0);
+}
+
+function resetCustomCount(id){
+  const item=customAzkar.find(x=>x.id===id);
+  if(item){
+    item.cnt=0;
+    item.done=false;
+    saveCustomAzkar();
+    renderCustom(document.getElementById('mc'));
+    renderDrawer();
+  }
+}
+
+function resetActiveCustom(){
+  const item=getActiveCustomItem();
+  if(item){
+    item.cnt=0;
+    item.done=false;
+    saveCustomAzkar();
+    renderCustom(document.getElementById('mc'));
+    renderDrawer();
+  }
+}
+
+function deleteCustomItem(id){
+  const item=customAzkar.find(x=>x.id===id);
+  if(!item)return;
+  if(confirm(`کیا آپ واقعی "${item.name}" کو حذف (Delete) کرنا چاہتے ہیں؟`)){
+    customAzkar=customAzkar.filter(x=>x.id!==id);
+    if(customActiveId===id)customActiveId=null;
+    saveCustomAzkar();
+    renderCustom(document.getElementById('mc'));
+    renderDrawer();
+  }
+}
+
 /* ══ TAP ══ */
 function tap(){
-  const isTsb=sec==='tasbeeh',isAsr=sec==='asr';
-  let cnt,target;
-  if(isAsr){if(S.asr.done)return;cnt=S.asr.cnt;target=80;}
+  const isTsb=sec==='tasbeeh',isAsr=sec==='asr',isCust=sec==='custom';
+  let cnt,target,item;
+  if(isCust){
+    item=getActiveCustomItem();
+    if(!item||item.done)return;
+    cnt=item.cnt;target=item.target;
+  }
+  else if(isAsr){if(S.asr.done)return;cnt=S.asr.cnt;target=80;}
   else if(isTsb){const t=TSB[S.tasbeeh.ph];if(S.tasbeeh.cnt>=t.target)return;cnt=S.tasbeeh.cnt;target=t.target;}
   else{const st=S[sec],d={fajr:FAJR,jumma:JUMMA,tauheed:TAUHEED}[sec][st.idx];if(st.cnt>=d.target)return;cnt=st.cnt;target=d.target;}
   if(cnt>=target)return;
-  if(isAsr)S.asr.cnt++;else if(isTsb)S.tasbeeh.cnt++;else S[sec].cnt++;
+  if(isCust){item.cnt++;saveCustomAzkar();}
+  else if(isAsr)S.asr.cnt++;else if(isTsb)S.tasbeeh.cnt++;else S[sec].cnt++;
   save();
-  beep(isTsb?640:isAsr?800:760,.08);vib(18);
+  beep(isTsb?640:isAsr?800:isCust?720:760,.08);vib(18);
   const ri=document.getElementById('ri');
-  if(ri){ri.classList.remove('pg','pa','ps','pj');void ri.offsetWidth;ri.classList.add(isAsr?'pa':isTsb?'ps':sec==='jumma'?'pj':'pg');}
-  const nc=isAsr?S.asr.cnt:isTsb?S.tasbeeh.cnt:S[sec].cnt;
+  if(ri){ri.classList.remove('pg','pa','ps','pj');void ri.offsetWidth;ri.classList.add(isAsr?'pa':isTsb?'ps':isCust?'pg':sec==='jumma'?'pj':'pg');}
+  const nc=isCust?item.cnt:isAsr?S.asr.cnt:isTsb?S.tasbeeh.cnt:S[sec].cnt;
   const rn=document.getElementById('rn');if(rn)rn.textContent=nc;
   const rf=document.getElementById('rf');if(rf)rf.style.strokeDashoffset=CIRC*(1-nc/target);
   if(nc>=target){
     beep(isTsb?500:560,.3,.2);vib([35,25,60]);
-    if(isAsr)S.asr.done=true;else if(!isTsb)S[sec].done[S[sec].idx]=true;
+    if(isCust){item.done=true;saveCustomAzkar();}
+    else if(isAsr)S.asr.done=true;else if(!isTsb)S[sec].done[S[sec].idx]=true;
     save();
     setTimeout(()=>{
+      if(isCust){
+        document.getElementById('compMsg').textContent=`ماشاءاللہ! "${item.name}" مکمل ہوگیا 🌿`;
+        document.getElementById('compScreen').classList.add('show');
+        renderCustom(document.getElementById('mc'));
+        return;
+      }
       if(isTsb){const{ph}=S.tasbeeh;if(ph<2){S.tasbeeh.ph++;S.tasbeeh.cnt=0;save();renderTasbeeh(document.getElementById('mc'));}else{document.getElementById('compMsg').textContent='ماشاءاللہ! تسبیحِ فاطمہؓ مکمل ہوگئی 📿';document.getElementById('compScreen').classList.add('show');}return;}
       if(isAsr){render();return;}
       const st=S[sec];const DATA={fajr:FAJR,jumma:JUMMA,tauheed:TAUHEED};
@@ -1120,7 +1595,11 @@ function tap(){
   }
 }
 function doUndo(){
-  if(sec==='asr'){if(S.asr.cnt>0){S.asr.cnt--;S.asr.done=false;save();renderAsr(document.getElementById('mc'));}}
+  if(sec==='custom'){
+    const item=getActiveCustomItem();
+    if(item&&item.cnt>0){item.cnt--;item.done=false;saveCustomAzkar();renderCustom(document.getElementById('mc'));}
+  }
+  else if(sec==='asr'){if(S.asr.cnt>0){S.asr.cnt--;S.asr.done=false;save();renderAsr(document.getElementById('mc'));}}
   else if(sec==='tasbeeh'){if(S.tasbeeh.cnt>0){S.tasbeeh.cnt--;save();renderTasbeeh(document.getElementById('mc'));}}
   else{const st=S[sec];if(st.cnt>0){st.cnt--;st.done[st.idx]=false;save();render();}}
 }
@@ -1137,7 +1616,8 @@ const SECS=[
   {id:'jumma',  icon:'🌙',title:'جمعہ کا وِرد',         ct:JUMMA.length+' اذکار'},
   {id:'tauheed',icon:'☝️',title:'توحید کے اذکار',      ct:TAUHEED.length+' اذکار'},
   {id:'kahf',   icon:'📖',title:'سورۃ الکہف — آف لائن', ct:'۱۱۰ آیات'},
-  {id:'tasbeeh',icon:'📿',title:'تسبیحِ فاطمہؓ',       ct:'۳۳+۳۳+۳۴'}
+  {id:'tasbeeh',icon:'📿',title:'تسبیحِ فاطمہؓ',       ct:'۳۳+۳۳+۳۴'},
+  {id:'custom', icon:'📝',title:'ذاتی اذکار (مینول)',   ct:'اپنی تسبیح'}
 ];
 function renderDrawer(){
   const list=document.getElementById('drList');if(!list)return;
@@ -1145,9 +1625,10 @@ function renderDrawer(){
     let prog='';
     if(['fajr','jumma','tauheed'].includes(m.id)&&S[m.id]?.done){const d=S[m.id].done.filter(Boolean).length;const tot={fajr:FAJR.length,jumma:JUMMA.length,tauheed:TAUHEED.length}[m.id];if(d>0)prog=`<span style="color:var(--g2);font-size:.65rem">${d}/${tot}</span>`;}
     if(m.id==='asr'&&S.asr.done)prog=`<span style="color:var(--g2);font-size:.7rem">✓</span>`;
+    if(m.id==='custom'&&customAzkar?.length){const d=customAzkar.filter(x=>x.done||x.cnt>=x.target).length;prog=`<span style="color:var(--g2);font-size:.65rem">${d}/${customAzkar.length}</span>`;}
     return `<div class="dr-item${sec===m.id?' active':''}" data-sec="${m.id}"><span class="dr-icon">${m.icon}</span><span class="dr-name">${m.title}</span><span class="dr-ct">${m.ct}</span>${prog}</div>`;
   }).join('');
-  list.querySelectorAll('.dr-item').forEach(el=>el.addEventListener('click',()=>{sec=el.dataset.sec;save();closeDrawer();render();window.scrollTo(0,0);}));
+  list.querySelectorAll('.dr-item').forEach(el=>el.addEventListener('click',()=>{sec=el.dataset.sec;if(sec==='custom')customActiveId=null;save();closeDrawer();render();window.scrollTo(0,0);}));
 }
 
 /* ══ EVENTS ══ */
@@ -1155,8 +1636,12 @@ document.getElementById('menuBtn').addEventListener('click',()=>{document.getEle
 function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('open');}
 document.getElementById('overlay').addEventListener('click',closeDrawer);
 document.getElementById('closeDrawer').addEventListener('click',closeDrawer);
-document.getElementById('chips').addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;sec=c.dataset.sec;save();render();window.scrollTo(0,0);});
+document.getElementById('chips').addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;sec=c.dataset.sec;if(sec==='custom')customActiveId=null;save();render();window.scrollTo(0,0);});
 document.getElementById('restartBtn').addEventListener('click',()=>{
+  if(sec==='custom'){
+    const item=getActiveCustomItem();
+    if(item){item.cnt=0;item.done=false;saveCustomAzkar();}
+  }
   if(sec==='asr')S.asr={cnt:0,done:false};
   if(sec==='fajr')S.fajr={idx:0,cnt:0,done:new Array(FAJR.length).fill(false)};
   if(sec==='jumma')S.jumma={idx:0,cnt:0,done:new Array(JUMMA.length).fill(false)};
@@ -1164,8 +1649,19 @@ document.getElementById('restartBtn').addEventListener('click',()=>{
   if(sec==='tasbeeh')S.tasbeeh={ph:0,cnt:0,sets:0};
   save();document.getElementById('compScreen').classList.remove('show');render();
 });
+document.getElementById('closeCustomModalBtn')?.addEventListener('click',closeCustomModal);
+document.getElementById('cancelCustomModalBtn')?.addEventListener('click',closeCustomModal);
+document.getElementById('saveCustomModalBtn')?.addEventListener('click',saveCustomForm);
+document.getElementById('closeImportModalBtn')?.addEventListener('click',closeImportModal);
+document.getElementById('cancelImportModalBtn')?.addEventListener('click',closeImportModal);
+document.querySelectorAll('.quick-targets button').forEach(b=>{
+  b.addEventListener('click',()=>setCustTarget(b.dataset.tgt));
+});
+document.querySelectorAll('#importFilters button').forEach(b=>{
+  b.addEventListener('click',()=>filterImportList(b.dataset.filter,b));
+});
 document.addEventListener('keydown',e=>{
-  if(e.target.tagName==='INPUT'||e.target.tagName==='SELECT')return;
+  if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA'||e.target.tagName==='SELECT')return;
   if(e.code==='Space'||e.code==='Enter'){e.preventDefault();tap();}
   if(e.code==='Backspace')doUndo();
   if(e.code==='ArrowRight')document.getElementById('nextB')?.click();
