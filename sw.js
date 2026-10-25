@@ -1,6 +1,6 @@
 /* Islamic Azkar Pro — Service Worker
    100% offline app shell. Bulletproof stale-while-revalidate with network fallback. */
-const CACHE = 'azk-pro-v9';
+const CACHE = 'azk-pro-v10';
 const CORE = [
   './',
   './index.html',
