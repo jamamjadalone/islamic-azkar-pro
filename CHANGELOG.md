@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Soft Ivory / Cream Day Theme (`data-theme="ivory"`): Gentle, eye-friendly light parchment reading mode with deep dark Islamic emerald text, gold accents, and zero glare for sunlight readability
+- Universal Completion Controls: Restart button (`#restartBtn`) verified across all 6 sections (Fajr, Jumma, Tauheed, Asr, Tasbeeh, Custom) with companion `#compHomeBtn` to instantly return to main view
+- Timeless Spiritual Taglines: Fully automatic time-of-day greetings and recommendations with zero time digits or prayer hours cluttering the visible text
+- Cache bumped to `azk-pro-v21`
+
+### Fixed
+
+- Authentic Indo-Pak Orthography: Normalized high madda in Ayat-ul-Kursi and Durood Ibrahim to authentic standard Pakistani Quranic fonts
+- Custom Azkar Safety: Guarded `item.ar` rendering against null/undefined in manual zikr editor
+
 - Network-First Service Worker Strategy: HTML document navigation now uses Network-First with offline cache fallback, guaranteeing existing users always get the latest deployment immediately without clearing cache
 - Instant Live Update Banner: Automatic `updatefound` detection with 1-click reload toast ("✨ نئی اپڈیٹ دستیاب ہے! [ابھی ریفریش کریں ↻]")
 - Safe-Area Inset Ergonomics: Added `env(safe-area-inset-top)` and `env(safe-area-inset-bottom)` for iPhone notches, Dynamic Island, and Android gesture navigation bars
