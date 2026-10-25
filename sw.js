@@ -1,6 +1,6 @@
 /* Islamic Azkar Pro — Service Worker
-   100% offline app shell. Bulletproof stale-while-revalidate with network fallback. */
-const CACHE = 'azk-pro-v10';
+   100% offline app shell. Network-first for navigation, stale-while-revalidate for static assets. */
+const CACHE = 'azk-pro-v11';
 const CORE = [
   './',
   './index.html',
@@ -47,10 +47,26 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(req.url);
   if (url.origin !== location.origin) return;
 
+  // HTML Navigation: Network-first with offline cache fallback
+  if (req.mode === 'navigate') {
+    event.respondWith(
+      fetch(req).then((networkRes) => {
+        if (networkRes && networkRes.status === 200) {
+          const copy = networkRes.clone();
+          caches.open(CACHE).then((cache) => cache.put(req, copy));
+        }
+        return networkRes;
+      }).catch(() => {
+        return caches.match(req).then((cached) => cached || caches.match('./index.html') || caches.match('./'));
+      })
+    );
+    return;
+  }
+
+  // Static Assets: Stale-While-Revalidate
   event.respondWith(
     caches.match(req).then((cached) => {
       if (cached) {
-        // Return cached immediately, revalidate in background if online
         fetch(req).then((networkRes) => {
           if (networkRes && (networkRes.status === 200 || networkRes.type === 'opaque')) {
             const copy = networkRes.clone();
@@ -61,17 +77,12 @@ self.addEventListener('fetch', (event) => {
         return cached;
       }
 
-      // If not in cache, fetch from network
       return fetch(req).then((networkRes) => {
         if (networkRes && (networkRes.status === 200 || networkRes.type === 'opaque')) {
           const copy = networkRes.clone();
           caches.open(CACHE).then((cache) => cache.put(req, copy));
         }
         return networkRes;
-      }).catch(() => {
-        if (req.mode === 'navigate') {
-          return caches.match('./index.html').then((htmlCached) => htmlCached || caches.match('./'));
-        }
       });
     })
   );
