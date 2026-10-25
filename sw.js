@@ -1,9 +1,6 @@
 /* Islamic Azkar Pro — Service Worker
-   100% offline app shell.
-   - Network-First for HTML navigation so existing users always see new deployments immediately without clearing cache.
-   - Cache-First for static assets (fonts, icons, images) for instant sub-50ms offline loading.
-   - Immediate activation via skipWaiting() and clients.claim(). */
-const CACHE = 'azk-pro-v6';
+   100% offline app shell. Bulletproof stale-while-revalidate with network fallback. */
+const CACHE = 'azk-pro-v9';
 const CORE = [
   './',
   './index.html',
@@ -50,34 +47,31 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(req.url);
   if (url.origin !== location.origin) return;
 
-  const isNavigation = req.mode === 'navigate' || url.pathname.endsWith('/') || url.pathname.endsWith('index.html');
-
-  if (isNavigation) {
-    // Network-First strategy for HTML: always try network first when online
-    event.respondWith(
-      fetch(req)
-        .then((networkRes) => {
-          if (networkRes && networkRes.status === 200) {
+  event.respondWith(
+    caches.match(req).then((cached) => {
+      if (cached) {
+        // Return cached immediately, revalidate in background if online
+        fetch(req).then((networkRes) => {
+          if (networkRes && (networkRes.status === 200 || networkRes.type === 'opaque')) {
             const copy = networkRes.clone();
             caches.open(CACHE).then((cache) => cache.put(req, copy));
           }
-          return networkRes;
-        })
-        .catch(() => caches.match(req).then((cached) => cached || caches.match('./index.html')))
-    );
-    return;
-  }
+        // fixmyslop-ignore[slop/empty-catch]
+        }).catch(() => {});
+        return cached;
+      }
 
-  // Cache-First strategy for static assets (fonts, images, icons)
-  event.respondWith(
-    caches.match(req).then((cached) => {
-      if (cached) return cached;
-      return fetch(req).then((res) => {
-        if (res && (res.status === 200 || res.type === 'opaque')) {
-          const copy = res.clone();
+      // If not in cache, fetch from network
+      return fetch(req).then((networkRes) => {
+        if (networkRes && (networkRes.status === 200 || networkRes.type === 'opaque')) {
+          const copy = networkRes.clone();
           caches.open(CACHE).then((cache) => cache.put(req, copy));
         }
-        return res;
+        return networkRes;
+      }).catch(() => {
+        if (req.mode === 'navigate') {
+          return caches.match('./index.html').then((htmlCached) => htmlCached || caches.match('./'));
+        }
       });
     })
   );

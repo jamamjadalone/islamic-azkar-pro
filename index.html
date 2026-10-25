@@ -2068,12 +2068,14 @@ function applyTimeAwareRecommendation(){
     banner.innerHTML = `<span class="tb-icon">${icon}</span><span class="tb-text">${msg}</span>`;
   }
   
-  const hasVisited = sessionStorage.getItem('azk_time_sec_set');
-  if(!hasVisited && targetSec){
-    sec = targetSec;
-    sessionStorage.setItem('azk_time_sec_set', '1');
-    save();
-  }
+  try{
+    const hasVisited = sessionStorage.getItem('azk_time_sec_set');
+    if(!hasVisited && targetSec){
+      sec = targetSec;
+      sessionStorage.setItem('azk_time_sec_set', '1');
+      save();
+    }
+  }catch(_){}
 }
 
 /* ══ BACKUP, RESTORE & SHARE ══ */
@@ -2360,8 +2362,10 @@ function promptUserToUpdate(worker){
   if(updateToast)updateToast.style.display='flex';
 }
 
+let userWantsReload=false;
 if(reloadBtn){
   reloadBtn.addEventListener('click',()=>{
+    userWantsReload=true;
     if(newWorkerWaiting){
       newWorkerWaiting.postMessage({type:'SKIP_WAITING'});
     }else{
@@ -2389,10 +2393,8 @@ if('serviceWorker' in navigator){
       });
     }).catch(()=>{});
 
-    let isReloading=false;
     navigator.serviceWorker.addEventListener('controllerchange',()=>{
-      if(!isReloading){
-        isReloading=true;
+      if(userWantsReload){
         window.location.reload();
       }
     });
