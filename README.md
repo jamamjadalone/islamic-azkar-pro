@@ -1,95 +1,144 @@
-# 🌙 Islamic Azkar Pro
+# Islamic Azkar Pro
 
 <p align="center">
-  <img src="icons/icon-512.png" alt="Islamic Azkar Pro" width="120" height="120">
+  <img src="icons/icon-512.png" alt="Islamic Azkar Pro Logo" width="128" height="128">
 </p>
 
 <p align="center">
-  <a href="https://jamamjadalone.github.io/islamic-azkar-pro/"><img alt="Live Demo" src="https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-2ea44f?style=for-the-badge&logo=github"></a>
+  <strong>اسلامک اذکار پرو — درود شریف کاؤنٹر، قبلہ نما، مسنون اذکار اور مکمل سورۃ الکہف مع تجوید</strong><br>
+  <em>A modern, privacy-focused, 100% offline Islamic Progressive Web Application (PWA).</em>
+</p>
+
+<p align="center">
+  <a href="https://jamamjadalone.github.io/islamic-azkar-pro/"><img alt="Live Demo" src="https://img.shields.io/badge/Live%20App-GitHub%20Pages-2ea44f?style=for-the-badge&logo=github"></a>
   <a href="https://github.com/jamamjadalone/islamic-azkar-pro/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/jamamjadalone/islamic-azkar-pro?style=for-the-badge&color=blue"></a>
-  <img alt="Language" src="https://img.shields.io/badge/Built%20With-HTML%20%2F%20CSS%20%2F%20JS-e34c26?style=for-the-badge&logo=javascript">
-  <img alt="Offline" src="https://img.shields.io/badge/Works%20Offline-100%25-3cb371?style=for-the-badge">
-  <img alt="PWA" src="https://img.shields.io/badge/PWA-Ready-5c5cff?style=for-the-badge&logo=pwa">
-  <img alt="No Dependencies" src="https://img.shields.io/badge/No%20Dependencies-zero%20build-2ea44f?style=for-the-badge">
-  <img alt="Last Commit" src="https://img.shields.io/github/last-commit/jamamjadalone/islamic-azkar-pro?style=for-the-badge&color=6f42c1">
+  <img alt="PWA" src="https://img.shields.io/badge/PWA-Installable-5c5cff?style=for-the-badge&logo=pwa">
+  <img alt="Offline" src="https://img.shields.io/badge/Offline-100%25-3cb371?style=for-the-badge">
+  <img alt="Code Quality" src="https://img.shields.io/badge/Code%20Quality-Grade%20A-brightgreen?style=for-the-badge">
+  <img alt="Zero Build" src="https://img.shields.io/badge/Dependencies-Zero%20Build-orange?style=for-the-badge">
 </p>
-
-**Islamic Azkar Pro** is a complete Islamic dhikr application in Urdu and Arabic — daily adhkar, a Darood Sharif counter, and the full Surah Al-Kahf with Tajweed colors. It is a single self-contained HTML file, works 100% offline, and deploys straight to GitHub Pages.
 
 ---
 
-## ✨ Features
+## Overview
 
-- 🕌 **Darood Sharif 80x Counter** — tap-to-count with target and reset
-- 🌅 **Morning & Evening Azkar** — Fajr and Maghrib adhkar with Arabic, Urdu translation & references
-- 🌙 **Jummah Wird** — Friday afternoon Durood, Ayat al-Kursi, and more
-- ☝️ **Tauheed Azkar** — Tawheed remembrances
-- 📿 **Tasbeeh-e-Fatima** — 33 + 33 + 34 digital counter
-- 📖 **Full Surah Al-Kahf** — 110 verses / 12 rukus in both Pakistani (Indo-Pak) and Uthmani scripts
-- 🎨 **Tajweed colors** — 6 bundled Pakistani Quranic fonts with a font picker
-- 📱 **Mobile-first, premium dark theme** — responsive on any device
-- ⚡ **PWA-ready** — installable, offline service worker, app icons
-- 🔍 **SEO optimized** — meta tags, Open Graph, Twitter Cards, JSON-LD, sitemap
+**Islamic Azkar Pro** is a high-performance, single-bundle Islamic web application built specifically for Muslims seeking an authentic, distraction-free, and fully offline tool for daily worship. 
 
-## 🚀 Try It
+It requires **zero external API calls**, has **no telemetry or user tracking**, stores all custom prayer targets locally in browser storage, and operates seamlessly on Android, iOS, Windows, macOS, and Linux.
 
-<a href="https://jamamjadalone.github.io/islamic-azkar-pro/"><img alt="Open Live Demo" src="https://img.shields.io/badge/OPEN%20LIVE%20DEMO-2ea44f?style=for-the-badge"></a>
+---
 
-## 📂 Project Structure
+## Key Features
+
+### 1. Authentic Azkar & Digital Counter
+- **80x Darood Sharif Counter**: Built for Friday afternoon (Asr to Maghrib) recitation with target progress indicators.
+- **Morning & Evening Azkar**: Complete authentic Fajr and Maghrib supplications with Arabic vocalization, Urdu translations, and Hadith source references.
+- **Jummah Wird & Tauheed**: Specialized Friday supplications and Tawheed declarations.
+- **Tasbeeh-e-Fatima (33-33-34)**: Automatic 3-phase counter advancing from SubhanAllah to Alhamdulillah to Allahu Akbar with completion chimes.
+
+### 2. Full Surah Al-Kahf with Tajweed
+- **110 Verses / 12 Rukus**: Bundled locally in both **Pakistani (Indo-Pak)** and **Madani (Uthmani)** scripts.
+- **4-Rule Pakistani Tajweed Color Coding**: Real-time visual pronunciation guidance (Ghunnah, Ikhfa, Madda, Qalqalah).
+- **6 Bundled Quranic Fonts**: Al Majeed, Hafs, Al Qalam, PDMS Saleem, Muhammadi, and Al Mushaf.
+- **Auto-Scroll Engine**: Adjustable smooth reading scroll bar for hands-free recitation.
+
+### 3. Offline Qibla Compass
+- **Sensor-Driven Gyro Compass**: Live heading detection pointing directly towards the Holy Kaaba.
+- **Offline City Presets (No GPS Required)**: Pre-calibrated degrees for Karachi (265°), Lahore (259°), Islamabad (256°), Faisalabad (258°), Multan (260°), Peshawar (254°), Quetta (261°), London, Dubai, and more.
+
+### 4. Custom Azkar Builder
+- **Personalized Fehrist**: Add custom duas or wird with custom repetition targets (33, 70, 100, 313, 1000).
+- **Sequential Flow**: Step-by-step Next/Back navigation matching regular azkar sections.
+- **Drag-and-Drop Organization**: Reorder custom supplications dynamically with automatic badge renumbering.
+- **JSON Backup & Restore**: Export your custom prayers to a `.json` backup file or copy formatted text for WhatsApp/Notes sharing.
+
+### 5. Ergonomics & Comfort
+- **Masjid Mode (Silent & Haptic)**: Mutes audio beeps and relies strictly on subtle vibrations so fellow worshipers in congregations are never disturbed.
+- **Auto Daily Reset & Streak Tracker**: Counters reset at midnight while tracking your consecutive daily prayer habit streak (`🔥 تسلسل`).
+- **Eye-Comfort Themes**: Default Emerald Night, pure AMOLED Black (`#000000`) for battery savings, and Warm Sepia for nighttime reading comfort.
+- **Safe-Area Inset Support**: Pixel-perfect rendering across iPhone Dynamic Island, camera punch-holes, and Android gesture navigation bars.
+
+### 6. PWA & Instant Update Engine
+- **Network-First HTML Delivery**: Existing users receive live updates immediately when visiting without ever having to manually clear their browser cache.
+- **Live Update Toast Notification**: Automatic background update detection offering a 1-click reload toast.
+- **1-Click Chrome Install Prompt**: Smart banner and drawer button for desktop and mobile home screen installation.
+
+---
+
+## Keyboard Shortcuts
+
+For desktop users, the app offers complete keyboard navigation:
+
+| Key | Action |
+| :--- | :--- |
+| `Space` or `Enter` | Increment counter (Tap) |
+| `Backspace` | Undo last count |
+| `Arrow Right` (`→`) | Next supplication (اگلا ذکر) |
+| `Arrow Left` (`←`) | Previous supplication (پچھلا ذکر) |
+| `+` / `Numpad +` | Zoom in Quranic / Arabic font |
+| `-` / `Numpad -` | Zoom out Quranic / Arabic font |
+
+---
+
+## Project Structure
 
 ```text
-.
-├── index.html            # The entire app (HTML + CSS + JS + data) — self-contained
-├── fonts/                # 6 offline Pakistani Quranic fonts
-├── assets/
-│   └── asr-durood.png    # Durood Sharif poster
-├── icons/                # PWA icons (192px, 512px, apple-touch)
-├── favicon.svg           # Vector favicon
-├── manifest.json         # PWA manifest
-├── sw.js                 # Offline service worker
-├── robots.txt            # Search engine rules
-├── sitemap.xml           # Site map
-└── 404.html              # Custom not-found page
+islamic-azkar-pro/
+├── index.html            # Bundled application shell (HTML5, CSS3, Vanilla JS, and data)
+├── sw.js                 # Service Worker (Network-First HTML, Cache-First static assets)
+├── manifest.json         # PWA Web App Manifest (standalone, RTL, theme colors)
+├── robots.txt            # Search engine crawler instructions
+├── sitemap.xml           # XML sitemap with weekly change frequency
+├── 404.html              # Custom offline-ready 404 page
+├── favicon.svg           # Scalable vector favicon
+├── favicon-32x32.png     # Fallback 32px favicon
+├── fonts/                # 6 offline Pakistani & Uthmani TrueType fonts (.ttf)
+├── assets/               # Local posters and imagery
+├── icons/                # PWA icons (192px, 512px, maskable, apple-touch)
+├── CHANGELOG.md          # Version history adhering to Keep a Changelog
+└── LICENSE               # MIT License
 ```
-
-## 🛠 Local Development
-
-No build tools or dependencies required.
-
-```bash
-git clone https://github.com/jamamjadalone/islamic-azkar-pro.git
-cd islamic-azkar-pro
-python -m http.server 8080    # or: npx serve .
-```
-
-Then open <http://localhost:8080>.
-
-> Use a local web server (not `file://`) so the service worker and manifest work correctly.
-
-## 🚀 Deployment
-
-1. Push this repository to GitHub.
-2. In **Settings → Pages**, set source to **Deploy from a branch** → branch `main` → folder `/ (root)`.
-3. Your app goes live at `https://<username>.github.io/islamic-azkar-pro/`.
-
-## 📝 Text Accuracy
-
-The Quranic content (Pakistani and Uthmani scripts) has been carefully audited:
-
-- 110 verses / 12 rukus in both scripts, sequentially ordered
-- Urdu translations checked for spelling and wording
-- No stray Unicode ligature or diacritic characters
-
-Found a text error? Please open an [issue](https://github.com/jamamjadalone/islamic-azkar-pro/issues) or submit a pull request.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) and our [Code of Conduct](CODE_OF_CONDUCT.md) first.
-
-## 📜 License
-
-Distributed under the [MIT License](LICENSE).
 
 ---
 
-<p align="center">Made with ❤️ for the Ummah · <a href="https://github.com/jamamjadalone">@jamamjadalone</a></p>
+## Local Development
+
+No build tools, bundlers, or package installations are required.
+
+```bash
+# Clone the repository
+git clone https://github.com/jamamjadalone/islamic-azkar-pro.git
+
+# Navigate into directory
+cd islamic-azkar-pro
+
+# Start a local static server
+python -m http.server 8080
+# Or using Node:
+# npx serve .
+```
+
+Open `http://localhost:8080` in your browser.
+
+> [!NOTE]
+> Run using a local web server rather than opening `file:///` directly so that Service Worker registration and PWA features initialize properly.
+
+---
+
+## GitHub Repository Topics
+
+Recommended topics for this repository on GitHub:
+
+```text
+islamic-app, azkar, tasbeeh-counter, darood-sharif, surah-kahf, qibla-compass, pwa, offline-first, tajweed, urdu, dhikr, pakistani-fonts, privacy-focused, vanilla-javascript
+```
+
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE) — free for personal, community, and educational use.
+
+<p align="center">
+  Made with sincerity for the global Ummah · <a href="https://github.com/jamamjadalone">@jamamjadalone</a>
+</p>

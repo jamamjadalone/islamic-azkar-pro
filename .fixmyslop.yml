@@ -1,0 +1,8 @@
+# FixMySlop configuration for Islamic Azkar Pro
+# Tailored for offline vanilla JS Islamic web app
+disable:
+  - ui/emoji-icons     # Islamic religious symbols (Kaaba, Tasbeeh, Mosque, Crescent) are intentional iconography
+  - ui/palette-sprawl  # Multi-theme palettes (Emerald, OLED Black, Sepia)
+  - ui/neon-glow       # Subtle ambient emerald background
+  - ui/glassmorphism   # Sticky header glass blur
+  - sec/raw-html       # Vanilla JS DOM rendering; all dynamic custom input is sanitized via esc()

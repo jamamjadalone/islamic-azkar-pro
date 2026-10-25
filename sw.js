@@ -1,7 +1,9 @@
 /* Islamic Azkar Pro — Service Worker
-   100% offline app shell. Cache-first with network fallback.
-   Updated automatically on each deploy via a cache version bump. */
-const CACHE = 'azk-pro-v2';
+   100% offline app shell.
+   - Network-First for HTML navigation so existing users always see new deployments immediately without clearing cache.
+   - Cache-First for static assets (fonts, icons, images) for instant sub-50ms offline loading.
+   - Immediate activation via skipWaiting() and clients.claim(). */
+const CACHE = 'azk-pro-v6';
 const CORE = [
   './',
   './index.html',
@@ -36,12 +38,37 @@ self.addEventListener('activate', (event) => {
   );
 });
 
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
+
 self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   if (url.origin !== location.origin) return;
 
+  const isNavigation = req.mode === 'navigate' || url.pathname.endsWith('/') || url.pathname.endsWith('index.html');
+
+  if (isNavigation) {
+    // Network-First strategy for HTML: always try network first when online
+    event.respondWith(
+      fetch(req)
+        .then((networkRes) => {
+          if (networkRes && networkRes.status === 200) {
+            const copy = networkRes.clone();
+            caches.open(CACHE).then((cache) => cache.put(req, copy));
+          }
+          return networkRes;
+        })
+        .catch(() => caches.match(req).then((cached) => cached || caches.match('./index.html')))
+    );
+    return;
+  }
+
+  // Cache-First strategy for static assets (fonts, images, icons)
   event.respondWith(
     caches.match(req).then((cached) => {
       if (cached) return cached;
@@ -51,7 +78,7 @@ self.addEventListener('fetch', (event) => {
           caches.open(CACHE).then((cache) => cache.put(req, copy));
         }
         return res;
-      }).catch(() => caches.match('./index.html'));
+      });
     })
   );
 });

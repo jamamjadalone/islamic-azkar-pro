@@ -9,6 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Network-First Service Worker Strategy: HTML document navigation now uses Network-First with offline cache fallback, guaranteeing existing users always get the latest deployment immediately without clearing cache
+- Instant Live Update Banner: Automatic `updatefound` detection with 1-click reload toast ("✨ نئی اپڈیٹ دستیاب ہے! [ابھی ریفریش کریں ↻]")
+- Safe-Area Inset Ergonomics: Added `env(safe-area-inset-top)` and `env(safe-area-inset-bottom)` for iPhone notches, Dynamic Island, and Android gesture navigation bars
+- Responsive Fluid Typography: Dynamic `--qs: clamp(1.35rem, 4.2vw, 1.68rem)` and optimized UI scaling across 320px small screens up to tablets
+- Service Worker Cache bumped to `azk-pro-v6`
+- Google Search SEO Enhancements: Enriched Urdu & English meta tags, updated `sitemap.xml` to 2026-10-25, and `<noscript>` semantic search engine fallback
+- Schema.org Rich Snippets: Expanded `WebApplication` feature list and `FAQPage` schema for Qibla compass, Masjid mode, and Darood counter Google Search accordions
+- Chrome & Mobile 1-Click PWA Install Prompt: Non-intrusive bottom install banner + drawer install button with `beforeinstallprompt` handler and standalone detection
+- Masjid Mode (🔕 Silent / Haptic only / Mute) with 1-tap quick toggle and sound preferences
+- Auto Daily Midnight Reset and daily Streak habit tracker (🔥 تسلسل)
+- Offline Qibla Compass (🧭 قبلہ نما) with live orientation gyro sensor and offline Pakistani city presets
+- Eye-Comfort Reading Themes (Emerald Night, OLED Pure Black, Warm Sepia)
+- Manual Azkar JSON Backup & Restore with 1-click text sharing
+- Time-Aware smart greeting banner with auto morning/evening/Jummah context suggestions
+- Persistent Manual/Custom Azkar feature with custom counts and catalog import
+- Sequential Next/Back navigation system for manual azkar matching regular sections
+- Drag-and-drop and up/down numbering adjustment in manual azkar fehrist list
 - Full PWA support: `manifest.json`, `sw.js` service worker (offline app shell), icons (`icons/icon-192.png`, `icons/icon-512.png`, `icons/apple-touch-icon.png`)
 - Vector favicon (`favicon.svg`) and `favicon-32x32.png`
 - SEO files: `robots.txt`, `sitemap.xml`, `404.html`
