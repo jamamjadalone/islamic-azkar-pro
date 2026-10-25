@@ -73,7 +73,7 @@
   --ar:#faf8f5;
   --r:22px;
   --r-sm:14px;
-  --qs:clamp(1.35rem, 4.2vw, 1.7rem);
+  --qs:clamp(1.12rem, 3.4vw, 1.34rem);
   --ui-font:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', system-ui, sans-serif;
   --ur-font:'Noto Nastaliq Urdu', serif;
   --qfont:'Al Majeed', 'Scheherazade New', 'Noto Naskh Arabic', serif;
@@ -297,17 +297,17 @@ body::before{
 @keyframes glowPulse{0%,100%{opacity:.8}50%{opacity:1}}
 
 /* ── STEP PANEL ── */
-.sp{padding:1.1rem .95rem 1.2rem;display:flex;flex-direction:column;align-items:center;gap:.9rem;animation:fadeUp .25s ease}
+.sp{padding:.65rem .85rem .85rem;display:flex;flex-direction:column;align-items:center;gap:.55rem;animation:fadeUp .25s ease}
 .step-badge{
-  display:flex;align-items:center;gap:.45rem;
-  font-family:var(--ui-font);font-size:.74rem;font-weight:600;
+  display:flex;align-items:center;gap:.4rem;
+  font-family:var(--ui-font);font-size:.7rem;font-weight:600;
   color:var(--text-sub);direction:ltr;
 }
-.sdot{width:6px;height:6px;border-radius:50%;box-shadow:0 0 6px currentColor}
+.sdot{width:5px;height:5px;border-radius:50%;box-shadow:0 0 6px currentColor}
 .sec-label{
-  width:100%;border-radius:9999px;padding:.32rem 1rem;
-  font-family:var(--ur-font);font-size:.8rem;direction:rtl;
-  display:flex;align-items:center;gap:.4rem;justify-content:center;
+  width:100%;border-radius:9999px;padding:.22rem .75rem;
+  font-family:var(--ur-font);font-size:.74rem;direction:rtl;
+  display:flex;align-items:center;gap:.35rem;justify-content:center;
   border:1px solid var(--card-border);color:var(--text2);
   background:rgba(16, 185, 129, 0.06);box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
@@ -319,8 +319,8 @@ body::before{
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   border:1px solid var(--card-border);
   border-top:1px solid var(--card-border-gold);
-  border-radius:var(--r);
-  padding:1.4rem 1.15rem 1.2rem;
+  border-radius:18px;
+  padding:.85rem 1rem .75rem;
   text-align:center;position:relative;overflow:hidden;
   box-shadow:var(--card-shadow);
   transition:transform .2s ease, box-shadow .2s ease;
@@ -331,39 +331,39 @@ body::before{
 }
 
 .ar{
-  font-family:var(--qfont);font-size:var(--qs);line-height:2.9;
+  font-family:var(--qfont);font-size:var(--qs);line-height:2.28;
   color:var(--ar);direction:rtl;word-break:break-word;
   text-align:center;text-align-last:center;
   transition:font-size .2s ease;
   letter-spacing:0.2px;
 }
 .ar.center{text-align:center}
-.ar.xl{font-size:calc(var(--qs)*1.16);line-height:2.95;text-align:center}
+.ar.xl{font-size:calc(var(--qs)*1.12);line-height:2.35;text-align:center}
 .ar.big{
-  font-size:calc(var(--qs)*1.32);line-height:3;text-align:center;
-  color:var(--gold-light);text-shadow:0 0 24px rgba(245, 158, 11, 0.32);
+  font-size:calc(var(--qs)*1.22);line-height:2.4;text-align:center;
+  color:var(--gold-light);text-shadow:0 0 20px rgba(245, 158, 11, 0.3);
 }
 .bismi{
-  font-family:var(--qfont);font-size:calc(var(--qs)*.95);line-height:2.6;
+  font-family:var(--qfont);font-size:calc(var(--qs)*.92);line-height:2.2;
   color:var(--gold-light);direction:rtl;display:block;
-  margin-bottom:.45rem;text-shadow:0 0 16px rgba(245, 158, 11, 0.28);
+  margin-bottom:.35rem;text-shadow:0 0 14px rgba(245, 158, 11, 0.25);
   transition:font-size .2s;
 }
 .dua-name{
-  margin-top:.75rem;font-family:var(--ur-font);font-size:.86rem;
+  margin-top:.45rem;font-family:var(--ur-font);font-size:.78rem;
   color:var(--text2);direction:rtl;
   border-top:1px solid rgba(255, 255, 255, 0.06);
-  padding-top:.6rem;line-height:2;
+  padding-top:.4rem;line-height:1.7;
 }
 
 /* ── FAZILAT ACCORDION ── */
 .faz-btn{
   width:100%;background:rgba(255, 255, 255, 0.03);
   border:1px solid rgba(52, 211, 153, 0.15);
-  border-radius:9999px;padding:.4rem 1rem;
-  color:var(--text2);font-family:var(--ur-font);font-size:.78rem;
+  border-radius:9999px;padding:.28rem .8rem;
+  color:var(--text2);font-family:var(--ur-font);font-size:.72rem;
   cursor:pointer;transition:all .2s;
-  display:flex;align-items:center;justify-content:center;gap:.4rem;
+  display:flex;align-items:center;justify-content:center;gap:.35rem;
 }
 .faz-btn:hover{
   border-color:var(--g1);color:#fff;
@@ -387,9 +387,9 @@ body::before{
 
 /* ── LUXURY RING COUNTER ── */
 .ring-wrap{
-  position:relative;width:176px;height:176px;margin:.4rem auto;
+  position:relative;width:132px;height:132px;margin:.25rem auto;
   cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;
-  filter:drop-shadow(0 8px 24px rgba(0, 0, 0, 0.5));
+  filter:drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45));
   transition:transform .12s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .ring-wrap svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg);pointer-events:none}
@@ -399,21 +399,21 @@ body::before{
   transition:stroke-dashoffset .28s cubic-bezier(.4, 0, .2, 1);
 }
 .ring-inner{
-  position:absolute;inset:12px;
+  position:absolute;inset:9px;
   background:radial-gradient(circle at 35% 30%, #122919 0%, #08160d 65%, #040905 100%);
   border-radius:50%;border:1px solid rgba(52, 211, 153, 0.22);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  box-shadow:inset 0 2px 8px rgba(255, 255, 255, 0.1), inset 0 -6px 16px rgba(0, 0, 0, 0.7);
+  box-shadow:inset 0 2px 6px rgba(255, 255, 255, 0.08), inset 0 -4px 12px rgba(0, 0, 0, 0.65);
   transition:transform .1s, box-shadow .15s;
 }
 .ring-wrap:active{transform:scale(0.93)}
 .rnum{
-  font-family:var(--ui-font);font-size:3.1rem;font-weight:700;
+  font-family:var(--ui-font);font-size:2.35rem;font-weight:700;
   color:var(--gold-light);line-height:1;letter-spacing:-1px;
-  text-shadow:0 0 16px var(--gold-glow);
+  text-shadow:0 0 14px var(--gold-glow);
 }
-.rof{font-size:.76rem;color:var(--text2);margin-top:4px;direction:ltr;font-family:var(--ui-font);font-weight:500}
-.rhint{font-size:.55rem;color:var(--g2);opacity:.6;letter-spacing:2px;margin-top:4px;direction:ltr;text-transform:uppercase;font-family:var(--ui-font)}
+.rof{font-size:.68rem;color:var(--text2);margin-top:2px;direction:ltr;font-family:var(--ui-font);font-weight:500}
+.rhint{font-size:.48rem;color:var(--g2);opacity:.65;letter-spacing:1.5px;margin-top:2px;direction:ltr;text-transform:uppercase;font-family:var(--ui-font)}
 
 @keyframes pg{0%{box-shadow:0 0 0 0 rgba(16, 185, 129, 0.45)}70%{box-shadow:0 0 0 16px rgba(16, 185, 129, 0)}100%{box-shadow:0 0 0 0 rgba(16, 185, 129, 0)}}
 @keyframes pa{0%{box-shadow:0 0 0 0 rgba(251, 191, 36, 0.45)}70%{box-shadow:0 0 0 16px rgba(251, 191, 36, 0)}100%{box-shadow:0 0 0 0 rgba(251, 191, 36, 0)}}
@@ -425,14 +425,14 @@ body::before{
 .ring-inner.pj{animation:pj .3s ease-out}
 
 /* ── CONTROLS ── */
-.ctrls{width:100%;display:flex;align-items:center;justify-content:space-between;gap:.5rem;direction:ltr}
+.ctrls{width:100%;display:flex;align-items:center;justify-content:space-between;gap:.45rem;direction:ltr;margin-top:.15rem}
 .btn{
   background:rgba(255, 255, 255, 0.05);border:1px solid var(--card-border);
-  color:var(--text2);border-radius:9999px;padding:.5rem 1rem;
-  font-size:.82rem;font-family:var(--ui-font);font-weight:600;
+  color:var(--text2);border-radius:9999px;padding:.42rem .85rem;
+  font-size:.78rem;font-family:var(--ui-font);font-weight:600;
   cursor:pointer;transition:all .18s;
-  display:inline-flex;align-items:center;gap:.35rem;
-  box-shadow:0 2px 8px rgba(0, 0, 0, 0.2);
+  display:inline-flex;align-items:center;gap:.3rem;
+  box-shadow:0 2px 6px rgba(0, 0, 0, 0.18);
 }
 .btn:hover{
   background:rgba(16, 185, 129, 0.16);color:#fff;
@@ -442,12 +442,12 @@ body::before{
 .btn.next{
   background:linear-gradient(135deg, rgba(16, 185, 129, 0.28) 0%, rgba(5, 150, 105, 0.2) 100%);
   border-color:rgba(52, 211, 153, 0.45);color:#fff;
-  padding:.5rem 1.4rem;font-weight:600;
-  box-shadow:0 0 14px var(--emerald-glow);
+  padding:.42rem 1.25rem;font-weight:600;font-size:.82rem;
+  box-shadow:0 0 12px var(--emerald-glow);
 }
 .btn.next:hover{
   background:linear-gradient(135deg, rgba(16, 185, 129, 0.42) 0%, rgba(5, 150, 105, 0.3) 100%);
-  box-shadow:0 0 20px var(--emerald-glow);
+  box-shadow:0 0 18px var(--emerald-glow);
 }
 .btn:disabled{opacity:.22;cursor:not-allowed;pointer-events:none}
 .dam-box{
@@ -780,29 +780,31 @@ body[data-theme="sepia"]{
 
 /* ── MODERN PWA INSTALL BANNER ── */
 .install-banner{
-  position:fixed;bottom:max(16px, env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);
-  width:calc(100% - 32px);max-width:480px;
-  background:linear-gradient(135deg, rgba(14, 38, 22, 0.95), rgba(7, 20, 11, 0.95));
-  border:1px solid rgba(52, 211, 153, 0.45);
-  box-shadow:0 12px 40px rgba(0, 0, 0, 0.75), 0 0 20px rgba(16, 185, 129, 0.15);
-  border-radius:18px;padding:.85rem 1.15rem;
-  display:flex;align-items:center;justify-content:space-between;gap:.8rem;
+  position:fixed;bottom:max(12px, env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);
+  width:calc(100% - 28px);max-width:390px;
+  background:rgba(8, 22, 13, 0.94);
+  border:1px solid rgba(52, 211, 153, 0.35);
+  box-shadow:0 8px 30px rgba(0, 0, 0, 0.7), 0 0 16px rgba(16, 185, 129, 0.12);
+  border-radius:9999px;padding:.32rem .75rem .32rem .9rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.6rem;
   z-index:150;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
   animation:slideUpBanner .3s cubic-bezier(0.16, 1, 0.3, 1);direction:rtl;
 }
-.ib-content{display:flex;align-items:center;gap:.75rem;text-align:right}
-.ib-icon{font-size:1.8rem}
-.ib-title{font-family:var(--ur-font);font-size:.92rem;color:var(--gold-light);font-weight:700}
-.ib-sub{font-family:var(--ur-font);font-size:.75rem;color:var(--text2);margin-top:2px}
-.ib-actions{display:flex;align-items:center;gap:.45rem;flex-shrink:0}
+.ib-content{display:flex;align-items:center;gap:.5rem;text-align:right;min-width:0;overflow:hidden}
+.ib-icon{font-size:1.15rem;flex-shrink:0}
+.ib-txt{min-width:0;display:flex;flex-direction:column}
+.ib-title{font-family:var(--ur-font);font-size:.76rem;color:var(--gold-light);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ib-sub{font-family:var(--ur-font);font-size:.65rem;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:none}
+@media(min-width:380px){.ib-sub{display:block}}
+.ib-actions{display:flex;align-items:center;gap:.35rem;flex-shrink:0}
 .ib-btn-install{
   background:linear-gradient(135deg, var(--g1), #059669);
-  border:none;color:#fff;font-family:var(--ur-font);font-size:.82rem;
-  padding:.45rem .95rem;border-radius:12px;cursor:pointer;font-weight:700;
-  transition:all .18s;box-shadow:0 2px 10px var(--emerald-glow);
+  border:none;color:#fff;font-family:var(--ur-font);font-size:.72rem;
+  padding:.3rem .75rem;border-radius:9999px;cursor:pointer;font-weight:700;
+  transition:all .18s;box-shadow:0 2px 8px var(--emerald-glow);white-space:nowrap;
 }
-.ib-btn-install:hover{transform:translateY(-1px);box-shadow:0 4px 16px var(--emerald-glow)}
-.ib-btn-close{background:transparent;border:none;color:var(--text-sub);font-size:1.2rem;cursor:pointer;padding:.2rem .4rem}
+.ib-btn-install:hover{transform:translateY(-1px);box-shadow:0 4px 14px var(--emerald-glow)}
+.ib-btn-close{background:transparent;border:none;color:var(--text-sub);font-size:1rem;cursor:pointer;padding:.15rem .35rem;line-height:1}
 .ib-btn-close:hover{color:#fff}
 @keyframes slideUpBanner{from{transform:translate(-50%, 25px);opacity:0}to{transform:translate(-50%, 0);opacity:1}}
 
@@ -1166,50 +1168,50 @@ const FAJR=[
    ar:`بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ`,
    target:1,faz:'ہر بھلائی اللہ کے نام سے شروع کرنا سنت ہے — برکت اور رحمت کا دروازہ کھلتا ہے۔',ref:''},
   {grp:'نماز کے بعد کے اذکار',name:'آیَةُ الْکُرْسِیّ — البقرة: ٢٥٥',
-   ar:`اَللّٰهُ لَاۤ اِلٰهَ اِلَّا هُوَ ۚ اَلْحَیُّ الْقَیُّوْمُ ۚ\nلَا تَاْخُذُهٗ سِنَةٌ وَّ لَا نَوْمٌ ۚ\nلَهٗ مَا فِی السَّمٰوٰتِ وَ مَا فِی الْاَرْضِ ۗ\nمَنْ ذَا الَّذِیْ یَشْفَعُ عِنْدَهٗۤ اِلَّا بِاِذْنِهٖ ۚ\nیَعْلَمُ مَا بَیْنَ اَیْدِیْهِمْ وَ مَا خَلْفَهُمْ ۚ\nوَ لَا یُحِیْطُوْنَ بِشَیْءٍ مِّنْ عِلْمِهٖۤ اِلَّا بِمَا شَآءَ ۚ\nوَسِعَ كُرْسِیُّهُ السَّمٰوٰتِ وَ الْاَرْضَ ۚ\nوَ لَا یَئُوْدُهٗ حِفْظُهُمَا ۚ\nوَ هُوَ الْعَلِیُّ الْعَظِیْمُ`,
+   ar:`اَللّٰهُ لَا اِلٰهَ اِلَّا هُوَ ۚ اَلْحَیُّ الْقَیُّوْمُ ۚ لَا تَاْخُذُهٗ سِنَةٌ وَّ لَا نَوْمٌ ۚ لَهٗ مَا فِی السَّمٰوٰتِ وَ مَا فِی الْاَرْضِ ۗ مَنْ ذَا الَّذِیْ یَشْفَعُ عِنْدَهٗ اِلَّا بِاِذْنِهٖ ۚ یَعْلَمُ مَا بَیْنَ اَیْدِیْهِمْ وَ مَا خَلْفَهُمْ ۚ وَ لَا یُحِیْطُوْنَ بِشَیْءٍ مِّنْ عِلْمِهٖ اِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِیُّهُ السَّمٰوٰتِ وَ الْاَرْضَ ۚ وَ لَا یَئُوْدُهٗ حِفْظُهُمَا ۚ وَ هُوَ الْعَلِیُّ الْعَظِیْمُ`,
    target:1,faz:'قرآن کی سب سے عظیم آیت۔ ہر فرض نماز کے بعد پڑھنے کی فضیلت کا مفہوم یہ ہے کہ پڑھنے والے اور جنت کے درمیان صرف موت حائل ہے۔',ref:'(نسائی الکبریٰ — صحیح)'},
   {grp:'نماز کے بعد کے اذکار',name:'سورۃ الحشر — آخری ۳ آیات',
-   ar:`هُوَ اللّٰهُ الَّذِیْ لَاۤ اِلٰهَ اِلَّا هُوَ ۚ عٰلِمُ الْغَیْبِ وَ الشَّهَادَةِ ۚ هُوَ الرَّحْمٰنُ الرَّحِیْمُ ﴿۲۲﴾\nهُوَ اللّٰهُ الَّذِیْ لَاۤ اِلٰهَ اِلَّا هُوَ ۚ اَلْمَلِكُ الْقُدُّوْسُ السَّلٰمُ الْمُؤْمِنُ الْمُهَیْمِنُ الْعَزِیْزُ الْجَبَّارُ الْمُتَكَبِّرُ ۚ سُبْحٰنَ اللّٰهِ عَمَّا یُشْرِكُوْنَ ﴿۲۳﴾\nهُوَ اللّٰهُ الْخَالِقُ الْبَارِئُ الْمُصَوِّرُ ۚ لَهُ الْاَسْمَآءُ الْحُسْنٰی ۚ یُسَبِّحُ لَهٗ مَا فِی السَّمٰوٰتِ وَ الْاَرْضِ ۚ وَ هُوَ الْعَزِیْزُ الْحَكِیْمُ ﴿۲۴﴾`,
+   ar:`هُوَ اللّٰهُ الَّذِیْ لَا اِلٰهَ اِلَّا هُوَ ۚ عٰلِمُ الْغَیْبِ وَ الشَّهَادَةِ ۚ هُوَ الرَّحْمٰنُ الرَّحِیْمُ ﴿۲۲﴾\nهُوَ اللّٰهُ الَّذِیْ لَا اِلٰهَ اِلَّا هُوَ ۚ اَلْمَلِكُ الْقُدُّوْسُ السَّلٰمُ الْمُؤْمِنُ الْمُهَیْمِنُ الْعَزِیْزُ الْجَبَّارُ الْمُتَكَبِّرُ ۚ سُبْحٰنَ اللّٰهِ عَمَّا یُشْرِكُوْنَ ﴿۲۳﴾\nهُوَ اللّٰهُ الْخَالِقُ الْبَارِئُ الْمُصَوِّرُ ۚ لَهُ الْاَسْمَآءُ الْحُسْنٰی ۚ یُسَبِّحُ لَهٗ مَا فِی السَّمٰوٰتِ وَ الْاَرْضِ ۚ وَ هُوَ الْعَزِیْزُ الْحَكِیْمُ ﴿۲۴﴾`,
    target:1,faz:'صبح پڑھنے پر ۷۰ ہزار فرشتے شام تک دعائے مغفرت کرتے ہیں — روایت کا مفہوم ہے کہ اس دن وفات ہو تو شہادت کا درجہ حاصل ہوتا ہے۔',ref:'(ترمذی — حسن)'},
   {grp:'نماز کے بعد کے اذکار',name:'شرکِ خفی سے حفاظت — ۳ مرتبہ',
-   ar:`اَللّٰهُمَّ اِنِّیْ اَعُوْذُ بِكَ اَنْ اُشْرِكَ بِكَ وَ اَنَا اَعْلَمُ ۙ\nوَ اَسْتَغْفِرُكَ لِمَا لَاۤ اَعْلَمُ`,
+   ar:`اَللّٰهُمَّ اِنِّیْ اَعُوْذُ بِكَ اَنْ اُشْرِكَ بِكَ وَ اَنَا اَعْلَمُ ۙ وَ اَسْتَغْفِرُكَ لِمَا لَا اَعْلَمُ`,
    target:3,faz:'ریاکاری اور چھوٹے شرک سے حفاظت — کلمۂ توحید کی تکمیل کرتی ہے۔',ref:'(صحیح الجامع)'},
   {grp:'نماز کے بعد کے اذکار',name:'شیطانِ رجیم سے پناہ — ۳ مرتبہ',
    ar:`اَعُوْذُ بِاللّٰهِ السَّمِیْعِ الْعَلِیْمِ مِنَ الشَّیْطٰنِ الرَّجِیْمِ`,
    target:3,faz:'روایت کے مفہوم کے مطابق اللہ تعالیٰ بندے کو شیطان کے وسوسوں اور فتنوں سے اپنی پناہ میں رکھتا ہے۔',ref:'(ابو داؤد — حسن)'},
   {grp:'نماز کے بعد کے اذکار',name:'توکل اور ہر شر سے حفاظت (دعائے ابو الدرداء)',
-   ar:`اَللّٰهُمَّ اَنْتَ رَبِّیْ ۙ لَاۤ اِلٰهَ اِلَّاۤ اَنْتَ ۙ عَلَیْكَ تَوَكَّلْتُ ۙ\nوَ اَنْتَ رَبُّ الْعَرْشِ الْكَرِیْمِ ۙ\nمَا شَآءَ اللّٰهُ كَانَ ۙ وَ مَا لَمْ یَشَاْ لَمْ یَكُنْ ۙ\nوَ لَا حَوْلَ وَ لَا قُوَّةَ اِلَّا بِاللّٰهِ الْعَلِیِّ الْعَظِیْمِ ۙ\nاَعْلَمُ اَنَّ اللّٰهَ عَلٰی كُلِّ شَیْءٍ قَدِیْرٌ ۙ\nوَّ اَنَّ اللّٰهَ قَدْ اَحَاطَ بِكُلِّ شَیْءٍ عِلْمًا ۙ\nاَللّٰهُمَّ اِنِّیْ اَعُوْذُ بِكَ مِنْ شَرِّ نَفْسِیْ ۙ\nوَ مِنْ شَرِّ كُلِّ دَآبَّةٍ اَنْتَ اٰخِذٌۢ بِنَاصِیَتِهَا ۙ\nاِنَّ رَبِّیْ عَلٰی صِرَاطٍ مُّسْتَقِیْمٍ`,
+   ar:`اَللّٰهُمَّ اَنْتَ رَبِّیْ ۙ لَا اِلٰهَ اِلَّا اَنْتَ ۙ عَلَیْكَ تَوَكَّلْتُ ۙ وَ اَنْتَ رَبُّ الْعَرْشِ الْكَرِیْمِ ۙ مَا شَآءَ اللّٰهُ كَانَ ۙ وَ مَا لَمْ یَشَاْ لَمْ یَكُنْ ۙ وَ لَا حَوْلَ وَ لَا قُوَّةَ اِلَّا بِاللّٰهِ الْعَلِیِّ الْعَظِیْمِ ۙ اَعْلَمُ اَنَّ اللّٰهَ عَلٰی كُلِّ شَیْءٍ قَدِیْرٌ ۙ وَّ اَنَّ اللّٰهَ قَدْ اَحَاطَ بِكُلِّ شَیْءٍ عِلْمًا ۙ اَللّٰهُمَّ اِنِّیْ اَعُوْذُ بِكَ مِنْ شَرِّ نَفْسِیْ ۙ وَ مِنْ شَرِّ كُلِّ دَآبَّةٍ اَنْتَ اٰخِذٌۢ بِنَاصِیَتِهَا ۙ اِنَّ رَبِّیْ عَلٰی صِرَاطٍ مُّسْتَقِیْمٍ`,
    target:1,faz:'"دعائے ابو الدرداء" — اللہ پر کامل توکل، اس کی عظمت کے اقرار اور ہر قسم کی بلا و شر سے حفاظت کی جامع دعا۔',ref:''},
   {grp:'نماز کے بعد کے اذکار',name:'حَسْبِیَ اللّٰهُ — ۷ مرتبہ',
-   ar:`حَسْبِیَ اللّٰهُ لَاۤ اِلٰهَ اِلَّا هُوَ ۚ عَلَیْهِ تَوَكَّلْتُ ۚ وَ هُوَ رَبُّ الْعَرْشِ الْعَظِیْمِ`,
+   ar:`حَسْبِیَ اللّٰهُ لَا اِلٰهَ اِلَّا هُوَ ۚ عَلَیْهِ تَوَكَّلْتُ ۚ وَ هُوَ رَبُّ الْعَرْشِ الْعَظِیْمِ`,
    target:7,faz:'صبح و شام ۷ مرتبہ پڑھنے کی فضیلت کا مفہوم یہ ہے کہ اللہ تعالیٰ بندے کی تمام پریشانیوں کا کفیل ہو جاتا ہے۔',ref:'(ابو داؤد — صحیح)'},
   {grp:'نماز کے بعد کے اذکار',name:'ایمان پر رضا — ۳ مرتبہ',
    ar:`رَضِیْتُ بِاللّٰهِ رَبًّا ۙ وَّ بِالْاِسْلَامِ دِیْنًا ۙ وَّ بِمُحَمَّدٍ صَلَّی اللّٰهُ عَلَیْهِ وَسَلَّمَ نَبِیًّا`,
    target:3,faz:'حدیث کے مفہوم کے مطابق جو شخص صبح و شام ۳ مرتبہ یہ کلمات ادا کرے، اللہ تعالیٰ اس کو اپنی رضا سے سرفراز فرماتا ہے۔',ref:'(مسلم — صحیح)'},
   {grp:'نماز کے بعد کے اذکار',name:'دُرُودِ ابراہیمی — ۳ مرتبہ',
-   ar:`اَللّٰهُمَّ صَلِّ عَلٰی مُحَمَّدٍ وَّ عَلٰۤی اٰلِ مُحَمَّدٍ ۙ كَمَا صَلَّیْتَ عَلٰۤی اِبْرٰهِیْمَ وَ عَلٰۤی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ\nاَللّٰهُمَّ بَارِكْ عَلٰی مُحَمَّدٍ وَّ عَلٰۤی اٰلِ مُحَمَّدٍ ۙ كَمَا بٰرَكْتَ عَلٰۤی اِبْرٰهِیْمَ وَ عَلٰۤی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ`,
+   ar:`اَللّٰهُمَّ صَلِّ عَلٰی مُحَمَّدٍ وَّ عَلٰی اٰلِ مُحَمَّدٍ ۙ كَمَا صَلَّیْتَ عَلٰی اِبْرٰهِیْمَ وَ عَلٰی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ\nاَللّٰهُمَّ بَارِكْ عَلٰی مُحَمَّدٍ وَّ عَلٰی اٰلِ مُحَمَّدٍ ۙ كَمَا بٰرَكْتَ عَلٰی اِبْرٰهِیْمَ وَ عَلٰی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ`,
    target:3,faz:'سب سے افضل درود — روایت کا مفہوم یہ ہے کہ ایک بار درود بھیجنے پر ۱۰ رحمتیں نازل ہوتی ہیں اور ۱۰ درجات بلند ہوتے ہیں۔',ref:'(بخاری — صحیح)'},
   {grp:'نماز کے بعد کے اذکار',name:'سورۃ الانشراح — ۷ مرتبہ',
-   ar:`بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ\nاَلَمْ نَشْرَحْ لَكَ صَدْرَكَۙ ﴿۱﴾ وَ وَضَعْنَا عَنْكَ وِزْرَكَۙ ﴿۲﴾ الَّذِیْۤ اَنْقَضَ ظَهْرَكَۙ ﴿۳﴾ وَ رَفَعْنَا لَكَ ذِكْرَكَؕ ﴿۴﴾ فَاِنَّ مَعَ الْعُسْرِ یُسْرًاۙ ﴿۵﴾ اِنَّ مَعَ الْعُسْرِ یُسْرًاؕ ﴿۶﴾ فَاِذَا فَرَغْتَ فَانْصَبْۙ ﴿۷﴾ وَ اِلٰی رَبِّكَ فَارْغَبْ ﴿۸﴾`,
+   ar:`بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ\nاَلَمْ نَشْرَحْ لَكَ صَدْرَكَۙ ﴿۱﴾ وَ وَضَعْنَا عَنْكَ وِزْرَكَۙ ﴿۲﴾ الَّذِیْ اَنْقَضَ ظَهْرَكَۙ ﴿۳﴾ وَ رَفَعْنَا لَكَ ذِكْرَكَؕ ﴿۴﴾ فَاِنَّ مَعَ الْعُسْرِ یُسْرًاۙ ﴿۵﴾ اِنَّ مَعَ الْعُسْرِ یُسْرًاؕ ﴿۶﴾ فَاِذَا فَرَغْتَ فَانْصَبْۙ ﴿۷﴾ وَ اِلٰی رَبِّكَ فَارْغَبْ ﴿۸﴾`,
    target:7,faz:'"ہر دشواری کے ساتھ آسانی ہے" — شرحِ صدر، تسلی اور فکری و قلبی سکون کا باعث۔',ref:''},
   {grp:'فجر اور مغرب کے مخصوص اذکار',name:'جہنم سے حفاظت — ۷ مرتبہ',
    ar:`اَللّٰهُمَّ اَجِرْنِیْ مِنَ النَّارِ`,
    target:7,faz:'فجر و مغرب کے بعد ۷ مرتبہ پڑھنے سے متعلق روایت کا مفہوم ہے کہ بندے کے لیے جہنم کی آگ سے نجات کی بشارت ملتی ہے۔',ref:'(ابو داؤد)'},
   {grp:'فجر اور مغرب کے مخصوص اذکار',name:'ہر ضرر سے حفاظت — ۳ مرتبہ',
-   ar:`بِسْمِ اللّٰهِ الَّذِیْ لَا یَضُرُّ مَعَ اسْمِهٖ شَیْءٌ فِی الْاَرْضِ وَ لَا فِی السَّمَآءِ ۚ\nوَ هُوَ السَّمِیْعُ الْعَلِیْمُ`,
+   ar:`بِسْمِ اللّٰهِ الَّذِیْ لَا یَضُرُّ مَعَ اسْمِهٖ شَیْءٌ فِی الْاَرْضِ وَ لَا فِی السَّمَآءِ ۚ وَ هُوَ السَّمِیْعُ الْعَلِیْمُ`,
    target:3,faz:'صبح و شام ۳ مرتبہ پڑھنے کی فضیلت کا مفہوم ہے کہ کوئی ناگہانی آفت یا نقصان اثر نہیں کرتا۔',ref:'(ترمذی — حسن)'},
   {grp:'فجر اور مغرب کے مخصوص اذکار',name:'مخلوق کے شر سے پناہ — ۳ مرتبہ',
    ar:`اَللّٰهُمَّ اِنِّیْ اَعُوْذُ بِكَلِمٰتِ اللّٰهِ التَّآمَّاتِ مِنْ شَرِّ مَا خَلَقَ`,
    target:3,faz:'تمام مخلوقات اور زہریلی چیزوں کے شر سے مکمل حفاظت کا نبوی وِرد۔',ref:'(مسلم — صحیح)'},
   {grp:'فجر اور مغرب کے مخصوص اذکار',name:'اختتامی دُرُودِ ابراہیمی — ۳ مرتبہ',
-   ar:`اَللّٰهُمَّ صَلِّ عَلٰی مُحَمَّدٍ وَّ عَلٰۤی اٰلِ مُحَمَّدٍ ۙ كَمَا صَلَّیْتَ عَلٰۤی اِبْرٰهِیْمَ وَ عَلٰۤی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ\nاَللّٰهُمَّ بَارِكْ عَلٰی مُحَمَّدٍ وَّ عَلٰۤی اٰلِ مُحَمَّدٍ ۙ كَمَا بٰرَكْتَ عَلٰۤی اِبْرٰهِیْمَ وَ عَلٰۤی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ`,
+   ar:`اَللّٰهُمَّ صَلِّ عَلٰی مُحَمَّدٍ وَّ عَلٰی اٰلِ مُحَمَّدٍ ۙ كَمَا صَلَّیْتَ عَلٰی اِبْرٰهِیْمَ وَ عَلٰی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ\nاَللّٰهُمَّ بَارِكْ عَلٰی مُحَمَّدٍ وَّ عَلٰی اٰلِ مُحَمَّدٍ ۙ كَمَا بٰرَكْتَ عَلٰی اِبْرٰهِیْمَ وَ عَلٰی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ`,
    target:3,faz:'اذکار کے اختتام پر درودِ پاک — روایت کے مفہوم کے مطابق دعاؤں کی مقبولیت کا سبب ہے۔',ref:'(ترمذی — حسن)'}
 ];
 
 /* ─── JUMMA DATA ─── */
 const JUMMA=[
   {name:'دُرُودِ ابراہیمی — اوّل',
-   ar:`اَللّٰهُمَّ صَلِّ عَلٰی مُحَمَّدٍ وَّ عَلٰۤی اٰلِ مُحَمَّدٍ ۙ كَمَا صَلَّیْتَ عَلٰۤی اِبْرٰهِیْمَ وَ عَلٰۤی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ`,
+   ar:`اَللّٰهُمَّ صَلِّ عَلٰی مُحَمَّدٍ وَّ عَلٰی اٰلِ مُحَمَّدٍ ۙ كَمَا صَلَّیْتَ عَلٰی اِبْرٰهِیْمَ وَ عَلٰی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ`,
    target:1,faz:'وِرد کی شروعات درود پاک سے کریں — حدیث کا مفہوم ہے کہ درود سے دعا اول و آخر محفوظ ہو جاتی ہے۔',ref:'(بخاری)'},
   {name:'سورۃ الْفَاتِحَة — ۷ مرتبہ',
    ar:`بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ\nاَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِیْنَۙ ﴿۱﴾ اَلرَّحْمٰنِ الرَّحِیْمِۙ ﴿۲﴾ مٰلِكِ یَوْمِ الدِّیْنِؕ ﴿۳﴾ اِیَّاكَ نَعْبُدُ وَ اِیَّاكَ نَسْتَعِیْنُؕ ﴿۴﴾ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِیْمَۙ ﴿۵﴾ صِرَاطَ الَّذِیْنَ اَنْعَمْتَ عَلَیْهِمْ غَیْرِ الْمَغْضُوْبِ عَلَیْهِمْ وَ لَا الضَّآلِّیْنَ ﴿۶﴾`,
@@ -1224,18 +1226,18 @@ const JUMMA=[
    ar:`بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ\nقُلْ اَعُوْذُ بِرَبِّ النَّاسِۙ ﴿۱﴾ مَلِكِ النَّاسِۙ ﴿۲﴾ اِلٰهِ النَّاسِۙ ﴿۳﴾ مِنْ شَرِّ الْوَسْوَاسِ ۬ۙ الْخَنَّاسِۙ ﴿۴﴾ الَّذِیْ یُوَسْوِسُ فِیْ صُدُوْرِ النَّاسِۙ ﴿۵﴾ مِنَ الْجِنَّةِ وَ النَّاسِ ﴿۶﴾`,
    target:7,faz:'شیطانی وسوسوں اور مخلوق کے شر سے پناہ کا نبوی نسخہ۔',ref:'(مسلم)'},
   {name:'دُرُودِ ابراہیمی — آخر',
-   ar:`اَللّٰهُمَّ صَلِّ عَلٰی مُحَمَّدٍ وَّ عَلٰۤی اٰلِ مُحَمَّدٍ ۙ كَمَا صَلَّیْتَ عَلٰۤی اِبْرٰهِیْمَ وَ عَلٰۤی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ`,
+   ar:`اَللّٰهُمَّ صَلِّ عَلٰی مُحَمَّدٍ وَّ عَلٰی اٰلِ مُحَمَّدٍ ۙ كَمَا صَلَّیْتَ عَلٰی اِبْرٰهِیْمَ وَ عَلٰی اٰلِ اِبْرٰهِیْمَ ۙ اِنَّكَ حَمِیْدٌ مَّجِیْدٌ`,
    target:1,faz:'آخری درود پڑھ کر وِرد مکمل کریں اور دَم کریں۔',ref:'(ترمذی)'},
   {isDm:true,name:'دَم کریں',ar:'',target:1,faz:'ہاتھوں پر ۳ بار پھونکیں — پھر پورے جسم پر ملیں۔ پہلے خود پر، پھر اہلیہ و بچوں پر دَم کریں۔',ref:''}
 ];
 
 /* ─── TAUHEED DATA ─── */
 const TAUHEED=[
-  {name:'لَاۤ اِلٰهَ اِلَّا اللّٰهُ — توحید کا اقرار',
-   ar:`لَاۤ اِلٰهَ اِلَّا اللّٰهُ وَحْدَهٗ لَا شَرِیْكَ لَهٗ،\nاَحَدٌ صَمَدٌ،\nلَمْ یَلِدْ وَ لَمْ یُوْلَدْ،\nوَ لَمْ یَكُنْ لَّهٗ كُفُوًا اَحَدٌ`,
+  {name:'لَا اِلٰهَ اِلَّا اللّٰهُ — توحید کا اقرار',
+   ar:`لَا اِلٰهَ اِلَّا اللّٰهُ وَحْدَهٗ لَا شَرِیْكَ لَهٗ،\nاَحَدٌ صَمَدٌ،\nلَمْ یَلِدْ وَ لَمْ یُوْلَدْ،\nوَ لَمْ یَكُنْ لَّهٗ كُفُوًا اَحَدٌ`,
    target:1,faz:'خالص توحید کا اقرار — روایت کے مفہوم کے مطابق افضل ترین ذکر کلمۂ توحید ہے۔',ref:'(بخاری، مسلم)'},
-  {name:'لَاۤ اِلٰهَ اِلَّا اللّٰهُ — ۱۰۰ مرتبہ',
-   ar:`لَاۤ اِلٰهَ اِلَّا اللّٰهُ وَحْدَهٗ لَا شَرِیْكَ لَهٗ ۙ لَهُ الْمُلْكُ وَ لَهُ الْحَمْدُ وَ هُوَ عَلٰی كُلِّ شَیْءٍ قَدِیْرٌ`,
+  {name:'لَا اِلٰهَ اِلَّا اللّٰهُ — ۱۰۰ مرتبہ',
+   ar:`لَا اِلٰهَ اِلَّا اللّٰهُ وَحْدَهٗ لَا شَرِیْكَ لَهٗ ۙ لَهُ الْمُلْكُ وَ لَهُ الْحَمْدُ وَ هُوَ عَلٰی كُلِّ شَیْءٍ قَدِیْرٌ`,
    target:100,faz:'حدیث کے مفہوم کے مطابق ۱۰۰ بار پڑھنے پر گناہ معاف، نیکیاں درج اور تمام دن شیطان سے حفاظت رہتی ہے۔',ref:'(بخاری)'},
   {name:'سُبْحٰنَ اللّٰهِ وَ بِحَمْدِهٖ — ۱۰۰ مرتبہ',
    ar:`سُبْحٰنَ اللّٰهِ وَ بِحَمْدِهٖ`,
@@ -1252,7 +1254,7 @@ const TAUHEED=[
 ];
 
 /* ─── ASR DUROOD ─── */
-const ASR_TEXT=`اَللّٰهُمَّ صَلِّ عَلٰی مُحَمَّدٍ النَّبِیِّ الْاُمِّیِّ وَ عَلٰۤی اٰلِهٖ وَ سَلِّمْ تَسْلِیْمًا`;
+const ASR_TEXT=`اَللّٰهُمَّ صَلِّ عَلٰی مُحَمَّدٍ النَّبِیِّ الْاُمِّیِّ وَ عَلٰی اٰلِهٖ وَ سَلِّمْ تَسْلِیْمًا`;
 const ASR_IMG='assets/asr-durood.png';
 
 /* ─── TASBEEH ─── */
@@ -1969,7 +1971,7 @@ function render(){
       body=txt.slice(nl+1);
     }
     h+=`<div class="dua-card">${bismi?`<span class="bismi">${bismi}</span>`:''}
-      <div class="ar">${body.replace(/\n/g,'<br/><br/>')}</div>
+      <div class="ar">${body.replace(/\n/g,'<br/>')}</div>
       <div class="dua-name">${step.name}</div></div>
     <button type="button" class="faz-btn" onclick="toggleFaz(this)">✨ فضیلت دیکھیں</button>
     <div class="faz-body">${step.faz}${step.ref?`<span class="faz-ref">${step.ref}</span>`:''}</div>
@@ -2094,7 +2096,7 @@ function renderCustom(mc){
         <button type="button" class="btn-sm" onclick="resetActiveCustom()" title="ری سیٹ">↺</button>
       </div>
       <div class="dua-card">
-        <div class="ar" style="font-size:calc(var(--qs)*1.05)">${item.ar.replace(/\n/g,'<br/><br/>')}</div>
+        <div class="ar" style="font-size:calc(var(--qs)*1.05)">${item.ar.replace(/\n/g,'<br/>')}</div>
         <div class="dua-name">${item.name} — ہدف: ${item.target} مرتبہ</div>
       </div>
       ${ring(cnt,target,'var(--g1)',done)}
