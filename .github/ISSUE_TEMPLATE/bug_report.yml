@@ -1,0 +1,36 @@
+name: Bug Report
+description: Report an issue or unexpected behavior in the application
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug. Please provide sufficient details to reproduce it.
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the Bug
+      description: A clear and concise description of what happened.
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform / Browser
+      description: Which platform are you using?
+      options:
+        - Android Chrome (PWA / Browser)
+        - iOS Safari (PWA / Browser)
+        - Windows Chrome / Edge
+        - macOS Safari / Chrome
+        - Linux Firefox / Chromium
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: 1. Go to... 2. Click on... 3. See error...
+    validations:
+      required: true

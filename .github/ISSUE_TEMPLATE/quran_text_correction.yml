@@ -1,0 +1,39 @@
+name: Quranic Text or Dua Correction
+description: Report a typo, vowel mark (Aerab/Tashkeel), or translation discrepancy
+title: "[Correction]: "
+labels: ["text-accuracy", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        JazakAllah Khair for helping ensure 100% accuracy in the Quranic text and supplications.
+  - type: dropdown
+    id: section
+    attributes:
+      label: Section
+      description: Which section contains the error?
+      options:
+        - Surah Al-Kahf (Pakistani Indo-Pak Script)
+        - Surah Al-Kahf (Madani Uthmani Script)
+        - 80x Darood Sharif
+        - Morning/Fajr Azkar
+        - Evening/Maghrib Azkar
+        - Jummah Wird
+        - Tauheed Azkar
+        - Tasbeeh-e-Fatima
+    validations:
+      required: true
+  - type: textarea
+    id: current-text
+    attributes:
+      label: Current Text
+      description: Copy and paste the verse or supplication as it currently appears.
+    validations:
+      required: true
+  - type: textarea
+    id: corrected-text
+    attributes:
+      label: Corrected Text & Reference
+      description: Provide the authentic corrected text and reference source (e.g., Quran verse number, Sahih Hadith citation).
+    validations:
+      required: true
