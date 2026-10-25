@@ -880,6 +880,7 @@ body[data-theme="sepia"]{
   <div class="nav-actions">
     <div class="streak-badge" id="streakBadge" title="مسلسل روزانہ اذکار پڑھنے کا ریکارڈ">🔥 <span id="streakCount">1</span> دن</div>
     <button type="button" class="sound-btn" id="soundBtn" title="آواز / مسجد موڈ">🔔</button>
+    <button type="button" class="sound-btn" id="kahfDotsBtn" title="سورۃ الکہف ترتیبات (Kahf Settings)" style="display:none;font-size:1.15rem;font-weight:700">⋮</button>
     <button type="button" class="menu-btn" id="menuBtn" title="فہرست و مینو">☰</button>
   </div>
 </nav>
@@ -893,34 +894,7 @@ body[data-theme="sepia"]{
     <button type="button" class="zb" id="zIn">+</button>
     <button type="button" class="zreset" id="zReset">Reset</button>
   </div>
-  <div class="zgroup">
-    <span class="font-lbl">🖋️</span>
-    <select id="fontPicker" class="font-select">
-      <option value="almajeed" selected>المجید قرآنی</option>
-      <option value="hafs">حفص عثمانی</option>
-      <option value="alqalam">القلم قرآن</option>
-      <option value="pdms">پی ڈی ایم ایس سلیم</option>
-      <option value="muhammadi">محمدی قرآنی</option>
-      <option value="almushaf">المصحف</option>
-      <option value="scheherazade">Scheherazade (آن لائن)</option>
-    </select>
-  </div>
-  <div class="zgroup" id="scriptBtns">
-    <button type="button" class="scr-btn" id="btnUthmani" data-script="uthmani">رسمِ عثمانی</button>
-    <button type="button" class="scr-btn active" id="btnIndopak" data-script="indopak">رسمِ ہند-پاک</button>
-  </div>
-  <div class="zgroup">
-    <span class="font-lbl">🎨</span>
-    <select id="tajPicker" class="font-select">
-      <option value="off">تجوید بند</option>
-      <option value="classic">عثمانی تجوید (مکمل)</option>
-      <option value="taj4" selected>پاکستانی تجوید (۴ اصول)</option>
-    </select>
-  </div>
-  <div class="vmodes" id="vmodes">
-    <button type="button" class="vm active" data-vm="verse">آیت بہ آیت</button>
-    <button type="button" class="vm" data-vm="para">پیراگراف</button>
-  </div>
+  <button type="button" class="btn-sm" id="openKahfModalBtn" style="display:none;font-family:var(--ur-font);border-color:rgba(245,158,11,0.35);color:var(--gold-light);background:rgba(245,158,11,0.12);padding:.22rem .65rem">⚙️ ترتیباتِ کہف</button>
 </div>
 
 <div class="scroll-bar" id="scrollBar" style="display:none">
@@ -1051,6 +1025,55 @@ body[data-theme="sepia"]{
   </div>
 </div>
 
+<!-- Surah Kahf Settings Modal -->
+<div class="app-modal" id="kahfSettingsModal">
+  <div class="modal-box">
+    <div class="modal-hd">
+      <div class="modal-title">📖 ترتیباتِ سورۃ الکہف (Kahf Settings)</div>
+      <button type="button" class="modal-close" id="closeKahfModalBtn">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grp">
+        <label class="form-lbl">طرزِ تلاوت (View Mode):</label>
+        <div class="quick-targets" id="modalVmodes">
+          <button type="button" class="q-chip" data-vm="para">📖 پیراگراف (مربوط تلاوت)</button>
+          <button type="button" class="q-chip" data-vm="verse">🔢 آیت بہ آیت</button>
+        </div>
+      </div>
+      <div class="form-grp">
+        <label class="form-lbl">رسم الخط (Quranic Script):</label>
+        <div class="quick-targets" id="modalScripts">
+          <button type="button" class="q-chip" data-script="indopak">🇵🇰 رسمِ ہند-پاک (پاکستانی)</button>
+          <button type="button" class="q-chip" data-script="uthmani">🕋 رسمِ عثمانی</button>
+        </div>
+      </div>
+      <div class="form-grp">
+        <label class="form-lbl">تجوید کے اصول (Tajweed):</label>
+        <div class="quick-targets" id="modalTajweed">
+          <button type="button" class="q-chip" data-taj="off">تجوید بند</button>
+          <button type="button" class="q-chip" data-taj="taj4">پاکستانی تجوید (۴ اصول)</button>
+          <button type="button" class="q-chip" data-taj="classic">عثمانی تجوید (مکمل)</button>
+        </div>
+      </div>
+      <div class="form-grp">
+        <label class="form-lbl">قرآنی فونٹ (Quran Font):</label>
+        <select id="modalFontPicker" class="form-input" style="font-family:var(--ur-font)">
+          <option value="almajeed">المجید قرآنی (Al Majeed)</option>
+          <option value="hafs">حفص عثمانی (Hafs Uthmanic)</option>
+          <option value="alqalam">القلم قرآن (Al Qalam)</option>
+          <option value="pdms">پی ڈی ایم ایس سلیم (PDMS Saleem)</option>
+          <option value="muhammadi">محمدی قرآنی (Muhammadi)</option>
+          <option value="almushaf">المصحف (Al Mushaf)</option>
+          <option value="scheherazade">Scheherazade (آن لائن)</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-ft">
+      <button type="button" class="btn-primary" id="saveKahfModalBtn">محفوظ کریں ✓</button>
+    </div>
+  </div>
+</div>
+
 <aside class="drawer" id="drawer">
   <div class="dr-head">
     <div class="dr-title">🕌 تمام اذکار و ترتیبات</div>
@@ -1058,6 +1081,13 @@ body[data-theme="sepia"]{
   </div>
   <div class="dr-body">
     <div id="drList"></div>
+
+    <div class="dr-sec-title">📖 ترتیباتِ سورۃ الکہف</div>
+    <div class="dr-item" id="drKahfSettingsBtn" style="cursor:pointer">
+      <span class="dr-icon">⚙️</span>
+      <span class="dr-name">ترتیباتِ تلاوت (Kahf Settings)</span>
+      <span class="dr-ct">اختیارات</span>
+    </div>
 
     <div class="dr-sec-title">🧭 قبلہ رخ (آف لائن)</div>
     <div class="dr-item" id="drQiblaBtn" style="cursor:pointer">
@@ -1516,14 +1546,14 @@ const KAHF_INDOPAK = [
 
 /* ══ STATE ══ */
 const CIRC=2*Math.PI*74;
-let sec='asr',viewMode='verse',zoomPct=100;
+let sec='asr',viewMode='para',zoomPct=100;
 let S={
   fajr:   {idx:0,cnt:0,done:new Array(FAJR.length).fill(false)},
   jumma:  {idx:0,cnt:0,done:new Array(JUMMA.length).fill(false)},
   tauheed:{idx:0,cnt:0,done:new Array(TAUHEED.length).fill(false)},
   asr:    {cnt:0,done:false},
   tasbeeh:{ph:0,cnt:0,sets:0},
-  tajMode:'taj4',
+  tajMode:'off',
   scriptMode:'indopak'   // <-- DEFAULT = INDO-PAK (Pakistani Script)
 };
 try{
@@ -1537,6 +1567,15 @@ try{
   if(!S.fajr.done||S.fajr.done.length!==FAJR.length)S.fajr.done=new Array(FAJR.length).fill(false);
   if(!S.jumma.done||S.jumma.done.length!==JUMMA.length)S.jumma.done=new Array(JUMMA.length).fill(false);
   if(!S.tauheed.done||S.tauheed.done.length!==TAUHEED.length)S.tauheed.done=new Array(TAUHEED.length).fill(false);
+
+  if(!localStorage.getItem('azk_kahf_prefs_v2')){
+    viewMode='para';
+    S.tajMode='off';
+    S.scriptMode='indopak';
+    localStorage.setItem('azk_font','almajeed');
+    localStorage.setItem('azk_kahf_prefs_v2','true');
+    save();
+  }
 }catch(e){}
 const save=()=>{try{localStorage.setItem('azk_pro_v1',JSON.stringify({sec,viewMode,zoomPct,tajMode:S.tajMode,scriptMode:S.scriptMode,...S}))}catch(e){}};
 
@@ -1645,34 +1684,42 @@ function applyFont(key){
   try{localStorage.setItem('azk_font', key);}catch(e){}
   const picker=document.getElementById('fontPicker');
   if(picker) picker.value=key;
+  const modalPicker=document.getElementById('modalFontPicker');
+  if(modalPicker) modalPicker.value=key;
 }
 applyFont(currentFont);
-document.getElementById('fontPicker').addEventListener('change', e=>applyFont(e.target.value));
+
+const fontPickerEl = document.getElementById('fontPicker');
+if(fontPickerEl) fontPickerEl.addEventListener('change', e=>applyFont(e.target.value));
 
 /* ══ TAJWEED PICKER ══ */
-document.getElementById('tajPicker').value = S.tajMode || 'taj4';
-document.getElementById('tajPicker').addEventListener('change', function(e){
-  S.tajMode = e.target.value;
-  save();
-  if(sec === 'kahf') render();
-});
+const tajPickerEl = document.getElementById('tajPicker');
+if(tajPickerEl){
+  tajPickerEl.value = S.tajMode || 'off';
+  tajPickerEl.addEventListener('change', function(e){
+    S.tajMode = e.target.value;
+    save();
+    if(sec === 'kahf') render();
+  });
+}
 
 /* ══ SCRIPT TOGGLE ══ */
 function updateScriptBtns(){
   const uth = document.getElementById('btnUthmani');
   const ind = document.getElementById('btnIndopak');
-  if(!uth || !ind) return;
-  uth.classList.toggle('active', S.scriptMode === 'uthmani');
-  ind.classList.toggle('active', S.scriptMode === 'indopak');
+  if(uth) uth.classList.toggle('active', S.scriptMode === 'uthmani');
+  if(ind) ind.classList.toggle('active', S.scriptMode === 'indopak');
 }
-document.getElementById('btnUthmani').addEventListener('click', function(){
+const uthBtn = document.getElementById('btnUthmani');
+if(uthBtn) uthBtn.addEventListener('click', function(){
   if(S.scriptMode === 'uthmani') return;
   S.scriptMode = 'uthmani';
   save();
   updateScriptBtns();
   if(sec === 'kahf') render();
 });
-document.getElementById('btnIndopak').addEventListener('click', function(){
+const indBtn = document.getElementById('btnIndopak');
+if(indBtn) indBtn.addEventListener('click', function(){
   if(S.scriptMode === 'indopak') return;
   S.scriptMode = 'indopak';
   save();
@@ -1680,6 +1727,74 @@ document.getElementById('btnIndopak').addEventListener('click', function(){
   if(sec === 'kahf') render();
 });
 updateScriptBtns();
+
+/* ══ KAHF SETTINGS MODAL & DRAWER BINDINGS ══ */
+const kahfModal = document.getElementById('kahfSettingsModal');
+const openKahfModalBtn = document.getElementById('openKahfModalBtn');
+const kahfDotsBtn = document.getElementById('kahfDotsBtn');
+const drKahfSettingsBtn = document.getElementById('drKahfSettingsBtn');
+const closeKahfModalBtn = document.getElementById('closeKahfModalBtn');
+const saveKahfModalBtn = document.getElementById('saveKahfModalBtn');
+
+function syncKahfModalUI(){
+  document.querySelectorAll('#modalVmodes .q-chip').forEach(b=>{
+    b.classList.toggle('active', b.dataset.vm === viewMode);
+  });
+  document.querySelectorAll('#modalScripts .q-chip').forEach(b=>{
+    b.classList.toggle('active', b.dataset.script === S.scriptMode);
+  });
+  document.querySelectorAll('#modalTajweed .q-chip').forEach(b=>{
+    b.classList.toggle('active', b.dataset.taj === (S.tajMode || 'off'));
+  });
+  const modalFont = document.getElementById('modalFontPicker');
+  if(modalFont) modalFont.value = currentFont;
+}
+
+function openKahfModal(){
+  syncKahfModalUI();
+  if(kahfModal) kahfModal.classList.add('open');
+  document.getElementById('drawer')?.classList.remove('open');
+  document.getElementById('overlay')?.classList.remove('open');
+}
+function closeKahfModal(){
+  if(kahfModal) kahfModal.classList.remove('open');
+}
+
+if(openKahfModalBtn) openKahfModalBtn.addEventListener('click', openKahfModal);
+if(kahfDotsBtn) kahfDotsBtn.addEventListener('click', openKahfModal);
+if(drKahfSettingsBtn) drKahfSettingsBtn.addEventListener('click', openKahfModal);
+if(closeKahfModalBtn) closeKahfModalBtn.addEventListener('click', closeKahfModal);
+if(saveKahfModalBtn) saveKahfModalBtn.addEventListener('click', closeKahfModal);
+if(kahfModal) kahfModal.addEventListener('click', e=>{ if(e.target===kahfModal) closeKahfModal(); });
+
+document.querySelectorAll('#modalVmodes .q-chip').forEach(b=>b.addEventListener('click', ()=>{
+  viewMode = b.dataset.vm;
+  syncKahfModalUI();
+  save();
+  if(sec === 'kahf') renderKahf(document.getElementById('mc'));
+}));
+
+document.querySelectorAll('#modalScripts .q-chip').forEach(b=>b.addEventListener('click', ()=>{
+  S.scriptMode = b.dataset.script;
+  syncKahfModalUI();
+  save();
+  if(sec === 'kahf') renderKahf(document.getElementById('mc'));
+}));
+
+document.querySelectorAll('#modalTajweed .q-chip').forEach(b=>b.addEventListener('click', ()=>{
+  S.tajMode = b.dataset.taj;
+  syncKahfModalUI();
+  save();
+  if(sec === 'kahf') renderKahf(document.getElementById('mc'));
+}));
+
+const modalFontPicker = document.getElementById('modalFontPicker');
+if(modalFontPicker){
+  modalFontPicker.addEventListener('change', e=>{
+    applyFont(e.target.value);
+    if(sec === 'kahf') renderKahf(document.getElementById('mc'));
+  });
+}
 
 /* ══ AUTO SCROLL ══ */
 let scPlaying=false, scRAF=null, scLastTs=0, scSpeed=5;
@@ -1822,6 +1937,10 @@ function render(){
   if(scb)scb.style.display=sec==='kahf'?'flex':'none';
   const scrollB=document.getElementById('scrollBar');
   if(scrollB)scrollB.style.display=sec==='kahf'?'flex':'none';
+  const kb=document.getElementById('openKahfModalBtn');
+  if(kb)kb.style.display=sec==='kahf'?'inline-flex':'none';
+  const kd=document.getElementById('kahfDotsBtn');
+  if(kd)kd.style.display=sec==='kahf'?'flex':'none';
   if(sec!=='kahf') stopAutoScroll();
   const mc=document.getElementById('mc');
   if(!mc)return;
