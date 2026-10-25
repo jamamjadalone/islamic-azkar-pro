@@ -911,7 +911,7 @@ body[data-theme="sepia"]{
   <div style="background:#071209;color:#dff0df;padding:1.5rem;text-align:center;font-family:'Noto Nastaliq Urdu',sans-serif;direction:rtl;border-bottom:2px solid #3cb371">
     <h1 style="color:#f0c840;font-size:1.6rem;margin-bottom:.5rem">اسلامک اذکار پرو (Islamic Azkar Pro)</h1>
     <p style="font-size:1.05rem;line-height:2">
-      مکمل آف لائن اسلامی ویب ایپ — جمعہ کے دن عصر کے بعد ۸۰ مرتبہ درود شریف کاؤنٹر، صبح و شام (فجر اور مغرب) کے مسنون اذکار، سورۃ الکہف مکمل مع تجوید و ہند-پاک رسم الخط، تسبیح فاطمہؓ، آف لائن قبلہ نما (Qibla Compass) اور ذاتی اذکار کی ترتیب۔ یہ ایپ بغیر انٹرنیٹ مکمل کام کرتی ہے۔
+      مکمل آف لائن اسلامی ویب ایپ — جمعہ کے دن عصر کے بعد ۸۰ مرتبہ درود شریف کاؤنٹر، صبح و شام (فجر اور مغرب) کے مسنون اذکار، سورۃ الکہف مکمل مع تجوید و ہند-پاک رسم الخط، تسبیح فاطمہؓ اور ذاتی اذکار کی ترتیب۔ یہ ایپ بغیر انٹرنیٹ مکمل کام کرتی ہے۔
     </p>
     <p style="color:#5e9a6e;font-size:.9rem;margin-top:.5rem">نوٹ: تمام فیچرز اور خودکار کاؤنٹر کے مکمل استعمال کے لیے براہِ کرم براؤزر میں جاوا اسکرپٹ (JavaScript) فعال کریں۔</p>
   </div>
@@ -2792,59 +2792,6 @@ function shareCustomAzkarText(){
   }
 }
 
-/* ══ OFFLINE QIBLA COMPASS ══ */
-let qiblaCityAngle = 265;
-let compassSensorActive = false;
-
-function openQiblaModal(){
-  closeDrawer();
-  const modal = document.getElementById('qiblaModal');
-  if(modal) modal.classList.add('open');
-  initQiblaCompass();
-}
-
-function closeQiblaModal(){
-  const modal = document.getElementById('qiblaModal');
-  if(modal) modal.classList.remove('open');
-}
-
-function updateQiblaHeading(cityAngle){
-  qiblaCityAngle = parseFloat(cityAngle) || 265;
-  const degEl = document.getElementById('qiblaDegrees');
-  if(degEl) degEl.textContent = qiblaCityAngle + '°';
-  const qNeedle = document.getElementById('qiblaNeedle');
-  if(qNeedle) qNeedle.style.transform = `rotate(${qiblaCityAngle}deg)`;
-}
-
-function initQiblaCompass(){
-  const sel = document.getElementById('qiblaCitySelect');
-  if(sel) updateQiblaHeading(sel.value);
-
-  if(!compassSensorActive && window.DeviceOrientationEvent){
-    const handleOrientation = (e) => {
-      let compass = e.webkitCompassHeading || e.alpha;
-      if(compass !== undefined && compass !== null){
-        compassSensorActive = true;
-        const heading = (360 - compass) % 360;
-        const dial = document.getElementById('compassDial');
-        if(dial) dial.style.transform = `rotate(${heading}deg)`;
-        const hint = document.getElementById('qiblaHint');
-        if(hint) hint.textContent = 'کمپاس سینسر فعال ہے — کعبہ 🕋 اور سبز تیر کی سمت رخ کریں۔';
-      }
-    };
-
-    if(typeof DeviceOrientationEvent.requestPermission === 'function'){
-      DeviceOrientationEvent.requestPermission().then(res => {
-        if(res === 'granted'){
-          window.addEventListener('deviceorientation', handleOrientation, true);
-        }
-      }).catch(()=>{});
-    } else {
-      window.addEventListener('deviceorientationabsolute', handleOrientation, true);
-      window.addEventListener('deviceorientation', handleOrientation, true);
-    }
-  }
-}
 
 /* ══ TAP ══ */
 function tap(){
@@ -2948,10 +2895,6 @@ document.getElementById('saveCustomModalBtn')?.addEventListener('click',saveCust
 document.getElementById('closeImportModalBtn')?.addEventListener('click',closeImportModal);
 document.getElementById('cancelImportModalBtn')?.addEventListener('click',closeImportModal);
 document.getElementById('soundBtn')?.addEventListener('click',toggleSoundMode);
-document.getElementById('drQiblaBtn')?.addEventListener('click',openQiblaModal);
-document.getElementById('closeQiblaModalBtn')?.addEventListener('click',closeQiblaModal);
-document.getElementById('cancelQiblaModalBtn')?.addEventListener('click',closeQiblaModal);
-document.getElementById('qiblaCitySelect')?.addEventListener('change',e=>updateQiblaHeading(e.target.value));
 document.querySelectorAll('.snd-chip').forEach(b=>{
   b.addEventListener('click',()=>setSoundMode(b.dataset.snd));
 });
