@@ -2368,11 +2368,14 @@ let userWantsReload=false;
 if(reloadBtn){
   reloadBtn.addEventListener('click',()=>{
     userWantsReload=true;
+    reloadBtn.disabled=true;
+    reloadBtn.textContent='تازہ کاری ہو رہی ہے...';
     if(newWorkerWaiting){
       newWorkerWaiting.postMessage({type:'SKIP_WAITING'});
-    }else{
-      window.location.reload();
     }
+    setTimeout(()=>{
+      window.location.reload();
+    },250);
   });
 }
 
