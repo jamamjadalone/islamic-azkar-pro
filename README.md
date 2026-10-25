@@ -125,16 +125,6 @@ Open `http://localhost:8080` in your browser.
 
 ---
 
-## GitHub Repository Topics
-
-Recommended topics for this repository on GitHub:
-
-```text
-islamic-app, azkar, tasbeeh-counter, darood-sharif, surah-kahf, qibla-compass, pwa, offline-first, tajweed, urdu, dhikr, pakistani-fonts, privacy-focused, vanilla-javascript
-```
-
----
-
 ## License
 
 This project is licensed under the [MIT License](LICENSE) — free for personal, community, and educational use.
