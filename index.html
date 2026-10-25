@@ -236,13 +236,13 @@ body::before{
 
 /* ── AUTO SCROLL BAR ── */
 .scroll-bar{
-  position:sticky;top:88px;z-index:97;
+  position:sticky;top:50px;z-index:97;
   width:100%;max-width:540px;
   display:flex;align-items:center;gap:.45rem;
   padding:.35rem .75rem;
-  background:rgba(6, 17, 9, 0.92);
+  background:rgba(6, 17, 9, 0.94);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(52, 211, 153, 0.1);
+  border-bottom:1px solid rgba(52, 211, 153, 0.12);
   direction:ltr;
 }
 .sc-play{
@@ -261,10 +261,75 @@ body::before{
   display:flex;align-items:center;justify-content:center;transition:all .18s;
 }
 .sb:hover{background:rgba(16, 185, 129, 0.25)}
-.sc-lbl{font-family:var(--ur-font);font-size:.65rem;color:var(--text2);min-width:50px;text-align:center;direction:rtl}
+.sc-lbl{font-family:var(--ur-font);font-size:.65rem;color:var(--text2);min-width:65px;text-align:center;direction:rtl}
 #scSlider{flex:1;height:4px;-webkit-appearance:none;appearance:none;background:rgba(52, 211, 153, 0.18);border-radius:4px;outline:none;cursor:pointer}
 #scSlider::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--g1);cursor:pointer;box-shadow:0 0 8px var(--emerald-glow)}
 #scSlider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--g1);border:none;cursor:pointer;box-shadow:0 0 8px var(--emerald-glow)}
+
+/* ── DYNAMIC TIME TAGLINE ── */
+.time-tagline{
+  width:100%;max-width:540px;
+  padding:.35rem .75rem;
+  font-family:var(--ur-font);font-size:.74rem;
+  color:var(--gold-light);
+  background:rgba(6, 17, 9, 0.45);
+  border:none;outline:none;
+  text-align:center;
+  display:flex;align-items:center;justify-content:center;gap:.35rem;
+  line-height:1.4;transition:all .3s ease;
+}
+
+/* ── WELCOME LANDING CARD ── */
+.welcome-card{
+  padding:1.1rem .85rem;
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;animation:fadeUp .25s ease;
+}
+.welcome-icon{
+  font-size:2.4rem;margin-bottom:.35rem;
+  filter:drop-shadow(0 0 10px rgba(16,185,129,0.35));
+}
+.welcome-salam{
+  font-family:var(--qfont);font-size:1.32rem;color:var(--g2);
+  margin-bottom:.35rem;line-height:1.6;
+}
+.welcome-intro{
+  font-family:var(--ur-font);font-size:.84rem;color:var(--text);
+  line-height:1.6;margin-bottom:.65rem;max-width:440px;
+}
+.welcome-guide{
+  font-family:var(--ur-font);font-size:.78rem;color:var(--gold-light);
+  background:rgba(245,158,11,0.08);border:1px dashed rgba(245,158,11,0.3);
+  border-radius:10px;padding:.5rem .75rem;margin-bottom:1rem;
+  line-height:1.5;max-width:460px;
+}
+.welcome-grid{
+  width:100%;display:flex;flex-direction:column;gap:.5rem;
+}
+.w-card{
+  width:100%;
+  display:flex;align-items:center;gap:.75rem;
+  padding:.72rem .85rem;
+  background:rgba(13, 30, 15, 0.55);
+  border:1px solid var(--card-border);
+  border-radius:12px;cursor:pointer;
+  transition:all .2s ease;text-align:right;direction:rtl;
+}
+.w-card:hover{
+  background:rgba(16, 185, 129, 0.12);
+  border-color:rgba(52, 211, 153, 0.4);
+  transform:translateY(-1px);
+}
+.w-card.highlight{
+  border-color:rgba(245, 158, 11, 0.4);
+  background:rgba(245, 158, 11, 0.08);
+}
+.w-icon{font-size:1.45rem;flex-shrink:0}
+.w-info{flex:1;display:flex;flex-direction:column;gap:.15rem}
+.w-title{font-family:var(--ur-font);font-size:.88rem;font-weight:700;color:var(--text)}
+.w-sub{font-family:var(--ur-font);font-size:.7rem;color:var(--text-sub)}
+.w-arrow{font-size:1rem;color:var(--g2);opacity:.6;flex-shrink:0}
+.w-card:hover .w-arrow{opacity:1;transform:translateX(-3px)}
 
 #mc{position:relative;z-index:1;width:100%;max-width:540px;padding-bottom:2.5rem}
 
@@ -930,6 +995,9 @@ body[data-theme="sepia"]{
   </div>
 </nav>
 <div class="prog"><div class="prog-bar" id="progBar" style="width:0%"></div></div>
+<div class="time-tagline" id="timeTagline">
+  <span id="timeTaglineIcon">✨</span> <span id="timeTaglineText">ذکرِ الٰہی سے دلوں کو اطمینان و سکون ملتا ہے</span>
+</div>
 
 <div class="scroll-bar" id="scrollBar" style="display:none">
   <button type="button" class="sc-play" id="scPlay">▶</button>
@@ -938,7 +1006,7 @@ body[data-theme="sepia"]{
     <span class="sc-lbl" id="scLbl">درمیانی</span>
     <button type="button" class="sb" id="scFaster">+</button>
   </div>
-  <input type="range" id="scSlider" min="1" max="9" value="5" step="1"/>
+  <input type="range" id="scSlider" min="1" max="5" value="3" step="1"/>
 </div>
 
 <main id="mc"></main>
@@ -1572,6 +1640,7 @@ const KAHF_INDOPAK = [
 
 /* ══ STATE ══ */
 const SECS=[
+  {id:'welcome',icon:'🕌',title:'خوش آمدید (صفحۂ اول)', ct:'ہوم'},
   {id:'asr',    icon:'☀️',title:'جمعہ عصر درود ×۸۰',  ct:'×80'},
   {id:'fajr',   icon:'🌅',title:'فجر/مغرب اذکار',      ct:FAJR.length+' اذکار'},
   {id:'jumma',  icon:'🌙',title:'جمعہ کا وِرد',         ct:JUMMA.length+' اذکار'},
@@ -1581,7 +1650,7 @@ const SECS=[
   {id:'custom', icon:'📝',title:'ذاتی اذکار (مینول)',   ct:'اپنی تسبیح'}
 ];
 const CIRC=2*Math.PI*74;
-let sec='asr',viewMode='para',zoomPct=100;
+let sec='welcome',viewMode='para',zoomPct=100;
 let S={
   fajr:   {idx:0,cnt:0,done:new Array(FAJR.length).fill(false)},
   jumma:  {idx:0,cnt:0,done:new Array(JUMMA.length).fill(false)},
@@ -1914,12 +1983,12 @@ if(cancelZikrPickerBtn) cancelZikrPickerBtn.addEventListener('click', closeZikrP
 if(zikrPickerModal) zikrPickerModal.addEventListener('click', e => { if(e.target === zikrPickerModal) closeZikrPicker(); });
 
 /* ══ AUTO SCROLL ══ */
-let scPlaying=false, scRAF=null, scLastTs=0, scSpeed=5;
-const SPEED_PX = {1:8,2:14,3:20,4:27,5:35,6:45,7:58,8:75,9:95};
-const SPEED_LBL = {1:'بہت آہستہ',2:'آہستہ',3:'آہستہ',4:'قدرے آہستہ',5:'درمیانی',6:'قدرے تیز',7:'تیز',8:'تیز',9:'بہت تیز'};
+let scPlaying=false, scRAF=null, scLastTs=0, scSpeed=3;
+const SPEED_PX = {1:28, 2:50, 3:85, 4:130, 5:185};
+const SPEED_LBL = {1:'ترتیل (آہستہ)', 2:'متوازن', 3:'درمیانی', 4:'تیز', 5:'بہت تیز'};
 try{
-  const sp=JSON.parse(localStorage.getItem('azk_scroll_speed')||'5');
-  if(sp>=1&&sp<=9) scSpeed=sp;
+  const sp=JSON.parse(localStorage.getItem('azk_scroll_speed')||'3');
+  if(sp>=1&&sp<=5) scSpeed=sp;
 }catch(e){}
 function updateScrollUI(){
   const lbl=document.getElementById('scLbl');
@@ -1935,7 +2004,7 @@ function scrollStep(ts){
   if(!scLastTs) scLastTs=ts;
   const dt=(ts-scLastTs)/1000;
   scLastTs=ts;
-  const pxPerSec=SPEED_PX[scSpeed]||35;
+  const pxPerSec=SPEED_PX[scSpeed]||85;
   window.scrollBy(0, pxPerSec*dt);
   const atBottom=(window.innerHeight+window.scrollY)>=(document.body.scrollHeight-6);
   if(atBottom){ stopAutoScroll(); return; }
@@ -1958,7 +2027,7 @@ function toggleAutoScroll(){
   if(scPlaying) stopAutoScroll(); else startAutoScroll();
 }
 function setScrollSpeed(v){
-  scSpeed=Math.max(1,Math.min(9,v));
+  scSpeed=Math.max(1,Math.min(5,v));
   try{localStorage.setItem('azk_scroll_speed',JSON.stringify(scSpeed));}catch(e){}
   updateScrollUI();
 }
@@ -1983,15 +2052,15 @@ function updateSoundUI(){
   if(btn){
     if(soundMode === 'masjid') {
       btn.textContent = '🔕';
-      btn.title = 'مسجد موڈ (صرف وائبریشن)';
+      btn.title = 'مسجد موڈ (صرف وائبریشن) — ٹیپ کر کے خاموش کریں';
       btn.classList.add('masjid');
     } else if(soundMode === 'silent') {
       btn.textContent = '🔇';
-      btn.title = 'مکمل خاموش موڈ';
+      btn.title = 'مکمل خاموش موڈ — ٹیپ کر کے آواز کھولیں';
       btn.classList.remove('masjid');
     } else {
       btn.textContent = '🔔';
-      btn.title = 'عام موڈ (آواز اور وائبریشن)';
+      btn.title = 'عام موڈ (آواز اور وائبریشن) — ٹیپ کر کے خاموش کریں';
       btn.classList.remove('masjid');
     }
   }
@@ -2001,13 +2070,14 @@ function updateSoundUI(){
 }
 
 function toggleSoundMode(){
-  if(soundMode === 'normal') soundMode = 'masjid';
-  else if(soundMode === 'masjid') soundMode = 'silent';
-  else soundMode = 'normal';
+  if(soundMode === 'silent') {
+    soundMode = 'normal';
+    beep(700, 0.08);
+  } else {
+    soundMode = 'silent';
+  }
   try{ localStorage.setItem('azk_sound_mode', soundMode); }catch(e){}
   updateSoundUI();
-  if(soundMode === 'masjid') vib(35);
-  else if(soundMode === 'normal') beep(700, 0.08);
 }
 
 function setSoundMode(mode){
@@ -2045,18 +2115,142 @@ function ring(cnt,target,color,done){
   </div>`;
 }
 
+/* ══ TIME TAGLINE & RECOMMENDATION ══ */
+function updateTimeTagline(){
+  const tl = document.getElementById('timeTagline');
+  const ic = document.getElementById('timeTaglineIcon');
+  const tx = document.getElementById('timeTaglineText');
+  if(!tl || !ic || !tx) return;
+  const now = new Date();
+  const day = now.getDay(); // 5 = Friday
+  const hrs = now.getHours();
+  let icon = '✨';
+  let text = 'ذکرِ الٰہی سے دلوں کو اطمینان و سکون ملتا ہے';
+
+  if(day === 5 && (hrs >= 12 && hrs <= 19)){
+    icon = '🌙';
+    text = 'جمعۃ المبارک! نمازِ عصر کے بعد ۸۰ مرتبہ درود شریف اور سورۃ الکہف کا وقت';
+  } else if(day === 5){
+    icon = '📖';
+    text = 'جمعہ کا مبارک دن — سورۃ الکہف اور جمعہ کے مسنون وِرد کا اہتمام فرمائیں';
+  } else if(hrs >= 4 && hrs < 11){
+    icon = '🌅';
+    text = 'صبح بخیر — فجر اور صبح کے مسنون اذکار و حفاظت کی مسنون دعائیں';
+  } else if(hrs >= 11 && hrs < 16){
+    icon = '☀️';
+    text = 'دوپہر کا وقت — نمازِ ظہر، استغفار اور تسبیحات کا اہتمام فرمائیں';
+  } else if(hrs >= 16 && hrs < 20){
+    icon = '🌇';
+    text = 'شام کا وقت — نمازِ عصر و مغرب اور مسنون حفاظتی اذکار کا وقت';
+  } else {
+    icon = '🌙';
+    text = 'شب بخیر — سونے سے قبل کے مسنون اذکار اور تسبیحِ فاطمہؓ';
+  }
+  ic.textContent = icon;
+  tx.textContent = text;
+}
+
+function renderWelcome(mc){
+  mc.innerHTML = `
+    <div class="welcome-card">
+      <div class="welcome-icon">🕌</div>
+      <div class="welcome-salam">اَلسَّلَامُ عَلَیْكُمْ وَ رَحْمَةُ اللّٰهِ وَ بَرَكَاتُهُ</div>
+      <div class="welcome-intro">
+        خوش آمدید! ذکرِ الٰہی سے دلوں کو اطمینان اور زندگی میں برکت حاصل ہوتی ہے۔
+      </div>
+      <div class="welcome-guide">
+        👆 اوپر بنے بٹن <strong style="color:var(--g2)">[ ☀️ ذکر منتخب کریں ▾ ]</strong> سے یا نیچے دیے گئے کارڈز سے اپنا وِرد شروع فرمائیں:
+      </div>
+      <div class="welcome-grid">
+        <div class="w-card highlight" data-sec="asr">
+          <span class="w-icon">☀️</span>
+          <div class="w-info">
+            <div class="w-title">جمعہ عصر درود شریف (۸۰ مرتبہ)</div>
+            <div class="w-sub">روایت کے مطابق ۸۰ سال کی مغفرت و ثواب کا خاص وِرد</div>
+          </div>
+          <span class="w-arrow">←</span>
+        </div>
+        <div class="w-card" data-sec="kahf">
+          <span class="w-icon">📖</span>
+          <div class="w-info">
+            <div class="w-title">سورۃ الکہف (مکمل آف لائن تلاوت)</div>
+            <div class="w-sub">مکمل ۱۱۰ آیات مع تجوید و ہند-پاک پاکستانی رسم الخط</div>
+          </div>
+          <span class="w-arrow">←</span>
+        </div>
+        <div class="w-card" data-sec="fajr">
+          <span class="w-icon">🌅</span>
+          <div class="w-info">
+            <div class="w-title">فجر و مغرب کے مسنون اذکار</div>
+            <div class="w-sub">صبح و شام کی جامع حفاظت کی دعائیں (${FAJR.length} مسنون اذکار)</div>
+          </div>
+          <span class="w-arrow">←</span>
+        </div>
+        <div class="w-card" data-sec="jumma">
+          <span class="w-info">🌙</span>
+          <div class="w-info-desc">
+            <div class="w-title">جمعہ کا مسنون وِرد مع دَم</div>
+            <div class="w-sub">سورۃ فاتحہ، اخلاص، فلق، ناس مع طریقہ دم (${JUMMA.length} اذکار)</div>
+          </div>
+          <span class="w-arrow">←</span>
+        </div>
+        <div class="w-card" data-sec="tauheed">
+          <span class="w-icon">☝️</span>
+          <div class="w-info">
+            <div class="w-title">ذکرِ توحید و استغفار</div>
+            <div class="w-sub">لا الہ الا اللہ، کلماتِ تسبیح و حمد (${TAUHEED.length} اذکار)</div>
+          </div>
+          <span class="w-arrow">←</span>
+        </div>
+        <div class="w-card" data-sec="tasbeeh">
+          <span class="w-icon">📿</span>
+          <div class="w-info">
+            <div class="w-title">تسبیحِ فاطمہؓ (خودکار کاؤنٹر)</div>
+            <div class="w-sub">۳۳ بار سبحان اللہ، ۳۳ بار الحمد للہ، ۳۴ بار اللہ اکبر</div>
+          </div>
+          <span class="w-arrow">←</span>
+        </div>
+        <div class="w-card" data-sec="custom">
+          <span class="w-icon">📝</span>
+          <div class="w-info">
+            <div class="w-title">ذاتی اذکار و تسبیحات</div>
+            <div class="w-sub">اپنی مرضی کے اذکار و دعائیں شامل اور کاؤنٹ کریں</div>
+          </div>
+          <span class="w-arrow">←</span>
+        </div>
+      </div>
+    </div>
+  `;
+  mc.querySelectorAll('.w-card').forEach(card => {
+    card.addEventListener('click', () => {
+      sec = card.dataset.sec;
+      if(sec === 'custom') customActiveId = null;
+      save();
+      render();
+      window.scrollTo(0, 0);
+    });
+  });
+  renderDrawer();
+}
+
 /* ══ RENDER ══ */
 function render(){
+  updateTimeTagline();
   const curMeta=SECS.find(m=>m.id===sec)||SECS[0];
   const zpIcon=document.getElementById('zpIcon');
   const zpName=document.getElementById('zpName');
   if(zpIcon) zpIcon.textContent=curMeta.icon;
-  if(zpName) zpName.textContent=curMeta.title;
+  if(zpName) zpName.textContent=(sec==='welcome')?'ذکر منتخب کریں ▾':curMeta.title;
   const scrollB=document.getElementById('scrollBar');
   if(scrollB)scrollB.style.display=sec==='kahf'?'flex':'none';
   if(sec!=='kahf') stopAutoScroll();
   const mc=document.getElementById('mc');
   if(!mc)return;
+  if(sec==='welcome'){
+    document.getElementById('progBar').style.width='0%';
+    renderWelcome(mc);
+    return;
+  }
   if(sec==='kahf'){renderKahf(mc);return;}
   if(sec==='asr'){renderAsr(mc);return;}
   if(sec==='tasbeeh'){renderTasbeeh(mc);return;}
@@ -2655,27 +2849,7 @@ function updateStreakUI(){
 
 /* ══ TIME-AWARE RECOMMENDATION ══ */
 function applyTimeAwareRecommendation(){
-  const now = new Date();
-  const day = now.getDay();
-  const hrs = now.getHours();
-  let targetSec = null;
-  if(day === 5 && (hrs >= 12 && hrs <= 19)){
-    targetSec = 'asr';
-  } else if(day === 5){
-    targetSec = 'jumma';
-  } else if(hrs >= 4 && hrs < 12){
-    targetSec = 'fajr';
-  } else if(hrs >= 16 && hrs < 22){
-    targetSec = 'fajr';
-  }
-  try{
-    const hasVisited = sessionStorage.getItem('azk_time_sec_set');
-    if(!hasVisited && targetSec){
-      sec = targetSec;
-      sessionStorage.setItem('azk_time_sec_set', '1');
-      save();
-    }
-  }catch(_){}
+  updateTimeTagline();
 }
 
 /* ══ BACKUP, RESTORE & SHARE ══ */
@@ -2841,11 +3015,11 @@ function renderDrawer(){
 }
 
 /* ══ EVENTS ══ */
-document.getElementById('menuBtn').addEventListener('click',()=>{document.getElementById('drawer').classList.add('open');document.getElementById('overlay').classList.add('open');renderDrawer();});
-function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('open');}
-document.getElementById('overlay').addEventListener('click',closeDrawer);
-document.getElementById('closeDrawer').addEventListener('click',closeDrawer);
-document.getElementById('restartBtn').addEventListener('click',()=>{
+document.getElementById('menuBtn')?.addEventListener('click',()=>{document.getElementById('drawer')?.classList.add('open');document.getElementById('overlay')?.classList.add('open');renderDrawer();});
+function closeDrawer(){document.getElementById('drawer')?.classList.remove('open');document.getElementById('overlay')?.classList.remove('open');}
+document.getElementById('overlay')?.addEventListener('click',closeDrawer);
+document.getElementById('closeDrawer')?.addEventListener('click',closeDrawer);
+document.getElementById('restartBtn')?.addEventListener('click',()=>{
   if(sec==='custom'){
     customAzkar.forEach(x=>{x.cnt=0;x.done=false;});
     if(customAzkar.length)customActiveId=customAzkar[0].id;
@@ -2856,7 +3030,9 @@ document.getElementById('restartBtn').addEventListener('click',()=>{
   if(sec==='jumma')S.jumma={idx:0,cnt:0,done:new Array(JUMMA.length).fill(false)};
   if(sec==='tauheed')S.tauheed={idx:0,cnt:0,done:new Array(TAUHEED.length).fill(false)};
   if(sec==='tasbeeh')S.tasbeeh={ph:0,cnt:0,sets:0};
-  save();document.getElementById('compScreen').classList.remove('show');render();
+  save();
+  document.getElementById('compScreen')?.classList.remove('show');
+  render();
 });
 document.getElementById('closeCustomModalBtn')?.addEventListener('click',closeCustomModal);
 document.getElementById('cancelCustomModalBtn')?.addEventListener('click',closeCustomModal);
@@ -2942,7 +3118,7 @@ const pwaBanner=document.getElementById('pwaInstallBanner');
 const drInstallBtn=document.getElementById('drInstallBtn');
 const pwaBannerInstallBtn=document.getElementById('pwaBannerInstallBtn');
 const pwaBannerDismissBtn=document.getElementById('pwaBannerDismissBtn');
-const isRunningStandalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
+const isRunningStandalone=window.matchMedia?.('(display-mode: standalone)')?.matches||window.navigator?.standalone===true;
 const isPwaDismissed=localStorage.getItem('azk_pwa_dismissed')==='true';
 
 window.addEventListener('beforeinstallprompt',e=>{
