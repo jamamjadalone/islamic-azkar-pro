@@ -14,7 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Settings Modal PWA Install Action: Added "📲 ایپ انسٹال کریں" (`#modalInstallAppBtn`) in the modal footer opposite to "محفوظ کریں ✓" with standalone app detection
 - Universal Completion Controls: Restart button (`#restartBtn`) verified across all 6 sections (Fajr, Jumma, Tauheed, Asr, Tasbeeh, Custom) with companion `#compHomeBtn` to instantly return to main view
 - Timeless Spiritual Taglines: Fully automatic time-of-day greetings and recommendations with zero time digits or prayer hours cluttering the visible text
-- Cache bumped to `azk-pro-v22`
+- SEO Description Scoped to Welcome Landing: Moved the bottom SEO summary text (`.seo-summary`) exclusively inside the Welcome screen (`renderWelcome`), removing it from all active zikr and reading screens (Fajr, Surah Kahf, Jumma, Tauheed, Asr, Tasbeeh) for a 100% clean, distraction-free recitation interface
+- Cache bumped to `azk-pro-v23`
 
 ### Removed
 
