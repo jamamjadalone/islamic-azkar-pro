@@ -1407,6 +1407,136 @@ const TAUHEED=[
    target:1,faz:'حدیث کے مفہوم کے مطابق یہ مبارک کلمہ جنت کے خزانوں میں سے ایک خزانہ ہے۔',ref:'(ترمذی — صحیح)'}
 ];
 
+
+/* ═══════════════════════════════════════════════════════════════
+   PHASE 1 DATASETS: SURAH AL-MULK, BEDTIME AZKAR, TAWBAH
+═══════════════════════════════════════════════════════════════ */
+// Phase 1 Datasets preparation and validation
+
+const MULK_INDOPAK = [
+  {r:'رکوع ۱', verses:[
+    {n:1, t:'تَبٰرَكَ الَّذِیْ بِیَدِهِ الْمُلْكُ ۖۗ— وَهُوَ عَلٰی كُلِّ شَیْءٍ قَدِیْرُ ﴿۱﴾'},
+    {n:2, t:'ۨالَّذِیْ خَلَقَ الْمَوْتَ وَالْحَیٰوةَ لِیَبْلُوَكُمْ اَیُّكُمْ اَحْسَنُ عَمَلًا ؕ— وَهُوَ الْعَزِیْزُ الْغَفُوْرُ ﴿۲﴾'},
+    {n:3, t:'ۨالَّذِیْ خَلَقَ سَبْعَ سَمٰوٰتٍ طِبَاقًا ؕ— مَا تَرٰی فِیْ خَلْقِ الرَّحْمٰنِ مِنْ تَفٰوُتٍ ؕ— فَارْجِعِ الْبَصَرَ ۙ— هَلْ تَرٰی مِنْ فُطُوْرٍ ﴿۳﴾'},
+    {n:4, t:'ثُمَّ ارْجِعِ الْبَصَرَ كَرَّتَیْنِ یَنْقَلِبْ اِلَیْكَ الْبَصَرُ خَاسِئًا وَّهُوَ حَسِیْرٌ ﴿۴﴾'},
+    {n:5, t:'وَلَقَدْ زَیَّنَّا السَّمَآءَ الدُّنْیَا بِمَصَابِیْحَ وَجَعَلْنٰهَا رُجُوْمًا لِّلشَّیٰطِیْنِ وَاَعْتَدْنَا لَهُمْ عَذَابَ السَّعِیْرِ ﴿۵﴾'},
+    {n:6, t:'وَلِلَّذِیْنَ كَفَرُوْا بِرَبِّهِمْ عَذَابُ جَهَنَّمَ ؕ— وَبِئْسَ الْمَصِیْرُ ﴿۶﴾'},
+    {n:7, t:'اِذَاۤ اُلْقُوْا فِیْهَا سَمِعُوْا لَهَا شَهِیْقًا وَّهِیَ تَفُوْرُ ﴿۷﴾'},
+    {n:8, t:'تَكَادُ تَمَیَّزُ مِنَ الْغَیْظِ ؕ— كُلَّمَاۤ اُلْقِیَ فِیْهَا فَوْجٌ سَاَلَهُمْ خَزَنَتُهَاۤ اَلَمْ یَاْتِكُمْ نَذِیْرٌ ﴿۸﴾'},
+    {n:9, t:'قَالُوْا بَلٰی قَدْ جَآءَنَا نَذِیْرٌ ۙ— فَكَذَّبْنَا وَقُلْنَا مَا نَزَّلَ اللّٰهُ مِنْ شَیْءٍ ۚۖ— اِنْ اَنْتُمْ اِلَّا فِیْ ضَلٰلٍ كَبِیْرٍ ﴿۹﴾'},
+    {n:10, t:'وَقَالُوْا لَوْ كُنَّا نَسْمَعُ اَوْ نَعْقِلُ مَا كُنَّا فِیْۤ اَصْحٰبِ السَّعِیْرِ ﴿۱۰﴾'},
+    {n:11, t:'فَاعْتَرَفُوْا بِذَنْۢبِهِمْ ۚ— فَسُحْقًا لِّاَصْحٰبِ السَّعِیْرِ ﴿۱۱﴾'},
+    {n:12, t:'اِنَّ الَّذِیْنَ یَخْشَوْنَ رَبَّهُمْ بِالْغَیْبِ لَهُمْ مَّغْفِرَةٌ وَّاَجْرٌ كَبِیْرٌ ﴿۱۲﴾'},
+    {n:13, t:'وَاَسِرُّوْا قَوْلَكُمْ اَوِ اجْهَرُوْا بِهٖ ؕ— اِنَّهٗ عَلِیْمٌۢ بِذَاتِ الصُّدُوْرِ ﴿۱۳﴾'},
+    {n:14, t:'اَلَا یَعْلَمُ مَنْ خَلَقَ ؕ— وَهُوَ اللَّطِیْفُ الْخَبِیْرُ ﴿۱۴﴾'}
+  ]},
+  {r:'رکوع ۲', verses:[
+    {n:15, t:'هُوَ الَّذِیْ جَعَلَ لَكُمُ الْاَرْضَ ذَلُوْلًا فَامْشُوْا فِیْ مَنَاكِبِهَا وَكُلُوْا مِنْ رِّزْقِهٖ ؕ— وَاِلَیْهِ النُّشُوْرُ ﴿۱۵﴾'},
+    {n:16, t:'ءَاَمِنْتُمْ مَّنْ فِی السَّمَآءِ اَنْ یَّخْسِفَ بِكُمُ الْاَرْضَ فَاِذَا هِیَ تَمُوْرُ ﴿۱۶﴾'},
+    {n:17, t:'اَمْ اَمِنْتُمْ مَّنْ فِی السَّمَآءِ اَنْ یُّرْسِلَ عَلَیْكُمْ حَاصِبًا ؕ— فَسَتَعْلَمُوْنَ كَیْفَ نَذِیْرِ ﴿۱۷﴾'},
+    {n:18, t:'وَلَقَدْ كَذَّبَ الَّذِیْنَ مِنْ قَبْلِهِمْ فَكَیْفَ كَانَ نَكِیْرِ ﴿۱۸﴾'},
+    {n:19, t:'اَوَلَمْ یَرَوْا اِلَی الطَّیْرِ فَوْقَهُمْ صٰٓفّٰتٍ وَّیَقْبِضْنَ ۘ— مَا یُمْسِكُهُنَّ اِلَّا الرَّحْمٰنُ ؕ— اِنَّهٗ بِكُلِّ شَیْءٍۭ بَصِیْرٌ ﴿۱۹﴾'},
+    {n:20, t:'اَمَّنْ هٰذَا الَّذِیْ هُوَ جُنْدٌ لَّكُمْ یَنْصُرُكُمْ مِّنْ دُوْنِ الرَّحْمٰنِ ؕ— اِنِ الْكٰفِرُوْنَ اِلَّا فِیْ غُرُوْرٍ ﴿۲۰﴾'},
+    {n:21, t:'اَمَّنْ هٰذَا الَّذِیْ یَرْزُقُكُمْ اِنْ اَمْسَكَ رِزْقَهٗ ۚ— بَلْ لَّجُّوْا فِیْ عُتُوٍّ وَّنُفُوْرٍ ﴿۲۱﴾'},
+    {n:22, t:'اَفَمَنْ یَّمْشِیْ مُكِبًّا عَلٰی وَجْهِهٖۤ اَهْدٰیۤ اَمَّنْ یَّمْشِیْ سَوِیًّا عَلٰی صِرَاطٍ مُّسْتَقِیْمٍ ﴿۲۲﴾'},
+    {n:23, t:'قُلْ هُوَ الَّذِیْۤ اَنْشَاَكُمْ وَجَعَلَ لَكُمُ السَّمْعَ وَالْاَبْصَارَ وَالْاَفْـِٕدَةَ ؕ— قَلِیْلًا مَّا تَشْكُرُوْنَ ﴿۲۳﴾'},
+    {n:24, t:'قُلْ هُوَ الَّذِیْ ذَرَاَكُمْ فِی الْاَرْضِ وَاِلَیْهِ تُحْشَرُوْنَ ﴿۲۴﴾'},
+    {n:25, t:'وَیَقُوْلُوْنَ مَتٰی هٰذَا الْوَعْدُ اِنْ كُنْتُمْ صٰدِقِیْنَ ﴿۲۵﴾'},
+    {n:26, t:'قُلْ اِنَّمَا الْعِلْمُ عِنْدَ اللّٰهِ ۖ— وَاِنَّمَاۤ اَنَا نَذِیْرٌ مُّبِیْنٌ ﴿۲۶﴾'},
+    {n:27, t:'فَلَمَّا رَاَوْهُ زُلْفَةً سِیْٓـَٔتْ وُجُوْهُ الَّذِیْنَ كَفَرُوْا وَقِیْلَ هٰذَا الَّذِیْ كُنْتُمْ بِهٖ تَدَّعُوْنَ ﴿۲۷﴾'},
+    {n:28, t:'قُلْ اَرَءَیْتُمْ اِنْ اَهْلَكَنِیَ اللّٰهُ وَمَنْ مَّعِیَ اَوْ رَحِمَنَا ۙ— فَمَنْ یُّجِیْرُ الْكٰفِرِیْنَ مِنْ عَذَابٍ اَلِیْمٍ ﴿۲۸﴾'},
+    {n:29, t:'قُلْ هُوَ الرَّحْمٰنُ اٰمَنَّا بِهٖ وَعَلَیْهِ تَوَكَّلْنَا ۚ— فَسَتَعْلَمُوْنَ مَنْ هُوَ فِیْ ضَلٰلٍ مُّبِیْنٍ ﴿۲۹﴾'},
+    {n:30, t:'قُلْ اَرَءَیْتُمْ اِنْ اَصْبَحَ مَآؤُكُمْ غَوْرًا فَمَنْ یَّاْتِیْكُمْ بِمَآءٍ مَّعِیْنٍ ﴿۳۰﴾'}
+  ]}
+];
+
+const BEDTIME = [
+  {
+    grp: 'سونے سے قبل',
+    name: 'آیَةُ الْکُرْسِیّ — حفاظتِ رات',
+    ar: `اَللّٰهُ لَا اِلٰهَ اِلَّا هُوَ ۚ اَلْحَیُّ الْقَیُّوْمُ ۚ\nلَا تَاْخُذُهٗ سِنَةٌ وَّ لَا نَوْمٌ ؕ\nلَهٗ مَا فِی السَّمٰوٰتِ وَ مَا فِی الْاَرْضِ ؕ\nمَنْ ذَا الَّذِیْ یَشْفَعُ عِنْدَهٗٓ اِلَّا بِاِذْنِهٖ ؕ\nیَعْلَمُ مَا بَیْنَ اَیْدِیْهِمْ وَ مَا خَلْفَهُمْ ۚ\nوَ لَا یُحِیْطُوْنَ بِشَیْءٍ مِّنْ عِلْمِهٖٓ اِلَّا بِمَا شَآءَ ۚ\nوَسِعَ كُرْسِیُّهُ السَّمٰوٰتِ وَ الْاَرْضَ ۚ\nوَ لَا یَئُوْدُهٗ حِفْظُهُمَا ۚ وَ هُوَ الْعَلِیُّ الْعَظِیْمُ`,
+    target: 1,
+    faz: 'سونے سے قبل پڑھنے سے اللہ کی طرف سے ایک محافظ فرشتہ مقرر ہو جاتا ہے اور صبح تک شیطان قریب نہیں آتا۔',
+    ref: '(صحیح بخاری: ۲۳۱۱)'
+  },
+  {
+    grp: 'سونے سے قبل',
+    name: 'آمَنَ الرَّسُولُ — سورة البقرة: ٢٨٥-٢٨٦',
+    ar: `اٰمَنَ الرَّسُوْلُ بِمَاۤ اُنْزِلَ اِلَیْهِ مِنْ رَّبِّهٖ وَالْمُؤْمِنُوْنَ ؕ كُلٌّ اٰمَنَ بِاللّٰهِ وَمَلٰٓىِٕكَتِهٖ وَكُتُبِهٖ وَرُسُلِهٖ ۚ لَا نُفَرِّقُ بَیْنَ اَحَدٍ مِّنْ رُّسُلِهٖ ؕ وَقَالُوْا سَمِعْنَا وَاَطَعْنَا ۖ غُفْرَانَكَ رَبَّنَا وَاِلَیْكَ الْمَصِیْرُ ﴿۲۸۵﴾\nلَا یُكَلِّفُ اللّٰهُ نَفْسًا اِلَّا وُسْعَهَا ؕ لَهَا مَا كَسَبَتْ وَعَلَیْهَا مَا اكْتَسَبَتْ ؕ رَبَّنَا لَا تُؤَاخِذْنَاۤ اِنْ نَّسِیْنَاۤ اَوْ اَخْطَاْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَیْنَاۤ اِصْرًا كَمَا حَمَلْتَهٗ عَلَی الَّذِیْنَ مِنْ قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهٖ ۚ وَاعْفُ عَنَّا ٝ وَاغْفِرْ لَنَا ٝ وَارْحَمْنَا ٝ اَنْتَ مَوْلٰىنَا فَانْصُرْنَا عَلَی الْقَوْمِ الْكٰفِرِیْنَ ﴿۲۸۶﴾`,
+    target: 1,
+    faz: 'رسول اللہ ﷺ نے فرمایا: جو رات کو سورۃ البقرہ کی یہ آخری دو آیتیں پڑھ لے گا، وہ اس کے لیے (ہر شر اور آفت سے) کافی ہو جائیں گی۔',
+    ref: '(صحیح بخاری: ۵۰۰۹)'
+  },
+  {
+    grp: 'سونے سے قبل',
+    name: 'تینوں قُل مع دَم — ۳ مرتبہ',
+    ar: `بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ\nقُلْ هُوَ اللّٰهُ اَحَدٌ ۚ اَللّٰهُ الصَّمَدُ ۚ لَمْ یَلِدْ ۙ وَ لَمْ یُوْلَدْ ۙ وَ لَمْ یَكُنْ لَّهٗ كُفُوًا اَحَدٌ ﴿۴﴾\n\nبِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ\nقُلْ اَعُوْذُ بِرَبِّ الْفَلَقِ ۙ مِنْ شَرِّ مَا خَلَقَ ۙ وَ مِنْ شَرِّ غَاسِقٍ اِذَا وَقَبَ ۙ وَ مِنْ شَرِّ النَّفّٰثٰتِ فِی الْعُقَدِ ۙ وَ مِنْ شَرِّ حَاسِدٍ اِذَا حَسَدَ ﴿۵﴾\n\nبِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ\nقُلْ اَعُوْذُ بِرَبِّ النَّاسِ ۙ مَلِكِ النَّاسِ ۙ اِلٰهِ النَّاسِ ۙ مِنْ شَرِّ الْوَسْوَاسِ ەۙ الْخَنَّاسِ ۙ الَّذِیْ یُوَسْوِسُ فِیْ صُدُوْرِ النَّاسِ ۙ مِنَ الْجِنَّةِ وَ النَّاسِ ﴿۶﴾`,
+    target: 3,
+    isDm: true,
+    faz: 'ہاتھوں کو پیالہ بنا کر سورۃ اخلاص، فلق اور ناس پڑھ کر پھونکیں، پھر سر، چہرے اور جسم کے اگلے حصے پر تین بار ملیں۔ نبی کریم ﷺ کا معمول تھا۔',
+    ref: '(صحیح بخاری: ۵۰۱۷)'
+  },
+  {
+    grp: 'سونے سے قبل',
+    name: 'حفاظتِ روح و جسم کی نبوی دعا',
+    ar: `بِاسْمِكَ رَبِّیْ وَضَعْتُ جَنْبِیْ وَبِكَ اَرْفَعُهٗ ؕ فَاِنْ اَمْسَكْتَ نَفْسِیْ فَارْحَمْهَا ۚ وَاِنْ اَرْسَلْتَهَا فَاحْفَظْهَا بِمَا تَحْفَظُ بِهٖ عِبَادَكَ الصّٰلِحِیْنَ`,
+    target: 1,
+    faz: 'دائیں کروٹ پر لیٹ کر پڑھیں — اگر روح قبض ہو تو مغفرت ہو، اور اگر سلامت رہے تو نیک بندوں کی طرح حفاظت ہو۔',
+    ref: '(صحیح بخاری: ۶۳۲۰)'
+  },
+  {
+    grp: 'سونے سے قبل',
+    name: 'سونے کی مختصر مسنون دعا',
+    ar: `اَللّٰهُمَّ بِاسْمِكَ اَمُوْتُ وَاَحْیَا`,
+    target: 1,
+    faz: 'اے اللہ! تیرے ہی نام کے ساتھ میں مرتا ہوں اور جیتا ہوں۔',
+    ref: '(صحیح بخاری: ۶۳۲۴)'
+  },
+  {
+    grp: 'سونے سے قبل',
+    name: 'تسبیحِ فاطمہؓ — بستر پر',
+    ar: `سُبْحَانَ اللّٰهِ (۳۳ بار)\nاَلْحَمْدُ لِلّٰهِ (۳۳ بار)\nاَللّٰهُ اَكْبَرُ (۳۴ بار)`,
+    target: 1,
+    faz: 'بستر پر لیٹ کر ۳۳ بار سبحان اللہ، ۳۳ بار الحمد للہ اور ۳۴ بار اللہ اکبر پڑھیں۔ خادم سے بہتر روحانی و جسمانی قوت ملتی ہے۔',
+    ref: '(صحیح بخاری: ۳۷۰۵)'
+  }
+];
+
+const TAWBAH = [
+  {
+    grp: 'توبہ و استغفار',
+    name: 'سَيِّدُ الْاِسْتِغْفَارِ — توبہ کا سردار',
+    ar: `اَللّٰهُمَّ اَنْتَ رَبِّیْ لَا اِلٰهَ اِلَّاۤ اَنْتَ ۚ خَلَقْتَنِیْ وَاَنَا عَبْدُكَ ۚ وَاَنَا عَلٰی عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ ۚ اَعُوْذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ ۚ اَبُوْٓءُ لَكَ بِنِعْمَتِكَ عَلَیَّ وَاَبُوْٓءُ بِذَنْۢبِیْ فَاغْفِرْ لِیْ ۚ فَاِنَّهٗ لَا یَغْفِرُ الذُّنُوْبَ اِلَّاۤ اَنْتَ`,
+    target: 1,
+    faz: 'صحیح بخاری: جو شخص دن میں یقین کے ساتھ پڑھے اور شام سے پہلے فوت ہو جائے یا رات کو پڑھے اور صبح سے پہلے فوت ہو جائے، وہ اہل جنت میں سے ہے۔',
+    ref: '(صحیح بخاری: ۶۳۰۶)'
+  },
+  {
+    grp: 'توبہ و استغفار',
+    name: 'آیَةُ الْکَرِیْمَة — دُعَاءُ ذِی النُّوْن (حضرت یونسؑ)',
+    ar: `لَا اِلٰهَ اِلَّاۤ اَنْتَ سُبْحٰنَكَ ۖ اِنِّیْ كُنْتُ مِنَ الظّٰلِمِیْنَ`,
+    target: 100,
+    faz: 'رسول اللہ ﷺ نے فرمایا: مچھلی والے (حضرت یونسؑ) کی دعا جب وہ مچھلی کے پیٹ میں تھے — کوئی مسلمان کسی بھی مشکل میں یہ دعا کرے گا تو اللہ قبول فرمائے گا۔',
+    ref: '(جامع ترمذی: ۳۵۰۵ — صحیح)'
+  },
+  {
+    grp: 'توبہ و استغفار',
+    name: 'کبائر کی بخشش کا جامع استغفار',
+    ar: `اَسْتَغْفِرُ اللّٰهَ الَّذِیْ لَا اِلٰهَ اِلَّا هُوَ الْحَیُّ الْقَیُّوْمُ وَاَتُوْبُ اِلَیْهِ`,
+    target: 100,
+    faz: 'جو شخص یہ استغفار پڑھے اس کے گناہ معاف کر دیے جاتے ہیں اگرچہ وہ میدانِ جنگ سے پیٹھ پھیر کر بھاگا ہو۔',
+    ref: '(سنن ابی داؤد: ۱۵۱۷ — صحیح)'
+  },
+  {
+    grp: 'توبہ و استغفار',
+    name: 'مجلس کا نبوی استغفار — ۱۰۰ مرتبہ',
+    ar: `رَبِّ اغْفِرْ لِیْ وَتُبْ عَلَیَّ ؕ اِنَّكَ اَنْتَ التَّوَّابُ الرَّحِیْمُ`,
+    target: 100,
+    faz: 'حضرت عبداللہ بن عمرؓ فرماتے ہیں: ہم رسول اللہ ﷺ کے ایک ہی مجلس میں اٹھنے سے پہلے سو ۱۰۰ مرتبہ یہ دعا پڑھنا شمار کرتے تھے۔',
+    ref: '(سنن ابی داؤد: ۱۵۱۶ — صحیح)'
+  }
+];
+
 /* ─── ASR DUROOD ─── */
 const ASR_TEXT=`اَللّٰهُمَّ صَلِّ عَلٰی مُحَمَّدٍ النَّبِیِّ الْاُمِّیِّ وَ عَلٰی اٰلِهٖ وَ سَلِّمْ تَسْلِیْمًا`;
 const ASR_IMG='assets/asr-durood.png';
@@ -1706,8 +1836,11 @@ const SECS=[
   {id:'asr',    icon:'☀️',title:'جمعہ عصر درود ×۸۰',  ct:'×80'},
   {id:'fajr',   icon:'🌅',title:'فجر/مغرب اذکار',      ct:FAJR.length+' اذکار'},
   {id:'jumma',  icon:'🌙',title:'جمعہ کا وِرد',         ct:JUMMA.length+' اذکار'},
+  {id:'bedtime',icon:'🌙',title:'سونے کے مسنون اذکار',  ct:BEDTIME.length+' اذکار'},
+  {id:'tawbah', icon:'🤲',title:'سید الاستغفار و توبہ',  ct:TAWBAH.length+' اذکار'},
   {id:'tauheed',icon:'☝️',title:'توحید کے اذکار',      ct:TAUHEED.length+' اذکار'},
   {id:'kahf',   icon:'📖',title:'سورۃ الکہف — آف لائن', ct:'۱۱۰ آیات'},
+  {id:'mulk',   icon:'👑',title:'سورۃ الملک — آف لائن', ct:'۳۰ آیات'},
   {id:'tasbeeh',icon:'📿',title:'تسبیحِ فاطمہؓ',       ct:'۳۳+۳۳+۳۴'},
   {id:'custom', icon:'📝',title:'ذاتی اذکار (مینول)',   ct:'اپنی تسبیح'}
 ];
@@ -1717,6 +1850,8 @@ let S={
   fajr:   {idx:0,cnt:0,done:new Array(FAJR.length).fill(false)},
   jumma:  {idx:0,cnt:0,done:new Array(JUMMA.length).fill(false)},
   tauheed:{idx:0,cnt:0,done:new Array(TAUHEED.length).fill(false)},
+  bedtime:{idx:0,cnt:0,done:new Array(BEDTIME.length).fill(false)},
+  tawbah: {idx:0,cnt:0,done:new Array(TAWBAH.length).fill(false)},
   asr:    {cnt:0,done:false},
   tasbeeh:{ph:0,cnt:0,sets:0},
   tajMode:'off',
@@ -1729,10 +1864,12 @@ try{
   if(p.zoomPct)zoomPct=p.zoomPct;
   if(p.tajMode) S.tajMode = p.tajMode;
   if(p.scriptMode) S.scriptMode = p.scriptMode;
-  ['fajr','jumma','tauheed','asr','tasbeeh'].forEach(k=>{if(p[k])Object.assign(S[k],p[k]);});
+  ['fajr','jumma','tauheed','bedtime','tawbah','asr','tasbeeh'].forEach(k=>{if(p[k])Object.assign(S[k],p[k]);});
   if(!S.fajr.done||S.fajr.done.length!==FAJR.length)S.fajr.done=new Array(FAJR.length).fill(false);
   if(!S.jumma.done||S.jumma.done.length!==JUMMA.length)S.jumma.done=new Array(JUMMA.length).fill(false);
   if(!S.tauheed.done||S.tauheed.done.length!==TAUHEED.length)S.tauheed.done=new Array(TAUHEED.length).fill(false);
+  if(!S.bedtime.done||S.bedtime.done.length!==BEDTIME.length)S.bedtime.done=new Array(BEDTIME.length).fill(false);
+  if(!S.tawbah.done||S.tawbah.done.length!==TAWBAH.length)S.tawbah.done=new Array(TAWBAH.length).fill(false);
 
   if(!localStorage.getItem('azk_kahf_prefs_v2')){
     viewMode='para';
@@ -1998,9 +2135,9 @@ function renderZikrPicker(){
   grid.innerHTML = SECS.map(m => {
     const isActive = sec === m.id;
     let prog = '';
-    if(['fajr','jumma','tauheed'].includes(m.id) && S[m.id]?.done){
+    if(['fajr','jumma','tauheed','bedtime','tawbah'].includes(m.id) && S[m.id]?.done){
       const d = S[m.id].done.filter(Boolean).length;
-      const tot = {fajr:FAJR.length, jumma:JUMMA.length, tauheed:TAUHEED.length}[m.id];
+      const tot = {fajr:FAJR.length, jumma:JUMMA.length, tauheed:TAUHEED.length, bedtime:BEDTIME.length, tawbah:TAWBAH.length}[m.id];
       if(d > 0) prog = `<span style="color:var(--g2);font-size:.68rem">(${d}/${tot})</span>`;
     } else if(m.id === 'asr' && S.asr.done){
       prog = `<span style="color:var(--g2);font-size:.68rem">✓ مکمل</span>`;
@@ -2256,6 +2393,30 @@ function renderWelcome(mc){
           </div>
           <span class="w-arrow">←</span>
         </div>
+        <div class="w-card" data-sec="mulk">
+          <span class="w-icon">👑</span>
+          <div class="w-info">
+            <div class="w-title">سورۃ الملک (عذابِ قبر سے حفاظت)</div>
+            <div class="w-sub">مکمل ۳۰ آیات — رات کو تلاوت کی فضیلت مع پاکستانی رسم الخط</div>
+          </div>
+          <span class="w-arrow">←</span>
+        </div>
+        <div class="w-card" data-sec="bedtime">
+          <span class="w-icon">🌙</span>
+          <div class="w-info">
+            <div class="w-title">سونے کے مسنون اذکار و دعائیں</div>
+            <div class="w-sub">آیت الکرسی، آمن الرسول، تینوں قُل مع دم، تسبیح فاطمہؓ (${BEDTIME.length} مسنون اذکار)</div>
+          </div>
+          <span class="w-arrow">←</span>
+        </div>
+        <div class="w-card" data-sec="tawbah">
+          <span class="w-icon">🤲</span>
+          <div class="w-info">
+            <div class="w-title">سید الاستغفار و توبہ کے اذکار</div>
+            <div class="w-sub">سید الاستغفار، آیتِ کریمہ اور نبوی بخشش کے اذکار (${TAWBAH.length} اذکار)</div>
+          </div>
+          <span class="w-arrow">←</span>
+        </div>
         <div class="w-card" data-sec="tauheed">
           <span class="w-icon">☝️</span>
           <div class="w-info">
@@ -2308,8 +2469,9 @@ function render(){
   if(zpIcon) zpIcon.textContent=curMeta.icon;
   if(zpName) zpName.textContent=(sec==='welcome')?'ذکر منتخب کریں ▾':curMeta.title;
   const scrollB=document.getElementById('scrollBar');
-  if(scrollB)scrollB.style.display=sec==='kahf'?'flex':'none';
-  if(sec!=='kahf') stopAutoScroll();
+  const isQuran=(sec==='kahf'||sec==='mulk');
+  if(scrollB)scrollB.style.display=isQuran?'flex':'none';
+  if(!isQuran) stopAutoScroll();
   const mc=document.getElementById('mc');
   if(!mc)return;
   if(sec==='welcome'){
@@ -2318,10 +2480,11 @@ function render(){
     return;
   }
   if(sec==='kahf'){renderKahf(mc);return;}
+  if(sec==='mulk'){renderMulk(mc);return;}
   if(sec==='asr'){renderAsr(mc);return;}
   if(sec==='tasbeeh'){renderTasbeeh(mc);return;}
   if(sec==='custom'){renderCustom(mc);return;}
-  const DATA={fajr:FAJR,jumma:JUMMA,tauheed:TAUHEED};
+  const DATA={fajr:FAJR,jumma:JUMMA,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH};
   const steps=DATA[sec],st=S[sec],step=steps[st.idx];
   const total=steps.length,cnt=st.cnt,done=cnt>=step.target;
   const color=sec==='jumma'?'#a855f7':'var(--g1)';
@@ -2404,6 +2567,31 @@ function renderTasbeeh(mc){
   });
   renderDrawer();
 }
+
+function renderMulk(mc){
+  document.getElementById('progBar').style.width='100%';
+  const dataset = MULK_INDOPAK;
+  const hd = `<div class="quran-panel" data-tajweed="off">
+    <div class="quran-hd">
+      <div class="quran-title">سُورَةُ الْمُلْكِ</div>
+      <div class="quran-meta">مکمل سورۃ — ۳۰ آیات — ۲ رکوع (رسمِ ہند-پاک)<br/>رات کو پڑھنا عذابِ قبر سے نجات اور شفاعت کا ذریعہ ہے • ۱۰۰٪ آف لائن</div>
+    </div>
+    <div class="quran-bism">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>`;
+  let body = '';
+  dataset.forEach(ruku=>{
+    body += `<div class="ruku-sep">${ruku.r}</div>`;
+    if(viewMode === 'para'){
+      body += `<div class="para-block">${ruku.verses.map(v => v.t).join(' ')}</div>`;
+    } else {
+      body += ruku.verses.map(v => `<div class="vblock"><div class="vtxt">${v.t}</div></div>`).join('');
+    }
+  });
+  const footer = `<div style="text-align:center;padding:2rem 0 .5rem;font-family:var(--qfont);font-size:1.1rem;color:var(--gold2);direction:rtl;line-height:2.1">۞ صَدَقَ اللَّهُ الْعَظِيمُ ۞</div>
+    <div class="tj-legend"><div class="tj-chip">رسمِ ہند-پاک (پاکستانی رسم الخط)</div></div></div>`;
+  mc.innerHTML = hd + body + footer;
+  renderDrawer();
+}
+
 function renderKahf(mc){
   document.getElementById('progBar').style.width='100%';
   const dataset = (S.scriptMode === 'indopak') ? KAHF_INDOPAK : KAHF_UTHMANI;
@@ -2644,6 +2832,12 @@ function getImportCatalog(){
   TAUHEED.forEach(t=>{
     if(t.ar){catalog.push({sec:'tauheed',secName:'توحید',name:t.name,ar:t.ar,target:t.target||100});}
   });
+  BEDTIME.forEach(b=>{
+    if(!b.isDm&&b.ar){catalog.push({sec:'bedtime',secName:'سونے کے اذکار',name:b.name,ar:b.ar,target:b.target||1});}
+  });
+  TAWBAH.forEach(w=>{
+    if(w.ar){catalog.push({sec:'tawbah',secName:'توبہ و استغفار',name:w.name,ar:w.ar,target:w.target||100});}
+  });
   catalog.push({sec:'durood',secName:'عصر درود',name:'درودِ نبی اُمّی ﷺ (۸۰ مرتبہ)',ar:ASR_TEXT,target:80});
   TSB.forEach(t=>{
     catalog.push({sec:'durood',secName:'تسبیحِ فاطمہؓ',name:t.label,ar:t.ar,target:t.target||33});
@@ -2882,7 +3076,7 @@ function checkDailyResetAndStreak(){
       const diffTime = Math.abs(now - last);
       const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
       
-      const hadActivity = S.asr?.done || S.fajr?.done?.some(Boolean) || S.jumma?.done?.some(Boolean) || S.tauheed?.done?.some(Boolean);
+      const hadActivity = S.asr?.done || S.fajr?.done?.some(Boolean) || S.jumma?.done?.some(Boolean) || S.tauheed?.done?.some(Boolean) || S.bedtime?.done?.some(Boolean) || S.tawbah?.done?.some(Boolean);
       
       if(diffDays === 1 && hadActivity){
         streakCount++;
@@ -2895,6 +3089,8 @@ function checkDailyResetAndStreak(){
       if(S.fajr) S.fajr = {idx:0, cnt:0, done:new Array(FAJR.length).fill(false)};
       if(S.jumma) S.jumma = {idx:0, cnt:0, done:new Array(JUMMA.length).fill(false)};
       if(S.tauheed) S.tauheed = {idx:0, cnt:0, done:new Array(TAUHEED.length).fill(false)};
+      if(S.bedtime) S.bedtime = {idx:0, cnt:0, done:new Array(BEDTIME.length).fill(false)};
+      if(S.tawbah) S.tawbah = {idx:0, cnt:0, done:new Array(TAWBAH.length).fill(false)};
       if(S.tasbeeh) S.tasbeeh = {ph:0, cnt:0, sets:0};
       
       lastActiveDate = today;
@@ -3013,7 +3209,7 @@ function tap(){
   }
   else if(isAsr){if(S.asr.done)return;cnt=S.asr.cnt;target=80;}
   else if(isTsb){const t=TSB[S.tasbeeh.ph];if(S.tasbeeh.cnt>=t.target)return;cnt=S.tasbeeh.cnt;target=t.target;}
-  else{const st=S[sec],d={fajr:FAJR,jumma:JUMMA,tauheed:TAUHEED}[sec][st.idx];if(st.cnt>=d.target)return;cnt=st.cnt;target=d.target;}
+  else{const st=S[sec],d={fajr:FAJR,jumma:JUMMA,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH}[sec][st.idx];if(st.cnt>=d.target)return;cnt=st.cnt;target=d.target;}
   if(cnt>=target)return;
   if(isCust){item.cnt++;saveCustomAzkar();}
   else if(isAsr)S.asr.cnt++;else if(isTsb)S.tasbeeh.cnt++;else S[sec].cnt++;
@@ -3046,9 +3242,9 @@ function tap(){
       }
       if(isTsb){const{ph}=S.tasbeeh;if(ph<2){S.tasbeeh.ph++;S.tasbeeh.cnt=0;save();renderTasbeeh(document.getElementById('mc'));}else{document.getElementById('compMsg').textContent='ماشاءاللہ! تسبیحِ فاطمہؓ مکمل ہوگئی 📿';document.getElementById('compScreen').classList.add('show');}return;}
       if(isAsr){render();return;}
-      const st=S[sec];const DATA={fajr:FAJR,jumma:JUMMA,tauheed:TAUHEED};
+      const st=S[sec];const DATA={fajr:FAJR,jumma:JUMMA,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH};
       if(st.idx<DATA[sec].length-1){st.idx++;st.cnt=0;save();render();window.scrollTo(0,0);}
-      else{document.getElementById('compMsg').textContent={fajr:'ماشاءاللہ! فجر/مغرب کے اذکار مکمل 🌅',jumma:'ماشاءاللہ! جمعہ کا مکمل وِرد ادا ہوگیا 🌙',tauheed:'ماشاءاللہ! ذکرِ توحید مکمل ہوگیا ☝️'}[sec];document.getElementById('compScreen').classList.add('show');}
+      else{document.getElementById('compMsg').textContent={fajr:'ماشاءاللہ! فجر/مغرب کے اذکار مکمل 🌅',jumma:'ماشاءاللہ! جمعہ کا مکمل وِرد ادا ہوگیا 🌙',tauheed:'ماشاءاللہ! ذکرِ توحید مکمل ہوگیا ☝️',bedtime:'ماشاءاللہ! سونے کے مسنون اذکار مکمل 🌙',tawbah:'ماشاءاللہ! استغفار و توبہ کے اذکار مکمل 🤲'}[sec];document.getElementById('compScreen').classList.add('show');}
     },750);
   }
 }
@@ -3062,8 +3258,8 @@ function doUndo(){
   else{const st=S[sec];if(st.cnt>0){st.cnt--;st.done[st.idx]=false;save();render();}}
 }
 function goNext(){
-  const DATA={fajr:FAJR,jumma:JUMMA,tauheed:TAUHEED},st=S[sec];
-  if(st.idx===DATA[sec].length-1){document.getElementById('compMsg').textContent={fajr:'ماشاءاللہ! فجر/مغرب کے اذکار مکمل 🌅',jumma:'ماشاءاللہ! جمعہ کا مکمل وِرد ادا ہوگیا 🌙',tauheed:'ماشاءاللہ! ذکرِ توحید مکمل ہوگیا ☝️'}[sec];document.getElementById('compScreen').classList.add('show');}
+  const DATA={fajr:FAJR,jumma:JUMMA,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH},st=S[sec];
+  if(st.idx===DATA[sec].length-1){document.getElementById('compMsg').textContent={fajr:'ماشاءاللہ! فجر/مغرب کے اذکار مکمل 🌅',jumma:'ماشاءاللہ! جمعہ کا مکمل وِرد ادا ہوگیا 🌙',tauheed:'ماشاءاللہ! ذکرِ توحید مکمل ہوگیا ☝️',bedtime:'ماشاءاللہ! سونے کے مسنون اذکار مکمل 🌙',tawbah:'ماشاءاللہ! استغفار و توبہ کے اذکار مکمل 🤲'}[sec];document.getElementById('compScreen').classList.add('show');}
   else{st.idx++;st.cnt=0;save();render();window.scrollTo(0,0);}
 }
 
@@ -3072,7 +3268,7 @@ function renderDrawer(){
   const list=document.getElementById('drList');if(!list)return;
   list.innerHTML=SECS.map(m=>{
     let prog='';
-    if(['fajr','jumma','tauheed'].includes(m.id)&&S[m.id]?.done){const d=S[m.id].done.filter(Boolean).length;const tot={fajr:FAJR.length,jumma:JUMMA.length,tauheed:TAUHEED.length}[m.id];if(d>0)prog=`<span style="color:var(--g2);font-size:.65rem">${d}/${tot}</span>`;}
+    if(['fajr','jumma','tauheed','bedtime','tawbah'].includes(m.id)&&S[m.id]?.done){const d=S[m.id].done.filter(Boolean).length;const tot={fajr:FAJR.length,jumma:JUMMA.length,tauheed:TAUHEED.length,bedtime:BEDTIME.length,tawbah:TAWBAH.length}[m.id];if(d>0)prog=`<span style="color:var(--g2);font-size:.65rem">${d}/${tot}</span>`;}
     if(m.id==='asr'&&S.asr.done)prog=`<span style="color:var(--g2);font-size:.7rem">✓</span>`;
     if(m.id==='custom'&&customAzkar?.length){const d=customAzkar.filter(x=>x.done||x.cnt>=x.target).length;prog=`<span style="color:var(--g2);font-size:.65rem">${d}/${customAzkar.length}</span>`;}
     return `<div class="dr-item${sec===m.id?' active':''}" data-sec="${m.id}"><span class="dr-icon">${m.icon}</span><span class="dr-name">${m.title}</span><span class="dr-ct">${m.ct}</span>${prog}</div>`;
@@ -3095,6 +3291,8 @@ document.getElementById('restartBtn')?.addEventListener('click',()=>{
   if(sec==='fajr')S.fajr={idx:0,cnt:0,done:new Array(FAJR.length).fill(false)};
   if(sec==='jumma')S.jumma={idx:0,cnt:0,done:new Array(JUMMA.length).fill(false)};
   if(sec==='tauheed')S.tauheed={idx:0,cnt:0,done:new Array(TAUHEED.length).fill(false)};
+  if(sec==='bedtime')S.bedtime={idx:0,cnt:0,done:new Array(BEDTIME.length).fill(false)};
+  if(sec==='tawbah')S.tawbah={idx:0,cnt:0,done:new Array(TAWBAH.length).fill(false)};
   if(sec==='tasbeeh')S.tasbeeh={ph:0,cnt:0,sets:0};
   save();
   document.getElementById('compScreen')?.classList.remove('show');
