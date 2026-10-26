@@ -9,10 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Soft Ivory / Cream Day Theme (`data-theme="ivory"`): Gentle, eye-friendly light parchment reading mode with deep dark Islamic emerald text, gold accents, and zero glare for sunlight readability
+- Permanent UI & Layout Architecture Lock: Visual hierarchy, navigation bar, pill selector, welcome cards, and modal components permanently frozen against future agent modifications
+- Modernized Glassmorphic Settings Modal: Sleek card containers for settings sections, icon badges for category titles, and refined spacing
+- Settings Modal PWA Install Action: Added "📲 ایپ انسٹال کریں" (`#modalInstallAppBtn`) in the modal footer opposite to "محفوظ کریں ✓" with standalone app detection
 - Universal Completion Controls: Restart button (`#restartBtn`) verified across all 6 sections (Fajr, Jumma, Tauheed, Asr, Tasbeeh, Custom) with companion `#compHomeBtn` to instantly return to main view
 - Timeless Spiritual Taglines: Fully automatic time-of-day greetings and recommendations with zero time digits or prayer hours cluttering the visible text
-- Cache bumped to `azk-pro-v21`
+- Cache bumped to `azk-pro-v22`
+
+### Removed
+
+- Soft Ivory / White Theme: Removed white mode per user directive to eliminate eye strain in dark / mosque environments, preserving the authentic 3 themes (Emerald, OLED Pure Black, Sepia Paper)
 
 ### Fixed
 

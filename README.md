@@ -97,9 +97,25 @@ islamic-azkar-pro/
 ├── icons/                # PWA icons (192px, 512px, maskable, apple-touch)
 ├── CHANGELOG.md          # Version history adhering to Keep a Changelog
 └── LICENSE               # MIT License
-```
-
 ---
+
+## 🔒 UI Architecture Lock (Strict Directive)
+
+The visual design, component layout, and user experience of **Islamic Azkar Pro** are **permanently frozen and locked**. All AI agents and human contributors must preserve the existing interface layout:
+
+- **Locked Elements**:
+  - **Top Bar**: Streak badge (`🔥 X دن`), direct 1-tap sound toggle (`🔔`/`🔇`), glassmorphic zikr selector pill (`[ ☀️ ذکر منتخب کریں ▾ ]`), and three-dot settings trigger (`⋮`).
+  - **Spiritual Greeting Banner**: Pure timeless text with zero numbers or prayer hours.
+  - **Reading Counter**: Luxury emerald counter ring with haptic animation, centered clean typography, and dua cards.
+  - **Welcome Dashboard**: 7-card grid with Islamic greeting and direct guidance.
+  - **Completion Screen**: Seamless restart (`↺ دوبارہ شروع کریں`) and home navigation (`🏠 مرکزی صفحہ`).
+  - **Unified Settings Modal**: Glassmorphic card sections (Zoom, Quran font, Audio, Themes, Kahf preferences) and footer (`محفوظ کریں ✓` + `📲 ایپ انسٹال کریں`).
+
+- **Permitted Additions**:
+  1. Adding new Azkar / Supplications into the catalog.
+  2. Adding new settings options inside the existing three-dot settings modal.
+  3. Performance, offline service worker, and bug fix enhancements.
+
 
 ## Local Development
 
