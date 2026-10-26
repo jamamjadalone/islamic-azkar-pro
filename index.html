@@ -17,6 +17,9 @@
 <link rel="alternate" hreflang="ur" href="https://jamamjadalone.github.io/islamic-azkar-pro/?lang=ur"/>
 <link rel="alternate" hreflang="en" href="https://jamamjadalone.github.io/islamic-azkar-pro/?lang=en"/>
 <link rel="alternate" hreflang="ar" href="https://jamamjadalone.github.io/islamic-azkar-pro/?lang=ar"/>
+<link rel="alternate" hreflang="id" href="https://jamamjadalone.github.io/islamic-azkar-pro/?lang=id"/>
+<link rel="alternate" hreflang="tr" href="https://jamamjadalone.github.io/islamic-azkar-pro/?lang=tr"/>
+<link rel="alternate" hreflang="fr" href="https://jamamjadalone.github.io/islamic-azkar-pro/?lang=fr"/>
 <link rel="alternate" hreflang="x-default" href="https://jamamjadalone.github.io/islamic-azkar-pro/"/>
 <link rel="canonical" href="https://jamamjadalone.github.io/islamic-azkar-pro/"/>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
@@ -1270,6 +1273,120 @@ html[dir="ltr"] .time-tagline {
 html[dir="ltr"] #zpName {
   font-family: var(--ur-font) !important;
 }
+/* ═══════════════════════════════════════════════════════════════
+   AUTHENTIC NATIVE ARABIC TYPOGRAPHY & NASKH DESIGN
+═══════════════════════════════════════════════════════════════ */
+html[lang="ar"] body,
+body.lang-ar {
+  direction: rtl !important;
+  text-align: right !important;
+  --ur-font: system-ui, -apple-system, 'Segoe UI', Tahoma, Arial, sans-serif !important;
+}
+
+html[lang="ar"] .welcome-salam {
+  font-family: var(--ur-font) !important;
+  font-size: 1.12rem !important;
+  text-align: center !important;
+  line-height: 1.6 !important;
+}
+html[lang="ar"] .welcome-intro,
+html[lang="ar"] .welcome-guide {
+  font-family: var(--ur-font) !important;
+  text-align: center !important;
+  line-height: 1.7 !important;
+}
+
+html[lang="ar"] .w-card {
+  direction: rtl !important;
+  text-align: right !important;
+}
+html[lang="ar"] .w-title {
+  font-family: var(--ur-font) !important;
+  font-size: 0.98rem !important;
+  font-weight: 700 !important;
+  text-align: right !important;
+}
+html[lang="ar"] .w-sub {
+  font-family: var(--ur-font) !important;
+  font-size: 0.8rem !important;
+  line-height: 1.5 !important;
+  text-align: right !important;
+  opacity: 0.88 !important;
+}
+html[lang="ar"] .w-arrow {
+  margin-right: auto !important;
+  transform: none !important;
+}
+
+html[lang="ar"] .zg-card {
+  direction: rtl !important;
+  text-align: right !important;
+}
+html[lang="ar"] .zg-title {
+  font-family: var(--ur-font) !important;
+  font-size: 0.92rem !important;
+  font-weight: 700 !important;
+  text-align: right !important;
+}
+html[lang="ar"] .zg-ct {
+  font-family: var(--ur-font) !important;
+  text-align: right !important;
+}
+
+html[lang="ar"] .dr-item {
+  direction: rtl !important;
+  text-align: right !important;
+}
+html[lang="ar"] .dr-name {
+  font-family: var(--ur-font) !important;
+  font-size: 0.92rem !important;
+  text-align: right !important;
+}
+html[lang="ar"] .dr-ct {
+  margin-right: auto !important;
+  font-family: var(--ur-font) !important;
+}
+
+html[lang="ar"] .modal-hd {
+  direction: rtl !important;
+}
+html[lang="ar"] .modal-title {
+  font-family: var(--ur-font) !important;
+  text-align: right !important;
+}
+html[lang="ar"] .modal-body {
+  direction: rtl !important;
+  text-align: right !important;
+}
+html[lang="ar"] .set-sec-title {
+  direction: rtl !important;
+  text-align: right !important;
+  font-family: var(--ur-font) !important;
+}
+
+html[lang="ar"] .dua-name {
+  font-family: var(--ur-font) !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+}
+html[lang="ar"] .faz-body {
+  direction: rtl !important;
+  text-align: right !important;
+  font-family: var(--ur-font) !important;
+  font-size: 0.92rem !important;
+  line-height: 1.8 !important;
+}
+html[lang="ar"] .faz-ref {
+  direction: rtl !important;
+  text-align: left !important;
+}
+html[lang="ar"] .dam-box {
+  direction: rtl !important;
+  text-align: right !important;
+  font-family: var(--ur-font) !important;
+  line-height: 1.8 !important;
+}
 </style>
 </head>
 <body>
@@ -1413,9 +1530,12 @@ html[dir="ltr"] #zpName {
       <div class="set-section">
         <div class="set-sec-title"><span class="sec-badge-icon">🌐</span> <span id="lblSetLang">زبان / Language / اللغة</span></div>
         <div class="quick-targets" id="modalLang">
-          <button type="button" class="q-chip" data-lang="ur">🇵🇰 اردو (Default)</button>
+          <button type="button" class="q-chip" data-lang="ur">🇵🇰 اردو</button>
           <button type="button" class="q-chip" data-lang="en">🇬🇧 English</button>
           <button type="button" class="q-chip" data-lang="ar">🇸🇦 العربية</button>
+          <button type="button" class="q-chip" data-lang="id">🇮🇩 Indonesia</button>
+          <button type="button" class="q-chip" data-lang="tr">🇹🇷 Türkçe</button>
+          <button type="button" class="q-chip" data-lang="fr">🇫🇷 Français</button>
         </div>
       </div>
 
@@ -3430,36 +3550,294 @@ const KAHF_INDOPAK = [
    GLOBAL MULTI-LANGUAGE (i18n) & AUTO-FALLBACK ENGINE
 ═══════════════════════════════════════════════════════════════ */
 const I18N = {
-  choose_zikr: { ur: 'ذکر منتخب کریں ▾', en: 'Select Adhkar ▾', ar: 'اختر الذكر ▾' },
-  streak_day:  { ur: 'دن', en: 'days', ar: 'أيام' },
-  masjid_mode: { ur: 'مسجد موڈ', en: 'Masjid Mode', ar: 'وضع المسجد' },
-  sound_on:    { ur: 'آواز چالو', en: 'Sound On', ar: 'الصوت مشغل' },
-  sound_mute:  { ur: 'آواز بند', en: 'Sound Off', ar: 'الصوت صامت' },
-  settings:    { ur: 'سیٹنگز', en: 'Settings', ar: 'الإعدادات' },
-  prev:        { ur: '← پچھلا', en: '← Previous', ar: '← السابق' },
-  next:        { ur: 'اگلا →', en: 'Next →', ar: 'التالي →' },
-  advance:     { ur: 'آگے →', en: 'Advance →', ar: 'تقدم →' },
-  finish:      { ur: '🌿 ختم', en: '🌿 Complete', ar: '🌿 تم' },
-  undo:        { ur: '↩ واپس', en: '↩ Undo', ar: '↩ تراجع' },
-  restart:     { ur: '↺ دوبارہ', en: '↺ Restart', ar: '↺ إعادة' },
-  faz_btn:     { ur: '✨ فضیلت دیکھیں', en: '✨ Virtues & Hadith', ar: '✨ فضل الذكر والحديث' },
-  tap_hint:    { ur: 'tap to count', en: 'tap to count', ar: 'اضغط للعد' },
-  done:        { ur: 'مکمل', en: 'Done', ar: 'تم' },
-  out_of:      { ur: 'از', en: 'of', ar: 'من' },
-  salam:       { ur: 'اَلسَّلَامُ عَلَیْكُمْ وَ رَحْمَةُ اللّٰهِ وَ بَرَكَاتُهُ', en: 'Peace, Mercy and Blessings of Allah be upon you', ar: 'اَلسَّلَامُ عَلَیْكُمْ وَ رَحْمَةُ اللّٰهِ وَ بَرَكَاتُهُ' },
-  intro:       { ur: 'خوش آمدید! ذکرِ الٰہی سے دلوں کو اطمینان اور زندگی میں برکت حاصل ہوتی ہے۔', en: 'Welcome! Truly, in the remembrance of Allah do hearts find peace.', ar: 'مرحباً! أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ.' },
-  guide:       { ur: '👆 اوپر بنے بٹن [ ☀️ ذکر منتخب کریں ▾ ] سے یا نیچے دیے گئے کارڈز سے اپنا وِرد شروع فرمائیں:', en: '👆 Tap [ Select Adhkar ▾ ] above or choose any card below to begin:', ar: '👆 اضغط على [ اختر الذكر ▾ ] أعلاه أو اختر بطاقة أدناه للبدء:' },
-  comp_title:  { ur: 'ماشاءاللہ! مبارک ہو', en: 'MashaAllah! Complete', ar: 'ما شاء الله! تقبل الله' },
-  restart_btn: { ur: '↺ دوبارہ شروع کریں', en: '↺ Start Again', ar: '↺ البدء من جديد' },
-  home_btn:    { ur: '🏠 مرکزی صفحہ', en: '🏠 Home Dashboard', ar: '🏠 الصفحة الرئيسية' },
-  modal_title: { ur: 'ایپ سیٹنگز (Settings)', en: 'Application Settings', ar: 'إعدادات التطبيق' },
-  save_btn:    { ur: 'محفوظ کریں ✓', en: 'Save & Close ✓', ar: 'حفظ وإغلاق ✓' },
-  install_btn: { ur: '📲 ایپ انسٹال کریں', en: '📲 Install App', ar: '📲 تثبيت التطبيق' },
-  installed_btn:{ ur: '✓ ایپ انسٹال شدہ', en: '✓ App Installed', ar: '✓ التطبيق مثبت' },
-  lang_label:  { ur: 'زبان / Language / اللغة', en: 'Language / زبان / اللغة', ar: 'اللغة / Language / زبان' },
-  font_label:  { ur: 'قرآنی فونٹ (Quranic Font):', en: 'Quranic Arabic Font:', ar: 'الخط القرآني:' },
-  audio_label: { ur: 'آڈیو فیڈ بیک (Audio & Feedback):', en: 'Audio & Haptic Feedback:', ar: 'الصوت والاهتزاز:' },
-  theme_label: { ur: 'تھیم (Eye Comfort Themes):', en: 'Visual Theme:', ar: 'المظهر:' }
+  "choose_zikr": {
+    "ur": "ذکر منتخب کریں ▾",
+    "en": "Select Adhkar ▾",
+    "ar": "اختر الذكر ▾",
+    "id": "Pilih Dzikir ▾",
+    "tr": "Zikir Seçin ▾",
+    "fr": "Choisir Adhkar ▾"
+  },
+  "streak_day": {
+    "ur": "دن",
+    "en": "days",
+    "ar": "أيام",
+    "id": "hari",
+    "tr": "gün",
+    "fr": "jours"
+  },
+  "masjid_mode": {
+    "ur": "مسجد موڈ",
+    "en": "Masjid Mode",
+    "ar": "وضع المسجد",
+    "id": "Mode Masjid",
+    "tr": "Mescid Modu",
+    "fr": "Mode Mosquée"
+  },
+  "sound_on": {
+    "ur": "آواز چالو",
+    "en": "Sound On",
+    "ar": "الصوت مشغل",
+    "id": "Suara Aktif",
+    "tr": "Ses Açık",
+    "fr": "Son Activé"
+  },
+  "sound_mute": {
+    "ur": "آواز بند",
+    "en": "Sound Off",
+    "ar": "الصوت صامت",
+    "id": "Suara Hening",
+    "tr": "Ses Kapalı",
+    "fr": "Son Muet"
+  },
+  "settings": {
+    "ur": "سیٹنگز",
+    "en": "Settings",
+    "ar": "الإعدادات",
+    "id": "Pengaturan",
+    "tr": "Ayarlar",
+    "fr": "Paramètres"
+  },
+  "prev": {
+    "ur": "← پچھلا",
+    "en": "← Previous",
+    "ar": "← السابق",
+    "id": "← Sebelumnya",
+    "tr": "← Önceki",
+    "fr": "← Précédent"
+  },
+  "next": {
+    "ur": "اگلا →",
+    "en": "Next →",
+    "ar": "التالي →",
+    "id": "Berikutnya →",
+    "tr": "Sonraki →",
+    "fr": "Suivant →"
+  },
+  "advance": {
+    "ur": "آگے →",
+    "en": "Advance →",
+    "ar": "تقدم →",
+    "id": "Lanjut →",
+    "tr": "İlerle →",
+    "fr": "Avancer →"
+  },
+  "finish": {
+    "ur": "🌿 ختم",
+    "en": "🌿 Complete",
+    "ar": "🌿 تم والحمد لله",
+    "id": "🌿 Selesai",
+    "tr": "🌿 Tamamlandı",
+    "fr": "🌿 Terminé"
+  },
+  "undo": {
+    "ur": "↩ واپس",
+    "en": "↩ Undo",
+    "ar": "↩ تراجع",
+    "id": "↩ Urungkan",
+    "tr": "↩ Geri Al",
+    "fr": "↩ Annuler"
+  },
+  "restart": {
+    "ur": "↺ دوبارہ",
+    "en": "↺ Restart",
+    "ar": "↺ إعادة",
+    "id": "↺ Ulangi",
+    "tr": "↺ Yeniden Başlat",
+    "fr": "↺ Recommencer"
+  },
+  "faz_btn": {
+    "ur": "✨ فضیلت دیکھیں",
+    "en": "✨ Virtues & Hadith",
+    "ar": "✨ فضل الذكر والحديث",
+    "id": "✨ Keutamaan & Hadits",
+    "tr": "✨ Fazileti ve Hadis",
+    "fr": "✨ Mérites & Hadith"
+  },
+  "faz_hide": {
+    "ur": "▲ فضیلت چھپائیں",
+    "en": "▲ Hide Virtues",
+    "ar": "▲ إخفاء الفضل",
+    "id": "▲ Sembunyikan",
+    "tr": "▲ Fazileti Gizle",
+    "fr": "▲ Masquer les mérites"
+  },
+  "tap_hint": {
+    "ur": "tap to count",
+    "en": "tap to count",
+    "ar": "اضغط للعد",
+    "id": "ketuk untuk menghitung",
+    "tr": "saymak için dokunun",
+    "fr": "toucher pour compter"
+  },
+  "done": {
+    "ur": "مکمل",
+    "en": "Done",
+    "ar": "تم",
+    "id": "Selesai",
+    "tr": "Tamam",
+    "fr": "Terminé"
+  },
+  "out_of": {
+    "ur": "از",
+    "en": "of",
+    "ar": "من",
+    "id": "dari",
+    "tr": "/",
+    "fr": "sur"
+  },
+  "salam": {
+    "ur": "اَلسَّلَامُ عَلَیْكُمْ وَ رَحْمَةُ اللّٰهِ وَ بَرَكَاتُهُ",
+    "en": "Peace, Mercy and Blessings of Allah be upon you",
+    "ar": "اَلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللّٰهِ وَبَرَكَاتُهُ",
+    "id": "Assalamu'alaikum Warahmatullahi Wabarakatuh",
+    "tr": "Es-Selâmu Aleyküm ve Rahmetullâhi ve Berekâtüh",
+    "fr": "Que la paix, la miséricorde et les bénédictions d'Allah soient sur vous"
+  },
+  "intro": {
+    "ur": "خوش آمدید! ذکرِ الٰہی سے دلوں کو اطمینان اور زندگی میں برکت حاصل ہوتی ہے۔",
+    "en": "Welcome! Truly, in the remembrance of Allah do hearts find peace.",
+    "ar": "مرحباً بكم! أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ وتتنزل السكينة والبركات.",
+    "id": "Selamat datang! Ingatlah, hanya dengan mengingat Allah hati menjadi tenteram.",
+    "tr": "Hoş geldiniz! Bilesiniz ki, kalpler ancak Allah'ı anmakla huzur bulur.",
+    "fr": "Bienvenue ! C'est par l'évocation d'Allah que les cœurs s'apaisent."
+  },
+  "guide": {
+    "ur": "👆 اوپر بنے بٹن [ ☀️ ذکر منتخب کریں ▾ ] سے یا نیچے دیے گئے کارڈز سے اپنا وِرد شروع فرمائیں:",
+    "en": "👆 Tap [ Select Adhkar ▾ ] above or choose any card below to begin your daily litany:",
+    "ar": "👆 اضغط على [ اختر الذكر ▾ ] أعلاه أو اختر أياً من البطاقات أدناه لبدء وردك اليومي:",
+    "id": "👆 Ketuk [ Pilih Dzikir ▾ ] di atas atau pilih kartu di bawah untuk memulai wirid Anda:",
+    "tr": "👆 Yukarıdaki [ Zikir Seçin ▾ ] butonuna dokunun veya aşağıdaki kartlardan birini seçerek başlayın:",
+    "fr": "👆 Appuyez sur [ Choisir Adhkar ▾ ] ci-dessus ou choisissez une carte ci-dessous :"
+  },
+  "comp_title": {
+    "ur": "ماشاءاللہ! مبارک ہو",
+    "en": "MashaAllah! Complete",
+    "ar": "ما شاء الله! تقبل الله طاعتكم",
+    "id": "Masya Allah! Selesai",
+    "tr": "Mâşâallâh! Tamamlandı",
+    "fr": "Macha'Allah ! Terminé"
+  },
+  "restart_btn": {
+    "ur": "↺ دوبارہ شروع کریں",
+    "en": "↺ Start Again",
+    "ar": "↺ البدء من جديد",
+    "id": "↺ Mulai Lagi",
+    "tr": "↺ Tekrar Başla",
+    "fr": "↺ Recommencer"
+  },
+  "home_btn": {
+    "ur": "🏠 مرکزی صفحہ",
+    "en": "🏠 Home Dashboard",
+    "ar": "🏠 الصفحة الرئيسية",
+    "id": "🏠 Beranda Utama",
+    "tr": "🏠 Ana Sayfa",
+    "fr": "🏠 Accueil"
+  },
+  "modal_title": {
+    "ur": "⚙️ ایپ ترتیبات (Settings)",
+    "en": "⚙️ Application Settings",
+    "ar": "⚙️ إعدادات التطبيق",
+    "id": "⚙️ Pengaturan Aplikasi",
+    "tr": "⚙️ Uygulama Ayarları",
+    "fr": "⚙️ Paramètres"
+  },
+  "save_btn": {
+    "ur": "محفوظ کریں ✓",
+    "en": "Save & Close ✓",
+    "ar": "حفظ وإغلاق ✓",
+    "id": "Simpan & Tutup ✓",
+    "tr": "Kaydet ve Kapat ✓",
+    "fr": "Enregistrer ✓"
+  },
+  "install_btn": {
+    "ur": "📲 ایپ انسٹال کریں",
+    "en": "📲 Install App",
+    "ar": "📲 تثبيت التطبيق",
+    "id": "📲 Pasang Aplikasi",
+    "tr": "📲 Uygulamayı Yükle",
+    "fr": "📲 Installer l'application"
+  },
+  "installed_btn": {
+    "ur": "✓ ایپ انسٹال شدہ",
+    "en": "✓ App Installed",
+    "ar": "✓ التطبيق مثبت",
+    "id": "✓ Aplikasi Terpasang",
+    "tr": "✓ Uygulama Yüklü",
+    "fr": "✓ Application installée"
+  },
+  "lang_label": {
+    "ur": "زبان / Language / اللغة",
+    "en": "Language / زبان / اللغة",
+    "ar": "اللغة / Language / زبان",
+    "id": "Bahasa / Language",
+    "tr": "Dil / Language",
+    "fr": "Langue / Language"
+  },
+  "zoom_label": {
+    "ur": "اسکرین زوم و فونٹ سائز (Zoom & Font Size)",
+    "en": "Screen Zoom & Font Size",
+    "ar": "تكبير الشاشة وحجم الخط",
+    "id": "Ukuran Teks & Zoom",
+    "tr": "Yazı Boyutu ve Yakınlaştırma",
+    "fr": "Zoom & Taille de police"
+  },
+  "reset_zoom": {
+    "ur": "↺ اصل سائز",
+    "en": "↺ Default Size",
+    "ar": "↺ الحجم الافتراضي",
+    "id": "↺ Ukuran Normal",
+    "tr": "↺ Varsayılan",
+    "fr": "↺ Par défaut"
+  },
+  "font_label": {
+    "ur": "قرآنی خط و فونٹ (Quran Font)",
+    "en": "Quranic Arabic Font",
+    "ar": "الخط القرآني",
+    "id": "Font Al-Qur'an",
+    "tr": "Kur'an Yazı Tipi",
+    "fr": "Police coranique"
+  },
+  "audio_label": {
+    "ur": "آواز و مسجد موڈ (Audio & Sound)",
+    "en": "Audio & Sound Modes",
+    "ar": "الصوت والاهتزاز",
+    "id": "Suara & Mode Masjid",
+    "tr": "Ses ve Mescid Modu",
+    "fr": "Audio & Mode Mosquée"
+  },
+  "theme_label": {
+    "ur": "رنگ و تھیم (Theme & Eye Comfort)",
+    "en": "Visual Themes",
+    "ar": "المظهر وراحة العين",
+    "id": "Tema Tampilan",
+    "tr": "Görsel Tema",
+    "fr": "Thème visuel"
+  },
+  "kahf_pref_label": {
+    "ur": "ترتیباتِ تلاوت (Reading Preferences)",
+    "en": "Quran Reading Preferences",
+    "ar": "خيارات القراءة والتلاوة",
+    "id": "Preferensi Tilawah",
+    "tr": "Okuma Tercihleri",
+    "fr": "Préférences de lecture"
+  },
+  "dam_title": {
+    "ur": "🫁 دَم کریں",
+    "en": "🫁 Ruqyah Blow / Dam",
+    "ar": "🫁 صفة النفث والرقية",
+    "id": "🫁 Tiupan Ruqyah",
+    "tr": "🫁 Rukye Üflemesi",
+    "fr": "🫁 Souffle de Ruqyah"
+  },
+  "dam_desc": {
+    "ur": "ہاتھوں پر تین بار پھونکیں — پھر پورے جسم پر ملیں۔<br/>پہلے خود پر، پھر گھر والوں پر دَم کریں۔",
+    "en": "Blow gently into your palms three times and wipe over your body — starting with your head and face.",
+    "ar": "انفث في يديك ثلاثاً وامسح بهما ما استطعت من جسدك تبدأ برأسك ووجهك وما أقبل من جسدك.",
+    "id": "Tiupkan ke kedua telapak tangan sebanyak tiga kali dan usapkan ke seluruh tubuh, mulai dari kepala dan wajah.",
+    "tr": "Avuçlarınıza üç defa hafifçe üfleyin ve başınızdan başlayarak vücudunuza meshedin.",
+    "fr": "Soufflez doucement dans vos mains trois fois et essuyez votre corps en commençant par la tête et le visage."
+  }
 };
 
 function getActiveLang(){
@@ -3493,6 +3871,82 @@ function getLoc(val, customLang){
 /* ═══════════════════════════════════════════════════════════════
    AUTHENTIC ENGLISH ADHKAR, TRANSLATIONS & HADITH CATALOG
 ═══════════════════════════════════════════════════════════════ */
+const DUA_I18N_AR = {
+  fajr: [
+    { grp: 'أذكار ما بعد الصلاة', name: 'البسملة (بِسْمِ اللَّهِ)', faz: 'افتتاح كل أمر ذي بال باسم الله يورث البركة والرحمة الإلهية.', ref: 'سنة نبوية' },
+    { grp: 'أذكار ما بعد الصلاة', name: 'آيَةُ الْكُرْسِيِّ — البقرة: ٢٥٥', faz: 'أعظم آية في كتاب الله. مَن قرأها دبر كل صلاة مكتوبة لم يمنعه من دخول الجنة إلا أن يموت، ومَن قرأها صباحاً ومساءً أُجير من الشياطين.', ref: 'صحيح البخاري: ٢٣١١، سنن النسائي: ٩٩٢٨' },
+    { grp: 'المعوذات للحفظ التام', name: 'سُورَةُ الإِخْلَاصِ (٣ مَرَّاتٍ)', faz: 'تعدل ثلث القرآن الكريم. قراءتها ثلاثاً مع المعوذتين تكفيك من كل شيء.', ref: 'سنن أبي داود: ٥٠٨٢، جامع الترمذي: ٣٥٧٥' },
+    { grp: 'المعوذات للحفظ التام', name: 'سُورَةُ الْفَلَقِ (٣ مَرَّاتٍ)', faz: 'الاستعاذة برب الفلق من شر ما خلق، ومن شر غاسق إذا وقب، ومن شر النفاثات في العقد، ومن شر حاسد إذا حسد.', ref: 'سنن أبي داود: ٥٠٨٢' },
+    { grp: 'المعوذات للحفظ التام', name: 'سُورَةُ النَّاسِ (٣ مَرَّاتٍ)', faz: 'الاستعاذة بملك الناس وإله الناس من شر الوسواس الخناس الذي يوسوس في صدور الناس من الجنة والناس.', ref: 'سنن أبي داود: ٥٠٨٢' },
+    { grp: 'استفتاح الصباح', name: 'أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ', faz: 'سؤال الله خير هذا اليوم فتحه ونصره ونوره وبركته وهداه، والتعوذ به من شر ما فيه وشر ما بعده.', ref: 'صحيح مسلم: ٢٧٢٣، سنن أبي داود: ٥٠٨٨' },
+    { grp: 'سيد الاستغفار والتوبة', name: 'سَيِّدُ الاسْتِغْفَارِ', faz: 'مَن قالها موقناً بها حين يمسي فمات من ليلته دخل الجنة، ومَن قالها موقناً بها حين يصبح فمات من يومه دخل الجنة.', ref: 'صحيح البخاري: ٦٣٠٦' },
+    { grp: 'الحصن الحصين', name: 'بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ', faz: 'مَن قالها ثلاثاً إذا أصبح وثلاثاً إذا أمسى لم يضره شيء.', ref: 'سنن أبي داود: ٥٠٨٨، جامع الترمذي: ٣٣٨٨' },
+    { grp: 'الرضا بالله', name: 'رَضِيتُ بِاللَّهِ رَبّاً', faz: 'مَن قالها حين يصبح وحين يمسي كان حقاً على الله أن يرضيه يوم القيامة.', ref: 'مسند أحمد: ١٨٩٦٧، سنن أبي داود: ١٥٢٩' },
+    { grp: 'كفاية الهموم', name: 'حَسْبِيَ اللَّهُ لَا إِلٰهَ إِلَّا هُوَ (٧ مَرَّاتٍ)', faz: 'مَن قالها حين يصبح وحين يمسي سبع مرات كفاه الله ما أهمه من أمر الدنيا والآخرة.', ref: 'سنن أبي داود: ٥٠٨١' },
+    { grp: 'حط الخطايا', name: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ (١٠٠ مَرَّةٍ)', faz: 'مَن قالها مائة مرة حُطَّت خطاياه وإن كانت مثل زبد البحر، ولم يأتِ أحد يوم القيامة بأفضل مما جاء به إلا أحد قال مثل ما قال أو زاد.', ref: 'صحيح مسلم: ٢٦٩١' },
+    { grp: 'مضاعفة الأجر', name: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ عَدَدَ خَلْقِهِ', faz: 'تعدل ساعات طويلة من الذكر والتسبيح — زنة عرشه ورضا نفسه ومداد كلماته.', ref: 'صحيح مسلم: ٢٧٢٦' },
+    { grp: 'العافية في البدن والدين', name: 'اللَّهُمَّ عَافِنِي فِي بَدَنِي', faz: 'دعاء الصباح والمساء بسؤال الله العافية في البدن والسمع والبصر، والاستعاذة من الكفر والفقر وعذاب القبر.', ref: 'سنن أبي داود: ٥٠٩٠' },
+    { grp: 'الاستغاثة برحمة الله', name: 'يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ', faz: 'أصلح لي شأني كله ولا تكلني إلى نفسي طرفة عين.', ref: 'المستدرك على الصحيحين: ٢٠٠٠' }
+  ],
+  jumma: [
+    { name: 'سُورَةُ الْفَاتِحَةِ (٧ مَرَّاتٍ)', faz: 'أم الكتاب والسبع المثاني والرقية العظيمة الشافية بإذن الله في يوم الجمعة المبارك.', ref: 'سنن النسائي الكبرى' },
+    { name: 'سُورَةُ الإِخْلَاصِ (٧ مَرَّاتٍ)', faz: 'قراءتها سبعاً بعد صلاة الجمعة حفظ وأمان وبركة ونور.', ref: 'شعب الإيمان للبيهقي' },
+    { name: 'سُورَةُ الْفَلَقِ (٧ مَرَّاتٍ)', faz: 'حصن للمسلم من السحر والعين والحسد وشرور الإنس والجن.', ref: 'سنن أبي داود' },
+    { name: 'سُورَةُ النَّاسِ (٧ مَرَّاتٍ)', faz: 'الاستعاذة برب الناس لحفظ القلب والنفس من وساوس الشياطين.', ref: 'صحيح البخاري: ٥٧٤٨' },
+    { name: 'صِفَةُ النَّفْثِ وَالرُّقْيَةِ (دَم)', faz: 'انفث في يديك ثلاثاً وامسح بهما ما استطعت من جسدك تبدأ برأسك ووجهك وما أقبل من جسدك.', ref: 'السنة النبوية الشريفة' },
+    { name: 'الصَّلَاةُ الإِبْرَاهِيمِيَّةُ (١٠ مَرَّاتٍ)', faz: 'الإكثار من الصلاة على النبي ﷺ يوم الجمعة تعرض عليه صلواتنا.', ref: 'سنن أبي داود: ١٠٤٧' },
+    { name: 'الاسْتِغْفَارُ الْمُبَارَكُ (١٠ مَرَّاتٍ)', faz: 'طلب المغفرة في يوم الجمعة الذي فيه ساعة إجابة لا يوافقها عبد مسلم يسأل الله خيراً إلا أعطاه إياه.', ref: 'صحيح البخاري: ٩٣٥' }
+  ],
+  durood_pak: [
+    { name: 'الصَّلَاةُ الإِبْرَاهِيمِيَّةُ (المأثورة في الصلاة)', faz: 'أفضل صيغ الصلوات على النبي ﷺ، قال النبي ﷺ: مَن صلى عليّ صلاة صلى الله عليه بها عشراً.', ref: 'صحيح البخاري: ٣٣٧٠، صحيح مسلم: ٤٠٦' },
+    { name: 'صَلَاةُ التَّنْجِينَا (دعاء تفريج الكرب)', faz: 'صلاة تفريج الكروب، وسؤال الله النجاة من الأهوال والآفات وقضاء الحوائج ورفع الدرجات.', ref: 'من الصلوات المأثورة عند العلماء' },
+    { name: 'صَلَاةُ التَّاجِ الْمُبَارَكَةُ', faz: 'صيغة شريفة في محبة المصطفى ﷺ ودفع البلاء والوباء والهم والألم ببركة الصلاة عليه.', ref: 'تراث الصلوات النبوية' }
+  ],
+  post_salah: [
+    { name: 'الاسْتِغْفَارُ (٣ مَرَّاتٍ) وَاللَّهُمَّ أَنْتَ السَّلَامُ', faz: 'كان رسول الله ﷺ إذا انصرف من صلاته استغفر ثلاثاً وقال: اللَّهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالإِكْرَامِ.', ref: 'صحيح مسلم: ٥٩١' },
+    { name: 'آيَةُ الْكُرْسِيِّ دُبُرَ كُلِّ صَلَاةٍ', faz: 'مَن قرأ آية الكرسي دبر كل صلاة مكتوبة لم يمنعه من دخول الجنة إلا أن يموت.', ref: 'سنن النسائي: ٩٩٢٨' },
+    { name: 'لَا إِلٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ', faz: 'اللهم لا مانع لما أعطيت، ولا معطي لما منعت، ولا ينفع ذا الجد منك الجد.', ref: 'صحيح البخاري: ٨٤٤' },
+    { name: 'اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ', faz: 'أوصى بها النبي ﷺ معاذ بن جبل رضي الله عنه: لا تدعن في دبر كل صلاة أن تقولها.', ref: 'سنن أبي داود: ١٥٢٢' },
+    { name: 'الْمُعَوِّذَاتُ (الإخلاص والفلق والناس)', faz: 'أمر رسول الله ﷺ أن يُقرأ بالمعوذات دبر كل صلاة.', ref: 'سنن أبي داود: ١٥٢٣' },
+    { name: 'تَسْبِيحُ فَاطِمَةَ (٣٣ سُبْحَانَ اللَّهِ، ٣٣ الْحَمْدُ لِلَّهِ، ٣٤ اللَّهُ أَكْبَرُ)', faz: 'مَن سبح الله دبر كل صلاة ثلاثاً وثلاثين، وحمد ثلاثاً وثلاثين، وكبر ثلاثاً وثلاثين، وختم بالتوحيد غُفرت خطاياه وإن كانت مثل زبد البحر.', ref: 'صحيح مسلم: ٥٩٧' }
+  ],
+  bedtime: [
+    { name: 'آيَةُ الْكُرْسِيِّ عِنْدَ النَّوْمِ', faz: 'إذا أويت إلى فراشك فاقرأ آية الكرسي، لن يزال عليك من الله حافظ ولا يقربك شيطان حتى تصبح.', ref: 'صحيح البخاري: ٢٣١١' },
+    { name: 'خَوَاتِيمُ سُورَةِ الْبَقَرَةِ (٢٨٥-٢٨٦)', faz: 'الآيتان من آخر سورة البقرة، مَن قرأهما في ليلة كفتاه من كل شر وسوء ومكروه.', ref: 'صحيح البخاري: ٥٠٠٩' },
+    { name: 'المُعَوِّذَاتُ مَعَ النَّفْثِ وَالْمَسْحِ', faz: 'كان النبي ﷺ إذا أوى إلى فراشه جمع كفيه ثم نفث فيهما فقرأ الإخلاص والفلق والناس ثم مسح بهما ما استطاع من جسده ثلاث مرات.', ref: 'صحيح البخاري: ٥٠١٧' },
+    { name: 'بِاسْمِكَ رَبِّي وَضَعْتُ جَنْبِي', faz: 'باسمك ربي وضعت جنبي وبك أرفعه، إن أمسكت نفسي فارحمها، وإن أرسلتها فاحفظها بما تحفظ به عبادك الصالحين.', ref: 'صحيح البخاري: ٦٣٢٠' },
+    { name: 'تَسْبِيحُ فَاطِمَةَ عِنْدَ الْمَنَامِ', faz: 'علمها النبي ﷺ لعلي وفاطمة رضي الله عنهما عند النوم — وهي خير لهما من خادم وتمنح القوة والراحة التامة.', ref: 'صحيح البخاري: ٣٧٠٥' },
+    { name: 'اللَّهُمَّ أَسْلَمْتُ نَفْسِي إِلَيْكَ', faz: 'إذا أخذت مضجعك فتوضأ وضوءك للصلاة ثم قلها، فإن مت من ليلتك مت على الفطرة.', ref: 'صحيح البخاري: ٢٤٧' }
+  ],
+  morning_wake: [
+    { name: 'الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا', faz: 'دعاء الاستيقاظ من النوم والاعتراف بنعمة الحياة والنشور.', ref: 'صحيح البخاري: ٦٣١٢' },
+    { name: 'دُعَاءُ التَّعَارِّ مِنَ اللَّيْلِ', faz: 'مَن تعارّ من الليل فقال هذا الذكر ثم استغفر أو دعا استُجيب له، فإن توضأ وصلى قُبلت صلاته.', ref: 'صحيح البخاري: ١١٥٤' }
+  ],
+  relief_debt: [
+    { name: 'اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ', faz: 'الدعاء النبوي الجامع الذي علمه النبي ﷺ لأبي أمامة لإذهاب الهم وقضاء الدين.', ref: 'صحيح البخاري: ٢٨٩٣، سنن أبي داود: ١٥٥٥' },
+    { name: 'اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ', faz: 'علمه علي رضي الله عنه لمكاتب: لو كان عليك مثل جبل ثبير ديناً أداه الله عنك.', ref: 'جامع الترمذي: ٣٥٦٣' },
+    { name: 'لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ', faz: 'كنز من كنوز الجنة، ودواء لتسعة وتسعين داء أيسرها الهم.', ref: 'صحيح البخاري: ٦٣٨٤، المستدرك' },
+    { name: 'دَعْوَةُ ذِي النُّونِ (آيَةُ الْكَرِيمَةِ)', faz: 'لا إله إلا أنت سبحانك إني كنت من الظالمين — لم يدعُ بها رجل مسلم في شيء قط إلا استجاب الله له.', ref: 'جامع الترمذي: ٣٥٠٥' }
+  ],
+  istikhara: [
+    { name: 'دُعَاءُ الاسْتِخَارَةِ الشَّرْعِيَّةِ', faz: 'كان رسول الله ﷺ يعلمنا الاستخارة في الأمور كلها كما يعلمنا السورة من القرآن — طلب الخيرة من الله في كل شأن ومشروع وزواج وسفر.', ref: 'صحيح البخاري: ١١٦٢' }
+  ],
+  tawbah: [
+    { name: 'سَيِّدُ الاسْتِغْفَارِ الشَّرِيفُ', faz: 'أعظم صيغ الاستغفار وأشرفها — مَن قالها بالنهار أو الليل ومات دخل الجنة.', ref: 'صحيح البخاري: ٦٣٠٦' },
+    { name: 'أَسْتَغْفِرُ اللَّهَ الْعَظِيمَ الَّذِي لَا إِلٰهَ إِلَّا هُوَ', faz: 'مَن قالها غُفرت ذنوبه وإن كان قد فرّ من الزحف.', ref: 'سنن أبي داود: ١٥١٧' },
+    { name: 'رَبِّ اغْفِرْ لِي وَتُبْ عَلَيَّ (١٠٠ مَرَّةٍ)', faz: 'كان يُعدّ لرسول الله ﷺ في المجلس الواحد مائة مرة: رب اغفر لي وتب علي إنك أنت التواب الرحيم.', ref: 'سنن أبي داود: ١٥١٦' },
+    { name: 'دُعَاءُ يُونُسَ عَلَيْهِ السَّلَامُ (آيَةُ الْكَرِيمَةِ)', faz: 'الاعتراف بالتوحيد والذنب وتنزيه الله يفرج أعظم الكروب ويزيل الشدائد.', ref: 'جامع الترمذي: ٣٥٠٥' }
+  ],
+  tauheed: [
+    { name: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ سُبْحَانَ اللَّهِ الْعَظِيمِ', faz: 'كلمتان خفيفتان على اللسان، ثقيلتان في الميزان، حبيبتان إلى الرحمن.', ref: 'صحيح البخاري: ٦٦٨٢' },
+    { name: 'أَفْضَلُ الذِّكْرِ (لَا إِلٰهَ إِلَّا اللَّهُ)', faz: 'أفضل الذكر لا إله إلا الله، وأفضل الدعاء الحمد لله.', ref: 'جامع الترمذي: ٣٣٨٣' },
+    { name: 'التَّوْحِيدُ الْمُضَاعَفُ (١٠٠ مَرَّةٍ)', faz: 'عدل عشر رقاب، وكُتبت له مائة حسنة، ومُحيت عنه مائة سيئة، وكانت له حرزاً من الشيطان يومه ذلك حتى يمسي.', ref: 'صحيح البخاري: ٣٢٩٣' },
+    { name: 'الْبَاقِيَاتُ الصَّالِحَاتُ (١٠٠ مَرَّةٍ)', faz: 'سبحان الله، والحمد لله، ولا إله إلا الله، والله أكبر — أحب إلى الله مما طلعت عليه الشمس وغراس الجنة.', ref: 'صحيح مسلم: ٢٦٩٥' },
+    { name: 'كَنْزُ الْجَنَّةِ (لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ)', faz: 'كنز من تحت العرش يدل على كمال التوكل والتسليم لله تعالى.', ref: 'صحيح البخari: ٦٣٨٤' },
+    { name: 'حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ', faz: 'قالها إبراهيم عليه السلام حين أُلقي في النار، وقالها محمد ﷺ حين قالوا له إن الناس قد جمعوا لكم.', ref: 'صحيح البخاري: ٤٥٦٣' }
+  ]
+};
+
 const DUA_I18N_EN = {
   fajr: [
     { grp: 'Post-Salah Protection', name: 'Bismillah (In the Name of Allah)', faz: 'Starting any good action in the Name of Allah brings immense barakah and opens divine mercy.', ref: 'Sunnah Tradition' },
@@ -3593,7 +4047,11 @@ const ASMA_EN = {
 };
 
 function getDuaField(sec, idx, field, defaultVal){
-  if(typeof S !== 'undefined' && S && S.lang === 'en' && DUA_I18N_EN[sec] && DUA_I18N_EN[sec][idx] && DUA_I18N_EN[sec][idx][field]){
+  const lang = (typeof S !== 'undefined' && S && S.lang) ? S.lang : 'ur';
+  if(lang === 'ar' && typeof DUA_I18N_AR !== 'undefined' && DUA_I18N_AR[sec] && DUA_I18N_AR[sec][idx] && DUA_I18N_AR[sec][idx][field]){
+    return DUA_I18N_AR[sec][idx][field];
+  }
+  if((lang === 'en' || lang === 'id' || lang === 'tr' || lang === 'fr') && typeof DUA_I18N_EN !== 'undefined' && DUA_I18N_EN[sec] && DUA_I18N_EN[sec][idx] && DUA_I18N_EN[sec][idx][field]){
     return DUA_I18N_EN[sec][idx][field];
   }
   return getLoc(defaultVal);
@@ -3601,26 +4059,26 @@ function getDuaField(sec, idx, field, defaultVal){
 
 /* ══ STATE ══ */
 const SECS=[
-  {id:'welcome',     icon:'🕌',title:{ur:'خوش آمدید (صفحۂ اول)',en:'Home Dashboard',ar:'الرئيسية'},            ct:{ur:'ہوم',en:'Home',ar:'الرئيسية'}},
-  {id:'asr',         icon:'☀️',title:{ur:'جمعہ عصر درود ×۸۰',en:'Friday Asr Durood ×80',ar:'الصلاة على النبي عصر الجمعة ×80'}, ct:'×80'},
-  {id:'durood_pak',  icon:'✨',title:{ur:'مجموعہ درود شریف',en:'Durood Collection',ar:'مجموعة الصلاة على النبي'}, ct:{ur:DUROOD_PAK.length+' درود',en:DUROOD_PAK.length+' Durood',ar:DUROOD_PAK.length+' صلوات'}},
-  {id:'fajr',        icon:'🌅',title:{ur:'فجر/مغرب اذکار',en:'Morning & Evening Adhkar',ar:'أذكار الصباح والمساء'}, ct:{ur:FAJR.length+' اذکار',en:FAJR.length+' Adhkar',ar:FAJR.length+' أذكار'}},
-  {id:'jumma',       icon:'🌙',title:{ur:'جمعہ کا وِرد',en:'Friday Sunnah Adhkar',ar:'ورد يوم الجمعة'},        ct:{ur:JUMMA.length+' اذکار',en:JUMMA.length+' Adhkar',ar:JUMMA.length+' أذكار'}},
-  {id:'post_salah',  icon:'🧎',title:{ur:'فرض نماز کے بعد کے اذکار',en:'After Salah Adhkar',ar:'أذكار ما بعد الصلاة'}, ct:{ur:POST_SALAH.length+' اذکار',en:POST_SALAH.length+' Adhkar',ar:POST_SALAH.length+' أذكار'}},
-  {id:'bedtime',     icon:'🌙',title:{ur:'سونے کے مسنون اذکار',en:'Bedtime Adhkar',ar:'أذكار النوم'},           ct:{ur:BEDTIME.length+' اذکار',en:BEDTIME.length+' Adhkar',ar:BEDTIME.length+' أذكار'}},
-  {id:'morning_wake',icon:'🌅',title:{ur:'صبح بیدار ہونے کے اذکار',en:'Waking Up Adhkar',ar:'أذكار الاستيقاظ'},    ct:{ur:MORNING_WAKE.length+' اذکار',en:MORNING_WAKE.length+' Adhkar',ar:MORNING_WAKE.length+' أذكار'}},
-  {id:'relief_debt', icon:'🤲',title:{ur:'قرض و پریشانی سے نجات',en:'Relief from Debt & Grief',ar:'تفريج الكرب والدين'}, ct:{ur:RELIEF_DEBT.length+' اذکار',en:RELIEF_DEBT.length+' Adhkar',ar:RELIEF_DEBT.length+' أذكار'}},
-  {id:'istikhara',   icon:'🧭',title:{ur:'دعائے استخارہ مع طریقہ',en:'Dua-e-Istikhara',ar:'دعاء الاستخارة'},     ct:{ur:ISTIKHARA.length+' دعا',en:ISTIKHARA.length+' Dua',ar:ISTIKHARA.length+' دعاء'}},
-  {id:'tawbah',      icon:'🤲',title:{ur:'سید الاستغفار و توبہ',en:'Sayyidul Istighfar & Tawbah',ar:'سيد الاستغفار والتوبة'}, ct:{ur:TAWBAH.length+' اذکار',en:TAWBAH.length+' Adhkar',ar:TAWBAH.length+' أذكار'}},
-  {id:'tauheed',     icon:'☝️',title:{ur:'توحید کے اذکار',en:'Tauheed & Praise',ar:'أذكار التوحيد'},            ct:{ur:TAUHEED.length+' اذکار',en:TAUHEED.length+' Adhkar',ar:TAUHEED.length+' أذكار'}},
-  {id:'asma',        icon:'👑',title:{ur:'اسمائے حسنیٰ (۹۹ نام)',en:'99 Beautiful Names of Allah',ar:'أسماء الله الحسنى'}, ct:{ur:'۹۹ نام',en:'99 Names',ar:'99 اسماً'}},
-  {id:'kahf',        icon:'📖',title:{ur:'سورۃ الکہف — آف لائن',en:'Surah Al-Kahf (Offline)',ar:'سورة الكهف'},   ct:{ur:'۱۱۰ آیات',en:'110 Verses',ar:'110 آيات'}},
-  {id:'mulk',        icon:'👑',title:{ur:'سورۃ الملک — آف لائن',en:'Surah Al-Mulk (Offline)',ar:'سورة الملك'},   ct:{ur:'۳۰ آیات',en:'30 Verses',ar:'30 آية'}},
-  {id:'waqiah',      icon:'💰',title:{ur:'سورۃ الواقعہ — آف لائن',en:'Surah Al-Waqiah (Offline)',ar:'سورة الواقعة'}, ct:{ur:'۹۶ آیات',en:'96 Verses',ar:'96 آية'}},
-  {id:'rahman',      icon:'🌺',title:{ur:'سورۃ الرحمن — آف لائن',en:'Surah Ar-Rahman (Offline)',ar:'سورة الرحمن'}, ct:{ur:'۷۸ آیات',en:'78 Verses',ar:'78 آية'}},
-  {id:'manzil',      icon:'🛡️',title:{ur:'منزل (حفاظت و شفا)',en:'Manzil (Healing & Protection)',ar:'المنزل للرقية'}, ct:{ur:'۳۳ آیات',en:'33 Verses',ar:'33 آية'}},
-  {id:'tasbeeh',     icon:'📿',title:{ur:'تسبیحِ فاطمہؓ',en:'Tasbeeh of Fatimah (RA)',ar:'تسبيح فاطمة رضي الله عنها'}, ct:'33+33+34'},
-  {id:'custom',      icon:'📝',title:{ur:'ذاتی اذکار (مینول)',en:'Custom Adhkar & Tasbeeh',ar:'أذكار مخصصة'},    ct:{ur:'اپنی تسبیح',en:'Custom',ar:'مخصص'}}
+  {id:'welcome',     icon:'🕌',title:{ur:'خوش آمدید (صفحۂ اول)',en:'Home Dashboard',ar:'الرئيسية',id:'Beranda Utama',tr:'Ana Sayfa',fr:'Accueil'}, ct:{ur:'ہوم',en:'Home',ar:'الرئيسية',id:'Beranda',tr:'Ana Sayfa',fr:'Accueil'}},
+  {id:'asr',         icon:'☀️',title:{ur:'جمعہ عصر درود ×۸۰',en:'Friday Asr Durood ×80',ar:'الصلاة على النبي عصر الجمعة ×80',id:'Shalawat Ashar Jumat ×80',tr:'Cuma İkindi Salavatı ×80',fr:'Salawat Vendredi Asr ×80'}, ct:'×80'},
+  {id:'durood_pak',  icon:'✨',title:{ur:'مجموعہ درود شریف',en:'Durood Collection',ar:'مجموعة الصلاة على النبي',id:'Kumpulan Shalawat',tr:'Salavat Mecmuası',fr:'Recueil de Salawat'}, ct:{ur:'۳ درود',en:'3 Durood',ar:'3 صلوات',id:'3 Shalawat',tr:'3 Salavat',fr:'3 Salawat'}},
+  {id:'fajr',        icon:'🌅',title:{ur:'فجر/مغرب اذکار',en:'Morning & Evening Adhkar',ar:'أذكار الصباح والمساء',id:'Dzikir Pagi & Petang',tr:'Sabah ve Akşam Zikirleri',fr:'Invocations Matin & Soir'}, ct:{ur:'۱۴ اذکار',en:'14 Adhkar',ar:'14 ذكراً',id:'14 Dzikir',tr:'14 Zikir',fr:'14 Adhkar'}},
+  {id:'jumma',       icon:'🌙',title:{ur:'جمعہ کا وِرد',en:'Friday Sunnah Adhkar',ar:'ورد يوم الجمعة',id:'Wirid Hari Jumat',tr:'Cuma Sünnet Virdi',fr:'Invocations du Vendredi'}, ct:{ur:'۷ اذکار',en:'7 Adhkar',ar:'7 أذكار',id:'7 Dzikir',tr:'7 Zikir',fr:'7 Adhkar'}},
+  {id:'post_salah',  icon:'🧎',title:{ur:'فرض نماز کے بعد کے اذکار',en:'After Salah Adhkar',ar:'أذكار ما بعد الصلاة',id:'Dzikir Setelah Shalat',tr:'Namaz Sonrası Zikirler',fr:'Invocations Après Prière'}, ct:{ur:'۶ اذکار',en:'6 Adhkar',ar:'6 أذكار',id:'6 Dzikir',tr:'6 Zikir',fr:'6 Adhkar'}},
+  {id:'bedtime',     icon:'🌙',title:{ur:'سونے کے مسنون اذکار',en:'Bedtime Adhkar',ar:'أذكار النوم',id:'Dzikir Sebelum Tidur',tr:'Yatış Duaları',fr:'Invocations du Soir'}, ct:{ur:'۶ اذکار',en:'6 Adhkar',ar:'6 أذكار',id:'6 Dzikir',tr:'6 Zikir',fr:'6 Adhkar'}},
+  {id:'morning_wake',icon:'🌅',title:{ur:'صبح بیدار ہونے کے اذکار',en:'Waking Up Adhkar',ar:'أذكار الاستيقاظ',id:'Doa Bangun Tidur',tr:'Uyanış Duaları',fr:'Invocations au Réveil'}, ct:{ur:'۲ اذکار',en:'2 Adhkar',ar:'2 ذكران',id:'2 Dzikir',tr:'2 Zikir',fr:'2 Adhkar'}},
+  {id:'relief_debt', icon:'🤲',title:{ur:'قرض و پریشانی سے نجات',en:'Relief from Debt & Grief',ar:'تفريج الكرب والدين',id:'Doa Pelunas Hutang & Duka',tr:'Borç ve Keder Duaları',fr:'Invocations Contre les Dettes'}, ct:{ur:'۴ اذکار',en:'4 Adhkar',ar:'4 أذكار',id:'4 Dzikir',tr:'4 Zikir',fr:'4 Adhkar'}},
+  {id:'istikhara',   icon:'🧭',title:{ur:'دعائے استخارہ مع طریقہ',en:'Dua-e-Istikhara',ar:'دعاء الاستخارة',id:'Doa Shalat Istikharah',tr:'İstihare Duası',fr:'Prière d\'Istikhara'}, ct:{ur:'۱ دعا',en:'1 Dua',ar:'دعاء واحد',id:'1 Doa',tr:'1 Dua',fr:'1 Invocation'}},
+  {id:'tawbah',      icon:'🤲',title:{ur:'سید الاستغفار و توبہ',en:'Sayyidul Istighfar & Tawbah',ar:'سيد الاستغفار والتوبة',id:'Sayyidul Istighfar & Taubat',tr:'Seyyidü\'l-İstiğfar',fr:'Sayyidul Istighfar'}, ct:{ur:'۴ اذکار',en:'4 Adhkar',ar:'4 أذكار',id:'4 Dzikir',tr:'4 Zikir',fr:'4 Adhkar'}},
+  {id:'tauheed',     icon:'☝️',title:{ur:'توحید کے اذکار',en:'Tauheed & Praise',ar:'أذكار التوحيد والتهليل',id:'Dzikir Tauhid & Tasbih',tr:'Tevhid ve Tesbih',fr:'Tawhid & Louanges'}, ct:{ur:'۶ اذکار',en:'6 Adhkar',ar:'6 أذكار',id:'6 Dzikir',tr:'6 Zikir',fr:'6 Adhkar'}},
+  {id:'asma',        icon:'👑',title:{ur:'اسمائے حسنیٰ (۹۹ نام)',en:'99 Names of Allah',ar:'أسماء الله الحسنى (99 اسماً)',id:'99 Asmaul Husna',tr:'99 Esmâü\'l-Hüsnâ',fr:'Les 99 Noms d\'Allah'}, ct:{ur:'۹۹ نام',en:'99 Names',ar:'99 اسماً',id:'99 Nama',tr:'99 İsim',fr:'99 Noms'}},
+  {id:'kahf',        icon:'📖',title:{ur:'سورۃ الکہف — آف لائن',en:'Surah Al-Kahf',ar:'سورة الكهف',id:'Surah Al-Kahfi',tr:'Kehf Suresi',fr:'Sourate Al-Kahf'}, ct:{ur:'۱۱۰ آیات',en:'110 Verses',ar:'110 آيات',id:'110 Ayat',tr:'110 Âyet',fr:'110 Versets'}},
+  {id:'mulk',        icon:'👑',title:{ur:'سورۃ الملک — آف لائن',en:'Surah Al-Mulk',ar:'سورة الملك',id:'Surah Al-Mulk',tr:'Mülk Suresi',fr:'Sourate Al-Mulk'}, ct:{ur:'۳۰ آیات',en:'30 Verses',ar:'30 آية',id:'30 Ayat',tr:'30 Âyet',fr:'30 Versets'}},
+  {id:'waqiah',      icon:'💰',title:{ur:'سورۃ الواقعہ — آف لائن',en:'Surah Al-Waqiah',ar:'سورة الواقعة',id:'Surah Al-Waqi\'ah',tr:'Vâkıa Suresi',fr:'Sourate Al-Waqiah'}, ct:{ur:'۹۶ آیات',en:'96 Verses',ar:'96 آية',id:'96 Ayat',tr:'96 Âyet',fr:'96 Versets'}},
+  {id:'rahman',      icon:'🌺',title:{ur:'سورۃ الرحمن — آف لائن',en:'Surah Ar-Rahman',ar:'سورة الرحمن',id:'Surah Ar-Rahman',tr:'Rahmân Suresi',fr:'Sourate Ar-Rahman'}, ct:{ur:'۷۸ آیات',en:'78 Verses',ar:'78 آية',id:'78 Ayat',tr:'78 Âyet',fr:'78 Versets'}},
+  {id:'manzil',      icon:'🛡️',title:{ur:'منزل (حفاظت و شفا)',en:'Manzil (Healing & Protection)',ar:'المنزل (الرقية والشفاء)',id:'Manzil (Ruqyah Syifa)',tr:'Menzil (Şifa ve Korunma)',fr:'Manzil (Protection & Guérison)'}, ct:{ur:'۳۳ آیات',en:'33 Verses',ar:'33 آية',id:'33 Ayat',tr:'33 Âyet',fr:'33 Versets'}},
+  {id:'tasbeeh',     icon:'📿',title:{ur:'تسبیحِ فاطمہؓ',en:'Tasbeeh of Fatimah (RA)',ar:'تسبيح فاطمة رضي الله عنها',id:'Tasbih Fatimah (RA)',tr:'Fâtıma Tesbihi',fr:'Tasbih de Fatima (RA)'}, ct:'33+33+34'},
+  {id:'custom',      icon:'📝',title:{ur:'ذاتی اذکار (مینول)',en:'Custom Adhkar & Tasbeeh',ar:'الأذكار المخصصة والتسابيح',id:'Dzikir Pribadi Kustom',tr:'Özel Zikirler',fr:'Adhkar Personnalisés'}, ct:{ur:'اپنی تسبیح',en:'Custom',ar:'مخصص',id:'Kustom',tr:'Özel',fr:'Personnalisé'}}
 ];
 const CIRC=2*Math.PI*74;
 let sec='welcome',viewMode='para',zoomPct=100;
@@ -4178,100 +4636,366 @@ function updateTimeTagline(){
 }
 
 const WELCOME_CARDS_DATA = {
-  asr: {
-    icon: '☀️',
-    title: { ur: 'جمعہ عصر درود شریف (۸۰ مرتبہ)', en: 'Friday Asr Durood Sharif (80 Times)', ar: 'الصلاة على النبي عصر الجمعة (80 مرة)' },
-    sub: { ur: 'روایت کے مطابق ۸۰ سال کی مغفرت و ثواب کا خاص وِرد', en: 'Special litany for forgiveness of 80 years of sins and 80 years of worship', ar: 'غفران ذنوب ثمانين عاماً وعبادة ثمانين سنة' }
+  "asr": {
+    "icon": "☀️",
+    "title": {
+      "ur": "جمعہ عصر درود شریف (۸۰ مرتبہ)",
+      "en": "Friday Asr Durood Sharif (80 Times)",
+      "ar": "الصلاة على النبي عصر الجمعة (80 مرة)",
+      "id": "Shalawat Ashar Hari Jumat (80 Kali)",
+      "tr": "Cuma İkindi Salavatı (80 Kez)",
+      "fr": "Salawat du Vendredi après Asr (80 Fois)"
+    },
+    "sub": {
+      "ur": "روایت کے مطابق ۸۰ سال کی مغفرت و ثواب کا خاص وِرد",
+      "en": "Special litany for forgiveness of 80 years of sins and 80 years of worship",
+      "ar": "غفران ذنوب ثمانين عاماً وثواب عبادة ثمانين سنة",
+      "id": "Amalan istimewa pengampunan dosa 80 tahun dan pahala 80 tahun ibadah",
+      "tr": "80 yıllık günahların affı ve 80 yıllık ibadet sevabı rivayeti",
+      "fr": "Pardon de 80 ans de péchés et récompense de 80 ans d'adoration"
+    }
   },
-  durood_pak: {
-    icon: '✨',
-    title: { ur: 'مجموعہ درود شریف (ابراہیمی، تنجینا، تاج)', en: 'Durood Collection (Ibrahimi, Tanjeena, Taj)', ar: 'مجموعة الصلاة على النبي (الإبراهيمية، التنجينا، التاج)' },
-    sub: { ur: 'نماز والا افضل ترین درودِ ابراہیمی، درودِ تنجینا اور درودِ تاج', en: 'Supreme Durood from Salah, Durood-e-Tanjeena, and Durood-e-Taj', ar: 'أفضل الصلوات الإبراهيمية وصلاة التنجينا وصلاة التاج' }
+  "durood_pak": {
+    "icon": "✨",
+    "title": {
+      "ur": "مجموعہ درود شریف (ابراہیمی، تنجینا، تاج)",
+      "en": "Durood Collection (Ibrahimi, Tanjeena, Taj)",
+      "ar": "مجموعة الصلاة على النبي (الإبراهيمية، التنجينا، التاج)",
+      "id": "Kumpulan Shalawat (Ibrahimiyah, Nariyah/Tunjina, Taj)",
+      "tr": "Salavat-ı Şerife Mecmuası (İbrahimiye, Münciye, Tac)",
+      "fr": "Recueil de Salawat (Ibrahimiyya, Toundjina, Taj)"
+    },
+    "sub": {
+      "ur": "نماز والا افضل ترین درودِ ابراہیمی، درودِ تنجینا اور درودِ تاج",
+      "en": "Supreme Durood from Salah, Durood-e-Tanjeena, and Durood-e-Taj",
+      "ar": "أفضل الصلوات الإبراهيمية وصلاة التنجينا وصلاة التاج الشريفة",
+      "id": "Shalawat Ibrahimiyah paling utama dalam shalat, Tunjina, dan Taj",
+      "tr": "Namazdaki en faziletli İbrahimiye, Tüncina ve Tac salavatları",
+      "fr": "La plus vertueuse Salawat de la prière, Toundjina et Taj"
+    }
   },
-  asma: {
-    icon: '👑',
-    title: { ur: 'اَسْمَاءُ اللّٰهِ الْحُسْنٰی (۹۹ مبارک نام)', en: 'The 99 Beautiful Names of Allah (Asma-ul-Husna)', ar: 'أَسْمَاءُ اللّٰهِ الْحُسْنٰی (99 اسماً شريفاً)' },
-    sub: { ur: 'اللہ تعالیٰ کے ۹۹ صفاتی نام مع اردو معانی و کامل فضیلت', en: '99 Divine Attributes with meanings and authentic Hadith virtues', ar: 'من أحصاها دخل الجنة مع المعاني والفضائل' }
+  "asma": {
+    "icon": "👑",
+    "title": {
+      "ur": "اَسْمَاءُ اللّٰهِ الْحُسْنٰی (۹۹ مبارک نام)",
+      "en": "The 99 Beautiful Names of Allah (Asma-ul-Husna)",
+      "ar": "أَسْمَاءُ اللّٰهِ الْحُسْنٰی (99 اسماً شريفاً)",
+      "id": "Asmaul Husna (99 Nama Allah Yang Mulia)",
+      "tr": "Esmâü'l-Hüsnâ (Allah'ın 99 Güzel İsmi)",
+      "fr": "Les 99 Noms d'Allah (Asma-ul-Husna)"
+    },
+    "sub": {
+      "ur": "اللہ تعالیٰ کے ۹۹ صفاتی نام مع اردو معانی و کامل فضیلت",
+      "en": "99 Divine Attributes with meanings and authentic Hadith virtues",
+      "ar": "من أحصاها دخل الجنة مع المعاني الجليلة والفضائل",
+      "id": "99 Nama Agung Allah beserta arti dan keutamaan hadits",
+      "tr": "Anlamları ve hadis faziletleriyle 99 güzel isim",
+      "fr": "99 Attributs divins avec significations et mérites prophétiques"
+    }
   },
-  kahf: {
-    icon: '📖',
-    title: { ur: 'سورۃ الکہف (مکمل آف لائن تلاوت)', en: 'Surah Al-Kahf (Full Offline Recitation)', ar: 'سورة الكهف (تلاوة كاملة بدون إنترنت)' },
-    sub: { ur: 'مکمل ۱۱۰ آیات مع تجوید و ہند-پاک پاکستانی رسم الخط', en: 'Complete 110 verses with Tajweed, Indo-Pak & Uthmanic scripts', ar: '110 آيات كاملة مع التجويد بالرسم العثماني والهندي' }
+  "kahf": {
+    "icon": "📖",
+    "title": {
+      "ur": "سورۃ الکہف (مکمل آف لائن تلاوت)",
+      "en": "Surah Al-Kahf (Full Offline Recitation)",
+      "ar": "سورة الكهف (تلاوة كاملة بدون إنترنت)",
+      "id": "Surah Al-Kahfi (Tilawah Lengkap Offline)",
+      "tr": "Kehf Suresi (Tam Metin Çevrimdışı)",
+      "fr": "Sourate Al-Kahf (Récitation Complète Hors-ligne)"
+    },
+    "sub": {
+      "ur": "مکمل ۱۱۰ آیات مع تجوید و ہند-پاک پاکستانی رسم الخط",
+      "en": "Complete 110 verses with Tajweed, Indo-Pak & Uthmanic scripts",
+      "ar": "110 آيات كاملة مع التجويد بالرسم العثماني والمصحف الهندي",
+      "id": "Lengkap 110 ayat dengan tajwid, rasm Utsmani dan Indo-Pak",
+      "tr": "Tecvidli, 110 ayet, Osmanlı ve Hint-Pak hat seçenekleriyle",
+      "fr": "110 versets complets avec règles de Tajwid et calligraphie"
+    }
   },
-  fajr: {
-    icon: '🌅',
-    title: { ur: 'فجر و مغرب کے مسنون اذکار', en: 'Morning & Evening Masnoon Adhkar', ar: 'أذكار الصباح والمساء المأثورة' },
-    sub: { ur: 'صبح و شام کی جامع حفاظت کی دعائیں', en: 'Comprehensive prophetic supplications for daily divine protection', ar: 'أدعية الحفظ والسكينة اليومية المأثورة' }
+  "fajr": {
+    "icon": "🌅",
+    "title": {
+      "ur": "فجر و مغرب کے مسنون اذکار",
+      "en": "Morning & Evening Masnoon Adhkar",
+      "ar": "أذكار الصباح والمساء المأثورة",
+      "id": "Dzikir Pagi & Petang Shahih",
+      "tr": "Sabah ve Akşam Meşhur Zikirleri",
+      "fr": "Invocations du Matin et du Soir"
+    },
+    "sub": {
+      "ur": "صبح و شام کی جامع حفاظت کی دعائیں",
+      "en": "Comprehensive prophetic supplications for daily divine protection",
+      "ar": "أدعية الحفظ والسكينة اليومية المأثورة عن رسول الله ﷺ",
+      "id": "Doa perlindungan harian lengkap bersumber dari hadits shahih",
+      "tr": "Günlük manevi korunma için Peygamber Efendimiz'in duaları",
+      "fr": "Invocations prophétiques authentiques pour la protection quotidienne"
+    }
   },
-  jumma: {
-    icon: '🌙',
-    title: { ur: 'جمعہ کا مسنون وِرد مع دَم', en: 'Friday Sunnah Adhkar & Ruqyah Blow', ar: 'ورد الجمعة والرقية المأثورة مع النفث' },
-    sub: { ur: 'سورۃ فاتحہ، اخلاص، فلق، ناس مع طریقہ دم', en: 'Surah Fatihah & 3 Quls with authentic prophetic blow (dam)', ar: 'الفاتحة والمعوذات مع صفة النفث الشرعي' }
+  "jumma": {
+    "icon": "🌙",
+    "title": {
+      "ur": "جمعہ کا مسنون وِرد مع دَم",
+      "en": "Friday Sunnah Adhkar & Ruqyah Blow",
+      "ar": "ورد الجمعة والرقية المأثورة مع النفث",
+      "id": "Wirid Jumat & Tiupan Ruqyah",
+      "tr": "Cuma Sünnet Virdi ve Rukye Üflemesi",
+      "fr": "Invocations du Vendredi & Souffle de Ruqyah"
+    },
+    "sub": {
+      "ur": "سورۃ فاتحہ، اخلاص، فلق، ناس مع طریقہ دم",
+      "en": "Surah Fatihah & 3 Quls with authentic prophetic blow (dam)",
+      "ar": "الفاتحة والمعوذات مع صفة النفث الشرعي الصحيح",
+      "id": "Al-Fatihah dan 3 Qul dengan tata cara tiupan ruqyah syar'i",
+      "tr": "Fâtiha ve İhlâs, Felak, Nâs sureleriyle sünnet nefesi",
+      "fr": "Sourate Al-Fatihah et les 3 Quls avec le souffle prophétique"
+    }
   },
-  mulk: {
-    icon: '👑',
-    title: { ur: 'سورۃ الملک (عذابِ قبر سے حفاظت)', en: 'Surah Al-Mulk (Grave Protection)', ar: 'سورة الملك (المانعة من عذاب القبر)' },
-    sub: { ur: 'مکمل ۳۰ آیات — رات کو تلاوت کی فضیلت مع پاکستانی رسم الخط', en: 'Complete 30 verses — Nightly protection and intercession', ar: '30 آية كاملة تشفع لصاحبها حتى يغفر له' }
+  "mulk": {
+    "icon": "👑",
+    "title": {
+      "ur": "سورۃ الملک (عذابِ قبر سے حفاظت)",
+      "en": "Surah Al-Mulk (Grave Protection)",
+      "ar": "سورة الملك (المانعة من عذاب القبر)",
+      "id": "Surah Al-Mulk (Penyelamat Siksa Kubur)",
+      "tr": "Mülk Suresi (Kabir Azabından Koruyan)",
+      "fr": "Sourate Al-Mulk (Protection de la Tombe)"
+    },
+    "sub": {
+      "ur": "مکمل ۳۰ آیات — رات کو تلاوت کی فضیلت مع پاکستانی رسم الخط",
+      "en": "Complete 30 verses — Nightly protection and intercession",
+      "ar": "30 آية كاملة تشفع لصاحبها حتى يغفر له وتنجيه من عذاب القبر",
+      "id": "Lengkap 30 ayat — pelindung siksa kubur dibaca setiap malam",
+      "tr": "Tam 30 ayet — kabir azabına kalkan olan gece tilaveti",
+      "fr": "30 versets complets intercédant pour le pardon des péchés"
+    }
   },
-  waqiah: {
-    icon: '💰',
-    title: { ur: 'سورۃ الواقعہ (رزق و برکت)', en: 'Surah Al-Waqiah (Sustenance & Barakah)', ar: 'سورة الواقعة (جالبة الرزق والبركة)' },
-    sub: { ur: 'مکمل ۹۶ آیات — فقر و فاقہ سے حفاظت مع پاکستانی رسم الخط', en: 'Complete 96 verses — Prophetic shield against poverty', ar: '96 آية كاملة أمان من الفاقة والفقر' }
+  "waqiah": {
+    "icon": "💰",
+    "title": {
+      "ur": "سورۃ الواقعہ (رزق و برکت)",
+      "en": "Surah Al-Waqiah (Sustenance & Barakah)",
+      "ar": "سورة الواقعة (جالبة الرزق والبركة)",
+      "id": "Surah Al-Waqi'ah (Pembuka Pintu Rezeki)",
+      "tr": "Vâkıa Suresi (Bereket ve Rızık)",
+      "fr": "Sourate Al-Waqiah (Subsistance & Bénédiction)"
+    },
+    "sub": {
+      "ur": "مکمل ۹۶ آیات — فقر و فاقہ سے حفاظت مع پاکستانی رسم الخط",
+      "en": "Complete 96 verses — Prophetic shield against poverty",
+      "ar": "96 آية كاملة أمان من الفاقة والفقر عند قراءتها كل ليلة",
+      "id": "Lengkap 96 ayat — pelindung dari kefakiran dan pembawa berkah",
+      "tr": "Tam 96 ayet — her gece okunduğunda fakirlikten korur",
+      "fr": "96 versets complets préservant du besoin et apportant la bénédiction"
+    }
   },
-  rahman: {
-    icon: '🌺',
-    title: { ur: 'سورۃ الرحمن (عُرُوْسُ الْقُرْآن)', en: 'Surah Ar-Rahman (Beauty of the Quran)', ar: 'سورة الرحمن (عروس القرآن)' },
-    sub: { ur: 'مکمل ۷۸ آیات — فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ مع پاکستانی رسم الخط', en: 'Complete 78 verses — Which of the favors of your Lord will you deny?', ar: '78 آية كاملة تفيض بالرحمة والجمال الإلهي' }
+  "rahman": {
+    "icon": "🌺",
+    "title": {
+      "ur": "سورۃ الرحمن (عُرُوْسُ الْقُرْآن)",
+      "en": "Surah Ar-Rahman (Beauty of the Quran)",
+      "ar": "سورة الرحمن (عروس القرآن الكريم)",
+      "id": "Surah Ar-Rahman (Pengantin Al-Qur'an)",
+      "tr": "Rahmân Suresi (Kur'an'ın Gelini)",
+      "fr": "Sourate Ar-Rahman (La Mariée du Coran)"
+    },
+    "sub": {
+      "ur": "مکمل ۷۸ آیات — فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ مع پاکستانی رسم الخط",
+      "en": "Complete 78 verses — Which of the favors of your Lord will you deny?",
+      "ar": "78 آية كاملة تفيض برحمة الله وبيان آلائه ونعمه العظيمة",
+      "id": "Lengkap 78 ayat — Maka nikmat Tuhanmu manakah yang kamu dustakan?",
+      "tr": "Tam 78 ayet — Rabbinizin hangi nimetlerini yalanlayabilirsiniz?",
+      "fr": "78 versets complets énumérant les bienfaits infinis du Seigneur"
+    }
   },
-  manzil: {
-    icon: '🛡️',
-    title: { ur: 'منزل — قرآنی شفا و حفاظت', en: 'Manzil — Quranic Healing & Protection', ar: 'المنزل — رقية الحفظ والشفاء القرآني' },
-    sub: { ur: 'مکمل ۳۳ آیاتِ حفاظت — نظرِ بد، جادو اور شیاطین سے نبوی پناہ', en: 'Complete 33 verses for protection from evil eye, envy, and sorcery', ar: '33 آية مباركة للحفظ من العين والحسد والسحر' }
+  "manzil": {
+    "icon": "🛡️",
+    "title": {
+      "ur": "منزل — قرآنی شفا و حفاظت",
+      "en": "Manzil — Quranic Healing & Protection",
+      "ar": "المنزل — رقية الحفظ والشفاء القرآني",
+      "id": "Manzil — Ayat Syifa & Perlindungan",
+      "tr": "Menzil — Şifa ve Korunma Âyetleri",
+      "fr": "Manzil — Guérison & Protection Coranique"
+    },
+    "sub": {
+      "ur": "مکمل ۳۳ آیاتِ حفاظت — نظرِ بد، جادو اور شیاطین سے نبوی پناہ",
+      "en": "Complete 33 verses for protection from evil eye, envy, and sorcery",
+      "ar": "33 آية مباركة للتحصين من العين والحسد والسحر والشرور",
+      "id": "33 ayat penjaga dari gangguan sihir, ain, dan godaan setan",
+      "tr": "Nazar, büyü ve şerlerden korunmak için 33 şifa ayeti",
+      "fr": "33 versets de protection contre le mauvais œil et la sorcellerie"
+    }
   },
-  bedtime: {
-    icon: '🌙',
-    title: { ur: 'سونے کے مسنون اذکار و دعائیں', en: 'Bedtime Masnoon Adhkar & Protection', ar: 'أذكار النوم المأثورة والتحصين' },
-    sub: { ur: 'آیت الکرسی، آمن الرسول، تینوں قُل مع دم، تسبیح فاطمہؓ', en: 'Ayat-ul-Kursi, Amanar-Rasul, 3 Quls with dam, and Tasbeeh Fatimah', ar: 'آية الكرسي، خواتيم البقرة، المعوذات، وتسبيح فاطمة' }
+  "bedtime": {
+    "icon": "🌙",
+    "title": {
+      "ur": "سونے کے مسنون اذکار و دعائیں",
+      "en": "Bedtime Masnoon Adhkar & Protection",
+      "ar": "أذكار النوم المأثورة والتحصين",
+      "id": "Dzikir & Doa Sebelum Tidur",
+      "tr": "Yatmadan Önce Okunacak Dualar",
+      "fr": "Invocations Avant de Dormir"
+    },
+    "sub": {
+      "ur": "آیت الکرسی، آمن الرسول، تینوں قُل مع دم، تسبیح فاطمہؓ",
+      "en": "Ayat-ul-Kursi, Amanar-Rasul, 3 Quls with dam, and Tasbeeh Fatimah",
+      "ar": "آية الكرسي، خواتيم البقرة، المعوذات بالنفث، وتسبيح فاطمة",
+      "id": "Ayat Kursi, 2 ayat terakhir Al-Baqarah, 3 Qul, dan Tasbih Fatimah",
+      "tr": "Âyetü'l-Kürsî, Âmenerresûlü, Muavvizeteyn ve Fâtıma tesbihi",
+      "fr": "Ayat-ul-Kursi, fin de la Baqarah, 3 Quls et Tasbih de Fatima"
+    }
   },
-  tawbah: {
-    icon: '🤲',
-    title: { ur: 'سید الاستغفار و توبہ کے اذکار', en: 'Sayyidul Istighfar & Repentance Adhkar', ar: 'سيد الاستغفار وأذكار التوبة' },
-    sub: { ur: 'سید الاستغفار، آیتِ کریمہ اور نبوی بخشش کے اذکار', en: 'The Master Supplication for forgiveness, Ayat-e-Kareema, and repentance', ar: 'دعاء يونس عليه السلام وأعظم صيغ الاستغفار' }
+  "tawbah": {
+    "icon": "🤲",
+    "title": {
+      "ur": "سید الاستغفار و توبہ کے اذکار",
+      "en": "Sayyidul Istighfar & Repentance Adhkar",
+      "ar": "سيد الاستغفار وأذكار التوبة النصوح",
+      "id": "Sayyidul Istighfar & Doa Taubat",
+      "tr": "Seyyidü'l-İstiğfar ve Tövbe Duaları",
+      "fr": "Sayyidul Istighfar & Invocations de Repentir"
+    },
+    "sub": {
+      "ur": "سید الاستغفار، آیتِ کریمہ اور نبوی بخشش کے اذکار",
+      "en": "The Master Supplication for forgiveness, Ayat-e-Kareema, and repentance",
+      "ar": "أعظم صيغ الاستغفار ودعاء يونس عليه السلام لتفريج الكروب",
+      "id": "Doa istighfar paling utama dan doa Nabi Yunus AS di perut ikan",
+      "tr": "Tevbelerin şahı istiğfar ve Yunus Aleyhisselam'ın zikri",
+      "fr": "La maîtresse demande de pardon et l'invocation de Younous AS"
+    }
   },
-  post_salah: {
-    icon: '🧎',
-    title: { ur: 'فرض نماز کے بعد کے مسنون اذکار', en: 'Authentic After-Salah Adhkar', ar: 'أذكار ما بعد الصلوات المكتوبة' },
-    sub: { ur: 'استغفار، آیۃ الکرسی، تسبیح، اور حسنِ عبادت کی دعا', en: 'Istighfar, Ayat-ul-Kursi, Tasbeeh Fatimah, and dua for sincere worship', ar: 'الاستغفار، آية الكرسي، التسبيح، ودعاء الإعانة على الذكر' }
+  "post_salah": {
+    "icon": "🧎",
+    "title": {
+      "ur": "فرض نماز کے بعد کے مسنون اذکار",
+      "en": "Authentic After-Salah Adhkar",
+      "ar": "أذكار ما بعد الصلوات المكتوبة",
+      "id": "Dzikir Setelah Shalat Fardhu",
+      "tr": "Farz Namaz Sonrası Zikirler",
+      "fr": "Invocations Après la Prière Obligatoire"
+    },
+    "sub": {
+      "ur": "استغفار، آیۃ الکرسی، تسبیح، اور حسنِ عبادت کی دعا",
+      "en": "Istighfar, Ayat-ul-Kursi, Tasbeeh Fatimah, and sincere worship prayers",
+      "ar": "الاستغفار، آية الكرسي، التسبيح والتحميد، ودعاء الإعانة على الشكر",
+      "id": "Istighfar, Ayat Kursi, Tasbih, dan doa mohon ibadah yang baik",
+      "tr": "İstiğfar, Âyetü'l-Kürsî, tesbihat ve hayırlı ibadet duası",
+      "fr": "Demande de pardon, Ayat-ul-Kursi, Tasbih et invocations"
+    }
   },
-  morning_wake: {
-    icon: '🌅',
-    title: { ur: 'صبح بیدار ہونے کے مسنون اذکار', en: 'Waking Up Masnoon Adhkar', ar: 'أذكار الاستيقاظ من النوم' },
-    sub: { ur: 'الحمد للہ الذی احیانا اور تہجد و بیداری کا کلمۂ توحید', en: 'Praise to Allah Who revived us, and prayers upon waking', ar: 'الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور' }
+  "morning_wake": {
+    "icon": "🌅",
+    "title": {
+      "ur": "صبح بیدار ہونے کے مسنون اذکار",
+      "en": "Waking Up Masnoon Adhkar",
+      "ar": "أذكار الاستيقاظ من النوم",
+      "id": "Doa & Dzikir Bangun Tidur",
+      "tr": "Uykudan Uyanınca Okunacak Dualar",
+      "fr": "Invocations au Réveil"
+    },
+    "sub": {
+      "ur": "الحمد للہ الذی احیانا اور تہجد و بیداری کا کلمۂ توحید",
+      "en": "Praise to Allah Who revived us, and prayers upon waking at night",
+      "ar": "الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور ودعاء التعار",
+      "id": "Segala puji bagi Allah yang menghidupkan kami setelah mematikan",
+      "tr": "Bizi öldükten sonra dirilten Allah'a hamdolsun duası",
+      "fr": "Louange à Allah qui nous a rendu la vie après la mort"
+    }
   },
-  relief_debt: {
-    icon: '🤲',
-    title: { ur: 'قرض، غم و پریشانی سے نجات کی دعائیں', en: 'Duas for Debt, Worry & Distress', ar: 'أدعية تفريج الهم وقضاء الدين' },
-    sub: { ur: 'نبوی جامع دعائیں، ادائیگیِ قرض، اور لا حول و لا قوۃ', en: 'Prophetic supplications for relief of severe debt, sorrow, and trials', ar: 'أدعية نبوية مأثورة لتفريج الكرب وسداد الديون' }
+  "relief_debt": {
+    "icon": "🤲",
+    "title": {
+      "ur": "قرض، غم و پریشانی سے نجات کی دعائیں",
+      "en": "Duas for Debt, Worry & Distress",
+      "ar": "أدعية تفريج الهم وقضاء الدين والكرب",
+      "id": "Doa Pelunas Hutang & Penghilang Duka",
+      "tr": "Borçtan ve Gamdan Kurtuluş Duaları",
+      "fr": "Invocations Contre les Dettes & l'Angoisse"
+    },
+    "sub": {
+      "ur": "نبوی جامع دعائیں، ادائیگیِ قرض، اور لا حول و لا قوۃ",
+      "en": "Prophetic supplications for relief of debt, sorrow, and tribulations",
+      "ar": "الأدعية النبوية المأثورة لقضاء الديون الثقيلة وإزالة الهموم",
+      "id": "Doa Rasulullah ﷺ pelindung dari hutang menumpuk dan kesedihan",
+      "tr": "Borç ve kederden sığınmak için sahih nebevi dualar",
+      "fr": "Prières prophétiques pour le règlement des dettes et la sérénité"
+    }
   },
-  istikhara: {
-    icon: '🧭',
-    title: { ur: 'دعائے استخارہ مع طریقہ و رہنمائی', en: 'Dua-e-Istikhara with Complete Guidance', ar: 'دعاء الاستخارة والبيان النبوي' },
-    sub: { ur: 'ہر اہم فیصلے، رشتے، نوکری اور کاروبار میں خیر طلبی کی نبوی دعا', en: 'Seeking Allah\'s guidance in decisions, career, marriage and travel', ar: 'طلب الخيرة في سائر الأمور والمشاريع والقرارات' }
+  "istikhara": {
+    "icon": "🧭",
+    "title": {
+      "ur": "دعائے استخارہ مع طریقہ و رہنمائی",
+      "en": "Dua-e-Istikhara with Complete Guidance",
+      "ar": "دعاء الاستخارة والبيان النبوي الشريف",
+      "id": "Doa & Panduan Shalat Istikharah",
+      "tr": "İstihare Duası ve Rehberi",
+      "fr": "Invocation de la Consultation (Istikhara)"
+    },
+    "sub": {
+      "ur": "ہر اہم فیصلے، رشتے، نوکری اور کاروبار میں خیر طلبی کی نبوی دعا",
+      "en": "Seeking Allah's guidance in decisions, career, marriage and travel",
+      "ar": "طلب الخيرة من الله في كل شأن وزواج وسفر ومشروع وتجارة",
+      "id": "Memohon petunjuk terbaik Allah dalam urusan pekerjaan, jodoh, dan hidup",
+      "tr": "Her mühim kararda, evlilik ve ticarette hayrı dileme duası",
+      "fr": "Demander le meilleur choix à Allah dans toutes ses décisions"
+    }
   },
-  tauheed: {
-    icon: '☝️',
-    title: { ur: 'ذکرِ توحید و استغفار', en: 'Tauheed & Remembrance of Allah', ar: 'أذكار التوحيد والاستغفار' },
-    sub: { ur: 'لا الہ الا اللہ، کلماتِ تسبیح و حمد', en: 'La ilaha illallah, SubhanAllah, and supreme praises of Allah', ar: 'أعظم كلمات التوحيد والحمد والتسبيح' }
+  "tauheed": {
+    "icon": "☝️",
+    "title": {
+      "ur": "ذکرِ توحید و استغفار",
+      "en": "Tauheed & Remembrance of Allah",
+      "ar": "أذكار التوحيد والاستغفار والتهليل",
+      "id": "Dzikir Tauhid & Istighfar",
+      "tr": "Tevhid ve Zikirullah",
+      "fr": "Unicité (Tawhid) & Évocation"
+    },
+    "sub": {
+      "ur": "لا الہ الا اللہ، کلماتِ تسبیح و حمد",
+      "en": "La ilaha illallah, SubhanAllah, and supreme praises of Allah",
+      "ar": "لا إله إلا الله وكلمات التسبيح والتحميد والتكبير الجامعة",
+      "id": "Kalimat tauhid paling utama, tasbih, dan pujian kepada Allah",
+      "tr": "Lâ ilâhe illallâh ve en faziletli tesbih kelimeleri",
+      "fr": "La ilaha illallah et les formules sacrées de louange"
+    }
   },
-  tasbeeh: {
-    icon: '📿',
-    title: { ur: 'تسبیحِ فاطمہؓ (خودکار کاؤنٹر)', en: 'Tasbeeh of Fatimah (RA) Counter', ar: 'تسبيح فاطمة رضي الله عنها' },
-    sub: { ur: '۳۳ بار سبحان اللہ، ۳۳ بار الحمد للہ، ۳۴ بار اللہ اکبر', en: '33x SubhanAllah, 33x Alhamdulillah, 34x Allahu Akbar', ar: '33 سبحان الله، 33 الحمد لله، 34 الله أكبر' }
+  "tasbeeh": {
+    "icon": "📿",
+    "title": {
+      "ur": "تسبیحِ فاطمہؓ (خودکار کاؤنٹر)",
+      "en": "Tasbeeh of Fatimah (RA) Counter",
+      "ar": "تسبيح فاطمة الزهراء رضي الله عنها",
+      "id": "Tasbih Fatimah Az-Zahra (RA)",
+      "tr": "Fâtımatü'z-Zehrâ Tesbihi",
+      "fr": "Tasbih de Fatima (RA) Compteur"
+    },
+    "sub": {
+      "ur": "۳۳ بار سبحان اللہ، ۳۳ بار الحمد للہ، ۳۴ بار اللہ اکبر",
+      "en": "33x SubhanAllah, 33x Alhamdulillah, 34x Allahu Akbar",
+      "ar": "33 سبحان الله، 33 الحمد لله، 34 الله أكبر بعد كل صلاة وقبل النوم",
+      "id": "33x Subhanallah, 33x Alhamdulillah, 34x Allahu Akbar",
+      "tr": "33 Sübhanallah, 33 Elhamdülillah, 34 Allahuekber",
+      "fr": "33 SubhanAllah, 33 Alhamdulillah, 34 Allahu Akbar"
+    }
   },
-  custom: {
-    icon: '📝',
-    title: { ur: 'ذاتی اذکار و تسبیحات', en: 'Custom Adhkar & Tasbeeh Builder', ar: 'الأذكار المخصصة والتسابيح' },
-    sub: { ur: 'اپنی مرضی کے اذکار و دعائیں شامل اور کاؤنٹ کریں', en: 'Create, count, and track your personalized daily litanies', ar: 'إضافة ومتابعة أذكارك وأورادك الخاصة' }
+  "custom": {
+    "icon": "📝",
+    "title": {
+      "ur": "ذاتی اذکار و تسبیحات",
+      "en": "Custom Adhkar & Tasbeeh Builder",
+      "ar": "الأذكار المخصصة والتسابيح الشخصية",
+      "id": "Dzikir & Wirid Pribadi",
+      "tr": "Özel Zikir ve Tesbihat",
+      "fr": "Adhkar Personnalisés & Chapelet"
+    },
+    "sub": {
+      "ur": "اپنی مرضی کے اذکار و دعائیں شامل اور کاؤنٹ کریں",
+      "en": "Create, count, and track your personalized daily litanies",
+      "ar": "إضافة ومتابعة أورادك وأدعيتك الخاصة بسهولة ومرونة",
+      "id": "Tambah dan hitung doa atau wirid pilihan Anda sendiri",
+      "tr": "Kendi belirlediğiniz dua ve zikirleri ekleyip takip edin",
+      "fr": "Créez et comptez vos propres invocations quotidiennes"
+    }
   }
 };
 
@@ -5005,10 +5729,15 @@ try{
 }catch(e){}
 
 function applyLang(lang){
-  S.lang = lang || 'ur';
+  const SUPPORTED = ['ur', 'en', 'ar', 'id', 'tr', 'fr'];
+  const LTR_LIST = ['en', 'id', 'tr', 'fr'];
+  S.lang = SUPPORTED.includes(lang) ? lang : 'ur';
+  
   document.documentElement.lang = S.lang;
-  document.documentElement.dir = (S.lang === 'en') ? 'ltr' : 'rtl';
-  document.body.classList.toggle('lang-en', S.lang === 'en');
+  document.documentElement.dir = LTR_LIST.includes(S.lang) ? 'ltr' : 'rtl';
+  document.body.classList.toggle('lang-en', LTR_LIST.includes(S.lang));
+  document.body.classList.toggle('lang-ar', S.lang === 'ar');
+  document.body.classList.toggle('lang-ur', S.lang === 'ur');
   
   document.querySelectorAll('#modalLang .q-chip').forEach(b => {
     b.classList.toggle('active', b.dataset.lang === S.lang);
@@ -5023,44 +5752,25 @@ function applyLang(lang){
   const instBtn = document.getElementById('modalInstallAppBtn');
   if(instBtn) instBtn.textContent = (typeof deferredPrompt === 'undefined' || !deferredPrompt) ? t('installed_btn') : t('install_btn');
   
-  // Update section titles in settings modal
   const secTitles = document.querySelectorAll('#appSettingsModal .set-sec-title');
   if(secTitles && secTitles.length >= 6){
-    if(S.lang === 'en'){
-      secTitles[0].innerHTML = '<span class="sec-badge-icon">🌐</span> Language / زبان / اللغة';
-      secTitles[1].innerHTML = '<span class="sec-badge-icon">🔍</span> Screen Zoom & Font Size';
-      secTitles[2].innerHTML = '<span class="sec-badge-icon">🖋️</span> Quranic Arabic Font';
-      secTitles[3].innerHTML = '<span class="sec-badge-icon">🔕</span> Audio & Sound Modes';
-      secTitles[4].innerHTML = '<span class="sec-badge-icon">🎨</span> Eye Comfort Themes';
-      secTitles[5].innerHTML = '<span class="sec-badge-icon">📖</span> Quran Reading Preferences';
-    } else if(S.lang === 'ar'){
-      secTitles[0].innerHTML = '<span class="sec-badge-icon">🌐</span> اللغة / Language / زبان';
-      secTitles[1].innerHTML = '<span class="sec-badge-icon">🔍</span> تكبير الشاشة وحجم الخط';
-      secTitles[2].innerHTML = '<span class="sec-badge-icon">🖋️</span> الخط القرآني';
-      secTitles[3].innerHTML = '<span class="sec-badge-icon">🔕</span> الصوت والاهتزاز';
-      secTitles[4].innerHTML = '<span class="sec-badge-icon">🎨</span> المظهر وراحة العين';
-      secTitles[5].innerHTML = '<span class="sec-badge-icon">📖</span> خيارات القراءة والتلاوة';
-    } else {
-      secTitles[0].innerHTML = '<span class="sec-badge-icon">🌐</span> زبان / Language / اللغة';
-      secTitles[1].innerHTML = '<span class="sec-badge-icon">🔍</span> اسکرین زوم و فونٹ سائز (Zoom & Font Size)';
-      secTitles[2].innerHTML = '<span class="sec-badge-icon">🖋️</span> قرآنی خط و فونٹ (Quran Font)';
-      secTitles[3].innerHTML = '<span class="sec-badge-icon">🔕</span> آواز و مسجد موڈ (Audio & Sound)';
-      secTitles[4].innerHTML = '<span class="sec-badge-icon">🎨</span> رنگ و تھیم (Theme & Eye Comfort)';
-      secTitles[5].innerHTML = '<span class="sec-badge-icon">📖</span> ترتیباتِ تلاوت (Reading Preferences)';
-    }
+    secTitles[0].innerHTML = '<span class="sec-badge-icon">🌐</span> ' + t('lang_label');
+    secTitles[1].innerHTML = '<span class="sec-badge-icon">🔍</span> ' + t('zoom_label');
+    secTitles[2].innerHTML = '<span class="sec-badge-icon">🖋️</span> ' + t('font_label');
+    secTitles[3].innerHTML = '<span class="sec-badge-icon">🔕</span> ' + t('audio_label');
+    secTitles[4].innerHTML = '<span class="sec-badge-icon">🎨</span> ' + t('theme_label');
+    secTitles[5].innerHTML = '<span class="sec-badge-icon">📖</span> ' + t('kahf_pref_label');
   }
 
-  // Update sound buttons labels
   const sndChips = document.querySelectorAll('#settingsSndChips .snd-chip');
   if(sndChips.length >= 3){
-    sndChips[0].textContent = (S.lang === 'en') ? '🔔 Normal' : ((S.lang === 'ar') ? '🔔 عام' : '🔔 عام موڈ');
-    sndChips[1].textContent = (S.lang === 'en') ? '🔕 Masjid Mode' : ((S.lang === 'ar') ? '🔕 وضع المسجد' : '🔕 مسجد موڈ');
-    sndChips[2].textContent = (S.lang === 'en') ? '🔇 Silent' : ((S.lang === 'ar') ? '🔇 صامت' : '🔇 خاموش');
+    sndChips[0].textContent = (S.lang === 'ur') ? '🔔 عام موڈ' : ((S.lang === 'ar') ? '🔔 عام' : '🔔 Normal');
+    sndChips[1].textContent = (S.lang === 'ur') ? '🔕 مسجد موڈ' : ((S.lang === 'ar') ? '🔕 وضع المسجد' : '🔕 Masjid Mode');
+    sndChips[2].textContent = (S.lang === 'ur') ? '🔇 خاموش' : ((S.lang === 'ar') ? '🔇 صامت' : '🔇 Silent');
   }
 
-  // Update zoom reset button
   const zReset = document.getElementById('setZoomReset');
-  if(zReset) zReset.textContent = (S.lang === 'en') ? '↺ Default Size' : ((S.lang === 'ar') ? '↺ الحجم الافتراضي' : '↺ اصل سائز');
+  if(zReset) zReset.textContent = t('reset_zoom');
 
   save();
   render();
@@ -5494,7 +6204,7 @@ window.addEventListener('appinstalled',()=>{
 try {
   const urlP = new (globalThis.URLSearchParams)(window.location.search);
   const qLang = urlP.get('lang');
-  if(qLang && ['ur','en','ar'].includes(qLang)) {
+  if(qLang && ['ur','en','ar','id','tr','fr'].includes(qLang)) {
     S.lang = qLang;
     save();
   }
