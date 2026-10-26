@@ -1681,7 +1681,7 @@ html[lang="ar"] .dam-box {
 <div class="comp" id="compScreen">
   <div style="font-size:3rem;animation:glowPulse 2s infinite">🌿</div>
   <div style="font-family:var(--qfont);font-size:1.45rem;color:var(--gold2);direction:rtl;line-height:2">اَلْحَمْدُ لِلَّهِ</div>
-  <div style="font-family:'Noto Nastaliq Urdu',serif;font-size:1rem;color:var(--g2);line-height:2.1" id="compMsg"></div>
+  <div style="font-family:var(--ur-font);font-size:1rem;color:var(--g2);line-height:2.1" id="compMsg"></div>
   <div style="display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:center;margin-top:.45rem">
     <button type="button" class="comp-btn" id="restartBtn">↺ دوبارہ شروع کریں</button>
     <button type="button" class="comp-btn" id="compHomeBtn" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:var(--text2);box-shadow:none">🏠 مرکزی صفحہ</button>
@@ -4057,6 +4057,268 @@ function getDuaField(sec, idx, field, defaultVal){
   return getLoc(defaultVal);
 }
 
+const SECTION_I18N = {
+  asr: {
+    badge: {
+      ur: '☀️ جمعہ — نمازِ عصر کے بعد — ۸۰ مرتبہ',
+      ar: '☀️ يوم الجمعة — بعد صلاة العصر — 80 مرة',
+      en: '☀️ Friday — After Asr Salah — 80 Times',
+      id: '☀️ Hari Jumat — Setelah Shalat Ashar — 80 Kali',
+      tr: '☀️ Cuma Günü — İkindi Namazından Sonra — 80 Kez',
+      fr: '☀️ Vendredi — Après la Prière d\'Asr — 80 Fois'
+    },
+    note: {
+      ur: 'جمعہ کے دن نمازِ عصر کے بعد جگہ سے اٹھنے سے پہلے ۸۰ مرتبہ پڑھیں —<br/><strong>روایت کے مفہوم کے مطابق ۸۰ سال کے گناہ معاف اور ۸۰ سال کا ثواب ملتا ہے</strong><span style="font-size:.7rem;color:var(--gold);display:block;margin-top:.2rem">(القول البديع — الإمام السخاوي)</span>',
+      ar: 'تُقرأ 80 مرة يوم الجمعة بعد صلاة العصر قبل أن يقوم من مقامه —<br/><strong>تُغفر له ذنوب ثمانين عاماً وتُكتب له عبادة ثمانين سنة</strong><span style="font-size:.7rem;color:var(--gold);display:block;margin-top:.2rem">(القول البديع في الصلاة على الحبيب الشفيع — الإمام السخاوي)</span>',
+      en: 'Recite 80 times after Asr prayer on Friday before standing up —<br/><strong>Forgiveness of 80 years of sins and reward of 80 years of worship</strong><span style="font-size:.7rem;color:var(--gold);display:block;margin-top:.2rem">(Al-Qawl al-Badee\' — Imam al-Sakhawi)</span>',
+      id: 'Dibaca 80 kali pada hari Jumat setelah shalat Ashar sebelum berdiri dari tempat —<br/><strong>Diampuni dosa 80 tahun dan dicatat pahala ibadah 80 tahun</strong><span style="font-size:.7rem;color:var(--gold);display:block;margin-top:.2rem">(Al-Qawl al-Badi\' — Imam as-Sakhawi)</span>',
+      tr: 'Cuma günü ikindi namazından sonra yerinden kalkmadan önce 80 defa okunur —<br/><strong>80 yıllık günahları bağışlanır ve 80 yıllık ibadet sevabı yazılır</strong><span style="font-size:.7rem;color:var(--gold);display:block;margin-top:.2rem">(el-Kavlü\'l-Bedî\' — İmam Sehâvî)</span>',
+      fr: 'À réciter 80 fois le vendredi après la prière d\'Asr avant de se lever —<br/><strong>Pardon de 80 ans de péchés et récompense de 80 ans d\'adoration</strong><span style="font-size:.7rem;color:var(--gold);display:block;margin-top:.2rem">(Al-Qawl al-Badee\' — Imam al-Sakhawi)</span>'
+    },
+    duaName: {
+      ur: 'درودِ نبی اُمّی ﷺ — ۸۰ مرتبہ',
+      ar: 'الصلاة على النبي الأمي ﷺ — 80 مرة',
+      en: 'Durood on the Unlettered Prophet ﷺ — 80 Times',
+      id: 'Shalawat kepada Nabi yang Ummi ﷺ — 80 Kali',
+      tr: 'Ümmî Peygamber\'e Salavat ﷺ — 80 Kez',
+      fr: 'Salawat sur le Prophète Illettré ﷺ — 80 Fois'
+    },
+    doneLabel: {
+      ur: 'مکمل!',
+      ar: 'اكتمل!',
+      en: 'Complete!',
+      id: 'Selesai!',
+      tr: 'Tamamlandı!',
+      fr: 'Terminé !'
+    },
+    ofLabel: {
+      ur: 'از ۸۰',
+      ar: 'من 80',
+      en: 'of 80',
+      id: 'dari 80',
+      tr: '/ 80',
+      fr: 'sur 80'
+    }
+  },
+  tasbeeh: {
+    badge: {
+      ur: '📿 تسبیحِ فاطمہؓ — مرحلہ {p}/3',
+      ar: '📿 تسبيح فاطمة رضي الله عنها — المرحلة {p}/3',
+      en: '📿 Tasbeeh of Fatimah (RA) — Phase {p}/3',
+      id: '📿 Tasbih Fatimah (RA) — Tahap {p}/3',
+      tr: '📿 Fâtıma Tesbihi (RA) — Aşama {p}/3',
+      fr: '📿 Tasbih de Fatima (RA) — Phase {p}/3'
+    },
+    faz: {
+      ur: 'ہر نماز کے بعد اور رات کو سوتے وقت ۳۳ بار سبحان اللّٰہ، ۳۳ بار الحمد للّٰہ، اور ۳۴ بار اللّٰہ اکبر پڑھنا افضل ترین وِرد ہے (صحیح البخاری: ۳۱۱۳)',
+      ar: 'يُستحب بعد كل صلاة مكتوبة وعند النوم: سبحان الله 33 مرة، والحمد لله 33 مرة، والله أكبر 34 مرة (صحيح البخاري: 3113)',
+      en: 'Recite SubhanAllah 33x, Alhamdulillah 33x, Allahu Akbar 34x after every obligatory Salah and before sleeping (Sahih al-Bukhari: 3113).',
+      id: 'Membaca Subhanallah 33x, Alhamdulillah 33x, Allahu Akbar 34x setelah shalat fardhu dan sebelum tidur (Shahih al-Bukhari: 3113).',
+      tr: 'Her farz namazdan sonra ve yatmadan önce 33 kez Sübhânallâh, 33 kez Elhamdülillâh, 34 kez Allâhu Ekber okunur (Sahih Buhârî: 3113).',
+      fr: 'Réciter SubhanAllah 33x, Alhamdulillah 33x, Allahu Akbar 34x après chaque prière obligatoire et avant de dormir (Sahih al-Bukhari: 3113).'
+    }
+  },
+  asma: {
+    title: {
+      ur: 'اَسْمَاءُ اللّٰهِ الْحُسْنٰی',
+      ar: 'أَسْمَاءُ اللّٰهِ الْحُسْنَى',
+      en: 'The 99 Beautiful Names of Allah',
+      id: '99 Asmaul Husna',
+      tr: '99 Esmâü\'l-Hüsnâ',
+      fr: 'Les 99 Noms d\'Allah'
+    },
+    meta: {
+      ur: 'اللہ تعالیٰ کے ۹۹ صفاتی نام مع اردو معانی<br/>"إِنَّ لِلَّهِ تِسْعَةً وَتِسْعِينَ اسْمًا مَنْ أَحْصَاهَا دَخَلَ الْجَنَّةَ" (صحیح بخاری: ۲۷۳۶) • ۱۰۰٪ آف لائن',
+      ar: 'الأسماء الحسنى لله تبارك وتعالى ومعانيها الجليلة<br/>"إِنَّ لِلَّهِ تِسْعَةً وَتِسْعِينَ اسْمًا مَنْ أَحْصَاهَا دَخَلَ الْجَنَّةَ" (صحيح البخاري: 2736) • 100% دون إنترنت',
+      en: 'The 99 Divine Attributes of Allah with authentic English meanings<br/>"Allah has ninety-nine names; whoever enumerates them will enter Paradise" (Sahih Bukhari: 2736) • 100% Offline',
+      id: '99 Nama-Nama Allah yang Maha Indah beserta maknanya<br/>"Sesungguhnya Allah memiliki 99 nama, barangsiapa menghafalnya niscaya masuk surga" (Shahih al-Bukhari: 2736) • 100% Offline',
+      tr: 'Allah Teâlâ\'nın 99 Güzel İsmi ve Anlamları<br/>"Allah\'ın 99 ismi vardır. Kim bunları ezberlerse cennete girer" (Sahih Buhârî: 2736) • %100 Çevrimdışı',
+      fr: 'Les 99 Plus Beaux Noms d\'Allah et leurs significations<br/>"Certes, Allah a 99 noms ; quiconque les retient entrera au Paradis" (Sahih al-Bukhari: 2736) • 100% Hors Ligne'
+    }
+  },
+  surahs: {
+    kahf: {
+      ur: (isIndopak) => `مکمل سورۃ — ۱۱۰ آیات — ۱۲ رکوع (${isIndopak ? 'رسمِ ہند-پاک' : 'رسمِ عثمانی'})<br/>ہر جمعہ تلاوت سنت ہے • ۱۰۰٪ آف لائن — بغیر انٹرنیٹ کے`,
+      ar: (isIndopak) => `سورة كاملة — 110 آيات — 12 ركوعاً (${isIndopak ? 'الرسم الباكستاني' : 'الرسم العثماني'})<br/>قراءتها سنة يوم الجمعة للنور والعصمة من فتنة الدجال • 100% دون إنترنت`,
+      en: (isIndopak) => `Complete Surah — 110 Verses — 12 Ruku (${isIndopak ? 'Indo-Pak Script' : 'Uthmanic Script'})<br/>Friday Sunnah Recitation for light and protection from Dajjal • 100% Offline`,
+      id: (isIndopak) => `Surah Lengkap — 110 Ayat — 12 Ruku (${isIndopak ? 'Rasm Indo-Pak' : 'Rasm Utsmani'})<br/>Sunnah Hari Jumat sebagai cahaya & perlindungan dari Dajjal • 100% Offline`,
+      tr: (isIndopak) => `Tam Sure — 110 Âyet — 12 Rükû (${isIndopak ? 'Hint-Pak Hattı' : 'Osmanî Hat'})<br/>Cuma günü sünnet tilavet • %100 Çevrimdışı`,
+      fr: (isIndopak) => `Sourate Complète — 110 Versets — 12 Ruku (${isIndopak ? 'Style Indo-Pak' : 'Style Othmani'})<br/>Récitation Sunnah du Vendredi pour la lumière et protection contre le Dajjal • 100% Hors Ligne`
+    },
+    mulk: {
+      ur: (isIndopak) => `مکمل سورۃ — ۳۰ آیات — ۲ رکوع (${isIndopak ? 'رسمِ ہند-پاک' : 'رسمِ عثمانی'})<br/>رات کو پڑھنا عذابِ قبر سے نجات اور شفاعت کا ذریعہ ہے • ۱۰۰٪ آف لائن`,
+      ar: (isIndopak) => `سورة كاملة — 30 آية — ركوعان (${isIndopak ? 'الرسم الباكستاني' : 'الرسم العثماني'})<br/>تُقرأ كل ليلة للنجاة من عذاب القبر والشفاعة لقارئها • 100% دون إنترنت`,
+      en: (isIndopak) => `Complete Surah — 30 Verses — 2 Ruku (${isIndopak ? 'Indo-Pak Script' : 'Uthmanic Script'})<br/>Recited nightly for intercession and protection from grave punishment • 100% Offline`,
+      id: (isIndopak) => `Surah Lengkap — 30 Ayat — 2 Ruku (${isIndopak ? 'Rasm Indo-Pak' : 'Rasm Utsmani'})<br/>Dibaca setiap malam untuk perlindungan dari siksa kubur • 100% Offline`,
+      tr: (isIndopak) => `Tam Sure — 30 Âyet — 2 Rükû (${isIndopak ? 'Hint-Pak Hattı' : 'Osmanî Hat'})<br/>Kabir azabından korunma ve şefaat vesilesi • %100 Çevrimdışı`,
+      fr: (isIndopak) => `Sourate Complète — 30 Versets — 2 Ruku (${isIndopak ? 'Style Indo-Pak' : 'Style Othmani'})<br/>Récitée chaque nuit pour la protection du châtiment de la tombe • 100% Hors Ligne`
+    },
+    waqiah: {
+      ur: (isIndopak) => `مکمل سورۃ — ۹۶ آیات — ۳ رکوع (${isIndopak ? 'رسمِ ہند-پاک' : 'رسمِ عثمانی'})<br/>مغرب یا عشاء کے بعد پڑھنا فقر و فاقہ سے حفاظت اور برکت کا ذریعہ ہے • ۱۰۰٪ آف لائن`,
+      ar: (isIndopak) => `سورة كاملة — 96 آية — 3 ركوعات (${isIndopak ? 'الرسم الباكستاني' : 'الرسم العثماني'})<br/>قراءتها كل ليلة أمان من الفاقة والفقر وجالبة للبركة • 100% دون إنترنت`,
+      en: (isIndopak) => `Complete Surah — 96 Verses — 3 Ruku (${isIndopak ? 'Indo-Pak Script' : 'Uthmanic Script'})<br/>Shield against poverty and brings barakah in sustenance • 100% Offline`,
+      id: (isIndopak) => `Surah Lengkap — 96 Ayat — 3 Ruku (${isIndopak ? 'Rasm Indo-Pak' : 'Rasm Utsmani'})<br/>Pelindung dari kemiskinan dan pembawa keberkahan rezeki • 100% Offline`,
+      tr: (isIndopak) => `Tam Sure — 96 Âyet — 3 Rükû (${isIndopak ? 'Hint-Pak Hattı' : 'Osmanî Hat'})<br/>Fakirlikten korunma ve rızık bereketi vesilesi • %100 Çevrimdışı`,
+      fr: (isIndopak) => `Sourate Complète — 96 Versets — 3 Ruku (${isIndopak ? 'Style Indo-Pak' : 'Style Othmani'})<br/>Préservation de la pauvreté et bénédiction dans la subsistance • 100% Hors Ligne`
+    },
+    rahman: {
+      ur: (isIndopak) => `مکمل سورۃ — ۷۸ آیات — ۳ رکوع (${isIndopak ? 'رسمِ ہند-پاک' : 'رسمِ عثمانی'})<br/>عُرُوْسُ الْقُرْآن (قرآن کی دلہن) — فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ • ۱۰۰٪ آف لائن`,
+      ar: (isIndopak) => `سورة كاملة — 78 آية — 3 ركوعات (${isIndopak ? 'الرسم الباكستاني' : 'الرسم العثماني'})<br/>عَرُوسُ الْقُرْآن — في تعداد نعم الله العظيمة وآلائه • 100% دون إنترنت`,
+      en: (isIndopak) => `Complete Surah — 78 Verses — 3 Ruku (${isIndopak ? 'Indo-Pak Script' : 'Uthmanic Script'})<br/>Beauty of the Quran (Uroos-ul-Quran) • 100% Offline`,
+      id: (isIndopak) => `Surah Lengkap — 78 Ayat — 3 Ruku (${isIndopak ? 'Rasm Indo-Pak' : 'Rasm Utsmani'})<br/>Keindahan Al-Quran (Pengantin Al-Quran) • 100% Offline`,
+      tr: (isIndopak) => `Tam Sure — 78 Âyet — 3 Rükû (${isIndopak ? 'Hint-Pak Hattı' : 'Osmanî Hat'})<br/>Kur'an-ı Kerim'in Gelini (Arûsü'l-Kur'ân) • %100 Çevrimdışı`,
+      fr: (isIndopak) => `Sourate Complète — 78 Versets — 3 Ruku (${isIndopak ? 'Style Indo-Pak' : 'Style Othmani'})<br/>La Parure du Coran (Épouse du Coran) • 100% Hors Ligne`
+    },
+    manzil: {
+      ur: (isIndopak) => `مکمل منزل — ۳۳ آیاتِ حفاظت مع ۴ حصے (${isIndopak ? 'رسمِ ہند-پاک' : 'رسمِ عثمانی'})<br/>نظرِ بد، آسیب، جادو اور ہر قسم کے شرور سے قرآنی و نبوی پناہ • ۱۰۰٪ آف لائن`,
+      ar: (isIndopak) => `آيات الحرز والشفاء (المنزل) — 33 آية كاملة (${isIndopak ? 'الرسم الباكستاني' : 'الرسم العثماني'})<br/>للحفظ من العين والحسد والسحر والشرور (الرقية الشرعية) • 100% دون إنترنت`,
+      en: (isIndopak) => `Complete Manzil — 33 Verses in 4 Parts (${isIndopak ? 'Indo-Pak Script' : 'Uthmanic Script'})<br/>Prophetic protection from evil eye, envy, and sorcery • 100% Offline`,
+      id: (isIndopak) => `Manzil Lengkap — 33 Ayat Perlindungan (${isIndopak ? 'Rasm Indo-Pak' : 'Rasm Utsmani'})<br/>Perlindungan Nabawi dari pandangan mata jahat (ain), sihir & marabahaya • 100% Offline`,
+      tr: (isIndopak) => `Tam Menzil — 33 Şifa ve Korunma Âyeti (${isIndopak ? 'Hint-Pak Hattı' : 'Osmanî Hat'})<br/>Nazar, haset, büyü ve her türlü şerden korunma • %100 Çevrimdışı`,
+      fr: (isIndopak) => `Manzil Complet — 33 Versets de Protection (${isIndopak ? 'Style Indo-Pak' : 'Style Othmani'})<br/>Protection prophétique contre le mauvais œil, la jalousie et la sorcellerie • 100% Hors Ligne`
+    }
+  },
+  completion: {
+    fajr: {
+      ur: 'ماشاءاللہ! فجر/مغرب کے اذکار مکمل 🌅',
+      ar: 'ما شاء الله! اكتملت أذكار الصباح والمساء 🌅',
+      en: 'Masha\'Allah! Morning & Evening Adhkar completed 🌅',
+      id: 'Masya Allah! Dzikir Pagi & Petang telah selesai 🌅',
+      tr: 'Maşâallah! Sabah ve Akşam zikirleri tamamlandı 🌅',
+      fr: 'Macha\'Allah ! Invocations du Matin & Soir terminées 🌅'
+    },
+    jumma: {
+      ur: 'ماشاءاللہ! جمعہ کا مکمل وِرد ادا ہوگیا 🌙',
+      ar: 'ما شاء الله! اكتمل ورد يوم الجمعة المبارك 🌙',
+      en: 'Masha\'Allah! Friday Sunnah Adhkar completed 🌙',
+      id: 'Masya Allah! Wirid Hari Jumat telah selesai 🌙',
+      tr: 'Maşâallah! Cuma Sünnet Virdi tamamlandı 🌙',
+      fr: 'Macha\'Allah ! Invocations du Vendredi terminées 🌙'
+    },
+    tauheed: {
+      ur: 'ماشاءاللہ! ذکرِ توحید مکمل ہوگیا ☝️',
+      ar: 'ما شاء الله! اكتمل ذكر التوحيد والتهليل ☝️',
+      en: 'Masha\'Allah! Tauheed & Praise Adhkar completed ☝️',
+      id: 'Masya Allah! Dzikir Tauhid telah selesai ☝️',
+      tr: 'Maşâallah! Tevhid Zikirleri tamamlandı ☝️',
+      fr: 'Macha\'Allah ! Invocations du Tawhid terminées ☝️'
+    },
+    bedtime: {
+      ur: 'ماشاءاللہ! سونے کے مسنون اذکار مکمل 🌙',
+      ar: 'ما شاء الله! اكتملت أذكار النوم 🌙',
+      en: 'Masha\'Allah! Bedtime Sunnah Adhkar completed 🌙',
+      id: 'Masya Allah! Dzikir Sebelum Tidur telah selesai 🌙',
+      tr: 'Maşâallah! Yatış Duaları tamamlandı 🌙',
+      fr: 'Macha\'Allah ! Invocations du Soir terminées 🌙'
+    },
+    tawbah: {
+      ur: 'ماشاءاللہ! استغفار و توبہ کے اذکار مکمل 🤲',
+      ar: 'ما شاء الله! اكتمل سيد الاستغفار والتوبة 🤲',
+      en: 'Masha\'Allah! Sayyidul Istighfar & Tawbah completed 🤲',
+      id: 'Masya Allah! Istighfar & Taubat telah selesai 🤲',
+      tr: 'Maşâallah! İstiğfar ve Tevbe tamamlandı 🤲',
+      fr: 'Macha\'Allah ! Invocations du Pardon terminées 🤲'
+    },
+    post_salah: {
+      ur: 'ماشاءاللہ! بعد از نماز کے اذکار مکمل 🧎',
+      ar: 'ما شاء الله! اكتملت أذكار ما بعد الصلاة 🧎',
+      en: 'Masha\'Allah! After Salah Adhkar completed 🧎',
+      id: 'Masya Allah! Dzikir Setelah Shalat telah selesai 🧎',
+      tr: 'Maşâallah! Namaz Sonrası Zikirler tamamlandı 🧎',
+      fr: 'Macha\'Allah ! Invocations Après Prière terminées 🧎'
+    },
+    morning_wake: {
+      ur: 'ماشاءاللہ! صبح بیداری کے اذکار مکمل 🌅',
+      ar: 'ما شاء الله! اكتملت أذكار الاستيقاظ 🌅',
+      en: 'Masha\'Allah! Waking Up Adhkar completed 🌅',
+      id: 'Masya Allah! Doa Bangun Tidur telah selesai 🌅',
+      tr: 'Maşâallah! Uyanış Duaları tamamlandı 🌅',
+      fr: 'Macha\'Allah ! Invocations au Réveil terminées 🌅'
+    },
+    relief_debt: {
+      ur: 'ماشاءاللہ! دعائیں مکمل — اللہ نجات عطا فرمائے 🤲',
+      ar: 'ما شاء الله! اكتملت أدعية تفريج الكرب والدين 🤲',
+      en: 'Masha\'Allah! Relief from Debt & Grief Duas completed 🤲',
+      id: 'Masya Allah! Doa Pelunas Hutang & Duka telah selesai 🤲',
+      tr: 'Maşâallah! Borç ve Keder Duaları tamamlandı 🤲',
+      fr: 'Macha\'Allah ! Invocations Contre les Dettes terminées 🤲'
+    },
+    istikhara: {
+      ur: 'ماشاءاللہ! دعائے استخارہ مکمل — اللہ برکت فرمائے 🧭',
+      ar: 'ما شاء الله! اكتمل دعاء الاستخارة المبارك 🧭',
+      en: 'Masha\'Allah! Dua-e-Istikhara completed 🧭',
+      id: 'Masya Allah! Doa Shalat Istikharah telah selesai 🧭',
+      tr: 'Maşâallah! İstihare Duası tamamlandı 🧭',
+      fr: 'Macha\'Allah ! Prière d\'Istikhara terminée 🧭'
+    },
+    durood_pak: {
+      ur: 'ماشاءاللہ! درود شریف کا وِرد مکمل — شفاعت و رحمت 🌹',
+      ar: 'ما شاء الله! اكتملت مجموعة الصلاة على النبي ﷺ 🌹',
+      en: 'Masha\'Allah! Durood Collection completed — Blessings & Peace 🌹',
+      id: 'Masya Allah! Kumpulan Shalawat telah selesai dibaca 🌹',
+      tr: 'Maşâallah! Salavat Mecmuası tamamlandı 🌹',
+      fr: 'Macha\'Allah ! Recueil de Salawat terminé 🌹'
+    },
+    asr: {
+      ur: 'ماشاءاللہ! جمعہ عصر درود شریف (۸۰ مرتبہ) مکمل ہوگیا ☀️',
+      ar: 'ما شاء الله! اكتملت الصلاة على النبي عصر الجمعة (80 مرة) ☀️',
+      en: 'Masha\'Allah! Friday Asr Durood (80 Times) completed ☀️',
+      id: 'Masya Allah! Shalawat Ashar Jumat (80 Kali) telah selesai ☀️',
+      tr: 'Maşâallah! Cuma İkindi Salavatı (80 Kez) tamamlandı ☀️',
+      fr: 'Macha\'Allah ! Salawat du Vendredi après Asr (80 Fois) terminée ☀️'
+    },
+    tasbeeh: {
+      ur: 'ماشاءاللہ! تسبیحِ فاطمہؓ مکمل ہوگئی 📿',
+      ar: 'ما شاء الله! اكتملت تسبيح فاطمة رضي الله عنها 📿',
+      en: 'Masha\'Allah! Tasbeeh of Fatimah (RA) completed 📿',
+      id: 'Masya Allah! Tasbih Fatimah (RA) telah selesai 📿',
+      tr: 'Maşâallah! Fâtıma Tesbihi (RA) tamamlandı 📿',
+      fr: 'Macha\'Allah ! Tasbih de Fatima (RA) terminé 📿'
+    },
+    custom: {
+      ur: 'ماشاءاللہ! تمام ذاتی اذکار مکمل ہوگئے 🌿',
+      ar: 'ما شاء الله! اكتملت جميع الأذكار المخصصة 🌿',
+      en: 'Masha\'Allah! All Custom Adhkar completed 🌿',
+      id: 'Masya Allah! Semua Dzikir Pribadi telah selesai 🌿',
+      tr: 'Maşâallah! Tüm Özel Zikirler tamamlandı 🌿',
+      fr: 'Macha\'Allah ! Tous les Adhkar Personnalisés sont terminés 🌿'
+    }
+  }
+};
+
+function getSectionCompleteMsg(secId){
+  const l = getActiveLang();
+  if (SECTION_I18N.completion && SECTION_I18N.completion[secId]) {
+    return SECTION_I18N.completion[secId][l] || SECTION_I18N.completion[secId].en || SECTION_I18N.completion[secId].ur;
+  }
+  // Dynamic universal auto-fallback for any future new section:
+  const curMeta = (typeof SECS !== 'undefined') ? SECS.find(m => m.id === secId) : null;
+  const title = curMeta ? getLoc(curMeta.title) : secId;
+  const templates = {
+    ur: `ماشاءاللہ! ${title} مکمل ہوگیا 🌿`,
+    ar: `ما شاء الله! اكتمل ${title} 🌿`,
+    en: `Masha'Allah! ${title} completed 🌿`,
+    id: `Masya Allah! ${title} telah selesai 🌿`,
+    tr: `Maşâallah! ${title} tamamlandı 🌿`,
+    fr: `Macha'Allah ! ${title} terminé 🌿`
+  };
+  return templates[l] || templates.en || templates.ur;
+}
+
+function showCompletionScreen(curSecId){
+  const compMsg = document.getElementById('compMsg');
+  const rBtn = document.getElementById('restartBtn');
+  const hBtn = document.getElementById('compHomeBtn');
+  if(rBtn) rBtn.textContent = t('restart_btn') || '↺ دوبارہ شروع کریں';
+  if(hBtn) hBtn.textContent = t('home_btn') || '🏠 مرکزی صفحہ';
+  if(compMsg) {
+    compMsg.style.fontFamily = 'var(--ur-font)';
+    compMsg.textContent = getSectionCompleteMsg(curSecId);
+  }
+  document.getElementById('compScreen')?.classList.add('show');
+}
+
+
 /* ══ STATE ══ */
 const SECS=[
   {id:'welcome',     icon:'🕌',title:{ur:'خوش آمدید (صفحۂ اول)',en:'Home Dashboard',ar:'الرئيسية',id:'Beranda Utama',tr:'Ana Sayfa',fr:'Accueil'}, ct:{ur:'ہوم',en:'Home',ar:'الرئيسية',id:'Beranda',tr:'Ana Sayfa',fr:'Accueil'}},
@@ -5077,13 +5339,18 @@ function render(){
   const total=steps.length,cnt=st.cnt,done=cnt>=step.target;
   const color=sec==='jumma'?'#a855f7':'var(--g1)';
   document.getElementById('progBar').style.width=((st.idx+(done?1:cnt/step.target))/total*100)+'%';
-  const grp=(sec==='fajr'&&step.grp)?`<div class="sec-label">📌 ${step.grp}</div>`:'';
+  const grpName = getDuaField(sec, st.idx, 'grp', step.grp);
+  const grp=(sec==='fajr'&&grpName)?`<div class="sec-label">📌 ${grpName}</div>`:'';
   let h=`<div class="sp"><div class="step-badge"><div class="sdot" style="background:${color}"></div><span>${st.idx+1} / ${total}</span><div class="sdot" style="background:${color}"></div></div>${grp}`;
   if(step.isDm){
+    const damDoneLabel = t('done') || 'مکمل';
+    const l = getActiveLang();
+    const damBlowLabel = (l==='ar') ? 'انفث واختم' : ((l==='en'||l==='id'||l==='tr'||l==='fr') ? 'Blow & Finish' : 'تسلیم');
+    const curFaz = getDuaField(sec, st.idx, "faz", step.faz);
     h+=`<div class="dam-box"><strong>${t("dam_title")}</strong><br/><br/>${t("dam_desc")}</div>
     <div style="margin:.45rem 0"><div id="dmBtn" style="width:112px;height:112px;margin:0 auto;border-radius:50%;background:radial-gradient(circle at 38% 32%,#0d1e0f,var(--bg));border:1px solid rgba(60,179,113,.25);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;">
-    ${done?'<div style="font-size:1.9rem">✅</div><div style="font-size:.68rem;color:var(--g2);margin-top:3px">مکمل</div>':'<div style="font-size:2rem">🫁</div><div style="font-size:.65rem;color:var(--text2);margin-top:3px">تسلیم</div>'}
-    </div></div><div class="faz-body open" style="display:block">${step.faz}</div>`;
+    ${done?`<div style="font-size:1.9rem">✅</div><div style="font-size:.68rem;color:var(--g2);margin-top:3px">${damDoneLabel}</div>`:`<div style="font-size:2rem">🫁</div><div style="font-size:.65rem;color:var(--text2);margin-top:3px">${damBlowLabel}</div>`}
+    </div></div><div class="faz-body open" style="display:block">${curFaz}</div>`;
   } else {
     const txt=step.ar,hasBismi=txt.startsWith('بِسْمِ اللّٰهِ')&&txt.includes('\n');
     let bismi='',body=txt;
@@ -5092,15 +5359,19 @@ function render(){
       bismi=txt.slice(0,nl);
       body=txt.slice(nl+1);
     }
+    const curName = getDuaField(sec, st.idx, "name", step.name);
+    const curFaz  = getDuaField(sec, st.idx, "faz", step.faz);
+    const curRef  = getDuaField(sec, st.idx, "ref", step.ref);
     h+=`<div class="dua-card">${bismi?`<span class="bismi">${bismi}</span>`:''}
       <div class="ar">${body.replace(/\n/g,'<br/>')}</div>
-      <div class="dua-name">${getDuaField(sec, st.idx, "name", step.name)}</div></div>
+      <div class="dua-name">${curName}</div></div>
     <button type="button" class="faz-btn" onclick="toggleFaz(this)">${t("faz_btn")}</button>
-    <div class="faz-body">${step.faz}${step.ref?`<span class="faz-ref">${step.ref}</span>`:''}</div>
+    <div class="faz-body">${curFaz}${curRef?`<span class="faz-ref">${curRef}</span>`:''}</div>
     ${ring(cnt,step.target,color,done)}`;
   }
   const isLast=st.idx===total-1;
-  h+=`<div class="ctrls"><button type="button" class="btn" id="prevB" ${st.idx===0?'disabled':''}>${t("prev")}</button><button type="button" class="btn" id="undoB">${t("undo")}</button><button type="button" class="btn next" id="nextB">${done?(isLast?'🌿 ختم':'اگلا →'):'آگے →'}</button></div></div>`;
+  const nextBtnLabel = done ? (isLast ? t("finish") : t("next")) : t("advance");
+  h+=`<div class="ctrls"><button type="button" class="btn" id="prevB" ${st.idx===0?'disabled':''}>${t("prev")}</button><button type="button" class="btn" id="undoB">${t("undo")}</button><button type="button" class="btn next" id="nextB">${nextBtnLabel}</button></div></div>`;
   mc.innerHTML=h;
   document.getElementById('rw')?.addEventListener('click',tap);
   document.getElementById('dmBtn')?.addEventListener('click',()=>{if(!done){S[sec].done[S[sec].idx]=true;save();render();}});
@@ -5112,23 +5383,22 @@ function render(){
 function renderAsr(mc){
   const cnt=S.asr.cnt,done=S.asr.done,off=CIRC*(1-Math.min(cnt/80,1));
   document.getElementById('progBar').style.width=(Math.min(cnt/80,1)*100)+'%';
-  const isEn = (typeof S !== 'undefined' && S && S.lang === 'en');
-  const badgeText = isEn ? '☀️ Friday — After Asr Salah — 80 Times' : '☀️ جمعہ — نمازِ عصر کے بعد — ۸۰ مرتبہ';
-  const noteHtml = isEn
-    ? 'Recite 80 times after Asr prayer on Friday before standing up —<br/><strong>Forgiveness of 80 years of sins and reward of 80 years of worship</strong><span style="font-size:.7rem;color:var(--gold);display:block;margin-top:.2rem">(Al-Qawl al-Badee\' — Imam al-Sakhawi)</span>'
-    : 'جمعہ کے دن نمازِ عصر کے بعد جگہ سے اٹھنے سے پہلے ۸۰ مرتبہ پڑھیں —<br/><strong>روایت کے مفہوم کے مطابق ۸۰ سال کے گناہ معاف اور ۸۰ سال کا ثواب ملتا ہے</strong><span style="font-size:.7rem;color:var(--gold);display:block;margin-top:.2rem">(القول البديع — الإمام السخاوي)</span>';
-  const duaName = isEn ? 'Durood on the Unlettered Prophet ﷺ — 80 Times' : 'درودِ نبی اُمّی ﷺ — ۸۰ مرتبہ';
-  const doneLabel = isEn ? 'Complete!' : 'مکمل!';
-  const ofLabel = isEn ? 'of 80' : 'از ۸۰';
+  const l = getActiveLang();
+  const asrI18n = SECTION_I18N.asr;
+  const badgeText = asrI18n.badge[l] || asrI18n.badge.en || asrI18n.badge.ur;
+  const noteHtml = asrI18n.note[l] || asrI18n.note.en || asrI18n.note.ur;
+  const duaName = asrI18n.duaName[l] || asrI18n.duaName.en || asrI18n.duaName.ur;
+  const doneLabel = asrI18n.doneLabel[l] || asrI18n.doneLabel.en || asrI18n.doneLabel.ur;
+  const ofLabel = asrI18n.ofLabel[l] || asrI18n.ofLabel.en || asrI18n.ofLabel.ur;
 
   mc.innerHTML=`<div class="sp">
     <div class="step-badge"><div class="sdot" style="background:#f0c840"></div><span>${badgeText}</span><div class="sdot" style="background:#f0c840"></div></div>
-    <div class="urdu-note">${noteHtml}</div>
+    <div class="urdu-note" style="font-family:var(--ur-font)">${noteHtml}</div>
     <img class="asr-img" src="${ASR_IMG}" alt="درود شریف" loading="lazy" onerror="this.style.display='none';document.getElementById('asrFb').style.display='block'"/>
     <div id="asrFb" class="dua-card" style="display:none"><div class="ar big">${ASR_TEXT}</div><div class="dua-name">${duaName}</div></div>
     <div class="ring-wrap" id="rw"><svg viewBox="0 0 172 172"><circle class="rbg" cx="86" cy="86" r="74"/><circle class="rfill" id="rf" cx="86" cy="86" r="74" style="stroke:#f0c840;stroke-dashoffset:${done?0:off};filter:drop-shadow(0 0 5px rgba(240,200,64,.45))"/></svg>
       <div class="ring-inner" id="ri" style="border-color:rgba(240,200,64,.2)">
-        ${done?`<div style="font-size:1.55rem">✅</div><div class="rof" style="color:#f0c840">${doneLabel}</div>`:`<div class="rnum" id="rn" style="color:#f0c840">${cnt}</div><div class="rof">${ofLabel}</div><div class="rhint">tap to count</div>`}
+        ${done?`<div style="font-size:1.55rem">✅</div><div class="rof" style="color:#f0c840">${doneLabel}</div>`:`<div class="rnum" id="rn" style="color:#f0c840">${cnt}</div><div class="rof">${ofLabel}</div><div class="rhint">${t("tap_hint")}</div>`}
       </div>
     </div>
     <div class="ctrls"><button type="button" class="btn" id="undoB">${t("undo")}</button><button type="button" class="btn next" style="border-color:rgba(240,200,64,.38);color:#f0c840" id="asrReset">${t("restart")}</button></div>
@@ -5142,32 +5412,29 @@ function renderTasbeeh(mc){
   const{ph,cnt}=S.tasbeeh,phase=TSB[ph],target=phase.target,done=cnt>=target;
   const off=CIRC*(1-Math.min(cnt/target,1));
   document.getElementById('progBar').style.width=((ph+(done?1:cnt/target))/3*100)+'%';
-  const isEn = (typeof S !== 'undefined' && S && S.lang === 'en');
-  const chips=TSB.map((p,i)=>`<button type="button" class="ph-chip" onclick="if(${i}!==${ph}){S.tasbeeh={ph:${i},cnt:0,sets:0};save();renderTasbeeh(document.getElementById('mc'));}" style="${i===ph?`border-color:${p.color};color:${p.color};background:${p.color}18`:i<ph?'border-color:var(--g1);color:var(--g1);background:rgba(60,179,113,.12)':''}"><div style="font-family:var(--qfont);font-size:.95rem">${p.ar}</div><div style="font-size:.6rem;margin-top:2px">${(isEn&&i===0)?'SubhanAllah':(isEn&&i===1)?'Alhamdulillah':(isEn&&i===2)?'Allahu Akbar':p.label} ×${p.target}</div>${i<ph?'<div>✓</div>':''}</button>`).join('');
-  const badgeTitle = isEn ? `📿 Tasbeeh of Fatimah (RA) — Phase ${ph+1}/3` : `📿 تسبیحِ فاطمہؓ — مرحلہ ${ph+1}/3`;
-  const duaTitle = isEn
+  const l = getActiveLang();
+  const isLatin = (l === 'en' || l === 'id' || l === 'tr' || l === 'fr');
+  const badgeTitle = (SECTION_I18N.tasbeeh.badge[l] || SECTION_I18N.tasbeeh.badge.en || SECTION_I18N.tasbeeh.badge.ur).replace('{p}', ph+1);
+  const duaTitle = isLatin
     ? `${(ph===0)?'SubhanAllah':(ph===1)?'Alhamdulillah':'Allahu Akbar'} — × ${target}`
-    : `${phase.label} — × ${target}`;
-  const fazText = isEn
-    ? 'Taught by the Prophet ﷺ to Sayyidah Fatimah and Sayyiduna Ali RA before sleeping — better than any servant and brings peace and spiritual strength.<span class="faz-ref">(Sahih Bukhari & Muslim)</span>'
-    : 'روایت کے مفہوم کے مطابق نبی کریم ﷺ نے سیدہ فاطمہؓ اور سیدنا علیؓ کو یہ مبارک تسبیح سکھائی — اور اس کا مفہوم یہ ہے کہ یہ ذکر خادم سے بہتر ثابت ہوتا ہے۔<span class="faz-ref">(صحیح بخاری و مسلم)</span>';
+    : (l==='ar' ? `${(ph===0)?'سُبْحَانَ اللّٰهِ':(ph===1)?'اَلْحَمْدُ لِلّٰهِ':'اَللّٰهُ أَكْبَرُ'} — × ${target}` : `${phase.label} — × ${target}`);
+  const fazText = SECTION_I18N.tasbeeh.faz[l] || SECTION_I18N.tasbeeh.faz.en || SECTION_I18N.tasbeeh.faz.ur;
 
   mc.innerHTML=`<div class="sp">
+    <div class="ph-chips">${TSB.map((p,i)=>`<button type="button" class="ph-chip" onclick="if(${i}!==${ph}){S.tasbeeh={ph:${i},cnt:0,sets:0};save();renderTasbeeh(document.getElementById('mc'));}" style="${i===ph?`border-color:${p.color};color:${p.color};background:${p.color}18`:i<ph?'border-color:var(--g1);color:var(--g1);background:rgba(60,179,113,.12)':''}"><div style="font-family:var(--qfont);font-size:.95rem">${p.ar}</div><div style="font-size:.6rem;margin-top:2px">${(isLatin&&i===0)?'SubhanAllah':(isLatin&&i===1)?'Alhamdulillah':(isLatin&&i===2)?'Allahu Akbar':(l==='ar'?p.ar:p.label)} ×${p.target}</div>${i<ph?'<div>✓</div>':''}</button>`).join('')}</div>
     <div class="step-badge"><div class="sdot" style="background:${phase.color}"></div><span>${badgeTitle}</span><div class="sdot" style="background:${phase.color}"></div></div>
-    <div class="tsb-phases">${chips}</div>
-    <div class="dua-card" style="border-top-color:${phase.color}45"><div class="ar xl" style="color:#f8f2e4">${phase.ar}</div><div class="dua-name" style="color:${phase.color}">${duaTitle}</div></div>
-    <div class="faz-body open" style="display:block">${fazText}</div>
-    <div class="ring-wrap" id="rw"><svg viewBox="0 0 172 172"><circle class="rbg" cx="86" cy="86" r="74"/><circle class="rfill" id="rf" cx="86" cy="86" r="74" style="stroke:${phase.color};stroke-dashoffset:${done?0:off};filter:drop-shadow(0 0 5px ${phase.color}55)"/></svg>
-      <div class="ring-inner" id="ri" style="border-color:${phase.color}28">
+    <div class="dua-card"><div class="ar big">${phase.ar}</div><div class="dua-name">${duaTitle}</div></div>
+    <div class="urdu-note" style="margin-top:.4rem;font-family:var(--ur-font)">${fazText}</div>
+    <div class="ring-wrap" id="rw"><svg viewBox="0 0 172 172"><circle class="rbg" cx="86" cy="86" r="74"/><circle class="rfill" id="rf" cx="86" cy="86" r="74" style="stroke:${phase.color};stroke-dashoffset:${done?0:off};filter:drop-shadow(0 0 5px ${phase.color}66)"/></svg>
+      <div class="ring-inner" id="ri" style="border-color:${phase.color}33">
         ${done?`<div style="font-size:1.55rem">✅</div><div class="rof" style="color:${phase.color}">${t("done")}</div>`:`<div class="rnum" id="rn" style="color:${phase.color}">${cnt}</div><div class="rof">${t("out_of")} ${target}</div><div class="rhint">${t("tap_hint")}</div>`}
       </div>
     </div>
-    <div class="ctrls"><button type="button" class="btn" id="prevB" ${ph===0?'disabled':''}>${t("prev")}</button><button type="button" class="btn" id="undoB">${t("undo")}</button><button type="button" class="btn next" id="tsbNext">${done?(ph===2?t("finish"):t("next")):t("advance")}</button></div>
+    <div class="ctrls"><button type="button" class="btn" id="undoB">${t("undo")}</button><button type="button" class="btn next" style="border-color:${phase.color}66;color:${phase.color}" id="tsbReset">${t("restart")}</button></div>
   </div>`;
   document.getElementById('rw').addEventListener('click',tap);
-  document.getElementById('prevB')?.addEventListener('click',()=>{if(S.tasbeeh.ph>0){S.tasbeeh.ph--;S.tasbeeh.cnt=0;save();renderTasbeeh(mc);}});
-  document.getElementById('undoB')?.addEventListener('click',doUndo);
-  document.getElementById('tsbNext')?.addEventListener('click',goNext);
+  document.getElementById('undoB').addEventListener('click',doUndo);
+  document.getElementById('tsbReset').addEventListener('click',()=>{S.tasbeeh={ph:0,cnt:0,sets:0};save();renderTasbeeh(mc);});
   renderDrawer();
 }
 
@@ -5191,56 +5458,67 @@ const MANZIL_UTHMANI = MANZIL_INDOPAK;
 
 const QURAN_SURAHS = {
   kahf: {
-    title: { ur: 'سُورَةُ الْكَهْفِ', en: 'Surah Al-Kahf', ar: 'سُورَةُ الْكَهْفِ' },
-    meta: (isIndopak) => (S.lang === 'en')
-      ? `Complete Surah — 110 Verses — 12 Ruku (${isIndopak ? 'Indo-Pak Script' : 'Uthmanic Script'})<br/>Friday Sunnah Recitation • 100% Offline without Internet`
-      : `مکمل سورۃ — ۱۱۰ آیات — ۱۲ رکوع (${isIndopak ? 'رسمِ ہند-پاک' : 'رسمِ عثمانی'})<br/>ہر جمعہ تلاوت سنت ہے • ۱۰۰٪ آف لائن — بغیر انٹرنیٹ کے`,
+    title: { ur: 'سُورَةُ الْكَهْفِ', en: 'Surah Al-Kahf', ar: 'سُورَةُ الْكَهْفِ', id: 'Surah Al-Kahfi', tr: 'Kehf Suresi', fr: 'Sourate Al-Kahf' },
+    meta: (isIndopak) => {
+      const l = getActiveLang();
+      const fn = SECTION_I18N.surahs.kahf[l] || SECTION_I18N.surahs.kahf.en || SECTION_I18N.surahs.kahf.ur;
+      return fn(isIndopak);
+    },
     getDataset: () => (S.scriptMode === 'indopak') ? KAHF_INDOPAK : KAHF_UTHMANI,
     supportsTajweed: true
   },
   mulk: {
-    title: { ur: 'سُورَةُ الْمُلْكِ', en: 'Surah Al-Mulk', ar: 'سُورَةُ الْمُلْكِ' },
-    meta: (isIndopak) => (S.lang === 'en')
-      ? `Complete Surah — 30 Verses — 2 Ruku (${isIndopak ? 'Indo-Pak Script' : 'Uthmanic Script'})<br/>Recited nightly for intercession and protection from grave punishment • 100% Offline`
-      : `مکمل سورۃ — ۳۰ آیات — ۲ رکوع (${isIndopak ? 'رسمِ ہند-پاک' : 'رسمِ عثمانی'})<br/>رات کو پڑھنا عذابِ قبر سے نجات اور شفاعت کا ذریعہ ہے • ۱۰۰٪ آف لائن`,
+    title: { ur: 'سُورَةُ الْمُلْكِ', en: 'Surah Al-Mulk', ar: 'سُورَةُ الْمُلْكِ', id: 'Surah Al-Mulk', tr: 'Mülk Suresi', fr: 'Sourate Al-Mulk' },
+    meta: (isIndopak) => {
+      const l = getActiveLang();
+      const fn = SECTION_I18N.surahs.mulk[l] || SECTION_I18N.surahs.mulk.en || SECTION_I18N.surahs.mulk.ur;
+      return fn(isIndopak);
+    },
     getDataset: () => (S.scriptMode === 'indopak') ? MULK_INDOPAK : MULK_UTHMANI,
     supportsTajweed: false
   },
   waqiah: {
-    title: { ur: 'سُورَةُ الْوَاقِعَةِ', en: 'Surah Al-Waqiah', ar: 'سُورَةُ الْوَاقِعَةِ' },
-    meta: (isIndopak) => (S.lang === 'en')
-      ? `Complete Surah — 96 Verses — 3 Ruku (${isIndopak ? 'Indo-Pak Script' : 'Uthmanic Script'})<br/>Shield against poverty and brings barakah in sustenance • 100% Offline`
-      : `مکمل سورۃ — ۹۶ آیات — ۳ رکوع (${isIndopak ? 'رسمِ ہند-پاک' : 'رسمِ عثمانی'})<br/>مغرب یا عشاء کے بعد پڑھنا فقر و فاقہ سے حفاظت اور برکت کا ذریعہ ہے • ۱۰۰٪ آف لائن`,
+    title: { ur: 'سُورَةُ الْوَاقِعَةِ', en: 'Surah Al-Waqiah', ar: 'سُورَةُ الْوَاقِعَةِ', id: 'Surah Al-Waqi\'ah', tr: 'Vâkıa Suresi', fr: 'Sourate Al-Waqiah' },
+    meta: (isIndopak) => {
+      const l = getActiveLang();
+      const fn = SECTION_I18N.surahs.waqiah[l] || SECTION_I18N.surahs.waqiah.en || SECTION_I18N.surahs.waqiah.ur;
+      return fn(isIndopak);
+    },
     getDataset: () => (S.scriptMode === 'indopak') ? WAQIAH_INDOPAK : WAQIAH_UTHMANI,
     supportsTajweed: false
   },
   rahman: {
-    title: { ur: 'سُورَةُ الرَّحْمٰنِ', en: 'Surah Ar-Rahman', ar: 'سُورَةُ الرَّحْمٰنِ' },
-    meta: (isIndopak) => (S.lang === 'en')
-      ? `Complete Surah — 78 Verses — 3 Ruku (${isIndopak ? 'Indo-Pak Script' : 'Uthmanic Script'})<br/>Beauty of the Quran (Uroos-ul-Quran) • 100% Offline`
-      : `مکمل سورۃ — ۷۸ آیات — ۳ رکوع (${isIndopak ? 'رسمِ ہند-پاک' : 'رسمِ عثمانی'})<br/>عُرُوْسُ الْقُرْآن (قرآن کی دلہن) — فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ • ۱۰۰٪ آف لائن`,
+    title: { ur: 'سُورَةُ الرَّحْمٰنِ', en: 'Surah Ar-Rahman', ar: 'سُورَةُ الرَّحْمٰنِ', id: 'Surah Ar-Rahman', tr: 'Rahmân Suresi', fr: 'Sourate Ar-Rahman' },
+    meta: (isIndopak) => {
+      const l = getActiveLang();
+      const fn = SECTION_I18N.surahs.rahman[l] || SECTION_I18N.surahs.rahman.en || SECTION_I18N.surahs.rahman.ur;
+      return fn(isIndopak);
+    },
     getDataset: () => (S.scriptMode === 'indopak') ? RAHMAN_INDOPAK : RAHMAN_UTHMANI,
     supportsTajweed: false
   },
   manzil: {
-    title: { ur: 'مَنْزِلْ — شِفَاءٌ وَحِفَاظَتْ', en: 'Manzil — Healing & Protection', ar: 'مَنْزِلْ — شِفَاءٌ وَحِفَاظَةٌ' },
-    meta: (isIndopak) => (S.lang === 'en')
-      ? `Complete Manzil — 33 Verses in 4 Parts (${isIndopak ? 'Indo-Pak Script' : 'Uthmanic Script'})<br/>Prophetic protection from evil eye, envy, and sorcery • 100% Offline`
-      : `مکمل منزل — ۳۳ آیاتِ حفاظت مع ۴ حصے (رسمِ ہند-پاک)<br/>نظرِ بد، آسیب، جادو اور ہر قسم کے شرور سے قرآنی و نبوی پناہ • ۱۰۰٪ آف لائن`,
+    title: { ur: 'مَنْزِلْ — شِفَاءٌ وَحِفَاظَتْ', en: 'Manzil — Healing & Protection', ar: 'مَنْزِلْ — شِفَاءٌ وَحِفَاظَةٌ', id: 'Manzil — Syifa & Perlindungan', tr: 'Menzil — Şifa ve Korunma', fr: 'Manzil — Guérison & Protection' },
+    meta: (isIndopak) => {
+      const l = getActiveLang();
+      const fn = SECTION_I18N.surahs.manzil[l] || SECTION_I18N.surahs.manzil.en || SECTION_I18N.surahs.manzil.ur;
+      return fn(isIndopak);
+    },
     getDataset: () => (S.scriptMode === 'indopak') ? MANZIL_INDOPAK : MANZIL_UTHMANI,
     supportsTajweed: false
   }
 };
 
 
+
 /* ══ ASMA-UL-HUSNA RENDERER ══ */
 function renderAsma(mc){
   document.getElementById('progBar').style.width = '100%';
-  const isEn = (typeof S !== 'undefined' && S && S.lang === 'en');
-  const title = isEn ? 'The 99 Beautiful Names of Allah' : 'اَسْمَاءُ اللّٰهِ الْحُسْنٰی';
-  const meta = isEn 
-    ? 'The 99 Divine Attributes of Allah with authentic English meanings<br/>"Allah has ninety-nine names; whoever enumerates them will enter Paradise" (Sahih Bukhari: 2736) • 100% Offline'
-    : 'اللہ تعالیٰ کے ۹۹ صفاتی نام مع اردو معانی<br/>"إِنَّ لِلَّهِ تِسْعَةً وَتِسْعِينَ اسْمًا مَنْ أَحْصَاهَا دَخَلَ الْجَنَّةَ" (صحیح بخاری: ۲۷۳۶) • ۱۰۰٪ آف لائن';
+  const l = getActiveLang();
+  const isLatin = (l === 'en' || l === 'id' || l === 'tr' || l === 'fr');
+  const asmaI18n = SECTION_I18N.asma;
+  const title = asmaI18n.title[l] || asmaI18n.title.en || asmaI18n.title.ur;
+  const meta = asmaI18n.meta[l] || asmaI18n.meta.en || asmaI18n.meta.ur;
   let h = `<div class="quran-panel" style="padding:1rem .6rem">
     <div class="quran-hd">
       <div class="quran-title" style="font-size:1.6rem">${title}</div>
@@ -5249,7 +5527,9 @@ function renderAsma(mc){
     <div class="asma-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.65rem;margin:1.2rem 0;direction:rtl">`;
   
   ASMA_99.forEach(a => {
-    const meaning = (isEn && typeof ASMA_EN !== 'undefined' && ASMA_EN[a.n]) ? ASMA_EN[a.n] : a.ur;
+    let meaning = a.ur;
+    if (l === 'ar') meaning = a.ar;
+    else if (isLatin && typeof ASMA_EN !== 'undefined' && ASMA_EN[a.n]) meaning = ASMA_EN[a.n];
     h += `
       <div class="dua-card" style="margin:0;padding:.85rem .5rem;text-align:center;border:1px solid rgba(60,179,113,.2);background:rgba(255,255,255,.02);border-radius:12px">
         <div style="font-size:.65rem;color:var(--g2);font-weight:600"># ${a.n}</div>
@@ -5978,17 +6258,16 @@ function tap(){
           renderCustom(document.getElementById('mc'));
           window.scrollTo(0,0);
         }else{
-          document.getElementById('compMsg').textContent='ماشاءاللہ! تمام ذاتی اذکار مکمل ہوگئے 🌿';
-          document.getElementById('compScreen').classList.add('show');
+          showCompletionScreen('custom');
           renderCustom(document.getElementById('mc'));
         }
         return;
       }
-      if(isTsb){const{ph}=S.tasbeeh;if(ph<2){S.tasbeeh.ph++;S.tasbeeh.cnt=0;save();renderTasbeeh(document.getElementById('mc'));}else{document.getElementById('compMsg').textContent='ماشاءاللہ! تسبیحِ فاطمہؓ مکمل ہوگئی 📿';document.getElementById('compScreen').classList.add('show');}return;}
+      if(isTsb){const{ph}=S.tasbeeh;if(ph<2){S.tasbeeh.ph++;S.tasbeeh.cnt=0;save();renderTasbeeh(document.getElementById('mc'));}else{showCompletionScreen('tasbeeh');}return;}
       if(isAsr){render();return;}
       const st=S[sec];const DATA={fajr:FAJR,jumma:JUMMA,durood_pak:DUROOD_PAK,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH,post_salah:POST_SALAH,morning_wake:MORNING_WAKE,relief_debt:RELIEF_DEBT,istikhara:ISTIKHARA};
       if(st.idx<DATA[sec].length-1){st.idx++;st.cnt=0;save();render();window.scrollTo(0,0);}
-      else{document.getElementById('compMsg').textContent={fajr:'ماشاءاللہ! فجر/مغرب کے اذکار مکمل 🌅',jumma:'ماشاءاللہ! جمعہ کا مکمل وِرد ادا ہوگیا 🌙',tauheed:'ماشاءاللہ! ذکرِ توحید مکمل ہوگیا ☝️',bedtime:'ماشاءاللہ! سونے کے مسنون اذکار مکمل 🌙',tawbah:'ماشاءاللہ! استغفار و توبہ کے اذکار مکمل 🤲',post_salah:'ماشاءاللہ! بعد از نماز کے اذکار مکمل 🧎',morning_wake:'ماشاءاللہ! صبح بیداری کے اذکار مکمل 🌅',relief_debt:'ماشاءاللہ! دعائیں مکمل — اللہ نجات عطا فرمائے 🤲',istikhara:'ماشاءاللہ! دعائے استخارہ مکمل — اللہ برکت فرمائے 🧭',durood_pak:'ماشاءاللہ! درود شریف کا وِرد مکمل — شفاعت و رحمت 🌹'}[sec];document.getElementById('compScreen').classList.add('show');}
+      else{showCompletionScreen(sec);}
     },750);
   }
 }
@@ -6003,7 +6282,7 @@ function doUndo(){
 }
 function goNext(){
   const DATA={fajr:FAJR,jumma:JUMMA,durood_pak:DUROOD_PAK,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH,post_salah:POST_SALAH,morning_wake:MORNING_WAKE,relief_debt:RELIEF_DEBT,istikhara:ISTIKHARA},st=S[sec];
-  if(st.idx===DATA[sec].length-1){document.getElementById('compMsg').textContent={fajr:'ماشاءاللہ! فجر/مغرب کے اذکار مکمل 🌅',jumma:'ماشاءاللہ! جمعہ کا مکمل وِرد ادا ہوگیا 🌙',tauheed:'ماشاءاللہ! ذکرِ توحید مکمل ہوگیا ☝️',bedtime:'ماشاءاللہ! سونے کے مسنون اذکار مکمل 🌙',tawbah:'ماشاءاللہ! استغفار و توبہ کے اذکار مکمل 🤲',post_salah:'ماشاءاللہ! بعد از نماز کے اذکار مکمل 🧎',morning_wake:'ماشاءاللہ! صبح بیداری کے اذکار مکمل 🌅',relief_debt:'ماشاءاللہ! دعائیں مکمل — اللہ نجات عطا فرمائے 🤲',istikhara:'ماشاءاللہ! دعائے استخارہ مکمل — اللہ برکت فرمائے 🧭',durood_pak:'ماشاءاللہ! درود شریف کا وِرد مکمل — شفاعت و رحمت 🌹'}[sec];document.getElementById('compScreen').classList.add('show');}
+  if(st.idx===DATA[sec].length-1){showCompletionScreen(sec);}
   else{st.idx++;st.cnt=0;save();render();window.scrollTo(0,0);}
 }
 
