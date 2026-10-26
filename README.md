@@ -30,38 +30,50 @@ It requires **zero external API calls**, has **no telemetry or user tracking**, 
 
 ## Key Features
 
-### 1. Authentic Azkar & Digital Counter
-- **80x Darood Sharif Counter**: Built for Friday afternoon (Asr to Maghrib) recitation with target progress indicators.
-- **Morning & Evening Azkar**: Complete authentic Fajr and Maghrib supplications with Arabic vocalization, Urdu translations, and Hadith source references.
-- **Jummah Wird & Tauheed**: Specialized Friday supplications and Tawheed declarations.
-- **Tasbeeh-e-Fatima (33-33-34)**: Automatic 3-phase counter advancing from SubhanAllah to Alhamdulillah to Allahu Akbar with completion chimes.
-
-### 2. Full Surah Al-Kahf with Tajweed
-- **110 Verses / 12 Rukus**: Bundled locally in both **Pakistani (Indo-Pak)** and **Madani (Uthmani)** scripts.
-- **4-Rule Pakistani Tajweed Color Coding**: Real-time visual pronunciation guidance (Ghunnah, Ikhfa, Madda, Qalqalah).
+### 1. Complete Quranic Recitation & Tajweed Engine (5 Surahs)
+- **Surah Al-Kahf (110 Verses / 12 Rukus)**: Complete offline recitation with Pakistani (Indo-Pak) and Madani (Uthmani) Tajweed color coding.
+- **Surah Al-Mulk (30 Verses / 2 Rukus)**: Indo-Pak script for nighttime grave protection recitation.
+- **Surah Al-Waqiah (96 Verses / 3 Rukus)**: Indo-Pak script for barakah and protection against poverty.
+- **Surah Ar-Rahman (78 Verses / 3 Rukus)**: "عروس القرآن" with *Fa-bi'ayyi ala'i Rabbikuma tukadhdhiban*.
+- **Manzil (33 Protection Verses across 4 Parts)**: Authentic protection against evil eye, black magic, and harm.
+- **Unified 5-Speed Auto-Scroll Engine**: Hands-free recitation speed controller across all surahs.
 - **6 Bundled Quranic Fonts**: Al Majeed, Hafs, Al Qalam, PDMS Saleem, Muhammadi, and Al Mushaf.
-- **Auto-Scroll Engine**: Adjustable smooth reading scroll bar for hands-free recitation.
 
-### 3. Offline Qibla Compass
-- **Sensor-Driven Gyro Compass**: Live heading detection pointing directly towards the Holy Kaaba.
-- **Offline City Presets (No GPS Required)**: Pre-calibrated degrees for Karachi (265°), Lahore (259°), Islamabad (256°), Faisalabad (258°), Multan (260°), Peshawar (254°), Quetta (261°), London, Dubai, and more.
+### 2. High-Demand Durood Sharif Collection
+- **80x Friday Asr Darood Counter**: Specialized counter for 80-year forgiveness tradition.
+- **Durood-e-Ibrahimi Counter**: Complete Arabic text, Hadith virtues (Sahih Bukhari: 3370), and customizable counter.
+- **Durood-e-Tanjeena**: Famous relief supplication for difficulties, storms, and afflictions.
+- **Durood-e-Taj**: Full authentic devotional text for spiritual blessings and peace.
 
-### 4. Custom Azkar Builder
+### 3. Masnoon Supplications & Daily Life Azkar
+- **After Fard Salah Azkar**: Complete authentic post-prayer supplications (Istighfar ×3, Ayatul Kursi, Tasbeeh Fatima, Mu'awwidhat, and Dua for Hasanah).
+- **Bedtime Azkar (سونے کے اذکار)**: Ayatul Kursi, Amanar-Rasul, 3 Quls with Dam method, and bedtime sleep prayer.
+- **Morning Waking Azkar**: Authentic praise upon awakening and Tahajjud Tawheed kalima.
+- **Debt Relief & Anxiety Duas**: Authentic prophetic prayers taught to Abu Umamah (RA) and Ali (RA) for heavy debts and stress.
+- **Dua-e-Istikhara**: Complete prophetic text, translation, and step-by-step guidance for major decisions.
+- **Sayyidul Istighfar & Tawbah**: Leader of repentance prayer with promise of paradise (Bukhari: 6306).
+- **Tasbeeh-e-Fatima (33-33-34)**: Automatic 3-phase counter with completion chimes.
+
+### 4. Asma-ul-Husna (99 Names of Allah)
+- **Complete 99 Beautiful Names of Allah**: Luxury responsive cards with Arabic typography, authentic Urdu meanings, and Hadith virtue citation (Sahih Bukhari: 2736).
+- **Integrated Custom Catalog**: Import any name directly into your personal wird list.
+
+### 5. Custom Azkar Builder
 - **Personalized Fehrist**: Add custom duas or wird with custom repetition targets (33, 70, 100, 313, 1000).
 - **Sequential Flow**: Step-by-step Next/Back navigation matching regular azkar sections.
 - **Drag-and-Drop Organization**: Reorder custom supplications dynamically with automatic badge renumbering.
 - **JSON Backup & Restore**: Export your custom prayers to a `.json` backup file or copy formatted text for WhatsApp/Notes sharing.
 
-### 5. Ergonomics & Comfort
+### 6. Ergonomics & Comfort
 - **Masjid Mode (Silent & Haptic)**: Mutes audio beeps and relies strictly on subtle vibrations so fellow worshipers in congregations are never disturbed.
 - **Auto Daily Reset & Streak Tracker**: Counters reset at midnight while tracking your consecutive daily prayer habit streak (`🔥 تسلسل`).
 - **Eye-Comfort Themes**: Default Emerald Night, pure AMOLED Black (`#000000`) for battery savings, and Warm Sepia for nighttime reading comfort.
 - **Safe-Area Inset Support**: Pixel-perfect rendering across iPhone Dynamic Island, camera punch-holes, and Android gesture navigation bars.
 
-### 6. PWA & Instant Update Engine
+### 7. PWA & Instant Update Engine
 - **Network-First HTML Delivery**: Existing users receive live updates immediately when visiting without ever having to manually clear their browser cache.
 - **Live Update Toast Notification**: Automatic background update detection offering a 1-click reload toast.
-- **1-Click Chrome Install Prompt**: Smart banner and drawer button for desktop and mobile home screen installation.
+- **1-Click App Install**: Dedicated installation buttons in both app drawer and settings footer.
 
 ---
 
