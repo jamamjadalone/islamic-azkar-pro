@@ -1,6 +1,6 @@
 /* Islamic Azkar Pro — Service Worker
    100% offline app shell. Network-first for navigation, stale-while-revalidate for static assets. */
-const CACHE = 'azk-pro-v28';
+const CACHE = 'azk-pro-v29';
 const CORE = [
   './',
   './index.html',
@@ -44,7 +44,7 @@ self.addEventListener('message', (event) => {
 self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET') return;
-  const url = new URL(req.url);
+  const url = new (globalThis.URL)(req.url);
   if (url.origin !== location.origin) return;
 
   // HTML Navigation: Network-first with offline cache fallback
