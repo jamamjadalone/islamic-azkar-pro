@@ -14,6 +14,10 @@
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="apple-mobile-web-app-title" content="Azkar Pro"/>
+<link rel="alternate" hreflang="ur" href="https://jamamjadalone.github.io/islamic-azkar-pro/?lang=ur"/>
+<link rel="alternate" hreflang="en" href="https://jamamjadalone.github.io/islamic-azkar-pro/?lang=en"/>
+<link rel="alternate" hreflang="ar" href="https://jamamjadalone.github.io/islamic-azkar-pro/?lang=ar"/>
+<link rel="alternate" hreflang="x-default" href="https://jamamjadalone.github.io/islamic-azkar-pro/"/>
 <link rel="canonical" href="https://jamamjadalone.github.io/islamic-azkar-pro/"/>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
@@ -1238,6 +1242,16 @@ body[data-theme="sepia"]{
       <button type="button" class="modal-close" id="closeSettingsModalBtn">✕</button>
     </div>
     <div class="modal-body">
+
+      <!-- 0. Language Switcher -->
+      <div class="set-section">
+        <div class="set-sec-title"><span class="sec-badge-icon">🌐</span> <span id="lblSetLang">زبان / Language / اللغة</span></div>
+        <div class="quick-targets" id="modalLang">
+          <button type="button" class="q-chip" data-lang="ur">🇵🇰 اردو (Default)</button>
+          <button type="button" class="q-chip" data-lang="en">🇬🇧 English</button>
+          <button type="button" class="q-chip" data-lang="ar">🇸🇦 العربية</button>
+        </div>
+      </div>
 
       <!-- 1. Text Zoom & Size -->
       <div class="set-section">
@@ -3245,28 +3259,93 @@ const KAHF_INDOPAK = [
   ]}
 ];
 
+
+/* ═══════════════════════════════════════════════════════════════
+   GLOBAL MULTI-LANGUAGE (i18n) & AUTO-FALLBACK ENGINE
+═══════════════════════════════════════════════════════════════ */
+const I18N = {
+  choose_zikr: { ur: 'ذکر منتخب کریں ▾', en: 'Select Adhkar ▾', ar: 'اختر الذكر ▾' },
+  streak_day:  { ur: 'دن', en: 'days', ar: 'أيام' },
+  masjid_mode: { ur: 'مسجد موڈ', en: 'Masjid Mode', ar: 'وضع المسجد' },
+  sound_on:    { ur: 'آواز چالو', en: 'Sound On', ar: 'الصوت مشغل' },
+  sound_mute:  { ur: 'آواز بند', en: 'Sound Off', ar: 'الصوت صامت' },
+  settings:    { ur: 'سیٹنگز', en: 'Settings', ar: 'الإعدادات' },
+  prev:        { ur: '← پچھلا', en: '← Previous', ar: '← السابق' },
+  next:        { ur: 'اگلا →', en: 'Next →', ar: 'التالي →' },
+  advance:     { ur: 'آگے →', en: 'Advance →', ar: 'تقدم →' },
+  finish:      { ur: '🌿 ختم', en: '🌿 Complete', ar: '🌿 تم' },
+  undo:        { ur: '↩ واپس', en: '↩ Undo', ar: '↩ تراجع' },
+  restart:     { ur: '↺ دوبارہ', en: '↺ Restart', ar: '↺ إعادة' },
+  faz_btn:     { ur: '✨ فضیلت دیکھیں', en: '✨ Virtues & Hadith', ar: '✨ فضل الذكر والحديث' },
+  tap_hint:    { ur: 'tap to count', en: 'tap to count', ar: 'اضغط للعد' },
+  done:        { ur: 'مکمل', en: 'Done', ar: 'تم' },
+  out_of:      { ur: 'از', en: 'of', ar: 'من' },
+  salam:       { ur: 'اَلسَّلَامُ عَلَیْكُمْ وَ رَحْمَةُ اللّٰهِ وَ بَرَكَاتُهُ', en: 'Peace, Mercy and Blessings of Allah be upon you', ar: 'اَلسَّلَامُ عَلَیْكُمْ وَ رَحْمَةُ اللّٰهِ وَ بَرَكَاتُهُ' },
+  intro:       { ur: 'خوش آمدید! ذکرِ الٰہی سے دلوں کو اطمینان اور زندگی میں برکت حاصل ہوتی ہے۔', en: 'Welcome! Truly, in the remembrance of Allah do hearts find peace.', ar: 'مرحباً! أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ.' },
+  guide:       { ur: '👆 اوپر بنے بٹن [ ☀️ ذکر منتخب کریں ▾ ] سے یا نیچے دیے گئے کارڈز سے اپنا وِرد شروع فرمائیں:', en: '👆 Tap [ Select Adhkar ▾ ] above or choose any card below to begin:', ar: '👆 اضغط على [ اختر الذكر ▾ ] أعلاه أو اختر بطاقة أدناه للبدء:' },
+  comp_title:  { ur: 'ماشاءاللہ! مبارک ہو', en: 'MashaAllah! Complete', ar: 'ما شاء الله! تقبل الله' },
+  restart_btn: { ur: '↺ دوبارہ شروع کریں', en: '↺ Start Again', ar: '↺ البدء من جديد' },
+  home_btn:    { ur: '🏠 مرکزی صفحہ', en: '🏠 Home Dashboard', ar: '🏠 الصفحة الرئيسية' },
+  modal_title: { ur: 'ایپ سیٹنگز (Settings)', en: 'Application Settings', ar: 'إعدادات التطبيق' },
+  save_btn:    { ur: 'محفوظ کریں ✓', en: 'Save & Close ✓', ar: 'حفظ وإغلاق ✓' },
+  install_btn: { ur: '📲 ایپ انسٹال کریں', en: '📲 Install App', ar: '📲 تثبيت التطبيق' },
+  installed_btn:{ ur: '✓ ایپ انسٹال شدہ', en: '✓ App Installed', ar: '✓ التطبيق مثبت' },
+  lang_label:  { ur: 'زبان / Language / اللغة', en: 'Language / زبان / اللغة', ar: 'اللغة / Language / زبان' },
+  font_label:  { ur: 'قرآنی فونٹ (Quranic Font):', en: 'Quranic Arabic Font:', ar: 'الخط القرآني:' },
+  audio_label: { ur: 'آڈیو فیڈ بیک (Audio & Feedback):', en: 'Audio & Haptic Feedback:', ar: 'الصوت والاهتزاز:' },
+  theme_label: { ur: 'تھیم (Eye Comfort Themes):', en: 'Visual Theme:', ar: 'المظهر:' }
+};
+
+function getActiveLang(){
+  try{
+    if(typeof S !== 'undefined' && S && S.lang) return S.lang;
+  }catch(e){}
+  return 'ur';
+}
+
+function t(key){
+  const lang = getActiveLang();
+  if(I18N[key]){
+    if(I18N[key][lang]) return I18N[key][lang];
+    if(I18N[key]['en']) return I18N[key]['en'];
+    if(I18N[key]['ur']) return I18N[key]['ur'];
+  }
+  return key;
+}
+
+function getLoc(val, customLang){
+  if(!val) return '';
+  if(typeof val === 'string') return val;
+  const lang = customLang || getActiveLang();
+  if(val[lang]) return val[lang];
+  if(val['en']) return val['en'];
+  if(val['ur']) return val['ur'];
+  const first = Object.keys(val)[0];
+  return first ? val[first] : '';
+}
+
 /* ══ STATE ══ */
 const SECS=[
-  {id:'welcome',     icon:'🕌',title:'خوش آمدید (صفحۂ اول)',   ct:'ہوم'},
-  {id:'asr',         icon:'☀️',title:'جمعہ عصر درود ×۸۰',    ct:'×80'},
-  {id:'durood_pak',  icon:'✨',title:'مجموعہ درود شریف',       ct:DUROOD_PAK.length+' درود'},
-  {id:'fajr',        icon:'🌅',title:'فجر/مغرب اذکار',        ct:FAJR.length+' اذکار'},
-  {id:'jumma',       icon:'🌙',title:'جمعہ کا وِرد',           ct:JUMMA.length+' اذکار'},
-  {id:'post_salah',  icon:'🧎',title:'فرض نماز کے بعد کے اذکار', ct:POST_SALAH.length+' اذکار'},
-  {id:'bedtime',     icon:'🌙',title:'سونے کے مسنون اذکار',    ct:BEDTIME.length+' اذکار'},
-  {id:'morning_wake',icon:'🌅',title:'صبح بیدار ہونے کے اذکار', ct:MORNING_WAKE.length+' اذکار'},
-  {id:'relief_debt', icon:'🤲',title:'قرض و پریشانی سے نجات',  ct:RELIEF_DEBT.length+' اذکار'},
-  {id:'istikhara',   icon:'🧭',title:'دعائے استخارہ مع طریقہ',  ct:ISTIKHARA.length+' دعا'},
-  {id:'tawbah',      icon:'🤲',title:'سید الاستغفار و توبہ',    ct:TAWBAH.length+' اذکار'},
-  {id:'tauheed',     icon:'☝️',title:'توحید کے اذکار',        ct:TAUHEED.length+' اذکار'},
-  {id:'asma',        icon:'👑',title:'اسمائے حسنیٰ (۹۹ نام)',  ct:'۹۹ نام'},
-  {id:'kahf',        icon:'📖',title:'سورۃ الکہف — آف لائن',   ct:'۱۱۰ آیات'},
-  {id:'mulk',        icon:'👑',title:'سورۃ الملک — آف لائن',   ct:'۳۰ آیات'},
-  {id:'waqiah',      icon:'💰',title:'سورۃ الواقعہ — آف لائن',   ct:'۹۶ آیات'},
-  {id:'rahman',      icon:'🌺',title:'سورۃ الرحمن — آف لائن',   ct:'۷۸ آیات'},
-  {id:'manzil',      icon:'🛡️',title:'منزل (حفاظت و شفا)',     ct:'۳۳ آیات'},
-  {id:'tasbeeh',     icon:'📿',title:'تسبیحِ فاطمہؓ',         ct:'۳۳+۳۳+۳۴'},
-  {id:'custom',      icon:'📝',title:'ذاتی اذکار (مینول)',     ct:'اپنی تسبیح'}
+  {id:'welcome',     icon:'🕌',title:{ur:'خوش آمدید (صفحۂ اول)',en:'Home Dashboard',ar:'الرئيسية'},            ct:{ur:'ہوم',en:'Home',ar:'الرئيسية'}},
+  {id:'asr',         icon:'☀️',title:{ur:'جمعہ عصر درود ×۸۰',en:'Friday Asr Durood ×80',ar:'الصلاة على النبي عصر الجمعة ×80'}, ct:'×80'},
+  {id:'durood_pak',  icon:'✨',title:{ur:'مجموعہ درود شریف',en:'Durood Collection',ar:'مجموعة الصلاة على النبي'}, ct:{ur:DUROOD_PAK.length+' درود',en:DUROOD_PAK.length+' Durood',ar:DUROOD_PAK.length+' صلوات'}},
+  {id:'fajr',        icon:'🌅',title:{ur:'فجر/مغرب اذکار',en:'Morning & Evening Adhkar',ar:'أذكار الصباح والمساء'}, ct:{ur:FAJR.length+' اذکار',en:FAJR.length+' Adhkar',ar:FAJR.length+' أذكار'}},
+  {id:'jumma',       icon:'🌙',title:{ur:'جمعہ کا وِرد',en:'Friday Sunnah Adhkar',ar:'ورد يوم الجمعة'},        ct:{ur:JUMMA.length+' اذکار',en:JUMMA.length+' Adhkar',ar:JUMMA.length+' أذكار'}},
+  {id:'post_salah',  icon:'🧎',title:{ur:'فرض نماز کے بعد کے اذکار',en:'After Salah Adhkar',ar:'أذكار ما بعد الصلاة'}, ct:{ur:POST_SALAH.length+' اذکار',en:POST_SALAH.length+' Adhkar',ar:POST_SALAH.length+' أذكار'}},
+  {id:'bedtime',     icon:'🌙',title:{ur:'سونے کے مسنون اذکار',en:'Bedtime Adhkar',ar:'أذكار النوم'},           ct:{ur:BEDTIME.length+' اذکار',en:BEDTIME.length+' Adhkar',ar:BEDTIME.length+' أذكار'}},
+  {id:'morning_wake',icon:'🌅',title:{ur:'صبح بیدار ہونے کے اذکار',en:'Waking Up Adhkar',ar:'أذكار الاستيقاظ'},    ct:{ur:MORNING_WAKE.length+' اذکار',en:MORNING_WAKE.length+' Adhkar',ar:MORNING_WAKE.length+' أذكار'}},
+  {id:'relief_debt', icon:'🤲',title:{ur:'قرض و پریشانی سے نجات',en:'Relief from Debt & Grief',ar:'تفريج الكرب والدين'}, ct:{ur:RELIEF_DEBT.length+' اذکار',en:RELIEF_DEBT.length+' Adhkar',ar:RELIEF_DEBT.length+' أذكار'}},
+  {id:'istikhara',   icon:'🧭',title:{ur:'دعائے استخارہ مع طریقہ',en:'Dua-e-Istikhara',ar:'دعاء الاستخارة'},     ct:{ur:ISTIKHARA.length+' دعا',en:ISTIKHARA.length+' Dua',ar:ISTIKHARA.length+' دعاء'}},
+  {id:'tawbah',      icon:'🤲',title:{ur:'سید الاستغفار و توبہ',en:'Sayyidul Istighfar & Tawbah',ar:'سيد الاستغفار والتوبة'}, ct:{ur:TAWBAH.length+' اذکار',en:TAWBAH.length+' Adhkar',ar:TAWBAH.length+' أذكار'}},
+  {id:'tauheed',     icon:'☝️',title:{ur:'توحید کے اذکار',en:'Tauheed & Praise',ar:'أذكار التوحيد'},            ct:{ur:TAUHEED.length+' اذکار',en:TAUHEED.length+' Adhkar',ar:TAUHEED.length+' أذكار'}},
+  {id:'asma',        icon:'👑',title:{ur:'اسمائے حسنیٰ (۹۹ نام)',en:'99 Beautiful Names of Allah',ar:'أسماء الله الحسنى'}, ct:{ur:'۹۹ نام',en:'99 Names',ar:'99 اسماً'}},
+  {id:'kahf',        icon:'📖',title:{ur:'سورۃ الکہف — آف لائن',en:'Surah Al-Kahf (Offline)',ar:'سورة الكهف'},   ct:{ur:'۱۱۰ آیات',en:'110 Verses',ar:'110 آيات'}},
+  {id:'mulk',        icon:'👑',title:{ur:'سورۃ الملک — آف لائن',en:'Surah Al-Mulk (Offline)',ar:'سورة الملك'},   ct:{ur:'۳۰ آیات',en:'30 Verses',ar:'30 آية'}},
+  {id:'waqiah',      icon:'💰',title:{ur:'سورۃ الواقعہ — آف لائن',en:'Surah Al-Waqiah (Offline)',ar:'سورة الواقعة'}, ct:{ur:'۹۶ آیات',en:'96 Verses',ar:'96 آية'}},
+  {id:'rahman',      icon:'🌺',title:{ur:'سورۃ الرحمن — آف لائن',en:'Surah Ar-Rahman (Offline)',ar:'سورة الرحمن'}, ct:{ur:'۷۸ آیات',en:'78 Verses',ar:'78 آية'}},
+  {id:'manzil',      icon:'🛡️',title:{ur:'منزل (حفاظت و شفا)',en:'Manzil (Healing & Protection)',ar:'المنزل للرقية'}, ct:{ur:'۳۳ آیات',en:'33 Verses',ar:'33 آية'}},
+  {id:'tasbeeh',     icon:'📿',title:{ur:'تسبیحِ فاطمہؓ',en:'Tasbeeh of Fatimah (RA)',ar:'تسبيح فاطمة رضي الله عنها'}, ct:'33+33+34'},
+  {id:'custom',      icon:'📝',title:{ur:'ذاتی اذکار (مینول)',en:'Custom Adhkar & Tasbeeh',ar:'أذكار مخصصة'},    ct:{ur:'اپنی تسبیح',en:'Custom',ar:'مخصص'}}
 ];
 const CIRC=2*Math.PI*74;
 let sec='welcome',viewMode='para',zoomPct=100;
@@ -3284,9 +3363,10 @@ let S={
   asr:         {cnt:0,done:false},
   tasbeeh:     {ph:0,cnt:0,sets:0},
   tajMode:'off',
-  scriptMode:'indopak'   // <-- DEFAULT = INDO-PAK (Pakistani Script)
+  scriptMode:'indopak',
+  lang:'ur'   // <-- DEFAULT = INDO-PAK (Pakistani Script)
 };
-function save(){try{localStorage.setItem('azk_pro_v1',JSON.stringify({sec,viewMode,zoomPct,tajMode:S.tajMode,scriptMode:S.scriptMode,...S}))}catch(e){}}
+function save(){try{localStorage.setItem('azk_pro_v1',JSON.stringify({sec,viewMode,zoomPct,tajMode:S.tajMode,scriptMode:S.scriptMode,lang:S.lang,...S}))}catch(e){}}
 try{
   const p=JSON.parse(localStorage.getItem('azk_pro_v1')||'{}');
   if(p.sec)sec=p.sec;
@@ -3294,6 +3374,7 @@ try{
   if(p.zoomPct)zoomPct=p.zoomPct;
   if(p.tajMode) S.tajMode = p.tajMode;
   if(p.scriptMode) S.scriptMode = p.scriptMode;
+  if(p.lang) S.lang = p.lang;
   ['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','asr','tasbeeh'].forEach(k=>{if(p[k])Object.assign(S[k],p[k]);});
   if(!S.fajr.done||S.fajr.done.length!==FAJR.length)S.fajr.done=new Array(FAJR.length).fill(false);
   if(!S.jumma.done||S.jumma.done.length!==JUMMA.length)S.jumma.done=new Array(JUMMA.length).fill(false);
@@ -3447,6 +3528,14 @@ if(uthBtn) uthBtn.addEventListener('click', function(){
   S.scriptMode = 'uthmani';
   save();
   updateScriptBtns();
+try {
+  const urlP = new (globalThis.URLSearchParams)(window.location.search);
+  const qLang = urlP.get('lang');
+  if(qLang && ['ur','en','ar'].includes(qLang)) {
+    S.lang = qLang;
+  }
+} catch(e){}
+if(typeof applyLang === 'function') applyLang(S.lang || 'ur');
   if(sec === 'kahf') render();
 });
 const indBtn = document.getElementById('btnIndopak');
@@ -3485,6 +3574,9 @@ function syncAppSettingsUI(){
   if(sl) sl.textContent = zoomPct + '%';
   const modalFont = document.getElementById('modalFontPicker');
   if(modalFont) modalFont.value = currentFont;
+  document.querySelectorAll('#modalLang .q-chip').forEach(b=>{
+    b.classList.toggle('active', b.dataset.lang === (S.lang || 'ur'));
+  });
   document.querySelectorAll('#settingsSndChips .snd-chip').forEach(c=>{
     c.classList.toggle('active', c.dataset.snd === soundMode);
   });
@@ -3587,8 +3679,8 @@ function renderZikrPicker(){
       <div class="zg-card${isActive ? ' active' : ''}" data-sec="${m.id}">
         <div class="zg-icon">${m.icon}</div>
         <div class="zg-info">
-          <div class="zg-title">${m.title}</div>
-          <div class="zg-ct">${m.ct} ${prog}</div>
+          <div class="zg-title">${getLoc(m.title)}</div>
+          <div class="zg-ct">${getLoc(m.ct)} ${prog}</div>
         </div>
         <div class="zg-check">✓</div>
       </div>
@@ -3790,175 +3882,138 @@ function updateTimeTagline(){
   tx.textContent = text;
 }
 
+const WELCOME_CARDS_DATA = {
+  asr: {
+    icon: '☀️',
+    title: { ur: 'جمعہ عصر درود شریف (۸۰ مرتبہ)', en: 'Friday Asr Durood Sharif (80 Times)', ar: 'الصلاة على النبي عصر الجمعة (80 مرة)' },
+    sub: { ur: 'روایت کے مطابق ۸۰ سال کی مغفرت و ثواب کا خاص وِرد', en: 'Special litany for forgiveness of 80 years of sins and 80 years of worship', ar: 'غفران ذنوب ثمانين عاماً وعبادة ثمانين سنة' }
+  },
+  durood_pak: {
+    icon: '✨',
+    title: { ur: 'مجموعہ درود شریف (ابراہیمی، تنجینا، تاج)', en: 'Durood Collection (Ibrahimi, Tanjeena, Taj)', ar: 'مجموعة الصلاة على النبي (الإبراهيمية، التنجينا، التاج)' },
+    sub: { ur: 'نماز والا افضل ترین درودِ ابراہیمی، درودِ تنجینا اور درودِ تاج', en: 'Supreme Durood from Salah, Durood-e-Tanjeena, and Durood-e-Taj', ar: 'أفضل الصلوات الإبراهيمية وصلاة التنجينا وصلاة التاج' }
+  },
+  asma: {
+    icon: '👑',
+    title: { ur: 'اَسْمَاءُ اللّٰهِ الْحُسْنٰی (۹۹ مبارک نام)', en: 'The 99 Beautiful Names of Allah (Asma-ul-Husna)', ar: 'أَسْمَاءُ اللّٰهِ الْحُسْنٰی (99 اسماً شريفاً)' },
+    sub: { ur: 'اللہ تعالیٰ کے ۹۹ صفاتی نام مع اردو معانی و کامل فضیلت', en: '99 Divine Attributes with meanings and authentic Hadith virtues', ar: 'من أحصاها دخل الجنة مع المعاني والفضائل' }
+  },
+  kahf: {
+    icon: '📖',
+    title: { ur: 'سورۃ الکہف (مکمل آف لائن تلاوت)', en: 'Surah Al-Kahf (Full Offline Recitation)', ar: 'سورة الكهف (تلاوة كاملة بدون إنترنت)' },
+    sub: { ur: 'مکمل ۱۱۰ آیات مع تجوید و ہند-پاک پاکستانی رسم الخط', en: 'Complete 110 verses with Tajweed, Indo-Pak & Uthmanic scripts', ar: '110 آيات كاملة مع التجويد بالرسم العثماني والهندي' }
+  },
+  fajr: {
+    icon: '🌅',
+    title: { ur: 'فجر و مغرب کے مسنون اذکار', en: 'Morning & Evening Masnoon Adhkar', ar: 'أذكار الصباح والمساء المأثورة' },
+    sub: { ur: 'صبح و شام کی جامع حفاظت کی دعائیں', en: 'Comprehensive prophetic supplications for daily divine protection', ar: 'أدعية الحفظ والسكينة اليومية المأثورة' }
+  },
+  jumma: {
+    icon: '🌙',
+    title: { ur: 'جمعہ کا مسنون وِرد مع دَم', en: 'Friday Sunnah Adhkar & Ruqyah Blow', ar: 'ورد الجمعة والرقية المأثورة مع النفث' },
+    sub: { ur: 'سورۃ فاتحہ، اخلاص، فلق، ناس مع طریقہ دم', en: 'Surah Fatihah & 3 Quls with authentic prophetic blow (dam)', ar: 'الفاتحة والمعوذات مع صفة النفث الشرعي' }
+  },
+  mulk: {
+    icon: '👑',
+    title: { ur: 'سورۃ الملک (عذابِ قبر سے حفاظت)', en: 'Surah Al-Mulk (Grave Protection)', ar: 'سورة الملك (المانعة من عذاب القبر)' },
+    sub: { ur: 'مکمل ۳۰ آیات — رات کو تلاوت کی فضیلت مع پاکستانی رسم الخط', en: 'Complete 30 verses — Nightly protection and intercession', ar: '30 آية كاملة تشفع لصاحبها حتى يغفر له' }
+  },
+  waqiah: {
+    icon: '💰',
+    title: { ur: 'سورۃ الواقعہ (رزق و برکت)', en: 'Surah Al-Waqiah (Sustenance & Barakah)', ar: 'سورة الواقعة (جالبة الرزق والبركة)' },
+    sub: { ur: 'مکمل ۹۶ آیات — فقر و فاقہ سے حفاظت مع پاکستانی رسم الخط', en: 'Complete 96 verses — Prophetic shield against poverty', ar: '96 آية كاملة أمان من الفاقة والفقر' }
+  },
+  rahman: {
+    icon: '🌺',
+    title: { ur: 'سورۃ الرحمن (عُرُوْسُ الْقُرْآن)', en: 'Surah Ar-Rahman (Beauty of the Quran)', ar: 'سورة الرحمن (عروس القرآن)' },
+    sub: { ur: 'مکمل ۷۸ آیات — فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ مع پاکستانی رسم الخط', en: 'Complete 78 verses — Which of the favors of your Lord will you deny?', ar: '78 آية كاملة تفيض بالرحمة والجمال الإلهي' }
+  },
+  manzil: {
+    icon: '🛡️',
+    title: { ur: 'منزل — قرآنی شفا و حفاظت', en: 'Manzil — Quranic Healing & Protection', ar: 'المنزل — رقية الحفظ والشفاء القرآني' },
+    sub: { ur: 'مکمل ۳۳ آیاتِ حفاظت — نظرِ بد، جادو اور شیاطین سے نبوی پناہ', en: 'Complete 33 verses for protection from evil eye, envy, and sorcery', ar: '33 آية مباركة للحفظ من العين والحسد والسحر' }
+  },
+  bedtime: {
+    icon: '🌙',
+    title: { ur: 'سونے کے مسنون اذکار و دعائیں', en: 'Bedtime Masnoon Adhkar & Protection', ar: 'أذكار النوم المأثورة والتحصين' },
+    sub: { ur: 'آیت الکرسی، آمن الرسول، تینوں قُل مع دم، تسبیح فاطمہؓ', en: 'Ayat-ul-Kursi, Amanar-Rasul, 3 Quls with dam, and Tasbeeh Fatimah', ar: 'آية الكرسي، خواتيم البقرة، المعوذات، وتسبيح فاطمة' }
+  },
+  tawbah: {
+    icon: '🤲',
+    title: { ur: 'سید الاستغفار و توبہ کے اذکار', en: 'Sayyidul Istighfar & Repentance Adhkar', ar: 'سيد الاستغفار وأذكار التوبة' },
+    sub: { ur: 'سید الاستغفار، آیتِ کریمہ اور نبوی بخشش کے اذکار', en: 'The Master Supplication for forgiveness, Ayat-e-Kareema, and repentance', ar: 'دعاء يونس عليه السلام وأعظم صيغ الاستغفار' }
+  },
+  post_salah: {
+    icon: '🧎',
+    title: { ur: 'فرض نماز کے بعد کے مسنون اذکار', en: 'Authentic After-Salah Adhkar', ar: 'أذكار ما بعد الصلوات المكتوبة' },
+    sub: { ur: 'استغفار، آیۃ الکرسی، تسبیح، اور حسنِ عبادت کی دعا', en: 'Istighfar, Ayat-ul-Kursi, Tasbeeh Fatimah, and dua for sincere worship', ar: 'الاستغفار، آية الكرسي، التسبيح، ودعاء الإعانة على الذكر' }
+  },
+  morning_wake: {
+    icon: '🌅',
+    title: { ur: 'صبح بیدار ہونے کے مسنون اذکار', en: 'Waking Up Masnoon Adhkar', ar: 'أذكار الاستيقاظ من النوم' },
+    sub: { ur: 'الحمد للہ الذی احیانا اور تہجد و بیداری کا کلمۂ توحید', en: 'Praise to Allah Who revived us, and prayers upon waking', ar: 'الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور' }
+  },
+  relief_debt: {
+    icon: '🤲',
+    title: { ur: 'قرض، غم و پریشانی سے نجات کی دعائیں', en: 'Duas for Debt, Worry & Distress', ar: 'أدعية تفريج الهم وقضاء الدين' },
+    sub: { ur: 'نبوی جامع دعائیں، ادائیگیِ قرض، اور لا حول و لا قوۃ', en: 'Prophetic supplications for relief of severe debt, sorrow, and trials', ar: 'أدعية نبوية مأثورة لتفريج الكرب وسداد الديون' }
+  },
+  istikhara: {
+    icon: '🧭',
+    title: { ur: 'دعائے استخارہ مع طریقہ و رہنمائی', en: 'Dua-e-Istikhara with Complete Guidance', ar: 'دعاء الاستخارة والبيان النبوي' },
+    sub: { ur: 'ہر اہم فیصلے، رشتے، نوکری اور کاروبار میں خیر طلبی کی نبوی دعا', en: 'Seeking Allah\'s guidance in decisions, career, marriage and travel', ar: 'طلب الخيرة في سائر الأمور والمشاريع والقرارات' }
+  },
+  tauheed: {
+    icon: '☝️',
+    title: { ur: 'ذکرِ توحید و استغفار', en: 'Tauheed & Remembrance of Allah', ar: 'أذكار التوحيد والاستغفار' },
+    sub: { ur: 'لا الہ الا اللہ، کلماتِ تسبیح و حمد', en: 'La ilaha illallah, SubhanAllah, and supreme praises of Allah', ar: 'أعظم كلمات التوحيد والحمد والتسبيح' }
+  },
+  tasbeeh: {
+    icon: '📿',
+    title: { ur: 'تسبیحِ فاطمہؓ (خودکار کاؤنٹر)', en: 'Tasbeeh of Fatimah (RA) Counter', ar: 'تسبيح فاطمة رضي الله عنها' },
+    sub: { ur: '۳۳ بار سبحان اللہ، ۳۳ بار الحمد للہ، ۳۴ بار اللہ اکبر', en: '33x SubhanAllah, 33x Alhamdulillah, 34x Allahu Akbar', ar: '33 سبحان الله، 33 الحمد لله، 34 الله أكبر' }
+  },
+  custom: {
+    icon: '📝',
+    title: { ur: 'ذاتی اذکار و تسبیحات', en: 'Custom Adhkar & Tasbeeh Builder', ar: 'الأذكار المخصصة والتسابيح' },
+    sub: { ur: 'اپنی مرضی کے اذکار و دعائیں شامل اور کاؤنٹ کریں', en: 'Create, count, and track your personalized daily litanies', ar: 'إضافة ومتابعة أذكارك وأورادك الخاصة' }
+  }
+};
+
 function renderWelcome(mc){
+  const welcomeCardsKeys = ['asr','durood_pak','asma','kahf','fajr','jumma','mulk','waqiah','rahman','manzil','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','tauheed','tasbeeh','custom'];
+  const cardsHtml = welcomeCardsKeys.map(k => {
+    const item = WELCOME_CARDS_DATA[k];
+    if(!item) return '';
+    const isHigh = k === 'asr' ? ' highlight' : '';
+    return `
+        <div class="w-card${isHigh}" data-sec="${k}">
+          <span class="w-icon">${item.icon}</span>
+          <div class="w-info">
+            <div class="w-title">${getLoc(item.title)}</div>
+            <div class="w-sub">${getLoc(item.sub)}</div>
+          </div>
+          <span class="w-arrow">←</span>
+        </div>`;
+  }).join('');
+
   mc.innerHTML = `
     <div class="welcome-card">
       <div class="welcome-icon">🕌</div>
-      <div class="welcome-salam">اَلسَّلَامُ عَلَیْكُمْ وَ رَحْمَةُ اللّٰهِ وَ بَرَكَاتُهُ</div>
+      <div class="welcome-salam">${t('salam')}</div>
       <div class="welcome-intro">
-        خوش آمدید! ذکرِ الٰہی سے دلوں کو اطمینان اور زندگی میں برکت حاصل ہوتی ہے۔
+        ${t('intro')}
       </div>
       <div class="welcome-guide">
-        👆 اوپر بنے بٹن <strong style="color:var(--g2)">[ ☀️ ذکر منتخب کریں ▾ ]</strong> سے یا نیچے دیے گئے کارڈز سے اپنا وِرد شروع فرمائیں:
+        ${t('guide')}
       </div>
       <div class="welcome-grid">
-        <div class="w-card highlight" data-sec="asr">
-          <span class="w-icon">☀️</span>
-          <div class="w-info">
-            <div class="w-title">جمعہ عصر درود شریف (۸۰ مرتبہ)</div>
-            <div class="w-sub">روایت کے مطابق ۸۰ سال کی مغفرت و ثواب کا خاص وِرد</div>
-          </div>
-          <span class="w-arrow">←</span>
-        </div>
-        <div class="w-card" data-sec="durood_pak">
-          <span class="w-icon">✨</span>
-          <div class="w-info">
-            <div class="w-title">مجموعہ درود شریف (ابراہیمی، تنجینا، تاج)</div>
-            <div class="w-sub">نماز والا افضل ترین درودِ ابراہیمی، درودِ تنجینا اور درودِ تاج (${DUROOD_PAK.length} درود)</div>
-          </div>
-          <span class="w-arrow">←</span>
-        </div>
-        <div class="w-card" data-sec="asma">
-          <span class="w-icon">👑</span>
-          <div class="w-info">
-            <div class="w-title">اَسْمَاءُ اللّٰهِ الْحُسْنٰی (۹۹ مبارک نام)</div>
-            <div class="w-sub">اللہ تعالیٰ کے ۹۹ صفاتی نام مع اردو معانی و کامل فضیلت (${ASMA_99.length} نام)</div>
-          </div>
-          <span class="w-arrow">←</span>
-        </div>
-        <div class="w-card" data-sec="kahf">
-          <span class="w-icon">📖</span>
-          <div class="w-info">
-            <div class="w-title">سورۃ الکہف (مکمل آف لائن تلاوت)</div>
-            <div class="w-sub">مکمل ۱۱۰ آیات مع تجوید و ہند-پاک پاکستانی رسم الخط</div>
-          </div>
-          <span class="w-arrow">←</span>
-        </div>
-        <div class="w-card" data-sec="fajr">
-          <span class="w-icon">🌅</span>
-          <div class="w-info">
-            <div class="w-title">فجر و مغرب کے مسنون اذکار</div>
-            <div class="w-sub">صبح و شام کی جامع حفاظت کی دعائیں (${FAJR.length} مسنون اذکار)</div>
-          </div>
-          <span class="w-arrow">←</span>
-        </div>
-        <div class="w-card" data-sec="jumma">
-          <span class="w-info">🌙</span>
-          <div class="w-info-desc">
-            <div class="w-title">جمعہ کا مسنون وِرد مع دَم</div>
-            <div class="w-sub">سورۃ فاتحہ، اخلاص، فلق، ناس مع طریقہ دم (${JUMMA.length} اذکار)</div>
-          </div>
-          <span class="w-arrow">←</span>
-        </div>
-        <div class="w-card" data-sec="mulk">
-          <span class="w-icon">👑</span>
-          <div class="w-info">
-            <div class="w-title">سورۃ الملک (عذابِ قبر سے حفاظت)</div>
-            <div class="w-sub">مکمل ۳۰ آیات — رات کو تلاوت کی فضیلت مع پاکستانی رسم الخط</div>
-          </div>
-          <span class="w-arrow">←</span>
-        </div>
-        <div class="w-card" data-sec="waqiah">
-          <span class="w-icon">💰</span>
-          <div class="w-info">
-            <div class="w-title">سورۃ الواقعہ (رزق و برکت)</div>
-            <div class="w-sub">مکمل ۹۶ آیات — فقر و فاقہ سے حفاظت مع پاکستانی رسم الخط</div>
-          </div>
-          <span class="w-arrow">←</span>
-        </div>
-        <div class="w-card" data-sec="rahman">
-          <span class="w-icon">🌺</span>
-          <div class="w-info">
-            <div class="w-title">سورۃ الرحمن (عُرُوْسُ الْقُرْآن)</div>
-            <div class="w-sub">مکمل ۷۸ آیات — فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ مع پاکستانی رسم الخط</div>
-          </div>
-          <span class="w-arrow">←</span>
-        </div>
-        <div class="w-card" data-sec="manzil">
-          <span class="w-icon">🛡️</span>
-          <div class="w-info">
-            <div class="w-title">منزل — قرآنی شفا و حفاظت</div>
-            <div class="w-sub">مکمل ۳۳ آیاتِ حفاظت — نظرِ بد، جادو اور شیاطین سے نبوی پناہ</div>
-          </div>
-          <span class="w-arrow">←</span>
-        </div>
-        <div class="w-card" data-sec="bedtime">
-          <span class="w-icon">🌙</span>
-          <div class="w-info">
-            <div class="w-title">سونے کے مسنون اذکار و دعائیں</div>
-            <div class="w-sub">آیت الکرسی، آمن الرسول، تینوں قُل مع دم، تسبیح فاطمہؓ (${BEDTIME.length} مسنون اذکار)</div>
-          </div>
-          <span class="w-arrow">←</span>
-        </div>
-        <div class="w-card" data-sec="tawbah">
-          <span class="w-icon">🤲</span>
-          <div class="w-info">
-            <div class="w-title">سید الاستغفار و توبہ کے اذکار</div>
-            <div class="w-sub">سید الاستغفار، آیتِ کریمہ اور نبوی بخشش کے اذکار (${TAWBAH.length} اذکار)</div>
-          </div>
-          <span class="w-arrow">←</span>
-        </div>
-        <div class="w-card" data-sec="post_salah">
-          <span class="w-icon">🧎</span>
-          <div class="w-info">
-            <div class="w-title">فرض نماز کے بعد کے مسنون اذکار</div>
-            <div class="w-sub">استغفار، آیۃ الکرسی، تسبیح، اور حسنِ عبادت کی دعا (${POST_SALAH.length} اذکار)</div>
-          </div>
-          <span class="w-arrow">←</span>
-        </div>
-        <div class="w-card" data-sec="morning_wake">
-          <span class="w-icon">🌅</span>
-          <div class="w-info">
-            <div class="w-title">صبح بیدار ہونے کے مسنون اذکار</div>
-            <div class="w-sub">الحمد للہ الذی احیانا اور تہجد و بیداری کا کلمۂ توحید (${MORNING_WAKE.length} اذکار)</div>
-          </div>
-          <span class="w-arrow">←</span>
-        </div>
-        <div class="w-card" data-sec="relief_debt">
-          <span class="w-icon">🤲</span>
-          <div class="w-info">
-            <div class="w-title">قرض، غم و پریشانی سے نجات کی دعائیں</div>
-            <div class="w-sub">نبوی جامع دعائیں، ادائیگیِ قرض، اور لا حول و لا قوۃ (${RELIEF_DEBT.length} اذکار)</div>
-          </div>
-          <span class="w-arrow">←</span>
-        </div>
-        <div class="w-card" data-sec="istikhara">
-          <span class="w-icon">🧭</span>
-          <div class="w-info">
-            <div class="w-title">دعائے استخارہ مع طریقہ و رہنمائی</div>
-            <div class="w-sub">ہر اہم فیصلے، رشتے، نوکری اور کاروبار میں خیر طلبی کی نبوی دعا</div>
-          </div>
-          <span class="w-arrow">←</span>
-        </div>
-        <div class="w-card" data-sec="tauheed">
-          <span class="w-icon">☝️</span>
-          <div class="w-info">
-            <div class="w-title">ذکرِ توحید و استغفار</div>
-            <div class="w-sub">لا الہ الا اللہ، کلماتِ تسبیح و حمد (${TAUHEED.length} اذکار)</div>
-          </div>
-          <span class="w-arrow">←</span>
-        </div>
-        <div class="w-card" data-sec="tasbeeh">
-          <span class="w-icon">📿</span>
-          <div class="w-info">
-            <div class="w-title">تسبیحِ فاطمہؓ (خودکار کاؤنٹر)</div>
-            <div class="w-sub">۳۳ بار سبحان اللہ، ۳۳ بار الحمد للہ، ۳۴ بار اللہ اکبر</div>
-          </div>
-          <span class="w-arrow">←</span>
-        </div>
-        <div class="w-card" data-sec="custom">
-          <span class="w-icon">📝</span>
-          <div class="w-info">
-            <div class="w-title">ذاتی اذکار و تسبیحات</div>
-            <div class="w-sub">اپنی مرضی کے اذکار و دعائیں شامل اور کاؤنٹ کریں</div>
-          </div>
-          <span class="w-arrow">←</span>
-        </div>
+        ${cardsHtml}
       </div>
     </div>
     <footer class="seo-summary" style="padding:1.4rem .5rem .8rem;text-align:center;font-family:var(--ur-font);font-size:.76rem;color:var(--text3);opacity:.85;line-height:2.2;direction:rtl">
-      <h2 style="font-size:.85rem;color:var(--gold-light);font-weight:600;margin-bottom:.35rem">اسلامک اذکار پرو — درود شریف، قرآنی سورتیں اور مسنون اذکار</h2>
-      <p style="margin:0">مکمل آف لائن اسلامی ایپ: ۸۰ مرتبہ عصر درود، درودِ ابراہیمی، درودِ تنجینا، مکمل ۵ قرآنی سورتیں (الکہف، الملک، الواقعہ، الرحمن، منزل)، بعد از نماز اذکار، سونے و بیداری کی دعائیں، استخارہ، قرض و غم سے نجات، اسمائے حسنیٰ، تسلسل اور تسبیحِ فاطمہؓ۔ ۱۰۰٪ مفت، مستند اور بغیر انٹرنیٹ۔</p>
+      <h2 style="font-size:.85rem;color:var(--gold-light);font-weight:600;margin-bottom:.35rem">${S.lang==='en'?'Islamic Azkar Pro — Durood Sharif Counter, Quranic Surahs & Masnoon Duas':'اسلامک اذکار پرو — درود شریف، قرآنی سورتیں اور مسنون اذکار'}</h2>
+      <p style="margin:0">${S.lang==='en'?'Complete offline Islamic app: 80x Friday Asr Durood counter, Durood Ibrahimi, Durood Tanjeena, 5 complete Quranic Surahs (Al-Kahf, Mulk, Waqiah, Rahman, Manzil), authentic post-salah prayers, bedtime and waking up duas, Istikhara, debt and anxiety relief, 99 Names of Allah, and Tasbeeh Fatimah. 100% free and fully functional offline without internet.':'مکمل آف لائن اسلامی ایپ: ۸۰ مرتبہ عصر درود، درودِ ابراہیمی، درودِ تنجینا، مکمل ۵ قرآنی سورتیں (الکہف، الملک، الواقعہ، الرحمن، منزل)، بعد از نماز اذکار، سونے و بیداری کی دعائیں، استخارہ، قرض و غم سے نجات، اسمائے حسنیٰ، تسلسل اور تسبیحِ فاطمہؓ۔ ۱۰۰٪ مفت، مستند اور بغیر انٹرنیٹ۔'}</p>
     </footer>
   `;
   mc.querySelectorAll('.w-card').forEach(card => {
@@ -3980,7 +4035,7 @@ function render(){
   const zpIcon=document.getElementById('zpIcon');
   const zpName=document.getElementById('zpName');
   if(zpIcon) zpIcon.textContent=curMeta.icon;
-  if(zpName) zpName.textContent=(sec==='welcome')?'ذکر منتخب کریں ▾':curMeta.title;
+  if(zpName) zpName.textContent=(sec==='welcome')?t('choose_zikr'):getLoc(curMeta.title);
   const scrollB=document.getElementById('scrollBar');
   const isQuran=Boolean(QURAN_SURAHS[sec]);
   const isScrollable = isQuran || sec === 'asma';
@@ -4021,12 +4076,12 @@ function render(){
     h+=`<div class="dua-card">${bismi?`<span class="bismi">${bismi}</span>`:''}
       <div class="ar">${body.replace(/\n/g,'<br/>')}</div>
       <div class="dua-name">${step.name}</div></div>
-    <button type="button" class="faz-btn" onclick="toggleFaz(this)">✨ فضیلت دیکھیں</button>
+    <button type="button" class="faz-btn" onclick="toggleFaz(this)">${t("faz_btn")}</button>
     <div class="faz-body">${step.faz}${step.ref?`<span class="faz-ref">${step.ref}</span>`:''}</div>
     ${ring(cnt,step.target,color,done)}`;
   }
   const isLast=st.idx===total-1;
-  h+=`<div class="ctrls"><button type="button" class="btn" id="prevB" ${st.idx===0?'disabled':''}>← پچھلا</button><button type="button" class="btn" id="undoB">↩</button><button type="button" class="btn next" id="nextB">${done?(isLast?'🌿 ختم':'اگلا →'):'آگے →'}</button></div></div>`;
+  h+=`<div class="ctrls"><button type="button" class="btn" id="prevB" ${st.idx===0?'disabled':''}>${t("prev")}</button><button type="button" class="btn" id="undoB">${t("undo")}</button><button type="button" class="btn next" id="nextB">${done?(isLast?'🌿 ختم':'اگلا →'):'آگے →'}</button></div></div>`;
   mc.innerHTML=h;
   document.getElementById('rw')?.addEventListener('click',tap);
   document.getElementById('dmBtn')?.addEventListener('click',()=>{if(!done){S[sec].done[S[sec].idx]=true;save();render();}});
@@ -4083,35 +4138,62 @@ function renderTasbeeh(mc){
 }
 
 /* ══ UNIFIED QURAN ENGINE ══ */
+/* ══ UTHMANI (GLOBAL / MADANI) DATASETS ══ */
+const MULK_UTHMANI = [
+  {r:'رکوع ۱', verses: [{"n":1,"t":"تَبَـٰرَكَ ٱلَّذِی بِیَدِهِ ٱلۡمُلۡكُ وَهُوَ عَلَىٰ كُلِّ شَیۡءࣲ قَدِیرٌ"},{"n":2,"t":"ٱلَّذِی خَلَقَ ٱلۡمَوۡتَ وَٱلۡحَیَوٰةَ لِیَبۡلُوَكُمۡ أَیُّكُمۡ أَحۡسَنُ عَمَلࣰاۚ وَهُوَ ٱلۡعَزِیزُ ٱلۡغَفُورُ"},{"n":3,"t":"ٱلَّذِی خَلَقَ سَبۡعَ سَمَـٰوَ ٰ⁠تࣲ طِبَاقࣰاۖ مَّا تَرَىٰ فِی خَلۡقِ ٱلرَّحۡمَـٰنِ مِن تَفَـٰوُتࣲۖ فَٱرۡجِعِ ٱلۡبَصَرَ هَلۡ تَرَىٰ مِن فُطُورࣲ"},{"n":4,"t":"ثُمَّ ٱرۡجِعِ ٱلۡبَصَرَ كَرَّتَیۡنِ یَنقَلِبۡ إِلَیۡكَ ٱلۡبَصَرُ خَاسِئࣰا وَهُوَ حَسِیرࣱ"},{"n":5,"t":"وَلَقَدۡ زَیَّنَّا ٱلسَّمَاۤءَ ٱلدُّنۡیَا بِمَصَـٰبِیحَ وَجَعَلۡنَـٰهَا رُجُومࣰا لِّلشَّیَـٰطِینِۖ وَأَعۡتَدۡنَا لَهُمۡ عَذَابَ ٱلسَّعِیرِ"},{"n":6,"t":"وَلِلَّذِینَ كَفَرُوا۟ بِرَبِّهِمۡ عَذَابُ جَهَنَّمَۖ وَبِئۡسَ ٱلۡمَصِیرُ"},{"n":7,"t":"إِذَاۤ أُلۡقُوا۟ فِیهَا سَمِعُوا۟ لَهَا شَهِیقࣰا وَهِیَ تَفُورُ"},{"n":8,"t":"تَكَادُ تَمَیَّزُ مِنَ ٱلۡغَیۡظِۖ كُلَّمَاۤ أُلۡقِیَ فِیهَا فَوۡجࣱ سَأَلَهُمۡ خَزَنَتُهَاۤ أَلَمۡ یَأۡتِكُمۡ نَذِیرࣱ"},{"n":9,"t":"قَالُوا۟ بَلَىٰ قَدۡ جَاۤءَنَا نَذِیرࣱ فَكَذَّبۡنَا وَقُلۡنَا مَا نَزَّلَ ٱللَّهُ مِن شَیۡءٍ إِنۡ أَنتُمۡ إِلَّا فِی ضَلَـٰلࣲ كَبِیرࣲ"},{"n":10,"t":"وَقَالُوا۟ لَوۡ كُنَّا نَسۡمَعُ أَوۡ نَعۡقِلُ مَا كُنَّا فِیۤ أَصۡحَـٰبِ ٱلسَّعِیرِ"},{"n":11,"t":"فَٱعۡتَرَفُوا۟ بِذَنۢبِهِمۡ فَسُحۡقࣰا لِّأَصۡحَـٰبِ ٱلسَّعِیرِ"},{"n":12,"t":"إِنَّ ٱلَّذِینَ یَخۡشَوۡنَ رَبَّهُم بِٱلۡغَیۡبِ لَهُم مَّغۡفِرَةࣱ وَأَجۡرࣱ كَبِیرࣱ"},{"n":13,"t":"وَأَسِرُّوا۟ قَوۡلَكُمۡ أَوِ ٱجۡهَرُوا۟ بِهِۦۤۖ إِنَّهُۥ عَلِیمُۢ بِذَاتِ ٱلصُّدُورِ"},{"n":14,"t":"أَلَا یَعۡلَمُ مَنۡ خَلَقَ وَهُوَ ٱللَّطِیفُ ٱلۡخَبِیرُ"}]},
+  {r:'رکوع ۲', verses: [{"n":15,"t":"هُوَ ٱلَّذِی جَعَلَ لَكُمُ ٱلۡأَرۡضَ ذَلُولࣰا فَٱمۡشُوا۟ فِی مَنَاكِبِهَا وَكُلُوا۟ مِن رِّزۡقِهِۦۖ وَإِلَیۡهِ ٱلنُّشُورُ"},{"n":16,"t":"ءَأَمِنتُم مَّن فِی ٱلسَّمَاۤءِ أَن یَخۡسِفَ بِكُمُ ٱلۡأَرۡضَ فَإِذَا هِیَ تَمُورُ"},{"n":17,"t":"أَمۡ أَمِنتُم مَّن فِی ٱلسَّمَاۤءِ أَن یُرۡسِلَ عَلَیۡكُمۡ حَاصِبࣰاۖ فَسَتَعۡلَمُونَ كَیۡفَ نَذِیرِ"},{"n":18,"t":"وَلَقَدۡ كَذَّبَ ٱلَّذِینَ مِن قَبۡلِهِمۡ فَكَیۡفَ كَانَ نَكِیرِ"},{"n":19,"t":"أَوَلَمۡ یَرَوۡا۟ إِلَى ٱلطَّیۡرِ فَوۡقَهُمۡ صَـٰۤفَّـٰتࣲ وَیَقۡبِضۡنَۚ مَا یُمۡسِكُهُنَّ إِلَّا ٱلرَّحۡمَـٰنُۚ إِنَّهُۥ بِكُلِّ شَیۡءِۭ بَصِیرٌ"},{"n":20,"t":"أَمَّنۡ هَـٰذَا ٱلَّذِی هُوَ جُندࣱ لَّكُمۡ یَنصُرُكُم مِّن دُونِ ٱلرَّحۡمَـٰنِۚ إِنِ ٱلۡكَـٰفِرُونَ إِلَّا فِی غُرُورٍ"},{"n":21,"t":"أَمَّنۡ هَـٰذَا ٱلَّذِی یَرۡزُقُكُمۡ إِنۡ أَمۡسَكَ رِزۡقَهُۥۚ بَل لَّجُّوا۟ فِی عُتُوࣲّ وَنُفُورٍ"},{"n":22,"t":"أَفَمَن یَمۡشِی مُكِبًّا عَلَىٰ وَجۡهِهِۦۤ أَهۡدَىٰۤ أَمَّن یَمۡشِی سَوِیًّا عَلَىٰ صِرَ ٰ⁠طࣲ مُّسۡتَقِیمࣲ"},{"n":23,"t":"قُلۡ هُوَ ٱلَّذِیۤ أَنشَأَكُمۡ وَجَعَلَ لَكُمُ ٱلسَّمۡعَ وَٱلۡأَبۡصَـٰرَ وَٱلۡأَفۡـِٔدَةَۚ قَلِیلࣰا مَّا تَشۡكُرُونَ"},{"n":24,"t":"قُلۡ هُوَ ٱلَّذِی ذَرَأَكُمۡ فِی ٱلۡأَرۡضِ وَإِلَیۡهِ تُحۡشَرُونَ"},{"n":25,"t":"وَیَقُولُونَ مَتَىٰ هَـٰذَا ٱلۡوَعۡدُ إِن كُنتُمۡ صَـٰدِقِینَ"},{"n":26,"t":"قُلۡ إِنَّمَا ٱلۡعِلۡمُ عِندَ ٱللَّهِ وَإِنَّمَاۤ أَنَا۠ نَذِیرࣱ مُّبِینࣱ"},{"n":27,"t":"فَلَمَّا رَأَوۡهُ زُلۡفَةࣰ سِیۤـَٔتۡ وُجُوهُ ٱلَّذِینَ كَفَرُوا۟ وَقِیلَ هَـٰذَا ٱلَّذِی كُنتُم بِهِۦ تَدَّعُونَ"},{"n":28,"t":"قُلۡ أَرَءَیۡتُمۡ إِنۡ أَهۡلَكَنِیَ ٱللَّهُ وَمَن مَّعِیَ أَوۡ رَحِمَنَا فَمَن یُجِیرُ ٱلۡكَـٰفِرِینَ مِنۡ عَذَابٍ أَلِیمࣲ"},{"n":29,"t":"قُلۡ هُوَ ٱلرَّحۡمَـٰنُ ءَامَنَّا بِهِۦ وَعَلَیۡهِ تَوَكَّلۡنَاۖ فَسَتَعۡلَمُونَ مَنۡ هُوَ فِی ضَلَـٰلࣲ مُّبِینࣲ"},{"n":30,"t":"قُلۡ أَرَءَیۡتُمۡ إِنۡ أَصۡبَحَ مَاۤؤُكُمۡ غَوۡرࣰا فَمَن یَأۡتِیكُم بِمَاۤءࣲ مَّعِینِۭ"}]}
+];
+const WAQIAH_UTHMANI = [
+  {r:'رکوع ۱', verses: [{"n":1,"t":"إِذَا وَقَعَتِ ٱلۡوَاقِعَةُ"},{"n":2,"t":"لَیۡسَ لِوَقۡعَتِهَا كَاذِبَةٌ"},{"n":3,"t":"خَافِضَةࣱ رَّافِعَةٌ"},{"n":4,"t":"إِذَا رُجَّتِ ٱلۡأَرۡضُ رَجࣰّا"},{"n":5,"t":"وَبُسَّتِ ٱلۡجِبَالُ بَسࣰّا"},{"n":6,"t":"فَكَانَتۡ هَبَاۤءࣰ مُّنۢبَثࣰّا"},{"n":7,"t":"وَكُنتُمۡ أَزۡوَ ٰ⁠جࣰا ثَلَـٰثَةࣰ"},{"n":8,"t":"فَأَصۡحَـٰبُ ٱلۡمَیۡمَنَةِ مَاۤ أَصۡحَـٰبُ ٱلۡمَیۡمَنَةِ"},{"n":9,"t":"وَأَصۡحَـٰبُ ٱلۡمَشۡـَٔمَةِ مَاۤ أَصۡحَـٰبُ ٱلۡمَشۡـَٔمَةِ"},{"n":10,"t":"وَٱلسَّـٰبِقُونَ ٱلسَّـٰبِقُونَ"},{"n":11,"t":"أُو۟لَـٰۤىِٕكَ ٱلۡمُقَرَّبُونَ"},{"n":12,"t":"فِی جَنَّـٰتِ ٱلنَّعِیمِ"},{"n":13,"t":"ثُلَّةࣱ مِّنَ ٱلۡأَوَّلِینَ"},{"n":14,"t":"وَقَلِیلࣱ مِّنَ ٱلۡـَٔاخِرِینَ"},{"n":15,"t":"عَلَىٰ سُرُرࣲ مَّوۡضُونَةࣲ"},{"n":16,"t":"مُّتَّكِـِٔینَ عَلَیۡهَا مُتَقَـٰبِلِینَ"},{"n":17,"t":"یَطُوفُ عَلَیۡهِمۡ وِلۡدَ ٰ⁠نࣱ مُّخَلَّدُونَ"},{"n":18,"t":"بِأَكۡوَابࣲ وَأَبَارِیقَ وَكَأۡسࣲ مِّن مَّعِینࣲ"},{"n":19,"t":"لَّا یُصَدَّعُونَ عَنۡهَا وَلَا یُنزِفُونَ"},{"n":20,"t":"وَفَـٰكِهَةࣲ مِّمَّا یَتَخَیَّرُونَ"},{"n":21,"t":"وَلَحۡمِ طَیۡرࣲ مِّمَّا یَشۡتَهُونَ"},{"n":22,"t":"وَحُورٌ عِینࣱ"},{"n":23,"t":"كَأَمۡثَـٰلِ ٱللُّؤۡلُوِٕ ٱلۡمَكۡنُونِ"},{"n":24,"t":"جَزَاۤءَۢ بِمَا كَانُوا۟ یَعۡمَلُونَ"},{"n":25,"t":"لَا یَسۡمَعُونَ فِیهَا لَغۡوࣰا وَلَا تَأۡثِیمًا"},{"n":26,"t":"إِلَّا قِیلࣰا سَلَـٰمࣰا سَلَـٰمࣰا"},{"n":27,"t":"وَأَصۡحَـٰبُ ٱلۡیَمِینِ مَاۤ أَصۡحَـٰبُ ٱلۡیَمِینِ"},{"n":28,"t":"فِی سِدۡرࣲ مَّخۡضُودࣲ"},{"n":29,"t":"وَطَلۡحࣲ مَّنضُودࣲ"},{"n":30,"t":"وَظِلࣲّ مَّمۡدُودࣲ"},{"n":31,"t":"وَمَاۤءࣲ مَّسۡكُوبࣲ"},{"n":32,"t":"وَفَـٰكِهَةࣲ كَثِیرَةࣲ"},{"n":33,"t":"لَّا مَقۡطُوعَةࣲ وَلَا مَمۡنُوعَةࣲ"},{"n":34,"t":"وَفُرُشࣲ مَّرۡفُوعَةٍ"},{"n":35,"t":"إِنَّاۤ أَنشَأۡنَـٰهُنَّ إِنشَاۤءࣰ"},{"n":36,"t":"فَجَعَلۡنَـٰهُنَّ أَبۡكَارًا"},{"n":37,"t":"عُرُبًا أَتۡرَابࣰا"},{"n":38,"t":"لِّأَصۡحَـٰبِ ٱلۡیَمِینِ"}]},
+  {r:'رکوع ۲', verses: [{"n":39,"t":"ثُلَّةࣱ مِّنَ ٱلۡأَوَّلِینَ"},{"n":40,"t":"وَثُلَّةࣱ مِّنَ ٱلۡـَٔاخِرِینَ"},{"n":41,"t":"وَأَصۡحَـٰبُ ٱلشِّمَالِ مَاۤ أَصۡحَـٰبُ ٱلشِّمَالِ"},{"n":42,"t":"فِی سَمُومࣲ وَحَمِیمࣲ"},{"n":43,"t":"وَظِلࣲّ مِّن یَحۡمُومࣲ"},{"n":44,"t":"لَّا بَارِدࣲ وَلَا كَرِیمٍ"},{"n":45,"t":"إِنَّهُمۡ كَانُوا۟ قَبۡلَ ذَ ٰ⁠لِكَ مُتۡرَفِینَ"},{"n":46,"t":"وَكَانُوا۟ یُصِرُّونَ عَلَى ٱلۡحِنثِ ٱلۡعَظِیمِ"},{"n":47,"t":"وَكَانُوا۟ یَقُولُونَ أَىِٕذَا مِتۡنَا وَكُنَّا تُرَابࣰا وَعِظَـٰمًا أَءِنَّا لَمَبۡعُوثُونَ"},{"n":48,"t":"أَوَءَابَاۤؤُنَا ٱلۡأَوَّلُونَ"},{"n":49,"t":"قُلۡ إِنَّ ٱلۡأَوَّلِینَ وَٱلۡـَٔاخِرِینَ"},{"n":50,"t":"لَمَجۡمُوعُونَ إِلَىٰ مِیقَـٰتِ یَوۡمࣲ مَّعۡلُومࣲ"},{"n":51,"t":"ثُمَّ إِنَّكُمۡ أَیُّهَا ٱلضَّاۤلُّونَ ٱلۡمُكَذِّبُونَ"},{"n":52,"t":"لَـَٔاكِلُونَ مِن شَجَرࣲ مِّن زَقُّومࣲ"},{"n":53,"t":"فَمَالِـُٔونَ مِنۡهَا ٱلۡبُطُونَ"},{"n":54,"t":"فَشَـٰرِبُونَ عَلَیۡهِ مِنَ ٱلۡحَمِیمِ"},{"n":55,"t":"فَشَـٰرِبُونَ شُرۡبَ ٱلۡهِیمِ"},{"n":56,"t":"هَـٰذَا نُزُلُهُمۡ یَوۡمَ ٱلدِّینِ"},{"n":57,"t":"نَحۡنُ خَلَقۡنَـٰكُمۡ فَلَوۡلَا تُصَدِّقُونَ"},{"n":58,"t":"أَفَرَءَیۡتُم مَّا تُمۡنُونَ"},{"n":59,"t":"ءَأَنتُمۡ تَخۡلُقُونَهُۥۤ أَمۡ نَحۡنُ ٱلۡخَـٰلِقُونَ"},{"n":60,"t":"نَحۡنُ قَدَّرۡنَا بَیۡنَكُمُ ٱلۡمَوۡتَ وَمَا نَحۡنُ بِمَسۡبُوقِینَ"},{"n":61,"t":"عَلَىٰۤ أَن نُّبَدِّلَ أَمۡثَـٰلَكُمۡ وَنُنشِئَكُمۡ فِی مَا لَا تَعۡلَمُونَ"},{"n":62,"t":"وَلَقَدۡ عَلِمۡتُمُ ٱلنَّشۡأَةَ ٱلۡأُولَىٰ فَلَوۡلَا تَذَكَّرُونَ"},{"n":63,"t":"أَفَرَءَیۡتُم مَّا تَحۡرُثُونَ"},{"n":64,"t":"ءَأَنتُمۡ تَزۡرَعُونَهُۥۤ أَمۡ نَحۡنُ ٱلزَّ ٰ⁠رِعُونَ"},{"n":65,"t":"لَوۡ نَشَاۤءُ لَجَعَلۡنَـٰهُ حُطَـٰمࣰا فَظَلۡتُمۡ تَفَكَّهُونَ"},{"n":66,"t":"إِنَّا لَمُغۡرَمُونَ"},{"n":67,"t":"بَلۡ نَحۡنُ مَحۡرُومُونَ"},{"n":68,"t":"أَفَرَءَیۡتُمُ ٱلۡمَاۤءَ ٱلَّذِی تَشۡرَبُونَ"},{"n":69,"t":"ءَأَنتُمۡ أَنزَلۡتُمُوهُ مِنَ ٱلۡمُزۡنِ أَمۡ نَحۡنُ ٱلۡمُنزِلُونَ"},{"n":70,"t":"لَوۡ نَشَاۤءُ جَعَلۡنَـٰهُ أُجَاجࣰا فَلَوۡلَا تَشۡكُرُونَ"},{"n":71,"t":"أَفَرَءَیۡتُمُ ٱلنَّارَ ٱلَّتِی تُورُونَ"},{"n":72,"t":"ءَأَنتُمۡ أَنشَأۡتُمۡ شَجَرَتَهَاۤ أَمۡ نَحۡنُ ٱلۡمُنشِـُٔونَ"},{"n":73,"t":"نَحۡنُ جَعَلۡنَـٰهَا تَذۡكِرَةࣰ وَمَتَـٰعࣰا لِّلۡمُقۡوِینَ"},{"n":74,"t":"فَسَبِّحۡ بِٱسۡمِ رَبِّكَ ٱلۡعَظِیمِ"}]},
+  {r:'رکوع ۳', verses: [{"n":75,"t":"۞ فَلَاۤ أُقۡسِمُ بِمَوَ ٰ⁠قِعِ ٱلنُّجُومِ"},{"n":76,"t":"وَإِنَّهُۥ لَقَسَمࣱ لَّوۡ تَعۡلَمُونَ عَظِیمٌ"},{"n":77,"t":"إِنَّهُۥ لَقُرۡءَانࣱ كَرِیمࣱ"},{"n":78,"t":"فِی كِتَـٰبࣲ مَّكۡنُونࣲ"},{"n":79,"t":"لَّا یَمَسُّهُۥۤ إِلَّا ٱلۡمُطَهَّرُونَ"},{"n":80,"t":"تَنزِیلࣱ مِّن رَّبِّ ٱلۡعَـٰلَمِینَ"},{"n":81,"t":"أَفَبِهَـٰذَا ٱلۡحَدِیثِ أَنتُم مُّدۡهِنُونَ"},{"n":82,"t":"وَتَجۡعَلُونَ رِزۡقَكُمۡ أَنَّكُمۡ تُكَذِّبُونَ"},{"n":83,"t":"فَلَوۡلَاۤ إِذَا بَلَغَتِ ٱلۡحُلۡقُومَ"},{"n":84,"t":"وَأَنتُمۡ حِینَىِٕذࣲ تَنظُرُونَ"},{"n":85,"t":"وَنَحۡنُ أَقۡرَبُ إِلَیۡهِ مِنكُمۡ وَلَـٰكِن لَّا تُبۡصِرُونَ"},{"n":86,"t":"فَلَوۡلَاۤ إِن كُنتُمۡ غَیۡرَ مَدِینِینَ"},{"n":87,"t":"تَرۡجِعُونَهَاۤ إِن كُنتُمۡ صَـٰدِقِینَ"},{"n":88,"t":"فَأَمَّاۤ إِن كَانَ مِنَ ٱلۡمُقَرَّبِینَ"},{"n":89,"t":"فَرَوۡحࣱ وَرَیۡحَانࣱ وَجَنَّتُ نَعِیمࣲ"},{"n":90,"t":"وَأَمَّاۤ إِن كَانَ مِنۡ أَصۡحَـٰبِ ٱلۡیَمِینِ"},{"n":91,"t":"فَسَلَـٰمࣱ لَّكَ مِنۡ أَصۡحَـٰبِ ٱلۡیَمِینِ"},{"n":92,"t":"وَأَمَّاۤ إِن كَانَ مِنَ ٱلۡمُكَذِّبِینَ ٱلضَّاۤلِّینَ"},{"n":93,"t":"فَنُزُلࣱ مِّنۡ حَمِیمࣲ"},{"n":94,"t":"وَتَصۡلِیَةُ جَحِیمٍ"},{"n":95,"t":"إِنَّ هَـٰذَا لَهُوَ حَقُّ ٱلۡیَقِینِ"},{"n":96,"t":"فَسَبِّحۡ بِٱسۡمِ رَبِّكَ ٱلۡعَظِیمِ"}]}
+];
+const RAHMAN_UTHMANI = [
+  {r:'رکوع ۱', verses: [{"n":1,"t":"ٱلرَّحۡمَـٰنُ"},{"n":2,"t":"عَلَّمَ ٱلۡقُرۡءَانَ"},{"n":3,"t":"خَلَقَ ٱلۡإِنسَـٰنَ"},{"n":4,"t":"عَلَّمَهُ ٱلۡبَیَانَ"},{"n":5,"t":"ٱلشَّمۡسُ وَٱلۡقَمَرُ بِحُسۡبَانࣲ"},{"n":6,"t":"وَٱلنَّجۡمُ وَٱلشَّجَرُ یَسۡجُدَانِ"},{"n":7,"t":"وَٱلسَّمَاۤءَ رَفَعَهَا وَوَضَعَ ٱلۡمِیزَانَ"},{"n":8,"t":"أَلَّا تَطۡغَوۡا۟ فِی ٱلۡمِیزَانِ"},{"n":9,"t":"وَأَقِیمُوا۟ ٱلۡوَزۡنَ بِٱلۡقِسۡطِ وَلَا تُخۡسِرُوا۟ ٱلۡمِیزَانَ"},{"n":10,"t":"وَٱلۡأَرۡضَ وَضَعَهَا لِلۡأَنَامِ"},{"n":11,"t":"فِیهَا فَـٰكِهَةࣱ وَٱلنَّخۡلُ ذَاتُ ٱلۡأَكۡمَامِ"},{"n":12,"t":"وَٱلۡحَبُّ ذُو ٱلۡعَصۡفِ وَٱلرَّیۡحَانُ"},{"n":13,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":14,"t":"خَلَقَ ٱلۡإِنسَـٰنَ مِن صَلۡصَـٰلࣲ كَٱلۡفَخَّارِ"},{"n":15,"t":"وَخَلَقَ ٱلۡجَاۤنَّ مِن مَّارِجࣲ مِّن نَّارࣲ"},{"n":16,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":17,"t":"رَبُّ ٱلۡمَشۡرِقَیۡنِ وَرَبُّ ٱلۡمَغۡرِبَیۡنِ"},{"n":18,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":19,"t":"مَرَجَ ٱلۡبَحۡرَیۡنِ یَلۡتَقِیَانِ"},{"n":20,"t":"بَیۡنَهُمَا بَرۡزَخࣱ لَّا یَبۡغِیَانِ"},{"n":21,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":22,"t":"یَخۡرُجُ مِنۡهُمَا ٱللُّؤۡلُؤُ وَٱلۡمَرۡجَانُ"},{"n":23,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":24,"t":"وَلَهُ ٱلۡجَوَارِ ٱلۡمُنشَـَٔاتُ فِی ٱلۡبَحۡرِ كَٱلۡأَعۡلَـٰمِ"},{"n":25,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"}]},
+  {r:'رکوع ۲', verses: [{"n":26,"t":"كُلُّ مَنۡ عَلَیۡهَا فَانࣲ"},{"n":27,"t":"وَیَبۡقَىٰ وَجۡهُ رَبِّكَ ذُو ٱلۡجَلَـٰلِ وَٱلۡإِكۡرَامِ"},{"n":28,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":29,"t":"یَسۡـَٔلُهُۥ مَن فِی ٱلسَّمَـٰوَ ٰ⁠تِ وَٱلۡأَرۡضِۚ كُلَّ یَوۡمٍ هُوَ فِی شَأۡنࣲ"},{"n":30,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":31,"t":"سَنَفۡرُغُ لَكُمۡ أَیُّهَ ٱلثَّقَلَانِ"},{"n":32,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":33,"t":"یَـٰمَعۡشَرَ ٱلۡجِنِّ وَٱلۡإِنسِ إِنِ ٱسۡتَطَعۡتُمۡ أَن تَنفُذُوا۟ مِنۡ أَقۡطَارِ ٱلسَّمَـٰوَ ٰ⁠تِ وَٱلۡأَرۡضِ فَٱنفُذُوا۟ۚ لَا تَنفُذُونَ إِلَّا بِسُلۡطَـٰنࣲ"},{"n":34,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":35,"t":"یُرۡسَلُ عَلَیۡكُمَا شُوَاظࣱ مِّن نَّارࣲ وَنُحَاسࣱ فَلَا تَنتَصِرَانِ"},{"n":36,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":37,"t":"فَإِذَا ٱنشَقَّتِ ٱلسَّمَاۤءُ فَكَانَتۡ وَرۡدَةࣰ كَٱلدِّهَانِ"},{"n":38,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":39,"t":"فَیَوۡمَىِٕذࣲ لَّا یُسۡـَٔلُ عَن ذَنۢبِهِۦۤ إِنسࣱ وَلَا جَاۤنࣱّ"},{"n":40,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":41,"t":"یُعۡرَفُ ٱلۡمُجۡرِمُونَ بِسِیمَـٰهُمۡ فَیُؤۡخَذُ بِٱلنَّوَ ٰ⁠صِی وَٱلۡأَقۡدَامِ"},{"n":42,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":43,"t":"هَـٰذِهِۦ جَهَنَّمُ ٱلَّتِی یُكَذِّبُ بِهَا ٱلۡمُجۡرِمُونَ"},{"n":44,"t":"یَطُوفُونَ بَیۡنَهَا وَبَیۡنَ حَمِیمٍ ءَانࣲ"},{"n":45,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"}]},
+  {r:'رکوع ۳', verses: [{"n":46,"t":"وَلِمَنۡ خَافَ مَقَامَ رَبِّهِۦ جَنَّتَانِ"},{"n":47,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":48,"t":"ذَوَاتَاۤ أَفۡنَانࣲ"},{"n":49,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":50,"t":"فِیهِمَا عَیۡنَانِ تَجۡرِیَانِ"},{"n":51,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":52,"t":"فِیهِمَا مِن كُلِّ فَـٰكِهَةࣲ زَوۡجَانِ"},{"n":53,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":54,"t":"مُتَّكِـِٔینَ عَلَىٰ فُرُشِۭ بَطَاۤىِٕنُهَا مِنۡ إِسۡتَبۡرَقࣲۚ وَجَنَى ٱلۡجَنَّتَیۡنِ دَانࣲ"},{"n":55,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":56,"t":"فِیهِنَّ قَـٰصِرَ ٰ⁠تُ ٱلطَّرۡفِ لَمۡ یَطۡمِثۡهُنَّ إِنسࣱ قَبۡلَهُمۡ وَلَا جَاۤنࣱّ"},{"n":57,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":58,"t":"كَأَنَّهُنَّ ٱلۡیَاقُوتُ وَٱلۡمَرۡجَانُ"},{"n":59,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":60,"t":"هَلۡ جَزَاۤءُ ٱلۡإِحۡسَـٰنِ إِلَّا ٱلۡإِحۡسَـٰنُ"},{"n":61,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":62,"t":"وَمِن دُونِهِمَا جَنَّتَانِ"},{"n":63,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":64,"t":"مُدۡهَاۤمَّتَانِ"},{"n":65,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":66,"t":"فِیهِمَا عَیۡنَانِ نَضَّاخَتَانِ"},{"n":67,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":68,"t":"فِیهِمَا فَـٰكِهَةࣱ وَنَخۡلࣱ وَرُمَّانࣱ"},{"n":69,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":70,"t":"فِیهِنَّ خَیۡرَ ٰ⁠تٌ حِسَانࣱ"},{"n":71,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":72,"t":"حُورࣱ مَّقۡصُورَ ٰ⁠تࣱ فِی ٱلۡخِیَامِ"},{"n":73,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":74,"t":"لَمۡ یَطۡمِثۡهُنَّ إِنسࣱ قَبۡلَهُمۡ وَلَا جَاۤنࣱّ"},{"n":75,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":76,"t":"مُتَّكِـِٔینَ عَلَىٰ رَفۡرَفٍ خُضۡرࣲ وَعَبۡقَرِیٍّ حِسَانࣲ"},{"n":77,"t":"فَبِأَیِّ ءَالَاۤءِ رَبِّكُمَا تُكَذِّبَانِ"},{"n":78,"t":"تَبَـٰرَكَ ٱسۡمُ رَبِّكَ ذِی ٱلۡجَلَـٰلِ وَٱلۡإِكۡرَامِ"}]}
+];
+const MANZIL_UTHMANI = MANZIL_INDOPAK;
+
 const QURAN_SURAHS = {
   kahf: {
-    title: 'سُورَةُ الْكَهْفِ',
-    meta: (isIndopak) => `مکمل سورۃ — ۱۱۰ آیات — ۱۲ رکوع (${isIndopak ? 'رسمِ ہند-پاک' : 'رسمِ عثمانی'})<br/>ہر جمعہ تلاوت سنت ہے • ۱۰۰٪ آف لائن — بغیر انٹرنیٹ کے`,
+    title: { ur: 'سُورَةُ الْكَهْفِ', en: 'Surah Al-Kahf', ar: 'سُورَةُ الْكَهْفِ' },
+    meta: (isIndopak) => (S.lang === 'en')
+      ? `Complete Surah — 110 Verses — 12 Ruku (${isIndopak ? 'Indo-Pak Script' : 'Uthmanic Script'})<br/>Friday Sunnah Recitation • 100% Offline without Internet`
+      : `مکمل سورۃ — ۱۱۰ آیات — ۱۲ رکوع (${isIndopak ? 'رسمِ ہند-پاک' : 'رسمِ عثمانی'})<br/>ہر جمعہ تلاوت سنت ہے • ۱۰۰٪ آف لائن — بغیر انٹرنیٹ کے`,
     getDataset: () => (S.scriptMode === 'indopak') ? KAHF_INDOPAK : KAHF_UTHMANI,
     supportsTajweed: true
   },
   mulk: {
-    title: 'سُورَةُ الْمُلْكِ',
-    meta: () => 'مکمل سورۃ — ۳۰ آیات — ۲ رکوع (رسمِ ہند-پاک)<br/>رات کو پڑھنا عذابِ قبر سے نجات اور شفاعت کا ذریعہ ہے • ۱۰۰٪ آف لائن',
-    getDataset: () => MULK_INDOPAK,
+    title: { ur: 'سُورَةُ الْمُلْكِ', en: 'Surah Al-Mulk', ar: 'سُورَةُ الْمُلْكِ' },
+    meta: (isIndopak) => (S.lang === 'en')
+      ? `Complete Surah — 30 Verses — 2 Ruku (${isIndopak ? 'Indo-Pak Script' : 'Uthmanic Script'})<br/>Recited nightly for intercession and protection from grave punishment • 100% Offline`
+      : `مکمل سورۃ — ۳۰ آیات — ۲ رکوع (${isIndopak ? 'رسمِ ہند-پاک' : 'رسمِ عثمانی'})<br/>رات کو پڑھنا عذابِ قبر سے نجات اور شفاعت کا ذریعہ ہے • ۱۰۰٪ آف لائن`,
+    getDataset: () => (S.scriptMode === 'indopak') ? MULK_INDOPAK : MULK_UTHMANI,
     supportsTajweed: false
   },
   waqiah: {
-    title: 'سُورَةُ الْوَاقِعَةِ',
-    meta: () => 'مکمل سورۃ — ۹۶ آیات — ۳ رکوع (رسمِ ہند-پاک)<br/>مغرب یا عشاء کے بعد پڑھنا فقر و فاقہ سے حفاظت اور برکت کا ذریعہ ہے • ۱۰۰٪ آف لائن',
-    getDataset: () => WAQIAH_INDOPAK,
+    title: { ur: 'سُورَةُ الْوَاقِعَةِ', en: 'Surah Al-Waqiah', ar: 'سُورَةُ الْوَاقِعَةِ' },
+    meta: (isIndopak) => (S.lang === 'en')
+      ? `Complete Surah — 96 Verses — 3 Ruku (${isIndopak ? 'Indo-Pak Script' : 'Uthmanic Script'})<br/>Shield against poverty and brings barakah in sustenance • 100% Offline`
+      : `مکمل سورۃ — ۹۶ آیات — ۳ رکوع (${isIndopak ? 'رسمِ ہند-پاک' : 'رسمِ عثمانی'})<br/>مغرب یا عشاء کے بعد پڑھنا فقر و فاقہ سے حفاظت اور برکت کا ذریعہ ہے • ۱۰۰٪ آف لائن`,
+    getDataset: () => (S.scriptMode === 'indopak') ? WAQIAH_INDOPAK : WAQIAH_UTHMANI,
     supportsTajweed: false
   },
   rahman: {
-    title: 'سُورَةُ الرَّحْمٰنِ',
-    meta: () => 'مکمل سورۃ — ۷۸ آیات — ۳ رکوع (رسمِ ہند-پاک)<br/>عُرُوْسُ الْقُرْآن (قرآن کی دلہن) — فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ • ۱۰۰٪ آف لائن',
-    getDataset: () => RAHMAN_INDOPAK,
+    title: { ur: 'سُورَةُ الرَّحْمٰنِ', en: 'Surah Ar-Rahman', ar: 'سُورَةُ الرَّحْمٰنِ' },
+    meta: (isIndopak) => (S.lang === 'en')
+      ? `Complete Surah — 78 Verses — 3 Ruku (${isIndopak ? 'Indo-Pak Script' : 'Uthmanic Script'})<br/>Beauty of the Quran (Uroos-ul-Quran) • 100% Offline`
+      : `مکمل سورۃ — ۷۸ آیات — ۳ رکوع (${isIndopak ? 'رسمِ ہند-پاک' : 'رسمِ عثمانی'})<br/>عُرُوْسُ الْقُرْآن (قرآن کی دلہن) — فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ • ۱۰۰٪ آف لائن`,
+    getDataset: () => (S.scriptMode === 'indopak') ? RAHMAN_INDOPAK : RAHMAN_UTHMANI,
     supportsTajweed: false
   },
   manzil: {
-    title: 'مَنْزِلْ — شِفَاءٌ وَحِفَاظَتْ',
-    meta: () => 'مکمل منزل — ۳۳ آیاتِ حفاظت مع ۴ حصے (رسمِ ہند-پاک)<br/>نظرِ بد، آسیب، جادو اور ہر قسم کے شرور سے قرآنی و نبوی پناہ • ۱۰۰٪ آف لائن',
-    getDataset: () => MANZIL_INDOPAK,
+    title: { ur: 'مَنْزِلْ — شِفَاءٌ وَحِفَاظَتْ', en: 'Manzil — Healing & Protection', ar: 'مَنْزِلْ — شِفَاءٌ وَحِفَاظَةٌ' },
+    meta: (isIndopak) => (S.lang === 'en')
+      ? `Complete Manzil — 33 Verses in 4 Parts (${isIndopak ? 'Indo-Pak Script' : 'Uthmanic Script'})<br/>Prophetic protection from evil eye, envy, and sorcery • 100% Offline`
+      : `مکمل منزل — ۳۳ آیاتِ حفاظت مع ۴ حصے (رسمِ ہند-پاک)<br/>نظرِ بد، آسیب، جادو اور ہر قسم کے شرور سے قرآنی و نبوی پناہ • ۱۰۰٪ آف لائن`,
+    getDataset: () => (S.scriptMode === 'indopak') ? MANZIL_INDOPAK : MANZIL_UTHMANI,
     supportsTajweed: false
   }
 };
@@ -4155,7 +4237,7 @@ function renderQuran(mc, surahId){
   
   const hd = `<div class="quran-panel" data-tajweed="${tajVal}">
     <div class="quran-hd">
-      <div class="quran-title">${cfg.title}</div>
+      <div class="quran-title">${getLoc(cfg.title)}</div>
       <div class="quran-meta">${cfg.meta(isIndopak)}</div>
     </div>
     <div class="quran-bism">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>`;
@@ -4172,7 +4254,7 @@ function renderQuran(mc, surahId){
   if(cfg.supportsTajweed && S.scriptMode === 'uthmani' && tajVal !== 'off'){
     legend = `<div class="tj-legend"><div class="tj-chip"><div class="tj-dot" style="background:#4CAF50"></div>مدّ</div><div class="tj-chip"><div class="tj-dot" style="background:#29B6F6"></div>قلقلہ</div><div class="tj-chip"><div class="tj-dot" style="background:#F4A261"></div>غنہ</div><div class="tj-chip"><div class="tj-dot" style="background:#EC4899"></div>اخفاء</div></div>`;
   } else {
-    legend = `<div class="tj-legend"><div class="tj-chip">رسمِ ہند-پاک (پاکستانی رسم الخط)</div></div>`;
+    legend = `<div class="tj-legend"><div class="tj-chip">${isIndopak ? (S.lang==='en'?'Indo-Pak Script (Pakistani)':'رسمِ ہند-پاک (پاکستانی رسم الخط)') : (S.lang==='en'?'Uthmani Script (Madani)':'رسمِ عثمانی (مدنی رسم الخط)')}</div></div>`;
   }
   const footer = `<div style="text-align:center;padding:2rem 0 .5rem;font-family:var(--qfont);font-size:1.1rem;color:var(--gold2);direction:rtl;line-height:2.1">۞ صَدَقَ اللَّهُ الْعَظِيمُ ۞</div>${legend}</div>`;
   mc.innerHTML = hd + body + footer;
@@ -4606,6 +4688,29 @@ try{
   if(['emerald','oled','sepia'].includes(t)) currentTheme = t;
 }catch(e){}
 
+function applyLang(lang){
+  S.lang = lang || 'ur';
+  document.documentElement.lang = S.lang;
+  document.documentElement.dir = (S.lang === 'en') ? 'ltr' : 'rtl';
+  document.body.classList.toggle('lang-en', S.lang === 'en');
+  
+  document.querySelectorAll('#modalLang .q-chip').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === S.lang);
+  });
+  
+  const lblSetLang = document.getElementById('lblSetLang');
+  if(lblSetLang) lblSetLang.textContent = t('lang_label');
+  const modalTitle = document.querySelector('#appSettingsModal .modal-title');
+  if(modalTitle) modalTitle.textContent = t('modal_title');
+  const saveBtn = document.getElementById('saveSettingsModalBtn');
+  if(saveBtn) saveBtn.textContent = t('save_btn');
+  const instBtn = document.getElementById('modalInstallAppBtn');
+  if(instBtn) instBtn.textContent = (typeof deferredPrompt === 'undefined' || !deferredPrompt) ? t('installed_btn') : t('install_btn');
+  
+  save();
+  render();
+}
+
 function applyTheme(themeName){
   if(!['emerald','oled','sepia'].includes(themeName)) themeName = 'emerald';
   currentTheme = themeName;
@@ -4845,7 +4950,7 @@ function renderDrawer(){
     if(['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara'].includes(m.id)&&S[m.id]?.done){const d=S[m.id].done.filter(Boolean).length;const tot={fajr:FAJR.length,jumma:JUMMA.length,durood_pak:DUROOD_PAK.length,tauheed:TAUHEED.length,bedtime:BEDTIME.length,tawbah:TAWBAH.length,post_salah:POST_SALAH.length,morning_wake:MORNING_WAKE.length,relief_debt:RELIEF_DEBT.length,istikhara:ISTIKHARA.length}[m.id];if(d>0)prog=`<span style="color:var(--g2);font-size:.65rem">${d}/${tot}</span>`;}
     if(m.id==='asr'&&S.asr.done)prog=`<span style="color:var(--g2);font-size:.7rem">✓</span>`;
     if(m.id==='custom'&&customAzkar?.length){const d=customAzkar.filter(x=>x.done||x.cnt>=x.target).length;prog=`<span style="color:var(--g2);font-size:.65rem">${d}/${customAzkar.length}</span>`;}
-    return `<div class="dr-item${sec===m.id?' active':''}" data-sec="${m.id}"><span class="dr-icon">${m.icon}</span><span class="dr-name">${m.title}</span><span class="dr-ct">${m.ct}</span>${prog}</div>`;
+    return `<div class="dr-item${sec===m.id?' active':''}" data-sec="${m.id}"><span class="dr-icon">${m.icon}</span><span class="dr-name">${getLoc(m.title)}</span><span class="dr-ct">${getLoc(m.ct)}</span>${prog}</div>`;
   }).join('');
   list.querySelectorAll('.dr-item').forEach(el=>{el.addEventListener('click',()=>{sec=el.dataset.sec;if(sec==='custom')customActiveId=null;save();closeDrawer();render();window.scrollTo(0,0);});});
 }
@@ -4893,6 +4998,9 @@ document.getElementById('cancelImportModalBtn')?.addEventListener('click',closeI
 document.getElementById('soundBtn')?.addEventListener('click',toggleSoundMode);
 document.querySelectorAll('.snd-chip').forEach(b=>{
   b.addEventListener('click',()=>setSoundMode(b.dataset.snd));
+});
+document.querySelectorAll('#modalLang .q-chip').forEach(b=>{
+  b.addEventListener('click', ()=>{ applyLang(b.dataset.lang); });
 });
 document.querySelectorAll('.thm-chip').forEach(b=>{
   b.addEventListener('click',()=>applyTheme(b.dataset.theme));
