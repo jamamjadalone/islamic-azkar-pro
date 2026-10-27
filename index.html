@@ -3560,7 +3560,55 @@ const I18N = {
     "tr": "Zikir Seçin ▾",
     "fr": "Choisir Adhkar ▾"
   },
-  "streak_day": {
+    "streak_singular": {
+    "ur": "دن",
+    "en": "day",
+    "ar": "يوم",
+    "id": "hari",
+    "tr": "gün",
+    "fr": "jour"
+  },
+  "streak_plural": {
+    "ur": "دن",
+    "en": "days",
+    "ar": "أيام",
+    "id": "hari",
+    "tr": "gün",
+    "fr": "jours"
+  },
+  "streak_title": {
+    "ur": "مسلسل روزانہ اذکار پڑھنے کا ریکارڈ",
+    "en": "Daily Adhkar Streak Record",
+    "ar": "سجل تتابع قراءة الأذكار اليومية",
+    "id": "Catatan Rekor Dzikir Harian",
+    "tr": "Günlük Zikir Devamlılık Kaydı",
+    "fr": "Suivi de la série quotidienne d'invocations"
+  },
+  "dr_streak_title": {
+    "ur": "🔥 روزانہ تسلسل (Streak)",
+    "en": "🔥 Daily Streak Tracker",
+    "ar": "🔥 التتابع اليومي (الستريك)",
+    "id": "🔥 Rekor Harian (Streak)",
+    "tr": "🔥 Günlük Devamlılık (Seri)",
+    "fr": "🔥 Série Quotidienne (Streak)"
+  },
+  "dr_streak_label": {
+    "ur": "مسلسل ذکر کے دن:",
+    "en": "Consecutive Days of Adhkar:",
+    "ar": "أيام الذكر المتتالية:",
+    "id": "Hari Dzikir Berturut-turut:",
+    "tr": "Kesintisiz Zikir Günleri:",
+    "fr": "Jours consécutifs d'Adhkar :"
+  },
+  "mashaallah": {
+    "ur": "ماشاءاللہ!",
+    "en": "Masha'Allah!",
+    "ar": "ما شاء الله!",
+    "id": "Masya Allah!",
+    "tr": "Maşâallah!",
+    "fr": "Macha'Allah !"
+  },
+"streak_day": {
     "ur": "دن",
     "en": "days",
     "ar": "أيام",
@@ -5314,6 +5362,7 @@ function renderWelcome(mc){
 /* ══ RENDER ══ */
 function render(){
   updateTimeTagline();
+  updateStreakUI();
   const curMeta=SECS.find(m=>m.id===sec)||SECS[0];
   const zpIcon=document.getElementById('zpIcon');
   const zpName=document.getElementById('zpName');
@@ -5516,6 +5565,7 @@ const QURAN_SURAHS = {
 /* ══ ASMA-UL-HUSNA RENDERER ══ */
 function renderAsma(mc){
   document.getElementById('progBar').style.width = '100%';
+  recordDhikrActivity();
   const l = getActiveLang();
   const isLatin = (l === 'en' || l === 'id' || l === 'tr' || l === 'fr');
   const asmaI18n = SECTION_I18N.asma;
@@ -5550,6 +5600,7 @@ function renderAsma(mc){
 
 function renderQuran(mc, surahId){
   document.getElementById('progBar').style.width = '100%';
+  recordDhikrActivity();
   const cfg = QURAN_SURAHS[surahId];
   if(!cfg) return;
   const dataset = cfg.getDataset();
@@ -6058,6 +6109,7 @@ function applyLang(lang){
 
   save();
   render();
+  updateStreakUI();
 }
 
 function applyTheme(themeName){
@@ -6071,9 +6123,8 @@ function applyTheme(themeName){
 }
 applyTheme(currentTheme);
 
-/* ══ DAILY RESET & STREAK TRACKER ══ */
+/* ══ DAILY RESET & ACCURATE STREAK TRACKER ══ */
 let streakCount = 1;
-let lastActiveDate = '';
 
 function getTodayDateString(){
   const d = new Date();
@@ -6083,31 +6134,76 @@ function getTodayDateString(){
   return `${y}-${m}-${day}`;
 }
 
+function getDateDiffInDays(str1, str2){
+  if(!str1 || !str2) return 999;
+  const p1 = str1.split('-').map(Number);
+  const p2 = str2.split('-').map(Number);
+  if(p1.length !== 3 || p2.length !== 3) return 999;
+  const utc1 = Date.UTC(p1[0], p1[1] - 1, p1[2]);
+  const utc2 = Date.UTC(p2[0], p2[1] - 1, p2[2]);
+  return Math.floor((utc2 - utc1) / (1000 * 60 * 60 * 24));
+}
+
+function formatStreakNumber(num, lang) {
+  if (lang === 'ur') {
+    const urduDigits = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+    return String(num).replace(/[0-9]/g, d => urduDigits[d]);
+  }
+  return String(num);
+}
+
+function recordDhikrActivity(){
+  try {
+    const today = getTodayDateString();
+    const lastCompleted = localStorage.getItem('azk_last_completed_date') || '';
+    let currentStreak = parseInt(localStorage.getItem('azk_streak_count') || '1', 10) || 1;
+    
+    if (lastCompleted === today) {
+      // Already credited today, keep UI fresh
+      return;
+    }
+    
+    if (!lastCompleted) {
+      currentStreak = 1;
+    } else {
+      const diffDays = getDateDiffInDays(lastCompleted, today);
+      if (diffDays === 1) {
+        // Consecutive calendar day: continue streak
+        currentStreak++;
+      } else if (diffDays > 1) {
+        // Skipped a full day
+        currentStreak = 1;
+      }
+      // If diffDays <= 0 (same day or clock skew), keep currentStreak
+    }
+    
+    streakCount = currentStreak;
+    localStorage.setItem('azk_last_completed_date', today);
+    localStorage.setItem('azk_streak_count', String(currentStreak));
+    updateStreakUI();
+  } catch(e){}
+}
+
 function checkDailyResetAndStreak(){
   const today = getTodayDateString();
-  try{
-    lastActiveDate = localStorage.getItem('azk_last_active_date') || '';
-    streakCount = parseInt(localStorage.getItem('azk_streak_count') || '1', 10) || 1;
+  try {
+    const lastOpen = localStorage.getItem('azk_last_open_date') || '';
+    const lastCompleted = localStorage.getItem('azk_last_completed_date') || '';
+    let savedStreak = parseInt(localStorage.getItem('azk_streak_count') || '1', 10) || 1;
     
-    if(!lastActiveDate){
-      lastActiveDate = today;
-      localStorage.setItem('azk_last_active_date', today);
-      localStorage.setItem('azk_streak_count', '1');
-    } else if(lastActiveDate !== today){
-      const last = new Date(lastActiveDate);
-      const now = new Date(today);
-      const diffTime = Math.abs(now - last);
-      const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
-      
-      const hadActivity = S.asr?.done || S.fajr?.done?.some(Boolean) || S.jumma?.done?.some(Boolean) || S.tauheed?.done?.some(Boolean) || S.bedtime?.done?.some(Boolean) || S.tawbah?.done?.some(Boolean) || S.post_salah?.done?.some(Boolean) || S.morning_wake?.done?.some(Boolean) || S.relief_debt?.done?.some(Boolean) || S.istikhara?.done?.some(Boolean) || S.durood_pak?.done?.some(Boolean);
-      
-      if(diffDays === 1 && hadActivity){
-        streakCount++;
-      } else if(diffDays > 1){
-        streakCount = 1;
+    // Check if a full calendar day was missed (2 or more days since last dhikr)
+    if (lastCompleted) {
+      const diffSinceCompleted = getDateDiffInDays(lastCompleted, today);
+      if (diffSinceCompleted >= 2) {
+        savedStreak = 1;
+        localStorage.setItem('azk_streak_count', '1');
       }
-      
-      // Auto-reset daily sections for fresh day
+    }
+    
+    streakCount = savedStreak;
+    
+    // Auto-reset daily recitation counts when waking up on a fresh day
+    if (lastOpen !== today) {
       if(S.asr) S.asr = {cnt:0, done:false};
       if(S.fajr) S.fajr = {idx:0, cnt:0, done:new Array(FAJR.length).fill(false)};
       if(S.jumma) S.jumma = {idx:0, cnt:0, done:new Array(JUMMA.length).fill(false)};
@@ -6121,20 +6217,43 @@ function checkDailyResetAndStreak(){
       if(S.durood_pak) S.durood_pak = {idx:0, cnt:0, done:new Array(DUROOD_PAK.length).fill(false)};
       if(S.tasbeeh) S.tasbeeh = {ph:0, cnt:0, sets:0};
       
-      lastActiveDate = today;
-      localStorage.setItem('azk_last_active_date', today);
-      localStorage.setItem('azk_streak_count', String(streakCount));
+      localStorage.setItem('azk_last_open_date', today);
       save();
     }
-  }catch(e){}
+  } catch(e){}
   updateStreakUI();
 }
 
 function updateStreakUI(){
-  const cnt = document.getElementById('streakCount');
-  if(cnt) cnt.textContent = streakCount;
-  const drStreak = document.getElementById('drStreakCount');
-  if(drStreak) drStreak.textContent = streakCount;
+  const lang = (typeof S !== 'undefined' && S && S.lang) ? S.lang : 'ur';
+  const formattedNum = formatStreakNumber(streakCount, lang);
+  
+  let dayUnit = '';
+  if (lang === 'en') dayUnit = streakCount === 1 ? 'day' : 'days';
+  else if (lang === 'ar') dayUnit = streakCount === 1 ? 'يوم' : (streakCount === 2 ? 'يومان' : (streakCount <= 10 ? 'أيام' : 'يوماً'));
+  else if (lang === 'fr') dayUnit = streakCount === 1 ? 'jour' : 'jours';
+  else if (lang === 'tr') dayUnit = 'gün';
+  else if (lang === 'id') dayUnit = 'hari';
+  else dayUnit = 'دن';
+
+  const streakBadge = document.getElementById('streakBadge');
+  if (streakBadge) {
+    if(streakBadge.setAttribute) streakBadge.setAttribute('title', t('streak_title') || 'مسلسل روزانہ اذکار پڑھنے کا ریکارڈ');
+    else streakBadge.title = t('streak_title') || 'مسلسل روزانہ اذکار پڑھنے کا ریکارڈ';
+    streakBadge.innerHTML = `🔥 <span id="streakCount">${formattedNum}</span> <span id="streakUnit">${dayUnit}</span>`;
+  }
+  
+  const drStreakTitle = document.getElementById('drStreakTitle');
+  if (drStreakTitle) drStreakTitle.textContent = t('dr_streak_title') || '🔥 روزانہ تسلسل (Streak)';
+  
+  const drStreakLabel = document.getElementById('drStreakLabel');
+  if (drStreakLabel) drStreakLabel.textContent = t('dr_streak_label') || 'مسلسل ذکر کے دن:';
+  
+  const drStreakCount = document.getElementById('drStreakCount');
+  if (drStreakCount) drStreakCount.textContent = formattedNum;
+  
+  const drStreakMasha = document.getElementById('drStreakMasha');
+  if (drStreakMasha) drStreakMasha.textContent = t('mashaallah') || 'ماشاءاللہ!';
 }
 
 /* ══ TIME-AWARE RECOMMENDATION ══ */
@@ -6152,6 +6271,7 @@ function exportCustomAzkarBackup(){
     app: 'Islamic Azkar Pro',
     version: '1.0',
     exportDate: new Date().toISOString(),
+    streak: { count: streakCount, lastCompletedDate: localStorage.getItem('azk_last_completed_date') || '' },
     azkar: customAzkar
   };
   const jsonStr = JSON.stringify(data, null, 2);
@@ -6192,6 +6312,12 @@ function importCustomAzkarBackup(fileInput){
           added++;
         }
       });
+      if(parsed.streak && parsed.streak.count){
+        streakCount = Math.max(streakCount, parseInt(parsed.streak.count, 10) || 1);
+        localStorage.setItem('azk_streak_count', String(streakCount));
+        if(parsed.streak.lastCompletedDate) localStorage.setItem('azk_last_completed_date', parsed.streak.lastCompletedDate);
+        updateStreakUI();
+      }
       saveCustomAzkar();
       renderCustom(document.getElementById('mc'));
       renderDrawer();
@@ -6242,6 +6368,7 @@ function tap(){
   if(isCust){item.cnt++;saveCustomAzkar();}
   else if(isAsr)S.asr.cnt++;else if(isTsb)S.tasbeeh.cnt++;else S[sec].cnt++;
   save();
+  recordDhikrActivity();
   beep(isTsb?640:isAsr?800:isCust?720:760,.08);vib(18);
   const ri=document.getElementById('ri');
   if(ri){ri.classList.remove('pg','pa','ps','pj');void ri.offsetWidth;ri.classList.add(isAsr?'pa':isTsb?'ps':isCust?'pg':sec==='jumma'?'pj':'pg');}
