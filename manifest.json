@@ -10,7 +10,11 @@
   "theme_color": "#010c02",
   "lang": "ur",
   "dir": "rtl",
-  "categories": ["lifestyle", "books", "religion"],
+  "categories": [
+    "lifestyle",
+    "books",
+    "religion"
+  ],
   "icons": [
     {
       "src": "icons/icon-192.png",
@@ -30,5 +34,6 @@
       "type": "image/png",
       "purpose": "maskable"
     }
-  ]
+  ],
+  "id": "/islamic-azkar-pro/"
 }

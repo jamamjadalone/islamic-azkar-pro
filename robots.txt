@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jamamjadalone.github.io/islamic-azkar-pro/sitemap.xml
+Sitemap: https://jamamjadalone.is-a.dev/islamic-azkar-pro/sitemap.xml
