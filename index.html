@@ -1452,18 +1452,18 @@ html[lang="ar"] .dam-box {
     <div class="modal-body">
       <input type="hidden" id="custEditId" value=""/>
       <div class="form-grp">
-        <label class="form-lbl" for="custName">عنوان / نام:</label>
+        <label class="form-lbl" id="custNameLbl" for="custName">عنوان / نام:</label>
         <input type="text" class="form-input" id="custName" placeholder="مثلاً: درود شریف، استغفار، تیسرا کلمہ"/>
       </div>
       <div class="form-grp">
-        <label class="form-lbl" for="custAr">عربی متن یا دعا:</label>
+        <label class="form-lbl" id="custArLbl" for="custAr">عربی متن یا دعا:</label>
         <textarea class="form-textarea" id="custAr" placeholder="یہاں دعا یا ذکر کا متن پیسٹ / ٹائپ کریں..."></textarea>
       </div>
       <div class="form-grp">
-        <label class="form-lbl" for="custTarget">تسبیح کا ہدف (Target Count):</label>
+        <label class="form-lbl" id="custTargetLbl" for="custTarget">تسبیح کا ہدف (Target Count):</label>
         <input type="number" class="form-input" id="custTarget" min="1" max="100000" value="100" style="direction:ltr;text-align:center;font-weight:700;font-size:1.1rem"/>
         <div class="quick-targets">
-          <span style="font-size:.7rem;color:var(--text3);line-height:1.8">فوری ہدف:</span>
+          <span id="custQuickTgtLbl" style="font-size:.7rem;color:var(--text3);line-height:1.8">فوری ہدف:</span>
           <button type="button" class="q-chip" data-tgt="33">33</button>
           <button type="button" class="q-chip" data-tgt="70">70</button>
           <button type="button" class="q-chip" data-tgt="100">100</button>
@@ -1484,7 +1484,7 @@ html[lang="ar"] .dam-box {
 <div class="app-modal" id="importModal">
   <div class="modal-box" style="max-width:520px">
     <div class="modal-hd">
-      <div class="modal-title">📥 ایپ کے اذکار سے امپورٹ کریں</div>
+      <div class="modal-title" id="importModalTitle">📥 ایپ کے اذکار سے امپورٹ کریں</div>
       <button type="button" class="modal-close" id="closeImportModalBtn">✕</button>
     </div>
     <div class="modal-body">
@@ -1507,7 +1507,7 @@ html[lang="ar"] .dam-box {
 <div class="app-modal" id="zikrPickerModal">
   <div class="modal-box zikr-picker-box">
     <div class="modal-hd">
-      <div class="modal-title">📿 منتخب ذکر (Choose Zikr)</div>
+      <div class="modal-title" id="zikrPickerModalTitle">📿 منتخب ذکر (Choose Zikr)</div>
       <button type="button" class="modal-close" id="closeZikrPickerBtn">✕</button>
     </div>
     <div class="modal-body">
@@ -1622,45 +1622,45 @@ html[lang="ar"] .dam-box {
 
 <aside class="drawer" id="drawer">
   <div class="dr-head">
-    <div class="dr-title">🕌 تمام اذکار و ترتیبات</div>
+    <div class="dr-title" id="drTitle">🕌 تمام اذکار و ترتیبات</div>
     <button type="button" class="dr-close" id="closeDrawer">✕</button>
   </div>
   <div class="dr-body">
     <div id="drList"></div>
 
-    <div class="dr-sec-title">⚙️ ترتیباتِ ایپ</div>
+    <div class="dr-sec-title" id="drSecSettings">⚙️ ترتیباتِ ایپ</div>
     <div class="dr-item" id="drSettingsBtn" style="cursor:pointer">
       <span class="dr-icon">⚙️</span>
-      <span class="dr-name">ایپ ترتیبات و فونٹ سائز (Settings)</span>
-      <span class="dr-ct">اختیارات</span>
+      <span class="dr-name" id="drSettingsName">ایپ ترتیبات و فونٹ سائز (Settings)</span>
+      <span class="dr-ct" id="drSettingsOpt">اختیارات</span>
     </div>
 
-    <div class="dr-sec-title">🔥 روزانہ تسلسل (Streak)</div>
+    <div class="dr-sec-title" id="drStreakTitle">🔥 روزانہ تسلسل (Streak)</div>
     <div class="dr-streak-box">
-      <span>مسلسل ذکر کے دن:</span>
+      <span id="drStreakLabel">مسلسل ذکر کے دن:</span>
       <strong id="drStreakCount" style="color:var(--gold2);font-size:1.1rem">۱</strong>
-      <span>ماشاءاللہ!</span>
+      <span id="drStreakMasha">ماشاءاللہ!</span>
     </div>
 
-    <div class="dr-sec-title">🔕 آواز و مسجد موڈ</div>
-    <div class="dr-chips-grp">
+    <div class="dr-sec-title" id="drSecAudio">🔕 آواز و مسجد موڈ</div>
+    <div class="dr-chips-grp" id="drSndChips">
       <button type="button" class="snd-chip active" data-snd="normal">🔔 عام موڈ</button>
       <button type="button" class="snd-chip" data-snd="masjid">🔕 مسجد موڈ</button>
       <button type="button" class="snd-chip" data-snd="silent">🔇 خاموش</button>
     </div>
 
-    <div class="dr-sec-title">🎨 رنگ و تھیم (Eye Comfort)</div>
-    <div class="dr-chips-grp">
+    <div class="dr-sec-title" id="drSecTheme">🎨 رنگ و تھیم (Eye Comfort)</div>
+    <div class="dr-chips-grp" id="drThmChips">
       <button type="button" class="thm-chip active" data-theme="emerald">🌿 زمردی</button>
       <button type="button" class="thm-chip" data-theme="oled">🖤 خالص سیاہ</button>
       <button type="button" class="thm-chip" data-theme="sepia">📜 ورق (Sepia)</button>
     </div>
 
-    <div class="dr-sec-title">📲 ایپ انسٹالیشن (PWA)</div>
+    <div class="dr-sec-title" id="drSecPwa">📲 ایپ انسٹالیشن (PWA)</div>
     <div class="dr-item" id="drInstallBtn" style="cursor:pointer;display:none">
       <span class="dr-icon">📲</span>
-      <span class="dr-name">ایپ انسٹال کریں (Install App)</span>
-      <span class="dr-ct">آف لائن</span>
+      <span class="dr-name" id="drInstallName">ایپ انسٹال کریں (Install App)</span>
+      <span class="dr-ct" id="drInstallOpt">آف لائن</span>
     </div>
   </div>
 </aside>
@@ -1670,8 +1670,8 @@ html[lang="ar"] .dam-box {
   <div class="ib-content">
     <span class="ib-icon">📲</span>
     <div class="ib-txt">
-      <div class="ib-title">اسلامک اذکار پرو انسٹال کریں</div>
-      <div class="ib-sub">بغیر انٹرنیٹ استعمال کے لیے ہوم اسکرین پر شامل کریں</div>
+      <div class="ib-title" id="pwaBannerTitle">اسلامک اذکار پرو انسٹال کریں</div>
+      <div class="ib-sub" id="pwaBannerSub">بغیر انٹرنیٹ استعمال کے لیے ہوم اسکرین پر شامل کریں</div>
     </div>
   </div>
   <div class="ib-actions">
@@ -3880,6 +3880,286 @@ const I18N = {
     "tr": "🫁 Rukye Üflemesi",
     "fr": "🫁 Souffle de Ruqyah"
   },
+  "dr_all_azkar": {
+    "ur": "🕌 تمام اذکار و ترتیبات",
+    "en": "🕌 All Adhkar & Settings",
+    "ar": "🕌 جميع الأذكار والترتيبات",
+    "id": "🕌 Semua Dzikir & Pengaturan",
+    "tr": "🕌 Tüm Zikirler ve Ayarlar",
+    "fr": "🕌 Toutes les Invocations"
+  },
+  "dr_app_settings": {
+    "ur": "⚙️ ترتیباتِ ایپ",
+    "en": "⚙️ App Settings",
+    "ar": "⚙️ إعدادات التطبيق",
+    "id": "⚙️ Pengaturan Aplikasi",
+    "tr": "⚙️ Uygulama Ayarları",
+    "fr": "⚙️ Paramètres"
+  },
+  "dr_settings_name": {
+    "ur": "ایپ ترتیبات و فونٹ سائز (Settings)",
+    "en": "Settings & Font Size",
+    "ar": "إعدادات التطبيق وحجم الخط",
+    "id": "Pengaturan & Ukuran Huruf",
+    "tr": "Uygulama Ayarları ve Yazı Tipi",
+    "fr": "Paramètres et Police"
+  },
+  "dr_options": {
+    "ur": "اختیارات",
+    "en": "Options",
+    "ar": "خيارات",
+    "id": "Pilihan",
+    "tr": "Seçenekler",
+    "fr": "Options"
+  },
+  "dr_audio_sec": {
+    "ur": "🔕 آواز و مسجد موڈ",
+    "en": "🔕 Audio & Masjid Mode",
+    "ar": "🔕 الصوت ووضع المسجد",
+    "id": "🔕 Suara & Mode Masjid",
+    "tr": "🔕 Ses ve Cami Modu",
+    "fr": "🔕 Audio et Mode Mosquée"
+  },
+  "dr_theme_sec": {
+    "ur": "🎨 رنگ و تھیم (Eye Comfort)",
+    "en": "🎨 Color Themes (Eye Comfort)",
+    "ar": "🎨 المظهر والألوان",
+    "id": "🎨 Tema Warna",
+    "tr": "🎨 Renk Temaları",
+    "fr": "🎨 Thèmes de Couleur"
+  },
+  "dr_pwa_sec": {
+    "ur": "📲 ایپ انسٹالیشن (PWA)",
+    "en": "📲 App Installation (PWA)",
+    "ar": "📲 تثبيت التطبيق",
+    "id": "📲 Pasang Aplikasi (PWA)",
+    "tr": "📲 Uygulama Yükleme (PWA)",
+    "fr": "📲 Installation de l'App"
+  },
+  "dr_install_app": {
+    "ur": "ایپ انسٹال کریں (Install App)",
+    "en": "Install App (Offline)",
+    "ar": "تثبيت التطبيق (بدون إنترنت)",
+    "id": "Pasang Aplikasi (Offline)",
+    "tr": "Uygulamayı Yükle",
+    "fr": "Installer l'Application"
+  },
+  "dr_offline": {
+    "ur": "آف لائن",
+    "en": "Offline",
+    "ar": "بدون إنترنت",
+    "id": "Offline",
+    "tr": "Çevrimdışı",
+    "fr": "Hors ligne"
+  },
+  "snd_normal": {
+    "ur": "🔔 عام موڈ",
+    "en": "🔔 Normal",
+    "ar": "🔔 عام",
+    "id": "🔔 Normal",
+    "tr": "🔔 Normal",
+    "fr": "🔔 Normal"
+  },
+  "snd_masjid": {
+    "ur": "🔕 مسجد موڈ",
+    "en": "🔕 Masjid Mode",
+    "ar": "🔕 وضع المسجد",
+    "id": "🔕 Mode Masjid",
+    "tr": "🔕 Cami Modu",
+    "fr": "🔕 Mode Mosquée"
+  },
+  "snd_silent": {
+    "ur": "🔇 خاموش",
+    "en": "🔇 Silent",
+    "ar": "🔇 صامت",
+    "id": "🔇 Hening",
+    "tr": "🔇 Sessiz",
+    "fr": "🔇 Silencieux"
+  },
+  "thm_emerald": {
+    "ur": "🌿 زمردی",
+    "en": "🌿 Emerald",
+    "ar": "🌿 الزمردي",
+    "id": "🌿 Zamrud",
+    "tr": "🌿 Zümrüt",
+    "fr": "🌿 Émeraude"
+  },
+  "thm_oled": {
+    "ur": "🖤 خالص سیاہ",
+    "en": "🖤 Pure Black (OLED)",
+    "ar": "🖤 أسود داكن (OLED)",
+    "id": "🖤 Hitam Pekat (OLED)",
+    "tr": "🖤 Saf Siyah (OLED)",
+    "fr": "🖤 Noir Pur (OLED)"
+  },
+  "thm_sepia": {
+    "ur": "📜 ورق (Sepia)",
+    "en": "📜 Parchment (Sepia)",
+    "ar": "📜 ورق قديم (Sepia)",
+    "id": "📜 Kertas Kuno (Sepia)",
+    "tr": "📜 Parşömen (Sepia)",
+    "fr": "📜 Parchemin (Sépia)"
+  },
+  "choose_zikr_modal": {
+    "ur": "📿 منتخب ذکر (Choose Zikr)",
+    "en": "📿 Choose Adhkar & Surah",
+    "ar": "📿 اختيار الذكر والسورة",
+    "id": "📿 Pilih Dzikir & Surah",
+    "tr": "📿 Zikir ve Sure Seçin",
+    "fr": "📿 Choisir une Invocation"
+  },
+  "close_btn": {
+    "ur": "بند کریں",
+    "en": "Close",
+    "ar": "إغلاق",
+    "id": "Tutup",
+    "tr": "Kapat",
+    "fr": "Fermer"
+  },
+  "cancel_btn": {
+    "ur": "منسوخ",
+    "en": "Cancel",
+    "ar": "إلغاء",
+    "id": "Batal",
+    "tr": "İptal",
+    "fr": "Annuler"
+  },
+  "custom_modal_title": {
+    "ur": "➕ نیا ذاتی ذکر شامل کریں",
+    "en": "➕ Add Custom Adhkar / Tasbeeh",
+    "ar": "➕ إضافة ذكر مخصص جديد",
+    "id": "➕ Tambah Dzikir Kustom Baru",
+    "tr": "➕ Yeni Özel Zikir Ekle",
+    "fr": "➕ Ajouter une Invocation"
+  },
+  "custom_modal_edit_title": {
+    "ur": "✏️ ذاتی ذکر میں ترمیم کریں",
+    "en": "✏️ Edit Custom Adhkar",
+    "ar": "✏️ تعديل الذكر المخصص",
+    "id": "✏️ Edit Dzikir Kustom",
+    "tr": "✏️ Özel Zikri Düzenle",
+    "fr": "✏️ Modifier l'Invocation"
+  },
+  "cust_name_lbl": {
+    "ur": "عنوان / نام:",
+    "en": "Title / Name:",
+    "ar": "العنوان / الاسم:",
+    "id": "Judul / Nama:",
+    "tr": "Başlık / İsim:",
+    "fr": "Titre / Nom:"
+  },
+  "cust_name_ph": {
+    "ur": "مثلاً: درود شریف، استغفار، تیسرا کلمہ",
+    "en": "e.g. Durood Sharif, Istighfar, Third Kalima",
+    "ar": "مثال: الصلاة على النبي، الاستغفار",
+    "id": "misal: Shalawat, Istighfar, Kalimat Thayyibah",
+    "tr": "Örn: Salavat, İstiğfar, Kelime-i Tevhid",
+    "fr": "ex: Salawat, Istighfar, Troisième Kalima"
+  },
+  "cust_ar_lbl": {
+    "ur": "عربی متن یا دعا:",
+    "en": "Arabic Text or Supplication:",
+    "ar": "النص العربي أو الدعاء:",
+    "id": "Teks Arab atau Doa:",
+    "tr": "Arapça Metin veya Dua:",
+    "fr": "Texte Arabe ou Invocation:"
+  },
+  "cust_ar_ph": {
+    "ur": "یہاں دعا یا ذکر کا متن پیسٹ / ٹائپ کریں...",
+    "en": "Paste or type Arabic text here...",
+    "ar": "الصق أو اكتب نص الذكر هنا...",
+    "id": "Ketik atau tempel teks doa di sini...",
+    "tr": "Arapça zikir metnini buraya yapıştırın veya yazın...",
+    "fr": "Collez ou écrivez le texte arabe ici..."
+  },
+  "cust_tgt_lbl": {
+    "ur": "تسبیح کا ہدف (Target Count):",
+    "en": "Target Count:",
+    "ar": "الهدف العددي (التكرار):",
+    "id": "Target Hitungan:",
+    "tr": "Hedef Sayı:",
+    "fr": "Objectif de Répétitions:"
+  },
+  "quick_tgt_lbl": {
+    "ur": "فوری ہدف:",
+    "en": "Quick Target:",
+    "ar": "هدف سريع:",
+    "id": "Pilihan Cepat:",
+    "tr": "Hızlı Hedef:",
+    "fr": "Objectif Rapide:"
+  },
+  "import_modal_title": {
+    "ur": "📥 ایپ کے اذکار سے امپورٹ کریں",
+    "en": "📥 Import from App Catalog",
+    "ar": "📥 استيراد من أذكار التطبيق",
+    "id": "📥 Impor dari Katalog Dzikir",
+    "tr": "📥 Uygulama Kataloğundan İçe Aktar",
+    "fr": "📥 Importer du Catalogue"
+  },
+  "filter_all": {
+    "ur": "تمام",
+    "en": "All",
+    "ar": "الكل",
+    "id": "Semua",
+    "tr": "Tümü",
+    "fr": "Tous"
+  },
+  "filter_fajr": {
+    "ur": "فجر/مغرب",
+    "en": "Fajr/Maghrib",
+    "ar": "الصباح والمساء",
+    "id": "Pagi & Petang",
+    "tr": "Sabah/Akşam",
+    "fr": "Matin & Soir"
+  },
+  "filter_jumma": {
+    "ur": "جمعہ وِرد",
+    "en": "Friday Wird",
+    "ar": "ورد الجمعة",
+    "id": "Wirid Jumat",
+    "tr": "Cuma Virdi",
+    "fr": "Vendredi"
+  },
+  "filter_tauheed": {
+    "ur": "توحید",
+    "en": "Tauheed",
+    "ar": "التوحيد",
+    "id": "Tauhid",
+    "tr": "Tevhid",
+    "fr": "Tawhid"
+  },
+  "filter_durood": {
+    "ur": "درود و تسبیح",
+    "en": "Durood & Tasbeeh",
+    "ar": "الصلاة والتسبيح",
+    "id": "Shalawat & Tasbih",
+    "tr": "Salavat & Tesbih",
+    "fr": "Salawat & Tasbih"
+  },
+  "pwa_banner_title": {
+    "ur": "اسلامک اذکار پرو انسٹال کریں",
+    "en": "Install Islamic Azkar Pro",
+    "ar": "تثبيت إسلامك أذكار برو",
+    "id": "Pasang Islamic Azkar Pro",
+    "tr": "Islamic Azkar Pro'yu Yükle",
+    "fr": "Installer Islamic Azkar Pro"
+  },
+  "pwa_banner_sub": {
+    "ur": "بغیر انٹرنیٹ استعمال کے لیے ہوم اسکرین پر شامل کریں",
+    "en": "Add to Home screen for 100% offline access",
+    "ar": "أضف إلى الشاشة الرئيسية للاستخدام بدون إنترنت",
+    "id": "Tambahkan ke layar utama untuk akses 100% offline",
+    "tr": "İnternetsiz tam çevrimdışı kullanım için ana ekrana ekleyin",
+    "fr": "Ajoutez à l'écran d'accueil pour un accès 100% hors ligne"
+  },
+  "pwa_banner_install": {
+    "ur": "انسٹال کریں ✓",
+    "en": "Install ✓",
+    "ar": "تثبيت ✓",
+    "id": "Pasang ✓",
+    "tr": "Yükle ✓",
+    "fr": "Installer ✓"
+  },
   "dam_desc": {
     "ur": "ہاتھوں پر تین بار پھونکیں — پھر پورے جسم پر ملیں۔<br/>پہلے خود پر، پھر گھر والوں پر دَم کریں۔",
     "en": "Blow gently into your palms three times and wipe over your body — starting with your head and face.",
@@ -6061,6 +6341,107 @@ try{
   if(['emerald','oled','sepia'].includes(t)) currentTheme = t;
 }catch(e){}
 
+
+function syncAllStaticI18n(){
+  const lang = getActiveLang();
+  
+  // 1. Drawer Header & Sections
+  const drTitle = document.getElementById('drTitle');
+  if (drTitle) drTitle.textContent = t('dr_all_azkar');
+  const drSecSettings = document.getElementById('drSecSettings');
+  if (drSecSettings) drSecSettings.textContent = t('dr_app_settings');
+  const drSettingsName = document.getElementById('drSettingsName');
+  if (drSettingsName) drSettingsName.textContent = t('dr_settings_name');
+  const drSettingsOpt = document.getElementById('drSettingsOpt');
+  if (drSettingsOpt) drSettingsOpt.textContent = t('dr_options');
+  const drStreakTitle = document.getElementById('drStreakTitle');
+  if (drStreakTitle) drStreakTitle.textContent = t('dr_streak_title');
+  const drStreakLabel = document.getElementById('drStreakLabel');
+  if (drStreakLabel) drStreakLabel.textContent = t('dr_streak_label');
+  const drStreakMasha = document.getElementById('drStreakMasha');
+  if (drStreakMasha) drStreakMasha.textContent = t('mashaallah');
+  const drSecAudio = document.getElementById('drSecAudio');
+  if (drSecAudio) drSecAudio.textContent = t('dr_audio_sec');
+  const drSecTheme = document.getElementById('drSecTheme');
+  if (drSecTheme) drSecTheme.textContent = t('dr_theme_sec');
+  const drSecPwa = document.getElementById('drSecPwa');
+  if (drSecPwa) drSecPwa.textContent = t('dr_pwa_sec');
+  const drInstallName = document.getElementById('drInstallName');
+  if (drInstallName) drInstallName.textContent = t('dr_install_app');
+  const drInstallOpt = document.getElementById('drInstallOpt');
+  if (drInstallOpt) drInstallOpt.textContent = t('dr_offline');
+  
+  // 2. Sound Chips in Drawer & Settings Modal
+  document.querySelectorAll('.snd-chip').forEach(b => {
+    const s = b.dataset.snd;
+    if (s === 'normal') b.textContent = t('snd_normal');
+    else if (s === 'masjid') b.textContent = t('snd_masjid');
+    else if (s === 'silent') b.textContent = t('snd_silent');
+  });
+
+  // 3. Theme Chips in Drawer & Settings Modal
+  document.querySelectorAll('.thm-chip').forEach(b => {
+    const thm = b.dataset.theme;
+    if (thm === 'emerald') b.textContent = t('thm_emerald');
+    else if (thm === 'oled') b.textContent = t('thm_oled');
+    else if (thm === 'sepia') b.textContent = t('thm_sepia');
+  });
+
+  // 4. Completion Screen Buttons
+  const rBtn = document.getElementById('restartBtn');
+  if (rBtn) rBtn.textContent = t('restart_btn');
+  const hBtn = document.getElementById('compHomeBtn');
+  if (hBtn) hBtn.textContent = t('home_btn');
+
+  // 5. Zikr Picker Modal
+  const zpTitle = document.getElementById('zikrPickerModalTitle');
+  if (zpTitle) zpTitle.textContent = t('choose_zikr_modal');
+  const zpClose = document.getElementById('cancelZikrPickerBtn');
+  if (zpClose) zpClose.textContent = t('close_btn');
+
+  // 6. Custom Modal Elements
+  const custTitle = document.getElementById('customModalTitle');
+  if (custTitle && !custTitle.dataset.editing) custTitle.textContent = t('custom_modal_title');
+  const custNameLbl = document.getElementById('custNameLbl');
+  if (custNameLbl) custNameLbl.textContent = t('cust_name_lbl');
+  const custNameInput = document.getElementById('custName');
+  if (custNameInput) custNameInput.placeholder = t('cust_name_ph');
+  const custArLbl = document.getElementById('custArLbl');
+  if (custArLbl) custArLbl.textContent = t('cust_ar_lbl');
+  const custArInput = document.getElementById('custAr');
+  if (custArInput) custArInput.placeholder = t('cust_ar_ph');
+  const custTargetLbl = document.getElementById('custTargetLbl');
+  if (custTargetLbl) custTargetLbl.textContent = t('cust_tgt_lbl');
+  const custQuickTgtLbl = document.getElementById('custQuickTgtLbl');
+  if (custQuickTgtLbl) custQuickTgtLbl.textContent = t('quick_tgt_lbl');
+  const cancelCustBtn = document.getElementById('cancelCustomModalBtn');
+  if (cancelCustBtn) cancelCustBtn.textContent = t('cancel_btn');
+  const saveCustBtn = document.getElementById('saveCustomModalBtn');
+  if (saveCustBtn) saveCustBtn.textContent = t('save_btn');
+
+  // 7. Import Modal Elements
+  const impTitle = document.getElementById('importModalTitle');
+  if (impTitle) impTitle.textContent = t('import_modal_title');
+  const impClose = document.getElementById('cancelImportModalBtn');
+  if (impClose) impClose.textContent = t('close_btn');
+  document.querySelectorAll('#importFilters button').forEach(b => {
+    const f = b.dataset.filter;
+    if (f === 'all') b.textContent = t('filter_all');
+    else if (f === 'fajr') b.textContent = t('filter_fajr');
+    else if (f === 'jumma') b.textContent = t('filter_jumma');
+    else if (f === 'tauheed') b.textContent = t('filter_tauheed');
+    else if (f === 'durood') b.textContent = t('filter_durood');
+  });
+
+  // 8. PWA Banner Elements
+  const pwaTitle = document.getElementById('pwaBannerTitle');
+  if (pwaTitle) pwaTitle.textContent = t('pwa_banner_title');
+  const pwaSub = document.getElementById('pwaBannerSub');
+  if (pwaSub) pwaSub.textContent = t('pwa_banner_sub');
+  const pwaBtn = document.getElementById('pwaBannerInstallBtn');
+  if (pwaBtn) pwaBtn.textContent = t('pwa_banner_install');
+}
+
 function applyLang(lang){
   const SUPPORTED = ['ur', 'en', 'ar', 'id', 'tr', 'fr'];
   const LTR_LIST = ['en', 'id', 'tr', 'fr'];
@@ -6110,6 +6491,7 @@ function applyLang(lang){
   save();
   render();
   updateStreakUI();
+  syncAllStaticI18n();
 }
 
 function applyTheme(themeName){
@@ -6419,6 +6801,7 @@ function goNext(){
 
 /* ══ DRAWER ══ */
 function renderDrawer(){
+  syncAllStaticI18n();
   const list=document.getElementById('drList');if(!list)return;
   list.innerHTML=SECS.map(m=>{
     let prog='';
