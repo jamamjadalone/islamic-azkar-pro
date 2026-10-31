@@ -1041,6 +1041,28 @@ body[data-theme="sepia"]{
 .import-item-name{font-family:var(--ur-font);font-size:.88rem;color:var(--gold-light)}
 .import-item-ar{font-family:var(--qfont);font-size:1.02rem;color:var(--ar);line-height:1.95;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
+/* ── ZIKR SELECTOR TOOLBAR & CATEGORY CUES ── */
+.zp-toolbar{display:flex;flex-direction:column;gap:.45rem;margin-bottom:.75rem}
+.zp-cat-bar-header{display:flex;align-items:center;justify-content:space-between;padding:0 .25rem;font-size:.75rem}
+.zp-cat-bar-title{display:inline-flex;align-items:center;gap:.35rem;font-weight:700;color:var(--gold-light,#fde68a);font-family:var(--ur-font)}
+.zp-cat-hint-pill{display:inline-flex;align-items:center;gap:.3rem;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);padding:.15rem .55rem;border-radius:9999px;color:#34d399;font-size:.68rem;font-weight:600}
+.zp-bounce-arrow{display:inline-block;animation:zpArrowBounce 1.4s infinite ease-in-out;font-size:.78rem}
+@keyframes zpArrowBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+.zp-chips-scroll-wrap{position:relative;width:100%;display:flex;align-items:center}
+#zikrFilterChips{display:flex;gap:.45rem;overflow-x:auto;flex-wrap:nowrap;white-space:nowrap;padding:4px 2px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch;width:100%;border-radius:14px}
+#zikrFilterChips::-webkit-scrollbar{display:none}
+#zikrFilterChips .q-chip{flex-shrink:0;white-space:nowrap;padding:.32rem .75rem;font-size:.78rem;border-radius:9999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);transition:all .2s cubic-bezier(0.4,0,0.2,1)}
+#zikrFilterChips .q-chip:hover{background:rgba(16,185,129,.18);border-color:rgba(16,185,129,.4)}
+#zikrFilterChips .q-chip.active{background:linear-gradient(135deg,rgba(16,185,129,.35),rgba(5,150,105,.5));border-color:#34d399;color:#fff;font-weight:700;box-shadow:0 0 10px rgba(16,185,129,.35)}
+@keyframes zpCatStripPulse{0%{box-shadow:0 0 0 0 rgba(52,211,153,0)}30%{box-shadow:0 0 0 4px rgba(52,211,153,.35),0 0 14px rgba(16,185,129,.4)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+.zp-pulse-active{animation:zpCatStripPulse 1.2s ease-out}
+.zp-scroll-arrow-hint{position:absolute;top:50%;transform:translateY(-50%);display:none;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:rgba(6,20,11,.88);border:1px solid rgba(52,211,153,.4);color:#34d399;font-size:.7rem;pointer-events:none;z-index:2;box-shadow:0 2px 6px rgba(0,0,0,.4)}
+.zp-scroll-arrow-hint.show{display:flex}
+.zp-scroll-arrow-hint.left{left:2px;animation:zpNudgeH 1.3s infinite ease-in-out}
+.zp-scroll-arrow-hint.right{right:2px;animation:zpNudgeHRight 1.3s infinite ease-in-out}
+@keyframes zpNudgeH{0%,100%{transform:translateY(-50%) translateX(0)}50%{transform:translateY(-50%) translateX(-3px)}}
+@keyframes zpNudgeHRight{0%,100%{transform:translateY(-50%) translateX(0)}50%{transform:translateY(-50%) translateX(3px)}}
+
 /* ── MODERN PWA INSTALL BANNER ── */
 .install-banner{
   position:fixed;bottom:max(12px, env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);
@@ -1512,15 +1534,30 @@ html[lang="ar"] .dam-box {
     </div>
     <div class="modal-body" style="padding-top:.5rem">
       <!-- Search & Category Filters -->
-      <div class="zp-toolbar" style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:.75rem">
+      <div class="zp-toolbar">
         <div style="position:relative;width:100%">
           <input type="text" id="zikrSearchInput" class="form-input" style="padding:.45rem .85rem;font-size:.82rem;border-radius:9999px;background:rgba(255,255,255,.05);border:1px solid rgba(60,179,113,.3)" placeholder="تلاش کریں / Search Zikr or Surah..."/>
         </div>
-        <div class="quick-targets" id="zikrFilterChips" style="justify-content:flex-start;overflow-x:auto;padding-bottom:2px">
-          <button type="button" class="q-chip active" data-zpfilter="all">🌟 تمام</button>
-          <button type="button" class="q-chip" data-zpfilter="surahs">📖 قرآنی سورتیں</button>
-          <button type="button" class="q-chip" data-zpfilter="daily">🌅 روزمرہ اذکار</button>
-          <button type="button" class="q-chip" data-zpfilter="duas">🤲 دعائیں و وِرد</button>
+        <!-- Category Bar Header with Bouncing Arrow Indicator -->
+        <div class="zp-cat-bar-header">
+          <div class="zp-cat-bar-title">
+            <span class="zp-cat-icon">📑</span>
+            <span id="zpCatLabel">زمرہ جات (Categories)</span>
+          </div>
+          <div class="zp-cat-hint-pill">
+            <span id="zpCatHint">فلٹر منتخب کریں</span>
+            <span class="zp-bounce-arrow">👇</span>
+          </div>
+        </div>
+        <div class="zp-chips-scroll-wrap">
+          <div class="zp-scroll-arrow-hint left" id="zpScrollHintLeft">◂</div>
+          <div class="quick-targets" id="zikrFilterChips">
+            <button type="button" class="q-chip active" data-zpfilter="all">🌟 تمام</button>
+            <button type="button" class="q-chip" data-zpfilter="surahs">📖 قرآنی سورتیں</button>
+            <button type="button" class="q-chip" data-zpfilter="daily">🌅 روزمرہ اذکار</button>
+            <button type="button" class="q-chip" data-zpfilter="duas">🤲 دعائیں و وِرد</button>
+          </div>
+          <div class="zp-scroll-arrow-hint right" id="zpScrollHintRight">▸</div>
         </div>
       </div>
       <div class="zikr-grid" id="zikrGrid"></div>
@@ -4073,6 +4110,22 @@ const I18N = {
     "tr": "🤲 Dualar ve Virdler",
     "fr": "🤲 Invocations & Wird"
   },
+  "zp_cat_label": {
+    "ur": "زمرہ جات",
+    "en": "Categories",
+    "ar": "الأقسام",
+    "id": "Kategori",
+    "tr": "Kategoriler",
+    "fr": "Catégories"
+  },
+  "zp_cat_hint": {
+    "ur": "فلٹر منتخب کریں",
+    "en": "Select Filter",
+    "ar": "اختر الفئة",
+    "id": "Pilih Kategori",
+    "tr": "Filtre Seçin",
+    "fr": "Choisir la Catégorie"
+  },
   "choose_zikr_modal": {
     "ur": "📿 منتخب ذکر (Choose Zikr)",
     "en": "📿 Choose Adhkar & Surah",
@@ -5141,11 +5194,41 @@ function renderZikrPicker(){
   }
 }
 
+function updateZpScrollHints(){
+  const el = document.getElementById('zikrFilterChips');
+  const left = document.getElementById('zpScrollHintLeft');
+  const right = document.getElementById('zpScrollHintRight');
+  if(!el || !left || !right) return;
+  const isRtl = document.documentElement.dir === 'rtl';
+  const hasOverflow = el.scrollWidth > el.clientWidth + 4;
+  if(!hasOverflow){
+    left.classList.remove('show');
+    right.classList.remove('show');
+    return;
+  }
+  if(isRtl){
+    const atLeftEnd = Math.abs(el.scrollLeft) >= (el.scrollWidth - el.clientWidth - 5);
+    const atRightStart = Math.abs(el.scrollLeft) <= 5;
+    left.classList.toggle('show', !atLeftEnd);
+    right.classList.toggle('show', !atRightStart);
+  } else {
+    left.classList.toggle('show', el.scrollLeft > 5);
+    right.classList.toggle('show', el.scrollLeft < (el.scrollWidth - el.clientWidth - 5));
+  }
+}
+
 function openZikrPicker(){
   renderZikrPicker();
   if(zikrPickerModal) zikrPickerModal.classList.add('open');
   document.getElementById('drawer')?.classList.remove('open');
   document.getElementById('overlay')?.classList.remove('open');
+  const chips = document.getElementById('zikrFilterChips');
+  if(chips){
+    chips.classList.remove('zp-pulse-active');
+    void chips.offsetWidth;
+    chips.classList.add('zp-pulse-active');
+  }
+  setTimeout(updateZpScrollHints, 120);
 }
 function closeZikrPicker(){
   if(zikrPickerModal) zikrPickerModal.classList.remove('open');
@@ -5168,6 +5251,9 @@ document.querySelectorAll('#zikrFilterChips button').forEach(b => {
     renderZikrPicker();
   });
 });
+const zfChips = document.getElementById('zikrFilterChips');
+if(zfChips) zfChips.addEventListener('scroll', updateZpScrollHints, { passive: true });
+window.addEventListener('resize', updateZpScrollHints);
 if(cancelZikrPickerBtn) cancelZikrPickerBtn.addEventListener('click', closeZikrPicker);
 if(zikrPickerModal) zikrPickerModal.addEventListener('click', e => { if(e.target === zikrPickerModal) closeZikrPicker(); });
 
@@ -6605,6 +6691,10 @@ function syncAllStaticI18n(){
   // 10. Zikr Picker Toolbar
   const zpSearch = document.getElementById('zikrSearchInput');
   if (zpSearch) zpSearch.placeholder = t('zp_search_ph');
+  const zpCatLbl = document.getElementById('zpCatLabel');
+  if (zpCatLbl) zpCatLbl.textContent = t('zp_cat_label');
+  const zpCatHnt = document.getElementById('zpCatHint');
+  if (zpCatHnt) zpCatHnt.textContent = t('zp_cat_hint');
   document.querySelectorAll('#zikrFilterChips button').forEach(b => {
     const f = b.dataset.zpfilter;
     if (f === 'all') b.textContent = t('zp_filter_all');
@@ -6612,6 +6702,7 @@ function syncAllStaticI18n(){
     else if (f === 'daily') b.textContent = t('zp_filter_daily');
     else if (f === 'duas') b.textContent = t('zp_filter_duas');
   });
+  if (typeof updateZpScrollHints === 'function') updateZpScrollHints();
 
 
 }
