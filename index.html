@@ -1510,7 +1510,19 @@ html[lang="ar"] .dam-box {
       <div class="modal-title" id="zikrPickerModalTitle">📿 منتخب ذکر (Choose Zikr)</div>
       <button type="button" class="modal-close" id="closeZikrPickerBtn">✕</button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body" style="padding-top:.5rem">
+      <!-- Search & Category Filters -->
+      <div class="zp-toolbar" style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:.75rem">
+        <div style="position:relative;width:100%">
+          <input type="text" id="zikrSearchInput" class="form-input" style="padding:.45rem .85rem;font-size:.82rem;border-radius:9999px;background:rgba(255,255,255,.05);border:1px solid rgba(60,179,113,.3)" placeholder="تلاش کریں / Search Zikr or Surah..."/>
+        </div>
+        <div class="quick-targets" id="zikrFilterChips" style="justify-content:flex-start;overflow-x:auto;padding-bottom:2px">
+          <button type="button" class="q-chip active" data-zpfilter="all">🌟 تمام</button>
+          <button type="button" class="q-chip" data-zpfilter="surahs">📖 قرآنی سورتیں</button>
+          <button type="button" class="q-chip" data-zpfilter="daily">🌅 روزمرہ اذکار</button>
+          <button type="button" class="q-chip" data-zpfilter="duas">🤲 دعائیں و وِرد</button>
+        </div>
+      </div>
       <div class="zikr-grid" id="zikrGrid"></div>
     </div>
     <div class="modal-ft">
@@ -4021,6 +4033,46 @@ const I18N = {
     "tr": "📜 Parşömen (Sepia)",
     "fr": "📜 Parchemin (Sépia)"
   },
+  "zp_search_ph": {
+    "ur": "تلاش کریں / Search Zikr or Surah...",
+    "en": "Search Zikr or Surah...",
+    "ar": "ابحث عن ذكر أو سورة...",
+    "id": "Cari Dzikir atau Surah...",
+    "tr": "Zikir veya Sure Ara...",
+    "fr": "Rechercher Invocation ou Sourate..."
+  },
+  "zp_filter_all": {
+    "ur": "🌟 تمام",
+    "en": "🌟 All",
+    "ar": "🌟 الكل",
+    "id": "🌟 Semua",
+    "tr": "🌟 Tümü",
+    "fr": "🌟 Tous"
+  },
+  "zp_filter_surahs": {
+    "ur": "📖 قرآنی سورتیں",
+    "en": "📖 Quranic Surahs",
+    "ar": "📖 سور القرآن الكريم",
+    "id": "📖 Surah Al-Qur'an",
+    "tr": "📖 Kur'an Sureleri",
+    "fr": "📖 Sourates du Coran"
+  },
+  "zp_filter_daily": {
+    "ur": "🌅 روزمرہ اذکار",
+    "en": "🌅 Daily Azkar",
+    "ar": "🌅 أذكار اليوم والليلة",
+    "id": "🌅 Dzikir Harian",
+    "tr": "🌅 Günlük Zikirler",
+    "fr": "🌅 Invocations Quotidiennes"
+  },
+  "zp_filter_duas": {
+    "ur": "🤲 دعائیں و وِرد",
+    "en": "🤲 Duas & Wird",
+    "ar": "🤲 الأدعية والأوراد",
+    "id": "🤲 Doa & Wirid",
+    "tr": "🤲 Dualar ve Virdler",
+    "fr": "🤲 Invocations & Wird"
+  },
   "choose_zikr_modal": {
     "ur": "📿 منتخب ذکر (Choose Zikr)",
     "en": "📿 Choose Adhkar & Surah",
@@ -5015,15 +5067,45 @@ const zikrPickerBtn = document.getElementById('zikrPickerBtn');
 const closeZikrPickerBtn = document.getElementById('closeZikrPickerBtn');
 const cancelZikrPickerBtn = document.getElementById('cancelZikrPickerBtn');
 
+let currentZpFilter = 'all';
+let currentZpQuery = '';
+
+function getSecCategory(id){
+  if(['yaseen','kahf','mulk','waqiah','rahman','manzil'].includes(id)) return 'surahs';
+  if(['fajr','post_salah','bedtime','morning_wake'].includes(id)) return 'daily';
+  return 'duas';
+}
+
 function renderZikrPicker(){
   const grid = document.getElementById('zikrGrid');
   if(!grid) return;
-  grid.innerHTML = SECS.map(m => {
+  
+  const filtered = SECS.filter(m => {
+    if(currentZpFilter !== 'all'){
+      if(m.id === 'welcome') return false;
+      if(getSecCategory(m.id) !== currentZpFilter) return false;
+    }
+    if(currentZpQuery){
+      const q = currentZpQuery.toLowerCase().trim();
+      const title = (getLoc(m.title) || '').toLowerCase();
+      const ct = (getLoc(m.ct) || '').toLowerCase();
+      const id = m.id.toLowerCase();
+      return title.includes(q) || ct.includes(q) || id.includes(q);
+    }
+    return true;
+  });
+
+  if(filtered.length === 0){
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:2rem 1rem;color:var(--text3);font-size:.85rem">کوئی ذکر نہیں ملا / No matching Zikr found</div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(m => {
     const isActive = sec === m.id;
     let prog = '';
-    if(['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara'].includes(m.id) && S[m.id]?.done){
+    if(['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana'].includes(m.id) && S[m.id]?.done){
       const d = S[m.id].done.filter(Boolean).length;
-      const tot = {fajr:FAJR.length,jumma:JUMMA.length,durood_pak:DUROOD_PAK.length,tauheed:TAUHEED.length,bedtime:BEDTIME.length,tawbah:TAWBAH.length,post_salah:POST_SALAH.length,morning_wake:MORNING_WAKE.length,relief_debt:RELIEF_DEBT.length,istikhara:ISTIKHARA.length}[m.id];
+      const tot = {fajr:FAJR.length,jumma:JUMMA.length,durood_pak:DUROOD_PAK.length,tauheed:TAUHEED.length,bedtime:BEDTIME.length,tawbah:TAWBAH.length,post_salah:POST_SALAH.length,morning_wake:MORNING_WAKE.length,relief_debt:RELIEF_DEBT.length,istikhara:ISTIKHARA.length,rabbana:RABBANA.length}[m.id];
       if(d > 0) prog = `<span style="color:var(--g2);font-size:.68rem">(${d}/${tot})</span>`;
     } else if(m.id === 'asr' && S.asr.done){
       prog = `<span style="color:var(--g2);font-size:.68rem">✓ مکمل</span>`;
@@ -5050,6 +5132,13 @@ function renderZikrPicker(){
       window.scrollTo(0, 0);
     });
   });
+
+  const activeCard = grid.querySelector('.zg-card.active');
+  if(activeCard && !currentZpQuery){
+    setTimeout(() => {
+      activeCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 80);
+  }
 }
 
 function openZikrPicker(){
@@ -5064,6 +5153,21 @@ function closeZikrPicker(){
 
 if(zikrPickerBtn) zikrPickerBtn.addEventListener('click', openZikrPicker);
 if(closeZikrPickerBtn) closeZikrPickerBtn.addEventListener('click', closeZikrPicker);
+const zpSearchEl = document.getElementById('zikrSearchInput');
+if(zpSearchEl){
+  zpSearchEl.addEventListener('input', e => {
+    currentZpQuery = e.target.value;
+    renderZikrPicker();
+  });
+}
+document.querySelectorAll('#zikrFilterChips button').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('#zikrFilterChips button').forEach(x => { x.classList.remove('active'); });
+    b.classList.add('active');
+    currentZpFilter = b.dataset.zpfilter;
+    renderZikrPicker();
+  });
+});
 if(cancelZikrPickerBtn) cancelZikrPickerBtn.addEventListener('click', closeZikrPicker);
 if(zikrPickerModal) zikrPickerModal.addEventListener('click', e => { if(e.target === zikrPickerModal) closeZikrPicker(); });
 
@@ -6498,6 +6602,17 @@ function syncAllStaticI18n(){
   if (discTitle) discTitle.innerHTML = '<span class="sec-badge-icon">🕊️</span> ' + t('set_disclaimer_title');
   const discText = document.getElementById('setDisclaimerText');
   if (discText) discText.textContent = t('set_disclaimer_text');
+  // 10. Zikr Picker Toolbar
+  const zpSearch = document.getElementById('zikrSearchInput');
+  if (zpSearch) zpSearch.placeholder = t('zp_search_ph');
+  document.querySelectorAll('#zikrFilterChips button').forEach(b => {
+    const f = b.dataset.zpfilter;
+    if (f === 'all') b.textContent = t('zp_filter_all');
+    else if (f === 'surahs') b.textContent = t('zp_filter_surahs');
+    else if (f === 'daily') b.textContent = t('zp_filter_daily');
+    else if (f === 'duas') b.textContent = t('zp_filter_duas');
+  });
+
 
 }
 
