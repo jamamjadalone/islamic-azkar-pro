@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://jamamjadalone.github.io/islamic-azkar-pro/"><img alt="Live Demo" src="https://img.shields.io/badge/Live%20App-GitHub%20Pages-2ea44f?style=for-the-badge&logo=github"></a>
+  <a href="https://jamamjadalone.is-a.dev/islamic-azkar-pro/"><img alt="Live Demo" src="https://img.shields.io/badge/Live%20App-is--a.dev-2ea44f?style=for-the-badge&logo=github"></a>
   <a href="https://github.com/jamamjadalone/islamic-azkar-pro/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/jamamjadalone/islamic-azkar-pro?style=for-the-badge&color=blue"></a>
   <img alt="PWA" src="https://img.shields.io/badge/PWA-Installable-5c5cff?style=for-the-badge&logo=pwa">
   <img alt="Offline" src="https://img.shields.io/badge/Offline-100%25-3cb371?style=for-the-badge">
@@ -30,12 +30,14 @@ It requires **zero external API calls**, has **no telemetry or user tracking**, 
 
 ## Key Features
 
-### 1. Complete Quranic Recitation & Tajweed Engine (5 Surahs)
+### 1. Complete Quranic Recitation & Tajweed Engine (6 Surahs)
+- **Surah Yaseen (83 Verses / 5 Rukus)**: The Heart of the Quran (قلب القرآن) with full Indo-Pak and Uthmani scripts.
 - **Surah Al-Kahf (110 Verses / 12 Rukus)**: Complete offline recitation with Pakistani (Indo-Pak) and Madani (Uthmani) Tajweed color coding.
-- **Surah Al-Mulk (30 Verses / 2 Rukus)**: Indo-Pak script for nighttime grave protection recitation.
-- **Surah Al-Waqiah (96 Verses / 3 Rukus)**: Indo-Pak script for barakah and protection against poverty.
+- **Surah Al-Mulk (30 Verses / 2 Rukus)**: Nighttime grave protection recitation.
+- **Surah Al-Waqiah (96 Verses / 3 Rukus)**: Barakah and protection against poverty.
 - **Surah Ar-Rahman (78 Verses / 3 Rukus)**: "عروس القرآن" with *Fa-bi'ayyi ala'i Rabbikuma tukadhdhiban*.
 - **Manzil (33 Protection Verses across 4 Parts)**: Authentic protection against evil eye, black magic, and harm.
+- **40 Rabbana Quranic Duas (۴۰ ربنا)**: The complete 40 authentic Quranic supplications starting with Rabbana with Surah references and repetition counters.
 - **Unified 5-Speed Auto-Scroll Engine**: Hands-free recitation speed controller across all surahs.
 - **6 Bundled Quranic Fonts**: Al Majeed, Hafs, Al Qalam, PDMS Saleem, Muhammadi, and Al Mushaf.
 
@@ -150,6 +152,14 @@ Open `http://localhost:8080` in your browser.
 
 > [!NOTE]
 > Run using a local web server rather than opening `file:///` directly so that Service Worker registration and PWA features initialize properly.
+
+---
+
+## Human Effort & Correction Notice (تصحیح و اصلاح کی درخواست)
+
+Every effort has been made to ensure the utmost accuracy of Quranic Arabic diacritics (اعراب), translations, and authentic contextual references. However, humans are prone to unintentional errors.
+
+> **نوٹ برائے تصحیح:** تمام تراجم، اعراب اور حوالہ جات کی تیاری میں انتہائی احتیاط برتی گئی ہے، تاہم انسان خطا کا پتلا ہے۔ اگر کسی بھی مقام پر اعراب، ترجمے یا حوالے میں کوئی تسامح یا تصحیح درکار ہو تو برائے مہربانی GitHub Issue یا pull request کے ذریعے مطلع فرمائیں تاکہ فوراً اصلاح کی جا سکے۔ جزاکم اللہ خیراً۔
 
 ---
 
