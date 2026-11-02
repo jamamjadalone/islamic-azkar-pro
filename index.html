@@ -1551,7 +1551,7 @@ html[lang="ar"] .dam-box {
         </div>
         <div class="zp-chips-scroll-wrap">
           <div class="zp-scroll-arrow-hint left" id="zpScrollHintLeft">◂</div>
-          <div class="quick-targets" id="zikrFilterChips">
+          <div class="zp-chips-row" id="zikrFilterChips">
             <button type="button" class="q-chip active" data-zpfilter="all">🌟 تمام</button>
             <button type="button" class="q-chip" data-zpfilter="surahs">📖 قرآنی سورتیں</button>
             <button type="button" class="q-chip" data-zpfilter="daily">🌅 روزمرہ اذکار</button>
@@ -4841,7 +4841,7 @@ try{
   if(p.tajMode) S.tajMode = p.tajMode;
   if(p.scriptMode) S.scriptMode = p.scriptMode;
   if(p.lang) S.lang = p.lang;
-  ['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','asr','tasbeeh'].forEach(k=>{if(p[k])Object.assign(S[k],p[k]);});
+  ['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana','asr','tasbeeh'].forEach(k=>{if(p[k])Object.assign(S[k],p[k]);});
   if(!S.fajr.done||S.fajr.done.length!==FAJR.length)S.fajr.done=new Array(FAJR.length).fill(false);
   if(!S.jumma.done||S.jumma.done.length!==JUMMA.length)S.jumma.done=new Array(JUMMA.length).fill(false);
   if(!S.durood_pak.done||S.durood_pak.done.length!==DUROOD_PAK.length)S.durood_pak.done=new Array(DUROOD_PAK.length).fill(false);
@@ -4852,6 +4852,7 @@ try{
   if(!S.morning_wake.done||S.morning_wake.done.length!==MORNING_WAKE.length)S.morning_wake.done=new Array(MORNING_WAKE.length).fill(false);
   if(!S.relief_debt.done||S.relief_debt.done.length!==RELIEF_DEBT.length)S.relief_debt.done=new Array(RELIEF_DEBT.length).fill(false);
   if(!S.istikhara.done||S.istikhara.done.length!==ISTIKHARA.length)S.istikhara.done=new Array(ISTIKHARA.length).fill(false);
+  if(!S.rabbana||!S.rabbana.done||S.rabbana.done.length!==RABBANA.length)S.rabbana={idx:0,cnt:0,done:new Array(RABBANA.length).fill(false)};
 
   if(!localStorage.getItem('azk_kahf_prefs_v2')){
     viewMode='para';
@@ -5892,7 +5893,10 @@ function render(){
   if(sec==='tasbeeh'){renderTasbeeh(mc);return;}
   if(sec==='custom'){renderCustom(mc);return;}
   const DATA={fajr:FAJR,jumma:JUMMA,durood_pak:DUROOD_PAK,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH,post_salah:POST_SALAH,morning_wake:MORNING_WAKE,relief_debt:RELIEF_DEBT,istikhara:ISTIKHARA,rabbana:RABBANA};
-  const steps=DATA[sec],st=S[sec],step=steps[st.idx];
+  const steps=DATA[sec],st=S[sec];
+  if(!steps || !st) return;
+  const step=steps[st.idx];
+  if(!step) return;
   const total=steps.length,cnt=st.cnt,done=cnt>=step.target;
   const color=sec==='jumma'?'#a855f7':'var(--g1)';
   document.getElementById('progBar').style.width=((st.idx+(done?1:cnt/step.target))/total*100)+'%';
@@ -6999,69 +7003,120 @@ function shareCustomAzkarText(){
 }
 
 
+/* ══ ALL DUA SECTIONS REGISTRY ══ */
+const ALL_DUA_DATA = {fajr:FAJR,jumma:JUMMA,durood_pak:DUROOD_PAK,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH,post_salah:POST_SALAH,morning_wake:MORNING_WAKE,relief_debt:RELIEF_DEBT,istikhara:ISTIKHARA,rabbana:RABBANA};
+
 /* ══ TAP ══ */
 function tap(){
-  const isTsb=sec==='tasbeeh',isAsr=sec==='asr',isCust=sec==='custom';
-  let cnt,target,item;
+  const activeSec = sec;
+  const isTsb = activeSec === 'tasbeeh', isAsr = activeSec === 'asr', isCust = activeSec === 'custom';
+  let cnt, target, item;
   if(isCust){
-    item=getActiveCustomItem();
-    if(!item||item.done)return;
-    cnt=item.cnt;target=item.target;
+    item = getActiveCustomItem();
+    if(!item || item.done) return;
+    cnt = item.cnt; target = item.target;
   }
-  else if(isAsr){if(S.asr.done)return;cnt=S.asr.cnt;target=80;}
-  else if(isTsb){const t=TSB[S.tasbeeh.ph];if(S.tasbeeh.cnt>=t.target)return;cnt=S.tasbeeh.cnt;target=t.target;}
-  else{const st=S[sec],d={fajr:FAJR,jumma:JUMMA,durood_pak:DUROOD_PAK,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH,post_salah:POST_SALAH,morning_wake:MORNING_WAKE,relief_debt:RELIEF_DEBT,istikhara:ISTIKHARA}[sec][st.idx];if(st.cnt>=d.target)return;cnt=st.cnt;target=d.target;}
-  if(cnt>=target)return;
-  if(isCust){item.cnt++;saveCustomAzkar();}
-  else if(isAsr)S.asr.cnt++;else if(isTsb)S.tasbeeh.cnt++;else S[sec].cnt++;
+  else if(isAsr){
+    if(S.asr.done) return;
+    cnt = S.asr.cnt; target = 80;
+  }
+  else if(isTsb){
+    const t = TSB[S.tasbeeh.ph];
+    if(S.tasbeeh.cnt >= t.target) return;
+    cnt = S.tasbeeh.cnt; target = t.target;
+  }
+  else{
+    const st = S[activeSec];
+    const dataList = ALL_DUA_DATA[activeSec];
+    if(!st || !dataList) return;
+    const d = dataList[st.idx];
+    if(!d || st.cnt >= d.target) return;
+    cnt = st.cnt; target = d.target;
+  }
+  if(cnt >= target) return;
+  if(isCust){ item.cnt++; saveCustomAzkar(); }
+  else if(isAsr) S.asr.cnt++;
+  else if(isTsb) S.tasbeeh.cnt++;
+  else S[activeSec].cnt++;
   save();
   recordDhikrActivity();
-  beep(isTsb?640:isAsr?800:isCust?720:760,.08);vib(18);
-  const ri=document.getElementById('ri');
-  if(ri){ri.classList.remove('pg','pa','ps','pj');void ri.offsetWidth;ri.classList.add(isAsr?'pa':isTsb?'ps':isCust?'pg':sec==='jumma'?'pj':'pg');}
-  const nc=isCust?item.cnt:isAsr?S.asr.cnt:isTsb?S.tasbeeh.cnt:S[sec].cnt;
-  const rn=document.getElementById('rn');if(rn)rn.textContent=nc;
-  const rf=document.getElementById('rf');if(rf)rf.style.strokeDashoffset=CIRC*(1-nc/target);
-  if(nc>=target){
-    beep(isTsb?500:560,.3,.2);vib([35,25,60]);
-    if(isCust){item.done=true;saveCustomAzkar();}
-    else if(isAsr)S.asr.done=true;else if(!isTsb)S[sec].done[S[sec].idx]=true;
+  beep(isTsb ? 640 : isAsr ? 800 : isCust ? 720 : 760, .08);
+  vib(18);
+  const ri = document.getElementById('ri');
+  if(ri){
+    ri.classList.remove('pg', 'pa', 'ps', 'pj');
+    void ri.offsetWidth;
+    ri.classList.add(isAsr ? 'pa' : isTsb ? 'ps' : isCust ? 'pg' : activeSec === 'jumma' ? 'pj' : 'pg');
+  }
+  const nc = isCust ? item.cnt : isAsr ? S.asr.cnt : isTsb ? S.tasbeeh.cnt : S[activeSec].cnt;
+  const rn = document.getElementById('rn');
+  if(rn) rn.textContent = nc;
+  const rf = document.getElementById('rf');
+  if(rf) rf.style.strokeDashoffset = CIRC * (1 - nc / target);
+  if(nc >= target){
+    beep(isTsb ? 500 : 560, .3, .2);
+    vib([35, 25, 60]);
+    if(isCust){ item.done = true; saveCustomAzkar(); }
+    else if(isAsr) S.asr.done = true;
+    else if(!isTsb) S[activeSec].done[S[activeSec].idx] = true;
     save();
-    setTimeout(()=>{
-      if(isCust){
-        const idx=customAzkar.findIndex(x=>x.id===item.id);
-        if(idx<customAzkar.length-1){
-          customActiveId=customAzkar[idx+1].id;
+    setTimeout(() => {
+      if(activeSec === 'custom'){
+        const idx = customAzkar.findIndex(x => x.id === item.id);
+        if(idx < customAzkar.length - 1){
+          customActiveId = customAzkar[idx + 1].id;
           saveCustomAzkar();
           renderCustom(document.getElementById('mc'));
-          window.scrollTo(0,0);
-        }else{
+          window.scrollTo(0, 0);
+        } else {
           showCompletionScreen('custom');
           renderCustom(document.getElementById('mc'));
         }
         return;
       }
-      if(isTsb){const{ph}=S.tasbeeh;if(ph<2){S.tasbeeh.ph++;S.tasbeeh.cnt=0;save();renderTasbeeh(document.getElementById('mc'));}else{showCompletionScreen('tasbeeh');}return;}
-      if(isAsr){render();return;}
-      const st=S[sec];const DATA={fajr:FAJR,jumma:JUMMA,durood_pak:DUROOD_PAK,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH,post_salah:POST_SALAH,morning_wake:MORNING_WAKE,relief_debt:RELIEF_DEBT,istikhara:ISTIKHARA,rabbana:RABBANA};
-      if(st.idx<DATA[sec].length-1){st.idx++;st.cnt=0;save();render();window.scrollTo(0,0);}
-      else{showCompletionScreen(sec);}
-    },750);
+      if(activeSec === 'tasbeeh'){
+        const { ph } = S.tasbeeh;
+        if(ph < 2){
+          S.tasbeeh.ph++;
+          S.tasbeeh.cnt = 0;
+          save();
+          renderTasbeeh(document.getElementById('mc'));
+        } else {
+          showCompletionScreen('tasbeeh');
+        }
+        return;
+      }
+      if(activeSec === 'asr'){ render(); return; }
+      const st = S[activeSec];
+      const dataList = ALL_DUA_DATA[activeSec];
+      if(st && dataList){
+        if(st.idx < dataList.length - 1){
+          st.idx++;
+          st.cnt = 0;
+          save();
+          render();
+          window.scrollTo(0, 0);
+        } else {
+          showCompletionScreen(activeSec);
+        }
+      }
+    }, 750);
   }
 }
 function doUndo(){
-  if(sec==='custom'){
-    const item=getActiveCustomItem();
-    if(item&&item.cnt>0){item.cnt--;item.done=false;saveCustomAzkar();renderCustom(document.getElementById('mc'));}
+  if(sec === 'custom'){
+    const item = getActiveCustomItem();
+    if(item && item.cnt > 0){ item.cnt--; item.done = false; saveCustomAzkar(); renderCustom(document.getElementById('mc')); }
   }
-  else if(sec==='asr'){if(S.asr.cnt>0){S.asr.cnt--;S.asr.done=false;save();renderAsr(document.getElementById('mc'));}}
-  else if(sec==='tasbeeh'){if(S.tasbeeh.cnt>0){S.tasbeeh.cnt--;save();renderTasbeeh(document.getElementById('mc'));}}
-  else{const st=S[sec];if(st.cnt>0){st.cnt--;st.done[st.idx]=false;save();render();}}
+  else if(sec === 'asr'){ if(S.asr.cnt > 0){ S.asr.cnt--; S.asr.done = false; save(); renderAsr(document.getElementById('mc')); } }
+  else if(sec === 'tasbeeh'){ if(S.tasbeeh.cnt > 0){ S.tasbeeh.cnt--; save(); renderTasbeeh(document.getElementById('mc')); } }
+  else{ const st = S[sec]; if(st && st.cnt > 0){ st.cnt--; st.done[st.idx] = false; save(); render(); } }
 }
 function goNext(){
-  const DATA={fajr:FAJR,jumma:JUMMA,durood_pak:DUROOD_PAK,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH,post_salah:POST_SALAH,morning_wake:MORNING_WAKE,relief_debt:RELIEF_DEBT,istikhara:ISTIKHARA,rabbana:RABBANA},st=S[sec];
-  if(st.idx===DATA[sec].length-1){showCompletionScreen(sec);}
-  else{st.idx++;st.cnt=0;save();render();window.scrollTo(0,0);}
+  const dataList = ALL_DUA_DATA[sec], st = S[sec];
+  if(!st || !dataList) return;
+  if(st.idx === dataList.length - 1){ showCompletionScreen(sec); }
+  else{ st.idx++; st.cnt = 0; save(); render(); window.scrollTo(0, 0); }
 }
 
 /* ══ DRAWER ══ */
