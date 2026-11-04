@@ -168,7 +168,7 @@
   --r-sm:14px;
   --qs:clamp(1.12rem, 3.4vw, 1.34rem);
   --ui-font:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', system-ui, sans-serif;
-  --ur-font:'Noto Nastaliq Urdu', serif;
+  --ur-font:'Noto Nastaliq Urdu', 'Al Qalam Quran Majeed', 'Jameel Noori Nastaleeq', 'Urdu Typesetting', 'Segoe UI', Tahoma, system-ui, sans-serif;
   --qfont:'Al Majeed', 'Scheherazade New', 'Noto Naskh Arabic', serif;
 }
 
@@ -919,6 +919,19 @@ body[data-theme="sepia"]{
   border-top:1px solid rgba(245, 158, 11, 0.35);
   box-shadow:0 16px 48px rgba(0, 0, 0, 0.75), 0 0 24px rgba(16, 185, 129, 0.12);
   border-radius:24px;
+  font-family:var(--ur-font);
+}
+.settings-box .form-lbl,
+.settings-box .set-sec-title,
+.settings-box .q-chip,
+.settings-box .snd-chip,
+.settings-box .thm-chip,
+.settings-box .settings-btn,
+.settings-box .btn-sm,
+.settings-box button,
+.settings-box select,
+.settings-box span{
+  font-family:var(--ur-font) !important;
 }
 .set-section{
   background:rgba(255, 255, 255, 0.025);
@@ -1722,11 +1735,11 @@ html[lang="ar"] .dam-box {
           <div class="form-lbl">🖼️ پس منظر کا وال پیپر (Wallpaper):</div>
           <div class="quick-targets" id="settingsWallpaperChips">
             <button type="button" class="q-chip active" data-wp="none">🖤 اصل (سادہ)</button>
-            <button type="button" class="q-chip" data-wp="arabesque">✨ اسلامی جال</button>
-            <button type="button" class="q-chip" data-wp="moroccan">🔷 مراکشی نقوش</button>
-            <button type="button" class="q-chip" data-wp="girih">🌟 ستارہ گرہ</button>
-            <button type="button" class="q-chip" data-wp="islimi">🌿 اسلیمی بیل</button>
-            <button type="button" class="q-chip" data-wp="margins">📜 حاشیہ نقوش</button>
+            <button type="button" class="q-chip" data-wp="margins_gold">📜 طلائی حاشیہ</button>
+            <button type="button" class="q-chip" data-wp="margins_emerald">🌿 زمردی حاشیہ</button>
+            <button type="button" class="q-chip" data-wp="margins_moroccan">🔷 مراکشی حاشیہ</button>
+            <button type="button" class="q-chip" data-wp="margins_girih">🌟 ستارہ حاشیہ</button>
+            <button type="button" class="q-chip" data-wp="margins_islimi">⚜️ اسلیمی حاشیہ</button>
             <button type="button" class="q-chip" id="btnUploadWp">📁 اپنی تصویر</button>
           </div>
           <input type="file" id="bgPhotoInput" accept="image/*" style="display:none"/>
@@ -1754,21 +1767,21 @@ html[lang="ar"] .dam-box {
         </div>
       </div>
 
-      <!-- 5. Surah Kahf Settings -->
+      <!-- 5. Quran & 26 Surahs Reading Settings -->
       <div class="set-section">
-        <div class="set-sec-title"><span class="sec-badge-icon">📖</span> ترتیباتِ سورۃ الکہف (Kahf Reading Preferences)</div>
+        <div class="set-sec-title"><span class="sec-badge-icon">📖</span> ترتیباتِ تلاوتِ قرآن و ۲۶ سورتیں (Quran & 26 Surahs View Mode)</div>
         <div class="form-grp">
           <div class="form-lbl">طرزِ تلاوت (View Mode):</div>
           <div class="quick-targets" id="modalVmodes">
-            <button type="button" class="q-chip" data-vm="para">📖 پیراگراف (مربوط تلاوت)</button>
-            <button type="button" class="q-chip" data-vm="verse">🔢 آیت بہ آیت</button>
+            <button type="button" class="q-chip" data-vm="para">📖 پیراگراف (مصحف / مربوط تلاوت)</button>
+            <button type="button" class="q-chip" data-vm="verse">🔢 آیت بہ آیت (کارڈز)</button>
           </div>
         </div>
         <div class="form-grp">
           <div class="form-lbl">رسم الخط (Quranic Script):</div>
           <div class="quick-targets" id="modalScripts">
             <button type="button" class="q-chip" data-script="indopak">🇵🇰 رسمِ ہند-پاک (پاکستانی)</button>
-            <button type="button" class="q-chip" data-script="uthmani">🕋 رسمِ عثمانی</button>
+            <button type="button" class="q-chip" data-script="uthmani">🕋 رسمِ عثمانی (عالمی / مدنی)</button>
           </div>
         </div>
         <div class="form-grp">
@@ -1779,9 +1792,9 @@ html[lang="ar"] .dam-box {
             <button type="button" class="q-chip" data-taj="classic">عثمانی تجوید (مکمل)</button>
           </div>
         </div>
-        <div style="margin-top:.75rem;padding-top:.6rem;border-top:1px dashed var(--card-border);display:flex;justify-content:space-between;align-items:center">
-          <span style="font-size:.75rem;color:var(--text2)">✨ نیا مصحف ریڈر (Taj & Madani Demo):</span>
-          <a href="./mushaf-demo.html" style="display:inline-flex;align-items:center;gap:.3rem;text-decoration:none;padding:.28rem .65rem;background:rgba(245,158,11,.15);border:1px solid var(--gold);color:var(--gold-light);border-radius:8px;font-size:.74rem;font-weight:700">📖 اوپن کریں ↗</a>
+        <div style="margin-top:.75rem;padding-top:.6rem;border-top:1px dashed var(--card-border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.4rem">
+          <span style="font-size:.78rem;color:var(--text2);font-weight:600">📲 نئی اینڈرائیڈ ایپ ریلیز (Official Release APK):</span>
+          <a href="https://github.com/jamamjadalone/islamic-azkar-pro/releases/latest" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.35rem;text-decoration:none;padding:.32rem .75rem;background:linear-gradient(135deg,rgba(16,185,129,.28),rgba(5,150,105,.45));border:1px solid var(--g1);color:#fff;border-radius:10px;font-size:.76rem;font-weight:700;box-shadow:0 2px 8px rgba(16,185,129,.25)">⬇️ ڈاؤنلوڈ APK ↗</a>
         </div>
       </div>
       <!-- 6. Human Effort & Correction Notice -->
@@ -5261,7 +5274,10 @@ document.querySelectorAll('#modalVmodes .q-chip').forEach(b=>{
     viewMode = b.dataset.vm;
     syncKahfModalUI();
     save();
-    if(sec === 'kahf') renderKahf(document.getElementById('mc'));
+    const mc = document.getElementById('mc');
+    if(mc && typeof QURAN_SURAHS !== 'undefined' && (QURAN_SURAHS[sec] || sec === 'kahf' || sec === 'mulk')){
+      renderQuran(mc, sec);
+    }
   });
 });
 
@@ -5270,7 +5286,10 @@ document.querySelectorAll('#modalScripts .q-chip').forEach(b=>{
     S.scriptMode = b.dataset.script;
     syncKahfModalUI();
     save();
-    if(sec === 'kahf') renderKahf(document.getElementById('mc'));
+    const mc = document.getElementById('mc');
+    if(mc && typeof QURAN_SURAHS !== 'undefined' && (QURAN_SURAHS[sec] || sec === 'kahf' || sec === 'mulk')){
+      renderQuran(mc, sec);
+    }
   });
 });
 
@@ -5279,7 +5298,10 @@ document.querySelectorAll('#modalTajweed .q-chip').forEach(b=>{
     S.tajMode = b.dataset.taj;
     syncKahfModalUI();
     save();
-    if(sec === 'kahf') renderKahf(document.getElementById('mc'));
+    const mc = document.getElementById('mc');
+    if(mc && typeof QURAN_SURAHS !== 'undefined' && (QURAN_SURAHS[sec] || sec === 'kahf' || sec === 'mulk')){
+      renderQuran(mc, sec);
+    }
   });
 });
 
@@ -6507,6 +6529,10 @@ function renderQuran(mc, surahId){
       <div class="quran-title">${getLoc(cfg.title)}</div>
       <div class="quran-meta">${typeof cfg.meta === 'function' ? cfg.meta(isIndopak) : (cfg.meta || '')}</div>
       ${introHtml}
+      <div style="display:flex;justify-content:center;gap:.4rem;margin:.55rem auto .3rem;flex-wrap:wrap">
+        <button type="button" class="q-chip ${viewMode==='para'?'active':''}" onclick="setGlobalViewMode('para')">📖 پیراگراف (مصحف)</button>
+        <button type="button" class="q-chip ${viewMode==='verse'?'active':''}" onclick="setGlobalViewMode('verse')">🔢 آیت بہ آیت</button>
+      </div>
     </div>
     <div class="quran-bism">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>`;
 
@@ -6516,7 +6542,6 @@ function renderQuran(mc, surahId){
     dataset.forEach(ruku => {
       body += `<div class="ruku-sep">${ruku.r}</div>`;
       if(viewMode === 'para'){
-        // Pure authentic Pakistani Mushaf format: verse text ending with ornate bracket ﴿۱﴾
         body += `<div class="para-block">${ruku.verses.map(v => {
           const cleanTxt = cleanVerseText(v.t);
           return `${cleanTxt} <span class="vnum-ornate" style="color:var(--gold-light);font-family:var(--qfont);white-space:nowrap;padding:0 .15rem">﴿${formatAyatNum(v.n, 'ur')}﴾</span>`;
@@ -6534,22 +6559,22 @@ function renderQuran(mc, surahId){
       content = content.replace(/^بِسۡمِ اللّٰہِ الرَّحۡمٰنِ الرَّحِیۡمِ\s*/, '');
     }
     if(viewMode === 'para'){
-      // Preserve original waqf marks and ornate brackets exactly as present in authentic Mushaf
       const paras = content.split(/\n\n+/);
       body = `<div class="para-block">${paras.map(p => `<p style="margin:0 0 1.2rem;text-align:justify;line-height:2.9">${p.replace(/\n/g,'<br/>')}</p>`).join('')}</div>`;
     } else {
-      // Verse-by-verse mode: parse verse text and keep waqf marks intact without stripping
-      const pattern = /(.*?)([ۙۚۘؕۜ؀۞٪۫۬ۨ]*)\s*﴿([۰-۹0-9]+)﴾/gs;
+      const pattern = /(.*?)﴿([^﴾]*?)﴾/gs;
       let m;
       let versesHtml = '';
       let lastIndex = 0;
       while((m = pattern.exec(content)) !== null){
         const txt = m[1].trim();
-        const waqfSign = m[2] ? m[2].trim() : '';
-        const num = m[3].trim();
+        const inside = m[2].trim();
+        const numMatch = inside.match(/([۰-۹0-9]+)/);
+        const num = numMatch ? numMatch[1] : '';
         lastIndex = pattern.lastIndex;
-        const fullVerse = txt + (waqfSign ? ' ' + waqfSign : '');
-        if(fullVerse) versesHtml += `<div class="vblock"><div class="vnum">${num}</div><div class="vtxt">${fullVerse} <span class="vnum-ornate" style="color:var(--gold-light);font-family:var(--qfont)">﴿${num}﴾</span></div></div>`;
+        if(txt || inside){
+          versesHtml += `<div class="vblock"><div class="vnum">${num || '•'}</div><div class="vtxt">${txt} <span class="vnum-ornate" style="color:var(--gold-light);font-family:var(--qfont)">﴿${inside}﴾</span></div></div>`;
+        }
       }
       if(lastIndex < content.length){
         const rem = content.slice(lastIndex).trim();
@@ -6571,6 +6596,18 @@ function renderQuran(mc, surahId){
 }
 function renderKahf(mc){ renderQuran(mc, 'kahf'); }
 function renderMulk(mc){ renderQuran(mc, 'mulk'); }
+
+function setGlobalViewMode(vm){
+  viewMode = vm;
+  syncKahfModalUI();
+  save();
+  const mc = document.getElementById('mc');
+  if(mc && typeof QURAN_SURAHS !== 'undefined' && (QURAN_SURAHS[sec] || sec === 'kahf' || sec === 'mulk')){
+    renderQuran(mc, sec);
+  } else if(mc) {
+    render();
+  }
+}
 
 /* ══ MANUAL / CUSTOM AZKAR RENDER & ACTIONS ══ */
 function renderCustom(mc){
@@ -7194,17 +7231,19 @@ applyTheme(currentTheme);
 /* ══ APP-WIDE WALLPAPER & CUSTOM BACKGROUND COLOR ══ */
 const WP_DATA = {
   none: '',
-  arabesque: 'assets/wallpapers/arabesque.svg',
-  moroccan: 'assets/wallpapers/moroccan.svg',
-  girih: 'assets/wallpapers/girih.svg',
-  islimi: 'assets/wallpapers/islimi.svg',
-  margins: 'assets/wallpapers/margins.svg'
+  margins_gold: 'assets/wallpapers/margins_gold.svg',
+  margins_emerald: 'assets/wallpapers/margins_emerald.svg',
+  margins_moroccan: 'assets/wallpapers/margins_moroccan.svg',
+  margins_girih: 'assets/wallpapers/margins_girih.svg',
+  margins_islimi: 'assets/wallpapers/margins_islimi.svg'
 };
 
 function getActiveWallpaper(){
   try{
     let wp = localStorage.getItem('azk_wallpaper_type') || 'none';
-    if(wp === 'kaaba' || wp === 'nabawi') wp = 'margins';
+    if(wp === 'kaaba' || wp === 'nabawi' || wp === 'arabesque' || wp === 'moroccan' || wp === 'girih' || wp === 'islimi' || wp === 'margins'){
+      wp = 'margins_gold';
+    }
     return wp;
   }catch(e){ return 'none'; }
 }
@@ -7232,15 +7271,9 @@ function setWallpaper(type, customDataUrl){
     }
   } else if(WP_DATA[type]){
     bgEl.style.backgroundImage = `url("${WP_DATA[type]}")`;
-    if(type === 'margins'){
-      bgEl.style.backgroundRepeat = 'no-repeat';
-      bgEl.style.backgroundSize = '100% 100%';
-      bgEl.style.backgroundPosition = 'center center';
-    } else {
-      bgEl.style.backgroundRepeat = 'repeat';
-      bgEl.style.backgroundSize = (type === 'moroccan' ? '90px 90px' : type === 'girih' ? '120px 120px' : type === 'islimi' ? '140px 140px' : '100px 100px');
-      bgEl.style.backgroundPosition = 'center center';
-    }
+    bgEl.style.backgroundRepeat = 'no-repeat';
+    bgEl.style.backgroundSize = '100% 100%';
+    bgEl.style.backgroundPosition = 'center center';
     try{ localStorage.setItem('azk_wallpaper_type', type); }catch(e){}
   }
 

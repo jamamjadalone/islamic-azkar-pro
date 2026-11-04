@@ -1,6 +1,6 @@
 /* Islamic Azkar Pro — Service Worker
    100% offline app shell. Network-first for navigation, stale-while-revalidate for static assets. */
-const CACHE = "azk-pro-v47-naqoosh";
+const CACHE = "azk-pro-v48-side-borders";
 const CORE = [
 	"./",
 	"./index.html",
@@ -17,11 +17,11 @@ const CORE = [
 	"./fonts/muhammadi.ttf",
 	"./fonts/pdms-saleem.ttf",
 	"./assets/asr-durood.png",
-	"./assets/wallpapers/arabesque.svg",
-	"./assets/wallpapers/moroccan.svg",
-	"./assets/wallpapers/girih.svg",
-	"./assets/wallpapers/islimi.svg",
-	"./assets/wallpapers/margins.svg",
+	"./assets/wallpapers/margins_gold.svg",
+	"./assets/wallpapers/margins_emerald.svg",
+	"./assets/wallpapers/margins_moroccan.svg",
+	"./assets/wallpapers/margins_girih.svg",
+	"./assets/wallpapers/margins_islimi.svg",
 	"./quran/surahs_26.json",
 ];
 
