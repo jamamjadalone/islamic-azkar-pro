@@ -1,6 +1,6 @@
 /* Islamic Azkar Pro — Service Worker
    100% offline app shell. Network-first for navigation, stale-while-revalidate for static assets. */
-const CACHE = "azk-pro-v43";
+const CACHE = "azk-pro-v44-26surahs";
 const CORE = [
 	"./",
 	"./index.html",
@@ -18,6 +18,7 @@ const CORE = [
 	"./fonts/muhammadi.ttf",
 	"./fonts/pdms-saleem.ttf",
 	"./assets/asr-durood.png",
+	"./quran/surahs_26.json",
 ];
 
 self.addEventListener("install", (event) => {
