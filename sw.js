@@ -4,7 +4,6 @@ const CACHE = "azk-pro-v45-wallpapers-fazeelat";
 const CORE = [
 	"./",
 	"./index.html",
-	"./mushaf-demo.html",
 	"./manifest.json",
 	"./favicon.svg",
 	"./favicon-32x32.png",
