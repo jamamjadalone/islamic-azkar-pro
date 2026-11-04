@@ -1,6 +1,6 @@
-# AI Agent Guidelines & Architecture (Islamic Azkar Pro)
+# Autonomous Agent Guidelines (Islamic Azkar Pro)
 
-Welcome, AI Agent! This document provides instructions for any autonomous coding assistant (Antigravity, Claude Code, Gemini CLI, Aider, OpenCode, Termux agents) working on this repository.
+Instructions for any autonomous coding assistant (CLI, Termux, Codespaces, or IDE agents) working on this repository.
 
 ## Project Structure
 - `index.html`: The core standalone Progressive Web App (PWA). Contains application shell, UI rendering, datasets, and localized strings.

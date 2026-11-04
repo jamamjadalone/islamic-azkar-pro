@@ -1,4 +1,4 @@
-# Antigravity & Agent Directives (Islamic Azkar Pro)
+# Contributor & Agent Guidelines (Islamic Azkar Pro)
 
 ## 1. Communication & Language Protocol
 - **Language**: Hamesha **Hinglish** (Urdu in Roman script) ya **English** mein communicate karo.
@@ -34,7 +34,7 @@
 
 ## 6. Zero Third-Party Brand & Trademark Footprint Protocol
 - **Absolute Store Safety**: Kisi bhi commercial app, company ya competitor ka trademark/brand name **KABHI BHI** code, UI text, button labels, toasts, dialogs, comments, variables, documentation, guides, ya git commit messages mein hardcode/mention **NAHI** hoga.
-- **Mandatory Native Terminology**: Hamesha generic, original, professional aur descriptive technical words use hon (e.g. "Authentic Pakistani Mushaf Standard", "Pakistani Waqf & Ornate Verse Bracket Standard", "Offline P2P Transfer", "Instant Sync", "Encrypted Vault").
+- **Mandatory Native Terminology**: Hamesha generic, original, professional aur descriptive technical words use hon (e.g. "Authentic Pakistani Mushaf Standard", "Pakistani Waqf & Ornate Verse Bracket Standard", "Offline Tasbeeh Counter", "Masjid Mode (Silent & Haptic)").
 
 ## 7. Quranic Typography & Waqf Preservation Protocol
 - **Authentic Pakistani Mushaf Format**: Har ayah ke aakhir par ornate verse bracket ` ﴿${num}﴾` use hoga.
