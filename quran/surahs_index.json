@@ -1,0 +1,1142 @@
+[
+  {
+    "surah_number": 1,
+    "page_number": 1,
+    "name": {
+      "arabic": "الفاتحة",
+      "english": "Al-Fatihah",
+      "hindi": "अल-फातिहा"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 2,
+    "page_number": 2,
+    "name": {
+      "arabic": "البقرة",
+      "english": "Al-Baqarah",
+      "hindi": "अल-बकरा"
+    },
+    "ruku_count": 40
+  },
+  {
+    "surah_number": 3,
+    "page_number": 50,
+    "name": {
+      "arabic": "آل عِمرَان",
+      "english": "Aal-E-Imran",
+      "hindi": "आल-ए-इमरान"
+    },
+    "ruku_count": 20
+  },
+  {
+    "surah_number": 4,
+    "page_number": 77,
+    "name": {
+      "arabic": "النِّسَاء",
+      "english": "An-Nisa",
+      "hindi": "अन-निसा"
+    },
+    "ruku_count": 24
+  },
+  {
+    "surah_number": 5,
+    "page_number": 106,
+    "name": {
+      "arabic": "المَائِدة",
+      "english": "Al-Maidah",
+      "hindi": "अल-माइदा"
+    },
+    "ruku_count": 16
+  },
+  {
+    "surah_number": 6,
+    "page_number": 128,
+    "name": {
+      "arabic": "الأنعَام",
+      "english": "Al-An'am",
+      "hindi": "अल-अनआम"
+    },
+    "ruku_count": 20
+  },
+  {
+    "surah_number": 7,
+    "page_number": 151,
+    "name": {
+      "arabic": "الأعرَاف",
+      "english": "Al-A'raf",
+      "hindi": "अल-आराफ"
+    },
+    "ruku_count": 24
+  },
+  {
+    "surah_number": 8,
+    "page_number": 177,
+    "name": {
+      "arabic": "الأنفَال",
+      "english": "Al-Anfal",
+      "hindi": "अल-अन्फाल"
+    },
+    "ruku_count": 10
+  },
+  {
+    "surah_number": 9,
+    "page_number": 187,
+    "name": {
+      "arabic": "التوبَة",
+      "english": "At-Tawbah",
+      "hindi": "अत-तौबा"
+    },
+    "ruku_count": 16
+  },
+  {
+    "surah_number": 10,
+    "page_number": 208,
+    "name": {
+      "arabic": "يُونس",
+      "english": "Yunus",
+      "hindi": "यूनुस"
+    },
+    "ruku_count": 11
+  },
+  {
+    "surah_number": 11,
+    "page_number": 221,
+    "name": {
+      "arabic": "هُود",
+      "english": "Hud",
+      "hindi": "हूद"
+    },
+    "ruku_count": 10
+  },
+  {
+    "surah_number": 12,
+    "page_number": 235,
+    "name": {
+      "arabic": "يُوسُف",
+      "english": "Yusuf",
+      "hindi": "यूसुफ़"
+    },
+    "ruku_count": 12
+  },
+  {
+    "surah_number": 13,
+    "page_number": 249,
+    "name": {
+      "arabic": "الرَّعْد",
+      "english": "Ar-Ra'd",
+      "hindi": "अ-रअद"
+    },
+    "ruku_count": 6
+  },
+  {
+    "surah_number": 14,
+    "page_number": 255,
+    "name": {
+      "arabic": "إبراهِيم",
+      "english": "Ibrahim",
+      "hindi": "इब्राहीम"
+    },
+    "ruku_count": 7
+  },
+  {
+    "surah_number": 15,
+    "page_number": 261,
+    "name": {
+      "arabic": "الحِجْر",
+      "english": "Al-Hijr",
+      "hindi": "अल-हिज्र"
+    },
+    "ruku_count": 6
+  },
+  {
+    "surah_number": 16,
+    "page_number": 267,
+    "name": {
+      "arabic": "النَّحْل",
+      "english": "An-Nahl",
+      "hindi": "अन-नहल"
+    },
+    "ruku_count": 16
+  },
+  {
+    "surah_number": 17,
+    "page_number": 282,
+    "name": {
+      "arabic": "الإسراء",
+      "english": "Al-Isra",
+      "hindi": "अल-इसरा"
+    },
+    "ruku_count": 12
+  },
+  {
+    "surah_number": 18,
+    "page_number": 293,
+    "name": {
+      "arabic": "الكَهْف",
+      "english": "Al-Kahf",
+      "hindi": "अल-कहफ"
+    },
+    "ruku_count": 12
+  },
+  {
+    "surah_number": 19,
+    "page_number": 305,
+    "name": {
+      "arabic": "مَريَم",
+      "english": "Maryam",
+      "hindi": "मरयम"
+    },
+    "ruku_count": 6
+  },
+  {
+    "surah_number": 20,
+    "page_number": 312,
+    "name": {
+      "arabic": "طٰهٰ",
+      "english": "Taha",
+      "hindi": "ताहा"
+    },
+    "ruku_count": 8
+  },
+  {
+    "surah_number": 21,
+    "page_number": 322,
+    "name": {
+      "arabic": "الأنبيَاء",
+      "english": "Al-Anbiya",
+      "hindi": "अल-अंबिया"
+    },
+    "ruku_count": 7
+  },
+  {
+    "surah_number": 22,
+    "page_number": 331,
+    "name": {
+      "arabic": "الحَج",
+      "english": "Al-Hajj",
+      "hindi": "अल-हज्ज"
+    },
+    "ruku_count": 10
+  },
+  {
+    "surah_number": 23,
+    "page_number": 342,
+    "name": {
+      "arabic": "المُؤمنون",
+      "english": "Al-Mu'minun",
+      "hindi": "अल-मुमिनून"
+    },
+    "ruku_count": 6
+  },
+  {
+    "surah_number": 24,
+    "page_number": 350,
+    "name": {
+      "arabic": "النُّور",
+      "english": "An-Nur",
+      "hindi": "अन-नूर"
+    },
+    "ruku_count": 9
+  },
+  {
+    "surah_number": 25,
+    "page_number": 359,
+    "name": {
+      "arabic": "الفُرْقان",
+      "english": "Al-Furqan",
+      "hindi": "अल-फुरक़ान"
+    },
+    "ruku_count": 6
+  },
+  {
+    "surah_number": 26,
+    "page_number": 366,
+    "name": {
+      "arabic": "الشُّعَرَاء",
+      "english": "Ash-Shu'ara",
+      "hindi": "अश-शुअरा"
+    },
+    "ruku_count": 11
+  },
+  {
+    "surah_number": 27,
+    "page_number": 376,
+    "name": {
+      "arabic": "النَّمْل",
+      "english": "An-Naml",
+      "hindi": "अन-नम्ल"
+    },
+    "ruku_count": 7
+  },
+  {
+    "surah_number": 28,
+    "page_number": 382,
+    "name": {
+      "arabic": "القَصَص",
+      "english": "Al-Qasas",
+      "hindi": "अल-क़सस"
+    },
+    "ruku_count": 9
+  },
+  {
+    "surah_number": 29,
+    "page_number": 396,
+    "name": {
+      "arabic": "العَنكبوت",
+      "english": "Al-Ankabut",
+      "hindi": "अल-अन्कबूत"
+    },
+    "ruku_count": 7
+  },
+  {
+    "surah_number": 30,
+    "page_number": 404,
+    "name": {
+      "arabic": "الرُّوم",
+      "english": "Ar-Rum",
+      "hindi": "अर-रूम"
+    },
+    "ruku_count": 6
+  },
+  {
+    "surah_number": 31,
+    "page_number": 411,
+    "name": {
+      "arabic": "لُقْمَان",
+      "english": "Luqman",
+      "hindi": "लुक़मान"
+    },
+    "ruku_count": 4
+  },
+  {
+    "surah_number": 32,
+    "page_number": 415,
+    "name": {
+      "arabic": "السَّجْدَة",
+      "english": "As-Sajdah",
+      "hindi": "अस-सजदा"
+    },
+    "ruku_count": 3
+  },
+  {
+    "surah_number": 33,
+    "page_number": 418,
+    "name": {
+      "arabic": "الأحْزَاب",
+      "english": "Al-Ahzab",
+      "hindi": "अल-अहज़ाब"
+    },
+    "ruku_count": 9
+  },
+  {
+    "surah_number": 34,
+    "page_number": 428,
+    "name": {
+      "arabic": "سَبَأ",
+      "english": "Saba",
+      "hindi": "सबा"
+    },
+    "ruku_count": 6
+  },
+  {
+    "surah_number": 35,
+    "page_number": 434,
+    "name": {
+      "arabic": "فَاطِر",
+      "english": "Fatir",
+      "hindi": "फातिर"
+    },
+    "ruku_count": 5
+  },
+  {
+    "surah_number": 36,
+    "page_number": 440,
+    "name": {
+      "arabic": "یٰسٓ",
+      "english": "Ya-Sin",
+      "hindi": "या-सीन"
+    },
+    "ruku_count": 5
+  },
+  {
+    "surah_number": 37,
+    "page_number": 445,
+    "name": {
+      "arabic": "الصَّافات",
+      "english": "As-Saffat",
+      "hindi": "अस-साफ्फात"
+    },
+    "ruku_count": 5
+  },
+  {
+    "surah_number": 38,
+    "page_number": 452,
+    "name": {
+      "arabic": "صٓ",
+      "english": "Sad",
+      "hindi": "साद"
+    },
+    "ruku_count": 5
+  },
+  {
+    "surah_number": 39,
+    "page_number": 458,
+    "name": {
+      "arabic": "الزُّمَر",
+      "english": "Az-Zumar",
+      "hindi": "अज-जुमर"
+    },
+    "ruku_count": 8
+  },
+  {
+    "surah_number": 40,
+    "page_number": 467,
+    "name": {
+      "arabic": "المُؤْمِن",
+      "english": "Al mominoon",
+      "hindi": "अल मोमिनून"
+    },
+    "ruku_count": 9
+  },
+  {
+    "surah_number": 41,
+    "page_number": 477,
+    "name": {
+      "arabic": "حم سجدة",
+      "english": "Hameem sajdah",
+      "hindi": "हा मीम सज्दह"
+    },
+    "ruku_count": 6
+  },
+  {
+    "surah_number": 42,
+    "page_number": 483,
+    "name": {
+      "arabic": "الشُّورىٰ",
+      "english": "Ash-Shura",
+      "hindi": "अश-शूरा"
+    },
+    "ruku_count": 5
+  },
+  {
+    "surah_number": 43,
+    "page_number": 489,
+    "name": {
+      "arabic": "الزُّخْرُف",
+      "english": "Az-Zukhruf",
+      "hindi": "अज़-जुखरुफ़"
+    },
+    "ruku_count": 7
+  },
+  {
+    "surah_number": 44,
+    "page_number": 495,
+    "name": {
+      "arabic": "الدخَان",
+      "english": "Ad-Dukhan",
+      "hindi": "अद-दुख़ान"
+    },
+    "ruku_count": 3
+  },
+  {
+    "surah_number": 45,
+    "page_number": 498,
+    "name": {
+      "arabic": "الجَاثيَة",
+      "english": "Al-Jathiya",
+      "hindi": "अल-जासिया"
+    },
+    "ruku_count": 4
+  },
+  {
+    "surah_number": 46,
+    "page_number": 502,
+    "name": {
+      "arabic": "الأحْقاف",
+      "english": "Al-Ahqaf",
+      "hindi": "अल-अहक़ाफ़"
+    },
+    "ruku_count": 4
+  },
+  {
+    "surah_number": 47,
+    "page_number": 506,
+    "name": {
+      "arabic": "مُحَمَّد",
+      "english": "Muhammad",
+      "hindi": "मुहम्मद"
+    },
+    "ruku_count": 4
+  },
+  {
+    "surah_number": 48,
+    "page_number": 511,
+    "name": {
+      "arabic": "الفَتْح",
+      "english": "Al-Fath",
+      "hindi": "अल-फत्ह"
+    },
+    "ruku_count": 4
+  },
+  {
+    "surah_number": 49,
+    "page_number": 515,
+    "name": {
+      "arabic": "الحُجرَات",
+      "english": "Al-Hujurat",
+      "hindi": "अल-हुजरात"
+    },
+    "ruku_count": 2
+  },
+  {
+    "surah_number": 50,
+    "page_number": 518,
+    "name": {
+      "arabic": "قٓ",
+      "english": "Qaf",
+      "hindi": "काफ़"
+    },
+    "ruku_count": 3
+  },
+  {
+    "surah_number": 51,
+    "page_number": 520,
+    "name": {
+      "arabic": "الذَّاريَات",
+      "english": "Adh-Dhariyat",
+      "hindi": "अध-धारियात"
+    },
+    "ruku_count": 3
+  },
+  {
+    "surah_number": 52,
+    "page_number": 523,
+    "name": {
+      "arabic": "الطُّور",
+      "english": "At-Tur",
+      "hindi": "अत-तूर"
+    },
+    "ruku_count": 2
+  },
+  {
+    "surah_number": 53,
+    "page_number": 526,
+    "name": {
+      "arabic": "النَّجْم",
+      "english": "An-Najm",
+      "hindi": "अन-नज्म"
+    },
+    "ruku_count": 3
+  },
+  {
+    "surah_number": 54,
+    "page_number": 528,
+    "name": {
+      "arabic": "القَمَر",
+      "english": "Al-Qamar",
+      "hindi": "अल-क़मर"
+    },
+    "ruku_count": 3
+  },
+  {
+    "surah_number": 55,
+    "page_number": 531,
+    "name": {
+      "arabic": "الرَّحمن",
+      "english": "Ar-Rahman",
+      "hindi": "अर-रहमान"
+    },
+    "ruku_count": 3
+  },
+  {
+    "surah_number": 56,
+    "page_number": 534,
+    "name": {
+      "arabic": "الوَاقِعَة",
+      "english": "Al-Waqiah",
+      "hindi": "अल-वाक़िया"
+    },
+    "ruku_count": 3
+  },
+  {
+    "surah_number": 57,
+    "page_number": 537,
+    "name": {
+      "arabic": "الحَديد",
+      "english": "Al-Hadid",
+      "hindi": "अल-हदीद"
+    },
+    "ruku_count": 4
+  },
+  {
+    "surah_number": 58,
+    "page_number": 542,
+    "name": {
+      "arabic": "المجَادلة",
+      "english": "Al-Mujadila",
+      "hindi": "अल-मुजादिला"
+    },
+    "ruku_count": 3
+  },
+  {
+    "surah_number": 59,
+    "page_number": 545,
+    "name": {
+      "arabic": "الحَشر",
+      "english": "Al-Hashr",
+      "hindi": "अल-हशर"
+    },
+    "ruku_count": 3
+  },
+  {
+    "surah_number": 60,
+    "page_number": 549,
+    "name": {
+      "arabic": "المُمتَحنَة",
+      "english": "Al-Mumtahina",
+      "hindi": "अल-मुम्तहिना"
+    },
+    "ruku_count": 2
+  },
+  {
+    "surah_number": 61,
+    "page_number": 551,
+    "name": {
+      "arabic": "الصَّف",
+      "english": "As-Saff",
+      "hindi": "अस-सफ्फ़"
+    },
+    "ruku_count": 2
+  },
+  {
+    "surah_number": 62,
+    "page_number": 553,
+    "name": {
+      "arabic": "الجُمُعَة",
+      "english": "Al-Jumu'ah",
+      "hindi": "अल-जुमुआ"
+    },
+    "ruku_count": 2
+  },
+  {
+    "surah_number": 63,
+    "page_number": 554,
+    "name": {
+      "arabic": "المنَافِقون",
+      "english": "Al-Munafiqun",
+      "hindi": "अल-मुनाफिक़ून"
+    },
+    "ruku_count": 2
+  },
+  {
+    "surah_number": 64,
+    "page_number": 556,
+    "name": {
+      "arabic": "التغَابُن",
+      "english": "At-Taghabun",
+      "hindi": "अत-तग़ाबुन"
+    },
+    "ruku_count": 2
+  },
+  {
+    "surah_number": 65,
+    "page_number": 558,
+    "name": {
+      "arabic": "الطلَاق",
+      "english": "At-Talaq",
+      "hindi": "अत-तलाक़"
+    },
+    "ruku_count": 2
+  },
+  {
+    "surah_number": 66,
+    "page_number": 560,
+    "name": {
+      "arabic": "التحْريم",
+      "english": "At-Tahrim",
+      "hindi": "अत-तहरीम"
+    },
+    "ruku_count": 2
+  },
+  {
+    "surah_number": 67,
+    "page_number": 562,
+    "name": {
+      "arabic": "المُلْك",
+      "english": "Al-Mulk",
+      "hindi": "अल-मुल्क"
+    },
+    "ruku_count": 2
+  },
+  {
+    "surah_number": 68,
+    "page_number": 564,
+    "name": {
+      "arabic": "القَلَم",
+      "english": "Al-Qalam",
+      "hindi": "अल-क़लम"
+    },
+    "ruku_count": 2
+  },
+  {
+    "surah_number": 69,
+    "page_number": 567,
+    "name": {
+      "arabic": "الحآقَّة",
+      "english": "Al-Haqqah",
+      "hindi": "अल-हाक़्क़ा"
+    },
+    "ruku_count": 2
+  },
+  {
+    "surah_number": 70,
+    "page_number": 569,
+    "name": {
+      "arabic": "المعَارج",
+      "english": "Al-Ma'arij",
+      "hindi": "अल-मआरिज़"
+    },
+    "ruku_count": 2
+  },
+  {
+    "surah_number": 71,
+    "page_number": 571,
+    "name": {
+      "arabic": "نُوْح",
+      "english": "Nuh",
+      "hindi": "नूह"
+    },
+    "ruku_count": 2
+  },
+  {
+    "surah_number": 72,
+    "page_number": 573,
+    "name": {
+      "arabic": "الجِن",
+      "english": "Al-Jinn",
+      "hindi": "अल-जिन्न"
+    },
+    "ruku_count": 2
+  },
+  {
+    "surah_number": 73,
+    "page_number": 573,
+    "name": {
+      "arabic": "المُزَّمِّل",
+      "english": "Al-Muzzammil",
+      "hindi": "अल-मुज़्ज़म्मिल"
+    },
+    "ruku_count": 2
+  },
+  {
+    "surah_number": 74,
+    "page_number": 578,
+    "name": {
+      "arabic": "المُدَّثِّر",
+      "english": "Al-Muddathir",
+      "hindi": "अल-मुद्दस्सिर"
+    },
+    "ruku_count": 2
+  },
+  {
+    "surah_number": 75,
+    "page_number": 580,
+    "name": {
+      "arabic": "القِيَامَة",
+      "english": "Al-Qiyamah",
+      "hindi": "अल-क़ियामा"
+    },
+    "ruku_count": 2
+  },
+  {
+    "surah_number": 76,
+    "page_number": 582,
+    "name": {
+      "arabic": "الدَّھۡرِ",
+      "english": "Al-Dahar",
+      "hindi": "अद दह्र"
+    },
+    "ruku_count": 2
+  },
+  {
+    "surah_number": 77,
+    "page_number": 584,
+    "name": {
+      "arabic": "المُرسَلات",
+      "english": "Al-Mursalat",
+      "hindi": "अल-मुर्सलात"
+    },
+    "ruku_count": 2
+  },
+  {
+    "surah_number": 78,
+    "page_number": 586,
+    "name": {
+      "arabic": "النَّبَأ",
+      "english": "An-Naba",
+      "hindi": "अन-नबा"
+    },
+    "ruku_count": 2
+  },
+  {
+    "surah_number": 79,
+    "page_number": 587,
+    "name": {
+      "arabic": "النّازعَات",
+      "english": "An-Nazi'at",
+      "hindi": "अन-नाज़ियात"
+    },
+    "ruku_count": 2
+  },
+  {
+    "surah_number": 80,
+    "page_number": 589,
+    "name": {
+      "arabic": "عَبَس",
+      "english": "Abasa",
+      "hindi": "अबसा"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 81,
+    "page_number": 590,
+    "name": {
+      "arabic": "التَّكوير",
+      "english": "At-Takwir",
+      "hindi": "अत-तकवीर"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 82,
+    "page_number": 591,
+    "name": {
+      "arabic": "الانفِطار",
+      "english": "Al-Infitar",
+      "hindi": "अल-इन्फितार"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 83,
+    "page_number": 592,
+    "name": {
+      "arabic": "المُطَفِّفِين",
+      "english": "Al-Mutaffifin",
+      "hindi": "अल-मुतफ़्फ़िफ़ीन"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 84,
+    "page_number": 594,
+    "name": {
+      "arabic": "الانْشِقَاق",
+      "english": "Al-Inshiqaq",
+      "hindi": "अल-इन्शिक़ाक़"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 85,
+    "page_number": 595,
+    "name": {
+      "arabic": "البُرُوْج",
+      "english": "Al-Buruj",
+      "hindi": "अल-बुरूज"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 86,
+    "page_number": 596,
+    "name": {
+      "arabic": "الطَّارِق",
+      "english": "At-Tariq",
+      "hindi": "अत-तारिक"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 87,
+    "page_number": 597,
+    "name": {
+      "arabic": "الأَعْلىٰ",
+      "english": "Al-Ala",
+      "hindi": "अल-आला"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 88,
+    "page_number": 597,
+    "name": {
+      "arabic": "الغَاشِيَة",
+      "english": "Al-Ghashiyah",
+      "hindi": "अल-ग़ाशिया"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 89,
+    "page_number": 598,
+    "name": {
+      "arabic": "الفَجْر",
+      "english": "Al-Fajr",
+      "hindi": "अल-फ़ज्र"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 90,
+    "page_number": 600,
+    "name": {
+      "arabic": "البَلَد",
+      "english": "Al-Balad",
+      "hindi": "अल-बलद"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 91,
+    "page_number": 600,
+    "name": {
+      "arabic": "الشَّمْس",
+      "english": "Ash-Shams",
+      "hindi": "अश-शम्स"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 92,
+    "page_number": 601,
+    "name": {
+      "arabic": "الليْل",
+      "english": "Al-Lail",
+      "hindi": "अल-लैल"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 93,
+    "page_number": 602,
+    "name": {
+      "arabic": "الضُّحىٰ",
+      "english": "Ad-Duha",
+      "hindi": "अद-दुहा"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 94,
+    "page_number": 602,
+    "name": {
+      "arabic": "الشَّرْح",
+      "english": "Ash-Sharh",
+      "hindi": "अश-शरह"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 95,
+    "page_number": 603,
+    "name": {
+      "arabic": "التِّيْن",
+      "english": "At-Tin",
+      "hindi": "अत-तीन"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 96,
+    "page_number": 603,
+    "name": {
+      "arabic": "العَلَق",
+      "english": "Al-Alaq",
+      "hindi": "अल-अलक़"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 97,
+    "page_number": 604,
+    "name": {
+      "arabic": "القَدْر",
+      "english": "Al-Qadr",
+      "hindi": "अल-क़द्र"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 98,
+    "page_number": 604,
+    "name": {
+      "arabic": "البَيِّنَة",
+      "english": "Al-Bayyina",
+      "hindi": "अल-बय्यिना"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 99,
+    "page_number": 605,
+    "name": {
+      "arabic": "الزلزَال",
+      "english": "Az-Zalzalah",
+      "hindi": "अज़-ज़लज़ला"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 100,
+    "page_number": 605,
+    "name": {
+      "arabic": "العَادِيات",
+      "english": "Al-Adiyat",
+      "hindi": "अल-आदियात"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 101,
+    "page_number": 606,
+    "name": {
+      "arabic": "القَارِعَة",
+      "english": "Al-Qari'ah",
+      "hindi": "अल-क़ारिअह"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 102,
+    "page_number": 606,
+    "name": {
+      "arabic": "التَّكَاثر",
+      "english": "At-Takathur",
+      "hindi": "अत-तकासुर"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 103,
+    "page_number": 607,
+    "name": {
+      "arabic": "العَصْر",
+      "english": "Al-Asr",
+      "hindi": "अल-असर"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 104,
+    "page_number": 607,
+    "name": {
+      "arabic": "الهمزة",
+      "english": "Al-Humazah",
+      "hindi": "अल-हुमाज़ह"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 105,
+    "page_number": 607,
+    "name": {
+      "arabic": "الفيل",
+      "english": "Al-Fil",
+      "hindi": "अल-फ़ील"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 106,
+    "page_number": 608,
+    "name": {
+      "arabic": "قُرَيْش",
+      "english": "Quraish",
+      "hindi": "कुरैश"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 107,
+    "page_number": 608,
+    "name": {
+      "arabic": "الماعون",
+      "english": "Al-Ma'un",
+      "hindi": "अल-मा'ऊन"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 108,
+    "page_number": 608,
+    "name": {
+      "arabic": "الكوثر",
+      "english": "Al-Kawthar",
+      "hindi": "अल-कौसर"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 109,
+    "page_number": 608,
+    "name": {
+      "arabic": "الكَافِرُون",
+      "english": "Al-Kafirun",
+      "hindi": "अल-काफ़िरून"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 110,
+    "page_number": 609,
+    "name": {
+      "arabic": "النَّصر",
+      "english": "An-Nasr",
+      "hindi": "अन-नस्र"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 111,
+    "page_number": 609,
+    "name": {
+      "arabic": "المسد",
+      "english": "Al-Masad",
+      "hindi": "अल-मसद"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 112,
+    "page_number": 609,
+    "name": {
+      "arabic": "الإخْلَاص",
+      "english": "Al-Ikhlas",
+      "hindi": "अल-इख़लास"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 113,
+    "page_number": 610,
+    "name": {
+      "arabic": "الفَلَق",
+      "english": "Al-Falaq",
+      "hindi": "अल-फ़लक़"
+    },
+    "ruku_count": 1
+  },
+  {
+    "surah_number": 114,
+    "page_number": 610,
+    "name": {
+      "arabic": "الناس",
+      "english": "An-Nas",
+      "hindi": "अन-नास"
+    },
+    "ruku_count": 1
+  }
+]
