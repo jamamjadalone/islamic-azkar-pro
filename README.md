@@ -22,7 +22,7 @@
 
 ## Overview
 
-**Islamic Azkar Pro** is a high-performance, single-bundle Islamic web application built specifically for Muslims seeking an authentic, distraction-free, and fully offline tool for daily worship. 
+**Islamic Azkar Pro** is a high-performance, single-bundle Islamic web application built specifically for Muslims seeking an authentic, distraction-free, and fully offline tool for daily worship.
 
 It requires **zero external API calls**, has **no telemetry or user tracking**, stores all custom prayer targets locally in browser storage, and operates seamlessly on Android, iOS, Windows, macOS, and Linux.
 
@@ -31,23 +31,26 @@ It requires **zero external API calls**, has **no telemetry or user tracking**, 
 ## Key Features
 
 ### 1. Complete Quranic Recitation & Tajweed Engine (6 Surahs)
+
 - **Surah Yaseen (83 Verses / 5 Rukus)**: The Heart of the Quran (قلب القرآن) with full Indo-Pak and Uthmani scripts.
 - **Surah Al-Kahf (110 Verses / 12 Rukus)**: Complete offline recitation with Pakistani (Indo-Pak) and Madani (Uthmani) Tajweed color coding.
 - **Surah Al-Mulk (30 Verses / 2 Rukus)**: Nighttime grave protection recitation.
 - **Surah Al-Waqiah (96 Verses / 3 Rukus)**: Barakah and protection against poverty.
-- **Surah Ar-Rahman (78 Verses / 3 Rukus)**: "عروس القرآن" with *Fa-bi'ayyi ala'i Rabbikuma tukadhdhiban*.
+- **Surah Ar-Rahman (78 Verses / 3 Rukus)**: "عروس القرآن" with _Fa-bi'ayyi ala'i Rabbikuma tukadhdhiban_.
 - **Manzil (33 Protection Verses across 4 Parts)**: Authentic protection against evil eye, black magic, and harm.
 - **40 Rabbana Quranic Duas (۴۰ ربنا)**: The complete 40 authentic Quranic supplications starting with Rabbana with Surah references and repetition counters.
 - **Unified 5-Speed Auto-Scroll Engine**: Hands-free recitation speed controller across all surahs.
 - **6 Bundled Quranic Fonts**: Al Majeed, Hafs, Al Qalam, PDMS Saleem, Muhammadi, and Al Mushaf.
 
 ### 2. High-Demand Durood Sharif Collection
+
 - **80x Friday Asr Darood Counter**: Specialized counter for 80-year forgiveness tradition.
 - **Durood-e-Ibrahimi Counter**: Complete Arabic text, Hadith virtues (Sahih Bukhari: 3370), and customizable counter.
 - **Durood-e-Tanjeena**: Famous relief supplication for difficulties, storms, and afflictions.
 - **Durood-e-Taj**: Full authentic devotional text for spiritual blessings and peace.
 
 ### 3. Masnoon Supplications & Daily Life Azkar
+
 - **After Fard Salah Azkar**: Complete authentic post-prayer supplications (Istighfar ×3, Ayatul Kursi, Tasbeeh Fatima, Mu'awwidhat, and Dua for Hasanah).
 - **Bedtime Azkar (سونے کے اذکار)**: Ayatul Kursi, Amanar-Rasul, 3 Quls with Dam method, and bedtime sleep prayer.
 - **Morning Waking Azkar**: Authentic praise upon awakening and Tahajjud Tawheed kalima.
@@ -57,22 +60,26 @@ It requires **zero external API calls**, has **no telemetry or user tracking**, 
 - **Tasbeeh-e-Fatima (33-33-34)**: Automatic 3-phase counter with completion chimes.
 
 ### 4. Asma-ul-Husna (99 Names of Allah)
+
 - **Complete 99 Beautiful Names of Allah**: Luxury responsive cards with Arabic typography, authentic Urdu meanings, and Hadith virtue citation (Sahih Bukhari: 2736).
 - **Integrated Custom Catalog**: Import any name directly into your personal wird list.
 
 ### 5. Custom Azkar Builder
+
 - **Personalized Fehrist**: Add custom duas or wird with custom repetition targets (33, 70, 100, 313, 1000).
 - **Sequential Flow**: Step-by-step Next/Back navigation matching regular azkar sections.
 - **Drag-and-Drop Organization**: Reorder custom supplications dynamically with automatic badge renumbering.
 - **JSON Backup & Restore**: Export your custom prayers to a `.json` backup file or copy formatted text for WhatsApp/Notes sharing.
 
 ### 6. Ergonomics & Comfort
+
 - **Masjid Mode (Silent & Haptic)**: Mutes audio beeps and relies strictly on subtle vibrations so fellow worshipers in congregations are never disturbed.
 - **Auto Daily Reset & Streak Tracker**: Counters reset at midnight while tracking your consecutive daily prayer habit streak (`🔥 تسلسل`).
 - **Eye-Comfort Themes**: Default Emerald Night, pure AMOLED Black (`#000000`) for battery savings, and Warm Sepia for nighttime reading comfort.
 - **Safe-Area Inset Support**: Pixel-perfect rendering across iPhone Dynamic Island, camera punch-holes, and Android gesture navigation bars.
 
 ### 7. PWA & Instant Update Engine
+
 - **Network-First HTML Delivery**: Existing users receive live updates immediately when visiting without ever having to manually clear their browser cache.
 - **Live Update Toast Notification**: Automatic background update detection offering a 1-click reload toast.
 - **1-Click App Install**: Dedicated installation buttons in both app drawer and settings footer.
@@ -83,20 +90,20 @@ It requires **zero external API calls**, has **no telemetry or user tracking**, 
 
 For desktop users, the app offers complete keyboard navigation:
 
-| Key | Action |
-| :--- | :--- |
-| `Space` or `Enter` | Increment counter (Tap) |
-| `Backspace` | Undo last count |
-| `Arrow Right` (`→`) | Next supplication (اگلا ذکر) |
-| `Arrow Left` (`←`) | Previous supplication (پچھلا ذکر) |
-| `+` / `Numpad +` | Zoom in Quranic / Arabic font |
-| `-` / `Numpad -` | Zoom out Quranic / Arabic font |
+| Key                 | Action                           |
+| :------------------ | :------------------------------- |
+| `Space` or `Enter`  | Increment counter (Tap)          |
+| `Backspace`         | Undo last count                  |
+| `Arrow Right` (`→`) | Next supplication (اگلا ذکر)      |
+| `Arrow Left` (`←`)  | Previous supplication (پچھلا ذکر) |
+| `+` / `Numpad +`    | Zoom in Quranic / Arabic font    |
+| `-` / `Numpad -`    | Zoom out Quranic / Arabic font   |
 
 ---
 
 ## Project Structure
 
-```text
+````text
 islamic-azkar-pro/
 ├── index.html            # Bundled application shell (HTML5, CSS3, Vanilla JS, and data)
 ├── sw.js                 # Service Worker (Network-First HTML, Cache-First static assets)
@@ -146,7 +153,7 @@ cd islamic-azkar-pro
 python -m http.server 8080
 # Or using Node:
 # npx serve .
-```
+````
 
 Open `http://localhost:8080` in your browser.
 

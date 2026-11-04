@@ -359,6 +359,43 @@ body::before{
 #scSlider{flex:1;height:4px;-webkit-appearance:none;appearance:none;background:rgba(52, 211, 153, 0.18);border-radius:4px;outline:none;cursor:pointer}
 #scSlider::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--g1);cursor:pointer;box-shadow:0 0 8px var(--emerald-glow)}
 #scSlider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--g1);border:none;cursor:pointer;box-shadow:0 0 8px var(--emerald-glow)}
+.sc-duration-btn{
+  flex-shrink:0;background:rgba(255,255,255,.06);border:1px solid var(--card-border);
+  color:var(--gold-light);border-radius:9999px;padding:.2rem .55rem;
+  font-size:.65rem;font-family:var(--ui-font);font-weight:600;
+  display:inline-flex;align-items:center;gap:.25rem;cursor:pointer;transition:all .18s;
+  white-space:nowrap;
+}
+.sc-duration-btn:hover,.sc-duration-btn.active{
+  background:rgba(245,158,11,.2);border-color:var(--gold-light);box-shadow:0 0 8px rgba(245,158,11,.25);
+}
+.sc-duration-panel{
+  position:sticky;top:88px;z-index:96;width:100%;max-width:540px;
+  background:rgba(7,19,11,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(245,158,11,.3);padding:.5rem .75rem;
+  display:flex;flex-direction:column;gap:.45rem;animation:slideDownBar .2s ease-out;direction:rtl;
+}
+@keyframes slideDownBar{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.sc-dp-title{font-family:var(--ur-font);font-size:.72rem;color:var(--gold-light);font-weight:700;display:flex;align-items:center;justify-content:space-between}
+.sc-dp-chips{display:flex;gap:.35rem;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.sc-dp-chips::-webkit-scrollbar{display:none}
+.sc-dp-chip{
+  background:rgba(255,255,255,.05);border:1px solid var(--card-border);
+  color:var(--text);border-radius:9999px;padding:.22rem .6rem;
+  font-size:.68rem;font-family:var(--ur-font);cursor:pointer;white-space:nowrap;transition:all .15s;
+}
+.sc-dp-chip:hover,.sc-dp-chip.active{background:rgba(245,158,11,.25);border-color:var(--gold-light);color:#fff;font-weight:700}
+.sc-dp-custom{display:flex;align-items:center;gap:.4rem;font-size:.7rem;font-family:var(--ur-font);color:var(--text2)}
+.sc-min-input{width:54px;padding:.2rem .4rem;border-radius:8px;border:1px solid var(--card-border);background:rgba(0,0,0,.4);color:var(--text);font-family:var(--ui-font);font-size:.78rem;text-align:center}
+
+/* ── APP-WIDE CUSTOM WALLPAPER BACKDROP ── */
+.app-custom-bg{
+  position:fixed;inset:0;width:100%;height:100%;
+  pointer-events:none;z-index:0;
+  background-size:cover;background-position:center center;background-repeat:no-repeat;
+  opacity:var(--bg-img-opacity, 0.22);
+  transition:opacity .3s ease, background-image .4s ease;
+}
 
 /* ── DYNAMIC TIME TAGLINE ── */
 .time-tagline{
@@ -1425,6 +1462,9 @@ html[lang="ar"] .dam-box {
   </div>
 </noscript>
 
+<!-- App-Wide Custom Wallpaper Backdrop -->
+<div id="appCustomBg" class="app-custom-bg"></div>
+
 <!-- Live Update Notification Toast -->
 <div class="update-toast" id="updateToast" style="display:none">
   <div class="ut-content">
@@ -1458,7 +1498,29 @@ html[lang="ar"] .dam-box {
     <span class="sc-lbl" id="scLbl">درمیانی</span>
     <button type="button" class="sb" id="scFaster">+</button>
   </div>
-  <input type="range" id="scSlider" min="1" max="5" value="3" step="1"/>
+  <input type="range" id="scSlider" min="1" max="10" value="5" step="1"/>
+  <button type="button" class="sc-duration-btn" id="scDurationBtn" title="تلاوت کا وقت مقرر کریں">⏱️ <span id="scDurationBadge">ہدف وقت</span></button>
+</div>
+<div class="sc-duration-panel" id="scDurationPanel" style="display:none">
+  <div class="sc-dp-title">
+    <span>⏱️ تلاوت ختم کرنے کا وقت منتخب کریں (Finish In):</span>
+    <button type="button" id="scCloseDpBtn" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:.9rem">✕</button>
+  </div>
+  <div class="sc-dp-chips" id="scDurationChips">
+    <button type="button" class="sc-dp-chip" data-mins="3">⚡ ۳ منٹ</button>
+    <button type="button" class="sc-dp-chip" data-mins="5">⚡ ۵ منٹ</button>
+    <button type="button" class="sc-dp-chip" data-mins="7">⚡ ۷ منٹ</button>
+    <button type="button" class="sc-dp-chip active" data-mins="10">⚡ ۱۰ منٹ</button>
+    <button type="button" class="sc-dp-chip" data-mins="15">⚡ ۱۵ منٹ</button>
+    <button type="button" class="sc-dp-chip" data-mins="20">⚡ ۲۰ منٹ</button>
+    <button type="button" class="sc-dp-chip" data-mins="30">⚡ ۳۰ منٹ</button>
+  </div>
+  <div class="sc-dp-custom">
+    <span>کسٹم منٹ:</span>
+    <input type="number" id="scCustomMins" min="1" max="120" value="10" class="sc-min-input"/>
+    <button type="button" class="btn-sm" id="scApplyDurationBtn">شروع کریں ▶</button>
+    <button type="button" class="btn-sm" id="scResetDurationBtn" style="opacity:.8">عام اسپیڈ ↺</button>
+  </div>
 </div>
 
 <main id="mc"></main>
@@ -1632,6 +1694,40 @@ html[lang="ar"] .dam-box {
           <button type="button" class="thm-chip active" data-theme="emerald">🌿 زمردی (Emerald)</button>
           <button type="button" class="thm-chip" data-theme="oled">🖤 خالص سیاہ (OLED)</button>
           <button type="button" class="thm-chip" data-theme="sepia">📜 ورق (Sepia)</button>
+        </div>
+
+        <!-- Custom Wallpaper Selection -->
+        <div class="form-grp" style="margin-top:.85rem">
+          <div class="form-lbl">🖼️ پس منظر کا وال پیپر (Wallpaper):</div>
+          <div class="quick-targets" id="settingsWallpaperChips">
+            <button type="button" class="q-chip active" data-wp="none">🖤 اصل (Default)</button>
+            <button type="button" class="q-chip" data-wp="kaaba">🕋 خانہ کعبہ</button>
+            <button type="button" class="q-chip" data-wp="nabawi">🕌 مسجد نبوی</button>
+            <button type="button" class="q-chip" data-wp="arabesque">✨ اسلامی نقوش</button>
+            <button type="button" class="q-chip" id="btnUploadWp">📁 اپنی تصویر لگائیں</button>
+          </div>
+          <input type="file" id="bgPhotoInput" accept="image/*" style="display:none"/>
+        </div>
+
+        <div class="form-grp" id="wpDimmerGrp" style="margin-top:.6rem">
+          <div style="display:flex;justify-content:space-between;align-items:center" class="form-lbl">
+            <span>مدھم کریں (Wallpaper Dimmer):</span>
+            <span id="bgOpacityVal" style="color:var(--g2);font-size:.78rem">22%</span>
+          </div>
+          <input type="range" id="bgOpacitySlider" min="5" max="50" value="22" step="1" style="width:100%;accent-color:var(--g1);cursor:pointer"/>
+        </div>
+
+        <div class="form-grp" style="margin-top:.6rem">
+          <div class="form-lbl">🎨 پس منظر کا رنگ (App Background Color):</div>
+          <div style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap">
+            <input type="color" id="customBgColorInput" value="#061109" style="width:36px;height:32px;padding:2px;border-radius:8px;border:1px solid var(--card-border);background:transparent;cursor:pointer"/>
+            <button type="button" class="q-chip" data-bgcolor="#061109">🌿 زمردی</button>
+            <button type="button" class="q-chip" data-bgcolor="#000000">🖤 سیاہ</button>
+            <button type="button" class="q-chip" data-bgcolor="#08101e">🌌 نیوی</button>
+            <button type="button" class="q-chip" data-bgcolor="#170912">🍷 عنابی</button>
+            <button type="button" class="q-chip" data-bgcolor="#181410">📜 سپیا</button>
+            <button type="button" class="btn-sm" id="btnResetBgColor" style="font-size:.68rem;padding:.2rem .45rem">↺ اصل</button>
+          </div>
         </div>
       </div>
 
@@ -4814,7 +4910,7 @@ const SECS=[
 ];
 const CIRC=2*Math.PI*74;
 let sec='welcome',viewMode='para',zoomPct=100;
-let S={
+const S={
   fajr:        {idx:0,cnt:0,done:new Array(FAJR.length).fill(false)},
   jumma:       {idx:0,cnt:0,done:new Array(JUMMA.length).fill(false)},
   durood_pak:  {idx:0,cnt:0,done:new Array(DUROOD_PAK.length).fill(false)},
@@ -4975,7 +5071,7 @@ if(fontPickerEl) fontPickerEl.addEventListener('change', e=>applyFont(e.target.v
 const tajPickerEl = document.getElementById('tajPicker');
 if(tajPickerEl){
   tajPickerEl.value = S.tajMode || 'off';
-  tajPickerEl.addEventListener('change', function(e){
+  tajPickerEl.addEventListener('change', (e)=> {
     S.tajMode = e.target.value;
     save();
     if(sec === 'kahf') render();
@@ -4990,7 +5086,7 @@ function updateScriptBtns(){
   if(ind) ind.classList.toggle('active', S.scriptMode === 'indopak');
 }
 const uthBtn = document.getElementById('btnUthmani');
-if(uthBtn) uthBtn.addEventListener('click', function(){
+if(uthBtn) uthBtn.addEventListener('click', ()=> {
   if(S.scriptMode === 'uthmani') return;
   S.scriptMode = 'uthmani';
   save();
@@ -4998,7 +5094,7 @@ if(uthBtn) uthBtn.addEventListener('click', function(){
   if(sec === 'kahf') render();
 });
 const indBtn = document.getElementById('btnIndopak');
-if(indBtn) indBtn.addEventListener('click', function(){
+if(indBtn) indBtn.addEventListener('click', ()=> {
   if(S.scriptMode === 'indopak') return;
   S.scriptMode = 'indopak';
   save();
@@ -5043,6 +5139,22 @@ function syncAppSettingsUI(){
     const curThm = document.body.dataset.theme || 'emerald';
     c.classList.toggle('active', c.dataset.theme === curThm);
   });
+  if(typeof getActiveWallpaper === 'function'){
+    const curWp = getActiveWallpaper();
+    document.querySelectorAll('#settingsWallpaperChips .q-chip').forEach(c=>{
+      c.classList.toggle('active', c.dataset.wp === curWp || (curWp === 'custom' && c.id === 'btnUploadWp'));
+    });
+  }
+  try{
+    const savedOp = localStorage.getItem('azk_bg_opacity') || '22';
+    const dimmerSlider = document.getElementById('bgOpacitySlider');
+    const dimmerVal = document.getElementById('bgOpacityVal');
+    if(dimmerSlider) dimmerSlider.value = savedOp;
+    if(dimmerVal) dimmerVal.textContent = savedOp + '%';
+    const savedColor = localStorage.getItem('azk_custom_bgcolor');
+    const colorInput = document.getElementById('customBgColorInput');
+    if(colorInput && savedColor) colorInput.value = savedColor;
+  }catch(e){}
   syncKahfModalUI();
 }
 
@@ -5259,60 +5371,192 @@ if(cancelZikrPickerBtn) cancelZikrPickerBtn.addEventListener('click', closeZikrP
 if(zikrPickerModal) zikrPickerModal.addEventListener('click', e => { if(e.target === zikrPickerModal) closeZikrPicker(); });
 
 /* ══ AUTO SCROLL ══ */
-let scPlaying=false, scRAF=null, scLastTs=0, scSpeed=3;
-const SPEED_PX = {1:28, 2:50, 3:85, 4:130, 5:185};
-const SPEED_LBL = {1:'ترتیل (آہستہ)', 2:'متوازن', 3:'درمیانی', 4:'تیز', 5:'بہت تیز'};
+let scPlaying=false, scRAF=null, scLastTs=0, scSpeed=5;
+let scDurationMode = false;
+let scTargetMins = 10;
+let scDurationEndTime = 0;
+
+const SPEED_PX = {
+  1: 25, 2: 45, 3: 75, 4: 115, 5: 165,
+  6: 225, 7: 295, 8: 375, 9: 460, 10: 560
+};
+const SPEED_LBL = {
+  1: 'ترتیل (1)', 2: 'آہستہ (2)', 3: 'متوازن (3)', 4: 'معتدل (4)', 5: 'درمیانی (5)',
+  6: 'رواں (6)', 7: 'تیز (7)', 8: 'بہت تیز (8)', 9: 'سپر فاسٹ (9)', 10: 'طوفانی (10)'
+};
+
 try{
-  const sp=JSON.parse(localStorage.getItem('azk_scroll_speed')||'3');
-  if(sp>=1&&sp<=5) scSpeed=sp;
+  const sp=JSON.parse(localStorage.getItem('azk_scroll_speed')||'5');
+  if(sp>=1&&sp<=10) scSpeed=sp;
 }catch(e){}
+
 function updateScrollUI(){
   const lbl=document.getElementById('scLbl');
   const slider=document.getElementById('scSlider');
   const playBtn=document.getElementById('scPlay');
-  if(lbl) lbl.textContent=SPEED_LBL[scSpeed];
+  const badge=document.getElementById('scDurationBadge');
+  const durBtn=document.getElementById('scDurationBtn');
+
   if(slider) slider.value=scSpeed;
-  if(playBtn) playBtn.classList.toggle('playing',scPlaying);
-  if(playBtn) playBtn.textContent=scPlaying?'❚❚':'▶';
+  if(playBtn) {
+    playBtn.classList.toggle('playing', scPlaying);
+    playBtn.textContent = scPlaying ? '❚❚' : '▶';
+  }
+  if(durBtn) durBtn.classList.toggle('active', scDurationMode);
+
+  if(scDurationMode){
+    if(badge) badge.textContent = scTargetMins + 'm ہدف';
+    if(lbl && !scPlaying) lbl.textContent = '⏱️ ' + scTargetMins + ' منٹ';
+  } else {
+    if(badge) badge.textContent = 'ہدف وقت';
+    if(lbl) lbl.textContent = SPEED_LBL[scSpeed] || 'درمیانی';
+  }
 }
+
 function scrollStep(ts){
   if(!scPlaying) return;
   if(!scLastTs) scLastTs=ts;
   const dt=(ts-scLastTs)/1000;
   scLastTs=ts;
-  const pxPerSec=SPEED_PX[scSpeed]||85;
-  window.scrollBy(0, pxPerSec*dt);
-  const atBottom=(window.innerHeight+window.scrollY)>=(document.body.scrollHeight-6);
+
+  const totalHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+  const currentScroll = window.scrollY || window.pageYOffset || 0;
+  const maxScroll = Math.max(1, totalHeight - window.innerHeight);
+  const remainingPx = Math.max(0, maxScroll - currentScroll);
+
+  if(scDurationMode){
+    const now = Date.now();
+    const remainingMs = Math.max(0, scDurationEndTime - now);
+    const remainingSec = remainingMs / 1000;
+
+    if(remainingSec <= 0 || remainingPx <= 4){
+      window.scrollTo(0, maxScroll);
+      stopAutoScroll();
+      return;
+    }
+
+    // Dynamically calculate speed needed to cover remaining distance in remaining time
+    const dynamicPxPerSec = Math.max(15, Math.min(1200, remainingPx / remainingSec));
+    window.scrollBy(0, dynamicPxPerSec * dt);
+
+    // Live countdown display in label
+    const remMin = Math.floor(remainingSec / 60);
+    const remSec = Math.floor(remainingSec % 60);
+    const timeStr = (remMin < 10 ? '0' : '') + remMin + ':' + (remSec < 10 ? '0' : '') + remSec;
+    const lbl = document.getElementById('scLbl');
+    if(lbl) lbl.textContent = '⏳ ' + timeStr;
+  } else {
+    const pxPerSec = SPEED_PX[scSpeed] || 165;
+    window.scrollBy(0, pxPerSec * dt);
+  }
+
+  const atBottom = (window.innerHeight + (window.scrollY || window.pageYOffset)) >= (totalHeight - 6);
   if(atBottom){ stopAutoScroll(); return; }
   scRAF=requestAnimationFrame(scrollStep);
 }
+
 function startAutoScroll(){
   if(scPlaying) return;
   scPlaying=true;
   scLastTs=0;
+  if(scDurationMode){
+    scDurationEndTime = Date.now() + (scTargetMins * 60 * 1000);
+  }
   updateScrollUI();
   scRAF=requestAnimationFrame(scrollStep);
 }
+
 function stopAutoScroll(){
   scPlaying=false;
   if(scRAF) cancelAnimationFrame(scRAF);
   scRAF=null;
   updateScrollUI();
 }
+
 function toggleAutoScroll(){
   if(scPlaying) stopAutoScroll(); else startAutoScroll();
 }
+
 function setScrollSpeed(v){
-  scSpeed=Math.max(1,Math.min(5,v));
-  try{localStorage.setItem('azk_scroll_speed',JSON.stringify(scSpeed));}catch(e){}
+  scDurationMode = false;
+  scSpeed = Math.max(1, Math.min(10, v));
+  try{localStorage.setItem('azk_scroll_speed', JSON.stringify(scSpeed));}catch(e){}
   updateScrollUI();
 }
-document.getElementById('scPlay').addEventListener('click', toggleAutoScroll);
-document.getElementById('scSlower').addEventListener('click', ()=>setScrollSpeed(scSpeed-1));
-document.getElementById('scFaster').addEventListener('click', ()=>setScrollSpeed(scSpeed+1));
-document.getElementById('scSlider').addEventListener('input', e=>setScrollSpeed(parseInt(e.target.value,10)));
-window.addEventListener('wheel', e=>{ if(scPlaying && !e.target.closest('.scroll-bar')) stopAutoScroll(); }, {passive:true});
-window.addEventListener('touchmove', e=>{ if(scPlaying && !e.target.closest('.scroll-bar')) stopAutoScroll(); }, {passive:true});
+
+function setDurationTarget(mins){
+  mins = Math.max(1, Math.min(120, mins));
+  scTargetMins = mins;
+  scDurationMode = true;
+  if(scPlaying){
+    scDurationEndTime = Date.now() + (scTargetMins * 60 * 1000);
+  }
+  updateScrollUI();
+}
+
+const scPlayBtn = document.getElementById('scPlay');
+if(scPlayBtn) scPlayBtn.addEventListener('click', toggleAutoScroll);
+
+const scSlowerBtn = document.getElementById('scSlower');
+if(scSlowerBtn) scSlowerBtn.addEventListener('click', ()=>setScrollSpeed(scSpeed-1));
+
+const scFasterBtn = document.getElementById('scFaster');
+if(scFasterBtn) scFasterBtn.addEventListener('click', ()=>setScrollSpeed(scSpeed+1));
+
+const scSliderEl = document.getElementById('scSlider');
+if(scSliderEl) scSliderEl.addEventListener('input', e=>setScrollSpeed(parseInt(e.target.value, 10)));
+
+const scDurBtn = document.getElementById('scDurationBtn');
+const scDurPanel = document.getElementById('scDurationPanel');
+const scCloseDp = document.getElementById('scCloseDpBtn');
+
+if(scDurBtn && scDurPanel){
+  scDurBtn.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    scDurPanel.style.display = scDurPanel.style.display === 'none' ? 'flex' : 'none';
+  });
+}
+if(scCloseDp && scDurPanel){
+  scCloseDp.addEventListener('click', ()=>{ scDurPanel.style.display = 'none'; });
+}
+
+document.querySelectorAll('#scDurationChips .sc-dp-chip').forEach(chip => {
+  chip.addEventListener('click', ()=>{
+    document.querySelectorAll('#scDurationChips .sc-dp-chip').forEach(c => {
+      c.classList.remove('active');
+    });
+    chip.classList.add('active');
+    const m = parseFloat(chip.dataset.mins || '10');
+    const custInput = document.getElementById('scCustomMins');
+    if(custInput) custInput.value = m;
+    setDurationTarget(m);
+    if(!scPlaying) startAutoScroll();
+    setTimeout(()=>{ if(scDurPanel) scDurPanel.style.display = 'none'; }, 250);
+  });
+});
+
+const scApplyDurBtn = document.getElementById('scApplyDurationBtn');
+if(scApplyDurBtn){
+  scApplyDurBtn.addEventListener('click', ()=>{
+    const custInput = document.getElementById('scCustomMins');
+    const val = parseFloat(custInput?.value || '10');
+    setDurationTarget(val);
+    if(!scPlaying) startAutoScroll();
+    if(scDurPanel) scDurPanel.style.display = 'none';
+  });
+}
+
+const scResetDurBtn = document.getElementById('scResetDurationBtn');
+if(scResetDurBtn){
+  scResetDurBtn.addEventListener('click', ()=>{
+    scDurationMode = false;
+    updateScrollUI();
+    if(scDurPanel) scDurPanel.style.display = 'none';
+  });
+}
+
+window.addEventListener('wheel', e=>{ if(scPlaying && !e.target.closest('.scroll-bar') && !e.target.closest('.sc-duration-panel')) stopAutoScroll(); }, {passive:true});
+window.addEventListener('touchmove', e=>{ if(scPlaying && !e.target.closest('.scroll-bar') && !e.target.closest('.sc-duration-panel')) stopAutoScroll(); }, {passive:true});
 updateScrollUI();
 
 /* ══ AUDIO & SOUND MODES ══ */
@@ -6125,6 +6369,14 @@ function renderAsma(mc){
   renderDrawer();
 }
 
+function formatAyatNum(num, lang){
+  if(lang === 'ur' || lang === 'ar'){
+    const urDigits = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+    return String(num).split('').map(d => urDigits[Number(d)] ?? d).join('');
+  }
+  return String(num);
+}
+
 function renderQuran(mc, surahId){
   document.getElementById('progBar').style.width = '100%';
   recordDhikrActivity();
@@ -6145,9 +6397,9 @@ function renderQuran(mc, surahId){
   dataset.forEach(ruku => {
     body += `<div class="ruku-sep">${ruku.r}</div>`;
     if(viewMode === 'para'){
-      body += `<div class="para-block">${ruku.verses.map(v => (cfg.supportsTajweed && !isIndopak) ? `${v.t} <span class="vnum-inline">${v.n}</span>` : v.t).join(' ')}</div>`;
+      body += `<div class="para-block">${ruku.verses.map(v => `${v.t} <span class="vnum-inline" title="آیت ${v.n}">${formatAyatNum(v.n, S.lang)}</span>`).join(' ')}</div>`;
     } else {
-      body += ruku.verses.map(v => (cfg.supportsTajweed && !isIndopak) ? `<div class="vblock"><div class="vnum">${v.n}</div><div class="vtxt">${v.t}</div></div>` : `<div class="vblock"><div class="vtxt">${v.t}</div></div>`).join('');
+      body += ruku.verses.map(v => `<div class="vblock"><div class="vnum">${formatAyatNum(v.n, S.lang)}</div><div class="vtxt">${v.t}</div></div>`).join('');
     }
   });
   let legend = '';
@@ -6771,8 +7023,284 @@ function applyTheme(themeName){
   document.querySelectorAll('.thm-chip').forEach(c=>{
     c.classList.toggle('active', c.dataset.theme === themeName);
   });
+  try{
+    if(!localStorage.getItem('azk_custom_bgcolor')){
+      const themeColors = { emerald: '#050f08', oled: '#000000', sepia: '#14110e' };
+      const inputEl = document.getElementById('customBgColorInput');
+      if(inputEl) inputEl.value = themeColors[themeName] || '#050f08';
+    }
+  }catch(e){}
 }
 applyTheme(currentTheme);
+
+/* ══ APP-WIDE WALLPAPER & CUSTOM BACKGROUND COLOR ══ */
+const WP_KAABA_SVG = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 1200' width='100%' height='100%'>
+  <defs>
+    <radialGradient id='skyG' cx='50%' cy='30%' r='70%'>
+      <stop offset='0%' stop-color='#0a2e1d' stop-opacity='0.9'/>
+      <stop offset='50%' stop-color='#05170e' stop-opacity='0.95'/>
+      <stop offset='100%' stop-color='#020a06' stop-opacity='1'/>
+    </radialGradient>
+    <linearGradient id='goldG' x1='0%' y1='0%' x2='100%' y2='0%'>
+      <stop offset='0%' stop-color='#f59e0b'/>
+      <stop offset='50%' stop-color='#fef08a'/>
+      <stop offset='100%' stop-color='#d97706'/>
+    </linearGradient>
+  </defs>
+  <rect width='100%' height='100%' fill='url(#skyG)'/>
+  <g transform='translate(400, 160) scale(0.9)'>
+    <path d='M 0,-40 A 40,40 0 1 0 40,0 A 32,32 0 1 1 0,-40 Z' fill='url(#goldG)' opacity='0.85'/>
+    <polygon points='18,-15 23,-3 35,-3 25,5 29,17 18,10 7,17 11,5 1,-3 13,-3' fill='url(#goldG)' opacity='0.9'/>
+  </g>
+  <g transform='translate(220, 360)'>
+    <polygon points='0,140 180,220 180,560 0,460' fill='#0b0f19' stroke='rgba(245,158,11,0.2)' stroke-width='1.5'/>
+    <polygon points='180,220 360,140 360,460 180,560' fill='#04070d' stroke='rgba(245,158,11,0.2)' stroke-width='1.5'/>
+    <polygon points='0,140 180,70 360,140 180,220' fill='#172033'/>
+    <polygon points='0,185 180,265 180,295 0,215' fill='url(#goldG)' opacity='0.9'/>
+    <polygon points='180,265 360,185 360,215 180,295' fill='url(#goldG)' opacity='0.9'/>
+    <polygon points='230,280 290,250 290,440 230,470' fill='url(#goldG)' opacity='0.85'/>
+    <polygon points='235,286 285,258 285,434 235,462' fill='#92400e'/>
+    <path d='M 240,320 Q 260,295 280,310' stroke='url(#goldG)' stroke-width='2' fill='none'/>
+    <polygon points='0,225 180,305 180,312 0,232' fill='url(#goldG)' opacity='0.6'/>
+    <polygon points='180,305 360,225 360,232 180,312' fill='url(#goldG)' opacity='0.6'/>
+    <polygon points='-10,465 180,572 370,465 370,480 180,587 -10,480' fill='#e2e8f0' opacity='0.4'/>
+  </g>
+  <ellipse cx='400' cy='930' rx='360' ry='120' fill='none' stroke='rgba(245,158,11,0.12)' stroke-width='1.5'/>
+  <ellipse cx='400' cy='930' rx='280' ry='90' fill='none' stroke='rgba(245,158,11,0.1)' stroke-width='1'/>
+  <ellipse cx='400' cy='930' rx='190' ry='60' fill='none' stroke='rgba(245,158,11,0.08)' stroke-width='1'/>
+</svg>`;
+
+const WP_NABAWI_SVG = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 1200' width='100%' height='100%'>
+  <defs>
+    <radialGradient id='skyN' cx='50%' cy='25%' r='75%'>
+      <stop offset='0%' stop-color='#0a3d24' stop-opacity='0.95'/>
+      <stop offset='60%' stop-color='#051f12' stop-opacity='0.98'/>
+      <stop offset='100%' stop-color='#010d07' stop-opacity='1'/>
+    </radialGradient>
+    <linearGradient id='greenDome' x1='0%' y1='0%' x2='100%' y2='0%'>
+      <stop offset='0%' stop-color='#059669'/>
+      <stop offset='35%' stop-color='#10b981'/>
+      <stop offset='70%' stop-color='#047857'/>
+      <stop offset='100%' stop-color='#064e3b'/>
+    </linearGradient>
+    <linearGradient id='goldN' x1='0%' y1='0%' x2='100%' y2='0%'>
+      <stop offset='0%' stop-color='#f59e0b'/>
+      <stop offset='50%' stop-color='#fef08a'/>
+      <stop offset='100%' stop-color='#b45309'/>
+    </linearGradient>
+  </defs>
+  <rect width='100%' height='100%' fill='url(#skyN)'/>
+  <g transform='translate(400, 160) scale(0.85)'>
+    <path d='M 0,-40 A 40,40 0 1 0 40,0 A 32,32 0 1 1 0,-40 Z' fill='url(#goldN)' opacity='0.9'/>
+    <polygon points='18,-15 23,-3 35,-3 25,5 29,17 18,10 7,17 11,5 1,-3 13,-3' fill='url(#goldN)' opacity='0.95'/>
+  </g>
+  <g transform='translate(150, 240)'>
+    <polygon points='25,0 15,100 10,480 40,480 35,100' fill='#1e293b' stroke='rgba(245,158,11,0.3)' stroke-width='1'/>
+    <polygon points='25,-30 23,0 27,0' fill='url(#goldN)'/>
+    <circle cx='25' cy='-32' r='4' fill='url(#goldN)'/>
+    <rect x='10' y='120' width='30' height='10' rx='2' fill='url(#goldN)' opacity='0.8'/>
+    <rect x='7' y='260' width='36' height='12' rx='2' fill='url(#goldN)' opacity='0.8'/>
+    <rect x='5' y='390' width='40' height='14' rx='2' fill='url(#goldN)' opacity='0.8'/>
+  </g>
+  <g transform='translate(600, 240)'>
+    <polygon points='25,0 15,100 10,480 40,480 35,100' fill='#1e293b' stroke='rgba(245,158,11,0.3)' stroke-width='1'/>
+    <polygon points='25,-30 23,0 27,0' fill='url(#goldN)'/>
+    <circle cx='25' cy='-32' r='4' fill='url(#goldN)'/>
+    <rect x='10' y='120' width='30' height='10' rx='2' fill='url(#goldN)' opacity='0.8'/>
+    <rect x='7' y='260' width='36' height='12' rx='2' fill='url(#goldN)' opacity='0.8'/>
+    <rect x='5' y='390' width='40' height='14' rx='2' fill='url(#goldN)' opacity='0.8'/>
+  </g>
+  <g transform='translate(270, 360)'>
+    <rect x='30' y='160' width='200' height='100' rx='4' fill='#0f172a' stroke='rgba(245,158,11,0.2)' stroke-width='1'/>
+    <path d='M 60,220 A 15,15 0 0 1 90,220 L 90,240 L 60,240 Z' fill='url(#goldN)' opacity='0.7'/>
+    <path d='M 115,220 A 15,15 0 0 1 145,220 L 145,240 L 115,240 Z' fill='url(#goldN)' opacity='0.7'/>
+    <path d='M 170,220 A 15,15 0 0 1 200,220 L 200,240 L 170,240 Z' fill='url(#goldN)' opacity='0.7'/>
+    <path d='M 30,160 C 30,50 90,10 130,0 C 170,10 230,50 230,160 Z' fill='url(#greenDome)'/>
+    <line x1='130' y1='-35' x2='130' y2='0' stroke='url(#goldN)' stroke-width='3'/>
+    <circle cx='130' cy='-38' r='4' fill='url(#goldN)'/>
+    <path d='M 130,-48 A 8,8 0 1 0 138,-40 A 6,6 0 1 1 130,-48 Z' fill='url(#goldN)'/>
+  </g>
+  <g transform='translate(100, 620)'>
+    <rect x='0' y='0' width='600' height='260' fill='#0b111e' stroke='rgba(245,158,11,0.25)' stroke-width='1.5'/>
+    <path d='M 30,180 Q 75,90 120,180 L 120,260 L 30,260 Z' fill='none' stroke='url(#goldN)' stroke-width='1.5' opacity='0.6'/>
+    <path d='M 150,180 Q 195,90 240,180 L 240,260 L 150,260 Z' fill='none' stroke='url(#goldN)' stroke-width='1.5' opacity='0.6'/>
+    <path d='M 270,180 Q 315,90 360,180 L 360,260 L 270,260 Z' fill='none' stroke='url(#goldN)' stroke-width='1.5' opacity='0.6'/>
+    <path d='M 390,180 Q 435,90 480,180 L 480,260 L 390,260 Z' fill='none' stroke='url(#goldN)' stroke-width='1.5' opacity='0.6'/>
+  </g>
+</svg>`;
+
+const WP_ARABESQUE_SVG = `<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'>
+  <rect width='120' height='120' fill='#040d07'/>
+  <g fill='none' stroke='#f59e0b' stroke-width='1' opacity='0.22'>
+    <path d='M60 0 L120 60 L60 120 L0 60 Z'/>
+    <circle cx='60' cy='60' r='35'/>
+    <circle cx='60' cy='60' r='50'/>
+    <path d='M0 0 L120 120 M120 0 L0 120'/>
+    <path d='M60 10 L70 50 L110 60 L70 70 L60 110 L50 70 L10 60 L50 50 Z'/>
+    <circle cx='0' cy='0' r='20'/>
+    <circle cx='120' cy='0' r='20'/>
+    <circle cx='0' cy='120' r='20'/>
+    <circle cx='120' cy='120' r='20'/>
+    <circle cx='60' cy='0' r='10'/>
+    <circle cx='60' cy='120' r='10'/>
+    <circle cx='0' cy='60' r='10'/>
+    <circle cx='120' cy='60' r='10'/>
+  </g>
+</svg>`;
+
+const WP_DATA = {
+  none: '',
+  kaaba: 'data:image/svg+xml;utf8,' + encodeURIComponent(WP_KAABA_SVG),
+  nabawi: 'data:image/svg+xml;utf8,' + encodeURIComponent(WP_NABAWI_SVG),
+  arabesque: 'data:image/svg+xml;utf8,' + encodeURIComponent(WP_ARABESQUE_SVG)
+};
+
+function getActiveWallpaper(){
+  try{ return localStorage.getItem('azk_wallpaper_type') || 'none'; }catch(e){ return 'none'; }
+}
+
+function setWallpaper(type, customDataUrl){
+  const bgEl = document.getElementById('appCustomBg');
+  if(!bgEl) return;
+
+  if(type === 'none'){
+    bgEl.style.backgroundImage = 'none';
+    try{ localStorage.setItem('azk_wallpaper_type', 'none'); }catch(e){}
+  } else if(type === 'custom'){
+    const url = customDataUrl || localStorage.getItem('azk_custom_wallpaper');
+    if(url){
+      bgEl.style.backgroundImage = `url("${url}")`;
+      try{
+        localStorage.setItem('azk_wallpaper_type', 'custom');
+        if(customDataUrl) localStorage.setItem('azk_custom_wallpaper', customDataUrl);
+      }catch(e){}
+    } else {
+      bgEl.style.backgroundImage = 'none';
+    }
+  } else if(WP_DATA[type]){
+    bgEl.style.backgroundImage = `url("${WP_DATA[type]}")`;
+    try{ localStorage.setItem('azk_wallpaper_type', type); }catch(e){}
+  }
+
+  document.querySelectorAll('#settingsWallpaperChips .q-chip').forEach(c => {
+    c.classList.toggle('active', c.dataset.wp === type || (type === 'custom' && c.id === 'btnUploadWp'));
+  });
+}
+
+function setBgOpacity(pct){
+  pct = Math.max(5, Math.min(80, parseInt(pct, 10) || 22));
+  document.documentElement.style.setProperty('--bg-img-opacity', (pct / 100).toFixed(2));
+  const valEl = document.getElementById('bgOpacityVal');
+  const sliderEl = document.getElementById('bgOpacitySlider');
+  if(valEl) valEl.textContent = pct + '%';
+  if(sliderEl) sliderEl.value = pct;
+  try{ localStorage.setItem('azk_bg_opacity', String(pct)); }catch(e){}
+}
+
+function setCustomBgColor(colorHex, saveToStorage = true){
+  if(!colorHex) return;
+  document.documentElement.style.setProperty('--bg', colorHex);
+  document.body.style.backgroundColor = colorHex;
+  const inputEl = document.getElementById('customBgColorInput');
+  if(inputEl) inputEl.value = colorHex;
+  if(saveToStorage){
+    try{ localStorage.setItem('azk_custom_bgcolor', colorHex); }catch(e){}
+  }
+}
+
+function resetCustomBgColor(){
+  try{ localStorage.removeItem('azk_custom_bgcolor'); }catch(e){}
+  const curThm = document.body.dataset.theme || 'emerald';
+  const themeColors = { emerald: '#050f08', oled: '#000000', sepia: '#14110e' };
+  const baseColor = themeColors[curThm] || '#050f08';
+  document.documentElement.style.removeProperty('--bg');
+  document.body.style.backgroundColor = '';
+  const inputEl = document.getElementById('customBgColorInput');
+  if(inputEl) inputEl.value = baseColor;
+}
+
+function initWallpaperAndBg(){
+  const savedWp = getActiveWallpaper();
+  setWallpaper(savedWp);
+
+  try{
+    const savedOp = localStorage.getItem('azk_bg_opacity');
+    if(savedOp) setBgOpacity(parseInt(savedOp, 10));
+  }catch(e){}
+
+  try{
+    const savedBg = localStorage.getItem('azk_custom_bgcolor');
+    if(savedBg) setCustomBgColor(savedBg, false);
+  }catch(e){}
+}
+
+// Wallpaper & Custom Background Event Listeners
+document.querySelectorAll('#settingsWallpaperChips .q-chip').forEach(chip => {
+  chip.addEventListener('click', ()=>{
+    if(chip.id === 'btnUploadWp') return;
+    if(chip.dataset.wp) setWallpaper(chip.dataset.wp);
+  });
+});
+
+const btnUploadWp = document.getElementById('btnUploadWp');
+const bgPhotoInput = document.getElementById('bgPhotoInput');
+if(btnUploadWp && bgPhotoInput){
+  btnUploadWp.addEventListener('click', ()=> bgPhotoInput.click());
+  bgPhotoInput.addEventListener('change', e=>{
+    const file = e.target.files && e.target.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = (evt)=> {
+      const img = new Image();
+      img.onload = ()=> {
+        const maxDim = 1280;
+        let w = img.width, h = img.height;
+        if(w > maxDim || h > maxDim){
+          if(w > h){
+            h = Math.round((h * maxDim) / w);
+            w = maxDim;
+          } else {
+            w = Math.round((w * maxDim) / h);
+            h = maxDim;
+          }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, w, h);
+        const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.82);
+        setWallpaper('custom', compressedDataUrl);
+      };
+      img.src = evt.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+const bgOpacitySlider = document.getElementById('bgOpacitySlider');
+if(bgOpacitySlider){
+  bgOpacitySlider.addEventListener('input', e=> setBgOpacity(e.target.value));
+}
+
+const customBgColorInput = document.getElementById('customBgColorInput');
+if(customBgColorInput){
+  customBgColorInput.addEventListener('input', e=> setCustomBgColor(e.target.value, true));
+}
+
+document.querySelectorAll('[data-bgcolor]').forEach(chip => {
+  chip.addEventListener('click', ()=>{
+    const color = chip.dataset.bgcolor;
+    if(color) setCustomBgColor(color, true);
+  });
+});
+
+const btnResetBgColor = document.getElementById('btnResetBgColor');
+if(btnResetBgColor){
+  btnResetBgColor.addEventListener('click', resetCustomBgColor);
+}
+
+initWallpaperAndBg();
 
 /* ══ DAILY RESET & ACCURATE STREAK TRACKER ══ */
 let streakCount = 1;
