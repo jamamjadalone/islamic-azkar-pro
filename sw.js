@@ -1,6 +1,6 @@
 /* Islamic Azkar Pro — Service Worker
    100% offline app shell. Network-first for navigation, stale-while-revalidate for static assets. */
-const CACHE = "azk-pro-v45-wallpapers-fazeelat";
+const CACHE = "azk-pro-v47-naqoosh";
 const CORE = [
 	"./",
 	"./index.html",
@@ -17,9 +17,11 @@ const CORE = [
 	"./fonts/muhammadi.ttf",
 	"./fonts/pdms-saleem.ttf",
 	"./assets/asr-durood.png",
-	"./assets/wallpapers/kaaba.webp",
-	"./assets/wallpapers/nabawi.webp",
-	"./assets/wallpapers/arabesque.webp",
+	"./assets/wallpapers/arabesque.svg",
+	"./assets/wallpapers/moroccan.svg",
+	"./assets/wallpapers/girih.svg",
+	"./assets/wallpapers/islimi.svg",
+	"./assets/wallpapers/margins.svg",
 	"./quran/surahs_26.json",
 ];
 
