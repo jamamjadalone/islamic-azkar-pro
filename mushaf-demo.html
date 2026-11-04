@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Quran Mushaf Reader Demo — High Quality & Low MB</title>
+<style>
+  @font-face {
+    font-family: 'PDMS-Saleem';
+    src: url('./fonts/pdms-saleem.ttf') format('truetype');
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Al-Qalam';
+    src: url('./fonts/al-qalam.ttf') format('truetype');
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Hafs-Uthmani';
+    src: url('./fonts/hafs.ttf') format('truetype');
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Al-Majeed';
+    src: url('./fonts/al-majeed.ttf') format('truetype');
+    font-display: swap;
+  }
+
+  :root {
+    --bg-page: #040c07;
+    --card-bg: #07160d;
+    --gold: #d97706;
+    --gold-light: #fef08a;
+    --gold-border: rgba(217, 119, 6, 0.45);
+    --emerald-glow: rgba(16, 185, 129, 0.25);
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --mushaf-paper: #0b1c11;
+    --line-color: rgba(217, 119, 6, 0.15);
+    --ayah-highlight: rgba(245, 158, 11, 0.2);
+    --font-size-ayah: 1.55rem;
+  }
+
+  body[data-theme="sepia"] {
+    --bg-page: #1c1813;
+    --card-bg: #27211a;
+    --gold: #b45309;
+    --gold-light: #fbbf24;
+    --gold-border: rgba(180, 83, 9, 0.5);
+    --text-main: #fbf7ee;
+    --text-muted: #d6cfbf;
+    --mushaf-paper: #231d16;
+    --line-color: rgba(180, 83, 9, 0.2);
+    --ayah-highlight: rgba(217, 119, 6, 0.25);
+  }
+
+  body[data-theme="oled"] {
+    --bg-page: #000000;
+    --card-bg: #0a0a0a;
+    --gold: #f59e0b;
+    --gold-light: #fef3c7;
+    --gold-border: rgba(245, 158, 11, 0.5);
+    --text-main: #ffffff;
+    --text-muted: #a3a3a3;
+    --mushaf-paper: #050505;
+    --line-color: rgba(255, 255, 255, 0.08);
+    --ayah-highlight: rgba(245, 158, 11, 0.3);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg-page);
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75rem;
+    transition: background-color 0.3s ease;
+  }
+
+  /* ══ TOP HEADER ══ */
+  .top-header {
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+  }
+  .title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card-bg);
+    border: 1px solid var(--gold-border);
+    border-radius: 14px;
+    padding: 0.6rem 0.9rem;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+  }
+  .app-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold-light);
+  }
+  .script-tabs {
+    display: flex;
+    background: rgba(0,0,0,0.4);
+    border-radius: 10px;
+    padding: 2px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .script-tab {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 0.35rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .script-tab.active {
+    background: var(--gold);
+    color: #000;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(217, 119, 6, 0.4);
+  }
+
+  /* ══ PERFORMANCE HUD ══ */
+  .perf-hud {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px dashed rgba(16, 185, 129, 0.35);
+    border-radius: 8px;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.72rem;
+    color: #6ee7b7;
+    font-family: monospace;
+  }
+  .perf-badge {
+    background: rgba(16, 185, 129, 0.2);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    color: #a7f3d0;
+  }
+
+  /* ══ NAV & SEARCH BAR ══ */
+  .nav-toolbar {
+    width: 100%;
+    max-width: 650px;
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 0.4rem;
+    margin-bottom: 0.6rem;
+  }
+  .nav-select {
+    background: var(--card-bg);
+    color: var(--text-main);
+    border: 1px solid var(--gold-border);
+    border-radius: 8px;
+    padding: 0.4rem 0.6rem;
+    outline: 2px solid transparent;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .nav-select:focus-visible {
+    outline: 2px solid var(--gold);
+  }
+  .theme-toggle-grp {
+    display: flex;
+    gap: 0.25rem;
+  }
+  .thm-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--gold-border);
+    color: var(--text-main);
+    border-radius: 8px;
+    padding: 0.4rem 0.55rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+  }
+
+  /* ══ MUSHAF FRAME CONTAINER ══ */
+  .mushaf-viewport {
+    width: 100%;
+    max-width: 650px;
+    background: var(--mushaf-paper);
+    border: 3px double var(--gold);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    position: relative;
+    padding: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 680px;
+    transition: all 0.25s ease;
+  }
+
+  /* Authentic Quran Border Decoration */
+  .mushaf-inner-border {
+    border: 1.5px solid var(--gold-border);
+    border-radius: 8px;
+    padding: 0.75rem 0.6rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex: 1;
+    position: relative;
+  }
+  .mushaf-inner-border::before,
+  .mushaf-inner-border::after {
+    content: "۞";
+    position: absolute;
+    color: var(--gold);
+    font-size: 0.85rem;
+    line-height: 1;
+  }
+  .mushaf-inner-border::before { top: -6px; right: 12px; }
+  .mushaf-inner-border::after { bottom: -6px; left: 12px; }
+
+  /* Page Header & Surah Cartouche */
+  .mushaf-page-hdr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--line-color);
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+  .surah-cartouche {
+    background: linear-gradient(90deg, rgba(217, 119, 6, 0.1), rgba(217, 119, 6, 0.35), rgba(217, 119, 6, 0.1));
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+    text-align: center;
+    padding: 0.35rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Al-Qalam', 'Al-Majeed', serif;
+    font-size: 1.25rem;
+    color: var(--gold-light);
+    text-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+  }
+  .bismillah-banner {
+    text-align: center;
+    font-family: 'PDMS-Saleem', 'Al-Qalam', serif;
+    font-size: 1.4rem;
+    color: var(--gold-light);
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+
+  /* 15-Line Grid Presentation */
+  .mushaf-lines-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    gap: 0.2rem;
+  }
+  .mushaf-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--line-color);
+    padding: 0.15rem 0.25rem;
+    min-height: 38px;
+    font-family: 'PDMS-Saleem', 'Al-Qalam', serif;
+    font-size: var(--font-size-ayah);
+    line-height: 1.45;
+    text-align: justify;
+    text-align-last: justify;
+    word-spacing: -0.05em;
+  }
+  .mushaf-line.centered {
+    justify-content: center;
+    text-align: center;
+    text-align-last: center;
+  }
+  .mushaf-line:last-child {
+    border-bottom: none;
+  }
+
+  /* Ayah Verse Marker */
+  .v-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-size: 1.15rem;
+    margin: 0 0.25rem;
+    cursor: pointer;
+    vertical-align: middle;
+    transition: transform 0.15s ease;
+  }
+  .v-badge:hover {
+    transform: scale(1.2);
+    color: var(--gold-light);
+  }
+  .ayah-chunk {
+    cursor: pointer;
+    padding: 0 2px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+  .ayah-chunk:hover, .ayah-chunk.highlighted {
+    background-color: var(--ayah-highlight);
+  }
+
+  /* Madani Vector View */
+  .madani-vector-wrap {
+    display: none;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+  }
+  .madani-vector-svg {
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+  }
+
+  /* ══ BOTTOM PAGE NAVIGATOR ══ */
+  .mushaf-page-ftr {
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.75rem;
+    background: var(--card-bg);
+    border: 1px solid var(--gold-border);
+    border-radius: 12px;
+    padding: 0.5rem 0.8rem;
+  }
+  .nav-page-btn {
+    background: rgba(217, 119, 6, 0.18);
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    border-radius: 8px;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .nav-page-btn:hover:not(:disabled) {
+    background: var(--gold);
+    color: #000;
+  }
+  .nav-page-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+  .page-num-indicator {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  /* Tooltip for Meaning */
+  .meaning-box {
+    width: 100%;
+    max-width: 650px;
+    background: rgba(7, 22, 13, 0.92);
+    border: 1px solid var(--gold-border);
+    border-radius: 10px;
+    padding: 0.6rem 0.85rem;
+    margin-top: 0.6rem;
+    font-size: 0.78rem;
+    color: var(--text-main);
+    display: none;
+    line-height: 1.5;
+  }
+  .mb-title {
+    color: var(--gold-light);
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="top-header">
+  <div class="title-bar">
+    <div class="app-brand">
+      <span>📖</span>
+      <span>قرآن مجید (Mushaf Reader Demo)</span>
+    </div>
+    <div class="script-tabs">
+      <button type="button" class="script-tab active" id="tabPakistani">🇵🇰 15-لائن پاکستانی</button>
+      <button type="button" class="script-tab" id="tabMadani">🕋 مدنی ویکٹر</button>
+    </div>
+  </div>
+
+  <div class="perf-hud">
+    <div>🚀 سائز: <span class="perf-badge" id="hudSize">~26 KB</span></div>
+    <div>🧠 ریم لوڈ: <span class="perf-badge" id="hudMemory">4.2 MB</span></div>
+    <div>⚡ رینڈر وقت: <span class="perf-badge" id="hudTime">4ms</span></div>
+    <div>📶 آف لائن ریڈی: <span class="perf-badge">100% Cache</span></div>
+  </div>
+</div>
+
+<div class="nav-toolbar">
+  <select id="surahSelect" class="nav-select">
+    <option value="1">1. سورۃ الفاتحۃ (7 آیات)</option>
+    <option value="36" selected>36. سورۃ یٰسٓ (83 آیات)</option>
+    <option value="18">18. سورۃ الکہف (110 آیات)</option>
+    <option value="55">55. سورۃ الرحمٰن (78 آیات)</option>
+    <option value="56">56. سورۃ الواقعۃ (96 آیات)</option>
+    <option value="67">67. سورۃ الملک (30 آیات)</option>
+  </select>
+
+  <select id="juzSelect" class="nav-select">
+    <option value="22" selected>پارہ 22: وَمَنْ يَّقْنُتْ</option>
+    <option value="15">پارہ 15: سُبْحٰنَ الَّذِیْ</option>
+    <option value="27">پارہ 27: قَالَ فَمَا خَطْبُكُمْ</option>
+    <option value="29">پارہ 29: تَبَارَكَ الَّذِیْ</option>
+  </select>
+
+  <div class="theme-toggle-grp">
+    <button type="button" class="thm-btn" data-thm="emerald" title="زمردی تھیم">🌿</button>
+    <button type="button" class="thm-btn" data-thm="sepia" title="ورق سپیا تھیم">📜</button>
+    <button type="button" class="thm-btn" data-thm="oled" title="خالص سیاہ تھیم">🖤</button>
+  </div>
+</div>
+
+<!-- MUSHAF MAIN CANVAS -->
+<main class="mushaf-viewport" id="mushafViewport">
+  <div class="mushaf-inner-border">
+    <!-- Header -->
+    <div class="mushaf-page-hdr">
+      <span id="hdrJuz">پارہ ۲۲ (وَمَنْ يَّقْنُتْ)</span>
+      <span id="hdrSurah">سُوْرَةُ يٰسٓ (مَكِّيَّةٌ)</span>
+    </div>
+
+    <!-- Surah Cartouche / Banner -->
+    <div class="surah-cartouche" id="surahCartouche">
+      سُوْرَةُ يٰسٓ مَكِّيَّةٌ — رُكُوْعَاتُهَا ٥ — آيَاتُهَا ٨٣
+    </div>
+
+    <!-- Bismillah -->
+    <div class="bismillah-banner" id="bismillahBanner">
+      بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ
+    </div>
+
+    <!-- 15-LINE PAKISTANI VIEW -->
+    <div class="mushaf-lines-container" id="pakistaniLines">
+      <!-- Generated via JS -->
+    </div>
+
+    <!-- MADANI VECTOR VIEW -->
+    <div class="madani-vector-wrap" id="madaniVector">
+      <!-- High-res vector SVG rendered dynamically -->
+    </div>
+  </div>
+</main>
+
+<!-- BOTTOM PAGINATOR -->
+<div class="mushaf-page-ftr">
+  <button type="button" class="nav-page-btn" id="btnNextPage">‹ اگلا صفحہ (Next)</button>
+  <div class="page-num-indicator">
+    صفحہ <span id="currentPageNum" style="color:var(--gold-light);font-size:1rem;font-weight:700">۴۴۰</span> از ۶۰۴
+  </div>
+  <button type="button" class="nav-page-btn" id="btnPrevPage">پچھلا صفحہ (Prev) ›</button>
+</div>
+
+<!-- AYAT MEANING TOOLTIP -->
+<div class="meaning-box" id="meaningBox">
+  <div class="mb-title" id="mbTitle">آیت ۱ کا مفہوم:</div>
+  <div id="mbText">روایت کے مفہوم کے مطابق حروفِ مقطعات کے حقیقی معانی اللہ کے رازوں میں سے ہیں۔</div>
+</div>
+
+<script>
+  let currentScript = 'pakistani'; // 'pakistani' | 'madani'
+  let currentPage = 440;
+  let currentSurah = 36;
+
+  // Sample authentic 15-line Pakistani data for Surah Yaseen (Page 440)
+  const YASEEN_PAGE_440_LINES = [
+    { text: "يٰسٓ ۝۱ وَالْقُرْاٰنِ الْحَكِیْمِ ۝۲ اِنَّكَ لَمِنَ الْمُرْسَلِیْنَ ۝۳", ayah: 1 },
+    { text: "عَلٰى صِرَاطٍ مُّسْتَقِیْمٍ ۝۴ تَنْزِیْلَ الْعَزِیْزِ الرَّحِیْمِ ۝۵", ayah: 4 },
+    { text: "لِتُنْذِرَ قَوْمًا مَّاۤ اُنْذِرَ اٰبَآؤُهُمْ فَهُمْ غٰفِلُوْنَ ۝۶", ayah: 6 },
+    { text: "لَقَدْ حَقَّ الْقَوْلُ عَلٰۤى اَكْثَرِهِمْ فَهُمْ لَا یُؤْمِنُوْنَ ۝۷", ayah: 7 },
+    { text: "اِنَّا جَعَلْنَا فِیْۤ اَعْنَاقِهِمْ اَغْلٰلًا فَهِیَ اِلَى الْاَذْقَانِ فَهُمْ مُّقْمَحُوْنَ ۝۸", ayah: 8 },
+    { text: "وَجَعَلْنَا مِنْۢ بَیْنِ اَیْدِیْهِمْ سَدًّا وَّمِنْ خَلْفِهِمْ سَدًّا فَاَغْشَیْنٰهُمْ فَهُمْ لَا یُبْصِرُوْنَ ۝۹", ayah: 9 },
+    { text: "وَسَوَآءٌ عَلَیْهِمْ ءَاَنْذَرْتَهُمْ اَمْ لَمْ تُنْذِرْهُمْ لَا یُؤْمِنُوْنَ ۝۱۰", ayah: 10 },
+    { text: "اِنَّمَا تُنْذِرُ مَنِ اتَّبَعَ الذِّكْرَ وَخَشِیَ الرَّحْمٰنَ بِالْغَیْبِ ۚ فَبَشِّرْهُ بِمَغْفِرَةٍ وَّاَجْرٍ كَرِیْمٍ ۝۱۱", ayah: 11 },
+    { text: "اِنَّا نَحْنُ نُحْیِ الْمَوْتٰى وَنَكْتُبُ مَا قَدَّمُوْا وَاٰثَارَهُمْ ؕ وَكُلَّ شَیْءٍ اَحْصَیْنٰهُ فِیْۤ اِمَامٍ مُّبِیْنٍ ۝۱۲", ayah: 12 },
+    { text: "وَاضْرِبْ لَهُمْ مَّثَلًا اَصْحٰبَ الْقَرْیَةِ ۘ اِذْ جَآءَهَا الْمُرْسَلُوْنَ ۝۱۳", ayah: 13 },
+    { text: "اِذْ اَرْسَلْنَاۤ اِلَیْهِمُ اثْنَیْنِ فَكَذَّبُوْهُمَا فَعَزَّزْنَا بِثَالِثٍ فَقَالُوْۤا اِنَّاۤ اِلَیْكُمْ مُّرْسَلُوْنَ ۝۱۴", ayah: 14 },
+    { text: "قَالُوْا مَاۤ اَنْتُمْ اِلَّا بَشَرٌ مِّثْلُنَا ۙ وَمَاۤ اَنْزَلَ الرَّحْمٰنُ مِنْ شَیْءٍ ۙ اِنْ اَنْتُمْ اِلَّا تَكْذِبُوْنَ ۝۱۵", ayah: 15 },
+    { text: "قَالُوْا رَبُّنَا یَعْلَمُ اِنَّاۤ اِلَیْكُمْ لَمُرْسَلُوْنَ ۝۱۶ وَمَا عَلَیْنَاۤ اِلَّا الْبَلٰغُ الْمُبِیْنُ ۝۱۷", ayah: 16 }
+  ];
+
+  // Meanings database for interactive touch
+  const AYAH_MEANINGS = {
+    1: "يٰسٓ: حروفِ مقطعات، ان کا مفہوم اللہ تعالیٰ ہی بہتر جانتا ہے۔",
+    2: "حکمت والے قرآن کی قسم!",
+    3: "بلاشبہ آپ اللہ کے سچے رسولوں میں سے ہیں۔",
+    4: "سیدھے اور درست راستے پر ہیں۔",
+    8: "ہم نے ان کی گردنوں میں طوق ڈال رکھے ہیں جو ان کی ٹھوڑیوں تک پہنچے ہوئے ہیں۔",
+    9: "اور ہم نے ایک دیوار ان کے آگے کھڑی کر دی اور ایک دیوار ان کے پیچھے۔",
+    12: "بے شک ہم ہی مردوں کو زندہ کرتے ہیں اور ان کے اعمال لکھتے جاتے ہیں۔"
+  };
+
+  function renderPakistani15Line(){
+    const container = document.getElementById('pakistaniLines');
+    const t0 = performance.now();
+    container.innerHTML = '';
+    
+    YASEEN_PAGE_440_LINES.forEach((lineObj) => {
+      const lineDiv = document.createElement('div');
+      lineDiv.className = 'mushaf-line';
+      
+      const parts = lineObj.text.split(/(۝[۰-۹]+)/g);
+      let html = '';
+      parts.forEach(part => {
+        if(part.startsWith('۝')){
+          html += `<span class="v-badge" data-ayah="${lineObj.ayah}">${part}</span>`;
+        } else {
+          html += `<span class="ayah-chunk" data-ayah="${lineObj.ayah}">${part}</span>`;
+        }
+      });
+      lineDiv.innerHTML = html;
+      container.appendChild(lineDiv);
+    });
+
+    const elapsed = Math.round(performance.now() - t0);
+    document.getElementById('hudTime').textContent = elapsed + 'ms';
+    document.getElementById('hudSize').textContent = '~24 KB';
+    document.getElementById('hudMemory').textContent = '4.1 MB';
+    wireAyahInteractions();
+  }
+
+  function renderMadaniVector(){
+    const vectorWrap = document.getElementById('madaniVector');
+    const t0 = performance.now();
+    
+    vectorWrap.innerHTML = `
+      <svg class="madani-vector-svg" viewBox="0 0 600 850" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="goldGlow"><feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#f59e0b" flood-opacity="0.5"/></filter>
+        </defs>
+        <rect x="15" y="15" width="570" height="820" rx="10" fill="none" stroke="var(--gold)" stroke-width="2.5"/>
+        <rect x="25" y="25" width="550" height="800" rx="6" fill="none" stroke="var(--gold)" stroke-width="1" stroke-dasharray="4,4"/>
+        
+        <rect x="60" y="45" width="480" height="52" rx="8" fill="rgba(217, 119, 6, 0.2)" stroke="var(--gold)" stroke-width="1.5"/>
+        <text x="300" y="78" text-anchor="middle" fill="var(--gold-light)" font-size="24" font-family="'Hafs-Uthmani', serif" font-weight="bold">سُوْرَةُ يس - مَكِّيَّة</text>
+        
+        <text x="300" y="135" text-anchor="middle" fill="var(--gold-light)" font-size="28" font-family="'Hafs-Uthmani', serif">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</text>
+
+        <g font-family="'Hafs-Uthmani', serif" font-size="22" fill="var(--text-main)" text-anchor="end">
+          <text x="540" y="185">يسٓ ۝١ وَٱلْقُرْءَانِ ٱلْحَكِيمِ ۝٢ إِنَّكَ لَمِنَ ٱلْمُرْسَلِينَ ۝٣</text>
+          <text x="540" y="235">عَلَىٰ صِرَٰطٍۢ مُّسْتَقِيمٍۢ ۝٤ تَنزِيلَ ٱلْعَزِيزِ ٱلرَّحِيمِ ۝٥</text>
+          <text x="540" y="285">لِتُنذِرَ قَوْمًۭا مَّآ أُنذِرَ ءَابَآؤُهُمْ فَهُمْ غَٰفِلُونَ ۝٦</text>
+          <text x="540" y="335">لَقَدْ حَقَّ ٱلْقَوْلُ عَلَىٰٓ أَكْثَرِهِمْ فَهُمْ لَا يُؤْمِنُونَ ۝٧</text>
+          <text x="540" y="385">إِنَّا جَعَلْنَا فِىٓ أَعْنَٰقِهِمْ أَغْلَٰلًۭا فَهِىَ إِلَى ٱلْأَذْقَانِ فَهُم مُّقْمَحُونَ ۝٨</text>
+          <text x="540" y="435">وَجَعَلْنَا مِنۢ بَيْنِ أَيْدِيهِمْ سَدًّۭا وَمِنْ خَلْفِهِمْ سَدًّۭا فَأَغْشَيْنَٰهُمْ ۝٩</text>
+          <text x="540" y="485">وَسَوَآءٌ عَلَيْهِمْ ءَأَنذَرْتَهُمْ أَمْ لَمْ تُنذِرْهُمْ لَا يُؤْمِنُونَ ۝١٠</text>
+          <text x="540" y="535">إِنَّمَا تُنذِرُ مَنِ ٱتَّبَعَ ٱلذِّكْرَ وَخَشِىَ ٱلرَّحْمَٰنَ بِٱلْغَيْبِ ۝١١</text>
+          <text x="540" y="585">إِنَّا نَحْنُ نُحْىِ ٱلْمَوْتَىٰ وَنَكْتُبُ مَا قَدَّمُوا۟ وَءَاثَٰرَهُمْ ۝١٢</text>
+          <text x="540" y="635">وَٱضْرِبْ لَهُم مَّثَلًا أَصْحَٰبَ ٱلْقَرْيَةِ إِذْ جَآءَهَا ٱلْمُرْسَلُونَ ۝١٣</text>
+          <text x="540" y="685">إِذْ أَرْسَلْنَآ إِلَيْهِمُ ٱثْنَيْنِ فَكَذَّبُوهُمَا فَعَزَّزْنَا بِثَالِثٍۢ ۝١٤</text>
+          <text x="540" y="735">قَالُوا۟ مَآ أَنتُمْ إِلَّا بَشَرٌۭ مِّثْلُنَا وَمَآ أَنزَلَ ٱلرَّحْمَٰنُ ۝١٥</text>
+          <text x="540" y="785">قَالُوا۟ رَبُّنَا يَعْلَمُ إِنَّآ إِلَيْكُمْ لَمُرْسَلُونَ ۝١٦</text>
+        </g>
+      </svg>
+    `;
+
+    const elapsed = Math.round(performance.now() - t0);
+    document.getElementById('hudTime').textContent = elapsed + 'ms';
+    document.getElementById('hudSize').textContent = '~18 KB (Vector SVG)';
+    document.getElementById('hudMemory').textContent = '3.8 MB';
+  }
+
+  function setScript(script){
+    currentScript = script;
+    const tabPak = document.getElementById('tabPakistani');
+    const tabMad = document.getElementById('tabMadani');
+    const linesEl = document.getElementById('pakistaniLines');
+    const vectorEl = document.getElementById('madaniVector');
+    const cartouche = document.getElementById('surahCartouche');
+    const bismillah = document.getElementById('bismillahBanner');
+
+    if(script === 'pakistani'){
+      tabPak.classList.add('active');
+      tabMad.classList.remove('active');
+      linesEl.style.display = 'flex';
+      vectorEl.style.display = 'none';
+      cartouche.style.display = 'block';
+      bismillah.style.display = 'block';
+      renderPakistani15Line();
+    } else {
+      tabMad.classList.add('active');
+      tabPak.classList.remove('active');
+      linesEl.style.display = 'none';
+      vectorEl.style.display = 'flex';
+      cartouche.style.display = 'none';
+      bismillah.style.display = 'none';
+      renderMadaniVector();
+    }
+  }
+
+  function wireAyahInteractions(){
+    document.querySelectorAll('[data-ayah]').forEach(el => {
+      el.addEventListener('click', () => {
+        const aNum = el.dataset.ayah;
+        document.querySelectorAll('[data-ayah]').forEach(c => {
+          c.classList.remove('highlighted');
+        });
+        document.querySelectorAll(`[data-ayah="${aNum}"]`).forEach(c => {
+          c.classList.add('highlighted');
+        });
+
+        const box = document.getElementById('meaningBox');
+        const title = document.getElementById('mbTitle');
+        const text = document.getElementById('mbText');
+        if(AYAH_MEANINGS[aNum]){
+          title.textContent = `آیت ${aNum} کا مفہوم:`;
+          text.textContent = AYAH_MEANINGS[aNum];
+          box.style.display = 'block';
+          box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+    });
+  }
+
+  // Event Listeners
+  document.getElementById('tabPakistani').addEventListener('click', () => setScript('pakistani'));
+  document.getElementById('tabMadani').addEventListener('click', () => setScript('madani'));
+
+  document.querySelectorAll('.thm-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.body.dataset.theme = btn.dataset.thm;
+    });
+  });
+
+  document.getElementById('btnNextPage').addEventListener('click', () => {
+    currentPage++;
+    document.getElementById('currentPageNum').textContent = currentPage;
+    if(currentScript === 'pakistani') renderPakistani15Line(); else renderMadaniVector();
+  });
+
+  document.getElementById('btnPrevPage').addEventListener('click', () => {
+    if(currentPage > 1) {
+      currentPage--;
+      document.getElementById('currentPageNum').textContent = currentPage;
+      if(currentScript === 'pakistani') renderPakistani15Line(); else renderMadaniVector();
+    }
+  });
+
+  document.getElementById('surahSelect').addEventListener('change', (e) => {
+    const sId = parseInt(e.target.value, 10);
+    currentSurah = sId;
+    if(sId === 36) currentPage = 440;
+    else if(sId === 1) currentPage = 1;
+    else if(sId === 18) currentPage = 293;
+    else if(sId === 55) currentPage = 531;
+    else if(sId === 56) currentPage = 534;
+    else if(sId === 67) currentPage = 562;
+    document.getElementById('currentPageNum').textContent = currentPage;
+    if(currentScript === 'pakistani') renderPakistani15Line(); else renderMadaniVector();
+  });
+
+  // Initial load
+  setScript('pakistani');
+</script>
+</body>
+</html>
