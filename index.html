@@ -1449,6 +1449,17 @@ html[lang="ar"] .dam-box {
   font-family: var(--ur-font) !important;
   line-height: 1.8 !important;
 }
+/* ══ PHASE 2: COUNTER FEEDBACK & STREAK HEAT (additive — no layout change) ══ */
+@keyframes p2pop{0%{transform:scale(1)}45%{transform:scale(1.22)}100%{transform:scale(1)}}
+#rn.p2-pop{animation:p2pop .3s cubic-bezier(.2, .9, .3, 1.35)}
+@keyframes p2pulse{0%{box-shadow:0 0 0 0 rgba(240, 200, 64, .55)}100%{box-shadow:0 0 0 28px rgba(240, 200, 64, 0)}}
+#ri.p2-pulse{animation:p2pulse .55s ease-out;border-radius:50%}
+.p2-heat{display:flex;gap:5px;justify-content:center;margin-top:.5rem}
+.p2-heat .p2-d{width:14px;height:14px;border-radius:4.5px;background:rgba(255, 255, 255, .07);border:1px solid rgba(255, 255, 255, .10)}
+.p2-heat .p2-d.on{background:linear-gradient(135deg, #f6d667, #d4a017);border-color:transparent;box-shadow:0 1px 5px rgba(212, 160, 23, .45)}
+.p2-heat .p2-d.today{border-color:var(--gold2, #f0c840);box-shadow:0 0 0 1.5px rgba(240, 200, 64, .35)}
+.p2-heat-cap{display:block;text-align:center;font-size:.6rem;color:var(--g2);opacity:.75;margin-top:.25rem}
+
 </style>
 </head>
 <body translate="no" class="notranslate">
@@ -1795,6 +1806,8 @@ html[lang="ar"] .dam-box {
       <span id="drStreakLabel">مسلسل ذکر کے دن:</span>
       <strong id="drStreakCount" style="color:var(--gold2);font-size:1.1rem">۱</strong>
       <span id="drStreakMasha">ماشاءاللہ!</span>
+      <div class="p2-heat" id="p2HeatStrip" aria-hidden="true"></div>
+      <div class="p2-heat-cap" id="p2HeatCap" hidden>پچھلے ۷ دن</div>
     </div>
 
     <div class="dr-sec-title" id="drSecAudio">🔕 آواز و مسجد موڈ</div>
@@ -6207,6 +6220,7 @@ function render(){
       <div class="dua-name">${curName}</div></div>
     <button type="button" class="faz-btn" onclick="toggleFaz(this)">${t("faz_btn")}</button>
     <div class="faz-body">${curFaz}${curRef?`<span class="faz-ref">${curRef}</span>`:''}</div>
+    <button type="button" class="faz-btn" style="display:inline-flex;margin-top:.5rem" onclick="p2ShareDuaImage()">${p2ShareLabel()}</button>
     ${ring(cnt,step.target,color,done)}`;
   }
   const isLast=st.idx===total-1;
@@ -7473,8 +7487,98 @@ function recordDhikrActivity(){
     streakCount = currentStreak;
     localStorage.setItem('azk_last_completed_date', today);
     localStorage.setItem('azk_streak_count', String(currentStreak));
+    p2RecordDay(today);
     updateStreakUI();
   } catch(e){}
+}
+
+/* ══ PHASE 2 HELPERS: day log, heat strip, counter FX ══ */
+function p2RecordDay(dateStr){
+  try{
+    let log = [];
+    try{ log = JSON.parse(localStorage.getItem('azk_days_log') || '[]'); }catch(e){ log = []; }
+    if(!Array.isArray(log)) log = [];
+    if(log.indexOf(dateStr) === -1){
+      log.push(dateStr);
+      log.sort();
+      if(log.length > 120) log = log.slice(-120);
+      localStorage.setItem('azk_days_log', JSON.stringify(log));
+    }
+  }catch(e){}
+}
+function p2RenderHeatStrip(){
+  const strip = document.getElementById('p2HeatStrip');
+  if(!strip) return;
+  try{
+    let log = [];
+    try{ log = JSON.parse(localStorage.getItem('azk_days_log') || '[]'); }catch(e){ log = []; }
+    const today = getTodayDateString();
+    let cells = '';
+    for(let i = 6; i >= 0; i--){
+      const d = new Date();
+      d.setDate(d.getDate() - i);
+      const ds = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      const on = log.indexOf(ds) !== -1;
+      const cls = 'p2-d' + (on ? ' on' : '') + (i === 0 ? ' today' : '');
+      cells += `<span class="${cls}" title="${ds}"></span>`;
+    }
+    strip.innerHTML = cells;
+    const cap = document.getElementById('p2HeatCap');
+    if(cap) cap.hidden = false;
+  }catch(e){}
+}
+const P2_REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function p2fxPop(el){
+  if(!el || P2_REDUCED) return;
+  el.classList.remove('p2-pop');
+  void el.offsetWidth;
+  el.classList.add('p2-pop');
+  setTimeout(() => el.classList.remove('p2-pop'), 340);
+}
+function p2fxPulse(el){
+  if(!el || P2_REDUCED) return;
+  el.classList.remove('p2-pulse');
+  void el.offsetWidth;
+  el.classList.add('p2-pulse');
+  setTimeout(() => el.classList.remove('p2-pulse'), 600);
+}
+let p2fxCanvas = null;
+function p2fxBurst(anchor){
+  if(!anchor || P2_REDUCED) return;
+  try{
+    const r = anchor.getBoundingClientRect();
+    const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    if(!p2fxCanvas){
+      p2fxCanvas = document.createElement('canvas');
+      p2fxCanvas.id = 'p2fxCanvas';
+      p2fxCanvas.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:99999';
+      document.body.appendChild(p2fxCanvas);
+    }
+    const cv = p2fxCanvas, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = window.innerWidth * dpr; cv.height = window.innerHeight * dpr;
+    const ctx = cv.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const parts = [];
+    for(let i = 0; i < 26; i++){
+      const a = (Math.PI * 2 * i) / 26 + Math.random() * .3;
+      const sp = 2.6 + Math.random() * 3.4;
+      parts.push({ x: cx, y: cy, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, r: 2 + Math.random() * 2.6, c: Math.random() < .5 ? '#f6d667' : '#fff3bd' });
+    }
+    let t0 = null;
+    (function frame(now){
+      if(t0 === null) t0 = now;
+      const t = Math.min((now - t0) / 950, 1);
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      parts.forEach(p => {
+        p.x += p.vx; p.y += p.vy; p.vx *= .965; p.vy = p.vy * .965 + .055;
+        ctx.globalAlpha = Math.max(1 - t, 0);
+        ctx.fillStyle = p.c;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.283); ctx.fill();
+      });
+      if(t < 1) requestAnimationFrame(frame);
+      else { ctx.clearRect(0, 0, window.innerWidth, window.innerHeight); if(p2fxCanvas){ p2fxCanvas.remove(); p2fxCanvas = null; } }
+    })();
+  }catch(e){}
 }
 
 function checkDailyResetAndStreak(){
@@ -7547,6 +7651,8 @@ function updateStreakUI(){
   
   const drStreakMasha = document.getElementById('drStreakMasha');
   if (drStreakMasha) drStreakMasha.textContent = t('mashaallah') || 'ماشاءاللہ!';
+
+  p2RenderHeatStrip();
 }
 
 /* ══ TIME-AWARE RECOMMENDATION ══ */
@@ -7645,6 +7751,143 @@ function shareCustomAzkarText(){
 }
 
 
+/* ══ PHASE 2: SHARE-AS-IMAGE (ayah/dua card generator — additive) ══ */
+function p2ShareLabel(){
+  const l = getActiveLang();
+  return (l==='en'||l==='id'||l==='tr'||l==='fr') ? '🖼 Share as Image' : '🖼 تصویر شیئر کریں';
+}
+async function p2ShareDuaImage(){
+  try{
+    const dataList = ALL_DUA_DATA[sec], st = S[sec];
+    if(!dataList || !st) return;
+    const step = dataList[st.idx];
+    if(!step || !step.ar) return;
+    let bismi = '', body = step.ar;
+    if(step.ar.startsWith('بِسْمِ اللّٰهِ') && step.ar.includes('\n')){
+      const nl = step.ar.indexOf('\n');
+      bismi = step.ar.slice(0, nl);
+      body = step.ar.slice(nl + 1);
+    }
+    const meta = SECS.find(m => m.id === sec);
+    const titleTxt = meta ? getLoc(meta.title) : '';
+    const nameTxt = getDuaField(sec, st.idx, 'name', step.name) || '';
+    const refTxt = getDuaField(sec, st.idx, 'ref', step.ref) || '';
+    await p2DrawShareCard({ title: titleTxt, bismi: bismi, arabic: body, name: nameTxt, ref: refTxt });
+  }catch(e){}
+}
+function p2WrapArabic(ctx, text, maxW){
+  const lines = [];
+  (text || '').split(/\n/).forEach(par => {
+    const words = par.trim().split(/\s+/);
+    let cur = '';
+    words.forEach(w => {
+      const test = cur ? cur + ' ' + w : w;
+      if(ctx.measureText(test).width > maxW && cur){
+        lines.push(cur); cur = w;
+      } else cur = test;
+    });
+    if(cur) lines.push(cur);
+  });
+  return lines;
+}
+async function p2DrawShareCard(p){
+  try{
+    if(document.fonts && document.fonts.load){
+      try{ await document.fonts.load('64px "Al Majeed"'); }catch(e){}
+    }
+    const W = 1080, H = 1350;
+    const cv = document.createElement('canvas');
+    cv.width = W; cv.height = H;
+    const ctx = cv.getContext('2d');
+    const g = ctx.createLinearGradient(0, 0, 0, H);
+    g.addColorStop(0, '#0e2c19'); g.addColorStop(1, '#010c02');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = 'rgba(240, 200, 64, .05)';
+    ctx.beginPath(); ctx.arc(W / 2, H * .34, 460, 0, 6.283); ctx.fill();
+    ctx.strokeStyle = 'rgba(240, 200, 64, .85)'; ctx.lineWidth = 4;
+    p2RoundRect(ctx, 26, 26, W - 52, H - 52, 36); ctx.stroke();
+    ctx.strokeStyle = 'rgba(240, 200, 64, .35)'; ctx.lineWidth = 1.6;
+    p2RoundRect(ctx, 42, 42, W - 84, H - 84, 28); ctx.stroke();
+    ctx.direction = 'rtl'; ctx.textBaseline = 'top';
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#f6d667';
+    ctx.font = '44px "Al Majeed", serif';
+    ctx.fillText('اَللّٰهُمَّ صَلِّ عَلٰی مُحَمَّدٍ', W / 2, 96);
+    ctx.font = '500 30px "Segoe UI", "Noto Nastaliq Urdu", serif';
+    ctx.fillStyle = '#9fbfa8';
+    p2DrawRtlRight(ctx, p.title || '', W - 84, 170);
+    if(p.bismi){
+      ctx.textAlign = 'center';
+      ctx.font = '40px "Al Majeed", serif';
+      ctx.fillStyle = '#f0c840';
+      ctx.fillText(p.bismi, W / 2, 226);
+    }
+    let y;
+    ctx.font = '56px "Al Majeed", "Scheherazade New", serif';
+    const lines = p2WrapArabic(ctx, p.arabic || '', W - 220);
+    const lh = 96;
+    const contentTop = p.bismi ? 320 : 260;
+    const blockH = lines.length * lh + (p.name ? 76 : 0) + (p.ref ? 44 : 0);
+    y = Math.max(contentTop, contentTop + (H - 250 - contentTop - blockH) / 2);
+    ctx.fillStyle = '#ffffff';
+    lines.forEach(ln => { ctx.textAlign = 'center'; ctx.fillText(ln, W / 2, y); y += lh; });
+    if(p.name){
+      y += 14;
+      ctx.font = '500 36px "Segoe UI", "Noto Nastaliq Urdu", serif';
+      ctx.fillStyle = '#f6d667';
+      ctx.fillText(p.name, W / 2, y);
+      y += 62;
+    }
+    if(p.ref){
+      ctx.font = '26px "Segoe UI", serif';
+      ctx.fillStyle = '#9fbfa8';
+      ctx.fillText(p.ref, W / 2, y);
+      y += 44;
+    }
+    ctx.textAlign = 'center';
+    ctx.font = '30px "Al Majeed", serif';
+    ctx.fillStyle = '#f6d667';
+    ctx.fillText('﴿ صَدَقَ اللهُ الْعَظِيم ﴾', W / 2, H - 190);
+    ctx.strokeStyle = 'rgba(240, 200, 64, .4)'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(W * .3, H - 128); ctx.lineTo(W * .7, H - 128); ctx.stroke();
+    ctx.textAlign = 'center';
+    ctx.font = '600 30px "Segoe UI", sans-serif';
+    ctx.fillStyle = '#f6d667';
+    ctx.fillText('islamic azkar pro', W / 2, H - 108);
+    ctx.font = '22px "Segoe UI", sans-serif';
+    ctx.fillStyle = '#7da288';
+    ctx.fillText('jamamjadalone.is-a.dev/islamic-azkar-pro', W / 2, H - 66);
+    const blob = await new Promise(res => cv.toBlob(res, 'image/png'));
+    if(!blob) return;
+    const fname = 'azkar-image-' + Date.now() + '.png';
+    const file = new File([blob], fname, { type: 'image/png' });
+    if(navigator.canShare && navigator.canShare({ files: [file] })){
+      await navigator.share({ files: [file], title: '📿 Islamic Azkar Pro' });
+    } else {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = fname;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    }
+  }catch(e){}
+}
+function p2DrawRtlRight(ctx, text, xRight, y){
+  ctx.save();
+  ctx.textAlign = 'right';
+  ctx.fillText(text || '', xRight, y);
+  ctx.restore();
+}
+function p2RoundRect(ctx, x, y, w, h, r){
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
 /* ══ ALL DUA SECTIONS REGISTRY ══ */
 const ALL_DUA_DATA = {fajr:FAJR,jumma:JUMMA,durood_pak:DUROOD_PAK,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH,post_salah:POST_SALAH,morning_wake:MORNING_WAKE,relief_debt:RELIEF_DEBT,istikhara:ISTIKHARA,rabbana:RABBANA};
 
@@ -7691,11 +7934,14 @@ function tap(){
     ri.classList.add(isAsr ? 'pa' : isTsb ? 'ps' : isCust ? 'pg' : activeSec === 'jumma' ? 'pj' : 'pg');
   }
   const nc = isCust ? item.cnt : isAsr ? S.asr.cnt : isTsb ? S.tasbeeh.cnt : S[activeSec].cnt;
+  p2fxPop(document.getElementById('rn'));
+  p2fxPulse(document.getElementById('ri'));
   const rn = document.getElementById('rn');
   if(rn) rn.textContent = nc;
   const rf = document.getElementById('rf');
   if(rf) rf.style.strokeDashoffset = CIRC * (1 - nc / target);
   if(nc >= target){
+    p2fxBurst(document.getElementById('rw') || document.getElementById('ri'));
     beep(isTsb ? 500 : 560, .3, .2);
     vib([35, 25, 60]);
     if(isCust){ item.done = true; saveCustomAzkar(); }
