@@ -31,5 +31,27 @@
 			"purpose": "maskable"
 		}
 	],
+	"shortcuts": [
+		{
+			"name": "درود شریف ×۸۰",
+			"short_name": "درود ×۸۰",
+			"url": "./#/asr"
+		},
+		{
+			"name": "تسبیحِ فاطمہؓ",
+			"short_name": "تسبیح",
+			"url": "./#/tasbeeh"
+		},
+		{
+			"name": "سورۃ الکہف",
+			"short_name": "کہف",
+			"url": "./#/kahf"
+		},
+		{
+			"name": "فجر/مغرب اذکار",
+			"short_name": "اذکار",
+			"url": "./#/fajr"
+		}
+	],
 	"id": "/islamic-azkar-pro/"
 }

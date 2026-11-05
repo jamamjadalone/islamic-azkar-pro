@@ -6146,6 +6146,7 @@ function renderWelcome(mc){
 
 /* ══ RENDER ══ */
 function render(){
+  try{const nh='#'+sec;if(window.history&&history.replaceState&&window.location.hash!==nh)history.replaceState(null,'',nh);}catch(e){}
   updateTimeTagline();
   updateStreakUI();
   const curMeta=SECS.find(m=>m.id===sec)||SECS[0];
@@ -7974,6 +7975,18 @@ try {
     save();
   }
 } catch(e){}
+
+// Hash deep-link support (#asr, #tasbeeh, #kahf, ...) — enables PWA manifest shortcuts
+try {
+  const hSec = (window.location.hash || '').replace(/^#\/?/, '');
+  if(hSec && SECS && SECS.some(m => m.id === hSec)) sec = hSec;
+} catch(e){}
+window.addEventListener('hashchange', () => {
+  try {
+    const hSec = (window.location.hash || '').replace(/^#\/?/, '');
+    if(hSec && SECS.some(m => m.id === hSec) && hSec !== sec) { sec = hSec; render(); }
+  } catch(e){}
+});
 
 checkDailyResetAndStreak();
 applyTimeAwareRecommendation();
