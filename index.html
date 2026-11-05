@@ -1460,6 +1460,33 @@ html[lang="ar"] .dam-box {
 .p2-heat .p2-d.today{border-color:var(--gold2, #f0c840);box-shadow:0 0 0 1.5px rgba(240, 200, 64, .35)}
 .p2-heat-cap{display:block;text-align:center;font-size:.6rem;color:var(--g2);opacity:.75;margin-top:.25rem}
 
+/* ══ PHASE 3: BOTTOM NAV (mobile only; desktop >820px unchanged) ══ */
+#p3BottomNav{display:none}
+@media (max-width: 819.98px){
+  #p3BottomNav{
+    display:flex;position:fixed;left:0;right:0;bottom:0;z-index:190;
+    background:rgba(6, 20, 11, .94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-top:1px solid var(--card-border);
+    padding:6px max(10px, env(safe-area-inset-left)) calc(6px + env(safe-area-inset-bottom, 0px)) max(10px, env(safe-area-inset-right));
+    justify-content:space-around;gap:4px;
+  }
+  body{padding-bottom:calc(76px + env(safe-area-inset-bottom, 0px))}
+  .p3-t{background:none;border:none;color:var(--text2);display:flex;flex-direction:column;align-items:center;gap:2px;font-family:var(--ur-font);font-size:.72rem;cursor:pointer;padding:4px 12px;border-radius:12px;transition:color .15s}
+  .p3-t .p3-i{font-size:1.3rem;line-height:1}
+  .p3-t.active{color:var(--gold2, #f0c840)}
+  .p3-t:active{transform:scale(.94)}
+}
+
+/* ══ PHASE 3B: HOME HUB CARD (welcome top summary) ══ */
+.p3-hub{display:flex;align-items:stretch;gap:.45rem;margin:.15rem 0 .9rem;direction:rtl}
+.p3-hub-stats{flex:1;display:flex;gap:.45rem}
+.p3-hub-item{flex:1;background:rgba(16,185,129,.07);border:1px solid var(--card-border);border-radius:14px;padding:.6rem .35rem;text-align:center;font-family:var(--ur-font);min-width:0}
+.p3-hub-item b{display:block;color:var(--gold2,#f0c840);font-size:1.08rem;font-weight:700;line-height:1.35}
+.p3-hub-item span{display:block;font-size:.6rem;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.p3-go{flex:0 0 auto;background:linear-gradient(135deg,#f6d667,#d4a017);color:#1a1206;border:none;border-radius:14px;padding:.45rem .95rem;font-family:var(--ur-font);font-weight:700;font-size:.85rem;cursor:pointer;box-shadow:0 3px 14px rgba(212,160,23,.28);transition:transform .12s}
+.p3-go:active{transform:scale(.96)}
+.p3-go[disabled]{opacity:.4;cursor:default}
+
 </style>
 </head>
 <body translate="no" class="notranslate">
@@ -6136,6 +6163,14 @@ function renderWelcome(mc){
       <div class="welcome-guide">
         ${t('guide')}
       </div>
+      <div class="p3-hub" id="p3HubCard">
+        <div class="p3-hub-stats">
+          <div class="p3-hub-item"><b data-hub="streak">۱</b><span>🔥 ${S.lang==='en'?'Day streak':'دن تسلسل'}</span></div>
+          <div class="p3-hub-item"><b data-hub="today">۰</b><span>📿 ${S.lang==='en'?'Today':'آج کے ذکر'}</span></div>
+          <div class="p3-hub-item"><b data-hub="done">۰</b><span>✅ ${S.lang==='en'?'Completed':'مکمل'}</span></div>
+        </div>
+        <button type="button" class="p3-go" id="p3ContinueBtn" title="">↩ ${S.lang==='en'?'Continue':'جاری'}</button>
+      </div>
       <div class="welcome-grid">
         ${cardsHtml}
       </div>
@@ -6154,12 +6189,29 @@ function renderWelcome(mc){
       window.scrollTo(0, 0);
     });
   });
+  const p3Continue = document.getElementById('p3ContinueBtn');
+  if(p3Continue){
+    p3Continue.addEventListener('click', () => {
+      try{
+        const lastSec = localStorage.getItem('azk_last_sec') || '';
+        if(lastSec && SECS.some(m => m.id === lastSec)){
+          sec = lastSec;
+          save();
+          render();
+          window.scrollTo(0, 0);
+        }
+      }catch(e){}
+    });
+  }
+  p3UpdateHub();
   renderDrawer();
 }
 
 /* ══ RENDER ══ */
 function render(){
   try{const nh='#'+sec;if(window.history&&history.replaceState&&window.location.hash!==nh)history.replaceState(null,'',nh);}catch(e){}
+  try{if(sec!=='welcome')localStorage.setItem('azk_last_sec',sec);}catch(e){}
+  p3SyncNav();
   updateTimeTagline();
   updateStreakUI();
   const curMeta=SECS.find(m=>m.id===sec)||SECS[0];
@@ -7888,6 +7940,87 @@ function p2RoundRect(ctx, x, y, w, h, r){
   ctx.closePath();
 }
 
+/* ══ PHASE 3A: BOTTOM NAV + HOME HUB (additive; drawer/home flow untouched) ══ */
+function p2TickToday(){
+  try{
+    const today = getTodayDateString();
+    let o = {};
+    try{ o = JSON.parse(localStorage.getItem('azk_today_taps') || '{}'); }catch(e){ o = {}; }
+    if(o.d !== today) o = { d: today, n: 0 };
+    o.n = (o.n || 0) + 1;
+    localStorage.setItem('azk_today_taps', JSON.stringify(o));
+  }catch(e){}
+}
+function p3InjectBottomNav(){
+  try{
+    if(document.getElementById('p3BottomNav')) return;
+    const nav = document.createElement('nav');
+    nav.id = 'p3BottomNav';
+    nav.setAttribute('aria-label', 'Main navigation');
+    const L = (S && S.lang === 'en');
+    nav.innerHTML = `
+      <button type="button" class="p3-t" data-nav="welcome"><span class="p3-i">🏠</span><span class="p3-l">${L ? 'Home' : 'ہوم'}</span></button>
+      <button type="button" class="p3-t" data-nav="drawer"><span class="p3-i">📿</span><span class="p3-l">${L ? 'Azkar' : 'اذکار'}</span></button>
+      <button type="button" class="p3-t" data-nav="kahf"><span class="p3-i">📖</span><span class="p3-l">${L ? 'Read' : 'پڑھیں'}</span></button>
+      <button type="button" class="p3-t" data-nav="settings"><span class="p3-i">⚙️</span><span class="p3-l">${L ? 'Settings' : 'ترتیبات'}</span></button>`;
+    document.body.appendChild(nav);
+    nav.querySelectorAll('.p3-t').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const n = btn.dataset.nav;
+        if(n === 'settings'){ openSettingsModal(); return; }
+        if(n === 'drawer'){
+          const d = document.getElementById('drawer'), o = document.getElementById('overlay');
+          if(d){ d.classList.add('open'); if(o) o.classList.add('open'); }
+          return;
+        }
+        if(n !== sec){ sec = n; save(); render(); window.scrollTo(0, 0); }
+      });
+    });
+  }catch(e){}
+}
+function p3SyncNav(){
+  try{
+    const nav = document.getElementById('p3BottomNav');
+    if(!nav) return;
+    nav.querySelectorAll('.p3-t').forEach(btn => {
+      const n = btn.dataset.nav;
+      const isQuranRead = n === 'kahf' && SECS && SECS.some(m => m.id === sec && (m.group === 'quran26' || sec === 'kahf' || sec === 'mulk' || sec === 'waqiah' || sec === 'rahman' || sec === 'manzil' || sec === 'yaseen'));
+      btn.classList.toggle('active', sec === n || isQuranRead);
+    });
+  }catch(e){}
+}
+function p3UpdateHub(){
+  try{
+    const st = document.getElementById('p3HubCard');
+    if(!st) return;
+    const streakEl = st.querySelector('[data-hub="streak"]');
+    if(streakEl) streakEl.textContent = formatStreakNumber(streakCount || 1, S.lang);
+    let taps = 0;
+    try{
+      const t = JSON.parse(localStorage.getItem('azk_today_taps') || '{}');
+      if(t.d === getTodayDateString()) taps = t.n || 0;
+    }catch(e){}
+    const tEl = st.querySelector('[data-hub="today"]');
+    if(tEl) tEl.textContent = formatStreakNumber(taps, S.lang);
+    let doneTotal = 0;
+    ['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana'].forEach(k => { if(S[k] && S[k].done) doneTotal += S[k].done.filter(Boolean).length; });
+    if(S.asr && S.asr.done) doneTotal++;
+    if(S.tasbeeh && S.tasbeeh.sets) doneTotal += S.tasbeeh.sets;
+    if(customAzkar) doneTotal += customAzkar.filter(x => x.done || (x.target && x.cnt >= x.target)).length;
+    const dEl = st.querySelector('[data-hub="done"]');
+    if(dEl) dEl.textContent = formatStreakNumber(doneTotal, S.lang);
+    let lastSec = '';
+    try{ lastSec = localStorage.getItem('azk_last_sec') || ''; }catch(e){}
+    const cBtn = document.getElementById('p3ContinueBtn');
+    if(cBtn){
+      const meta = SECS.find(m => m.id === lastSec);
+      cBtn.title = meta ? getLoc(meta.title) : '';
+      cBtn.disabled = !meta;
+      cBtn.style.opacity = meta ? '1' : '.45';
+    }
+  }catch(e){}
+}
+
 /* ══ ALL DUA SECTIONS REGISTRY ══ */
 const ALL_DUA_DATA = {fajr:FAJR,jumma:JUMMA,durood_pak:DUROOD_PAK,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH,post_salah:POST_SALAH,morning_wake:MORNING_WAKE,relief_debt:RELIEF_DEBT,istikhara:ISTIKHARA,rabbana:RABBANA};
 
@@ -7925,6 +8058,7 @@ function tap(){
   else S[activeSec].cnt++;
   save();
   recordDhikrActivity();
+  p2TickToday();
   beep(isTsb ? 640 : isAsr ? 800 : isCust ? 720 : 760, .08);
   vib(18);
   const ri = document.getElementById('ri');
@@ -8237,6 +8371,7 @@ window.addEventListener('hashchange', () => {
 checkDailyResetAndStreak();
 applyTimeAwareRecommendation();
 if(typeof applyLang === 'function') applyLang(S.lang || 'ur');
+p3InjectBottomNav();
 render();
 </script>
 </body>
