@@ -1555,6 +1555,23 @@ html[lang="ar"] .dam-box {
 .p3-go:active{transform:scale(.96)}
 .p3-go[disabled]{opacity:.4;cursor:default}
 
+/* ══ PHASE 6: HOME CHOOSE-ZIKR SECTION (picker relocated from top header) ══ */
+.p6-pick{background:rgba(16,185,129,.06);border:1px solid var(--card-border);border-radius:16px;padding:.55rem;margin:.9rem 0 .9rem;direction:rtl}
+.p6-row{display:flex;align-items:center;gap:.7rem;padding:.55rem .6rem;border-radius:12px;cursor:pointer;transition:background .15s}
+.p6-row:hover,.p6-row:focus-visible{background:rgba(16,185,129,.1);outline:none}
+.p6-ic{font-size:1.35rem;flex-shrink:0}
+.p6-info{flex:1;min-width:0;text-align:right}
+.p6-cap{display:block;font-size:.66rem;color:var(--text3);font-family:var(--ur-font)}
+.p6-cur{display:block;color:var(--gold-light);font-family:var(--ur-font);font-weight:700;font-size:.98rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.p6-chg{flex-shrink:0;font-family:var(--ur-font);font-size:.72rem;color:var(--g2);border:1px solid var(--card-border);border-radius:10px;padding:.3rem .6rem;background:rgba(255,255,255,.04)}
+.p6-quick{display:grid;grid-template-columns:1fr 1fr;gap:.45rem;margin-top:.5rem}
+.p6-qb{background:rgba(16,185,129,.08);border:1px solid var(--card-border);color:var(--text);border-radius:12px;padding:.6rem .35rem;font-family:var(--ur-font);font-size:.82rem;cursor:pointer;transition:all .15s}
+.p6-qb:hover{background:rgba(16,185,129,.16);border-color:rgba(52,211,153,.4)}
+.p6-qb:active{transform:scale(.97)}
+.p6-qb.p6-add{background:linear-gradient(135deg,rgba(240,200,64,.16),rgba(212,160,23,.1));border-color:rgba(240,200,64,.4);color:var(--gold-light)}
+html[dir="ltr"] .p6-info{text-align:left}
+html[dir="ltr"] .p6-pick{direction:ltr}
+
 </style>
 </head>
 <body translate="no" class="notranslate">
@@ -1582,11 +1599,6 @@ html[lang="ar"] .dam-box {
 </div>
 
 <nav class="nav">
-  <button type="button" class="zikr-picker-btn" id="zikrPickerBtn" title="ذکر تبدیل کریں">
-    <span class="zp-icon" id="zpIcon">☀️</span>
-    <span class="zp-name" id="zpName">جمعہ عصر درود</span>
-    <span class="zp-arrow">▾</span>
-  </button>
   <div class="nav-actions">
     <div class="streak-badge" id="streakBadge" title="مسلسل روزانہ اذکار پڑھنے کا ریکارڈ">🔥 <span id="streakCount">1</span> دن</div>
     <button type="button" class="sound-btn" id="p4SearchBtn" title="تلاش (Search)">🔍</button>
@@ -6241,6 +6253,27 @@ function renderWelcome(mc){
         </div>`;
   }).join('');
 
+  // ── p6: CHOOSE-ZIKR SECTION (picker moved from top header to home) ──
+  const isEnW = S.lang === 'en' || S.lang === 'id' || S.lang === 'tr' || S.lang === 'fr';
+  const curMeta = (typeof SECS !== 'undefined') ? SECS.find(m => m.id === sec) : null;
+  const curIcon = (sec === 'welcome') ? '📿' : (curMeta ? curMeta.icon : '🕌');
+  const curTitle = (sec === 'welcome') ? (isEnW ? 'Choose a zikr' : 'ذکر منتخب کریں') : (curMeta ? getShortTitle(curMeta) : (isEnW ? 'Choose a zikr' : 'ذکر منتخب کریں'));
+  const p6Html = `
+      <div class="p6-pick" id="p6HomePicker">
+        <div class="p6-row" id="p6PickBtn" role="button" tabindex="0" title="${isEnW ? 'Change zikr' : 'ذکر تبدیل کریں'}">
+          <span class="p6-ic" id="p6Ic">${curIcon}</span>
+          <div class="p6-info">
+            <span class="p6-cap">${isEnW ? 'Choose zikr' : 'ذکر منتخب کریں'}</span>
+            <b class="p6-cur" id="p6Cur">${curTitle}</b>
+          </div>
+          <span class="p6-chg">${isEnW ? 'Change ▾' : 'تبدیل ▾'}</span>
+        </div>
+        <div class="p6-quick">
+          <button type="button" class="p6-qb" id="p6MyBtn">${isEnW ? '📝 My custom azkar' : '📝 میرے ذاتی اذکار'}</button>
+          <button type="button" class="p6-qb p6-add" id="p6AddBtn">${isEnW ? '➕ New custom zikr' : '➕ نیا ذاتی ذکر'}</button>
+        </div>
+      </div>`;
+
   mc.innerHTML = `
     <div class="welcome-card">
       <div class="welcome-icon">🕌</div>
@@ -6259,6 +6292,7 @@ function renderWelcome(mc){
         </div>
         <button type="button" class="p3-go" id="p3ContinueBtn" title="">↩ ${S.lang==='en'?'Continue':'جاری'}</button>
       </div>
+      ${p6Html}
       <div class="welcome-grid">
         ${cardsHtml}
       </div>
@@ -6289,6 +6323,26 @@ function renderWelcome(mc){
           window.scrollTo(0, 0);
         }
       }catch(e){}
+    });
+  }
+  /* ── p6: home pick-section bindings (reuse existing zikr picker modal) ── */
+  const p6Pick = document.getElementById('p6PickBtn');
+  if(p6Pick){
+    const go = () => { if(typeof openZikrPicker === 'function') openZikrPicker(); };
+    p6Pick.addEventListener('click', go);
+    p6Pick.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); go(); } });
+  }
+  const p6My = document.getElementById('p6MyBtn');
+  if(p6My){
+    p6My.addEventListener('click', () => {
+      sec = 'custom'; customActiveId = null;
+      save(); render(); window.scrollTo(0, 0);
+    });
+  }
+  const p6Add = document.getElementById('p6AddBtn');
+  if(p6Add){
+    p6Add.addEventListener('click', () => {
+      try{ if(typeof openAddCustomModal === 'function'){ openAddCustomModal(); } }catch(e){}
     });
   }
   p3UpdateHub();
@@ -8041,20 +8095,23 @@ function p3InjectBottomNav(){
     const L = (S && S.lang === 'en');
     nav.innerHTML = `
       <button type="button" class="p3-t" data-nav="welcome"><span class="p3-i">🏠</span><span class="p3-l">${L ? 'Home' : 'ہوم'}</span></button>
+      <button type="button" class="p3-t" data-nav="custom"><span class="p3-i">📝</span><span class="p3-l">${L ? 'My Zikr' : 'ذاتی زیکر'}</span></button>
       <button type="button" class="p3-t" data-nav="drawer"><span class="p3-i">📿</span><span class="p3-l">${L ? 'Azkar' : 'اذکار'}</span></button>
-      <button type="button" class="p3-t" data-nav="kahf"><span class="p3-i">📖</span><span class="p3-l">${L ? 'Read' : 'پڑھیں'}</span></button>
-      <button type="button" class="p3-t" data-nav="settings"><span class="p3-i">⚙️</span><span class="p3-l">${L ? 'Settings' : 'ترتیبات'}</span></button>`;
+      <button type="button" class="p3-t" data-nav="kahf"><span class="p3-i">📖</span><span class="p3-l">${L ? 'Read' : 'پڑھیں'}</span></button>`;
     document.body.appendChild(nav);
     nav.querySelectorAll('.p3-t').forEach(btn => {
       btn.addEventListener('click', () => {
         const n = btn.dataset.nav;
-        if(n === 'settings'){ openSettingsModal(); return; }
         if(n === 'drawer'){
           const d = document.getElementById('drawer'), o = document.getElementById('overlay');
           if(d){ d.classList.add('open'); if(o) o.classList.add('open'); }
           return;
         }
-        if(n !== sec){ sec = n; save(); render(); window.scrollTo(0, 0); }
+        if(n === 'custom'){ customActiveId = null; } // zaati tab: reset active custom card
+        if(n !== sec){
+          sec = n;
+          save(); render(); window.scrollTo(0, 0);
+        }
       });
     });
   }catch(e){}
