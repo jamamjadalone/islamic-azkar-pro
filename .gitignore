@@ -31,3 +31,6 @@ npm-debug.log*
 # Static analysis
 .sass-cache/
 .eslintcache
+# android widget project (source only — build artifacts out)
+android/
+# android widget project (source only — build artifacts out)
