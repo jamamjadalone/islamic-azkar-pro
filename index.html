@@ -6652,15 +6652,20 @@ function p15LoadMeta(){
   return FULL_QURAN_META_PROMISE;
 }
 /* ══ p17: script variant — 'pak' = Pakistani Mushaf (IndoPak v9.6 Madinah),
-   'uth' = Tanzil Uthmani. Default pak (Pakistan me wahi parha jata hai). ══ */
+   'uth' = Tanzil Uthmani. p18: toggle-chip UI hata di gayi (user request) —
+   default 'pak' hi rahega. fSetReadScript UI-restore ke liye mehfooz. ══ */
 let fReadScript = 'pak';
-try{
-  const sv = localStorage.getItem('azk_read_script');
-  if(sv === 'pak' || sv === 'uth') fReadScript = sv;
-}catch(e){}
 function fSetReadScript(v){
   fReadScript = (v === 'uth') ? 'uth' : 'pak';
   try{ localStorage.setItem('azk_read_script', fReadScript); }catch(e){}
+  save();
+  render();
+  window.scrollTo(0, 0);
+}
+/* p18: back — reader se Quran fahrist (cat_quran) par wapsi */
+function goQuranBack(){
+  sec = 'cat_quran';
+  try{ history.replaceState(null, '', '#cat_quran'); }catch(e){}
   save();
   render();
   window.scrollTo(0, 0);
@@ -6676,8 +6681,33 @@ function fqFontFix(t){
     .replace(/\u065C/g, '');
 }
 function p15FormatBism(n){
-  // Tawbah (9): mushaf me bismillah nahi. Fatihah (1): aayat-1 khud bismillah hai.
-  return (n !== 9 && n !== 1);
+  // Tawbah (9): mushaf me bismillah nahi. p18: Fatihah (1) me bhi header-bism
+  // dikhega — 26-mubarak source valley ki tarah (ayah text se strip kiya jata hai).
+  return n !== 9;
+}
+/* p18: Fatihah ayah-1 text khud bismillah hoti hai (dono sources). Header me
+   bism dikhane ke liye text se strip — letters-skeleton based (waqf/tashkeel
+   safe, dono scripts pak/uth pe kaam karta hai) */
+function fqStripBismLead(t){
+  const s = String(t == null ? '' : t);
+  // diacritics/waqf-invisible chars hata kar haroof skeleton + original index map
+  const mark = c => c === ' ' || (c >= '\u0610' && c <= '\u061A') || c === '\u0640' ||
+    (c >= '\u064B' && c <= '\u065F') || c === '\u0670' || (c >= '\u06D6' && c <= '\u06ED') ||
+    (c >= '\u08F0' && c <= '\u08F3') || c === '\u200A' || c === '\u200C' || c === '\u200D' || c === '\u2060';
+  const canon = { '\u0671': '\u0627', '\u06CC': '\u064A', '\u06C1': '\u0647' };
+  let skel = '', idx = [];
+  for(let i = 0; i < s.length; i++){
+    const ch = s[i];
+    if(mark(ch)) continue;
+    skel += (canon[ch] || ch);
+    idx.push(i);
+  }
+  const TARGET = '\u0628\u0633\u0645' + '\u0627\u0644\u0644\u0647' + '\u0627\u0644\u0631\u062D\u0645\u0646' + '\u0627\u0644\u0631\u062D\u064A\u0645'; // bismillah ar-Rahman ar-Raheem
+  if(skel.indexOf(TARGET) !== 0 || idx.length < TARGET.length) return s;
+  let cut = idx[TARGET.length - 1] + 1;
+  // leading space/waqf marks bhi khatam
+  while(cut < s.length && mark(s[cut])) cut++;
+  return s.slice(cut);
 }
 function renderFullSurah(mc, n){
   document.getElementById('progBar').style.width = '0%';
@@ -6693,20 +6723,39 @@ function renderFullSurah(mc, n){
     // p17: script variant — pak=IndoPak font, uth=Tanzil + font-fix
     const isPak = (fReadScript === 'pak');
     const ipCls = isPak ? ' ip-text' : '';
-    const fixT = (t) => isPak ? t : fqFontFix(t);
+    const fixT = (t) => {
+      let x = isPak ? t : fqFontFix(t);
+      // p18: Fatihah ayah-1 (bismillah) text strip — bism header me dikhaya jata hai
+      if(n === 1) x = fqStripBismLead(x);
+      return x;
+    };
+    // p18: sirf bilkul khali ho chuki ayah-1 (bism strip ke baad) skip
+    const rows = data.ayahs
+      .map(a => ({ n: a.n, t: fixT(a.t) }))
+      .filter(a => a.t.trim() !== '');
     let body = '';
     if(vm === 'para'){
-      body = `<div class="para-block${ipCls}">${data.ayahs.map(a =>
-        `${fixT(a.t)} <span class="vnum-ornate" data-a="${a.n}">﴿${formatAyatNum(a.n, 'ur')}﴾</span>`
+      body = `<div class="para-block${ipCls}">${rows.map(a =>
+        `${a.t} <span class="vnum-ornate" data-a="${a.n}">﴿${formatAyatNum(a.n, 'ur')}﴾</span>`
       ).join(' ')}</div>`;
     } else {
-      body = data.ayahs.map(a =>
-        `<div class="vblock"><div class="vtxt${ipCls}" data-a="${a.n}">${fixT(a.t)} <span class="vnum-ornate">﴿${formatAyatNum(a.n, 'ur')}﴾</span></div></div>`
+      body = rows.map(a =>
+        `<div class="vblock"><div class="vtxt${ipCls}" data-a="${a.n}">${a.t} <span class="vnum-ornate">﴿${formatAyatNum(a.n, 'ur')}﴾</span></div></div>`
       ).join('');
     }
+    // p18: fazeelat — 26-mubarak dataset ka intro (same surah no) dobara istemal;
+    // baqi 88 surahs ka intro-data bundle me nahi hai, is liye fazeelat nahi dikhti
+    let introHtml = '';
+    const s26rec = SURAHS_26_DATA.find ? SURAHS_26_DATA.find(r => r && Number(r.sno) === n && r.intro) : null;
+    if(s26rec){
+      const fazLabel = isEn ? '✨ View Hadith Virtues & Spiritual Context' : '✨ فضیلت و برکات دیکھیں (مفہومِ احادیث)';
+      introHtml = `<div style="margin:.45rem auto .85rem;max-width:680px;text-align:center">
+        <button type="button" class="faz-btn-highlight" onclick="toggleFaz(this)">${fazLabel}</button>
+        <div class="faz-body" style="font-family:var(--ur-font);line-height:2.3;font-size:.88rem;direction:rtl;text-align:right;background:rgba(16,185,129,.07);padding:1rem 1.15rem;border-radius:14px;border:1px solid rgba(245,158,11,.35);box-shadow:0 4px 20px rgba(0,0,0,.45);color:var(--text);margin-top:.4rem">${s26rec.intro.replace(/\n/g,'<br/>')}</div>
+      </div>`;
+    }
     const vmChips = `<div style="display:flex;justify-content:center;gap:.4rem;margin:.55rem auto .3rem;flex-wrap:wrap">
-        <button type="button" class="q-chip ${isPak?'active':''}" onclick="fSetReadScript('pak')" title="${isEn ? 'Pakistani Mushaf (IndoPak script)' : 'پاکستانی مصحف'}">🇵🇰 پاکستانی مصحف</button>
-        <button type="button" class="q-chip ${!isPak?'active':''}" onclick="fSetReadScript('uth')" title="${isEn ? 'Uthmani Hafsi script' : 'عثمانی رسم الخط'}">🇵🇸 عثمانی رسم الخط</button>
+        <button type="button" class="q-chip" onclick="goQuranBack()" title="${isEn ? 'Back to Quran list' : 'قرآن کی فہرست پر واپس'}">⬅ ${isEn ? 'Quran List' : 'قرآن فہرست'}</button>
         <button type="button" class="q-chip ${vm==='para'?'active':''}" onclick="setGlobalViewMode('para')">📖 پیراگراف</button>
         <button type="button" class="q-chip ${vm==='verse'?'active':''}" onclick="setGlobalViewMode('verse')">🔢 آیت بہ آیت</button>
       </div>`;
@@ -6717,6 +6766,7 @@ function renderFullSurah(mc, n){
       <div class="quran-hd">
         <div class="quran-title">${ur}</div>
         ${metaLine}
+        ${introHtml}
         ${vmChips}
       </div>${bism}`;
     const footer = `<div style="text-align:center;padding:2rem 0 .5rem;font-family:var(--qfont);font-size:1.1rem;color:var(--gold2);direction:rtl;line-height:2.1">۞ صَدَقَ اللَّهُ الْعَظِيمُ ۞</div></div>`;
@@ -7195,6 +7245,7 @@ function renderQuran(mc, surahId){
       <div class="quran-meta">${typeof cfg.meta === 'function' ? cfg.meta(isIndopak) : (cfg.meta || '')}</div>
       ${introHtml}
       <div style="display:flex;justify-content:center;gap:.4rem;margin:.55rem auto .3rem;flex-wrap:wrap">
+        <button type="button" class="q-chip" onclick="goQuranBack()" title="${(getActiveLang()==='ur'||getActiveLang()==='ar') ? 'قرآن کی فہرست پر واپس' : 'Back to Quran list'}">⬅ ${(getActiveLang()==='ur'||getActiveLang()==='ar') ? 'قرآن فہرست' : 'Quran List'}</button>
         <button type="button" class="q-chip ${viewMode==='para'?'active':''}" onclick="setGlobalViewMode('para')">📖 پیراگراف (مصحف)</button>
         <button type="button" class="q-chip ${viewMode==='verse'?'active':''}" onclick="setGlobalViewMode('verse')">🔢 آیت بہ آیت</button>
       </div>
@@ -7224,8 +7275,10 @@ function renderQuran(mc, surahId){
       content = content.replace(/^بِسۡمِ اللّٰہِ الرَّحۡمٰنِ الرَّحِیۡمِ\s*/, '');
     }
     if(viewMode === 'para'){
+      /* p18: para mode me golden ornate ayat markers (app-wide fix) */
+      const ornate = (s) => s.replace(/﴿([^﴾]*)﴾/g, '<span class="vnum-ornate">﴿$1﴾</span>');
       const paras = content.split(/\n\n+/);
-      body = `<div class="para-block">${paras.map(p => `<p style="margin:0 0 1.2rem;text-align:justify;line-height:2.9">${p.replace(/\n/g,'<br/>')}</p>`).join('')}</div>`;
+      body = `<div class="para-block">${paras.map(p => `<p style="margin:0 0 1.2rem;text-align:justify;line-height:2.9">${ornate(p).replace(/\n/g,'<br/>')}</p>`).join('')}</div>`;
     } else {
       const pattern = /(.*?)﴿([^﴾]*?)﴾/gs;
       let m;
