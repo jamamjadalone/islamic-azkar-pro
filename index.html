@@ -735,6 +735,9 @@ body::before{
    Revert: in do lines ko hatao (ya hide-ayat-badge tag ka revert). */
 .vnum{display:none !important}
 .vnum-inline{display:none !important}
+/* golden ornate ayat marker (app-wide, user directive 2026-11-06) */
+.vnum-ornate{font-family:var(--qfont);color:var(--gold-light);white-space:nowrap}
+.para-block .vnum-ornate{padding:0 .15rem}
 
 /* paragraph mode */
 .para-block{font-family:var(--qfont);font-size:var(--qs);line-height:2.9;color:var(--ar);direction:rtl;text-align:justify;padding:.35rem .25rem;word-break:break-word;transition:font-size .2s ease}
@@ -6638,7 +6641,7 @@ function render(){
     h+=`<div class="dam-box"><strong>${t("dam_title")}</strong><br/><br/>${t("dam_desc")}</div>
     <div style="margin:.45rem 0"><div id="dmBtn" style="width:112px;height:112px;margin:0 auto;border-radius:50%;background:radial-gradient(circle at 38% 32%,#0d1e0f,var(--bg));border:1px solid rgba(60,179,113,.25);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;">
     ${done?`<div style="font-size:1.9rem">✅</div><div style="font-size:.68rem;color:var(--g2);margin-top:3px">${damDoneLabel}</div>`:`<div style="font-size:2rem">🫁</div><div style="font-size:.65rem;color:var(--text2);margin-top:3px">${damBlowLabel}</div>`}
-    </div></div><div class="faz-body open" style="display:block">${curFaz}</div>`;
+    </div></div><div class="faz-body open" style="display:block">${ornateAyat(curFaz)}</div>`;
   } else {
     const txt=step.ar,hasBismi=txt.startsWith('بِسْمِ اللّٰهِ')&&txt.includes('\n');
     let bismi='',body=txt;
@@ -6651,10 +6654,10 @@ function render(){
     const curFaz  = getDuaField(sec, st.idx, "faz", step.faz);
     const curRef  = getDuaField(sec, st.idx, "ref", step.ref);
     h+=`<div class="dua-card">${bismi?`<span class="bismi">${bismi}</span>`:''}
-      <div class="ar">${body.replace(/\n/g,'<br/>')}</div>
+      <div class="ar">${ornateAyat(body).replace(/\n/g,'<br/>')}</div>
       <div class="dua-name">${curName}</div></div>
     <button type="button" class="faz-btn" onclick="toggleFaz(this)">${t("faz_btn")}</button>
-    <div class="faz-body">${curFaz}${curRef?`<span class="faz-ref">${curRef}</span>`:''}</div>
+    <div class="faz-body">${ornateAyat(curFaz)}${curRef?`<span class="faz-ref">${curRef}</span>`:''}</div>
     <button type="button" class="faz-btn" style="display:inline-flex;margin-top:.5rem" onclick="p2ShareDuaImage()">${p2ShareLabel()}</button>
     ${ring(cnt,step.target,color,done)}`;
   }
@@ -6899,6 +6902,11 @@ function cleanVerseText(t){
   return t.replace(/\s*﴿[۰-۹0-9]+﴾\s*$/, '').trim();
 }
 
+/* golden ornate ayat marker (p10) — har text me ﴿…﴾ ko golden ornate span me wrap */
+function ornateAyat(txt){
+  return String(txt == null ? '' : txt).replace(/﴿([^﴾]*)﴾/g, (m, inner) => `<span class="vnum-ornate">﴿${inner}﴾</span>`);
+}
+
 function renderQuran(mc, surahId){
   document.getElementById('progBar').style.width = '100%';
   recordDhikrActivity();
@@ -6941,12 +6949,12 @@ function renderQuran(mc, surahId){
       if(viewMode === 'para'){
         body += `<div class="para-block">${ruku.verses.map(v => {
           const cleanTxt = cleanVerseText(v.t);
-          return `${cleanTxt} <span class="vnum-ornate" style="color:var(--gold-light);font-family:var(--qfont);white-space:nowrap;padding:0 .15rem">﴿${formatAyatNum(v.n, 'ur')}﴾</span>`;
+          return `${cleanTxt} <span class="vnum-ornate">﴿${formatAyatNum(v.n, 'ur')}﴾</span>`;
         }).join(' ')}</div>`;
       } else {
         body += ruku.verses.map(v => {
           const cleanTxt = cleanVerseText(v.t);
-          return `<div class="vblock"><div class="vnum">${formatAyatNum(v.n, S.lang)}</div><div class="vtxt">${cleanTxt} <span class="vnum-ornate" style="color:var(--gold-light);font-family:var(--qfont)">﴿${formatAyatNum(v.n, 'ur')}﴾</span></div></div>`;
+          return `<div class="vblock"><div class="vnum">${formatAyatNum(v.n, S.lang)}</div><div class="vtxt">${cleanTxt} <span class="vnum-ornate">﴿${formatAyatNum(v.n, 'ur')}﴾</span></div></div>`;
         }).join('');
       }
     });
@@ -6970,7 +6978,7 @@ function renderQuran(mc, surahId){
         const num = numMatch ? numMatch[1] : '';
         lastIndex = pattern.lastIndex;
         if(txt || inside){
-          versesHtml += `<div class="vblock"><div class="vnum">${num || '•'}</div><div class="vtxt">${txt} <span class="vnum-ornate" style="color:var(--gold-light);font-family:var(--qfont)">﴿${inside}﴾</span></div></div>`;
+          versesHtml += `<div class="vblock"><div class="vnum">${num || '•'}</div><div class="vtxt">${txt} <span class="vnum-ornate">﴿${inside}﴾</span></div></div>`;
         }
       }
       if(lastIndex < content.length){
@@ -7031,7 +7039,7 @@ function renderCustom(mc){
         <button type="button" class="btn-sm" onclick="resetActiveCustom()" title="ری سیٹ">↺</button>
       </div>
       <div class="dua-card">
-        <div class="ar" style="font-size:calc(var(--qs)*1.05)">${(item.ar||'').replace(/\n/g,'<br/>')}</div>
+        <div class="ar" style="font-size:calc(var(--qs)*1.05)">${ornateAyat(item.ar||'').replace(/\n/g,'<br/>')}</div>
         <div class="dua-name">${item.name} — ہدف: ${item.target} مرتبہ</div>
       </div>
       ${ring(cnt,target,'var(--g1)',done)}
@@ -7081,7 +7089,7 @@ function renderCustom(mc){
               </div>
             </div>
           </div>
-          <div class="cust-card-ar">${item.ar}</div>
+          <div class="cust-card-ar">${ornateAyat(item.ar)}</div>
           <div class="cust-bar-wrap"><div class="cust-bar-fill" style="width:${pct}%;background:${isDone?'var(--g2)':'var(--g1)'}"></div></div>
           <div class="cust-card-acts">
             <div class="cust-act-group">
@@ -7273,7 +7281,7 @@ function renderImportList(filter){
         <span class="import-item-name">${item.name}</span>
         <span class="cust-badge">${item.secName} • ×${item.target}</span>
       </div>
-      <div class="import-item-ar">${item.ar}</div>
+      <div class="import-item-ar">${ornateAyat(item.ar)}</div>
       <button type="button" class="btn-sm btn-play" style="align-self:flex-end;margin-top:2px" onclick="selectImportItem(${idx}, '${filter}')">📥 فہرست میں شامل کریں</button>
     </div>
   `).join('');
