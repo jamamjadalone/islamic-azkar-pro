@@ -1572,6 +1572,82 @@ html[lang="ar"] .dam-box {
 html[dir="ltr"] .p6-info{text-align:left}
 html[dir="ltr"] .p6-pick{direction:ltr}
 
+/* ══ PHASE 7: HOME PREMIUM SKIN (additive overrides; remove block = full revert) ══ */
+@keyframes p7spin{to{transform:rotate(1turn)}}
+@keyframes p7cardIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* hero: mosque icon gets a glowing rotating gold ring */
+.welcome-icon{
+  position:relative;width:86px;height:86px;margin-bottom:.6rem;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:2.4rem;
+  background:radial-gradient(circle at 30% 25%, rgba(16,185,129,.28), rgba(6,20,11,.55) 72%);
+  box-shadow:0 8px 30px rgba(16,185,129,.28), inset 0 0 0 1px rgba(52,211,153,.28);
+  filter:none;
+}
+.welcome-icon::before{
+  content:"";position:absolute;inset:-5px;border-radius:50%;pointer-events:none;
+  background:conic-gradient(from 0deg, transparent 0 86%, rgba(240,200,64,.9) 96%, #f0c840 100%);
+  -webkit-mask:radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2.4px));
+          mask:radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2.4px));
+  animation:p7spin 7s linear infinite;
+}
+.welcome-salam{
+  background:linear-gradient(120deg,#f6d667,#f0c840 45%,#d4a017);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  font-size:1.42rem;margin-bottom:.4rem;
+}
+.welcome-card{padding:1.35rem 1rem 1.15rem;border-radius:22px}
+
+/* hub chips: glassy depth */
+.p3-hub-item{
+  background:linear-gradient(160deg, rgba(16,185,129,.13), rgba(16,185,129,.04));
+  border-radius:16px;box-shadow:0 4px 18px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05);
+}
+.p3-hub-item b{font-size:1.22rem}
+.p3-go{box-shadow:0 4px 18px rgba(212,160,23,.38)}
+
+/* choose-zikr section: premium glass + gold change chip */
+.p6-pick{
+  background:linear-gradient(160deg, rgba(16,185,129,.10), rgba(13,30,15,.55));
+  border-color:rgba(52,211,153,.28);border-radius:18px;
+  box-shadow:0 6px 24px rgba(0,0,0,.35);
+}
+.p6-ic{
+  width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg, rgba(16,185,129,.22), rgba(16,185,129,.07));
+  box-shadow:inset 0 0 0 1px rgba(52,211,153,.3);font-size:1.25rem;
+}
+.p6-chg{background:linear-gradient(135deg,#f6d667,#d4a017);color:#1a1206;border:none;font-weight:700;box-shadow:0 3px 12px rgba(212,160,23,.3)}
+
+/* zikr cards: gradient icon bubbles, lift + press feedback, sky entrance */
+.welcome-grid .w-card{
+  animation:p7cardIn .28s ease both;
+  background:linear-gradient(160deg, rgba(13,30,15,.65), rgba(10,22,12,.45));
+  border-radius:15px;box-shadow:0 3px 14px rgba(0,0,0,.28);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+}
+.welcome-grid .w-card:hover{
+  transform:translateY(-2px);border-color:rgba(52,211,153,.45);
+  box-shadow:0 8px 26px rgba(16,185,129,.16);
+}
+.welcome-grid .w-card:active{transform:scale(.985)}
+.w-icon{
+  width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg, rgba(16,185,129,.18), rgba(16,185,129,.05));
+  box-shadow:inset 0 0 0 1px rgba(52,211,153,.22);font-size:1.3rem;
+}
+.w-card.highlight{box-shadow:0 4px 18px rgba(245,158,11,.14)}
+.w-card.highlight .w-icon{
+  background:linear-gradient(135deg, rgba(245,158,11,.26), rgba(245,158,11,.08));
+  box-shadow:inset 0 0 0 1px rgba(245,158,11,.35);
+}
+.w-title{font-size:.9rem}
+.w-sub{color:var(--g2);opacity:.85}
+@media (prefers-reduced-motion: reduce){
+  .welcome-icon::before{animation:none}
+  .welcome-grid .w-card{animation:none}
+}
+
 </style>
 </head>
 <body translate="no" class="notranslate">
@@ -8348,6 +8424,21 @@ function p4OnbRender(){
 const ALL_DUA_DATA = {fajr:FAJR,jumma:JUMMA,durood_pak:DUROOD_PAK,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH,post_salah:POST_SALAH,morning_wake:MORNING_WAKE,relief_debt:RELIEF_DEBT,istikhara:ISTIKHARA,rabbana:RABBANA};
 
 /* ══ TAP ══ */
+/* ══ p7: ZAATI AUTO-RESET (user request: finish-all per cycle counts khud reset ho jayen) ══ */
+function p7CustomAutoReset(){
+  try{
+    if(typeof customAzkar !== 'undefined' && customAzkar && customAzkar.length){
+      const all = customAzkar.every(x => x.done || (x.target && x.cnt >= x.target));
+      if(all){
+        customAzkar.forEach(x => { x.cnt = 0; x.done = false; });
+        customActiveId = null;
+        saveCustomAzkar();
+        return true;
+      }
+    }
+  }catch(e){}
+  return false;
+}
 function tap(){
   const activeSec = sec;
   const isTsb = activeSec === 'tasbeeh', isAsr = activeSec === 'asr', isCust = activeSec === 'custom';
@@ -8415,6 +8506,7 @@ function tap(){
           window.scrollTo(0, 0);
         } else {
           showCompletionScreen('custom');
+          p7CustomAutoReset(); // saat mulk poore ho gae — khud-ba-khud reset (manual reset ki zaroorat khatam)
           renderCustom(document.getElementById('mc'));
         }
         return;
