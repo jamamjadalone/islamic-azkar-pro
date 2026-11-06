@@ -1721,6 +1721,10 @@ html[dir="ltr"] .p9-info{text-align:left}
 @media (max-width:360px){.p9-grid{grid-template-columns:1fr}}
 /* p9b: drawer ab sirf azkar — settings/streak etc. controls top bar & settings modal me rehte hain (hide only, revert-friendly) */
 #drSecSettings,#drSettingsBtn,#drStreakTitle,.dr-streak-box,#drSecAudio,#drSndChips,#drSecTheme,#drThmChips,#drSecPwa,#drInstallBtn{display:none !important}
+/* ══ p15: full-quran list/reader ══ */
+.p9-grp-cap{font-family:var(--ur-font);font-size:.9rem;font-weight:600;color:var(--gold-light);text-align:center;margin:1.1rem 0 .55rem}
+.p15-loading{font-family:var(--ur-font);font-size:.82rem;color:var(--text3);padding:.8rem .4rem;text-align:center;direction:rtl;grid-column:1/-1}
+html[dir="ltr"] .p15-loading{direction:ltr}
 
 </style>
 </head>
@@ -6572,7 +6576,7 @@ function renderCategory(mc, cat){
     const q26 = SECS.filter(m => m.group === 'quran26').map(m => ({id: m.id}));
     tiles = `<div class="p9-grid">${q26.map(build).join('')}${classic.map(build).join('')}</div>`;
     hd = isEn ? 'Quran Mubarak' : 'قرآن مبارک';
-    sub = isEn ? ((q26.length + 6) + ' blessed surahs') : ((q26.length + 6) + ' مبارک سورتیں');
+    sub = isEn ? ((q26.length + 6) + ' blessed surahs + full 114 surahs') : ((q26.length + 6) + ' مبارک سورتیں + مکمل ۱۱۴');
   } else {
     const duain = ['rabbana','istikhara','tawbah','relief_debt','asma'].map(id => ({id}));
     tiles = `<div class="p9-grid">${duain.map(build).join('')}</div>`;
@@ -6590,7 +6594,102 @@ function renderCategory(mc, cat){
     el.addEventListener('click', () => goP9(el.dataset.p9sec));
     el.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); goP9(el.dataset.p9sec); } });
   });
+  if(cat === 'quran'){
+    // p15: mukammal Quran (114 surahs, Tanzil verified) — meta lazy-fetch, tiles append
+    const p15Wrap = document.createElement('div');
+    p15Wrap.id = 'p15FullWrap';
+    p15Wrap.innerHTML = `<div class="p9-grp-cap">${isEn ? '📖 Complete Quran — 114 Surahs' : '📖 مکمل قرآن — ۱۱۴ سورتیں'}</div><div class="p9-grid" id="p15FullGrid"><div class="p15-loading">${isEn ? 'Loading surah list…' : 'فہرست لوڈ ہو رہی ہے…'}</div></div>`;
+    mc.querySelector('.p9-wrap').appendChild(p15Wrap);
+    p15LoadMeta().then(meta => {
+      const grid = document.getElementById('p15FullGrid');
+      if(!grid) return; // user navigated away
+      if(!meta || !meta.surahs || meta.surahs.length !== 114){
+        grid.innerHTML = `<div class="p15-loading">${isEn ? 'Surah list unavailable (first visit needs internet — it stays offline after loading).' : 'فہرست دستیاب نہیں (پہلی بار انٹرنیٹ چاہیے — لوڈ ہونے کے بعد ہمیشہ آف لائن)'}</div>`;
+        return;
+      }
+      grid.innerHTML = meta.surahs.map(m => `<div class="p9-tile p15-tile" data-p15sec="${m.id}" role="button" tabindex="0">
+        <span class="p9-ic">📄</span>
+        <div class="p9-info">
+          <b class="p9-ttl">${m.ur}</b>
+          <span class="p9-ct">${m.ayahs} ${isEn ? 'ayat' : 'آیات'} · ${m.en}</span>
+        </div>
+        <span class="p9-arrow">←</span>
+      </div>`).join('');
+      grid.querySelectorAll('.p15-tile').forEach(el => {
+        el.addEventListener('click', () => { sec = 'fq_' + el.dataset.p15sec; save(); render(); window.scrollTo(0, 0); });
+        el.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); sec = 'fq_' + el.dataset.p15sec; save(); render(); window.scrollTo(0, 0); } });
+      });
+    });
+  }
   renderDrawer();
+}
+/* ══ p15: FULL QURAN (114 surahs, Tanzil verified, on-demand fetch + offline cache) ══ */
+let FULL_QURAN_META = null;
+let FULL_QURAN_META_PROMISE = null;
+function p15LoadMeta(){
+  if(!FULL_QURAN_META_PROMISE){
+    FULL_QURAN_META_PROMISE = fetch('quran/full/surahs_meta.json')
+      .then(r => r.json())
+      .then(m => { FULL_QURAN_META = m; return m; })
+      .catch(() => null);
+  }
+  return FULL_QURAN_META_PROMISE;
+}
+function p15FormatBism(n){
+  // Tawbah (9): mushaf me bismillah nahi. Fatihah (1): aayat-1 khud bismillah hai.
+  return (n !== 9 && n !== 1);
+}
+function renderFullSurah(mc, n){
+  document.getElementById('progBar').style.width = '0%';
+  const isEn = S.lang === 'en' || S.lang === 'id' || S.lang === 'tr' || S.lang === 'fr';
+  const zpIcon = document.getElementById('zpIcon');
+  if(zpIcon) zpIcon.textContent = '📖';
+  const setTopName = (ur) => { const el = document.getElementById('zpName'); if(el) el.textContent = ur; };
+  const finish = (data, metaSurah) => {
+    if(String(sec) !== 'fq_' + n) return; // user moved on during fetch
+    const ur = (metaSurah && metaSurah.ur) || (isEn ? 'Surah ' + n : 'سورۃ نمبر ' + n);
+    setTopName(ur);
+    const vm = viewMode === 'para' ? 'para' : 'verse';
+    let body = '';
+    if(vm === 'para'){
+      body = `<div class="para-block">${data.ayahs.map(a =>
+        `${a.t} <span class="vnum-ornate">﴿${formatAyatNum(a.n, 'ur')}﴾</span>`
+      ).join(' ')}</div>`;
+    } else {
+      body = data.ayahs.map(a =>
+        `<div class="vblock"><div class="vtxt">${a.t} <span class="vnum-ornate">﴿${formatAyatNum(a.n, 'ur')}﴾</span></div></div>`
+      ).join('');
+    }
+    const vmChips = `<div style="display:flex;justify-content:center;gap:.4rem;margin:.55rem auto .3rem;flex-wrap:wrap">
+        <button type="button" class="q-chip ${vm==='para'?'active':''}" onclick="setGlobalViewMode('para')">📖 پیراگراف (مصحف)</button>
+        <button type="button" class="q-chip ${vm==='verse'?'active':''}" onclick="setGlobalViewMode('verse')">🔢 آیت بہ آیت</button>
+      </div>`;
+    const metaLine = metaSurah ? `<div class="quran-meta">${isEn ? (metaSurah.ayahs + ' ayahs · Al-Madinah Mushaf script') : (metaSurah.ayahs + ' آیات · عثمانی رسم الخط')}</div>` : '';
+    const bism = p15FormatBism(n) ? '<div class="quran-bism">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>' : '';
+    const hd = `<div class="quran-panel">
+      <div class="quran-hd">
+        <div class="quran-title">${ur}</div>
+        ${metaLine}
+        ${vmChips}
+      </div>${bism}`;
+    const footer = `<div style="text-align:center;padding:2rem 0 .5rem;font-family:var(--qfont);font-size:1.1rem;color:var(--gold2);direction:rtl;line-height:2.1">۞ صَدَقَ اللَّهُ الْعَظِيمُ ۞</div></div>`;
+    mc.innerHTML = hd + body + footer;
+    renderDrawer();
+  };
+  mc.innerHTML = `<div class="p15-loading" style="text-align:center;padding:3rem 1rem;font-family:var(--ur-font)">📖 ${isEn ? 'Loading surah…' : 'سورۃ لوڈ ہو رہی ہے…'}</div>`;
+  Promise.all([p15LoadMeta(), fetch('quran/full/surah_' + n + '.json').then(r => { if(!r.ok) throw new Error('http ' + r.status); return r.json(); })])
+    .then(([meta, data]) => {
+      if(!data || !data.ayahs || !data.ayahs.length) throw new Error('bad data');
+      finish(data, meta && meta.surahs ? meta.surahs[n-1] : null);
+    })
+    .catch(err => {
+      if(String(sec) !== 'fq_' + n) return;
+      mc.innerHTML = `<div class="p15-loading" style="text-align:center;padding:2.5rem 1.2rem;font-family:var(--ur-font)">
+        ${isEn ? 'Could not load this surah. First time needs internet — after one load it stays available fully offline.' : 'یہ سورۃ لوڈ نہیں ہو سکی۔ پہلی بار انٹرنیٹ ضروری ہے — ایک بار لوڈ ہونے کے بعد ہمیشہ آف لائن دستیاب رہے گی۔'}
+        <div style="margin-top:1rem"><button type="button" class="btn" onclick="render()">${isEn ? 'Retry' : 'دوبارہ کوشش'}</button></div>
+      </div>`;
+      renderDrawer();
+    });
 }
 function render(){
   try{const nh='#'+sec;if(window.history&&history.replaceState&&window.location.hash!==nh)history.replaceState(null,'',nh);}catch(e){}
@@ -6617,6 +6716,7 @@ function render(){
   }
   if(sec==='cat_quran'){renderCategory(mc,'quran');return;}
   if(sec==='cat_duas'){renderCategory(mc,'duas');return;}
+  if(String(sec).startsWith('fq_')){ const n = parseInt(String(sec).slice(3), 10); if(n >= 1 && n <= 114){ renderFullSurah(mc, n); return; } }
   if(isQuran){renderQuran(mc,sec);return;}
   if(sec==='asma'){renderAsma(mc);return;}
   if(sec==='asr'){renderAsr(mc);return;}
@@ -8315,7 +8415,7 @@ function p3SyncNav(){
     nav.querySelectorAll('.p3-t').forEach(btn => {
       const n = btn.dataset.nav;
       // p9: cat tabs active by exact id; Quran tab bhi active ho jab koi surah reader khula ho
-      const isQuranRead = n === 'cat_quran' && Boolean(QURAN_SURAHS[sec]);
+      const isQuranRead = (n === 'cat_quran') && (Boolean(QURAN_SURAHS[sec]) || String(sec).startsWith('fq_'));
       btn.classList.toggle('active', sec === n || isQuranRead);
     });
   }catch(e){}
