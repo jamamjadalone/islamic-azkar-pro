@@ -1689,7 +1689,7 @@ html[dir="ltr"] .nav-edge{padding-left:0;padding-right:.55rem;border-left:none;b
 }
 .p8-info{flex:1;min-width:0;text-align:right;display:flex;flex-direction:column;gap:.15rem}
 .p8-ttl{font-family:var(--ur-font);font-weight:700;font-size:.95rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.p8-sub{font-family:var(--ur-font);font-size:.72rem;color:var(--text-sub);display:block;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.p8-sub{font-family:var(--ur-font);font-size:.72rem;color:var(--text-sub);display:-webkit-box;overflow:hidden;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .p8-arrow{flex-shrink:0;color:var(--g2);opacity:.6;font-size:1rem}
 .p8-row:hover .p8-arrow{opacity:1;transform:translateX(-3px)}
 /* p8 v2: hero row thora bara + also-cards */
@@ -6824,7 +6824,7 @@ function p15EnsureAyahIndex(onProgress){
       fetch('quran/full/surah_' + s + '.json')
         .then(r => { if(!r.ok) throw new Error('http ' + r.status); return r.json(); })
         .then(d => {
-          if(d && d.ayahs) d.ayahs.forEach(a => P15_AYAH_INDEX.push({ s: s, n: a.n, t: a.t, nt: p15NormAr(a.t) }));
+          if(d && d.ayahs) d.ayahs.forEach(a => { P15_AYAH_INDEX.push({ s: s, n: a.n, t: a.t, nt: p15NormAr(a.t) }); });
           done++;
           if(onProgress) onProgress(done, total);
         })
@@ -7284,7 +7284,9 @@ function renderQuran(mc, surahId){
       let m;
       let versesHtml = '';
       let lastIndex = 0;
-      while((m = pattern.exec(content)) !== null){
+      for(;;){
+        m = pattern.exec(content);
+        if(m === null) break;
         const txt = m[1].trim();
         const inside = m[2].trim();
         const numMatch = inside.match(/([۰-۹0-9]+)/);
