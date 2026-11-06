@@ -1,12 +1,18 @@
 /* Islamic Azkar Pro — Service Worker
    100% offline app shell. Network-first for navigation, stale-while-revalidate for static assets. */
-const CACHE = "azk-pro-v60-golden-ayat-appwide";
+const CACHE = "azk-pro-v61-icon-cache-bust";
+
 const CORE = [
 	"./",
 	"./index.html",
 	"./manifest.json",
 	"./favicon.svg",
 	"./favicon-32x32.png",
+	"./icons/icon-192-v2.png",
+	"./icons/icon-512-v2.png",
+	"./icons/apple-touch-icon-v2.png",
+	/* old icon filenames bhi rakhe hain — already-installed users ke purane
+	SW caches un paths pe refer karte hain (backward compatibility) */
 	"./icons/icon-192.png",
 	"./icons/icon-512.png",
 	"./icons/apple-touch-icon.png",
