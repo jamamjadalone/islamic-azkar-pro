@@ -1682,6 +1682,16 @@ html[dir="ltr"] .nav-edge{padding-left:0;padding-right:.55rem;border-left:none;b
 .p8-sub{font-family:var(--ur-font);font-size:.72rem;color:var(--text-sub);display:block;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .p8-arrow{flex-shrink:0;color:var(--g2);opacity:.6;font-size:1rem}
 .p8-row:hover .p8-arrow{opacity:1;transform:translateX(-3px)}
+/* p8 v2: hero row thora bara + also-cards */
+.p8-row.p8-hero{background:rgba(16,185,129,.06);border:1px solid rgba(52,211,153,.22)}
+.p8-also{display:grid;grid-template-columns:1fr 1fr;gap:.45rem;margin-top:.6rem}
+.p8-also-cap{grid-column:1/-1;font-family:var(--ur-font);font-size:.68rem;color:var(--text3)}
+.p8-mini{display:flex;align-items:center;gap:.5rem;padding:.5rem .55rem;border-radius:13px;background:rgba(255,255,255,.035);border:1px solid var(--card-border);cursor:pointer;transition:all .15s;direction:rtl}
+.p8-mini:hover,.p8-mini:focus-visible{background:rgba(16,185,129,.1);border-color:rgba(52,211,153,.35);outline:none}
+.p8-mini:active{transform:scale(.97)}
+.p8-m-ic{font-size:1.1rem;flex-shrink:0}
+.p8-m-ttl{font-family:var(--ur-font);font-size:.78rem;color:var(--text);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html[dir="ltr"] .p8-mini{direction:ltr}
 html[dir="ltr"] .p8-wazifa{direction:ltr}
 html[dir="ltr"] .p8-info{text-align:left}
 html[dir="ltr"] .p8-arrow{transform:none}
@@ -6356,64 +6366,89 @@ const WELCOME_CARDS_DATA = {
 };
 
 function renderWelcome(mc){
-  // ── p8: MINIMAL HOME — sirf salam + Aaj ka Wazifa (sab azkar ab nav ke Azkar tab/drawer ke hain) ──
+  // ── p8: MINIMAL HOME + FULL CONTEXTUAL LOGIC (waqt + Jumma aware, app ke apne tagline windows reuse) ──
   const isEnW = S.lang === 'en' || S.lang === 'id' || S.lang === 'tr' || S.lang === 'fr';
 
-  // daily rotating suggestion (Jumma ko din ke mutabiq surah farz ke tor pe)
-  const p8Rotation = ['asr','tasbeeh','kahf','fajr','tawbah','mulk','istikhara','durood_pak','waqiah','tauheed','bedtime','manzil'];
-  const now = new Date();
-  const doy = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 864e5);
-  const pickId = (now.getDay() === 5) ? 'jumma' : p8Rotation[doy % p8Rotation.length];
-  const pickMeta = (typeof SECS !== 'undefined') ? SECS.find(m => m.id === pickId) : null;
-  const pickCard = WELCOME_CARDS_DATA[pickId] || null;
-  const pickIcon = (pickCard && pickCard.icon) || (pickMeta && pickMeta.icon) || '📿';
-  const pickTitle = pickCard ? getLoc(pickCard.title) : (pickMeta ? getShortTitle(pickMeta) : '');
-  const pickSub = pickCard ? getLoc(pickCard.sub) : '';
+  const p8Meta = (id) => {
+    const c = WELCOME_CARDS_DATA[id];
+    const m = (typeof SECS !== 'undefined') ? SECS.find(s => s.id === id) : null;
+    if(c) return { id, icon: c.icon, title: getLoc(c.title), sub: getLoc(c.sub) };
+    if(m) return { id, icon: m.icon, title: getShortTitle(m), sub: getLoc(m.ct) };
+    return null;
+  };
+
+  // full waqt-logic (updateTimeTagline ke apne windows ke mutabiq):
+  // Jumma 12-19: Asr durood (hero) + Jumma wird + Kahf = Jumma ka SAB
+  // Jumma baqi din: Jumma wird (hero) + Kahf + Asr
+  // 4-11 subah: fajr/maghrib azkar (hero) + tasbeeh + baad-salah
+  // 11-16 dopahar: istighfar/tawbah (hero) + tauheed + tasbeeh
+  // 16-20 shaam: fajr/maghrib azkar (hero) + baad-salah + tasbeeh
+  // 20-4 raat: bedtime azkar (hero) + tasbeeh + tawbah
+  const p8Now = new Date();
+  const p8Day = p8Now.getDay(), p8H = p8Now.getHours();
+  let hero = null, extras = [];
+  if(p8Day === 5 && p8H >= 12 && p8H <= 19){
+    hero = p8Meta('asr'); extras = ['jumma', 'kahf'].map(p8Meta);
+  } else if(p8Day === 5){
+    hero = p8Meta('jumma'); extras = ['kahf', 'asr'].map(p8Meta);
+  } else if(p8H >= 4 && p8H < 11){
+    hero = p8Meta('fajr'); extras = ['tasbeeh', 'post_salah'].map(p8Meta);
+  } else if(p8H >= 11 && p8H < 16){
+    hero = p8Meta('tawbah'); extras = ['tauheed', 'tasbeeh'].map(p8Meta);
+  } else if(p8H >= 16 && p8H < 20){
+    hero = p8Meta('fajr'); extras = ['post_salah', 'tasbeeh'].map(p8Meta);
+  } else {
+    hero = p8Meta('bedtime'); extras = ['tasbeeh', 'tawbah'].map(p8Meta);
+  }
 
   // hijri date (jahan browser support kare, warna blank)
   let hijri = '';
   try{
     const cal = (typeof Intl !== 'undefined') && new Intl.DateTimeFormat('ur-u-ca-islamic-umalqura-nu-arab', { day: 'numeric', month: 'long', year: 'numeric' });
-    hijri = cal ? cal.format(now) : '';
+    hijri = cal ? cal.format(p8Now) : '';
   }catch(e){ hijri = ''; }
+  const p8RowHtml = (m, extraCls) => m ? `
+      <div class="p8-row ${extraCls || ''}" data-p8sec="${m.id}" role="button" tabindex="0">
+        <span class="p8-ic">${m.icon}</span>
+        <div class="p8-info">
+          <b class="p8-ttl">${m.title}</b>
+          <span class="p8-sub">${m.sub}</span>
+        </div>
+        <span class="p8-arrow">←</span>
+      </div>` : '';
 
   mc.innerHTML = `
     <div class="welcome-card">
       <div class="welcome-icon">🕌</div>
       <div class="welcome-salam">${t('salam')}</div>
+      <div class="welcome-intro">
+        ${t('intro')}
+      </div>
     </div>
     <div class="p8-wazifa" id="p8WazifaCard">
       <div class="p8-top">
         <span class="p8-date">${hijri || (isEnW ? 'Today' : 'آج')}</span>
         <span class="p8-label">${isEnW ? '★ Today\u2019s Wazifa' : '★ آج کا وظیفہ'}</span>
       </div>
-      <div class="p8-row" id="p8WazifaBtn" role="button" tabindex="0" title="${isEnW ? 'Open today\u2019s zikr' : 'آج کا ذکر کھولیں'}">
-        <span class="p8-ic">${pickIcon}</span>
-        <div class="p8-info">
-          <b class="p8-ttl">${pickTitle}</b>
-          <span class="p8-sub">${pickSub}</span>
-        </div>
-        <span class="p8-arrow">←</span>
-      </div>
+      ${p8RowHtml(hero, 'p8-hero')}
+      ${extras.length ? `<div class="p8-also">
+        <span class="p8-also-cap">${isEnW ? 'Also for you' : 'ساتھ اذکار'}</span>
+        ${extras.map(m => `<div class="p8-mini" data-p8sec="${m.id}" role="button" tabindex="0"><span class="p8-m-ic">${m.icon}</span><span class="p8-m-ttl">${m.title}</span></div>`).join('')}
+      </div>` : ''}
     </div>
-    <footer class="seo-summary" style="padding:1.4rem .5rem .8rem;text-align:center;font-family:var(--ur-font);font-size:.76rem;color:var(--text3);opacity:.85;line-height:2.2;direction:rtl">
-      <h2 style="font-size:.85rem;color:var(--gold-light);font-weight:600;margin-bottom:.35rem">${S.lang==='en'?'Islamic Azkar Pro — Durood Sharif Counter, Quranic Surahs & Masnoon Duas':'اسلامک اذکار پرو — درود شریف، قرآنی سورتیں اور مسنون اذکار'}</h2>
-      <p style="margin:0">${S.lang==='en'?'Complete offline Islamic app: 80x Friday Asr Durood counter, Durood Ibrahimi, Durood Tanjeena, 5 complete Quranic Surahs (Al-Kahf, Mulk, Waqiah, Rahman, Manzil), authentic post-salah prayers, bedtime and waking up duas, Istikhara, debt and anxiety relief, 99 Names of Allah, and Tasbeeh Fatimah. 100% free and fully functional offline without internet.':'مکمل آف لائن اسلامی ایپ: ۸۰ مرتبہ عصر درود، درودِ ابراہیمی، درودِ تنجینا، مکمل ۵ قرآنی سورتیں (الکہف، الملک، الواقعہ، الرحمن، منزل)، بعد از نماز اذکار، سونے و بیداری کی دعائیں، استخارہ، قرض و غم سے نجات، اسمائے حسنیٰ، تسلسل اور تسبیحِ فاطمہؓ۔ ۱۰۰٪ مفت، مستند اور بغیر انٹرنیٹ۔'}</p>
-    </footer>
   `;
-  const p8Btn = document.getElementById('p8WazifaBtn');
-  if(p8Btn){
-    const go = () => {
-      if(pickMeta && SECS.some(m => m.id === pickId)){
-        sec = pickId;
-        save();
-        render();
-        window.scrollTo(0, 0);
-      }
-    };
-    p8Btn.addEventListener('click', go);
-    p8Btn.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); go(); } });
-  }
+  const goP8 = (id) => {
+    if(id && SECS.some(m => m.id === id)){
+      sec = id;
+      save();
+      render();
+      window.scrollTo(0, 0);
+    }
+  };
+  mc.querySelectorAll('[data-p8sec]').forEach(el => {
+    el.addEventListener('click', () => goP8(el.dataset.p8sec));
+    el.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); goP8(el.dataset.p8sec); } });
+  });
   renderDrawer();
 }
 
