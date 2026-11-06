@@ -5,7 +5,7 @@
 <meta name="google" content="notranslate"/>
 <meta name="googlebot" content="notranslate"/>
 <meta name="google-site-verification" content="Pad89P_OF91VublnX0_6y6lhJn8zPOYe-Ai8OyM-H4c"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
 <title>Islamic Azkar Pro | درود شریف کاؤنٹر | سورۃ الکہف، الملک، الواقعہ، الرحمن، منزل | دعائیں و اذکار</title>
 <meta name="description" content="مکمل آف لائن اسلامی ایپ — ۸۰ مرتبہ عصر درود، درودِ ابراہیمی، درودِ تنجینا، سورۃ الکہف، الملک، الواقعہ، الرحمن، منزل، بعد نماز اذکار، صبح و شام دعائیں، استخارہ، اسمائے حسنیٰ، تسلسل اور تسبیح فاطمہؓ — بغیر انٹرنیٹ کے۔ Complete offline Islamic Azkar & Quran PWA."/>
 <meta name="keywords" content="Islamic Azkar, Darood Sharif Counter, Surah Kahf, Surah Mulk, Surah Waqiah, Surah Rahman, Manzil, Durood Ibrahimi, Durood Tanjeena, Durood Taj, 99 Names of Allah, Namaz ke baad ke azkar, Istikhara dua, Asma ul Husna, درود شریف, سورۃ الملک, سورۃ الواقعہ, سورۃ الرحمن, منزل, اسمائے حسنیٰ, اذکار, تسبیح, Tasbeeh counter, Pakistani Islamic App, Fajr Maghrib Azkar, مسنون دعائیں"/>
@@ -1706,7 +1706,7 @@ html[dir="ltr"] .p8-arrow{transform:none}
 .p9-cat-hd{padding:.9rem .3rem .9rem;text-align:center}
 .p9-cat-title{font-family:var(--ur-font);font-size:1.25rem;font-weight:700;color:var(--gold-light);margin-bottom:.3rem}
 .p9-cat-sub{font-family:var(--ur-font);font-size:.75rem;color:var(--text3)}
-.p9-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+.p9-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem}
 .p9-tile{display:flex;align-items:center;gap:.55rem;padding:.65rem .6rem;border-radius:14px;background:var(--card-bg);border:1px solid var(--card-border);cursor:pointer;transition:all .15s;direction:rtl;min-height:3.4rem}
 .p9-tile:hover,.p9-tile:focus-visible{background:rgba(16,185,129,.08);border-color:rgba(52,211,153,.35);outline:none}
 .p9-tile:active{transform:scale(.97)}
@@ -9105,14 +9105,27 @@ try {
 } catch(e){}
 
 // Hash deep-link support (#asr, #tasbeeh, #kahf, ...) — enables PWA manifest shortcuts
+/* p16: hash routing cat_quran/cat_duas/fq_<N> bhi accept kare — back button,
+   refresh aur deep-links Quran screens pe bhi kaam karein */
+function p16ValidHashSec(h){
+  try{
+    if(SECS && SECS.some(m => m.id === h)) return true;
+    if(h === 'cat_quran' || h === 'cat_duas') return true;
+    if(String(h).indexOf('fq_') === 0){
+      const n = parseInt(String(h).slice(3), 10);
+      return Number.isInteger(n) && n >= 1 && n <= 114;
+    }
+  }catch(e){}
+  return false;
+}
 try {
   const hSec = (window.location.hash || '').replace(/^#\/?/, '');
-  if(hSec && SECS && SECS.some(m => m.id === hSec)) sec = hSec;
+  if(hSec && typeof p16ValidHashSec === 'function' && p16ValidHashSec(hSec)) sec = hSec;
 } catch(e){}
 window.addEventListener('hashchange', () => {
   try {
     const hSec = (window.location.hash || '').replace(/^#\/?/, '');
-    if(hSec && SECS.some(m => m.id === hSec) && hSec !== sec) { sec = hSec; render(); }
+    if(hSec && p16ValidHashSec(hSec) && hSec !== sec) { sec = hSec; render(); }
   } catch(e){}
 });
 
