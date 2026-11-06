@@ -33,4 +33,3 @@ npm-debug.log*
 .eslintcache
 # android widget project (source only — build artifacts out)
 android/
-# android widget project (source only — build artifacts out)
