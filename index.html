@@ -6401,11 +6401,22 @@ function renderWelcome(mc){
     hero = p8Meta('bedtime'); extras = ['tasbeeh', 'tawbah'].map(p8Meta);
   }
 
-  // hijri date (jahan browser support kare, warna blank)
+  // hijri date — Urdu mahine + "25 Jamadi ul Awal 1448" format
+  // Exactness: Saudi umalqura 1 din aage chal raha hota hai local ru-yat se,
+  // is liye P8_HIJRI_OFFSET_DAYS = -1 lagta hai (aapki date per tune).
+  const P8_HIJRI_OFFSET_DAYS = -1;
   let hijri = '';
   try{
-    const cal = (typeof Intl !== 'undefined') && new Intl.DateTimeFormat('ur-u-ca-islamic-umalqura-nu-arab', { day: 'numeric', month: 'long', year: 'numeric' });
-    hijri = cal ? cal.format(p8Now) : '';
+    const p8UrduMonths = ['محرم','صفر','ربیع الاول','ربیع الثانی','جمادی الاول','جمادی الثانی','رجب','شعبان','رمضان','شوال','ذوالقعدہ','ذوالحجہ'];
+    const p8Shifted = new Date(p8Now.getTime() + P8_HIJRI_OFFSET_DAYS * 86400000);
+    const p8Fmt = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura-nu-latn', { day: 'numeric', month: 'numeric', year: 'numeric' });
+    const p8Parts = p8Fmt.formatToParts(p8Shifted);
+    const p8Get = t => (p8Parts.find(p => p.type === t) || {}).value;
+    const p8Hd = p8Get('day'), p8Hm = p8Get('month'), p8Hy = p8Get('year');
+    if(p8Hd && p8Hm && p8Hy){
+      const p8Mi = parseInt(p8Hm, 10);
+      hijri = parseInt(p8Hd, 10) + ' ' + (p8UrduMonths[p8Mi - 1] || p8Hm) + ' ' + parseInt(p8Hy, 10);
+    }
   }catch(e){ hijri = ''; }
   const p8RowHtml = (m, extraCls) => m ? `
       <div class="p8-row ${extraCls || ''}" data-p8sec="${m.id}" role="button" tabindex="0">
