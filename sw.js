@@ -4,7 +4,6 @@ const CACHE = "azk-pro-v51-marker-standard";
 const CORE = [
 	"./",
 	"./index.html",
-	"./mushaf-demo.html",
 	"./manifest.json",
 	"./favicon.svg",
 	"./favicon-32x32.png",
@@ -18,6 +17,11 @@ const CORE = [
 	"./fonts/muhammadi.ttf",
 	"./fonts/pdms-saleem.ttf",
 	"./assets/asr-durood.png",
+	"./assets/wallpapers/margins_gold.svg",
+	"./assets/wallpapers/margins_emerald.svg",
+	"./assets/wallpapers/margins_moroccan.svg",
+	"./assets/wallpapers/margins_girih.svg",
+	"./assets/wallpapers/margins_islimi.svg",
 	"./quran/surahs_26.json",
 ];
 
