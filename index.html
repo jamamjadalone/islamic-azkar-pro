@@ -728,6 +728,14 @@ body::before{
   color:var(--g2);direction:ltr;box-shadow:0 0 8px var(--emerald-glow);
 }
 
+/* ── Ayat numbers: ornate-inline only (Mulk style) — user directive 2026-11-06 ──
+   Sab ayat numbers ab mushaf-style ornate bracket outline (﴿۱﴾) mein hi dikhengi
+   (text-flow ke andar, jaise Surah Mulk mein hain). Legacy plain number badges
+   (.vnum round chip) aur purana inline chip (.vnum-inline) hide.
+   Revert: in do lines ko hatao (ya hide-ayat-badge tag ka revert). */
+.vnum{display:none !important}
+.vnum-inline{display:none !important}
+
 /* paragraph mode */
 .para-block{font-family:var(--qfont);font-size:var(--qs);line-height:2.9;color:var(--ar);direction:rtl;text-align:justify;padding:.35rem .25rem;word-break:break-word;transition:font-size .2s ease}
 .vnum-inline{
