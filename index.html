@@ -1698,6 +1698,24 @@ html[dir="ltr"] .p8-arrow{transform:none}
 @media (prefers-reduced-motion: reduce){
   .p8-wazifa{animation:none}
 }
+/* ══ p9: category screens (Quran / Duain tabs) ══ */
+.p9-wrap{padding:1rem .8rem 6.2rem;max-width:640px;margin:0 auto}
+.p9-cat-hd{padding:.9rem .3rem .9rem;text-align:center}
+.p9-cat-title{font-family:var(--ur-font);font-size:1.25rem;font-weight:700;color:var(--gold-light);margin-bottom:.3rem}
+.p9-cat-sub{font-family:var(--ur-font);font-size:.75rem;color:var(--text3)}
+.p9-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+.p9-tile{display:flex;align-items:center;gap:.55rem;padding:.65rem .6rem;border-radius:14px;background:var(--card-bg);border:1px solid var(--card-border);cursor:pointer;transition:all .15s;direction:rtl;min-height:3.4rem}
+.p9-tile:hover,.p9-tile:focus-visible{background:rgba(16,185,129,.08);border-color:rgba(52,211,153,.35);outline:none}
+.p9-tile:active{transform:scale(.97)}
+.p9-ic{font-size:1.25rem;flex-shrink:0}
+.p9-info{min-width:0;display:flex;flex-direction:column}
+.p9-ttl{font-family:var(--ur-font);font-size:.8rem;color:var(--text);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.p9-ct{font-family:var(--ur-font);font-size:.65rem;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.p9-arrow{flex-shrink:0;color:var(--g2);opacity:.55;font-size:.95rem;margin-inline-start:auto}
+.p9-tile:hover .p9-arrow{opacity:1}
+html[dir="ltr"] .p9-tile{direction:ltr}
+html[dir="ltr"] .p9-info{text-align:left}
+@media (max-width:360px){.p9-grid{grid-template-columns:1fr}}
 
 </style>
 </head>
@@ -6522,9 +6540,56 @@ function getShortTitle(meta){
   return getLoc(meta.title);
 }
 
+/* ══ p9: CATEGORY SCREENS (Read tab = Quran 28 surahs; Duain tab = masnoon duain + Asma) ══ */
+function renderCategory(mc, cat){
+  document.getElementById('progBar').style.width = '0%';
+  const isEn = S.lang === 'en' || S.lang === 'id' || S.lang === 'tr' || S.lang === 'fr';
+  const build = (m) => {
+    const meta = (typeof SECS !== 'undefined') ? SECS.find(s => s.id === m.id) : null;
+    if(!meta) return '';
+    return `<div class="p9-tile" data-p9sec="${m.id}" role="button" tabindex="0">
+      <span class="p9-ic">${meta.icon}</span>
+      <div class="p9-info">
+        <b class="p9-ttl">${getLoc(meta.title)}</b>
+        <span class="p9-ct">${getLoc(meta.ct)}</span>
+      </div>
+      <span class="p9-arrow">←</span>
+    </div>`;
+  };
+  const goP9 = (id) => {
+    if(id && SECS.some(m => m.id === id)){
+      sec = id; save(); render(); window.scrollTo(0, 0);
+    }
+  };
+  let tiles = '', hd = '', sub = '';
+  if(cat === 'quran'){
+    const classic = ['yaseen','kahf','mulk','waqiah','rahman','manzil'].map(id => ({id}));
+    const q26 = SECS.filter(m => m.group === 'quran26').map(m => ({id: m.id}));
+    tiles = `<div class="p9-grid">${q26.map(build).join('')}${classic.map(build).join('')}</div>`;
+    hd = isEn ? 'Quran Mubarak' : 'قرآن مبارک';
+    sub = isEn ? ((q26.length + 6) + ' blessed surahs') : ((q26.length + 6) + ' مبارک سورتیں');
+  } else {
+    const duain = ['rabbana','istikhara','tawbah','relief_debt','asma'].map(id => ({id}));
+    tiles = `<div class="p9-grid">${duain.map(build).join('')}</div>`;
+    hd = isEn ? 'Masnoon Duas' : 'مسنون دعائیں';
+    sub = isEn ? 'Duas + Asma-ul-Husna' : 'دعائیں اور اسمائے حسنیٰ';
+  }
+  mc.innerHTML = `<div class="p9-wrap">
+      <div class="p9-cat-hd">
+        <div class="p9-cat-title">${hd}</div>
+        <div class="p9-cat-sub">${sub}</div>
+      </div>
+      ${tiles}
+    </div>`;
+  mc.querySelectorAll('.p9-tile').forEach(el => {
+    el.addEventListener('click', () => goP9(el.dataset.p9sec));
+    el.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); goP9(el.dataset.p9sec); } });
+  });
+  renderDrawer();
+}
 function render(){
   try{const nh='#'+sec;if(window.history&&history.replaceState&&window.location.hash!==nh)history.replaceState(null,'',nh);}catch(e){}
-  try{if(sec!=='welcome')localStorage.setItem('azk_last_sec',sec);}catch(e){}
+  try{if(sec!=='welcome' && !String(sec).startsWith('cat_'))localStorage.setItem('azk_last_sec',sec);}catch(e){}
   p3SyncNav();
   updateTimeTagline();
   updateStreakUI();
@@ -6545,6 +6610,8 @@ function render(){
     renderWelcome(mc);
     return;
   }
+  if(sec==='cat_quran'){renderCategory(mc,'quran');return;}
+  if(sec==='cat_duas'){renderCategory(mc,'duas');return;}
   if(isQuran){renderQuran(mc,sec);return;}
   if(sec==='asma'){renderAsma(mc);return;}
   if(sec==='asr'){renderAsr(mc);return;}
@@ -8211,7 +8278,8 @@ function p3InjectBottomNav(){
       <button type="button" class="p3-t" data-nav="welcome"><span class="p3-i">🏠</span><span class="p3-l">${L ? 'Home' : 'ہوم'}</span></button>
       <button type="button" class="p3-t" data-nav="custom"><span class="p3-i">📝</span><span class="p3-l">${L ? 'My Zikr' : 'ذاتی زیکر'}</span></button>
       <button type="button" class="p3-t" data-nav="drawer"><span class="p3-i">📿</span><span class="p3-l">${L ? 'Azkar' : 'اذکار'}</span></button>
-      <button type="button" class="p3-t" data-nav="kahf"><span class="p3-i">📖</span><span class="p3-l">${L ? 'Read' : 'پڑھیں'}</span></button>`;
+      <button type="button" class="p3-t" data-nav="cat_quran"><span class="p3-i">📖</span><span class="p3-l">${L ? 'Quran' : 'قرآن'}</span></button>
+      <button type="button" class="p3-t" data-nav="cat_duas"><span class="p3-i">🤲</span><span class="p3-l">${L ? 'Duas' : 'دعائیں'}</span></button>`;
     document.body.appendChild(nav);
     nav.querySelectorAll('.p3-t').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -8236,7 +8304,8 @@ function p3SyncNav(){
     if(!nav) return;
     nav.querySelectorAll('.p3-t').forEach(btn => {
       const n = btn.dataset.nav;
-      const isQuranRead = n === 'kahf' && SECS && SECS.some(m => m.id === sec && (m.group === 'quran26' || sec === 'kahf' || sec === 'mulk' || sec === 'waqiah' || sec === 'rahman' || sec === 'manzil' || sec === 'yaseen'));
+      // p9: cat tabs active by exact id; Quran tab bhi active ho jab koi surah reader khula ho
+      const isQuranRead = n === 'cat_quran' && Boolean(QURAN_SURAHS[sec]);
       btn.classList.toggle('active', sec === n || isQuranRead);
     });
   }catch(e){}
@@ -8598,23 +8667,15 @@ function goNext(){
 function renderDrawer(){
   syncAllStaticI18n();
   const list=document.getElementById('drList');if(!list)return;
+  // p9: Azkar tab ab KHALIS masnoon azkar (quran/duain/asma apne tabs hain; zaati apne nav tab pe)
+  const P9_AZKAR_ONLY=['fajr','jumma','post_salah','bedtime','morning_wake','tauheed','asr','tasbeeh','durood_pak'];
   let html = '';
-  let lastGrp = '';
+  html += `<div class="dr-group-title"><span>🕌</span> <span>${getLoc({ur:'مسنون اذکار',en:'Daily Azkar',ar:'الأذكار',id:'Dzikir Harian',tr:'Günlük Zikirler',fr:'Invocations'})}</span></div>`;
   SECS.forEach(m => {
-    const itemGrp = m.group || (m.id.startsWith('s26_') ? 'quran26' : 'daily');
-    if(itemGrp && itemGrp !== lastGrp && m.id !== 'welcome'){
-      lastGrp = itemGrp;
-      const grpTitles = {
-        daily: {ur:'مسنون اذکار و دعائیں', en:'Daily Azkar & Duas', ar:'الأذكار والأدعية', id:'Dzikir & Doa Harian', tr:'Günlük Zikirler ve Dualar', fr:'Invocations Quotidiennes'},
-        quran26: {ur:'چھبیس مبارک سورتیں', en:'26 Mubarak Surahs', ar:'الست وعشرون سورة المباركة', id:'26 Surah Mubarakah', tr:'26 Mübarek Sure', fr:'26 Sourates Bénies'}
-      };
-      const gTitle = (grpTitles[itemGrp] && getLoc(grpTitles[itemGrp])) || itemGrp;
-      html += `<div class="dr-group-title"><span>${itemGrp==='quran26'?'📖':'🕌'}</span> <span>${gTitle}</span></div>`;
-    }
+    if(!P9_AZKAR_ONLY.includes(m.id)) return;
     let prog='';
     if(['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana'].includes(m.id)&&S[m.id]?.done){const d=S[m.id].done.filter(Boolean).length;const tot={fajr:FAJR.length,jumma:JUMMA.length,durood_pak:DUROOD_PAK.length,tauheed:TAUHEED.length,bedtime:BEDTIME.length,tawbah:TAWBAH.length,post_salah:POST_SALAH.length,morning_wake:MORNING_WAKE.length,relief_debt:RELIEF_DEBT.length,istikhara:ISTIKHARA.length,rabbana:RABBANA.length}[m.id];if(d>0)prog=`<span style="color:var(--g2);font-size:.65rem">${d}/${tot}</span>`;}
     if(m.id==='asr'&&S.asr.done)prog=`<span style="color:var(--g2);font-size:.7rem">✓</span>`;
-    if(m.id==='custom'&&customAzkar?.length){const d=customAzkar.filter(x=>x.done||x.cnt>=x.target).length;prog=`<span style="color:var(--g2);font-size:.65rem">${d}/${customAzkar.length}</span>`;}
     html += `<div class="dr-item${sec===m.id?' active':''}" data-sec="${m.id}"><span class="dr-icon">${m.icon}</span><span class="dr-name">${getLoc(m.title)}</span><span class="dr-ct">${getLoc(m.ct)}</span>${prog}</div>`;
   });
   list.innerHTML = html;

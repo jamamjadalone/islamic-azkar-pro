@@ -1,6 +1,6 @@
 /* Islamic Azkar Pro — Service Worker
    100% offline app shell. Network-first for navigation, stale-while-revalidate for static assets. */
-const CACHE = "azk-pro-v57-hijri-format";
+const CACHE = "azk-pro-v58-category-tabs";
 const CORE = [
 	"./",
 	"./index.html",
