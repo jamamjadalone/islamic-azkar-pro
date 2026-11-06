@@ -1725,6 +1725,10 @@ html[dir="ltr"] .p9-info{text-align:left}
 .p9-grp-cap{font-family:var(--ur-font);font-size:.9rem;font-weight:600;color:var(--gold-light);text-align:center;margin:1.1rem 0 .55rem}
 .p15-loading{font-family:var(--ur-font);font-size:.82rem;color:var(--text3);padding:.8rem .4rem;text-align:center;direction:rtl;grid-column:1/-1}
 html[dir="ltr"] .p15-loading{direction:ltr}
+/* p15b: ayah-search results + jump highlight */
+.p15-acap{font-family:var(--ur-font);font-size:.72rem;color:var(--text3);padding:.6rem .2rem .25rem;text-align:center;direction:rtl;border-top:1px dashed var(--card-border);margin-top:.4rem}
+.p15-hit{background:rgba(251,191,36,.2);box-shadow:0 0 0 1px rgba(251,191,36,.4);border-radius:8px;padding:0 .25rem;transition:background .8s ease}
+.p15-hit .vnum-ornate{color:var(--gold-light)}
 
 </style>
 </head>
@@ -6653,11 +6657,11 @@ function renderFullSurah(mc, n){
     let body = '';
     if(vm === 'para'){
       body = `<div class="para-block">${data.ayahs.map(a =>
-        `${a.t} <span class="vnum-ornate">﴿${formatAyatNum(a.n, 'ur')}﴾</span>`
+        `${a.t} <span class="vnum-ornate" data-a="${a.n}">﴿${formatAyatNum(a.n, 'ur')}﴾</span>`
       ).join(' ')}</div>`;
     } else {
       body = data.ayahs.map(a =>
-        `<div class="vblock"><div class="vtxt">${a.t} <span class="vnum-ornate">﴿${formatAyatNum(a.n, 'ur')}﴾</span></div></div>`
+        `<div class="vblock"><div class="vtxt" data-a="${a.n}">${a.t} <span class="vnum-ornate">﴿${formatAyatNum(a.n, 'ur')}﴾</span></div></div>`
       ).join('');
     }
     const vmChips = `<div style="display:flex;justify-content:center;gap:.4rem;margin:.55rem auto .3rem;flex-wrap:wrap">
@@ -6674,6 +6678,16 @@ function renderFullSurah(mc, n){
       </div>${bism}`;
     const footer = `<div style="text-align:center;padding:2rem 0 .5rem;font-family:var(--qfont);font-size:1.1rem;color:var(--gold2);direction:rtl;line-height:2.1">۞ صَدَقَ اللَّهُ الْعَظِيمُ ۞</div></div>`;
     mc.innerHTML = hd + body + footer;
+    // p15b: search-result jump — us aayat pe highlight + scroll
+    if(P15_JUMP && P15_JUMP.s === n){
+      const jn = P15_JUMP.n;
+      P15_JUMP = null;
+      const target = mc.querySelector('[data-a="' + jn + '"]');
+      if(target){
+        target.classList.add('p15-hit');
+        setTimeout(() => target.scrollIntoView({ block: 'center', behavior: 'smooth' }), 60);
+      }
+    }
     renderDrawer();
   };
   mc.innerHTML = `<div class="p15-loading" style="text-align:center;padding:3rem 1rem;font-family:var(--ur-font)">📖 ${isEn ? 'Loading surah…' : 'سورۃ لوڈ ہو رہی ہے…'}</div>`;
@@ -6690,6 +6704,108 @@ function renderFullSurah(mc, n){
       </div>`;
       renderDrawer();
     });
+}
+/* ══ p15b: AYAH SEARCH (Tashkeel-normalized, full 114 surahs) ══ */
+let P15_AYAH_INDEX = null;          // [{s, n, t, nt}] — nt = normalized text
+let P15_AYAH_INDEX_JOB = null;      // in-flight builder
+let P15_JUMP = null;                // {s, n} — result tap reader jump
+function p15NormAr(t){
+  return String(t == null ? '' : t)
+    .replace(/[\u064B-\u065F\u0670\u06D6-\u06ED\u0640\u2060\u200c\u200d]/g, '')
+    .replace(/[\u0671\u0622\u0623\u0625]/g, 'ا')
+    .replace(/[ىۍی]/g, 'ي')
+    .replace(/ة/g, 'ه')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+function p15EnsureAyahIndex(onProgress){
+  if(P15_AYAH_INDEX) return Promise.resolve(P15_AYAH_INDEX.length);
+  if(P15_AYAH_INDEX_JOB) return P15_AYAH_INDEX_JOB;
+  const total = 114;
+  let done = 0;
+  P15_AYAH_INDEX = [];
+  const jobs = [];
+  for(let s = 1; s <= total; s++){
+    jobs.push(
+      fetch('quran/full/surah_' + s + '.json')
+        .then(r => { if(!r.ok) throw new Error('http ' + r.status); return r.json(); })
+        .then(d => {
+          if(d && d.ayahs) d.ayahs.forEach(a => P15_AYAH_INDEX.push({ s: s, n: a.n, t: a.t, nt: p15NormAr(a.t) }));
+          done++;
+          if(onProgress) onProgress(done, total);
+        })
+        .catch(() => { done++; if(onProgress) onProgress(done, total); })
+    );
+  }
+  P15_AYAH_INDEX_JOB = Promise.all(jobs).then(() => {
+    P15_AYAH_INDEX_JOB = null;
+    return P15_AYAH_INDEX.length;
+  });
+  return P15_AYAH_INDEX_JOB;
+}
+function p15AyahSearch(q, host, token){
+  const isEn = S.lang === 'en' || S.lang === 'id' || S.lang === 'tr' || S.lang === 'fr';
+  const list = document.getElementById('p4SearchList');
+  if(!list || !list.closest || !list.parentNode) return;
+  let cap = document.getElementById('p15AyahCap');
+  if(!cap){
+    cap = document.createElement('div');
+    cap.id = 'p15AyahCap';
+    cap.className = 'p15-acap';
+    cap.textContent = isEn ? 'Quran ayahs — building index… (first visit needs internet)' : 'قرآنی آیات — اشاریہ بن رہا ہے… (پہلی بار انٹرنیٹ)';
+    host.appendChild(cap);
+  }
+  cap.textContent = isEn ? 'Quran ayahs — building index… (first visit needs internet)' : 'قرآنی آیات — اشاریہ بن رہا ہے… (پہلی بار انٹرنیٹ)';
+  p15EnsureAyahIndex((d, total) => {
+    if(token.get() !== q.trim()) return;
+    cap.textContent = isEn ? ('Quran ayahs — index ' + d + '/' + total + '…') : ('قرآنی آیات — اشاریہ ' + d + '/' + total + '…');
+  });
+  p15EnsureAyahIndex().then((cnt) => {
+    if(token.get() !== q.trim()) return;
+    cap.remove();
+    const list2 = document.getElementById('p4SearchList');
+    if(!list2 || !cnt) return;
+    const nq = p15NormAr(q);
+    if(nq.length < 2) return;
+    return p15LoadMeta().then(() => {
+      if(token.get() !== q.trim() || !document.getElementById('p4SearchList')) return;
+      const hits = [];
+      for(let i = 0; i < P15_AYAH_INDEX.length && hits.length < 10; i++){
+        const a = P15_AYAH_INDEX[i];
+        if(a.nt.indexOf(nq) !== -1) hits.push(a);
+      }
+      const list3 = document.getElementById('p4SearchList');
+      if(!hits.length){
+        const none = document.createElement('div');
+        none.className = 'p15-acap';
+        none.textContent = isEn ? 'No matching Quran ayah.' : 'کوئی موافق آیت نہیں۔';
+        list3.appendChild(none);
+        return;
+      }
+      const meta = FULL_QURAN_META && FULL_QURAN_META.surahs;
+      const head = document.createElement('div');
+      head.className = 'p15-acap';
+      head.textContent = isEn ? 'Quran ayahs' : 'قرآنی آیات';
+      list3.appendChild(head);
+      hits.forEach(h => {
+        const sName = meta ? (meta[h.s - 1].ur) : ('Surah ' + h.s);
+        const excerpt = h.t.length > 88 ? (h.t.slice(0, 88) + '…') : h.t;
+        const el = document.createElement('div');
+        el.className = 'p4-item';
+        el.setAttribute('data-type', 'ayah');
+        el.setAttribute('data-s', h.s);
+        el.setAttribute('data-n', h.n);
+        el.innerHTML = `<span class="p4-ico">📖</span><span class="p4-ttl">${sName} — ${h.n}</span><span class="p4-sub">${excerpt}</span>`;
+        el.addEventListener('click', () => {
+          p4CloseSearch();
+          P15_JUMP = { s: h.s, n: h.n };
+          sec = 'fq_' + h.s;
+          save(); render(); window.scrollTo(0, 0);
+        });
+        list3.appendChild(el);
+      });
+    });
+  });
 }
 function render(){
   try{const nh='#'+sec;if(window.history&&history.replaceState&&window.location.hash!==nh)history.replaceState(null,'',nh);}catch(e){}
@@ -8513,9 +8629,17 @@ function p4CloseSearch(){
 }
 function p4DoSearch(){
   try{
-    const q = document.getElementById('p4SearchInput').value.trim().toLowerCase();
+    const inpEl = document.getElementById('p4SearchInput');
+    const q = inpEl.value.trim().toLowerCase();
     const idx = p4SearchIndex();
     p4RenderResults(idx, q);
+    // p15b: Arabic query -> ayah search section (async, appends below)
+    if(q.length >= 2 && /[\u0600-\u06FF]/.test(q)){
+      const list = document.getElementById('p4SearchList');
+      // host node: second container to append into (list itself)
+      const token = { v: q, get: function(){ let cur = null; try{ cur = document.getElementById('p4SearchInput'); }catch(e){} return cur && cur.value.trim().toLowerCase(); } };
+      p15AyahSearch(inpEl.value, list, token);
+    }
   }catch(e){}
 }
 function p4RenderResults(idx, q){

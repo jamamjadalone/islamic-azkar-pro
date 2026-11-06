@@ -1,6 +1,6 @@
 /* Islamic Azkar Pro — Service Worker
    100% offline app shell. Network-first for navigation, stale-while-revalidate for static assets. */
-const CACHE = "azk-pro-v62-full-quran-reader";
+const CACHE = "azk-pro-v63-ayah-search";
 
 const CORE = [
 	"./",
