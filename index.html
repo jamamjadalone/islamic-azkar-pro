@@ -205,6 +205,13 @@
   src:url('fonts/al-mushaf.ttf') format('truetype');
   font-display:swap;
 }
+/* p17: IndoPak Pakistani Mushaf font (QuranWBW v4.2.2, credits in quran/full/CREDITS-indopak.md) */
+@font-face{
+  font-family:'IndoPak Quran';
+  src:url('fonts/indopak-woff2.woff2') format('woff2'),
+      url('fonts/indopak-woff.woff') format('woff');
+  font-display:swap;
+}
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -1729,6 +1736,11 @@ html[dir="ltr"] .p15-loading{direction:ltr}
 .p15-acap{font-family:var(--ur-font);font-size:.72rem;color:var(--text3);padding:.6rem .2rem .25rem;text-align:center;direction:rtl;border-top:1px dashed var(--card-border);margin-top:.4rem}
 .p15-hit{background:rgba(251,191,36,.2);box-shadow:0 0 0 1px rgba(251,191,36,.4);border-radius:8px;padding:0 .25rem;transition:background .8s ease}
 .p15-hit .vnum-ornate{color:var(--gold-light)}
+/* p17: Pakistani Mushaf (IndoPak) reader variant */
+.ip-text{font-family:'IndoPak Quran','Al Majeed',serif !important;line-height:2.55}
+.ip-text .vnum-ornate{font-family:var(--qfont)}
+.ip-text.vtxt{line-height:2.85}
+.ip-text.para-block{line-height:2.9}
 
 </style>
 </head>
@@ -6639,6 +6651,30 @@ function p15LoadMeta(){
   }
   return FULL_QURAN_META_PROMISE;
 }
+/* ══ p17: script variant — 'pak' = Pakistani Mushaf (IndoPak v9.6 Madinah),
+   'uth' = Tanzil Uthmani. Default pak (Pakistan me wahi parha jata hai). ══ */
+let fReadScript = 'pak';
+try{
+  const sv = localStorage.getItem('azk_read_script');
+  if(sv === 'pak' || sv === 'uth') fReadScript = sv;
+}catch(e){}
+function fSetReadScript(v){
+  fReadScript = (v === 'uth') ? 'uth' : 'pak';
+  try{ localStorage.setItem('azk_read_script', fReadScript); }catch(e){}
+  save();
+  render();
+  window.scrollTo(0, 0);
+}
+/* Tanzil Uthmani text ke open-tanween chars (U+08F0-08F3) kisi bundlded font me
+   nahi hote — standard tanween pe map kar dete hain (display-only, safe) */
+function fqFontFix(t){
+  return String(t == null ? '' : t)
+    .replace(/\u08F0/g, '\u064B')
+    .replace(/\u08F1/g, '\u064C')
+    .replace(/\u08F2/g, '\u064D')
+    .replace(/\u08F3/g, '')
+    .replace(/\u065C/g, '');
+}
 function p15FormatBism(n){
   // Tawbah (9): mushaf me bismillah nahi. Fatihah (1): aayat-1 khud bismillah hai.
   return (n !== 9 && n !== 1);
@@ -6654,22 +6690,29 @@ function renderFullSurah(mc, n){
     const ur = (metaSurah && metaSurah.ur) || (isEn ? 'Surah ' + n : 'سورۃ نمبر ' + n);
     setTopName(ur);
     const vm = viewMode === 'para' ? 'para' : 'verse';
+    // p17: script variant — pak=IndoPak font, uth=Tanzil + font-fix
+    const isPak = (fReadScript === 'pak');
+    const ipCls = isPak ? ' ip-text' : '';
+    const fixT = (t) => isPak ? t : fqFontFix(t);
     let body = '';
     if(vm === 'para'){
-      body = `<div class="para-block">${data.ayahs.map(a =>
-        `${a.t} <span class="vnum-ornate" data-a="${a.n}">﴿${formatAyatNum(a.n, 'ur')}﴾</span>`
+      body = `<div class="para-block${ipCls}">${data.ayahs.map(a =>
+        `${fixT(a.t)} <span class="vnum-ornate" data-a="${a.n}">﴿${formatAyatNum(a.n, 'ur')}﴾</span>`
       ).join(' ')}</div>`;
     } else {
       body = data.ayahs.map(a =>
-        `<div class="vblock"><div class="vtxt" data-a="${a.n}">${a.t} <span class="vnum-ornate">﴿${formatAyatNum(a.n, 'ur')}﴾</span></div></div>`
+        `<div class="vblock"><div class="vtxt${ipCls}" data-a="${a.n}">${fixT(a.t)} <span class="vnum-ornate">﴿${formatAyatNum(a.n, 'ur')}﴾</span></div></div>`
       ).join('');
     }
     const vmChips = `<div style="display:flex;justify-content:center;gap:.4rem;margin:.55rem auto .3rem;flex-wrap:wrap">
-        <button type="button" class="q-chip ${vm==='para'?'active':''}" onclick="setGlobalViewMode('para')">📖 پیراگراف (مصحف)</button>
+        <button type="button" class="q-chip ${isPak?'active':''}" onclick="fSetReadScript('pak')" title="${isEn ? 'Pakistani Mushaf (IndoPak script)' : 'پاکستانی مصحف'}">🇵🇰 پاکستانی مصحف</button>
+        <button type="button" class="q-chip ${!isPak?'active':''}" onclick="fSetReadScript('uth')" title="${isEn ? 'Uthmani Hafsi script' : 'عثمانی رسم الخط'}">🇵🇸 عثمانی رسم الخط</button>
+        <button type="button" class="q-chip ${vm==='para'?'active':''}" onclick="setGlobalViewMode('para')">📖 پیراگراف</button>
         <button type="button" class="q-chip ${vm==='verse'?'active':''}" onclick="setGlobalViewMode('verse')">🔢 آیت بہ آیت</button>
       </div>`;
-    const metaLine = metaSurah ? `<div class="quran-meta">${isEn ? (metaSurah.ayahs + ' ayahs · Al-Madinah Mushaf script') : (metaSurah.ayahs + ' آیات · عثمانی رسم الخط')}</div>` : '';
-    const bism = p15FormatBism(n) ? '<div class="quran-bism">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>' : '';
+    const metaLine = metaSurah ? `<div class="quran-meta">${metaSurah.ayahs + (isEn ? ' ayahs · ' : ' آیات · ') + (isPak ? (isEn ? 'Pakistani Mushaf (IndoPak)' : 'پاکستانی مصحف (اندوپاک)') : (isEn ? 'Uthmani Mushaf script' : 'عثمانی رسم الخط'))}</div>` : '';
+    const bismTxt = isPak ? 'بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ' : 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ';
+    const bism = p15FormatBism(n) ? `<div class="quran-bism${ipCls}">${bismTxt}</div>` : '';
     const hd = `<div class="quran-panel">
       <div class="quran-hd">
         <div class="quran-title">${ur}</div>
@@ -6690,8 +6733,9 @@ function renderFullSurah(mc, n){
     }
     renderDrawer();
   };
-  mc.innerHTML = `<div class="p15-loading" style="text-align:center;padding:3rem 1rem;font-family:var(--ur-font)">📖 ${isEn ? 'Loading surah…' : 'سورۃ لوڈ ہو رہی ہے…'}</div>`;
-  Promise.all([p15LoadMeta(), fetch('quran/full/surah_' + n + '.json').then(r => { if(!r.ok) throw new Error('http ' + r.status); return r.json(); })])
+  mc.innerHTML = `<div class="p15-loading" style="text-align:center;padding:3rem 1rem;font-family:var(--ur-font)">📖 ${isEn ? 'Loading surah…' : 'سورہ لوڈ ہو رہی ہے…'}</div>`;
+  const srcFile = (fReadScript === 'pak') ? ('quran/full/surah_' + n + '_ip.json') : ('quran/full/surah_' + n + '.json');
+  Promise.all([p15LoadMeta(), fetch(srcFile).then(r => { if(!r.ok) throw new Error('http ' + r.status); return r.json(); })])
     .then(([meta, data]) => {
       if(!data || !data.ayahs || !data.ayahs.length) throw new Error('bad data');
       finish(data, meta && meta.surahs ? meta.surahs[n-1] : null);

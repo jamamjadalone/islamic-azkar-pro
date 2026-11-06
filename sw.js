@@ -1,6 +1,6 @@
 /* Islamic Azkar Pro — Service Worker
    100% offline app shell. Network-first for navigation, stale-while-revalidate for static assets. */
-const CACHE = "azk-pro-v64-mobile-fit";
+const CACHE = "azk-pro-v65-indopak-mushaf";
 
 const CORE = [
 	"./",
@@ -11,6 +11,8 @@ const CORE = [
 	"./icons/icon-192-v2.png",
 	"./icons/icon-512-v2.png",
 	"./icons/apple-touch-icon-v2.png",
+	"./fonts/indopak-woff2.woff2",
+	"./fonts/indopak-woff.woff",
 	"./quran/full/surahs_meta.json",
 	/* surah_N.json files precache NAHI — runtime pe on-demand fetch hote
 	   hain aur stale-while-revalidate unhe cache karta hai (pehli load ke
