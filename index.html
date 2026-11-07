@@ -5261,6 +5261,29 @@ const S={
   scriptMode:'indopak',
   lang:'ur'   // <-- DEFAULT = INDO-PAK (Pakistani Script)
 };
+/* ── p19-b: first-visit language auto-detect (fresh visitors only; stored prefs untouched) ── */
+function p19DetectLang(){
+  try{
+    /* 1) explicit URL param (SEO hreflang links land here) */
+    const qp = new URLSearchParams(location.search).get('lang');
+    if(qp && ['ur','en','ar','id','tr','fr'].indexOf(qp) !== -1) return qp;
+    /* 2) browser language list — first supported match wins */
+    const nav = (navigator.languages && navigator.languages.length) ? navigator.languages : (navigator.language ? [navigator.language] : []);
+    for(let i=0;i<nav.length;i++){
+      const tag = String(nav[i]).toLowerCase();
+      const base = tag.split('-')[0];
+      if(base === 'ur') return 'ur';
+      if(base === 'ar') return 'ar';
+      if(base === 'id' || base === 'ms') return 'id';
+      if(base === 'tr') return 'tr';
+      if(base === 'fr') return 'fr';
+      if(base === 'en') return 'en';
+      /* interim: bn/ru/fa/hi and other locales -> English UI (packs ayenge baad phases me) */
+      if(['bn','ru','fa','hi'].indexOf(base) !== -1) return 'en';
+    }
+  }catch(e){}
+  return 'ur';
+}
 function save(){try{localStorage.setItem('azk_pro_v1',JSON.stringify({sec,viewMode,zoomPct,tajMode:S.tajMode,scriptMode:S.scriptMode,lang:S.lang,...S}))}catch(e){}}
 try{
   const p=JSON.parse(localStorage.getItem('azk_pro_v1')||'{}');
@@ -5270,6 +5293,7 @@ try{
   if(p.tajMode) S.tajMode = p.tajMode;
   if(p.scriptMode) S.scriptMode = p.scriptMode;
   if(p.lang) S.lang = p.lang;
+  else S.lang = p19DetectLang(); /* fresh visitor: browser/URL language */
   ['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana','asr','tasbeeh'].forEach(k=>{if(p[k])Object.assign(S[k],p[k]);});
   if(!S.fajr.done||S.fajr.done.length!==FAJR.length)S.fajr.done=new Array(FAJR.length).fill(false);
   if(!S.jumma.done||S.jumma.done.length!==JUMMA.length)S.jumma.done=new Array(JUMMA.length).fill(false);
