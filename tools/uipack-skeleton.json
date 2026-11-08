@@ -1,0 +1,1953 @@
+{
+  "_note": "UI i18n keys; ref en+ur+id; \"bn\"/\"ru\"/\"fa\" slots to be authored. {\"__fn\":[asm,uth]} = script-conditional entry.",
+  "I18N": {
+    "choose_zikr": {
+      "en": "Select Adhkar ▾",
+      "ur": "ذکر منتخب کریں ▾",
+      "id": "Pilih Dzikir ▾",
+      "bn": ""
+    },
+    "streak_singular": {
+      "en": "day",
+      "ur": "دن",
+      "id": "hari",
+      "bn": ""
+    },
+    "streak_plural": {
+      "en": "days",
+      "ur": "دن",
+      "id": "hari",
+      "bn": ""
+    },
+    "streak_title": {
+      "en": "Daily Adhkar Streak Record",
+      "ur": "مسلسل روزانہ اذکار پڑھنے کا ریکارڈ",
+      "id": "Catatan Rekor Dzikir Harian",
+      "bn": ""
+    },
+    "dr_streak_title": {
+      "en": "🔥 Daily Streak Tracker",
+      "ur": "🔥 روزانہ تسلسل (Streak)",
+      "id": "🔥 Rekor Harian (Streak)",
+      "bn": ""
+    },
+    "dr_streak_label": {
+      "en": "Consecutive Days of Adhkar:",
+      "ur": "مسلسل ذکر کے دن:",
+      "id": "Hari Dzikir Berturut-turut:",
+      "bn": ""
+    },
+    "mashaallah": {
+      "en": "Masha'Allah!",
+      "ur": "ماشاءاللہ!",
+      "id": "Masya Allah!",
+      "bn": ""
+    },
+    "streak_day": {
+      "en": "days",
+      "ur": "دن",
+      "id": "hari",
+      "bn": ""
+    },
+    "masjid_mode": {
+      "en": "Masjid Mode",
+      "ur": "مسجد موڈ",
+      "id": "Mode Masjid",
+      "bn": ""
+    },
+    "sound_on": {
+      "en": "Sound On",
+      "ur": "آواز چالو",
+      "id": "Suara Aktif",
+      "bn": ""
+    },
+    "sound_mute": {
+      "en": "Sound Off",
+      "ur": "آواز بند",
+      "id": "Suara Hening",
+      "bn": ""
+    },
+    "settings": {
+      "en": "Settings",
+      "ur": "سیٹنگز",
+      "id": "Pengaturan",
+      "bn": ""
+    },
+    "prev": {
+      "en": "← Previous",
+      "ur": "← پچھلا",
+      "id": "← Sebelumnya",
+      "bn": ""
+    },
+    "next": {
+      "en": "Next →",
+      "ur": "اگلا →",
+      "id": "Berikutnya →",
+      "bn": ""
+    },
+    "advance": {
+      "en": "Advance →",
+      "ur": "آگے →",
+      "id": "Lanjut →",
+      "bn": ""
+    },
+    "finish": {
+      "en": "🌿 Complete",
+      "ur": "🌿 ختم",
+      "id": "🌿 Selesai",
+      "bn": ""
+    },
+    "undo": {
+      "en": "↩ Undo",
+      "ur": "↩ واپس",
+      "id": "↩ Urungkan",
+      "bn": ""
+    },
+    "restart": {
+      "en": "↺ Restart",
+      "ur": "↺ دوبارہ",
+      "id": "↺ Ulangi",
+      "bn": ""
+    },
+    "faz_btn": {
+      "en": "✨ Virtues & Hadith",
+      "ur": "✨ فضیلت دیکھیں",
+      "id": "✨ Keutamaan & Hadits",
+      "bn": ""
+    },
+    "faz_hide": {
+      "en": "▲ Hide Virtues",
+      "ur": "▲ فضیلت چھپائیں",
+      "id": "▲ Sembunyikan",
+      "bn": ""
+    },
+    "tap_hint": {
+      "en": "tap to count",
+      "ur": "tap to count",
+      "id": "ketuk untuk menghitung",
+      "bn": ""
+    },
+    "done": {
+      "en": "Done",
+      "ur": "مکمل",
+      "id": "Selesai",
+      "bn": ""
+    },
+    "out_of": {
+      "en": "of",
+      "ur": "از",
+      "id": "dari",
+      "bn": ""
+    },
+    "salam": {
+      "en": "Peace, Mercy and Blessings of Allah be upon you",
+      "ur": "اَلسَّلَامُ عَلَیْكُمْ وَ رَحْمَةُ اللّٰهِ وَ بَرَكَاتُهُ",
+      "id": "Assalamu'alaikum Warahmatullahi Wabarakatuh",
+      "bn": ""
+    },
+    "intro": {
+      "en": "Welcome! Truly, in the remembrance of Allah do hearts find peace.",
+      "ur": "خوش آمدید! ذکرِ الٰہی سے دلوں کو اطمینان اور زندگی میں برکت حاصل ہوتی ہے۔",
+      "id": "Selamat datang! Ingatlah, hanya dengan mengingat Allah hati menjadi tenteram.",
+      "bn": ""
+    },
+    "guide": {
+      "en": "👆 Tap [ Select Adhkar ▾ ] above or choose any card below to begin your daily litany:",
+      "ur": "👆 اوپر بنے بٹن [ ☀️ ذکر منتخب کریں ▾ ] سے یا نیچے دیے گئے کارڈز سے اپنا وِرد شروع فرمائیں:",
+      "id": "👆 Ketuk [ Pilih Dzikir ▾ ] di atas atau pilih kartu di bawah untuk memulai wirid Anda:",
+      "bn": ""
+    },
+    "comp_title": {
+      "en": "MashaAllah! Complete",
+      "ur": "ماشاءاللہ! مبارک ہو",
+      "id": "Masya Allah! Selesai",
+      "bn": ""
+    },
+    "restart_btn": {
+      "en": "↺ Start Again",
+      "ur": "↺ دوبارہ شروع کریں",
+      "id": "↺ Mulai Lagi",
+      "bn": ""
+    },
+    "home_btn": {
+      "en": "🏠 Home Dashboard",
+      "ur": "🏠 مرکزی صفحہ",
+      "id": "🏠 Beranda Utama",
+      "bn": ""
+    },
+    "modal_title": {
+      "en": "⚙️ Application Settings",
+      "ur": "⚙️ ایپ ترتیبات (Settings)",
+      "id": "⚙️ Pengaturan Aplikasi",
+      "bn": ""
+    },
+    "save_btn": {
+      "en": "Save & Close ✓",
+      "ur": "محفوظ کریں ✓",
+      "id": "Simpan & Tutup ✓",
+      "bn": ""
+    },
+    "install_btn": {
+      "en": "📲 Install App",
+      "ur": "📲 ایپ انسٹال کریں",
+      "id": "📲 Pasang Aplikasi",
+      "bn": ""
+    },
+    "installed_btn": {
+      "en": "✓ App Installed",
+      "ur": "✓ ایپ انسٹال شدہ",
+      "id": "✓ Aplikasi Terpasang",
+      "bn": ""
+    },
+    "lang_label": {
+      "en": "Language / زبان / اللغة",
+      "ur": "زبان / Language / اللغة",
+      "id": "Bahasa / Language",
+      "bn": ""
+    },
+    "zoom_label": {
+      "en": "Screen Zoom & Font Size",
+      "ur": "اسکرین زوم و فونٹ سائز (Zoom & Font Size)",
+      "id": "Ukuran Teks & Zoom",
+      "bn": ""
+    },
+    "reset_zoom": {
+      "en": "↺ Default Size",
+      "ur": "↺ اصل سائز",
+      "id": "↺ Ukuran Normal",
+      "bn": ""
+    },
+    "font_label": {
+      "en": "Quranic Arabic Font",
+      "ur": "قرآنی خط و فونٹ (Quran Font)",
+      "id": "Font Al-Qur'an",
+      "bn": ""
+    },
+    "audio_label": {
+      "en": "Audio & Sound Modes",
+      "ur": "آواز و مسجد موڈ (Audio & Sound)",
+      "id": "Suara & Mode Masjid",
+      "bn": ""
+    },
+    "theme_label": {
+      "en": "Visual Themes",
+      "ur": "رنگ و تھیم (Theme & Eye Comfort)",
+      "id": "Tema Tampilan",
+      "bn": ""
+    },
+    "kahf_pref_label": {
+      "en": "Quran Reading Preferences",
+      "ur": "ترتیباتِ تلاوت (Reading Preferences)",
+      "id": "Preferensi Tilawah",
+      "bn": ""
+    },
+    "dam_title": {
+      "en": "🫁 Ruqyah Blow / Dam",
+      "ur": "🫁 دَم کریں",
+      "id": "🫁 Tiupan Ruqyah",
+      "bn": ""
+    },
+    "set_disclaimer_title": {
+      "en": "🕊️ Human Effort & Correction Notice",
+      "ur": "🕊️ تصحیح و اصلاح کی درخواست (Disclaimer & Feedback)",
+      "id": "🕊️ Catatan Koreksi & Perbaikan",
+      "bn": ""
+    },
+    "set_disclaimer_text": {
+      "en": "Every effort has been made to ensure the utmost accuracy of Quranic diacritics, translations, and authentic contextual references. However, humans are prone to unintentional errors. If you notice any typo, diacritic, or reference correction needed, please kindly notify us so it can be promptly corrected. May Allah reward you.",
+      "ur": "تمام تراجم، اعراب، اور حوالہ جات کی تیاری میں انتہائی احتیاط برتی گئی ہے، تاہم انسان خطا کا پتلا ہے۔ اگر کسی بھی مقام پر اعراب، ترجمے یا حوالے میں کوئی تسامح یا تصحیح درکار ہو تو برائے مہربانی مطلع فرمائیں تاکہ فوراً اصلاح کی جا سکے۔ جزاکم اللہ خیراً۔",
+      "id": "Segala upaya telah dilakukan untuk memastikan ketelitian harakat, terjemahan, dan rujukan kontekstual. Namun, manusia tidak luput dari kekeliruan yang tidak disengaja. Jika Anda menemukan kesalahan ketik atau rujukan yang perlu diperbaiki, mohon beri tahu kami agar segera disempurnakan. Semoga Allah membalas kebaikan Anda.",
+      "bn": ""
+    },
+    "dr_all_azkar": {
+      "en": "🕌 Blessed Azkar",
+      "ur": "🕌 اذکارِ مبارکہ",
+      "id": "🕌 Dzikir Mubarak",
+      "bn": ""
+    },
+    "dr_app_settings": {
+      "en": "⚙️ App Settings",
+      "ur": "⚙️ ترتیباتِ ایپ",
+      "id": "⚙️ Pengaturan Aplikasi",
+      "bn": ""
+    },
+    "dr_settings_name": {
+      "en": "Settings & Font Size",
+      "ur": "ایپ ترتیبات و فونٹ سائز (Settings)",
+      "id": "Pengaturan & Ukuran Huruf",
+      "bn": ""
+    },
+    "dr_options": {
+      "en": "Options",
+      "ur": "اختیارات",
+      "id": "Pilihan",
+      "bn": ""
+    },
+    "dr_audio_sec": {
+      "en": "🔕 Audio & Masjid Mode",
+      "ur": "🔕 آواز و مسجد موڈ",
+      "id": "🔕 Suara & Mode Masjid",
+      "bn": ""
+    },
+    "dr_theme_sec": {
+      "en": "🎨 Color Themes (Eye Comfort)",
+      "ur": "🎨 رنگ و تھیم (Eye Comfort)",
+      "id": "🎨 Tema Warna",
+      "bn": ""
+    },
+    "dr_pwa_sec": {
+      "en": "📲 App Installation (PWA)",
+      "ur": "📲 ایپ انسٹالیشن (PWA)",
+      "id": "📲 Pasang Aplikasi (PWA)",
+      "bn": ""
+    },
+    "dr_install_app": {
+      "en": "Install App (Offline)",
+      "ur": "ایپ انسٹال کریں (Install App)",
+      "id": "Pasang Aplikasi (Offline)",
+      "bn": ""
+    },
+    "dr_offline": {
+      "en": "Offline",
+      "ur": "آف لائن",
+      "id": "Offline",
+      "bn": ""
+    },
+    "snd_normal": {
+      "en": "🔔 Normal",
+      "ur": "🔔 عام موڈ",
+      "id": "🔔 Normal",
+      "bn": ""
+    },
+    "snd_masjid": {
+      "en": "🔕 Masjid Mode",
+      "ur": "🔕 مسجد موڈ",
+      "id": "🔕 Mode Masjid",
+      "bn": ""
+    },
+    "snd_silent": {
+      "en": "🔇 Silent",
+      "ur": "🔇 خاموش",
+      "id": "🔇 Hening",
+      "bn": ""
+    },
+    "thm_emerald": {
+      "en": "🌿 Emerald",
+      "ur": "🌿 زمردی",
+      "id": "🌿 Zamrud",
+      "bn": ""
+    },
+    "thm_oled": {
+      "en": "🖤 Pure Black (OLED)",
+      "ur": "🖤 خالص سیاہ",
+      "id": "🖤 Hitam Pekat (OLED)",
+      "bn": ""
+    },
+    "thm_sepia": {
+      "en": "📜 Parchment (Sepia)",
+      "ur": "📜 ورق (Sepia)",
+      "id": "📜 Kertas Kuno (Sepia)",
+      "bn": ""
+    },
+    "zp_search_ph": {
+      "en": "Search Zikr or Surah...",
+      "ur": "تلاش کریں / Search Zikr or Surah...",
+      "id": "Cari Dzikir atau Surah...",
+      "bn": ""
+    },
+    "zp_filter_all": {
+      "en": "🌟 All",
+      "ur": "🌟 تمام",
+      "id": "🌟 Semua",
+      "bn": ""
+    },
+    "zp_filter_surahs": {
+      "en": "📖 Quranic Surahs",
+      "ur": "📖 قرآنی سورتیں",
+      "id": "📖 Surah Al-Qur'an",
+      "bn": ""
+    },
+    "zp_filter_daily": {
+      "en": "🌅 Daily Azkar",
+      "ur": "🌅 روزمرہ اذکار",
+      "id": "🌅 Dzikir Harian",
+      "bn": ""
+    },
+    "zp_filter_duas": {
+      "en": "🤲 Duas & Wird",
+      "ur": "🤲 دعائیں و وِرد",
+      "id": "🤲 Doa & Wirid",
+      "bn": ""
+    },
+    "zp_filter_custom": {
+      "en": "📝 Custom Adhkar",
+      "ur": "📝 ذاتی اذکار",
+      "id": "📝 Dzikir Pribadi",
+      "bn": ""
+    },
+    "zp_cat_label": {
+      "en": "Categories",
+      "ur": "زمرہ جات",
+      "id": "Kategori",
+      "bn": ""
+    },
+    "zp_cat_hint": {
+      "en": "Select Filter",
+      "ur": "فلٹر منتخب کریں",
+      "id": "Pilih Kategori",
+      "bn": ""
+    },
+    "choose_zikr_modal": {
+      "en": "📿 Choose Adhkar & Surah",
+      "ur": "📿 منتخب ذکر (Choose Zikr)",
+      "id": "📿 Pilih Dzikir & Surah",
+      "bn": ""
+    },
+    "close_btn": {
+      "en": "Close",
+      "ur": "بند کریں",
+      "id": "Tutup",
+      "bn": ""
+    },
+    "cancel_btn": {
+      "en": "Cancel",
+      "ur": "منسوخ",
+      "id": "Batal",
+      "bn": ""
+    },
+    "custom_modal_title": {
+      "en": "➕ Add Custom Adhkar / Tasbeeh",
+      "ur": "➕ نیا ذاتی ذکر شامل کریں",
+      "id": "➕ Tambah Dzikir Kustom Baru",
+      "bn": ""
+    },
+    "custom_modal_edit_title": {
+      "en": "✏️ Edit Custom Adhkar",
+      "ur": "✏️ ذاتی ذکر میں ترمیم کریں",
+      "id": "✏️ Edit Dzikir Kustom",
+      "bn": ""
+    },
+    "cust_name_lbl": {
+      "en": "Title / Name:",
+      "ur": "عنوان / نام:",
+      "id": "Judul / Nama:",
+      "bn": ""
+    },
+    "cust_name_ph": {
+      "en": "e.g. Durood Sharif, Istighfar, Third Kalima",
+      "ur": "مثلاً: درود شریف، استغفار، تیسرا کلمہ",
+      "id": "misal: Shalawat, Istighfar, Kalimat Thayyibah",
+      "bn": ""
+    },
+    "cust_ar_lbl": {
+      "en": "Arabic Text or Supplication:",
+      "ur": "عربی متن یا دعا:",
+      "id": "Teks Arab atau Doa:",
+      "bn": ""
+    },
+    "cust_ar_ph": {
+      "en": "Paste or type Arabic text here...",
+      "ur": "یہاں دعا یا ذکر کا متن پیسٹ / ٹائپ کریں...",
+      "id": "Ketik atau tempel teks doa di sini...",
+      "bn": ""
+    },
+    "cust_tgt_lbl": {
+      "en": "Target Count:",
+      "ur": "تسبیح کا ہدف (Target Count):",
+      "id": "Target Hitungan:",
+      "bn": ""
+    },
+    "quick_tgt_lbl": {
+      "en": "Quick Target:",
+      "ur": "فوری ہدف:",
+      "id": "Pilihan Cepat:",
+      "bn": ""
+    },
+    "import_modal_title": {
+      "en": "📥 Import from App Catalog",
+      "ur": "📥 ایپ کے اذکار سے امپورٹ کریں",
+      "id": "📥 Impor dari Katalog Dzikir",
+      "bn": ""
+    },
+    "filter_all": {
+      "en": "All",
+      "ur": "تمام",
+      "id": "Semua",
+      "bn": ""
+    },
+    "filter_fajr": {
+      "en": "Fajr/Maghrib",
+      "ur": "فجر/مغرب",
+      "id": "Pagi & Petang",
+      "bn": ""
+    },
+    "filter_jumma": {
+      "en": "Friday Wird",
+      "ur": "جمعہ وِرد",
+      "id": "Wirid Jumat",
+      "bn": ""
+    },
+    "filter_tauheed": {
+      "en": "Tauheed",
+      "ur": "توحید",
+      "id": "Tauhid",
+      "bn": ""
+    },
+    "filter_durood": {
+      "en": "Durood & Tasbeeh",
+      "ur": "درود و تسبیح",
+      "id": "Shalawat & Tasbih",
+      "bn": ""
+    },
+    "pwa_banner_title": {
+      "en": "Install Islamic Azkar Pro",
+      "ur": "اسلامک اذکار پرو انسٹال کریں",
+      "id": "Pasang Islamic Azkar Pro",
+      "bn": ""
+    },
+    "pwa_banner_sub": {
+      "en": "Add to Home screen for 100% offline access",
+      "ur": "بغیر انٹرنیٹ استعمال کے لیے ہوم اسکرین پر شامل کریں",
+      "id": "Tambahkan ke layar utama untuk akses 100% offline",
+      "bn": ""
+    },
+    "pwa_banner_install": {
+      "en": "Install ✓",
+      "ur": "انسٹال کریں ✓",
+      "id": "Pasang ✓",
+      "bn": ""
+    },
+    "dam_desc": {
+      "en": "Blow gently into your palms three times and wipe over your body — starting with your head and face.",
+      "ur": "ہاتھوں پر تین بار پھونکیں — پھر پورے جسم پر ملیں۔<br/>پہلے خود پر، پھر گھر والوں پر دَم کریں۔",
+      "id": "Tiupkan ke kedua telapak tangan sebanyak tiga kali dan usapkan ke seluruh tubuh, mulai dari kepala dan wajah.",
+      "bn": ""
+    }
+  },
+  "SECTION_I18N": {
+    "asr": {
+      "badge": {
+        "en": "☀️ Friday — After Asr Salah — 80 Times",
+        "ur": "☀️ جمعہ — نمازِ عصر کے بعد — ۸۰ مرتبہ",
+        "id": "☀️ Hari Jumat — Setelah Shalat Ashar — 80 Kali",
+        "bn": ""
+      },
+      "note": {
+        "en": "Recite 80 times after Asr prayer on Friday before standing up —<br/><strong>Forgiveness of 80 years of sins and reward of 80 years of worship</strong><span style=\"font-size:.7rem;color:var(--gold);display:block;margin-top:.2rem\">(Al-Qawl al-Badee' — Imam al-Sakhawi)</span>",
+        "ur": "جمعہ کے دن نمازِ عصر کے بعد جگہ سے اٹھنے سے پہلے ۸۰ مرتبہ پڑھیں —<br/><strong>روایت کے مفہوم کے مطابق ۸۰ سال کے گناہ معاف اور ۸۰ سال کا ثواب ملتا ہے</strong><span style=\"font-size:.7rem;color:var(--gold);display:block;margin-top:.2rem\">(القول البديع — الإمام السخاوي)</span>",
+        "id": "Dibaca 80 kali pada hari Jumat setelah shalat Ashar sebelum berdiri dari tempat —<br/><strong>Diampuni dosa 80 tahun dan dicatat pahala ibadah 80 tahun</strong><span style=\"font-size:.7rem;color:var(--gold);display:block;margin-top:.2rem\">(Al-Qawl al-Badi' — Imam as-Sakhawi)</span>",
+        "bn": ""
+      },
+      "duaName": {
+        "en": "Durood on the Unlettered Prophet ﷺ — 80 Times",
+        "ur": "درودِ نبی اُمّی ﷺ — ۸۰ مرتبہ",
+        "id": "Shalawat kepada Nabi yang Ummi ﷺ — 80 Kali",
+        "bn": ""
+      },
+      "doneLabel": {
+        "en": "Complete!",
+        "ur": "مکمل!",
+        "id": "Selesai!",
+        "bn": ""
+      },
+      "ofLabel": {
+        "en": "of 80",
+        "ur": "از ۸۰",
+        "id": "dari 80",
+        "bn": ""
+      }
+    },
+    "tasbeeh": {
+      "badge": {
+        "en": "📿 Tasbeeh of Fatimah (RA) — Phase {p}/3",
+        "ur": "📿 تسبیحِ فاطمہؓ — مرحلہ {p}/3",
+        "id": "📿 Tasbih Fatimah (RA) — Tahap {p}/3",
+        "bn": ""
+      },
+      "faz": {
+        "en": "Recite SubhanAllah 33x, Alhamdulillah 33x, Allahu Akbar 34x after every obligatory Salah and before sleeping (Sahih al-Bukhari: 3113).",
+        "ur": "ہر نماز کے بعد اور رات کو سوتے وقت ۳۳ بار سبحان اللّٰہ، ۳۳ بار الحمد للّٰہ، اور ۳۴ بار اللّٰہ اکبر پڑھنا افضل ترین وِرد ہے (صحیح البخاری: ۳۱۱۳)",
+        "id": "Membaca Subhanallah 33x, Alhamdulillah 33x, Allahu Akbar 34x setelah shalat fardhu dan sebelum tidur (Shahih al-Bukhari: 3113).",
+        "bn": ""
+      }
+    },
+    "asma": {
+      "title": {
+        "en": "The 99 Beautiful Names of Allah",
+        "ur": "اَسْمَاءُ اللّٰهِ الْحُسْنٰی",
+        "id": "99 Asmaul Husna",
+        "bn": ""
+      },
+      "meta": {
+        "en": "The 99 Divine Attributes of Allah with authentic English meanings<br/>\"Allah has ninety-nine names; whoever enumerates them will enter Paradise\" (Sahih Bukhari: 2736) • 100% Offline",
+        "ur": "اللہ تعالیٰ کے ۹۹ صفاتی نام مع اردو معانی<br/>\"إِنَّ لِلَّهِ تِسْعَةً وَتِسْعِينَ اسْمًا مَنْ أَحْصَاهَا دَخَلَ الْجَنَّةَ\" (صحیح بخاری: ۲۷۳۶) • ۱۰۰٪ آف لائن",
+        "id": "99 Nama-Nama Allah yang Maha Indah beserta maknanya<br/>\"Sesungguhnya Allah memiliki 99 nama, barangsiapa menghafalnya niscaya masuk surga\" (Shahih al-Bukhari: 2736) • 100% Offline",
+        "bn": ""
+      }
+    },
+    "surahs": {
+      "kahf": {
+        "en": {
+          "__fn": [
+            "Complete Surah — 110 Verses — 12 Ruku (Indo-Pak Script)<br/>Friday Sunnah Recitation for light and protection from Dajjal • 100% Offline",
+            "Complete Surah — 110 Verses — 12 Ruku (Uthmanic Script)<br/>Friday Sunnah Recitation for light and protection from Dajjal • 100% Offline"
+          ]
+        },
+        "ur": {
+          "__fn": [
+            "مکمل سورۃ — ۱۱۰ آیات — ۱۲ رکوع (رسمِ ہند-پاک)<br/>ہر جمعہ تلاوت سنت ہے • ۱۰۰٪ آف لائن — بغیر انٹرنیٹ کے",
+            "مکمل سورۃ — ۱۱۰ آیات — ۱۲ رکوع (رسمِ عثمانی)<br/>ہر جمعہ تلاوت سنت ہے • ۱۰۰٪ آف لائن — بغیر انٹرنیٹ کے"
+          ]
+        },
+        "id": {
+          "__fn": [
+            "Surah Lengkap — 110 Ayat — 12 Ruku (Rasm Indo-Pak)<br/>Sunnah Hari Jumat sebagai cahaya & perlindungan dari Dajjal • 100% Offline",
+            "Surah Lengkap — 110 Ayat — 12 Ruku (Rasm Utsmani)<br/>Sunnah Hari Jumat sebagai cahaya & perlindungan dari Dajjal • 100% Offline"
+          ]
+        },
+        "bn": ""
+      },
+      "mulk": {
+        "en": {
+          "__fn": [
+            "Complete Surah — 30 Verses — 2 Ruku (Indo-Pak Script)<br/>Recited nightly for intercession and protection from grave punishment • 100% Offline",
+            "Complete Surah — 30 Verses — 2 Ruku (Uthmanic Script)<br/>Recited nightly for intercession and protection from grave punishment • 100% Offline"
+          ]
+        },
+        "ur": {
+          "__fn": [
+            "مکمل سورۃ — ۳۰ آیات — ۲ رکوع (رسمِ ہند-پاک)<br/>رات کو پڑھنا عذابِ قبر سے نجات اور شفاعت کا ذریعہ ہے • ۱۰۰٪ آف لائن",
+            "مکمل سورۃ — ۳۰ آیات — ۲ رکوع (رسمِ عثمانی)<br/>رات کو پڑھنا عذابِ قبر سے نجات اور شفاعت کا ذریعہ ہے • ۱۰۰٪ آف لائن"
+          ]
+        },
+        "id": {
+          "__fn": [
+            "Surah Lengkap — 30 Ayat — 2 Ruku (Rasm Indo-Pak)<br/>Dibaca setiap malam untuk perlindungan dari siksa kubur • 100% Offline",
+            "Surah Lengkap — 30 Ayat — 2 Ruku (Rasm Utsmani)<br/>Dibaca setiap malam untuk perlindungan dari siksa kubur • 100% Offline"
+          ]
+        },
+        "bn": ""
+      },
+      "waqiah": {
+        "en": {
+          "__fn": [
+            "Complete Surah — 96 Verses — 3 Ruku (Indo-Pak Script)<br/>Shield against poverty and brings barakah in sustenance • 100% Offline",
+            "Complete Surah — 96 Verses — 3 Ruku (Uthmanic Script)<br/>Shield against poverty and brings barakah in sustenance • 100% Offline"
+          ]
+        },
+        "ur": {
+          "__fn": [
+            "مکمل سورۃ — ۹۶ آیات — ۳ رکوع (رسمِ ہند-پاک)<br/>مغرب یا عشاء کے بعد پڑھنا فقر و فاقہ سے حفاظت اور برکت کا ذریعہ ہے • ۱۰۰٪ آف لائن",
+            "مکمل سورۃ — ۹۶ آیات — ۳ رکوع (رسمِ عثمانی)<br/>مغرب یا عشاء کے بعد پڑھنا فقر و فاقہ سے حفاظت اور برکت کا ذریعہ ہے • ۱۰۰٪ آف لائن"
+          ]
+        },
+        "id": {
+          "__fn": [
+            "Surah Lengkap — 96 Ayat — 3 Ruku (Rasm Indo-Pak)<br/>Pelindung dari kemiskinan dan pembawa keberkahan rezeki • 100% Offline",
+            "Surah Lengkap — 96 Ayat — 3 Ruku (Rasm Utsmani)<br/>Pelindung dari kemiskinan dan pembawa keberkahan rezeki • 100% Offline"
+          ]
+        },
+        "bn": ""
+      },
+      "rahman": {
+        "en": {
+          "__fn": [
+            "Complete Surah — 78 Verses — 3 Ruku (Indo-Pak Script)<br/>Beauty of the Quran (Uroos-ul-Quran) • 100% Offline",
+            "Complete Surah — 78 Verses — 3 Ruku (Uthmanic Script)<br/>Beauty of the Quran (Uroos-ul-Quran) • 100% Offline"
+          ]
+        },
+        "ur": {
+          "__fn": [
+            "مکمل سورۃ — ۷۸ آیات — ۳ رکوع (رسمِ ہند-پاک)<br/>عُرُوْسُ الْقُرْآن (قرآن کی دلہن) — فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ • ۱۰۰٪ آف لائن",
+            "مکمل سورۃ — ۷۸ آیات — ۳ رکوع (رسمِ عثمانی)<br/>عُرُوْسُ الْقُرْآن (قرآن کی دلہن) — فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ • ۱۰۰٪ آف لائن"
+          ]
+        },
+        "id": {
+          "__fn": [
+            "Surah Lengkap — 78 Ayat — 3 Ruku (Rasm Indo-Pak)<br/>Keindahan Al-Quran (Pengantin Al-Quran) • 100% Offline",
+            "Surah Lengkap — 78 Ayat — 3 Ruku (Rasm Utsmani)<br/>Keindahan Al-Quran (Pengantin Al-Quran) • 100% Offline"
+          ]
+        },
+        "bn": ""
+      },
+      "manzil": {
+        "en": {
+          "__fn": [
+            "Complete Manzil — 33 Verses in 4 Parts (Indo-Pak Script)<br/>Prophetic protection from evil eye, envy, and sorcery • 100% Offline",
+            "Complete Manzil — 33 Verses in 4 Parts (Uthmanic Script)<br/>Prophetic protection from evil eye, envy, and sorcery • 100% Offline"
+          ]
+        },
+        "ur": {
+          "__fn": [
+            "مکمل منزل — ۳۳ آیاتِ حفاظت مع ۴ حصے (رسمِ ہند-پاک)<br/>نظرِ بد، آسیب، جادو اور ہر قسم کے شرور سے قرآنی و نبوی پناہ • ۱۰۰٪ آف لائن",
+            "مکمل منزل — ۳۳ آیاتِ حفاظت مع ۴ حصے (رسمِ عثمانی)<br/>نظرِ بد، آسیب، جادو اور ہر قسم کے شرور سے قرآنی و نبوی پناہ • ۱۰۰٪ آف لائن"
+          ]
+        },
+        "id": {
+          "__fn": [
+            "Manzil Lengkap — 33 Ayat Perlindungan (Rasm Indo-Pak)<br/>Perlindungan Nabawi dari pandangan mata jahat (ain), sihir & marabahaya • 100% Offline",
+            "Manzil Lengkap — 33 Ayat Perlindungan (Rasm Utsmani)<br/>Perlindungan Nabawi dari pandangan mata jahat (ain), sihir & marabahaya • 100% Offline"
+          ]
+        },
+        "bn": ""
+      }
+    },
+    "completion": {
+      "fajr": {
+        "en": "Masha'Allah! Morning & Evening Adhkar completed 🌅",
+        "ur": "ماشاءاللہ! فجر/مغرب کے اذکار مکمل 🌅",
+        "id": "Masya Allah! Dzikir Pagi & Petang telah selesai 🌅",
+        "bn": ""
+      },
+      "jumma": {
+        "en": "Masha'Allah! Friday Sunnah Adhkar completed 🌙",
+        "ur": "ماشاءاللہ! جمعہ کا مکمل وِرد ادا ہوگیا 🌙",
+        "id": "Masya Allah! Wirid Hari Jumat telah selesai 🌙",
+        "bn": ""
+      },
+      "tauheed": {
+        "en": "Masha'Allah! Tauheed & Praise Adhkar completed ☝️",
+        "ur": "ماشاءاللہ! ذکرِ توحید مکمل ہوگیا ☝️",
+        "id": "Masya Allah! Dzikir Tauhid telah selesai ☝️",
+        "bn": ""
+      },
+      "bedtime": {
+        "en": "Masha'Allah! Bedtime Sunnah Adhkar completed 🌙",
+        "ur": "ماشاءاللہ! سونے کے مسنون اذکار مکمل 🌙",
+        "id": "Masya Allah! Dzikir Sebelum Tidur telah selesai 🌙",
+        "bn": ""
+      },
+      "tawbah": {
+        "en": "Masha'Allah! Sayyidul Istighfar & Tawbah completed 🤲",
+        "ur": "ماشاءاللہ! استغفار و توبہ کے اذکار مکمل 🤲",
+        "id": "Masya Allah! Istighfar & Taubat telah selesai 🤲",
+        "bn": ""
+      },
+      "post_salah": {
+        "en": "Masha'Allah! After Salah Adhkar completed 🧎",
+        "ur": "ماشاءاللہ! بعد از نماز کے اذکار مکمل 🧎",
+        "id": "Masya Allah! Dzikir Setelah Shalat telah selesai 🧎",
+        "bn": ""
+      },
+      "morning_wake": {
+        "en": "Masha'Allah! Waking Up Adhkar completed 🌅",
+        "ur": "ماشاءاللہ! صبح بیداری کے اذکار مکمل 🌅",
+        "id": "Masya Allah! Doa Bangun Tidur telah selesai 🌅",
+        "bn": ""
+      },
+      "relief_debt": {
+        "en": "Masha'Allah! Relief from Debt & Grief Duas completed 🤲",
+        "ur": "ماشاءاللہ! دعائیں مکمل — اللہ نجات عطا فرمائے 🤲",
+        "id": "Masya Allah! Doa Pelunas Hutang & Duka telah selesai 🤲",
+        "bn": ""
+      },
+      "istikhara": {
+        "en": "Masha'Allah! Dua-e-Istikhara completed 🧭",
+        "ur": "ماشاءاللہ! دعائے استخارہ مکمل — اللہ برکت فرمائے 🧭",
+        "id": "Masya Allah! Doa Shalat Istikharah telah selesai 🧭",
+        "bn": ""
+      },
+      "durood_pak": {
+        "en": "Masha'Allah! Durood Collection completed — Blessings & Peace 🌹",
+        "ur": "ماشاءاللہ! درود شریف کا وِرد مکمل — شفاعت و رحمت 🌹",
+        "id": "Masya Allah! Kumpulan Shalawat telah selesai dibaca 🌹",
+        "bn": ""
+      },
+      "asr": {
+        "en": "Masha'Allah! Friday Asr Durood (80 Times) completed ☀️",
+        "ur": "ماشاءاللہ! جمعہ عصر درود شریف (۸۰ مرتبہ) مکمل ہوگیا ☀️",
+        "id": "Masya Allah! Shalawat Ashar Jumat (80 Kali) telah selesai ☀️",
+        "bn": ""
+      },
+      "tasbeeh": {
+        "en": "Masha'Allah! Tasbeeh of Fatimah (RA) completed 📿",
+        "ur": "ماشاءاللہ! تسبیحِ فاطمہؓ مکمل ہوگئی 📿",
+        "id": "Masya Allah! Tasbih Fatimah (RA) telah selesai 📿",
+        "bn": ""
+      },
+      "custom": {
+        "en": "Masha'Allah! All Custom Adhkar completed 🌿",
+        "ur": "ماشاءاللہ! تمام ذاتی اذکار مکمل ہوگئے 🌿",
+        "id": "Masya Allah! Semua Dzikir Pribadi telah selesai 🌿",
+        "bn": ""
+      }
+    }
+  },
+  "SECS": [
+    {
+      "id": "welcome",
+      "icon": "🕌",
+      "title": {
+        "en": "Home Dashboard",
+        "ur": "خوش آمدید (صفحۂ اول)",
+        "id": "Beranda Utama",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "Home",
+        "ur": "ہوم",
+        "id": "Beranda",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "yaseen",
+      "icon": "💚",
+      "title": {
+        "en": "Surah Yaseen (Heart of Quran)",
+        "ur": "سورۃ یٰسٓ (قلب القرآن)",
+        "id": "Surah Yasin (Jantung Al-Qur'an)",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "83 Verses",
+        "ur": "۸۳ آیات",
+        "id": "83 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "rabbana",
+      "icon": "🤲",
+      "title": {
+        "en": "40 Rabbana Quranic Duas",
+        "ur": "۴۰ رَبَّنَا قرآنی دعائیں",
+        "id": "40 Doa Rabbana Al-Qur'an",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "40 Duas",
+        "ur": "۴۰ دعائیں",
+        "id": "40 Doa",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "asr",
+      "icon": "☀️",
+      "title": {
+        "en": "Friday Asr Durood ×80",
+        "ur": "جمعہ عصر درود ×۸۰",
+        "id": "Shalawat Ashar Jumat ×80",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": "×80"
+    },
+    {
+      "id": "durood_pak",
+      "icon": "✨",
+      "title": {
+        "en": "Durood Collection",
+        "ur": "مجموعہ درود شریف",
+        "id": "Kumpulan Shalawat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "3 Durood",
+        "ur": "۳ درود",
+        "id": "3 Shalawat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "fajr",
+      "icon": "🌅",
+      "title": {
+        "en": "Morning & Evening Adhkar",
+        "ur": "فجر/مغرب اذکار",
+        "id": "Dzikir Pagi & Petang",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "14 Adhkar",
+        "ur": "۱۴ اذکار",
+        "id": "14 Dzikir",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "jumma",
+      "icon": "🌙",
+      "title": {
+        "en": "Friday Sunnah Adhkar",
+        "ur": "جمعہ کا وِرد",
+        "id": "Wirid Hari Jumat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "7 Adhkar",
+        "ur": "۷ اذکار",
+        "id": "7 Dzikir",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "post_salah",
+      "icon": "🧎",
+      "title": {
+        "en": "After Salah Adhkar",
+        "ur": "فرض نماز کے بعد کے اذکار",
+        "id": "Dzikir Setelah Shalat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "6 Adhkar",
+        "ur": "۶ اذکار",
+        "id": "6 Dzikir",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "bedtime",
+      "icon": "🌙",
+      "title": {
+        "en": "Bedtime Adhkar",
+        "ur": "سونے کے مسنون اذکار",
+        "id": "Dzikir Sebelum Tidur",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "6 Adhkar",
+        "ur": "۶ اذکار",
+        "id": "6 Dzikir",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "morning_wake",
+      "icon": "🌅",
+      "title": {
+        "en": "Waking Up Adhkar",
+        "ur": "صبح بیدار ہونے کے اذکار",
+        "id": "Doa Bangun Tidur",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "2 Adhkar",
+        "ur": "۲ اذکار",
+        "id": "2 Dzikir",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "relief_debt",
+      "icon": "🤲",
+      "title": {
+        "en": "Relief from Debt & Grief",
+        "ur": "قرض و پریشانی سے نجات",
+        "id": "Doa Pelunas Hutang & Duka",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "4 Adhkar",
+        "ur": "۴ اذکار",
+        "id": "4 Dzikir",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "istikhara",
+      "icon": "🧭",
+      "title": {
+        "en": "Dua-e-Istikhara",
+        "ur": "دعائے استخارہ مع طریقہ",
+        "id": "Doa Shalat Istikharah",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "1 Dua",
+        "ur": "۱ دعا",
+        "id": "1 Doa",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "tawbah",
+      "icon": "🤲",
+      "title": {
+        "en": "Sayyidul Istighfar & Tawbah",
+        "ur": "سید الاستغفار و توبہ",
+        "id": "Sayyidul Istighfar & Taubat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "4 Adhkar",
+        "ur": "۴ اذکار",
+        "id": "4 Dzikir",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "tauheed",
+      "icon": "☝️",
+      "title": {
+        "en": "Tauheed & Praise",
+        "ur": "توحید کے اذکار",
+        "id": "Dzikir Tauhid & Tasbih",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "6 Adhkar",
+        "ur": "۶ اذکار",
+        "id": "6 Dzikir",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "asma",
+      "icon": "👑",
+      "title": {
+        "en": "99 Names of Allah",
+        "ur": "اسمائے حسنیٰ (۹۹ نام)",
+        "id": "99 Asmaul Husna",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "99 Names",
+        "ur": "۹۹ نام",
+        "id": "99 Nama",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "kahf",
+      "icon": "📖",
+      "title": {
+        "en": "Surah Al-Kahf",
+        "ur": "سورۃ الکہف",
+        "id": "Surah Al-Kahfi",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "110 Verses",
+        "ur": "۱۱۰ آیات",
+        "id": "110 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "mulk",
+      "icon": "👑",
+      "title": {
+        "en": "Surah Al-Mulk",
+        "ur": "سورۃ الملک",
+        "id": "Surah Al-Mulk",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "30 Verses",
+        "ur": "۳۰ آیات",
+        "id": "30 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "waqiah",
+      "icon": "💰",
+      "title": {
+        "en": "Surah Al-Waqiah",
+        "ur": "سورۃ الواقعہ",
+        "id": "Surah Al-Waqi'ah",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "96 Verses",
+        "ur": "۹۶ آیات",
+        "id": "96 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "rahman",
+      "icon": "🌺",
+      "title": {
+        "en": "Surah Ar-Rahman",
+        "ur": "سورۃ الرحمن",
+        "id": "Surah Ar-Rahman",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "78 Verses",
+        "ur": "۷۸ آیات",
+        "id": "78 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "manzil",
+      "icon": "🛡️",
+      "title": {
+        "en": "Manzil (Healing & Protection)",
+        "ur": "منزل (حفاظت و شفا)",
+        "id": "Manzil (Ruqyah Syifa)",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "33 Verses",
+        "ur": "۳۳ آیات",
+        "id": "33 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "tasbeeh",
+      "icon": "📿",
+      "title": {
+        "en": "Tasbeeh of Fatimah (RA)",
+        "ur": "تسبیحِ فاطمہؓ",
+        "id": "Tasbih Fatimah (RA)",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": "33+33+34"
+    },
+    {
+      "id": "custom",
+      "icon": "📝",
+      "title": {
+        "en": "Custom Adhkar & Tasbeeh",
+        "ur": "ذاتی اذکار (مینول)",
+        "id": "Dzikir Pribadi Kustom",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "Custom",
+        "ur": "اپنی تسبیح",
+        "id": "Kustom",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "s26_fatiha",
+      "group": "quran26",
+      "icon": "📖",
+      "title": {
+        "en": "Surah Al-Fatihah",
+        "ur": "سورہ فاتحہ",
+        "id": "Surah Al-Fatihah",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "7 Verses",
+        "ur": "۷ آیات",
+        "id": "7 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "s26_ayat_kursi",
+      "group": "quran26",
+      "icon": "👑",
+      "title": {
+        "en": "Ayat-ul-Kursi",
+        "ur": "آیت الکرسی",
+        "id": "Ayat Al-Kursi",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "1 Verse",
+        "ur": "۱ آیت",
+        "id": "1 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "s26_baqarah_ruku",
+      "group": "quran26",
+      "icon": "📖",
+      "title": {
+        "en": "Surah Al-Baqarah (Ruku 1 & Last)",
+        "ur": "سورہ بقرہ (پہلا و آخری رکوع)",
+        "id": "Surah Al-Baqarah (Rukuk 1 & Terakhir)",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "9 Verses",
+        "ur": "۹ آیات",
+        "id": "9 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "s26_ali_imran_last",
+      "group": "quran26",
+      "icon": "📖",
+      "title": {
+        "en": "Surah Ali 'Imran (Last Ruku)",
+        "ur": "سورہ آل عمران (آخری رکوع)",
+        "id": "Surah Ali 'Imran (Rukuk Terakhir)",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "11 Verses",
+        "ur": "۱۱ آیات",
+        "id": "11 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "s26_sajdah",
+      "group": "quran26",
+      "icon": "📖",
+      "title": {
+        "en": "Surah As-Sajdah",
+        "ur": "سورہ السجدہ",
+        "id": "Surah As-Sajdah",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "30 Verses",
+        "ur": "۳۰ آیات",
+        "id": "30 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "s26_dukhan",
+      "group": "quran26",
+      "icon": "📖",
+      "title": {
+        "en": "Surah Ad-Dukhan",
+        "ur": "سورہ دخان",
+        "id": "Surah Ad-Dukhan",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "59 Verses",
+        "ur": "۵۹ آیات",
+        "id": "59 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "s26_fath",
+      "group": "quran26",
+      "icon": "📖",
+      "title": {
+        "en": "Surah Al-Fath",
+        "ur": "سورہ فتح",
+        "id": "Surah Al-Fath",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "29 Verses",
+        "ur": "۲۹ آیات",
+        "id": "29 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "s26_qaf",
+      "group": "quran26",
+      "icon": "📖",
+      "title": {
+        "en": "Surah Qaf",
+        "ur": "سورہ ق",
+        "id": "Surah Qaf",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "29 Verses",
+        "ur": "۲۹ آیات",
+        "id": "29 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "s26_hadid",
+      "group": "quran26",
+      "icon": "📖",
+      "title": {
+        "en": "Surah Al-Hadid",
+        "ur": "سورہ حدید",
+        "id": "Surah Al-Hadid",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "29 Verses",
+        "ur": "۲۹ آیات",
+        "id": "29 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "s26_hashr",
+      "group": "quran26",
+      "icon": "📖",
+      "title": {
+        "en": "Surah Al-Hashr",
+        "ur": "سورہ حشر",
+        "id": "Surah Al-Hasyr",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "24 Verses",
+        "ur": "۲۴ آیات",
+        "id": "24 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "s26_saff",
+      "group": "quran26",
+      "icon": "📖",
+      "title": {
+        "en": "Surah As-Saff",
+        "ur": "سورہ صف",
+        "id": "Surah Ash-Shaff",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "14 Verses",
+        "ur": "۱۴ آیات",
+        "id": "14 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "s26_jummah",
+      "group": "quran26",
+      "icon": "🕌",
+      "title": {
+        "en": "Surah Al-Jumu'ah",
+        "ur": "سورہ جمعہ",
+        "id": "Surah Al-Jumu'ah",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "11 Verses",
+        "ur": "۱۱ آیات",
+        "id": "11 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "s26_taghabun",
+      "group": "quran26",
+      "icon": "📖",
+      "title": {
+        "en": "Surah At-Taghabun",
+        "ur": "سورہ تغابن",
+        "id": "Surah At-Taghabun",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "18 Verses",
+        "ur": "۱۸ آیات",
+        "id": "18 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "s26_tahrim",
+      "group": "quran26",
+      "icon": "📖",
+      "title": {
+        "en": "Surah At-Tahrim",
+        "ur": "سورہ تحریم",
+        "id": "Surah At-Tahrim",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "18 Verses",
+        "ur": "۱۸ آیات",
+        "id": "18 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "s26_nuh",
+      "group": "quran26",
+      "icon": "📖",
+      "title": {
+        "en": "Surah Nuh",
+        "ur": "سورہ نوح",
+        "id": "Surah Nuh",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "28 Verses",
+        "ur": "۲۸ آیات",
+        "id": "28 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "s26_jinn",
+      "group": "quran26",
+      "icon": "📖",
+      "title": {
+        "en": "Surah Al-Jinn",
+        "ur": "سورہ جن",
+        "id": "Surah Al-Jinn",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "28 Verses",
+        "ur": "۲۸ آیات",
+        "id": "28 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "s26_muzzammil",
+      "group": "quran26",
+      "icon": "🌟",
+      "title": {
+        "en": "Surah Al-Muzzammil",
+        "ur": "سورہ مزمل",
+        "id": "Surah Al-Muzzammil",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "20 Verses",
+        "ur": "۲۰ آیات",
+        "id": "20 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "s26_qiyamah",
+      "group": "quran26",
+      "icon": "📖",
+      "title": {
+        "en": "Surah Al-Qiyamah",
+        "ur": "سورہ قیامہ",
+        "id": "Surah Al-Qiyamah",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "40 Verses",
+        "ur": "۴۰ آیات",
+        "id": "40 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "s26_dahr",
+      "group": "quran26",
+      "icon": "📖",
+      "title": {
+        "en": "Surah Ad-Dahr (Al-Insan)",
+        "ur": "سورہ دھر (الانسان)",
+        "id": "Surah Ad-Dahr (Al-Insan)",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "31 Verses",
+        "ur": "۳۱ آیات",
+        "id": "31 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "s26_naba",
+      "group": "quran26",
+      "icon": "📖",
+      "title": {
+        "en": "Surah An-Naba",
+        "ur": "سورہ نباء",
+        "id": "Surah An-Naba'",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "40 Verses",
+        "ur": "۴۰ آیات",
+        "id": "40 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "s26_ala",
+      "group": "quran26",
+      "icon": "📖",
+      "title": {
+        "en": "Surah Al-A'la",
+        "ur": "سورہ اعلی",
+        "id": "Surah Al-A'la",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "19 Verses",
+        "ur": "۱۹ آیات",
+        "id": "19 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    },
+    {
+      "id": "s26_last_22",
+      "group": "quran26",
+      "icon": "✨",
+      "title": {
+        "en": "Last 22 Surahs (Duha to Nas)",
+        "ur": "آخری ۲۲ سورتیں (الضحیٰ تا الناس)",
+        "id": "22 Surah Terakhir (Adh-Dhuha - An-Nas)",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      },
+      "ct": {
+        "en": "80 Verses",
+        "ur": "۸۰ آیات",
+        "id": "80 Ayat",
+        "bn": "",
+        "ru": "",
+        "fa": ""
+      }
+    }
+  ],
+  "WELCOME_CARDS_DATA": {
+    "asr": {
+      "icon": "☀️",
+      "title": {
+        "en": "Friday Asr Durood Sharif (80 Times)",
+        "ur": "جمعہ عصر درود شریف (۸۰ مرتبہ)",
+        "id": "Shalawat Ashar Hari Jumat (80 Kali)",
+        "bn": ""
+      },
+      "sub": {
+        "en": "Special litany for forgiveness of 80 years of sins and 80 years of worship",
+        "ur": "روایت کے مطابق ۸۰ سال کی مغفرت و ثواب کا خاص وِرد",
+        "id": "Amalan istimewa pengampunan dosa 80 tahun dan pahala 80 tahun ibadah",
+        "bn": ""
+      }
+    },
+    "durood_pak": {
+      "icon": "✨",
+      "title": {
+        "en": "Durood Collection (Ibrahimi, Tanjeena, Taj)",
+        "ur": "مجموعہ درود شریف (ابراہیمی، تنجینا، تاج)",
+        "id": "Kumpulan Shalawat (Ibrahimiyah, Nariyah/Tunjina, Taj)",
+        "bn": ""
+      },
+      "sub": {
+        "en": "Supreme Durood from Salah, Durood-e-Tanjeena, and Durood-e-Taj",
+        "ur": "نماز والا افضل ترین درودِ ابراہیمی، درودِ تنجینا اور درودِ تاج",
+        "id": "Shalawat Ibrahimiyah paling utama dalam shalat, Tunjina, dan Taj",
+        "bn": ""
+      }
+    },
+    "asma": {
+      "icon": "👑",
+      "title": {
+        "en": "The 99 Beautiful Names of Allah (Asma-ul-Husna)",
+        "ur": "اَسْمَاءُ اللّٰهِ الْحُسْنٰی (۹۹ مبارک نام)",
+        "id": "Asmaul Husna (99 Nama Allah Yang Mulia)",
+        "bn": ""
+      },
+      "sub": {
+        "en": "99 Divine Attributes with meanings and authentic Hadith virtues",
+        "ur": "اللہ تعالیٰ کے ۹۹ صفاتی نام مع اردو معانی و کامل فضیلت",
+        "id": "99 Nama Agung Allah beserta arti dan keutamaan hadits",
+        "bn": ""
+      }
+    },
+    "kahf": {
+      "icon": "📖",
+      "title": {
+        "en": "Surah Al-Kahf (Full Offline Recitation)",
+        "ur": "سورۃ الکہف (مکمل آف لائن تلاوت)",
+        "id": "Surah Al-Kahfi (Tilawah Lengkap Offline)",
+        "bn": ""
+      },
+      "sub": {
+        "en": "Complete 110 verses with Tajweed, Indo-Pak & Uthmanic scripts",
+        "ur": "مکمل ۱۱۰ آیات مع تجوید و ہند-پاک پاکستانی رسم الخط",
+        "id": "Lengkap 110 ayat dengan tajwid, rasm Utsmani dan Indo-Pak",
+        "bn": ""
+      }
+    },
+    "fajr": {
+      "icon": "🌅",
+      "title": {
+        "en": "Morning & Evening Masnoon Adhkar",
+        "ur": "فجر و مغرب کے مسنون اذکار",
+        "id": "Dzikir Pagi & Petang Shahih",
+        "bn": ""
+      },
+      "sub": {
+        "en": "Comprehensive prophetic supplications for daily divine protection",
+        "ur": "صبح و شام کی جامع حفاظت کی دعائیں",
+        "id": "Doa perlindungan harian lengkap bersumber dari hadits shahih",
+        "bn": ""
+      }
+    },
+    "jumma": {
+      "icon": "🌙",
+      "title": {
+        "en": "Friday Sunnah Adhkar & Ruqyah Blow",
+        "ur": "جمعہ کا مسنون وِرد مع دَم",
+        "id": "Wirid Jumat & Tiupan Ruqyah",
+        "bn": ""
+      },
+      "sub": {
+        "en": "Surah Fatihah & 3 Quls with authentic prophetic blow (dam)",
+        "ur": "سورۃ فاتحہ، اخلاص، فلق، ناس مع طریقہ دم",
+        "id": "Al-Fatihah dan 3 Qul dengan tata cara tiupan ruqyah syar'i",
+        "bn": ""
+      }
+    },
+    "mulk": {
+      "icon": "👑",
+      "title": {
+        "en": "Surah Al-Mulk (Grave Protection)",
+        "ur": "سورۃ الملک (عذابِ قبر سے حفاظت)",
+        "id": "Surah Al-Mulk (Penyelamat Siksa Kubur)",
+        "bn": ""
+      },
+      "sub": {
+        "en": "Complete 30 verses — Nightly protection and intercession",
+        "ur": "مکمل ۳۰ آیات — رات کو تلاوت کی فضیلت مع پاکستانی رسم الخط",
+        "id": "Lengkap 30 ayat — pelindung siksa kubur dibaca setiap malam",
+        "bn": ""
+      }
+    },
+    "waqiah": {
+      "icon": "💰",
+      "title": {
+        "en": "Surah Al-Waqiah (Sustenance & Barakah)",
+        "ur": "سورۃ الواقعہ (رزق و برکت)",
+        "id": "Surah Al-Waqi'ah (Pembuka Pintu Rezeki)",
+        "bn": ""
+      },
+      "sub": {
+        "en": "Complete 96 verses — Prophetic shield against poverty",
+        "ur": "مکمل ۹۶ آیات — فقر و فاقہ سے حفاظت مع پاکستانی رسم الخط",
+        "id": "Lengkap 96 ayat — pelindung dari kefakiran dan pembawa berkah",
+        "bn": ""
+      }
+    },
+    "rahman": {
+      "icon": "🌺",
+      "title": {
+        "en": "Surah Ar-Rahman (Beauty of the Quran)",
+        "ur": "سورۃ الرحمن (عُرُوْسُ الْقُرْآن)",
+        "id": "Surah Ar-Rahman (Pengantin Al-Qur'an)",
+        "bn": ""
+      },
+      "sub": {
+        "en": "Complete 78 verses — Which of the favors of your Lord will you deny?",
+        "ur": "مکمل ۷۸ آیات — فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ مع پاکستانی رسم الخط",
+        "id": "Lengkap 78 ayat — Maka nikmat Tuhanmu manakah yang kamu dustakan?",
+        "bn": ""
+      }
+    },
+    "manzil": {
+      "icon": "🛡️",
+      "title": {
+        "en": "Manzil — Quranic Healing & Protection",
+        "ur": "منزل — قرآنی شفا و حفاظت",
+        "id": "Manzil — Ayat Syifa & Perlindungan",
+        "bn": ""
+      },
+      "sub": {
+        "en": "Complete 33 verses for protection from evil eye, envy, and sorcery",
+        "ur": "مکمل ۳۳ آیاتِ حفاظت — نظرِ بد، جادو اور شیاطین سے نبوی پناہ",
+        "id": "33 ayat penjaga dari gangguan sihir, ain, dan godaan setan",
+        "bn": ""
+      }
+    },
+    "bedtime": {
+      "icon": "🌙",
+      "title": {
+        "en": "Bedtime Masnoon Adhkar & Protection",
+        "ur": "سونے کے مسنون اذکار و دعائیں",
+        "id": "Dzikir & Doa Sebelum Tidur",
+        "bn": ""
+      },
+      "sub": {
+        "en": "Ayat-ul-Kursi, Amanar-Rasul, 3 Quls with dam, and Tasbeeh Fatimah",
+        "ur": "آیت الکرسی، آمن الرسول، تینوں قُل مع دم، تسبیح فاطمہؓ",
+        "id": "Ayat Kursi, 2 ayat terakhir Al-Baqarah, 3 Qul, dan Tasbih Fatimah",
+        "bn": ""
+      }
+    },
+    "tawbah": {
+      "icon": "🤲",
+      "title": {
+        "en": "Sayyidul Istighfar & Repentance Adhkar",
+        "ur": "سید الاستغفار و توبہ کے اذکار",
+        "id": "Sayyidul Istighfar & Doa Taubat",
+        "bn": ""
+      },
+      "sub": {
+        "en": "The Master Supplication for forgiveness, Ayat-e-Kareema, and repentance",
+        "ur": "سید الاستغفار، آیتِ کریمہ اور نبوی بخشش کے اذکار",
+        "id": "Doa istighfar paling utama dan doa Nabi Yunus AS di perut ikan",
+        "bn": ""
+      }
+    },
+    "post_salah": {
+      "icon": "🧎",
+      "title": {
+        "en": "Authentic After-Salah Adhkar",
+        "ur": "فرض نماز کے بعد کے مسنون اذکار",
+        "id": "Dzikir Setelah Shalat Fardhu",
+        "bn": ""
+      },
+      "sub": {
+        "en": "Istighfar, Ayat-ul-Kursi, Tasbeeh Fatimah, and sincere worship prayers",
+        "ur": "استغفار، آیۃ الکرسی، تسبیح، اور حسنِ عبادت کی دعا",
+        "id": "Istighfar, Ayat Kursi, Tasbih, dan doa mohon ibadah yang baik",
+        "bn": ""
+      }
+    },
+    "morning_wake": {
+      "icon": "🌅",
+      "title": {
+        "en": "Waking Up Masnoon Adhkar",
+        "ur": "صبح بیدار ہونے کے مسنون اذکار",
+        "id": "Doa & Dzikir Bangun Tidur",
+        "bn": ""
+      },
+      "sub": {
+        "en": "Praise to Allah Who revived us, and prayers upon waking at night",
+        "ur": "الحمد للہ الذی احیانا اور تہجد و بیداری کا کلمۂ توحید",
+        "id": "Segala puji bagi Allah yang menghidupkan kami setelah mematikan",
+        "bn": ""
+      }
+    },
+    "relief_debt": {
+      "icon": "🤲",
+      "title": {
+        "en": "Duas for Debt, Worry & Distress",
+        "ur": "قرض، غم و پریشانی سے نجات کی دعائیں",
+        "id": "Doa Pelunas Hutang & Penghilang Duka",
+        "bn": ""
+      },
+      "sub": {
+        "en": "Prophetic supplications for relief of debt, sorrow, and tribulations",
+        "ur": "نبوی جامع دعائیں، ادائیگیِ قرض، اور لا حول و لا قوۃ",
+        "id": "Doa Rasulullah ﷺ pelindung dari hutang menumpuk dan kesedihan",
+        "bn": ""
+      }
+    },
+    "istikhara": {
+      "icon": "🧭",
+      "title": {
+        "en": "Dua-e-Istikhara with Complete Guidance",
+        "ur": "دعائے استخارہ مع طریقہ و رہنمائی",
+        "id": "Doa & Panduan Shalat Istikharah",
+        "bn": ""
+      },
+      "sub": {
+        "en": "Seeking Allah's guidance in decisions, career, marriage and travel",
+        "ur": "ہر اہم فیصلے، رشتے، نوکری اور کاروبار میں خیر طلبی کی نبوی دعا",
+        "id": "Memohon petunjuk terbaik Allah dalam urusan pekerjaan, jodoh, dan hidup",
+        "bn": ""
+      }
+    },
+    "tauheed": {
+      "icon": "☝️",
+      "title": {
+        "en": "Tauheed & Remembrance of Allah",
+        "ur": "ذکرِ توحید و استغفار",
+        "id": "Dzikir Tauhid & Istighfar",
+        "bn": ""
+      },
+      "sub": {
+        "en": "La ilaha illallah, SubhanAllah, and supreme praises of Allah",
+        "ur": "لا الہ الا اللہ، کلماتِ تسبیح و حمد",
+        "id": "Kalimat tauhid paling utama, tasbih, dan pujian kepada Allah",
+        "bn": ""
+      }
+    },
+    "tasbeeh": {
+      "icon": "📿",
+      "title": {
+        "en": "Tasbeeh of Fatimah (RA) Counter",
+        "ur": "تسبیحِ فاطمہؓ (خودکار کاؤنٹر)",
+        "id": "Tasbih Fatimah Az-Zahra (RA)",
+        "bn": ""
+      },
+      "sub": {
+        "en": "33x SubhanAllah, 33x Alhamdulillah, 34x Allahu Akbar",
+        "ur": "۳۳ بار سبحان اللہ، ۳۳ بار الحمد للہ، ۳۴ بار اللہ اکبر",
+        "id": "33x Subhanallah, 33x Alhamdulillah, 34x Allahu Akbar",
+        "bn": ""
+      }
+    },
+    "custom": {
+      "icon": "📝",
+      "title": {
+        "en": "Custom Adhkar & Tasbeeh Builder",
+        "ur": "ذاتی اذکار و تسبیحات",
+        "id": "Dzikir & Wirid Pribadi",
+        "bn": ""
+      },
+      "sub": {
+        "en": "Create, count, and track your personalized daily litanies",
+        "ur": "اپنی مرضی کے اذکار و دعائیں شامل اور کاؤنٹ کریں",
+        "id": "Tambah dan hitung doa atau wirid pilihan Anda sendiri",
+        "bn": ""
+      }
+    }
+  }
+}
