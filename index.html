@@ -5138,6 +5138,83 @@ const ASMA_EN = {
   96:'The Everlasting',97:'The Ultimate Inheritor',98:'The Guide to the Right Path',99:'The Most Patient'
 };
 
+/* ── p19-d6: per-lang Asma-Ul-Husna name packs (id/tr/fr) ── */
+const ASMA_I18N_ID = {
+  1:'Yang Maha Pemurah',2:'Yang Maha Penyayang',3:'Yang Maha Merajai',4:'Yang Maha Suci',5:'Yang Maha Pemberi Keselamatan',
+  6:'Yang Maha Pengamanah',7:'Yang Maha Pengawas dan Pemelihara',8:'Yang Maha Perkasa',9:'Yang Maha Paksa',10:'Yang Maha Keagungan-Nya',
+  11:'Yang Maha Pencipta',12:'Yang Maha Mengadakan',13:'Yang Maha Membentuk Rupa',14:'Yang Maha Pengampun',15:'Yang Maha Menundukkan',
+  16:'Yang Maha Pemberi Karunia',17:'Yang Maha Pemberi Rezeki',18:'Yang Maha Pembuka',19:'Yang Maha Mengetahui',20:'Yang Maha Menyempitkan',
+  21:'Yang Maha Melapangkan',22:'Yang Maha Merendahkan',23:'Yang Maha Meninggikan',24:'Yang Maha Memuliakan',25:'Yang Maha Menghinakan',
+  26:'Yang Maha Mendengar',27:'Yang Maha Melihat',28:'Yang Maha Penetap Hukum',29:'Yang Maha Adil',30:'Yang Maha Halus',
+  31:'Yang Maha Mengenal yang Tersembunyi',32:'Yang Maha Penyantun',33:'Yang Maha Agung',34:'Yang Maha Pemaaf',35:'Yang Maha Menghargai Kebaikan',
+  36:'Yang Maha Tinggi',37:'Yang Maha Besar',38:'Yang Maha Pemelihara',39:'Yang Maha Pemberi Kecukupan',40:'Yang Maha Pembuat Perhitungan',
+  41:'Yang Maha Mulia',42:'Yang Maha Murah Hatinya',43:'Yang Maha Penjaga',44:'Yang Maha Pengabulkan',45:'Yang Maha Membentangkan',
+  46:'Yang Maha Bijaksana',47:'Yang Maha Mencintai',48:'Yang Maha Megah',49:'Yang Maha Membangkitkan',50:'Yang Maha Menyaksikan',
+  51:'Yang Maha Benar',52:'Yang Maha Tempat Bersandar',53:'Yang Maha Kuat',54:'Yang Maha Kokoh',55:'Yang Maha Pelindung',
+  56:'Yang Maha Terpuji',57:'Yang Maha Penghitung',58:'Yang Maha Memulai Ciptaan',59:'Yang Maha Mengembalikan',60:'Yang Maha Menghidupkan',
+  61:'Yang Maha Mematikan',62:'Yang Maha Hidup',63:'Yang Maha Berdiri Sendiri',64:'Yang Maha Menemukan',65:'Yang Maha Gagah',
+  66:'Yang Maha Esa',67:'Yang Maha Satu',68:'Yang Maha Tempat Meminta',69:'Yang Maha Kuasa',70:'Yang Maha Berkuasa Penuh',
+  71:'Yang Maha Memajukan',72:'Yang Maha Menunda',73:'Yang Maha Awal',74:'Yang Maha Akhir',75:'Yang Maha Nyata',
+  76:'Yang Maha Dalam',77:'Yang Maha Penguasa',78:'Yang Maha Teranggi',79:'Yang Maha Sumber Kebaikan',80:'Yang Maha Penerima Taubat',
+  81:'Yang Maha Pembalas',82:'Yang Maha Penghapus',83:'Yang Maha Lembut Penuh Kasih',84:'Yang Maha Pemilik Kerajaan',85:'Yang Maha Kebesaran dan Kemuliaan',
+  86:'Yang Maha Penegak Keadilan',87:'Yang Maha Pengumpul',88:'Yang Maha Kaya',89:'Yang Maha Memberi Kekayaan',90:'Yang Maha Pencegah',
+  91:'Yang Maha Menciptakan Bahaya',92:'Yang Maha Menciptakan Manfaat',93:'Yang Maha Cahaya',94:'Yang Maha Pemberi Petunjuk',95:'Yang Maha Menciptakan Tanpa Contoh',
+  96:'Yang Maha Kekal',97:'Yang Maha Pewaris',98:'Yang Maha Pandai Menunjuk Jalan',99:'Yang Maha Penyabar'
+};
+const ASMA_I18N_TR = {
+  1:'\u00c7ok merhametli olan (Rahm\u00e2n)',2:'Esirgeyen ve ba\u011f\u0131\u015flay\u0131c\u0131 (Rah\u00eem)',3:'H\u00fck\u00fcmr\u00e2n olan (Mel\u00eek)',4:'Kutsal ve p\u00e2k olan (Kudd\u00fbs)',5:'Sel\u00e2m ve esenlik veren (Sel\u00e2m)',
+  6:'Eman ve g\u00fcven veren (M\u00fc\u2019min)',7:'Koruyup g\u00f6zetici (M\u00fchteym\u00een)',8:'Az\u00eez ve izzet sahibi (Az\u00eez)',9:'H\u00fckm\u00fcranl\u0131\u011f\u0131n\u0131 tam uygulayan (Cebb\u00e2r)',10:'B\u00fcy\u00fcnl\u00fckte e\u015fi olmayan (M\u00fchtekebb\u00eer)',
+  11:'Yaratan (H\u00eel\u0131k)',12:'Ortaya varan (B\u00e2r\u00ee)',13:'\u015eekil ve suret veren (Musavvir)',14:'\u00c7ok ba\u011f\u0131\u015flayan (Gaff\u00e2r)',15:'Her\u015feye \u00fcst\u00fcn gelen (Kahh\u00e2r)',
+  16:'Kar\u015f\u0131l\u0131ks\u0131z ihsan eden (Vehh\u00e2b)',17:'R\u0131z\u0131k veren (Rezz\u00e2k)',18:'Hay\u0131r kap\u0131lar\u0131n\u0131 a\u00e7an (Fett\u00e2h)',19:'Her\u015feyi bilen (Al\u00eem)',20:'Diledi\u011fini daraltan (K\u00e2b\u0131z)',
+  21:'Diledi\u011fini geni\u015fleten (B\u00e2s\u0131t)',22:'Diledi\u011fini al\u00e7altan (H\u00e2fid)',23:'Diledi\u011fini y\u00fckselten (R\u00e2fi\u2019)',24:'\u0130zzet ve itibar veren (Mu\u2019izz)',25:'Zillet veren (Muzill)',
+  26:'Her\u015feyi i\u015fiten (Sem\u00ee\u2019)',27:'Her\u015feyi g\u00f6ren (Bas\u00eer)',28:'H\u00fck\u00fcm veren (Hakem)',29:'\u00c2dil olan (Adl)',30:'L\u00fctuf ve incelik sahibi (Lat\u00eef)',
+  31:'Her\u015feyin i\u00e7 y\u00fcz\u00fcn\u00fc bilen (Hab\u00eer)',32:'Cez\u00e2da acele etmeyen (Hal\u00eem)',33:'Azamet sahibi (Az\u00eem)',34:'Ba\u011f\u0131\u015flay\u0131c\u0131 olan (Gaf\u00fbr)',35:'\u015e\u00fckre kar\u015f\u0131l\u0131k m\u00fck\u00e2fat veren (\u015eek\u00fbr)',
+  36:'Sonsuz y\u00fcksek olan (Aliyy)',37:'B\u00fcy\u00fckl\u00fck sahibi (Keb\u00eer)',38:'Kusursuz koruyan (H\u00e2f\u0131z)',39:'Beslenmeyi sa\u011flayan (Muk\u00eet)',40:'Hesap g\u00f6ren (Has\u00eeb)',
+  41:'Cel\u00e2l sahibi (Cel\u00eel)',42:'Kerem sahibi (Ker\u00eem)',43:'G\u00f6zetici olan (Rak\u00eeb)',44:'Du\u00e2lar\u0131 kabul eden (M\u00fcc\u00eeb)',45:'Geni\u015flik veren (V\u00e2si\u2019)',
+  46:'Hikmetli olan (Hak\u00eem)',47:'\u0130hs\u00e2n\u0131yla seven (Ved\u00fbd)',48:'\u015e\u00e2n\u0131 y\u00fce olan (Mec\u00eed)',49:'Dirilten (B\u00e2\u2019is)',50:'Her\u015feye \u015f\u00e2hid olan (\u015eeh\u00eed)',
+  51:'Hakk olan (H\u00e2kk)',52:'Her\u015feyin i\u015fini tedbir eden (Vek\u00eel)',53:'Kuvvetli olan (Kaviyy)',54:'Sa\u011flam ve metin (Met\u00een)',55:'Dost ve vel\u00ee olan (Veliyy)',
+  56:'Hamd ile \u00f6v\u00fclen (Ham\u00eed)',57:'Her\u015feyi sayan (Muhs\u00ee)',58:'\u0130lk defa yaratan (M\u00fcbdi\u2019)',59:'Sonra tekrar yaratan (Mu\u00eed)',60:'Hayat veren (Muhy\u00ee)',
+  61:'\u00d6l\u00fcm veren (M\u00fcmit)',62:'Ebed\u00ee hayat sahibi (Hayy)',63:'Her\u015feyin varl\u0131\u011f\u0131n\u0131 idame ettiren (Kayy\u00fbm)',64:'Kendine yeter, muhta\u00e7 olmayan (V\u00e2c\u00eed)',65:'\u015e\u00e2n\u0131 parlak olan (M\u00e2c\u00eed)',
+  66:'E\u015fi olmayan tek (V\u00e2hid)',67:'Tek olan (Ehad)',68:'Her\u015fey O\u2019na muhta\u00e7 olan (Sam\u00e2d)',69:'Diledi\u011fini yapabilen (K\u00e2dir)',70:'Kudret sahibi (Muktedir)',
+  71:'\u00d6ne alan (Mukaddim)',72:'Sonraya b\u0131rakan (Muahhir)',73:'Evveli olmayan (Evvel)',74:'\u00c2hiri olmayan (\u00c2hir)',75:'A\u015fik\u00e2r olan (Z\u00e2hir)',
+  76:'Gizli olan (B\u00e2t\u0131n)',77:'Mutlak h\u00fck\u00fcmr\u00e2n (V\u00e2l\u00ee)',78:'Her\u015feyden y\u00fcece olan (M\u00fcte\u2019\u00e2l\u00ee)',79:'Hay\u0131r sahibi (Berr)',80:'T\u00f6vbeleri kabul eden (Tevv\u00e2b)',
+  81:'Hesap soran (M\u00fcntak\u0131m)',82:'Affed\u00fcp \u00f6rten (Af\u00fcvv)',83:'\u015eefkatli olan (Ra\u00fbf)',84:'M\u00fclk\u00fcn sahibi (M\u00e2lik\u00fc\u2019l-m\u00fclk)',85:'Cel\u00e2l ve ikr\u00e2m sahibi (Z\u00fc\u2019l-cel\u00e2li ve\u2019l-ikr\u00e2m)',
+  86:'\u00c2dil\u00e2ne mu\u00e2mele eden (Muk\u00e2s\u0131t)',87:'Toplay\u0131p birle\u015ftiren (C\u00e2mi\u2019)',88:'Zengin ve m\u00fcsta\u011fn\u00ee (Gan\u00ee)',89:'Zenginle\u015ftiren (Mu\u011fn\u00ee)',90:'Men eden (M\u00e2ni\u2019)',
+  91:'\u0130zni d\u00e2hilinde zarar\u0131 takdir eden (D\u00e2rr)',92:'Menfaat verendir (N\u00e2fi\u2019)',93:'N\u00fbr olan (N\u00fbr)',94:'Hidayet veren (Had\u00ee)',95:'E\u015fsiz g\u00fczellikte yaratan (Bed\u00ee\u2019)',
+  96:'Ebed\u00ee kalan (B\u00e2k\u00ee)',97:'Her\u015feyin as\u0131l sahibi (V\u00e2ris)',98:'Do\u011fru yolu g\u00f6steren (Re\u015f\u00eed)',99:'Kullar\u0131na kar\u015f\u0131 acele etmeyen (Sab\u00fbr)'
+};
+const ASMA_I18N_FR = {
+  1:'Le Tout-Mis\u00e9ricordieux',2:'Le Mis\u00e9ricordieux',3:'Le Souverain',4:'Le Tr\u00e8s-Saint',5:'La Source de Paix',
+  6:'Le Donneur de S\u00e9curit\u00e9',7:'Le Gardien vigilant',8:'Le Puissant',9:'L\u2019Irr\u00e9sistible',10:'Le D\u00e9tenteur de la Grandeur parfaite',
+  11:'Le Cr\u00e9ateur',12:'Le Producteur',13:'Le Formateur',14:'Le Grand-Pardonnant',15:'Le Tout-Dominant',
+  16:'Le Donateur',17:'Le Pourvoyeur',18:'L\u2019Ouvreur des Portes',19:'L\u2019Omniscient',20:'Celui qui restreint',
+  21:'Celui qui \u00e9tend',22:'Celui qui abaisse',23:'Celui qui \u00e9l\u00e8ve',24:'Celui qui honore',25:'Celui qui humilie',
+  26:'Celui qui entend tout',27:'Celui qui voit tout',28:'L\u2019Arbitre supr\u00eame',29:'Le Juste',30:'Le Subtil bienveillant',
+  31:'Celui qui conna\u00eet le profond',32:'Le Longanime',33:'L\u2019Immense',34:'Le Tout-Pardonnant',35:'Le Tr\u00e8s-Reconnaissant',
+  36:'Le Tr\u00e8s-Haut',37:'Le Tr\u00e8s-Grand',38:'Le Pr\u00e9servateur',39:'Le Nourrisseur',40:'Celui qui rend les comptes',
+  41:'Le Majestueux',42:'Le Magnanime',43:'L\u2019Observateur vigilant',44:'Celui qui exauce',45:'Le Vaste',
+  46:'Le Sage',47:'Le Bien-Aimant',48:'Le Glorieux',49:'Celui qui ressuscite',50:'Le T\u00e9moin de tout',
+  51:'Le Vrai',52:'Le G\u00e9rant de toutes les affaires',53:'Le Fort',54:'L\u2019In\u00e9branlable',55:'L\u2019Alli\u00e9 protecteur',
+  56:'Le Digne de toute louange',57:'Celui qui compte tout',58:'Celui qui initie la cr\u00e9ation',59:'Celui qui la restaure',60:'Celui qui donne la vie',
+  61:'Celui qui donne la mort',62:'Le Vivant \u00e9ternel',63:'Celui qui soutient toute l\u2019existence',64:'Le Riche Suffisant',65:'Le Noble par excellence',
+  66:'L\u2019Unique sans pareil',67:'L\u2019Un v\u00e9ritable',68:'L\u2019Asile de toute d\u00e9pendance',69:'Le Capable',70:'Le D\u00e9tenteur de la puissance absolue',
+  71:'Celui qui met en avant',72:'Celui qui retarde',73:'Le Premier',74:'Le Dernier',75:'L\u2019Apparent',
+  76:'Le Cach\u00e9',77:'Le Gouverneur souverain',78:'Le Tr\u00e8s-Transcendant',79:'La Source de toute bont\u00e9',80:'Celui qui accepte le repentir',
+  81:'Celui qui ch\u00e2tie avec justice',82:'Celui qui efface les fautes',83:'Le Bienveillant doux',84:'Le D\u00e9tenteur de la Souverainet\u00e9',85:'D\u00e9tenteur de la Majest\u00e9 et de la G\u00e9n\u00e9rosit\u00e9',
+  86:'L\u2019\u00c9quitable',87:'Celui qui rassemble',88:'Le Tout-Riche sans besoin',89:'Celui qui enrichit',90:'Celui qui retient',
+  91:'Celui qui permet l\u2019\u00e9preuve',92:'Celui qui accorde le bienfait',93:'La Lumi\u00e8re',94:'Le Guide',95:'Le Cr\u00e9ateur incomparable',
+  96:'Le Subsistant \u00e9ternel',97:'L\u2019H\u00e9ritier ultime',98:'Celui qui guide vers le chemin droit',99:'Le Tr\u00e8s-Patient'
+};
+function getAsmaMeaning(a, l){
+  let m = a.ur;
+  if (l === 'ar') m = a.ar;
+  else if (l === 'id' && ASMA_I18N_ID[a.n]) m = ASMA_I18N_ID[a.n];
+  else if (l === 'tr' && ASMA_I18N_TR[a.n]) m = ASMA_I18N_TR[a.n];
+  else if (l === 'fr' && ASMA_I18N_FR[a.n]) m = ASMA_I18N_FR[a.n];
+  else if (l !== 'ur' && l !== 'ar' && typeof ASMA_EN !== 'undefined' && ASMA_EN[a.n]) m = ASMA_EN[a.n];
+  return m;
+}
+
 function getDuaField(sec, idx, field, defaultVal){
   const lang = (typeof S !== 'undefined' && S && S.lang) ? S.lang : 'ur';
   /* p19-d2+: per-lang meaning dicts (tr/fr dicts are coming in the next sub-phases) */
@@ -7443,9 +7520,7 @@ function renderAsma(mc){
     <div class="asma-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.65rem;margin:1.2rem 0;direction:rtl">`;
   
   ASMA_99.forEach(a => {
-    let meaning = a.ur;
-    if (l === 'ar') meaning = a.ar;
-    else if (isLatin && typeof ASMA_EN !== 'undefined' && ASMA_EN[a.n]) meaning = ASMA_EN[a.n];
+    const meaning = getAsmaMeaning(a, l);
     h += `
       <div class="dua-card" style="margin:0;padding:.85rem .5rem;text-align:center;border:1px solid rgba(60,179,113,.2);background:rgba(255,255,255,.02);border-radius:12px">
         <div style="font-size:.65rem;color:var(--g2);font-weight:600"># ${a.n}</div>
@@ -8970,7 +9045,8 @@ function p4SearchIndex(){
     if(typeof ASMA_99 !== 'undefined' && ASMA_99){
       ASMA_99.forEach(a => {
         const en = (typeof ASMA_EN !== 'undefined' && ASMA_EN[a.n]) ? ASMA_EN[a.n] : '';
-        idx.push({ type: 'asma', id: 'asma', icon: '👑', title: a.ar + ' — ' + a.ur, sub: '#' + a.n, keys: (a.ar + ' ' + a.ur + ' ' + en).toLowerCase() });
+        const asmaLoc = (typeof getAsmaMeaning === 'function') ? String(getAsmaMeaning(a, getActiveLang())) : '';
+        idx.push({ type: 'asma', id: 'asma', icon: '👑', title: a.ar + ' — ' + a.ur, sub: '#' + a.n, keys: (a.ar + ' ' + a.ur + ' ' + en + ' ' + asmaLoc).toLowerCase() });
       });
     }
   }catch(e){}
