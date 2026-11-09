@@ -4672,6 +4672,49 @@ const DUA_I18N_FA = {
   ]
 };
 
+/* ── p21-a: ASMA-E-MUHAMMADIYA (curated noble names of the Prophet ﷺ) ──
+   Curated from Quranic references + classical reverent titles; Rule 12
+   context phrasing for narrational titles. Two-letter ids keep parity
+   with ASMA_99 shape (n, ar, ur) plus optional ref note. */
+const ASMA_MAS = [
+  { n:1,  ar:'مُحَمَّدٌ', ur:'سربلند تعریف والے', ref:'Quran 48:29' },
+  { n:2,  ar:'أَحْمَدُ', ur:'سب سے زیادہ حمد و ثنا کرنے والے', ref:'Quran 61:6' },
+  { n:3,  ar:'مَحْمُودٌ', ur:'مقامِ محمود کے وارث', ref:'Quran 17:79' },
+  { n:4,  ar:'عَبْدُ اللهِ', ur:'اللہ کے خاص بندے', ref:'Quran 72:19' },
+  { n:5,  ar:'بَشِيرٌ', ur:'بشارت دینے والے', ref:'Quran 2:119' },
+  { n:6,  ar:'نَذِيرٌ', ur:'انتباہ فرمانے والے', ref:'Quran 2:119' },
+  { n:7,  ar:'شَاهِدٌ', ur:'گواہِ رسالت', ref:'Quran 33:45' },
+  { n:8,  ar:'دَاعِيٌ', ur:'اللہ کی طرف بلانے والے', ref:'Quran 33:46' },
+  { n:9,  ar:'سِرَاجٌ مُنِيرٌ', ur:'چراغِ رہنمائی', ref:'Quran 33:46' },
+  { n:10, ar:'رَسُولُ اللهِ', ur:'اللہ کے رسول', ref:'Quran 33:45' },
+  { n:11, ar:'النَّبِيُّ', ur:'خبر فرمانے والے نبی', ref:'Quran 33:45' },
+  { n:12, ar:'النَّبِيُّ الأُمِّيُّ', ur:'امیّ نبی — بغیر تعلیمِ بشری', ref:'Quran 7:157' },
+  { n:13, ar:'شَافِعٌ', ur:'شفاعت کرنے والے', ref:'روایت کے مفہوم کے مطابق' },
+  { n:14, ar:'رَحْمَةٌ', ur:'همہ جہان میں رحمت', ref:'Quran 21:107' },
+  { n:15, ar:'صِدِّيقٌ', ur:'سچائی اور تصدیق کے حامل', ref:'Quran 39:33' },
+  { n:16, ar:'أَمِينٌ', ur:'امانت دار', ref:'مقدم السابق بالأمانۃ — السیرۃ' },
+  { n:17, ar:'كَرِيمٌ', ur:'مہربان و کرم کرنے والے', ref:'Quran 69:40' },
+  { n:18, ar:'خَاتَمُ النَّبِيِّيْنَ', ur:'نبوت کے سلسلے کے خاتم', ref:'Quran 33:40' },
+  { n:19, ar:'المُزَمِّلُ', ur:'چادر میں لپٹنے والے', ref:'Quran 73:1' },
+  { n:20, ar:'المُدَّثِّرُ', ur:'کپڑے میں لپٹنے والے', ref:'Quran 74:1' },
+  { n:21, ar:'طٰهٰ', ur:'طہارت و نرم اخلاق کا مالک', ref:'Quran 20:1' },
+  { n:22, ar:'يس', ur:'مخاطبِ وحی کا اسمِ شریف', ref:'Quran 36:1' },
+  { n:23, ar:'مُصْطَفٰى', ur:'جسے انتخاب کا خاص مرتبہ عطا ہوا', ref:'روایتی ادب کے مفہوم کے مطابق' },
+  { n:24, ar:'مُخْتَارٌ', ur:'چن لیے ہوئے نبی', ref:'روایتی ادب کے مفہوم کے مطابق' },
+  { n:25, ar:'مُذَكِّرٌ', ur:'پند و نصیحت فرمانے والے', ref:'Quran 88:21' },
+  { n:26, ar:'هَادِيٌ', ur:'رہنمائی دینے والے', ref:'روایت کے مفہوم کے مطابق' },
+  { n:27, ar:'نُوْرٌ', ur:'روایت کے مفہوم میں روشنی کی صفت منسوب', ref:'روایتی ادب' }
+];
+/* p21-a: EN meanings for ASMA_MAS (non-ur/ar fallback, mirrors ASMA_EN pattern) */
+const ASMA_MAS_EN = {
+  1:'The One of Abundant Praise',2:'The One Who Praises Most',3:'The One Promised the Praised Station',4:'The Devoted Servant of Allah',5:'The Herald of Glad Tidings',
+  6:'The Herald of Warning',7:'The Witness',8:'The One Calling to Allah',9:'The Illuminating Lamp',10:'The Messenger of Allah',
+  11:'The Prophet',12:'The Unlettered Prophet',13:'The Intercessor',14:'A Mercy to the Worlds',15:'The Truthful',
+  16:'The Trustworthy',17:'The Noble',18:'The Seal of the Prophets',19:'The One Wrapped in the Mantle',20:'The One Cloaked in the Garment',
+  21:'The One like Ta-Ha',22:'The One like Ya-Sin',23:'The Chosen One',24:'The Divinely Selected',25:'The Admonisher',
+  26:'The Guide',27:'Described as Light in the narrations'
+};
+
 const ASMA_EN = {
   1:'The Most Gracious',2:'The Most Merciful',3:'The Sovereign King',4:'The Most Holy',5:'The Source of Peace',
   6:'The Granter of Security',7:'The Guardian',8:'The Almighty',9:'The Compeller',10:'The Supreme',
@@ -4771,6 +4814,12 @@ function getAsmaMeaning(a, l){
   else if (l !== 'ur' && l !== 'ar' && typeof ASMA_EN !== 'undefined' && ASMA_EN[a.n]) m = ASMA_EN[a.n];
   return m;
 }
+/* p21-a: meaning resolver for ASMA_MAS (ur native; others fall to EN pack) */
+function getAsmaSawMeaning(a, l){
+  if (l === 'ur' || l === 'ar') return a.ur;
+  if (typeof ASMA_MAS_EN !== 'undefined' && ASMA_MAS_EN[a.n]) return ASMA_MAS_EN[a.n];
+  return a.ur;
+}
 
 function getDuaField(sec, idx, field, defaultVal){
   const lang = (typeof S !== 'undefined' && S && S.lang) ? S.lang : 'ur';
@@ -4855,6 +4904,7 @@ const SECS = [
 { id: "tawbah", icon: "🤲", title: { ur: "سید الاستغفار و توبہ", en: "Sayyidul Istighfar & Tawbah", ar: "سيد الاستغفار والتوبة", id: "Sayyidul Istighfar & Taubat", tr: "Seyyidü'l-İstiğfar", fr: "Sayyidul Istighfar", bn: "সাইয়িদুল ইস্তিগফার ও তওবা", ru: "Саййидуль-истигфар и покаяние", fa: "سیّدالاستغفار و توبه" }, ct: { ur: "۴ اذکار", en: "4 Adhkar", ar: "4 أذكار", id: "4 Dzikir", tr: "4 Zikir", fr: "4 Adhkar", bn: "৪টি জিকির", ru: "4 азкара", fa: "۴ ذکر" } },
 { id: "tauheed", icon: "☝️", title: { ur: "توحید کے اذکار", en: "Tauheed & Praise", ar: "أذكار التوحيد والتهليل", id: "Dzikir Tauhid & Tasbih", tr: "Tevhid ve Tesbih", fr: "Tawhid & Louanges", bn: "তৌহীদ ও স্তুতি", ru: "Таухид и восхваление", fa: "توحید و ستایش" }, ct: { ur: "۶ اذکار", en: "6 Adhkar", ar: "6 أذكار", id: "6 Dzikir", tr: "6 Zikir", fr: "6 Adhkar", bn: "৬টি জিকির", ru: "6 азкаров", fa: "۶ ذکر" } },
 { id: "asma", icon: "👑", title: { ur: "اسمائے حسنیٰ (۹۹ نام)", en: "99 Names of Allah", ar: "أسماء الله الحسنى (99 اسماً)", id: "99 Asmaul Husna", tr: "99 Esmâü'l-Hüsnâ", fr: "Les 99 Noms d'Allah", bn: "আল্লাহর ৯৯টি নাম", ru: "99 имён Аллаха", fa: "۹۹ نام خداوند" }, ct: { ur: "۹۹ نام", en: "99 Names", ar: "99 اسماً", id: "99 Nama", tr: "99 İsim", fr: "99 Noms", bn: "৯৯টি নাম", ru: "99 имён", fa: "۹۹ نام" } },
+{ id: "asma_saw", icon: "💗", title: { ur: "اَسمائے محمدیہ (نامِ مصطفیٰ ﷺ)", en: "Names of Prophet Muhammad ﷺ", ar: "أسماء النبي محمد ﷺ", id: "Nama-Nama Nabi Muhammad ﷺ", tr: "Efendimizin Esmâsı ﷺ", fr: "Les Noms du Prophète Muhammad ﷺ", bn: "মুহাম্মাদ ﷺ-এর নামসমূহ", ru: "Имена Пророка Мухаммада ﷺ", fa: "نام‌های پیامبر محمد ﷺ" }, ct: { ur: "۲۷ نام", en: "27 Names", ar: "27 اسماً", id: "27 Nama", tr: "27 İsim", fr: "27 Noms", bn: "২৭টি নাম", ru: "27 имён", fa: "۲۷ نام" } },
 { id: "kahf", icon: "📖", title: { ur: "سورۃ الکہف", en: "Surah Al-Kahf", ar: "سورة الكهف", id: "Surah Al-Kahfi", tr: "Kehf Suresi", fr: "Sourate Al-Kahf", bn: "সূরা আল-কাহফ", ru: "Сура Аль-Кахф", fa: "سورهٔ کهف" }, ct: { ur: "۱۱۰ آیات", en: "110 Verses", ar: "110 آيات", id: "110 Ayat", tr: "110 Âyet", fr: "110 Versets", bn: "১১০ আয়াত", ru: "110 аятов", fa: "۱۱۰ آیه" } },
 { id: "mulk", icon: "👑", title: { ur: "سورۃ الملک", en: "Surah Al-Mulk", ar: "سورة الملك", id: "Surah Al-Mulk", tr: "Mülk Suresi", fr: "Sourate Al-Mulk", bn: "সূরা আল-মুলক", ru: "Сура Аль-Мульк", fa: "سورهٔ ملک" }, ct: { ur: "۳۰ آیات", en: "30 Verses", ar: "30 آية", id: "30 Ayat", tr: "30 Âyet", fr: "30 Versets", bn: "৩০ আয়াত", ru: "30 аятов", fa: "۳۰ آیه" } },
 { id: "waqiah", icon: "💰", title: { ur: "سورۃ الواقعہ", en: "Surah Al-Waqiah", ar: "سورة الواقعة", id: "Surah Al-Waqi'ah", tr: "Vâkıa Suresi", fr: "Sourate Al-Waqiah", bn: "সূরা আল-ওয়াকিয়াহ", ru: "Сура Аль-Вакиа", fa: "سورهٔ واقعه" }, ct: { ur: "۹۶ آیات", en: "96 Verses", ar: "96 آية", id: "96 Ayat", tr: "96 Âyet", fr: "96 Versets", bn: "৯৬ আয়াত", ru: "96 аятов", fa: "۹۶ آیه" } },
@@ -5918,7 +5968,7 @@ function renderCategory(mc, cat){
     hd = isEn ? 'Quran Mubarak' : 'قرآن مبارک';
     sub = isEn ? ((q26.length + 6) + ' blessed surahs + full 114 surahs') : ((q26.length + 6) + ' مبارک سورتیں + مکمل ۱۱۴');
   } else {
-    const duain = ['rabbana','istikhara','tawbah','relief_debt','asma'].map(id => ({id}));
+    const duain = ['rabbana','istikhara','tawbah','relief_debt','asma','asma_saw'].map(id => ({id}));
     tiles = `<div class="p9-grid">${duain.map(build).join('')}</div>`;
     hd = isEn ? 'Masnoon Duas' : 'مسنون دعائیں';
     sub = isEn ? 'Duas + Asma-ul-Husna' : 'دعائیں اور اسمائے حسنیٰ';
@@ -6336,7 +6386,7 @@ function render(){
   if(zpName) zpName.textContent=(sec==='welcome')?t('choose_zikr'):getShortTitle(curMeta);
   const scrollB=document.getElementById('scrollBar');
   const isQuran=Boolean(QURAN_SURAHS[sec]);
-  const isScrollable = isQuran || sec === 'asma';
+  const isScrollable = isQuran || sec === 'asma' || sec === 'asma_saw';
   if(scrollB)scrollB.style.display=isScrollable?'flex':'none';
   if(!isScrollable) stopAutoScroll();
   const mc=document.getElementById('mc');
@@ -6351,6 +6401,7 @@ function render(){
   if(String(sec).startsWith('fq_')){ const n = parseInt(String(sec).slice(3), 10); if(n >= 1 && n <= 114){ renderFullSurah(mc, n); return; } }
   if(isQuran){renderQuran(mc,sec);return;}
   if(sec==='asma'){renderAsma(mc);return;}
+  if(sec==='asma_saw'){renderAsmaSaw(mc);return;}
   if(sec==='asr'){renderAsr(mc);return;}
   if(sec==='tasbeeh'){renderTasbeeh(mc);return;}
   if(sec==='custom'){renderCustom(mc);return;}
@@ -6615,6 +6666,38 @@ function renderAsma(mc){
   
   h += `</div>
     <div style="text-align:center;padding:1.5rem 0 .5rem;font-family:var(--qfont);font-size:1.05rem;color:var(--gold2);direction:rtl">۞ لَهُ الْأَسْمَاءُ الْحُسْنَىٰ ۞</div>
+  </div>`;
+  mc.innerHTML = h;
+  renderDrawer();
+}
+
+/* ══ p21-a: ASMA-E-MUHAMMADIYA RENDERER (additive, mirrors asma grid) ══ */
+function renderAsmaSaw(mc){
+  document.getElementById('progBar').style.width = '100%';
+  recordDhikrActivity();
+  const l = getActiveLang();
+  const meta = SECS.find(m => m.id === 'asma_saw') || {};
+  const title = (meta.title && (meta.title[l] || meta.title.en || meta.title.ur)) || 'Names of Prophet Muhammad ﷺ';
+  const cnt = (meta.ct && (meta.ct[l] || meta.ct.en || meta.ct.ur)) || '';
+  let h = `<div class="quran-panel" style="padding:1rem .6rem">
+    <div class="quran-hd">
+      <div class="quran-title" style="font-size:1.6rem">${title}</div>
+      <div class="quran-meta">${cnt}</div>
+    </div>
+    <div class="asma-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.65rem;margin:1.2rem 0;direction:rtl">`;
+  ASMA_MAS.forEach(a => {
+    const meaning = getAsmaSawMeaning(a, l);
+    h += `
+      <div class="dua-card" style="margin:0;padding:.85rem .5rem;text-align:center;border:1px solid rgba(60,179,113,.2);background:rgba(255,255,255,.02);border-radius:12px">
+        <div style="font-size:.65rem;color:var(--g2);font-weight:600"># ${a.n}</div>
+        <div class="ar" style="font-size:1.3rem;margin:.3rem 0;line-height:1.4;color:var(--gold-light)">${a.ar}</div>
+        <div style="font-family:var(--ur-font);font-size:.78rem;color:var(--text2);line-height:1.4">${meaning}</div>
+        <div style="font-size:.62rem;font-family:var(--ur-font);color:var(--gold2);margin-top:.25rem;opacity:.85">${a.ref || ''}</div>
+      </div>
+    `;
+  });
+  h += `</div>
+    <div style="text-align:center;padding:1.5rem 0 .5rem;font-family:var(--qfont);font-size:1.05rem;color:var(--gold2);direction:rtl">۞ وَإِنَّكَ لَعَلَىٰ خُلُقٍ عَظِيمٍ ۞</div>
   </div>`;
   mc.innerHTML = h;
   renderDrawer();
