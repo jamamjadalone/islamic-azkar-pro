@@ -13,7 +13,7 @@ const path = require("node:path");
 const vm = require("node:vm");
 const ROOT = path.join(__dirname, "..");
 const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
-const LANGS = ["ur", "en", "ar", "id", "tr", "fr", "bn"];
+const LANGS = ["ur", "en", "ar", "id", "tr", "fr", "bn", "ru"];
 
 /* Extract `const NAME = [ { ... } ]` or `{ ... }` balanced block, return inner text */
 function extract(name) {
