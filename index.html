@@ -6186,6 +6186,7 @@ function renderAsr(mc){
     <div class="urdu-note" style="font-family:var(--ur-font)">${noteHtml}</div>
     <img class="asr-img" src="${ASR_IMG}" alt="درود شریف" loading="lazy" onerror="this.style.display='none';document.getElementById('asrFb').style.display='block'"/>
     <div id="asrFb" class="dua-card" style="display:none"><div class="ar big">${ASR_TEXT}</div>${trLine(ASR_TEXT)}<div class="dua-name">${duaName}</div></div>
+    <button type="button" class="faz-btn" style="display:inline-flex;margin:.4rem auto .1rem" onclick="p2ShareAsrImage()">${p2ShareLabel()}</button>
     <div class="ring-wrap" id="rw"><svg viewBox="0 0 172 172"><circle class="rbg" cx="86" cy="86" r="74"/><circle class="rfill" id="rf" cx="86" cy="86" r="74" style="stroke:#f0c840;stroke-dashoffset:${done?0:off};filter:drop-shadow(0 0 5px rgba(240,200,64,.45))"/></svg>
       <div class="ring-inner" id="ri" style="border-color:rgba(240,200,64,.2)">
         ${done?`<div style="font-size:1.55rem">✅</div><div class="rof" style="color:#f0c840">${doneLabel}</div>`:`<div class="rnum" id="rn" style="color:#f0c840">${cnt}</div><div class="rof">${ofLabel}</div><div class="rhint">${t("tap_hint")}</div>`}
@@ -6545,6 +6546,7 @@ function renderCustom(mc){
         <div class="ar" style="font-size:calc(var(--qs)*1.05)">${ornateAyat(item.ar||'').replace(/\n/g,'<br/>')}</div>${trLine(item.ar||'')}
         <div class="dua-name">${item.name} — ہدف: ${item.target} مرتبہ</div>
       </div>
+      ${(item.ar)?`<button type="button" class="faz-btn" style="display:inline-flex;margin:.45rem auto .15rem" onclick="p2ShareCustomItem('${item.id}')">${p2ShareLabel()}</button>`:''}
       ${ring(cnt,target,'var(--g1)',done)}
       <div class="ctrls">
         <button type="button" class="btn" id="prevB" ${curIdx<=0?'disabled':''}>← پچھلا</button>
@@ -6598,6 +6600,7 @@ function renderCustom(mc){
             <div class="cust-act-group">
               <button type="button" class="btn-sm btn-play" onclick="startCustomCount('${item.id}')">${isDone?'↺ پھر سے پڑھیں':'▶ پڑھیں'}</button>
               <button type="button" class="btn-sm" onclick="resetCustomCount('${item.id}')" title="شمار صفر کریں">↺ ری سیٹ</button>
+              ${(item.ar)?`<button type="button" class="btn-sm" onclick="p2ShareCustomItem('${item.id}')" title="تصویر شیئر کریں">🖼</button>`:''}
             </div>
             <div class="cust-act-group">
               <button type="button" class="btn-sm" onclick="openAddCustomModal('${item.id}')" title="ترمیم">✏️ ایڈٹ</button>
@@ -7654,10 +7657,27 @@ function shareCustomAzkarText(){
 }
 
 
-/* ══ PHASE 2: SHARE-AS-IMAGE (ayah/dua card generator — additive) ══ */
+/* ══ PHASE 2: SHARE-AS-IMAGE (ayah/dua card generator — additive)
+   p20-a: long-text auto-fit canvas, URL sirf share-text ke sath (image me
+   nahi), aur custom/asr cards par bhi share button (jitni jagah possible) */
+const P2_SHARE_URL = 'https://jamamjadalone.is-a.dev/islamic-azkar-pro/';
 function p2ShareLabel(){
   const l = getActiveLang();
-  return (l==='en'||l==='id'||l==='tr'||l==='fr') ? '🖼 Share as Image' : '🖼 تصویر شیئر کریں';
+  if(l==='ur') return '🖼 تصویر شیئر کریں';
+  if(l==='ar') return '🖼 شارك الصورة';
+  if(l==='fa') return '🖼 اشتراک‌گذاری تصویر';
+  if(l==='bn') return '🖼 ছবি শেয়ার করুন';
+  if(l==='ru') return '🖼 Поделиться изображением';
+  return '🖼 Share as Image';
+}
+function p2ShareFeedback(msg){
+  try{
+    const d = document.createElement('div');
+    d.textContent = msg;
+    d.style.cssText = 'position:fixed;left:50%;bottom:96px;transform:translateX(-50%);z-index:99999;background:rgba(14,44,25,.94);border:1px solid rgba(240,200,64,.5);color:#f6d667;padding:.55rem 1rem;border-radius:999px;font-size:.78rem;box-shadow:0 8px 26px rgba(0,0,0,.55)';
+    document.body.appendChild(d);
+    setTimeout(function(){ if(d.parentNode) d.remove(); }, 2400);
+  }catch(e){}
 }
 async function p2ShareDuaImage(){
   try{
@@ -7678,6 +7698,29 @@ async function p2ShareDuaImage(){
     await p2DrawShareCard({ title: titleTxt, bismi: bismi, arabic: body, name: nameTxt, ref: refTxt });
   }catch(e){}
 }
+/* p20-a: personal custom zikr card → image share */
+async function p2ShareCustomItem(id){
+  try{
+    const it = customAzkar.find(x => x.id === (id || customActiveId));
+    if(!it || !it.ar) return;
+    const titleTxt = (typeof getShortTitle === 'function')
+      ? ((SECS.find(m => m.id === 'custom') && SECS.find(m => m.id === 'custom').title) ? getLoc(SECS.find(m => m.id === 'custom').title) : '')
+      : '';
+    const nameTxt = it.name ? (it.name + '  ×' + it.target) : '';
+    await p2DrawShareCard({ title: titleTxt, bismi: '', arabic: it.ar, name: nameTxt, ref: '' });
+  }catch(e){}
+}
+/* p20-a: Friday asr durood card → image share */
+async function p2ShareAsrImage(){
+  try{
+    const l = getActiveLang();
+    const asrI18n = SECTION_I18N && SECTION_I18N.asr;
+    if(!asrI18n) return;
+    const badgeTxt = asrI18n.badge[l] || asrI18n.badge.en || asrI18n.badge.ur || '';
+    const nameTxt = asrI18n.duaName[l] || asrI18n.duaName.en || asrI18n.duaName.ur || '';
+    await p2DrawShareCard({ title: badgeTxt, bismi: '', arabic: ASR_TEXT, name: nameTxt, ref: '' });
+  }catch(e){}
+}
 function p2WrapArabic(ctx, text, maxW){
   const lines = [];
   (text || '').split(/\n/).forEach(par => {
@@ -7693,12 +7736,37 @@ function p2WrapArabic(ctx, text, maxW){
   });
   return lines;
 }
+/* p20-a: two-pass fit — text ko dekh kar font-size + canvas height chunta hai
+   (pehle bada font, phir chhota; phir bhi lamba ho to canvas lamba ho jata
+   hai taake ayah ke hisse kat/fuse na hon) */
+function p2FitCard(p){
+  const W = 1080;
+  const FOOTER = 220;
+  const mcv = document.createElement('canvas');
+  const mctx = mcv.getContext('2d');
+  const fonts = [56, 48, 42, 36, 32];
+  let last = null;
+  for(let i = 0; i < fonts.length; i++){
+    const fs = fonts[i];
+    mctx.font = fs + 'px "Al Majeed", "Scheherazade New", serif';
+    const lines = p2WrapArabic(mctx, p.arabic || '', W - 220);
+    const lh = Math.round(fs * 1.75);
+    const contentTop = (p.bismi ? 320 : 260) + 40;
+    const blockH = lines.length * lh + (p.name ? 76 : 0) + (p.ref ? 44 : 0);
+    const needH = contentTop + blockH + FOOTER;
+    last = { fs: fs, lh: lh, lines: lines, contentTop: contentTop, blockH: blockH, H: Math.max(1350, needH) };
+    if(needH <= 1350) return last;
+  }
+  return last;
+}
 async function p2DrawShareCard(p){
   try{
     if(document.fonts && document.fonts.load){
       try{ await document.fonts.load('64px "Al Majeed"'); }catch(e){}
     }
-    const W = 1080, H = 1350;
+    const W = 1080;
+    const L = p2FitCard(p);
+    const H = L.H; /* p20-a: lamba text → canvas khud lamba ho jata hai */
     const cv = document.createElement('canvas');
     cv.width = W; cv.height = H;
     const ctx = cv.getContext('2d');
@@ -7706,7 +7774,7 @@ async function p2DrawShareCard(p){
     g.addColorStop(0, '#0e2c19'); g.addColorStop(1, '#010c02');
     ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
     ctx.fillStyle = 'rgba(240, 200, 64, .05)';
-    ctx.beginPath(); ctx.arc(W / 2, H * .34, 460, 0, 6.283); ctx.fill();
+    ctx.beginPath(); ctx.arc(W / 2, H * .3, 460, 0, 6.283); ctx.fill();
     ctx.strokeStyle = 'rgba(240, 200, 64, .85)'; ctx.lineWidth = 4;
     p2RoundRect(ctx, 26, 26, W - 52, H - 52, 36); ctx.stroke();
     ctx.strokeStyle = 'rgba(240, 200, 64, .35)'; ctx.lineWidth = 1.6;
@@ -7726,12 +7794,12 @@ async function p2DrawShareCard(p){
       ctx.fillText(p.bismi, W / 2, 226);
     }
     let y;
-    ctx.font = '56px "Al Majeed", "Scheherazade New", serif';
-    const lines = p2WrapArabic(ctx, p.arabic || '', W - 220);
-    const lh = 96;
-    const contentTop = p.bismi ? 320 : 260;
-    const blockH = lines.length * lh + (p.name ? 76 : 0) + (p.ref ? 44 : 0);
-    y = Math.max(contentTop, contentTop + (H - 250 - contentTop - blockH) / 2);
+    ctx.font = L.fs + 'px "Al Majeed", "Scheherazade New", serif';
+    const lines = L.lines;
+    const lh = L.lh;
+    const contentTop = L.contentTop;
+    const blockH = L.blockH;
+    y = contentTop + Math.max(0, (H - 220 - contentTop - blockH) / 2);
     ctx.fillStyle = '#ffffff';
     lines.forEach(ln => { ctx.textAlign = 'center'; ctx.fillText(ln, W / 2, y); y += lh; });
     if(p.name){
@@ -7756,23 +7824,35 @@ async function p2DrawShareCard(p){
     ctx.textAlign = 'center';
     ctx.font = '600 30px "Segoe UI", sans-serif';
     ctx.fillStyle = '#f6d667';
-    ctx.fillText('islamic azkar pro', W / 2, H - 108);
-    ctx.font = '22px "Segoe UI", sans-serif';
-    ctx.fillStyle = '#7da288';
-    ctx.fillText('jamamjadalone.is-a.dev/islamic-azkar-pro', W / 2, H - 66);
+    ctx.fillText('islamic azkar pro', W / 2, H - 96);
+    /* p20-a: link image me bake nahi hota — sirf share-text ke sath jata hai */
     const blob = await new Promise(res => cv.toBlob(res, 'image/png'));
     if(!blob) return;
     const fname = 'azkar-image-' + Date.now() + '.png';
     const file = new File([blob], fname, { type: 'image/png' });
-    if(navigator.canShare && navigator.canShare({ files: [file] })){
-      await navigator.share({ files: [file], title: '📿 Islamic Azkar Pro' });
-    } else {
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = fname;
-      document.body.appendChild(a); a.click(); a.remove();
-      setTimeout(() => URL.revokeObjectURL(a.href), 4000);
-    }
+    try{
+      if(navigator.canShare && navigator.canShare({ files: [file] })){
+        await navigator.share({ files: [file], title: '📿 Islamic Azkar Pro', text: P2_SHARE_URL });
+        return;
+      }
+    }catch(shErr){ if(shErr && shErr.name === 'AbortError') return; } /* user ne cancel kiya */
+    try{
+      if(navigator.share){
+        await navigator.share({ title: '📿 Islamic Azkar Pro', text: P2_SHARE_URL });
+        p2ShareFeedback(getActiveLang() === 'ur' ? '🖼 تصویر محفوظ ہوئی + 🔗 لینک ساتھ' : '🖼 Image ready + 🔗 Link attached');
+      }
+      return;
+    }catch(shErr2){ if(shErr2 && shErr2.name === 'AbortError') return; }
+    /* download fallback: file save + link clipboard copy */
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = fname;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    try{
+      if(navigator.clipboard && navigator.clipboard.writeText) await navigator.clipboard.writeText(P2_SHARE_URL);
+      p2ShareFeedback(getActiveLang() === 'ur' ? '🖼 تصویر محفوظ + 🔗 لینک کاپی ہوگیا' : '🖼 Image saved + 🔗 Link copied');
+    }catch(e2){}
   }catch(e){}
 }
 function p2DrawRtlRight(ctx, text, xRight, y){
