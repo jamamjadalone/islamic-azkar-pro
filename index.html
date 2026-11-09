@@ -5791,14 +5791,18 @@ function renderFullSurah(mc, n){
     const rows = data.ayahs
       .map(a => ({ n: a.n, t: fixT(a.t) }))
       .filter(a => a.t.trim() !== '');
+    // p19-n1: Fatihah (n=1) me ayah-1 bism strip hota hai — Hamd ﴿۱﴾ se number ho
+    // (Pakistani mushaf / 26-tab convention, bism unnumbered). data-a original me
+    // rehta hai taake search-jump + tracking numbering intact rahe.
+    const dispN = (a) => (n === 1 ? a.n - 1 : a.n);
     let body = '';
     if(vm === 'para'){
       body = `<div class="para-block${ipCls}">${rows.map(a =>
-        `${a.t} <span class="vnum-ornate" data-a="${a.n}">﴿${formatAyatNum(a.n, 'ur')}﴾</span>`
+        `${a.t} <span class="vnum-ornate" data-a="${a.n}">﴿${formatAyatNum(dispN(a), 'ur')}﴾</span>`
       ).join(' ')}</div>`;
     } else {
       body = rows.map(a =>
-        `<div class="vblock"><div class="vtxt${ipCls}" data-a="${a.n}">${a.t} <span class="vnum-ornate">﴿${formatAyatNum(a.n, 'ur')}﴾</span></div></div>`
+        `<div class="vblock"><div class="vtxt${ipCls}" data-a="${a.n}">${a.t} <span class="vnum-ornate">﴿${formatAyatNum(dispN(a), 'ur')}﴾</span></div></div>`
       ).join('');
     }
     // p18: fazeelat — 26-mubarak dataset ka intro (same surah no) dobara istemal;
