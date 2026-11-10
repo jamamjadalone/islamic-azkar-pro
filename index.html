@@ -3796,6 +3796,42 @@ const CRISIS = [
   }
 ];
 
+/* ── p21-h: JANAZA (namaz-e-janaza ka masnoon adab) — Rule 12 phrasing ── */
+const JANAZA = [
+  {
+    grp: 'نمازِ جنازہ کے آداب',
+    name: 'دعائے اغفارِ میت (جنازہ میں)',
+    ar: `اَللّٰهُمَّ اغْفِرْ لَهٗ وَارْحَمْهٗ وَعَافِهٖ وَاعْفُ عَنْهٗ ؕ اَكْرِمْ مُثْوَاهُ وَوَسِّعْ مُدْخَلَهٗ ؕ وَاغْسِلْهُ بِالْمَاءِ وَالثَّلْجِ وَالْبَرَدِ`,
+    target: 1,
+    faz: 'روایت کے مفہوم کے مطابق: جنازے میں میت کے لیے مغفرت اور رحمت مانگی جاتی ہے — اُس کا مقام گراں مایہ اور بابرکت، مدخل وسیع، اور مانند آب و برف و سردی پاک صاف',
+    ref: '(صحیح مسلم: ۹۶۳)'
+  },
+  {
+    grp: 'نمازِ جنازہ کے آداب',
+    name: 'دعائے سپردِ امان',
+    ar: `اَللّٰهُمَّ اِنَّهٗ فِيْ ذِمَّتِكَ وَجِوَارِكَ ؕ فَجُرْهٗ مِنْ فِتْنَةِ الْقَبْرِ وَعَذَابِ النَّارِ`,
+    target: 1,
+    faz: 'روایت کے مفہوم کے مطابق: میت اللہ کی امانت و حفاظت میں ہے — اُسے فتنہ قبر اور عذاب آتش سے دور مانگی جاتی ہے۔',
+    ref: '(سنن ابی داؤد: ۳۲۲۲)'
+  },
+  {
+    grp: 'نمازِ جنازہ کے آداب',
+    name: 'دعائے تعزیت',
+    ar: `اَعْظِمُ اللهُ اَجْرَكَ وَاَحْسَنَ عَزَاءَكَ وَغَفَرَ لِمَيِّتِكَ`,
+    target: 1,
+    faz: 'روایت کے مفہوم کے مطابق: غمگین کو تعزیت کے کلمات کہے جاتے ہیں — اللہ آپ کا اجر بڑھائے، آپ کی سوگ کو نیکو فرمائے اور آپ کے میت کو مغفرت فرمائے۔',
+    ref: '(روایتی تعزیت کے مفہوم کے مطابق)'
+  },
+  {
+    grp: 'نمازِ جنازہ کے آداب',
+    name: 'قبرستان میں دعائے سلام',
+    ar: `اَلسَّلَامُ عَلَيْكُمْ اَهْلَ الدِّيَارِ مِنَ الْمُؤْمِنِيْنَ وَالْمُسْلِمِيْنَ وَاِنَّاْ اِنْ شَاءَ اللهُ بِكُمْ لَاحِقُوْنَ`,
+    target: 1,
+    faz: 'روایت کے مفہوم کے مطابق: قبرستان میں مؤمنوں کو سلام فرمایا جاتا ہے — اور ان شاء اللہ ہم بھی اسی راہ سے آپ کے پیچھے پہنچنے والوں میں سے ہیں۔',
+    ref: '(سنن ترمذی: ۳۵۰۹)'
+  }
+];
+
 /* ═══════════════════════════════════════════════════════════════
    PHASE 4 DATASETS: DUROOD COLLECTION & ASMA-UL-HUSNA (99 NAMES)
 ═══════════════════════════════════════════════════════════════ */
@@ -4262,6 +4298,12 @@ function getLoc(val, customLang){
    AUTHENTIC ENGLISH ADHKAR, TRANSLATIONS & HADITH CATALOG
 ═══════════════════════════════════════════════════════════════ */
 const DUA_I18N_AR = {
+  janaza: [
+    {"name":"دعاء مغفرة الميّت في الجنازة","faz":"بحسب مفهوم الرواية، يُسأل للميّت المغفرة والرحمة — ويكون مقامه كريمًا ومبانح، مدخله واسعًا، ويُغسل بالماء والثلج والبرد.","ref":"صحيح مسلم: ٩٦٣"},
+    {"name":"دعاء الذمة والأمان","faz":"بحسب مفهوم الرواية، الميّت في ذمة الله وجواده — فيُطلب له البر من فتنة القبر وعذاب النار.","ref":"سنن أبي داود: ٣٢٢٢"},
+    {"name":"دعاء التعزية","faz":"بحسب مفهوم الرواية، تقال للمصاب: أن الله أجره ونقدًا، وأحسن عزاءه، وغفر لميّته.","ref":"بحسب مفهوم الروايات"},
+    {"name":"السلام على أهل المقبرة","faz":"بحسب مفهوم الرواية، يُقال: السلام عليكم أهل الديار من المؤمنين والمسلمين، وإننا إن شاء الله لاحقون.","ref":"سنن الترمذي: ٣٥٠٩"}
+  ],
   crisis: [
     {"name":"دعاء المصيبة","faz":"بحسب مفهوم الرواية، عند المصيبة يقال كلمة العودة إلى رضا الله ويُطلب الأجر — فيعوّض الله خيرًا منها.","ref":"صحيح مسلم: ٩١٨"},
     {"name":"حسبنا الله ونعم الوكيل (ثلاث مرات)","faz":"بحسب مفهوم الرواية، قيل هذا الكلام في الخوف وعند محاصرة الأعداء — الله كفانا وهو حسن وكيل.","ref":"صحيح البخاري: ٤٥٦٣"},
@@ -4371,6 +4413,12 @@ const DUA_I18N_AR = {
 };
 
 const DUA_I18N_EN = {
+  janaza: [
+    {"name":"Forgiveness Dua for the Departed","faz":"According to the contextual meaning of the narration, in the funeral prayer mercy and pardon are sought for the departed — a generous resting place, a wide entrance, and a cleansing like water, snow and coolness.","ref":"Sahih Muslim: 963"},
+    {"name":"Entrusting Dua","faz":"According to the contextual meaning of the narration, the departed is placed within Allah's trust and protection — deliverance asked from the trial of the grave and the pain of fire.","ref":"Sunan Abu Dawud: 3222"},
+    {"name":"The Condolence Dua","faz":"According to the contextual meaning of the narration, to the grieving one words are said — may Allah magnify the reward, ease the mourning and forgive the departed.","ref":"Traditional Condolence"},
+    {"name":"Greeting the Graveyard","faz":"According to the contextual meaning of the narration, peace is offered to the believers and Muslims journeying there — and surely, if Allah wills, we shall join them.","ref":"Sunan At-Tirmidhi: 3509"}
+  ],
   crisis: [
     {"name":"The Dua of Calamity","faz":"According to the contextual meaning of the narration, upon calamity the words of returning to Allah's decree are said and reward is sought in trial — He grants something finer in its place.","ref":"Sahih Muslim: 918"},
     {"name":"Hasbuna Allah — In Fear (3 Times)","faz":"According to the contextual meaning of the narration, these words are said in fear and when hemmed in by enemies — Allah suffices us and He is the finest guardian.","ref":"Sahih Bukhari: 4563"},
@@ -4481,6 +4529,12 @@ const DUA_I18N_EN = {
 
 /* ── p19-d2: Indonesian (id) meaning dictionary — ummah terbesar ── */
 const DUA_I18N_ID = {
+  janaza: [
+    {"name":"Doa Ampunan bagi Jenazah","faz":"Menurut maksud riwayat, dalam shalat jenazah dipohonkan ampunan dan rahmat bagi yang telah wafat — tempat terhormat, pintu yang lapang, dan disucikan seperti air, salju dan kesejukan.","ref":"Sahih Muslim: 963"},
+    {"name":"Doa Penyampaian","faz":"Menurut maksud riwayat, yang wafat diletakkan dalam amanat Allah dan perlindungan-Nya — dipohon terhindar dari godaan kubur dan siksa neraka.","ref":"Sunan Abu Dawud: 3222"},
+    {"name":"Doa Takziah","faz":"Menurut maksud riwayat, kepada yang berduka dikatakan — semoga Allah melipatgandakan pahala, melapangkan kesedihan, dan mengampuni yang wafat.","ref":"Takziah Tradisional"},
+    {"name":"Salam kepada Penghuni Kubur","faz":"Menurut maksud riwayat, salam dihadiahkan kepada orang-orang beriman yang beristirahat di sana — dan kami, insya Allah, akan menyusul.","ref":"Sunan At-Tirmidhi: 3509"}
+  ],
   crisis: [
     {"name":"Doa Musibah","faz":"Menurut maksud riwayat, saat musibah diucapkan kalimat kembali kepada ketetapan Allah dan dipohon pahala dalam cobaan — Dia menggantinya dengan yang lebih baik.","ref":"Sahih Muslim: 918"},
     {"name":"Hasbuna Allah (3 Kali)","faz":"Menurut maksud riwayat, kalimat ini diucapkan ketika gentar dan terkepung musuh — Allah cukup bagi kami dan Dia penjaga terbaik.","ref":"Sahih Bukhari: 4563"},
@@ -4591,6 +4645,12 @@ const DUA_I18N_ID = {
 
 /* ── p19-d3: Turkish (tr) meaning dictionary ── */
 const DUA_I18N_TR = {
+  janaza: [
+    {"name":"Cenâzede mağfiret duâsı","faz":"Rivâyetin ifâde ettiği mâna üzere, cenâzede merhum için mağfiret ve rahmet istenir — makâmı şerefli, yolu geniş, su kar ve serinlik ile arınsın.","ref":"Sahih Muslim: 963"},
+    {"name":"Âmânet duâsı","faz":"Rivâyetin ifâde ettiği mâna üzere, merhum Allah'ın âmetinde ve himâyesindedir — kabir fitnesinden ve ateş azâbından korunması istenir.","ref":"Sunan Abu Dawud: 3222"},
+    {"name":"Te'ziyye duâsı","faz":"Rivâyetin ifâde ettiği mâna üzere, yâsâ sahibine denir — Allah ecîrini büyütsün, yâsını güzelleştirsin ve merhumu mağfiret etsin.","ref":"Geleneksel te'ziyye"},
+    {"name":"Mezarlık sakinlerine selam","faz":"Rivâyetin ifâde ettiği mâna üzere, orada yatan müminlere selam sunulur — inşaallah biz de onlara katılacağız.","ref":"Sunan At-Tirmidhi: 3509"}
+  ],
   crisis: [
     {"name":"Musibet duâsı","faz":"Rivâyetin ifâde ettiği mâna üzere, belâ anında Allah'ın takdîrine dönüş sözü söylenir ve musibette ecir istenir — Allah daha iyi bir karşılık verir.","ref":"Sahih Muslim: 918"},
     {"name":"Hasbuna Allah (3 kez)","faz":"Rivâyetin ifâde ettiği mâna üzere, korkuda ve düşman kuşatmasında bu söz söylenir — Allah bize yeter, O en iyi vekîldir.","ref":"Sahih Bukhari: 4563"},
@@ -4701,6 +4761,12 @@ const DUA_I18N_TR = {
 
 /* ── p19-d4: French (fr) meaning dictionary ── */
 const DUA_I18N_FR = {
+  janaza: [
+    {"name":"Invocation de pardon au défunt","faz":"Selon le sens des récits, dans la prière funéraire on implore pardon et miséricorde pour le défunt — un lieu d'honneur, une entrée large, une purification par l'eau, la neige et la fraîcheur.","ref":"Sahih Muslim: 963"},
+    {"name":"Invocation de la confiance","faz":"Selon le sens des récits, le défunt est placé dans la sûreté d'Allah et sous Sa protection — on demande d'être préservé de la tentation du tombeau et du supplice du feu.","ref":"Sunan Abu Dawud: 3222"},
+    {"name":"Invocation de condoléance","faz":"Selon le sens des récits, on dit à l'endeuillé — qu'Allah accroisse la récompense, adoucisse le deuil et pardonne au défunt.","ref":"Condoléance traditionnelle"},
+    {"name":"Salutation aux habitants du cimetière","faz":"Selon le sens des récits, la paix est adressée aux croyants qui reposent là — et nous aussi, si Allah veut, nous les rejoindrons.","ref":"Sunan At-Tirmidhi: 3509"}
+  ],
   crisis: [
     {"name":"Invocation de l'épreuve","faz":"Selon le sens des récits, lors de l'épreuve on prononce la parole du retour au décret d'Allah et l'on demande la récompense — Il accorde une compensation plus belle.","ref":"Sahih Muslim: 918"},
     {"name":"Hasbuna Allah (3 fois)","faz":"Selon le sens des récits, ces mots furent dits dans la peur et l'encerclement des adversaires — Allah nous suffit et Il est le meilleur protecteur.","ref":"Sahih Bukhari: 4563"},
@@ -4811,6 +4877,12 @@ const DUA_I18N_FR = {
 
 /* ── p19-f1: Bangla (bn) dua meaning dictionary — Rule 12 reverent phrasing ── */
 const DUA_I18N_BN = {
+  janaza: [
+    {"name":"জানাজায় মাগফিরাতের দোয়া","faz":"রিওয়ায়ের মর্মানুযায়ী, জানাজায় মৃতের জন্য মাগফিরাত ও রহমত চাওয়া হয় — সম্মানজনক আস্থানা, প্রশস্ত পথ, এবং পানি, বরফ ও নিশ্বাসের মতো পবিত্র ধোয়া।","ref":"Sahih Muslim: 963"},
+    {"name":"আমানতের দোয়া","faz":"রিওয়ায়ের মর্মানুযায়ী, মৃত ব্যক্তি আল্লাহর আমানতে ও তাঁর পাররক্ষায় থাকে — কবরের ফিতন ও আগুনের শাস্টি থেকে বাঁচার প্রার্থনা করা হয়।","ref":"Sunan Abu Dawud: 3222"},
+    {"name":"সান্ত্বনার দোয়া","faz":"রিওয়ায়ের মর্মানুযায়ী, শোকসিদ্ধের কাছে বলা হয় — আল্লাহ পদব বাড়ান, দুঃখ প্রশমিত করুন এবং মৃতকে মাগফিরাত দান করুন।","ref":"ঐতিহ্যবাহী সান্ত্বনা"},
+    {"name":"কবরস্থানে সালাম","faz":"রিওয়ায়ের মর্মানুযায়ী, সেখানে বিশ্রাম নেওয়া মুমিনদের সালাম জানানো হয় — এবং ইনশাআল্লাহ আমরাও তাদের সাথে যোগ হব।","ref":"Sunan At-Tirmidhi: 3509"}
+  ],
   crisis: [
     {"name":"মুসীবতের দোয়া","faz":"রিওয়ায়ের মর্মানুযায়ী, মুসীবতে আল্লাহর ফায়সালার প্রতি ফিরে আসার বাণী পাঠ করা হয় এবং প্রীতির প্রতিদান চাওয়া হয় — তিনি তার বদলে উত্তম দান করেন।","ref":"Sahih Muslim: 918"},
     {"name":"হাসবুনাল্লাহ ওয়া নেমাল ওয়াকীল (৩ বার)","faz":"রিওয়ায়ের মর্মানুযায়ী, ভয়ে এবং শত্রুর আক্রমণে এই কালাম পাঠ করা হয় — আল্লাহ আমাদের জন্য যথেষ্ট এবং তিনিই সর্বোত্তম অভিভাবক।","ref":"Sahih Bukhari: 4563"},
@@ -4921,6 +4993,12 @@ const DUA_I18N_BN = {
 
 /* ── p19-f2: Русский (ru) словарь значений — Rule 12 почтительные формулировки ── */
 const DUA_I18N_RU = {
+  janaza: [
+    {"name":"Молитва о прощении покойного","faz":"По содержанию преданий, в заупокойной молитве испрашивают прощения и милости для ушедшего — почётное пристанище, широкий вход и очищение, будто водой, снегом и свежестью.","ref":"Sahih Muslim: 963"},
+    {"name":"Молитва вручения","faz":"По содержанию преданий, покойный пребывает в доверии Аллаха и под Его защитой — испрашивается спасение от искушения могилы и огненной кары.","ref":"Sunan Abu Dawud: 3222"},
+    {"name":"Соболезнованное обращение","faz":"По содержанию преданий, скорбящему говорится — пусть Аллах умножит награду, смягчит скорбь и простит покойного.","ref":"Традиционное выражение"},
+    {"name":"Приветствие жителям кладбища","faz":"По содержанию преданий, мир адресуется верующим, покоящимся там — и мы, если пожелает Аллах, последуем к ним.","ref":"Sunan At-Tirmidhi: 3509"}
+  ],
   crisis: [
     {"name":"Мольба при беде","faz":"По содержанию преданий, при беде произносят слова возврата к решению Аллаха и просят награды за терпение — Он замещает её лучшим.","ref":"Sahih Muslim: 918"},
     {"name":"Хасбуналла̄х ва нималь вакил (3 раза)","faz":"По содержанию преданий, эти слова произносились при страхе и осаждении врагов — довольно нам Аллаха, и Он наипрекраснейший Хранитель.","ref":"Sahih Bukhari: 4563"},
@@ -5031,6 +5109,12 @@ const DUA_I18N_RU = {
 
 /* ── p19-f3: فرهنگ فارسی (fa) معنای اذکار — Rule 12 ادب‌مندانه ── */
 const DUA_I18N_FA = {
+  janaza: [
+    {"name":"دعای مغفرت برای درگذشته","faz":"به مفهوم روایات، در نماز جنازه برای درگذشته مغفرت و رحمت خواسته می‌شود — جایگاه او گرامی، ورودی‌اش وسیع، و مانند آب و برف و سرما پاک شود.","ref":"Sahih Muslim: 963"},
+    {"name":"دعای سپردن","faz":"به مفهوم روایات، درگذشته در امان خدا و تحت حمایت او قرار می‌گیرد — از فتنه قبر و عذاب آتش درخواست می‌شود.","ref":"Sunan Abu Dawud: 3222"},
+    {"name":"دعای تعزیت","faz":"به مفهوم روایات، به سوگوار گفته می‌شود — خداوند پاداش او را بزرگ گرداند و سوگش را نیکو و درگذشته‌اش را بیامرزد.","ref":"تعزیت روایتی"},
+    {"name":"درود بر اهل گورستان","faz":"به مفهوم روایات، بر مؤمنانی که در آنجا آرمیده‌اند سلام گفته می‌شود — و ما نیز اگر خدا بخواهد به ایشان خواهیم پیوست.","ref":"سنن ترمذی: ۳۵۰۹"}
+  ],
   crisis: [
     {"name":"دعای بلا","faz":"به مفهوم روایات، هنگام بلا واژه‌های بازگشت به قضای خدا گفته می‌شود و اجر طلب می‌گردد — او در برابر آن افضل خود را عطا می‌کند.","ref":"Sahih Muslim: 918"},
     {"name":"حسبنا الله ونعم الوكيل (۳ بار)","faz":"به مفهوم روایات، این واژه‌ها در ترس و در محاصره دشمنان گفته شد — خدا برای ما کافی است و او بهترین کارساز است.","ref":"Sahih Bukhari: 4563"},
@@ -5373,6 +5457,7 @@ const SECS = [
 { id: "food_adab", icon: "🍽️", title: { ur: "دعائے کھانے کا ادب", en: "Food & Dining Duas", ar: "دعاء آداب الطعام", id: "Doa Adab Makan", tr: "Yemek Âdâbı Duaları", fr: "Invocations de Bienséance à Table", bn: "খাবারের আদবের দোয়া", ru: "Дуа застольного этикета", fa: "دعای آداب غذا" }, ct: { ur: "۴ دعائیں", en: "4 Duas", ar: "4 دعاءً", id: "4 Doa", tr: "4 Dua", fr: "4 Invocations", bn: "৪টি দোয়া", ru: "4 дуа", fa: "۴ دعا" } },
 { id: "masjid_adab", icon: "🕌", title: { ur: "دعائے مسجد کا ادب", en: "Masjid Etiquette Duas", ar: "دعاء آداب المسجد", id: "Doa Adab Masjid", tr: "Câmi Âdâbı Duâları", fr: "Invocations d'Étiquette de la Mosquée", bn: "মসজিদের আদবের দোয়া", ru: "Дуа этикета мечети", fa: "دعای آداب مسجد" }, ct: { ur: "۴ دعائیں", en: "4 Duas", ar: "4 دعاءً", id: "4 Doa", tr: "4 Dua", fr: "4 Invocations", bn: "৪টি দোয়া", ru: "4 дуа", fa: "۴ دعا" } },
 { id: "crisis", icon: "🤲", title: { ur: "دعائے مشکل وقت", en: "Duas for Hardship", ar: "دعاء الشدائد", id: "Doa Cobaan", tr: "Sıkıntı Duâları", fr: "Invocations en Épreuve", bn: "বিপদের দোয়া", ru: "Дуа в трудный час", fa: "دعای سختی‌ها" }, ct: { ur: "۵ دعائیں", en: "5 Duas", ar: "5 دعاءً", id: "5 Doa", tr: "5 Dua", fr: "5 Invocations", bn: "৫টি দোয়া", ru: "5 дуа", fa: "۵ دعا" } },
+{ id: "janaza", icon: "⚰️", title: { ur: "نمازِ جنازہ و آداب", en: "Janazah & Funeral Duas", ar: "دعاء الجنازة", id: "Doa Jenazah", tr: "Cenâze Duâları", fr: "Invocations funéraire", bn: "জানাজার দোয়া", ru: "Дуа похоронов", fa: "دعای جنازه" }, ct: { ur: "۴ دعائیں", en: "4 Duas", ar: "4 دعاءً", id: "4 Doa", tr: "4 Dua", fr: "4 Invocations", bn: "৪টি দোয়া", ru: "4 дуа", fa: "۴ دعا" } },
 { id: "tawbah", icon: "🤲", title: { ur: "سید الاستغفار و توبہ", en: "Sayyidul Istighfar & Tawbah", ar: "سيد الاستغفار والتوبة", id: "Sayyidul Istighfar & Taubat", tr: "Seyyidü'l-İstiğfar", fr: "Sayyidul Istighfar", bn: "সাইয়িদুল ইস্তিগফার ও তওবা", ru: "Саййидуль-истигфар и покаяние", fa: "سیّدالاستغفار و توبه" }, ct: { ur: "۴ اذکار", en: "4 Adhkar", ar: "4 أذكار", id: "4 Dzikir", tr: "4 Zikir", fr: "4 Adhkar", bn: "৪টি জিকির", ru: "4 азкара", fa: "۴ ذکر" } },
 { id: "tauheed", icon: "☝️", title: { ur: "توحید کے اذکار", en: "Tauheed & Praise", ar: "أذكار التوحيد والتهليل", id: "Dzikir Tauhid & Tasbih", tr: "Tevhid ve Tesbih", fr: "Tawhid & Louanges", bn: "তৌহীদ ও স্তুতি", ru: "Таухид и восхваление", fa: "توحید و ستایش" }, ct: { ur: "۶ اذکار", en: "6 Adhkar", ar: "6 أذكار", id: "6 Dzikir", tr: "6 Zikir", fr: "6 Adhkar", bn: "৬টি জিকির", ru: "6 азкаров", fa: "۶ ذکر" } },
 { id: "asma", icon: "👑", title: { ur: "اسمائے حسنیٰ (۹۹ نام)", en: "99 Names of Allah", ar: "أسماء الله الحسنى (99 اسماً)", id: "99 Asmaul Husna", tr: "99 Esmâü'l-Hüsnâ", fr: "Les 99 Noms d'Allah", bn: "আল্লাহর ৯৯টি নাম", ru: "99 имён Аллаха", fa: "۹۹ نام خداوند" }, ct: { ur: "۹۹ نام", en: "99 Names", ar: "99 اسماً", id: "99 Nama", tr: "99 İsim", fr: "99 Noms", bn: "৯৯টি নাম", ru: "99 имён", fa: "۹۹ نام" } },
@@ -5426,6 +5511,7 @@ const S={
   food_adab:   {idx:0,cnt:0,done:new Array(FOOD_ADB.length).fill(false)},
   masjid_adab: {idx:0,cnt:0,done:new Array(MASJID_ADB.length).fill(false)},
   crisis:      {idx:0,cnt:0,done:new Array(CRISIS.length).fill(false)},
+  janaza:      {idx:0,cnt:0,done:new Array(JANAZA.length).fill(false)},
   asr:         {cnt:0,done:false},
   tasbeeh:     {ph:0,cnt:0,sets:0},
   tajMode:'off',
@@ -5470,7 +5556,7 @@ try{
   if(p.translit) S.translit = p.translit; /* p19-c: translit toggle restore */
   if(p.lang) S.lang = p.lang;
   else S.lang = p19DetectLang(); /* fresh visitor: browser/URL language */
-  ['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana','safar','home_adab','food_adab','masjid_adab','crisis','asr','tasbeeh'].forEach(k=>{if(p[k])Object.assign(S[k],p[k]);});
+  ['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana','safar','home_adab','food_adab','masjid_adab','crisis','janaza','asr','tasbeeh'].forEach(k=>{if(p[k])Object.assign(S[k],p[k]);});
   if(!S.fajr.done||S.fajr.done.length!==FAJR.length)S.fajr.done=new Array(FAJR.length).fill(false);
   if(!S.jumma.done||S.jumma.done.length!==JUMMA.length)S.jumma.done=new Array(JUMMA.length).fill(false);
   if(!S.durood_pak.done||S.durood_pak.done.length!==DUROOD_PAK.length)S.durood_pak.done=new Array(DUROOD_PAK.length).fill(false);
@@ -5830,7 +5916,7 @@ function renderZikrPicker(){
     let prog = '';
     if(['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana'].includes(m.id) && S[m.id]?.done){
       const d = S[m.id].done.filter(Boolean).length;
-      const tot = {fajr:FAJR.length,jumma:JUMMA.length,durood_pak:DUROOD_PAK.length,tauheed:TAUHEED.length,bedtime:BEDTIME.length,tawbah:TAWBAH.length,post_salah:POST_SALAH.length,morning_wake:MORNING_WAKE.length,relief_debt:RELIEF_DEBT.length,istikhara:ISTIKHARA.length,rabbana:RABBANA.length,safar:SAFAR.length,home_adab:HOME_ADB.length,food_adab:FOOD_ADB.length,masjid_adab:MASJID_ADB.length,crisis:CRISIS.length}[m.id];
+      const tot = {fajr:FAJR.length,jumma:JUMMA.length,durood_pak:DUROOD_PAK.length,tauheed:TAUHEED.length,bedtime:BEDTIME.length,tawbah:TAWBAH.length,post_salah:POST_SALAH.length,morning_wake:MORNING_WAKE.length,relief_debt:RELIEF_DEBT.length,istikhara:ISTIKHARA.length,rabbana:RABBANA.length,safar:SAFAR.length,home_adab:HOME_ADB.length,food_adab:FOOD_ADB.length,masjid_adab:MASJID_ADB.length,crisis:CRISIS.length,janaza:JANAZA.length}[m.id];
       if(d > 0) prog = `<span style="color:var(--g2);font-size:.68rem">(${d}/${tot})</span>`;
     } else if(m.id === 'asr' && S.asr.done){
       prog = `<span style="color:var(--g2);font-size:.68rem">✓ مکمل</span>`;
@@ -6445,7 +6531,7 @@ function renderCategory(mc, cat){
     hd = isEn ? 'Quran Mubarak' : 'قرآن مبارک';
     sub = isEn ? ((q26.length + 6) + ' blessed surahs + full 114 surahs') : ((q26.length + 6) + ' مبارک سورتیں + مکمل ۱۱۴');
   } else {
-    const duain = ['rabbana','istikhara','tawbah','relief_debt','safar','home_adab','food_adab','masjid_adab','crisis','asma','asma_saw'].map(id => ({id}));
+    const duain = ['rabbana','istikhara','tawbah','relief_debt','safar','home_adab','food_adab','masjid_adab','crisis','janaza','asma','asma_saw'].map(id => ({id}));
     tiles = `<div class="p9-grid">${duain.map(build).join('')}</div>`;
     hd = isEn ? 'Masnoon Duas' : 'مسنون دعائیں';
     sub = isEn ? 'Duas + Asma-ul-Husna' : 'دعائیں اور اسمائے حسنیٰ';
@@ -6882,7 +6968,7 @@ function render(){
   if(sec==='asr'){renderAsr(mc);return;}
   if(sec==='tasbeeh'){renderTasbeeh(mc);return;}
   if(sec==='custom'){renderCustom(mc);return;}
-  const DATA={fajr:FAJR,jumma:JUMMA,durood_pak:DUROOD_PAK,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH,post_salah:POST_SALAH,morning_wake:MORNING_WAKE,relief_debt:RELIEF_DEBT,istikhara:ISTIKHARA,rabbana:RABBANA,safar:SAFAR,home_adab:HOME_ADB,food_adab:FOOD_ADB,masjid_adab:MASJID_ADB,crisis:CRISIS};
+  const DATA={fajr:FAJR,jumma:JUMMA,durood_pak:DUROOD_PAK,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH,post_salah:POST_SALAH,morning_wake:MORNING_WAKE,relief_debt:RELIEF_DEBT,istikhara:ISTIKHARA,rabbana:RABBANA,safar:SAFAR,home_adab:HOME_ADB,food_adab:FOOD_ADB,masjid_adab:MASJID_ADB,crisis:CRISIS,janaza:JANAZA};
   const steps=DATA[sec],st=S[sec];
   if(!steps || !st) return;
   const step=steps[st.idx];
@@ -8733,7 +8819,7 @@ function p3UpdateHub(){
     const tEl = st.querySelector('[data-hub="today"]');
     if(tEl) tEl.textContent = formatStreakNumber(taps, S.lang);
     let doneTotal = 0;
-    ['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana','safar','home_adab','food_adab','masjid_adab','crisis'].forEach(k => { if(S[k] && S[k].done) doneTotal += S[k].done.filter(Boolean).length; });
+    ['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana','safar','home_adab','food_adab','masjid_adab','crisis','janaza'].forEach(k => { if(S[k] && S[k].done) doneTotal += S[k].done.filter(Boolean).length; });
     if(S.asr && S.asr.done) doneTotal++;
     if(S.tasbeeh && S.tasbeeh.sets) doneTotal += S.tasbeeh.sets;
     if(customAzkar) doneTotal += customAzkar.filter(x => x.done || (x.target && x.cnt >= x.target)).length;
@@ -8946,7 +9032,7 @@ function p4OnbRender(){
     if(skip) skip.addEventListener('click', () => { p4OnbStep = 3; p4OnbRender(); });
   }catch(e){}
 }
-const ALL_DUA_DATA = {fajr:FAJR,jumma:JUMMA,durood_pak:DUROOD_PAK,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH,post_salah:POST_SALAH,morning_wake:MORNING_WAKE,relief_debt:RELIEF_DEBT,istikhara:ISTIKHARA,rabbana:RABBANA,safar:SAFAR,home_adab:HOME_ADB,food_adab:FOOD_ADB,masjid_adab:MASJID_ADB,crisis:CRISIS};
+const ALL_DUA_DATA = {fajr:FAJR,jumma:JUMMA,durood_pak:DUROOD_PAK,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH,post_salah:POST_SALAH,morning_wake:MORNING_WAKE,relief_debt:RELIEF_DEBT,istikhara:ISTIKHARA,rabbana:RABBANA,safar:SAFAR,home_adab:HOME_ADB,food_adab:FOOD_ADB,masjid_adab:MASJID_ADB,crisis:CRISIS,janaza:JANAZA};
 
 /* ══ TAP ══ */
 /* ══ p7: ZAATI AUTO-RESET (user request: finish-all per cycle counts khud reset ho jayen) ══ */
@@ -9092,7 +9178,7 @@ function renderDrawer(){
   SECS.forEach(m => {
     if(!P9_AZKAR_ONLY.includes(m.id)) return;
     let prog='';
-    if(['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana','safar','home_adab','food_adab','masjid_adab','crisis'].includes(m.id)&&S[m.id]?.done){const d=S[m.id].done.filter(Boolean).length;const tot={fajr:FAJR.length,jumma:JUMMA.length,durood_pak:DUROOD_PAK.length,tauheed:TAUHEED.length,bedtime:BEDTIME.length,tawbah:TAWBAH.length,post_salah:POST_SALAH.length,morning_wake:MORNING_WAKE.length,relief_debt:RELIEF_DEBT.length,istikhara:ISTIKHARA.length,rabbana:RABBANA.length,safar:SAFAR.length,home_adab:HOME_ADB.length,food_adab:FOOD_ADB.length,masjid_adab:MASJID_ADB.length,crisis:CRISIS.length}[m.id];if(d>0)prog=`<span style="color:var(--g2);font-size:.65rem">${d}/${tot}</span>`;}
+    if(['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana','safar','home_adab','food_adab','masjid_adab','crisis','janaza'].includes(m.id)&&S[m.id]?.done){const d=S[m.id].done.filter(Boolean).length;const tot={fajr:FAJR.length,jumma:JUMMA.length,durood_pak:DUROOD_PAK.length,tauheed:TAUHEED.length,bedtime:BEDTIME.length,tawbah:TAWBAH.length,post_salah:POST_SALAH.length,morning_wake:MORNING_WAKE.length,relief_debt:RELIEF_DEBT.length,istikhara:ISTIKHARA.length,rabbana:RABBANA.length,safar:SAFAR.length,home_adab:HOME_ADB.length,food_adab:FOOD_ADB.length,masjid_adab:MASJID_ADB.length,crisis:CRISIS.length,janaza:JANAZA.length}[m.id];if(d>0)prog=`<span style="color:var(--g2);font-size:.65rem">${d}/${tot}</span>`;}
     if(m.id==='asr'&&S.asr.done)prog=`<span style="color:var(--g2);font-size:.7rem">✓</span>`;
     html += `<div class="dr-item${sec===m.id?' active':''}" data-sec="${m.id}"><span class="dr-icon">${m.icon}</span><span class="dr-name">${getLoc(m.title)}</span><span class="dr-ct">${getLoc(m.ct)}</span>${prog}</div>`;
   });
@@ -9124,6 +9210,7 @@ document.getElementById('restartBtn')?.addEventListener('click',()=>{
   if(sec==='food_adab')S.food_adab={idx:0,cnt:0,done:new Array(FOOD_ADB.length).fill(false)};
   if(sec==='masjid_adab')S.masjid_adab={idx:0,cnt:0,done:new Array(MASJID_ADB.length).fill(false)};
   if(sec==='crisis')S.crisis={idx:0,cnt:0,done:new Array(CRISIS.length).fill(false)};
+  if(sec==='janaza')S.janaza={idx:0,cnt:0,done:new Array(JANAZA.length).fill(false)};
   if(sec==='durood_pak')S.durood_pak={idx:0,cnt:0,done:new Array(DUROOD_PAK.length).fill(false)};
   if(sec==='tasbeeh')S.tasbeeh={ph:0,cnt:0,sets:0};
   save();
