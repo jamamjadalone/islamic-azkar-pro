@@ -3868,6 +3868,42 @@ const WEATHER = [
   }
 ];
 
+/* ── p21-j: HAJJ UMRAH (talbiyah o manasik ki duain) — Rule 12 phrasing ── */
+const HAJJUMRAH = [
+  {
+    grp: 'حج و عمرہ کی دعائیں',
+    name: 'تلبیہ — احرام کا کلمہ',
+    ar: `لَبَّيْكَ اَللّٰهُمَّ لَبَّيْكَ ؕ لَبَّيْكَ لَا شَرِيْكَ لَكَ لَبَّيْكَ ؕ اِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ وَالْمُلْكَ ؕ لَا شَرِيْكَ لَكَ`,
+    target: 1,
+    faz: 'روایت کے مفہوم کے مطابق: احرام باندھنے کے بعد تلبیہ پڑھی جاتی ہے — لبیک یعنی حاضر اوں، تیری کسی شریک کا مقابلہ نہیں؛ حمد، نعمت اور بادشاہی سب تیری ہی ہے۔',
+    ref: '(صحیح بخاری: ۱۵۴۹)'
+  },
+  {
+    grp: 'حج و عمرہ کی دعائیں',
+    name: 'روکنِ یمانی تا حجرِ اسود کی دعا',
+    ar: `رَبَّنَآ اٰتِنَا فِي الدُّنْيَا حَسَنَةً وَّفِي الْاٰخِرَةِ حَسَنَةً وَّقِنَا عَذَابَ النَّارِ`,
+    target: 1,
+    faz: 'روایت کے مفہوم کے مطابق: طواف میں روکنِ یمانی سے حجرِ اسود تک یہ دعا پڑھی جاتی ہے — دنیا و آخرت کی بھلائی اور آگ سے پناہ مانگی جاتی ہے۔',
+    ref: '(صحیح بخاری: ۱۱۹۷)'
+  },
+  {
+    grp: 'حج و عمرہ کی دعائیں',
+    name: 'کعبہ دیکھنے پر دعا',
+    ar: `اَللّٰهُمَّ زِدْ هٰذَا الْبَيْتَ تَشْرِيْفًا وَتَعْظِيْمًا وَتَكْرِيْمًا وَمَحَبَّةً`,
+    target: 1,
+    faz: 'روایات کے مفہوم کے مطابق: کعبہ پہلی بار دیکھ کر یہ دعا کی جاتی ہے — اللہ اس گھر کی شان، عظمت، اکرام اور محبت میں اضافہ فرمائے۔',
+    ref: '(روایات کے مفہوم کے مطابق)'
+  },
+  {
+    grp: 'حج و عمرہ کی دعائیں',
+    name: 'زمزم پیٹے وقت کی دعا',
+    ar: `اَللّٰهُمَّ اِنِّيْٓ اَسْاَلُكَ عِلْمًا نَافِعًا وَّرِزْقًا وَّاسِعًا وَّشِفَاءً مِّنْ كُلِّ دَاءٍ`,
+    target: 1,
+    faz: 'روایات کے مفہوم کے مطابق: زمزم کا پانی پیتے ہوئے یہ دعا کی جاتی ہے — نفع دینے والا علم، کشادہ رزق اور ہر بیمار سے شفا مانگی جاتی ہے۔',
+    ref: '(روایات کے مفہوم کے مطابق)'
+  }
+];
+
 /* ═══════════════════════════════════════════════════════════════
    PHASE 4 DATASETS: DUROOD COLLECTION & ASMA-UL-HUSNA (99 NAMES)
 ═══════════════════════════════════════════════════════════════ */
@@ -4334,6 +4370,12 @@ function getLoc(val, customLang){
    AUTHENTIC ENGLISH ADHKAR, TRANSLATIONS & HADITH CATALOG
 ═══════════════════════════════════════════════════════════════ */
 const DUA_I18N_AR = {
+  hajjumrah: [
+    {"name":"التلبية — عند الإحرام","faz":"بحسب مفهوم الرواية، يقال بعد الإحرام: لبيك اللهم لبيك، شريك لك لبيك — إن الحمد والنعمة والملك لك، لا شريك لك.","ref":"صحيح البخاري: ١٥٤٩"},
+    {"name":"دعاء الركن اليمني إلى الحجر","faz":"بحسب مفهوم الرواية، في الطواف بين الركن اليمني والحجر الأسود يقال: ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار.","ref":"صحيح البخاري: ١١٩٧"},
+    {"name":"الدعاء عند مباركة الكعبة","faz":"بحسب مفهوم الروايات، عند أول رؤية الكعبة يقال: اللهم زد هذا البيت تشريفًا وتعظيمًا وتكريمًا ومحبة.","ref":"بحسب مفهوم الروايات"},
+    {"name":"الدعاء عند شرب زمزم","faz":"بحسب مفهوم الروايات، عند شرب ماء زمزم يقال: اللهم إني أسألك علمًا نافعًا ورزقًا واسعًا وشفاءً من كل داء.","ref":"بحسب مفهوم الروايات"}
+  ],
   weather: [
     {"name":"دعاء المطر","faz":"بحسب مفهوم الرواية، عند نزول المطر يقال هذا الدعاء — يُسأل الله صيبًا نافعًا.","ref":"صحيح البخاري: ١٠٣٢"},
     {"name":"دعاء الريح","faz":"بحسب مفهوم الرواية، عند هبوب الريح يُسأل خيرها وخير ما فيها وخير ما أُرسلت به.","ref":"صحيح مسلم: ٨٩٩"},
@@ -4455,6 +4497,12 @@ const DUA_I18N_AR = {
 };
 
 const DUA_I18N_EN = {
+  hajjumrah: [
+    {"name":"The Talbiyah — At Ihram","faz":"According to the contextual meaning of the narration, after entering ihram the Talbiyah is recited — here I am at Your service, no partner has You; all praise, favor and dominion belong to You.","ref":"Sahih Bukhari: 1549"},
+    {"name":"From the Yamani Corner to the Black Stone","faz":"According to the contextual meaning of the narration, during tawaf between the Yamani corner and the Black Stone one says — our Lord, give us good in this world and good in the Hereafter, and shield us from the fire.","ref":"Sahih Bukhari: 1197"},
+    {"name":"Upon Sighting the Kaba","faz":"According to the contextual meaning of the narrations, on first seeing the Kaba one says — O Allah, increase this House in honor, reverence, generosity and love.","ref":"Traditional Duas"},
+    {"name":"While Drinking Zamzam","faz":"According to the contextual meaning of the narrations, while drinking the water of Zamzam one asks — for beneficial knowledge, abundant provision and healing from every ailment.","ref":"Traditional Duas"}
+  ],
   weather: [
     {"name":"The Rain Dua","faz":"According to the contextual meaning of the narration, when rain begins this dua is repeated — a blessed, beneficial downpour is asked of Allah.","ref":"Sahih Bukhari: 1032"},
     {"name":"The Wind Dua","faz":"According to the contextual meaning of the narration, when the wind howls, the good of the wind, the good within it and the good of the purpose for which it was sent are asked.","ref":"Sahih Muslim: 899"},
@@ -4577,6 +4625,12 @@ const DUA_I18N_EN = {
 
 /* ── p19-d2: Indonesian (id) meaning dictionary — ummah terbesar ── */
 const DUA_I18N_ID = {
+  hajjumrah: [
+    {"name":"Talbiyah — Saat Ihram","faz":"Menurut maksud riwayat, setelah mengenakan ihram talbiyah dibaca — aku datang memenuhi seruan-Mu, tiada sekutu bagi-Mu; segala puji, nikmat dan kerajaan milik-Mu.","ref":"Sahih Bukhari: 1549"},
+    {"name":"Rukun Yamani hingga Hajar Aswad","faz":"Menurut maksud riwayat, dalam tawaf antara rukun Yamani dan Hajar Aswad dibaca — Ya Rabb kami, berilah kami kebaikan di dunia dan di akhirat serta lindungi kami dari azab api.","ref":"Sahih Bukhari: 1197"},
+    {"name":"Saat Pertama Melihat Ka'bah","faz":"Menurut maksud riwayat, saat pertama melihat Ka'bah dibaca — Ya Allah, tambahkanlah Bangunan ini kemuliaan, keagungan, penghormatan dan cintanya.","ref":"Doa Tradisional"},
+    {"name":"Saat Minum Air Zamzam","faz":"Menurut maksud riwayat, saat minum air Zamzam dipohonkan — ilmu yang berguna, rezeki yang lapang dan syifa dari segala penyakit.","ref":"Doa Tradisional"}
+  ],
   weather: [
     {"name":"Doa Hujan","faz":"Menurut maksud riwayat, saat hujan mulai turun doa ini diulang — dipohonkan hujan yang diberkati dan membawa manfaat.","ref":"Sahih Bukhari: 1032"},
     {"name":"Doa Angin","faz":"Menurut maksud riwayat, saat angin kencang dipohonkan kebaikan angin, kebaikan di dalamnya dan kebaikan tujuan dikirimkannya.","ref":"Sahih Muslim: 899"},
@@ -4699,6 +4753,12 @@ const DUA_I18N_ID = {
 
 /* ── p19-d3: Turkish (tr) meaning dictionary ── */
 const DUA_I18N_TR = {
+  hajjumrah: [
+    {"name":"Telbiye — ihramda","faz":"Rivâyetin ifâde ettiği mâna üzere, ihram kuşanılınca telbiye okunur — buyur Allah'ım, emrindeyim; ortağın yoktur, hamd ve mülk senindir.","ref":"Sahih Bukhari: 1549"},
+    {"name":"Yemânî köşesinden Hacer-i Esved'e","faz":"Rivâyetin ifâde ettiği mâna üzere, tavafda Yemânî köşesiyle Hacer-i Esved arasında okunur — Rabbimiz, dünyada iyilik, ahirette iyilik ver ve bizi ateşin azâbından koru.","ref":"Sahih Bukhari: 1197"},
+    {"name":"Kâbe'yi ilk gördüğünde","faz":"Rivâyetlerin ifâde ettiği mâna üzere, Kâbe ilk görüldüğünde okunur — Allah'ım, bu Beyt'in şânlığını, azametini, ikramını ve sevgisini artır.","ref":"Geleneksel duâlar"},
+    {"name":"Zemzem içerken","faz":"Rivâyetlerin ifâde ettiği mâna üzere, Zemzem suyu içerken okunur — faydalı ilim, geniş rızık ve her hastalıktan şifâ istenir.","ref":"Geleneksel duâlar"}
+  ],
   weather: [
     {"name":"Yağmur duâsı","faz":"Rivâyetin ifâde ettiği mâna üzere, yağmur başladığında okunur — Allah'tan faydalı ve bereketli bir sağnak istenir.","ref":"Sahih Bukhari: 1032"},
     {"name":"Rüzgâr duâsı","faz":"Rivâyetin ifâde ettiği mâna üzere, şiddetli rüzgârdan hayır, içindeki hayır ve hangi maksatla gönderildiyse onun hayrı istenir.","ref":"Sahih Muslim: 899"},
@@ -4821,6 +4881,12 @@ const DUA_I18N_TR = {
 
 /* ── p19-d4: French (fr) meaning dictionary ── */
 const DUA_I18N_FR = {
+  hajjumrah: [
+    {"name":"La Talbiya — à l'ihram","faz":"Selon le sens des récits, après l'ihram on récite la Talbiya — me voici à Ton service, Tu n'as point d'associé ; la louange, la faveur et la souveraineté sont à Toi.","ref":"Sahih Bukhari: 1549"},
+    {"name":"Du Rukn yamani au Hajr Aswad","faz":"Selon le sens des récits, durant la tawaf entre le coin yamani et la Pierre noire on dit — Seigneur, donne-nous une belle part ici-bas et dans l'au-delà, et protège-nous du feu.","ref":"Sahih Bukhari: 1197"},
+    {"name":"À la première vision de la Kaba","faz":"Selon le sens des récits, en apercevant la Kaba pour la première fois on dit — Ô Allah, accrois cette Maison en honneur, en grandeur, en générosité et en amour.","ref":"Invocations traditionnelles"},
+    {"name":"En buvant l'eau de Zamzam","faz":"Selon le sens des récits, en buvant l'eau de Zamzam on demande — une science utile, une subsistance ample et une guérison de toute maladie.","ref":"Invocations traditionnelles"}
+  ],
   weather: [
     {"name":"Invocation de la pluie","faz":"Selon le sens des récits, à l'arrivée de la pluie cette invocation est répétée — demandant à Allah une averse bénéfique et utile.","ref":"Sahih Bukhari: 1032"},
     {"name":"Invocation du vent","faz":"Selon le sens des récits, lors d'un vent fort le bien du vent, son bien intérieur et le bien du but pour lequel il fut envoyé sont demandés.","ref":"Sahih Muslim: 899"},
@@ -4943,6 +5009,12 @@ const DUA_I18N_FR = {
 
 /* ── p19-f1: Bangla (bn) dua meaning dictionary — Rule 12 reverent phrasing ── */
 const DUA_I18N_BN = {
+  hajjumrah: [
+    {"name":"তালবিয়া — ইহরামের সময়","faz":"রিওয়ায়ের মর্মানুযায়ী, ইহরাম পরার পর তালবিয়া পাঠ করা হয় — আমি আপনার ডাকে উপস্থিত, আপনার কোনো অংশীদার নেই; সব প্রশংসা, নিয়ামত ও রাজত্ব আপনারই।","ref":"Sahih Bukhari: 1549"},
+    {"name":"রুকনে ইয়মানি থেকে হাজরে আসওয়াদ পর্যন্ত","faz":"রিওয়ায়ের মর্মানুযায়ী, তাওয়াফে রুকনে ইয়মানি থেকে হাজরে আসওয়াদ পর্যন্ত পাঠ করা হয় — হে আমাদের রব, আমাদের দুনিয়াতে কল্যাণ ও আখিরাতে কল্যাণ দান করুন এবং জাহান্নামের শাস্তি থেকে রক্ষা করুন।","ref":"Sahih Bukhari: 1197"},
+    {"name":"প্রথম কাবার দর্শনের সময়","faz":"রিওয়ায়ের মর্মানুযায়ী, প্রথম কাবা দেখে দোয়া পাঠ করা হয় — হে আল্লাহ, এই ঘরের মর্যাদা, প্রাধান্য, সম্মান ও ভালোবাসা বাড়িয়ে দিন।","ref":"ঐতিহ্যবাহী দোয়া"},
+    {"name":"জমজম পান করার সময়","faz":"রিওয়ায়ের মর্মানুযায়ী, জমজমের পানি পানের সময় চাওয়া হয় — উপকারী জ্ঞান, প্রশস্ত রিজিক এবং প্রতিটি রোগ থেকে আরোগ্য।","ref":"ঐতিহ্যবাহী দোয়া"}
+  ],
   weather: [
     {"name":"বৃষ্টির দোয়া","faz":"রিওয়ায়ের মর্মানুযায়ী, বৃষ্টি শুরু হলে এই দোয়া পাঠ করা হয় — বরকতময়, উপকারী বৃষ্টি চাওয়া হয়।","ref":"Sahih Bukhari: 1032"},
     {"name":"বাতাসের দোয়া","faz":"রিওয়ায়ের মর্মানুযায়ী, প্রবল বাতাসে তার কল্যাণ, তার অন্তর্গত কল্যাণ এবং যে উদ্দেশ্যে প্রেরণ করা হয়েছে তার কল্যাণ চাওয়া হয়।","ref":"Sahih Muslim: 899"},
@@ -5065,6 +5137,12 @@ const DUA_I18N_BN = {
 
 /* ── p19-f2: Русский (ru) словарь значений — Rule 12 почтительные формулировки ── */
 const DUA_I18N_RU = {
+  hajjumrah: [
+    {"name":"Тальбия — во время ихрама","faz":"По содержанию преданий, после облачения в ихрам произносят тальбию — вот я перед Тобой, нет у Тебя соучастника; хвала, милость и власть — Тебе.","ref":"Sahih Bukhari: 1549"},
+    {"name":"От йеманского угла до Черного камня","faz":"По содержанию преданий, в тавафе между йеманским углом и Черным камнем говорят — Господь наш, даруй нам благо в этом мире и в будущем и защити нас от огня.","ref":"Sahih Bukhari: 1197"},
+    {"name":"При первом взоре на Каабу","faz":"По содержанию преданий, при виде Каабы впервые произносят — О Аллах, умножь честь, величие, щедрость и любовь к этому Дому.","ref":"Традиционные молитвы"},
+    {"name":"При питье воды Замзам","faz":"По содержанию преданий, пью воду Замзам просят — полезное знание, щедрый удел и исцеление от всякой хвори.","ref":"Традиционные молитвы"}
+  ],
   weather: [
     {"name":"Молитва о дожде","faz":"По содержанию преданий, при начале дождя эта мольба повторяется — испрашивается благословенный, полезный ливень.","ref":"Sahih Bukhari: 1032"},
     {"name":"Молитва о ветре","faz":"По содержанию преданий, при буре просят благо ветра, благо в нём и благо цели, ради которой он послан.","ref":"Sahih Muslim: 899"},
@@ -5187,6 +5265,12 @@ const DUA_I18N_RU = {
 
 /* ── p19-f3: فرهنگ فارسی (fa) معنای اذکار — Rule 12 ادب‌مندانه ── */
 const DUA_I18N_FA = {
+  hajjumrah: [
+    {"name":"طلبیہ — هنگام احرام","faz":"به مفهوم روایات، پس از بستن احرام طلبیہ گفته می‌شود — به خدمتت آمدم، شریکی برایت نیست؛ ستایش و نعمت و فرمانروایی از آنِ توست.","ref":"Sahih Bukhari: 1549"},
+    {"name":"از رکن یمانی تا حجر اسود","faz":"به مفهوم روایات، در طواف میان رکن یمانی و حجر اسود گفته می‌شود — پروردگارا، در دنیا و آخرت نیکی عطا فرما و ما را از آتش نگاه دارد.","ref":"Sahih Bukhari: 1197"},
+    {"name":"هنگام نخستین دیدار کعبه","faz":"به مفهوم روایات، نخستین بار که کعبه دیده می‌شود گفته می‌شود — خدایا، شرف و عظمت و بزرگداشت و محبت این خانه را بیفزای.","ref":"دعای روایتی"},
+    {"name":"هنگام نوشیدن آب زمزم","faz":"به مفهوم روایات، هنگام نوشیدن آب زمزم خواسته می‌شود — دانش سودمند، روزی گشاده و شفا از هر بیماری.","ref":"دعای روایتی"}
+  ],
   weather: [
     {"name":"دعای باران","faz":"به مفهوم روایات، هنگام بارش این دعا تکرار می‌شود — بارانی برکت‌مند و سودمند از خدا طلب می‌گردد.","ref":"Sahih Bukhari: 1032"},
     {"name":"دعای باد","faz":"به مفهوم روایات، در تندباد خیر باد، خیرِ درونیش و خیرِ مقصدِ فرستاده‌مان خواسته می‌شود.","ref":"Sahih Muslim: 899"},
@@ -5543,6 +5627,7 @@ const SECS = [
 { id: "crisis", icon: "🤲", title: { ur: "دعائے مشکل وقت", en: "Duas for Hardship", ar: "دعاء الشدائد", id: "Doa Cobaan", tr: "Sıkıntı Duâları", fr: "Invocations en Épreuve", bn: "বিপদের দোয়া", ru: "Дуа в трудный час", fa: "دعای سختی‌ها" }, ct: { ur: "۵ دعائیں", en: "5 Duas", ar: "5 دعاءً", id: "5 Doa", tr: "5 Dua", fr: "5 Invocations", bn: "৫টি দোয়া", ru: "5 дуа", fa: "۵ دعا" } },
 { id: "janaza", icon: "⚰️", title: { ur: "نمازِ جنازہ و آداب", en: "Janazah & Funeral Duas", ar: "دعاء الجنازة", id: "Doa Jenazah", tr: "Cenâze Duâları", fr: "Invocations funéraire", bn: "জানাজার দোয়া", ru: "Дуа похоронов", fa: "دعای جنازه" }, ct: { ur: "۴ دعائیں", en: "4 Duas", ar: "4 دعاءً", id: "4 Doa", tr: "4 Dua", fr: "4 Invocations", bn: "৪টি দোয়া", ru: "4 дуа", fa: "۴ دعا" } },
 { id: "weather", icon: "🌧️", title: { ur: "دعائے باران و موسم", en: "Weather & Nature Duas", ar: "دعاء الآيات الجوية", id: "Doa Cuaca & Alam", tr: "Hava Durumu Duâları", fr: "Invocations de la Nature", bn: "আবহাওয়ার দোয়া", ru: "Дуа о погоде", fa: "دعای طبیعت" }, ct: { ur: "۴ دعائیں", en: "4 Duas", ar: "4 دعاءً", id: "4 Doa", tr: "4 Dua", fr: "4 Invocations", bn: "৪টি দোয়া", ru: "4 дуа", fa: "۴ دعا" } },
+{ id: "hajjumrah", icon: "🕋", title: { ur: "دعائے حج و عمرہ و تلبیہ", en: "Hajj & Umrah Duas", ar: "دعاء الحج والعمرة", id: "Doa Haji & Umrah", tr: "Hac ve Umre Duâları", fr: "Invocations du Hajj et de la Umra", bn: "হজ ও ওমরাহের দোয়া", ru: "Дуа хаджа и умры", fa: "دعای حج و عمره" }, ct: { ur: "۴ دعائیں", en: "4 Duas", ar: "4 دعاءً", id: "4 Doa", tr: "4 Dua", fr: "4 Invocations", bn: "৪টি দোয়া", ru: "4 дуа", fa: "۴ دعا" } },
 { id: "tawbah", icon: "🤲", title: { ur: "سید الاستغفار و توبہ", en: "Sayyidul Istighfar & Tawbah", ar: "سيد الاستغفار والتوبة", id: "Sayyidul Istighfar & Taubat", tr: "Seyyidü'l-İstiğfar", fr: "Sayyidul Istighfar", bn: "সাইয়িদুল ইস্তিগফার ও তওবা", ru: "Саййидуль-истигфар и покаяние", fa: "سیّدالاستغفار و توبه" }, ct: { ur: "۴ اذکار", en: "4 Adhkar", ar: "4 أذكار", id: "4 Dzikir", tr: "4 Zikir", fr: "4 Adhkar", bn: "৪টি জিকির", ru: "4 азкара", fa: "۴ ذکر" } },
 { id: "tauheed", icon: "☝️", title: { ur: "توحید کے اذکار", en: "Tauheed & Praise", ar: "أذكار التوحيد والتهليل", id: "Dzikir Tauhid & Tasbih", tr: "Tevhid ve Tesbih", fr: "Tawhid & Louanges", bn: "তৌহীদ ও স্তুতি", ru: "Таухид и восхваление", fa: "توحید و ستایش" }, ct: { ur: "۶ اذکار", en: "6 Adhkar", ar: "6 أذكار", id: "6 Dzikir", tr: "6 Zikir", fr: "6 Adhkar", bn: "৬টি জিকির", ru: "6 азкаров", fa: "۶ ذکر" } },
 { id: "asma", icon: "👑", title: { ur: "اسمائے حسنیٰ (۹۹ نام)", en: "99 Names of Allah", ar: "أسماء الله الحسنى (99 اسماً)", id: "99 Asmaul Husna", tr: "99 Esmâü'l-Hüsnâ", fr: "Les 99 Noms d'Allah", bn: "আল্লাহর ৯৯টি নাম", ru: "99 имён Аллаха", fa: "۹۹ نام خداوند" }, ct: { ur: "۹۹ نام", en: "99 Names", ar: "99 اسماً", id: "99 Nama", tr: "99 İsim", fr: "99 Noms", bn: "৯৯টি নাম", ru: "99 имён", fa: "۹۹ نام" } },
@@ -5598,6 +5683,7 @@ const S={
   crisis:      {idx:0,cnt:0,done:new Array(CRISIS.length).fill(false)},
   janaza:      {idx:0,cnt:0,done:new Array(JANAZA.length).fill(false)},
   weather:     {idx:0,cnt:0,done:new Array(WEATHER.length).fill(false)},
+  hajjumrah:   {idx:0,cnt:0,done:new Array(HAJJUMRAH.length).fill(false)},
   asr:         {cnt:0,done:false},
   tasbeeh:     {ph:0,cnt:0,sets:0},
   tajMode:'off',
@@ -5642,7 +5728,7 @@ try{
   if(p.translit) S.translit = p.translit; /* p19-c: translit toggle restore */
   if(p.lang) S.lang = p.lang;
   else S.lang = p19DetectLang(); /* fresh visitor: browser/URL language */
-  ['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana','safar','home_adab','food_adab','masjid_adab','crisis','janaza','weather','asr','tasbeeh'].forEach(k=>{if(p[k])Object.assign(S[k],p[k]);});
+  ['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana','safar','home_adab','food_adab','masjid_adab','crisis','janaza','weather','hajjumrah','asr','tasbeeh'].forEach(k=>{if(p[k])Object.assign(S[k],p[k]);});
   if(!S.fajr.done||S.fajr.done.length!==FAJR.length)S.fajr.done=new Array(FAJR.length).fill(false);
   if(!S.jumma.done||S.jumma.done.length!==JUMMA.length)S.jumma.done=new Array(JUMMA.length).fill(false);
   if(!S.durood_pak.done||S.durood_pak.done.length!==DUROOD_PAK.length)S.durood_pak.done=new Array(DUROOD_PAK.length).fill(false);
@@ -6002,7 +6088,7 @@ function renderZikrPicker(){
     let prog = '';
     if(['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana'].includes(m.id) && S[m.id]?.done){
       const d = S[m.id].done.filter(Boolean).length;
-      const tot = {fajr:FAJR.length,jumma:JUMMA.length,durood_pak:DUROOD_PAK.length,tauheed:TAUHEED.length,bedtime:BEDTIME.length,tawbah:TAWBAH.length,post_salah:POST_SALAH.length,morning_wake:MORNING_WAKE.length,relief_debt:RELIEF_DEBT.length,istikhara:ISTIKHARA.length,rabbana:RABBANA.length,safar:SAFAR.length,home_adab:HOME_ADB.length,food_adab:FOOD_ADB.length,masjid_adab:MASJID_ADB.length,crisis:CRISIS.length,janaza:JANAZA.length,weather:WEATHER.length}[m.id];
+      const tot = {fajr:FAJR.length,jumma:JUMMA.length,durood_pak:DUROOD_PAK.length,tauheed:TAUHEED.length,bedtime:BEDTIME.length,tawbah:TAWBAH.length,post_salah:POST_SALAH.length,morning_wake:MORNING_WAKE.length,relief_debt:RELIEF_DEBT.length,istikhara:ISTIKHARA.length,rabbana:RABBANA.length,safar:SAFAR.length,home_adab:HOME_ADB.length,food_adab:FOOD_ADB.length,masjid_adab:MASJID_ADB.length,crisis:CRISIS.length,janaza:JANAZA.length,weather:WEATHER.length,hajjumrah:HAJJUMRAH.length}[m.id];
       if(d > 0) prog = `<span style="color:var(--g2);font-size:.68rem">(${d}/${tot})</span>`;
     } else if(m.id === 'asr' && S.asr.done){
       prog = `<span style="color:var(--g2);font-size:.68rem">✓ مکمل</span>`;
@@ -6617,7 +6703,7 @@ function renderCategory(mc, cat){
     hd = isEn ? 'Quran Mubarak' : 'قرآن مبارک';
     sub = isEn ? ((q26.length + 6) + ' blessed surahs + full 114 surahs') : ((q26.length + 6) + ' مبارک سورتیں + مکمل ۱۱۴');
   } else {
-    const duain = ['rabbana','istikhara','tawbah','relief_debt','safar','home_adab','food_adab','masjid_adab','crisis','janaza','weather','asma','asma_saw'].map(id => ({id}));
+    const duain = ['rabbana','istikhara','tawbah','relief_debt','safar','home_adab','food_adab','masjid_adab','crisis','janaza','weather','hajjumrah','asma','asma_saw'].map(id => ({id}));
     tiles = `<div class="p9-grid">${duain.map(build).join('')}</div>`;
     hd = isEn ? 'Masnoon Duas' : 'مسنون دعائیں';
     sub = isEn ? 'Duas + Asma-ul-Husna' : 'دعائیں اور اسمائے حسنیٰ';
@@ -7054,7 +7140,7 @@ function render(){
   if(sec==='asr'){renderAsr(mc);return;}
   if(sec==='tasbeeh'){renderTasbeeh(mc);return;}
   if(sec==='custom'){renderCustom(mc);return;}
-  const DATA={fajr:FAJR,jumma:JUMMA,durood_pak:DUROOD_PAK,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH,post_salah:POST_SALAH,morning_wake:MORNING_WAKE,relief_debt:RELIEF_DEBT,istikhara:ISTIKHARA,rabbana:RABBANA,safar:SAFAR,home_adab:HOME_ADB,food_adab:FOOD_ADB,masjid_adab:MASJID_ADB,crisis:CRISIS,janaza:JANAZA,weather:WEATHER};
+  const DATA={fajr:FAJR,jumma:JUMMA,durood_pak:DUROOD_PAK,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH,post_salah:POST_SALAH,morning_wake:MORNING_WAKE,relief_debt:RELIEF_DEBT,istikhara:ISTIKHARA,rabbana:RABBANA,safar:SAFAR,home_adab:HOME_ADB,food_adab:FOOD_ADB,masjid_adab:MASJID_ADB,crisis:CRISIS,janaza:JANAZA,weather:WEATHER,hajjumrah:HAJJUMRAH};
   const steps=DATA[sec],st=S[sec];
   if(!steps || !st) return;
   const step=steps[st.idx];
@@ -8905,7 +8991,7 @@ function p3UpdateHub(){
     const tEl = st.querySelector('[data-hub="today"]');
     if(tEl) tEl.textContent = formatStreakNumber(taps, S.lang);
     let doneTotal = 0;
-    ['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana','safar','home_adab','food_adab','masjid_adab','crisis','janaza','weather'].forEach(k => { if(S[k] && S[k].done) doneTotal += S[k].done.filter(Boolean).length; });
+    ['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana','safar','home_adab','food_adab','masjid_adab','crisis','janaza','weather','hajjumrah'].forEach(k => { if(S[k] && S[k].done) doneTotal += S[k].done.filter(Boolean).length; });
     if(S.asr && S.asr.done) doneTotal++;
     if(S.tasbeeh && S.tasbeeh.sets) doneTotal += S.tasbeeh.sets;
     if(customAzkar) doneTotal += customAzkar.filter(x => x.done || (x.target && x.cnt >= x.target)).length;
@@ -9118,7 +9204,7 @@ function p4OnbRender(){
     if(skip) skip.addEventListener('click', () => { p4OnbStep = 3; p4OnbRender(); });
   }catch(e){}
 }
-const ALL_DUA_DATA = {fajr:FAJR,jumma:JUMMA,durood_pak:DUROOD_PAK,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH,post_salah:POST_SALAH,morning_wake:MORNING_WAKE,relief_debt:RELIEF_DEBT,istikhara:ISTIKHARA,rabbana:RABBANA,safar:SAFAR,home_adab:HOME_ADB,food_adab:FOOD_ADB,masjid_adab:MASJID_ADB,crisis:CRISIS,janaza:JANAZA,weather:WEATHER};
+const ALL_DUA_DATA = {fajr:FAJR,jumma:JUMMA,durood_pak:DUROOD_PAK,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH,post_salah:POST_SALAH,morning_wake:MORNING_WAKE,relief_debt:RELIEF_DEBT,istikhara:ISTIKHARA,rabbana:RABBANA,safar:SAFAR,home_adab:HOME_ADB,food_adab:FOOD_ADB,masjid_adab:MASJID_ADB,crisis:CRISIS,janaza:JANAZA,weather:WEATHER,hajjumrah:HAJJUMRAH};
 
 /* ══ TAP ══ */
 /* ══ p7: ZAATI AUTO-RESET (user request: finish-all per cycle counts khud reset ho jayen) ══ */
@@ -9264,7 +9350,7 @@ function renderDrawer(){
   SECS.forEach(m => {
     if(!P9_AZKAR_ONLY.includes(m.id)) return;
     let prog='';
-    if(['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana','safar','home_adab','food_adab','masjid_adab','crisis','janaza','weather'].includes(m.id)&&S[m.id]?.done){const d=S[m.id].done.filter(Boolean).length;const tot={fajr:FAJR.length,jumma:JUMMA.length,durood_pak:DUROOD_PAK.length,tauheed:TAUHEED.length,bedtime:BEDTIME.length,tawbah:TAWBAH.length,post_salah:POST_SALAH.length,morning_wake:MORNING_WAKE.length,relief_debt:RELIEF_DEBT.length,istikhara:ISTIKHARA.length,rabbana:RABBANA.length,safar:SAFAR.length,home_adab:HOME_ADB.length,food_adab:FOOD_ADB.length,masjid_adab:MASJID_ADB.length,crisis:CRISIS.length,janaza:JANAZA.length,weather:WEATHER.length}[m.id];if(d>0)prog=`<span style="color:var(--g2);font-size:.65rem">${d}/${tot}</span>`;}
+    if(['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana','safar','home_adab','food_adab','masjid_adab','crisis','janaza','weather','hajjumrah'].includes(m.id)&&S[m.id]?.done){const d=S[m.id].done.filter(Boolean).length;const tot={fajr:FAJR.length,jumma:JUMMA.length,durood_pak:DUROOD_PAK.length,tauheed:TAUHEED.length,bedtime:BEDTIME.length,tawbah:TAWBAH.length,post_salah:POST_SALAH.length,morning_wake:MORNING_WAKE.length,relief_debt:RELIEF_DEBT.length,istikhara:ISTIKHARA.length,rabbana:RABBANA.length,safar:SAFAR.length,home_adab:HOME_ADB.length,food_adab:FOOD_ADB.length,masjid_adab:MASJID_ADB.length,crisis:CRISIS.length,janaza:JANAZA.length,weather:WEATHER.length,hajjumrah:HAJJUMRAH.length}[m.id];if(d>0)prog=`<span style="color:var(--g2);font-size:.65rem">${d}/${tot}</span>`;}
     if(m.id==='asr'&&S.asr.done)prog=`<span style="color:var(--g2);font-size:.7rem">✓</span>`;
     html += `<div class="dr-item${sec===m.id?' active':''}" data-sec="${m.id}"><span class="dr-icon">${m.icon}</span><span class="dr-name">${getLoc(m.title)}</span><span class="dr-ct">${getLoc(m.ct)}</span>${prog}</div>`;
   });
@@ -9298,6 +9384,7 @@ document.getElementById('restartBtn')?.addEventListener('click',()=>{
   if(sec==='crisis')S.crisis={idx:0,cnt:0,done:new Array(CRISIS.length).fill(false)};
   if(sec==='janaza')S.janaza={idx:0,cnt:0,done:new Array(JANAZA.length).fill(false)};
   if(sec==='weather')S.weather={idx:0,cnt:0,done:new Array(WEATHER.length).fill(false)};
+  if(sec==='hajjumrah')S.hajjumrah={idx:0,cnt:0,done:new Array(HAJJUMRAH.length).fill(false)};
   if(sec==='durood_pak')S.durood_pak={idx:0,cnt:0,done:new Array(DUROOD_PAK.length).fill(false)};
   if(sec==='tasbeeh')S.tasbeeh={ph:0,cnt:0,sets:0};
   save();
