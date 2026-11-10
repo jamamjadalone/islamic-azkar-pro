@@ -5,6 +5,19 @@
 </p>
 
 <p align="center">
+  <strong>Language / زبان / اللغة / ভাষা / ভাষা / Dil / Langue / Язык / زبان:</strong><br>
+  <a href="#readme">اردو</a> ·
+  <a href="README.AR.md">العربية</a> ·
+  <a href="README.BN.md">বাংলা</a> ·
+  <a href="README.FA.md">فارسی</a> ·
+  <a href="README.FR.md">Français</a> ·
+  <a href="README.ID.md">Bahasa Indonesia</a> ·
+  <a href="README.RU.md">Русский</a> ·
+  <a href="README.TR.md">Türkçe</a> ·
+  English (below)
+</p>
+
+<p align="center">
   <strong>درود شریف کاؤنٹر، ۲۶ مبارک قرآنی سورتیں، مسنون اذکار، اور ۴۰ ربنا دعائیں</strong><br>
   <em>A modern, privacy-first, 100% offline Islamic Progressive Web Application (PWA).</em>
 </p>
