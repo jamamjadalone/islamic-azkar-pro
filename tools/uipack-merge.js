@@ -1,4 +1,4 @@
-/* uipack-merge.js — p19-e: merge authored UI language packs (tools/uipack-<lang>.json)
+/* uipack-merge.js - p19-e: merge authored UI language packs (data/source-packs/uipack-<lang>.json)
    into index.html. Rewrites, idempotently:
    - `const I18N = {...}`        — flat keys: pack.I18N[key] -> I18N[key][lang]
    - `const SECTION_I18N = {...}` — nested sub-dicts; {__fn:[a,b]} emitted as
@@ -14,7 +14,7 @@ const path = require('node:path');
 const vm = require('node:vm');
 
 const lang = process.argv[2] || 'bn';
-const packFile = path.join(__dirname, `uipack-${lang}.json`);
+const packFile = path.join(__dirname, '..', 'data', 'source-packs', `uipack-${lang}.json`);
 if (!fs.existsSync(packFile)) {
 	console.error(`pack not found: ${packFile}`);
 	process.exit(1);

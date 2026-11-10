@@ -1,5 +1,5 @@
 /* uipack-dump.js — dump all UI i18n keys (I18N + SECTION_I18N + SECS + WELCOME_CARDS_DATA)
-   to tools/uipack-skeleton.json (for authoring new language packs).
+   to data/source-packs/uipack-skeleton.json (for authoring new language packs).
    Function-valued entries (script-conditional) are stored as {"__fn": [asm, uth]} pairs.
    Usage: node tools/uipack-dump.js
  */
@@ -82,7 +82,7 @@ for (const c of Object.keys(out.WELCOME_CARDS_DATA)) {
 	out.WELCOME_CARDS_DATA[c].title.bn = '';
 	out.WELCOME_CARDS_DATA[c].sub.bn = '';
 }
-fs.writeFileSync(path.join(__dirname, 'uipack-skeleton.json'), JSON.stringify(out, null, 2) + '\n', 'utf8');
+fs.writeFileSync(path.join(__dirname, '..', 'data', 'source-packs', 'uipack-skeleton.json'), JSON.stringify(out, null, 2) + '\n', 'utf8');
 const secsCount = out.SECS.reduce((n, s) => n + 1 + (s.ct && typeof s.ct === 'object' ? 1 : 0), 0);
 const wcCount = Object.keys(out.WELCOME_CARDS_DATA).length * 2;
 console.log('I18N:', Object.keys(out.I18N).length,

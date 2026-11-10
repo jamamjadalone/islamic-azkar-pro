@@ -7,7 +7,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const ROOT = path.join(__dirname, "..");
 const DATA = path.join(ROOT, "quran", "surahs_26.json");
-const TRANS = path.join(__dirname, "intros-translations.json");
+const TRANS = path.join(__dirname, "..", "data", "source-packs", "intros-translations.json");
 const force = process.argv.includes("--force");
 
 const db = JSON.parse(fs.readFileSync(DATA, "utf8"));

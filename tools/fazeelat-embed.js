@@ -1,7 +1,7 @@
 /* fazeelat-embed.js — p19-d1: embed per-lang intros INTO index.html inline SURAHS_26_DATA
    - locates `const SURAHS_26_DATA = [...];`
    - vm-evaluates rows, converts string intro -> {ur: str, en:...}
-   - merges tools/intros-translations.json (en, ar) without overwriting (unless --force)
+   - merges data/source-packs/intros-translations.json (en, ar) without overwriting (unless --force)
    - rewrites the block as valid JSON literal
    Idempotent + safe fallback: missing langs fall back en->ur via getLoc.
    Usage: node tools/fazeelat-embed.js [--force]
@@ -10,7 +10,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
 const htmlP = path.join(__dirname, "..", "index.html");
-const transP = path.join(__dirname, "intros-translations.json");
+const transP = path.join(__dirname, "..", "data", "source-packs", "intros-translations.json");
 const force = process.argv.includes("--force");
 
 const html = fs.readFileSync(htmlP, "utf8");
