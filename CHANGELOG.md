@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### SEO Series (2026-11-10) — repo reach & multi-language discoverability
+
+- `seo/sitemap-hreflang-v1`: sitemap.xml expanded to 10 URLs with xhtml:link hreflang alternates (9 languages + x-default), fresh lastmod
+- `seo/readmes-multilingual-v1`: 7 native-language README minis (ar/bn/fa/fr/id/ru/tr) + main README language switcher
+- `seo/head-metadata-v1`: JSON-LD inLanguage all 9 languages, featureList + 9 p21 pack entries, og:locale:alternate x8, og:image dims/alt, twitter:image:alt (head-only; SW v94)
+- GitHub polish: About description, 20 topics (misleading qibla-compass topic removed), 9 GitHub Releases for p21 content tags
+- `repo/r1-rules-v1` … `repo/i18n-inventory-v1`: repo organization (rules 8–15, tools/ + data/source-packs/ cleaner layout, beginner docs map)
+
 ### Added
 
 - Permanent UI & Layout Architecture Lock: Visual hierarchy, navigation bar, pill selector, welcome cards, and modal components permanently frozen against future agent modifications
