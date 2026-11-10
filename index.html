@@ -3716,6 +3716,42 @@ const FOOD_ADB = [
   }
 ];
 
+/* ── p21-e: MASJID ADAAB (masjid ka masnoon adab) — Rule 12 phrasing ── */
+const MASJID_ADB = [
+  {
+    grp: 'مسجد کا ادب',
+    name: 'دعائے داخلِ مسجد',
+    ar: `اَللّٰهُمَّ افْتَحْ لِیْٓ اَبْوَابَ رَحْمَتِكَ`,
+    target: 1,
+    faz: 'روایت کے مفہوم کے مطابق: مسجد میں دائیں قدم سے داخل ہوتے ہوئے یہ دعا پڑھی جاتی ہے — اللہ سے رحمت کے دروازے کھولنے کی رہنمائی مانگی جاتی ہے؛ تاکہ جو بندہ مسجد میں گھسے تو پاکیزہ اور بابِ برکت سے دوچار ہو۔',
+    ref: '(صحیح مسلم: ۷۱۳)'
+  },
+  {
+    grp: 'مسجد کا ادب',
+    name: 'دعائے خروجِ مسجد',
+    ar: `اَللّٰهُمَّ اِنِّیْٓ اَسْاَلُكَ مِنْ فَضْلِكَ`,
+    target: 1,
+    faz: 'روایت کے مفہوم کے مطابق: مسجد سے بائیں قدم سے نکلتے ہوئے یہ دعا پڑھی جاتی ہے — اللہ سے اُس کا فضل مانگی جاتی ہے تاکہ نکلنے والے پر رحمت کا سایہ رہے۔',
+    ref: '(صحیح مسلم: ۷۱۳)'
+  },
+  {
+    grp: 'مسجد کا ادب',
+    name: 'دعائے نشستِ مسجد',
+    ar: `اَللّٰهُمَّ اِنِّیْٓ اَسْاَلُكَ رَحْمَةً مِّنْكَ`,
+    target: 1,
+    faz: 'روایت کے مفہوم کے مطابق: مسجد میں بیٹھتے ہی ایسی رحمت مانگی جاتی ہے جس سے دل بے خوف ہو جائے — مسجد کی رونق کی شروع‌یات میں اہم دعا۔',
+    ref: '(صحیح مسلم: ۷۰۵)'
+  },
+  {
+    grp: 'مسجد کا ادب',
+    name: 'دعائے بعدِ اَذان',
+    ar: `اَللّٰهُمَّ رَبَّ هٰذِهِ الدَّعْوَةِ التَّامَّةِ وَالصَّلَاةِ الْقَائِمَةِ ؕ اٰتِ مُحَمَّدًا الْوَسِيْلَةَ وَالْفَضِيْلَةَ`,
+    target: 1,
+    faz: 'روایت کے مفہوم کے مطابق: اذان مکمل ہونے پر یہ دعا پڑھی جاتی ہے — وسیلہ اور فضیلت کی درخواست کی جاتی ہے، جماعت کے لیے بابرکت دعا۔',
+    ref: '(سنن ترمذی: ۳۶۱۴)'
+  }
+];
+
 /* ═══════════════════════════════════════════════════════════════
    PHASE 4 DATASETS: DUROOD COLLECTION & ASMA-UL-HUSNA (99 NAMES)
 ═══════════════════════════════════════════════════════════════ */
@@ -4182,6 +4218,12 @@ function getLoc(val, customLang){
    AUTHENTIC ENGLISH ADHKAR, TRANSLATIONS & HADITH CATALOG
 ═══════════════════════════════════════════════════════════════ */
 const DUA_I18N_AR = {
+  masjid_adab: [
+    {"name":"دعاء دخول المسجد","faz":"بحسب مفهوم الرواية، يدخل المسجد برجله اليمنى ويقول هذا الدعاء — يسأل الله أن يُفتح له أبواب الرحمة.","ref":"صحيح مسلم: ٧١٣"},
+    {"name":"دعاء الخروج من المسجد","faz":"بحسب مفهوم الرواية، يخرج المسجد برجله اليسرى قائلاً هذا الدعاء — يسأل الله من فضله على الدنيا.","ref":"صحيح مسلم: ٧١٣"},
+    {"name":"دعاء الجلوس في المسجد","faz":"بحسب مفهوم الرواية، يُسأل عند الجلوس رحمةً تُطمئن القلب — ابتداء بركة مجالس المسجد.","ref":"صحيح مسلم: ٧٠٥"},
+    {"name":"دعاء بعد الأذان","faz":"بحسب مفهوم الرواية، يقال بعد تمام الأذان — يسأل الوسيلة والفضيلة للنبي ﷺ.","ref":"سنن الترمذي: ٣٦١٤"}
+  ],
   food_adab: [
     {"name":"بسم الله — بداية الطعام (ثلاث مرات)","faz":"بحسب مفهوم الرواية، افتتاح الطعام باسم الله هو السُنّة — فذكر اسم الله في مطلع الأكل يجعل الرزق مباركًا من أول لقمة.","ref":"سنن الترمذي: ١٨٥٨"},
     {"name":"بسم الله أوله وآخره — عند النسيان","faz":"بحسب مفهوم الرواية، إذا بدأ الطعام دون التسمية قيل هذا الكلام — فمع ذكر اسم الله في الأول والآخر يعود الرزق مباركًا.","ref":"سنن أبي داود: ٣٨٥١"},
@@ -4278,6 +4320,12 @@ const DUA_I18N_AR = {
 };
 
 const DUA_I18N_EN = {
+  masjid_adab: [
+    {"name":"Upon Entering the Masjid","faz":"According to the contextual meaning of the narration, one enters the masjid with the right foot, asking Allah to open the doors of mercy upon him.","ref":"Sahih Muslim: 713"},
+    {"name":"Upon Leaving the Masjid","faz":"According to the contextual meaning of the narration, one leaves with the left foot, saying this dua and asking Allah for His bounty while in His path.","ref":"Sahih Muslim: 713"},
+    {"name":"Upon Taking a Seat in the Masjid","faz":"According to the contextual meaning of the narration, when taking a seat one asks for a mercy that brings the heart to rest — opening the blessing of masjid gatherings.","ref":"Sahih Muslim: 705"},
+    {"name":"After the Adhan","faz":"According to the contextual meaning of the narration, once the adhan has run its course this dua is recited — requesting the exalted rank and bounty for the Messenger ﷺ.","ref":"Sunan At-Tirmidhi: 3614"}
+  ],
   food_adab: [
     {"name":"Bismillah — Beginning the Meal (3 Times)","faz":"According to the contextual meaning of the narration, opening the meal with the name of Allah is the blessed way — naming Him at the first bite turns the provision into favor.","ref":"Sunan At-Tirmidhi: 1858"},
     {"name":"Bismillah First & Last — When Forgotten","faz":"According to the contextual meaning of the narration, if the meal began without the name of Allah, these words are recited — the provision is restored to a state of blessing by naming Him at the start and at the end.","ref":"Sunan Abu Dawud: 3851"},
@@ -4375,6 +4423,12 @@ const DUA_I18N_EN = {
 
 /* ── p19-d2: Indonesian (id) meaning dictionary — ummah terbesar ── */
 const DUA_I18N_ID = {
+  masjid_adab: [
+    {"name":"Saat Masuk Masjid","faz":"Menurut maksud riwayat, masjid dimasuki dengan kaki kanan sambil membaca doa ini — memohon agar pintu-pintu rahmat dibukakan baginya.","ref":"Sahih Muslim: 713"},
+    {"name":"Saat Keluar Masjid","faz":"Menurut maksud riwayat, masjid ditinggalkan dengan kaki kiri sambil membaca doa ini — memohon karunia Allah di jalan-Nya.","ref":"Sahih Muslim: 713"},
+    {"name":"Saat Duduk di Masjid","faz":"Menurut maksud riwayat, saat duduk dimohonkan rahmat yang menenangkan hati — pembuka berkah majelis masjid.","ref":"Sahih Muslim: 705"},
+    {"name":"Setelah Azan","faz":"Menurut maksud riwayat, doa ini dibaca setelah azan sempurna — memohon derajat mulia dan keutamaan bagi Rasul ﷺ.","ref":"Sunan At-Tirmidhi: 3614"}
+  ],
   food_adab: [
     {"name":"Bismillah — Memulai Makan (3 Kali)","faz":"Menurut maksud riwayat, memulai makan dengan nama Allah merupakan cara yang dianjurkan — menyebut nama-Nya pada gigitan pertama menjadikan rezeki berkah.","ref":"Sunan At-Tirmidhi: 1858"},
     {"name":"Bismillah Awal & Akhir — Saat Lupa","faz":"Menurut maksud riwayat, jika makan dimulai tanpa menyebut nama Allah, doa ini dibaca — rezeki kembali berkah dengan menyebut nama-Nya di awal dan di akhir.","ref":"Sunan Abu Dawud: 3851"},
@@ -4472,6 +4526,12 @@ const DUA_I18N_ID = {
 
 /* ── p19-d3: Turkish (tr) meaning dictionary ── */
 const DUA_I18N_TR = {
+  masjid_adab: [
+    {"name":"Câmiye girerken","faz":"Rivâyetin ifâde ettiği mâna üzere, câmiye sağ ayakla girilir ve bu dua okunur — Allah'tan rahmet kapılarının açılmasını ister.","ref":"Sahih Muslim: 713"},
+    {"name":"Câmidan çıkarken","faz":"Rivâyetin ifâde ettiği mâna üzere, câmidan sol ayakla çıkılır ve bu dua okunur — Allah'tan lütfünü ister.","ref":"Sahih Muslim: 713"},
+    {"name":"Câmiye otururken","faz":"Rivâyetin ifâde ettiği mâna üzere, otururken kalbi huzura erdiren bir rahmet istenir — câmi meclisinin bereket esası.","ref":"Sahih Muslim: 705"},
+    {"name":"Ezandan sonra","faz":"Rivâyetin ifâde ettiği mâna üzere, ezan tamamlandıktan sonra bu dua okunur — Nebî ﷺ için yüce makâm ve fazl isteği.","ref":"Sunan At-Tirmidhi: 3614"}
+  ],
   food_adab: [
     {"name":"Bismillah — Yemeğe başlarken (3 kez)","faz":"Rivâyetin ifâde ettiği mâna üzere, yemeğe Allah'ın adıyla başlamak güzîde yoldur — ilk lokmada O'nun adını anmak rızkı bereketli kılar.","ref":"Sunan At-Tirmidhi: 1858"},
     {"name":"Bismillah evvelinde ve ahirinde — unutulunca","faz":"Rivâyetin ifâde ettiği mâna üzere, yemek Allah'ın adı anılmadan başlanırsa bu sözler okunur — başında ve sonunda O'nun adı anılan rızık bereketli kalır.","ref":"Sunan Abu Dawud: 3851"},
@@ -4569,6 +4629,12 @@ const DUA_I18N_TR = {
 
 /* ── p19-d4: French (fr) meaning dictionary ── */
 const DUA_I18N_FR = {
+  masjid_adab: [
+    {"name":"En entrant à la mosquée","faz":"Selon le sens des récits, on entre à la mosquée du pied droit en récitant cette invocation — demandant à Allah d'ouvrir les portes de Sa miséricorde.","ref":"Sahih Muslim: 713"},
+    {"name":"En sortant de la mosquée","faz":"Selon le sens des récits, on sort du pied gauche en récitant cette invocation — demandant à Allah de Sa générosité sur les chemins.","ref":"Sahih Muslim: 713"},
+    {"name":"En s'asseyant dans la mosquée","faz":"Selon le sens des récits, lorsqu'on s'assoit on demande une miséricorde qui apaise le cœur — ouverture de la bénédiction des assemblées de la mosquée.","ref":"Sahih Muslim: 705"},
+    {"name":"Après l'adhan","faz":"Selon le sens des récits, cette invocation est dite une fois l'adhan terminé — demandant la rangée glorieuse et la bonté pour le Messager ﷺ.","ref":"Sunan At-Tirmidhi: 3614"}
+  ],
   food_adab: [
     {"name":"Bismillah — début du repas (3 fois)","faz":"Selon le sens des récits, ouvrir le repas au nom d'Allah est la voie de la bénédiction — évoquer Son nom dès la première bouchée fait de la subsistance une faveur.","ref":"Sunan At-Tirmidhi: 1858"},
     {"name":"Bismillah au début et à la fin — en cas d'oubli","faz":"Selon le sens des récits, si le repas a commencé sans nommer Allah, on récite ces paroles — la subsistance redevient bénie par Son nom évoqué au début et à la fin.","ref":"Sunan Abu Dawud: 3851"},
@@ -4666,6 +4732,12 @@ const DUA_I18N_FR = {
 
 /* ── p19-f1: Bangla (bn) dua meaning dictionary — Rule 12 reverent phrasing ── */
 const DUA_I18N_BN = {
+  masjid_adab: [
+    {"name":"মসজিদে প্রবেশের সময়","faz":"রিওয়ায়ের মর্মানুযায়ী, ডান পায়ে মসজিদে প্রবেশ করে এই দোয়া পাঠ করা হয় — আল্লাহর কাছে রহমতের দ্বার খুলে দেওয়ার প্রার্থনা।","ref":"Sahih Muslim: 713"},
+    {"name":"মসজিদ থেকে বের হওয়ার সময়","faz":"রিওয়ায়ের মর্মানুযায়ী, বাম পায়ে মসজিদ থেকে বের হয়ে এই দোয়া পাঠ করা হয় — তাঁর পথে আল্লাহর কাছ থেকে ফজল চাওনা।","ref":"Sahih Muslim: 713"},
+    {"name":"মসজিদে বসার সময়","faz":"রিওয়ায়ের মর্মানুযায়ী, বসার সময় এমন রহমত চাওনা হয় যা হৃদয়কে প্রশান্ত করে — মসজিদের মজলিসের বরকতের সূচনা।","ref":"Sahih Muslim: 705"},
+    {"name":"আজানের পর","faz":"রিওয়ায়ের মর্মানুযায়ী, আজান সম্পূর্ণ হলে এই দোয়া পাঠ করা হয় — নবী ﷺের জন্যে উচ্চ মাকাম ও ফজলের প্রার্থনা।","ref":"Sunan At-Tirmidhi: 3614"}
+  ],
   food_adab: [
     {"name":"বিসমিল্লাহ — খাবার শুরুর সময় (৩ বার)","faz":"রিওয়ায়ের মর্মানুযায়ী, আল্লাহর নাম দিয়ে খাবার শুরু করা দরকার — প্রথম গ্রাসে তাঁর নাম উচ্চারণ করলে রিজিক বরকতময় হয়।","ref":"Sunan At-Tirmidhi: 1858"},
     {"name":"বিসমিল্লাহ আদিও অন্তে — ভুল হলে","faz":"রিওয়ায়ের মর্মানুযায়ী, খাবার আল্লাহর নাম ছাড়া শুরু হলে এই বাণী পাঠ করা হয় — শুরু ও শেষে তাঁর নাম স্মরণে রিজিক আবার বরকতময় হয়।","ref":"Sunan Abu Dawud: 3851"},
@@ -4763,6 +4835,12 @@ const DUA_I18N_BN = {
 
 /* ── p19-f2: Русский (ru) словарь значений — Rule 12 почтительные формулировки ── */
 const DUA_I18N_RU = {
+  masjid_adab: [
+    {"name":"Входя в мечеть","faz":"По содержанию преданий, в мечеть входят правой ногой, произнося эту мольбу — прося Аллаха открыть двери Его милости.","ref":"Sahih Muslim: 713"},
+    {"name":"Выходя из мечети","faz":"По содержанию преданий, из мечети выходят левой ногой, произнося эту мольбу — прося у Аллаха Его щедрого удела.","ref":"Sahih Muslim: 713"},
+    {"name":"Усевшись в мечети","faz":"По содержанию преданий, при усаживании испрашивают милость, умиряющую сердце — начало благодата мечетных собраний.","ref":"Sahih Muslim: 705"},
+    {"name":"После азана","faz":"По содержанию преданий, эта мольба произносится после полного азана — испрашивается высокая ступень и благодать для Посланника ﷺ.","ref":"Sunan At-Tirmidhi: 3614"}
+  ],
   food_adab: [
     {"name":"Бисмиллях — начало трапезы (3 раза)","faz":"По содержанию преданий, начинать трапезу с имени Аллаха есть благословенный путь — упоминание Его имени в первом куске превращает удел в милость.","ref":"Sunan At-Tirmidhi: 1858"},
     {"name":"Бисмиллях в начале и в конце — при забвении","faz":"По содержанию преданий, если трапеза началась без имени Аллаха, произносят эти слова — удел вновь пребывает в благодати, когда его имя названо в начале и в конце.","ref":"Sunan Abu Dawud: 3851"},
@@ -4860,6 +4938,12 @@ const DUA_I18N_RU = {
 
 /* ── p19-f3: فرهنگ فارسی (fa) معنای اذکار — Rule 12 ادب‌مندانه ── */
 const DUA_I18N_FA = {
+  masjid_adab: [
+    {"name":"هنگام ورود به مسجد","faz":"به مفهوم روایات، با پای راست وارد مسجد می‌شود و این دعا خوانده می‌شود — از خدا خواسته می‌شود درهای رحمتش را بگشاید.","ref":"Sahih Muslim: 713"},
+    {"name":"هنگام خروج از مسجد","faz":"به مفهوم روایات، با پای چپ از مسجد بیرون می‌رود و این دعا خوانده می‌شود — از خداوند فضل او طلب می‌گردد.","ref":"Sahih Muslim: 713"},
+    {"name":"هنگام نشستن در مسجد","faz":"به مفهوم روایات، هنگام نشستن رحمتی طلب می‌شود که دل را آرامش بخشد — آغاز برکت نشست‌های مسجد.","ref":"Sahih Muslim: 705"},
+    {"name":"پس از اذان","faz":"به مفهوم روایات، این دعا پس از اذان خوانده می‌شود — درخواست مقام بلند و فضیلت برای پیامبر ﷺ.","ref":"Sunan At-Tirmidhi: 3614"}
+  ],
   food_adab: [
     {"name":"بسم‌الله — آغاز غذا (۳ بار)","faz":"به مفهوم روایات، آغاز غذا با نام خدا راهِ برکت است — یاد نام او در لقمه‌ی نخست رزق را پر برکت می‌کند.","ref":"Sunan At-Tirmidhi: 1858"},
     {"name":"بسم‌الله در آغاز و پایان — هنگام فراموشی","faz":"به مفهوم روایات، اگر غذا بدون نام خدا آغاز شده باشد، این واژه‌ها گفته شود — با یادِ نام او در ابتدا و انتها، رزق دوباره برکت‌مند می‌ماند.","ref":"Sunan Abu Dawud: 3851"},
@@ -5187,6 +5271,7 @@ const SECS = [
 { id: "safar", icon: "🚗", title: { ur: "دعائے سفر و سوار", en: "Travel & Riding Duas", ar: "دعاء السفر والركوب", id: "Doa Perjalanan & Berkendara", tr: "Seyahat ve Bindik Duaları", fr: "Invocations de Voyage", bn: "সফর ও সওয়ারির দোয়া", ru: "Дуа в пути и при посадке", fa: "دعای سفر و سوار" }, ct: { ur: "۵ دعائیں", en: "5 Duas", ar: "5 دعاءً", id: "5 Doa", tr: "5 Dua", fr: "5 Invocations", bn: "৫টি দোয়া", ru: "5 дуа", fa: "۵ دعا" } },
 { id: "home_adab", icon: "🏠", title: { ur: "دعائے گھر کا ادب", en: "Home Etiquette Duas", ar: "دعاء آداب المنزل", id: "Doa Adab Rumah", tr: "Ev Âdâbı Duaları", fr: "Invocations d\'Adab du Foyer", bn: "ঘরের আদবের দোয়া", ru: "Дуа домашнего этикета", fa: "دعای آداب خانه" }, ct: { ur: "۵ دعائیں", en: "5 Duas", ar: "5 دعاءً", id: "5 Doa", tr: "5 Dua", fr: "5 Invocations", bn: "৫টি দোয়া", ru: "5 дуа", fa: "۵ دعا" } },
 { id: "food_adab", icon: "🍽️", title: { ur: "دعائے کھانے کا ادب", en: "Food & Dining Duas", ar: "دعاء آداب الطعام", id: "Doa Adab Makan", tr: "Yemek Âdâbı Duaları", fr: "Invocations de Bienséance à Table", bn: "খাবারের আদবের দোয়া", ru: "Дуа застольного этикета", fa: "دعای آداب غذا" }, ct: { ur: "۴ دعائیں", en: "4 Duas", ar: "4 دعاءً", id: "4 Doa", tr: "4 Dua", fr: "4 Invocations", bn: "৪টি দোয়া", ru: "4 дуа", fa: "۴ دعا" } },
+{ id: "masjid_adab", icon: "🕌", title: { ur: "دعائے مسجد کا ادب", en: "Masjid Etiquette Duas", ar: "دعاء آداب المسجد", id: "Doa Adab Masjid", tr: "Câmi Âdâbı Duâları", fr: "Invocations d'Étiquette de la Mosquée", bn: "মসজিদের আদবের দোয়া", ru: "Дуа этикета мечети", fa: "دعای آداب مسجد" }, ct: { ur: "۴ دعائیں", en: "4 Duas", ar: "4 دعاءً", id: "4 Doa", tr: "4 Dua", fr: "4 Invocations", bn: "৪টি দোয়া", ru: "4 дуа", fa: "۴ دعا" } },
 { id: "tawbah", icon: "🤲", title: { ur: "سید الاستغفار و توبہ", en: "Sayyidul Istighfar & Tawbah", ar: "سيد الاستغفار والتوبة", id: "Sayyidul Istighfar & Taubat", tr: "Seyyidü'l-İstiğfar", fr: "Sayyidul Istighfar", bn: "সাইয়িদুল ইস্তিগফার ও তওবা", ru: "Саййидуль-истигфар и покаяние", fa: "سیّدالاستغفار و توبه" }, ct: { ur: "۴ اذکار", en: "4 Adhkar", ar: "4 أذكار", id: "4 Dzikir", tr: "4 Zikir", fr: "4 Adhkar", bn: "৪টি জিকির", ru: "4 азкара", fa: "۴ ذکر" } },
 { id: "tauheed", icon: "☝️", title: { ur: "توحید کے اذکار", en: "Tauheed & Praise", ar: "أذكار التوحيد والتهليل", id: "Dzikir Tauhid & Tasbih", tr: "Tevhid ve Tesbih", fr: "Tawhid & Louanges", bn: "তৌহীদ ও স্তুতি", ru: "Таухид и восхваление", fa: "توحید و ستایش" }, ct: { ur: "۶ اذکار", en: "6 Adhkar", ar: "6 أذكار", id: "6 Dzikir", tr: "6 Zikir", fr: "6 Adhkar", bn: "৬টি জিকির", ru: "6 азкаров", fa: "۶ ذکر" } },
 { id: "asma", icon: "👑", title: { ur: "اسمائے حسنیٰ (۹۹ نام)", en: "99 Names of Allah", ar: "أسماء الله الحسنى (99 اسماً)", id: "99 Asmaul Husna", tr: "99 Esmâü'l-Hüsnâ", fr: "Les 99 Noms d'Allah", bn: "আল্লাহর ৯৯টি নাম", ru: "99 имён Аллаха", fa: "۹۹ نام خداوند" }, ct: { ur: "۹۹ نام", en: "99 Names", ar: "99 اسماً", id: "99 Nama", tr: "99 İsim", fr: "99 Noms", bn: "৯৯টি নাম", ru: "99 имён", fa: "۹۹ نام" } },
@@ -5238,6 +5323,7 @@ const S={
   safar:       {idx:0,cnt:0,done:new Array(SAFAR.length).fill(false)},
   home_adab:   {idx:0,cnt:0,done:new Array(HOME_ADB.length).fill(false)},
   food_adab:   {idx:0,cnt:0,done:new Array(FOOD_ADB.length).fill(false)},
+  masjid_adab: {idx:0,cnt:0,done:new Array(MASJID_ADB.length).fill(false)},
   asr:         {cnt:0,done:false},
   tasbeeh:     {ph:0,cnt:0,sets:0},
   tajMode:'off',
@@ -5282,7 +5368,7 @@ try{
   if(p.translit) S.translit = p.translit; /* p19-c: translit toggle restore */
   if(p.lang) S.lang = p.lang;
   else S.lang = p19DetectLang(); /* fresh visitor: browser/URL language */
-  ['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana','safar','home_adab','food_adab','asr','tasbeeh'].forEach(k=>{if(p[k])Object.assign(S[k],p[k]);});
+  ['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana','safar','home_adab','food_adab','masjid_adab','asr','tasbeeh'].forEach(k=>{if(p[k])Object.assign(S[k],p[k]);});
   if(!S.fajr.done||S.fajr.done.length!==FAJR.length)S.fajr.done=new Array(FAJR.length).fill(false);
   if(!S.jumma.done||S.jumma.done.length!==JUMMA.length)S.jumma.done=new Array(JUMMA.length).fill(false);
   if(!S.durood_pak.done||S.durood_pak.done.length!==DUROOD_PAK.length)S.durood_pak.done=new Array(DUROOD_PAK.length).fill(false);
@@ -5642,7 +5728,7 @@ function renderZikrPicker(){
     let prog = '';
     if(['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana'].includes(m.id) && S[m.id]?.done){
       const d = S[m.id].done.filter(Boolean).length;
-      const tot = {fajr:FAJR.length,jumma:JUMMA.length,durood_pak:DUROOD_PAK.length,tauheed:TAUHEED.length,bedtime:BEDTIME.length,tawbah:TAWBAH.length,post_salah:POST_SALAH.length,morning_wake:MORNING_WAKE.length,relief_debt:RELIEF_DEBT.length,istikhara:ISTIKHARA.length,rabbana:RABBANA.length,safar:SAFAR.length,home_adab:HOME_ADB.length,food_adab:FOOD_ADB.length}[m.id];
+      const tot = {fajr:FAJR.length,jumma:JUMMA.length,durood_pak:DUROOD_PAK.length,tauheed:TAUHEED.length,bedtime:BEDTIME.length,tawbah:TAWBAH.length,post_salah:POST_SALAH.length,morning_wake:MORNING_WAKE.length,relief_debt:RELIEF_DEBT.length,istikhara:ISTIKHARA.length,rabbana:RABBANA.length,safar:SAFAR.length,home_adab:HOME_ADB.length,food_adab:FOOD_ADB.length,masjid_adab:MASJID_ADB.length}[m.id];
       if(d > 0) prog = `<span style="color:var(--g2);font-size:.68rem">(${d}/${tot})</span>`;
     } else if(m.id === 'asr' && S.asr.done){
       prog = `<span style="color:var(--g2);font-size:.68rem">✓ مکمل</span>`;
@@ -6257,7 +6343,7 @@ function renderCategory(mc, cat){
     hd = isEn ? 'Quran Mubarak' : 'قرآن مبارک';
     sub = isEn ? ((q26.length + 6) + ' blessed surahs + full 114 surahs') : ((q26.length + 6) + ' مبارک سورتیں + مکمل ۱۱۴');
   } else {
-    const duain = ['rabbana','istikhara','tawbah','relief_debt','safar','home_adab','food_adab','asma','asma_saw'].map(id => ({id}));
+    const duain = ['rabbana','istikhara','tawbah','relief_debt','safar','home_adab','food_adab','masjid_adab','asma','asma_saw'].map(id => ({id}));
     tiles = `<div class="p9-grid">${duain.map(build).join('')}</div>`;
     hd = isEn ? 'Masnoon Duas' : 'مسنون دعائیں';
     sub = isEn ? 'Duas + Asma-ul-Husna' : 'دعائیں اور اسمائے حسنیٰ';
@@ -6694,7 +6780,7 @@ function render(){
   if(sec==='asr'){renderAsr(mc);return;}
   if(sec==='tasbeeh'){renderTasbeeh(mc);return;}
   if(sec==='custom'){renderCustom(mc);return;}
-  const DATA={fajr:FAJR,jumma:JUMMA,durood_pak:DUROOD_PAK,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH,post_salah:POST_SALAH,morning_wake:MORNING_WAKE,relief_debt:RELIEF_DEBT,istikhara:ISTIKHARA,rabbana:RABBANA,safar:SAFAR,home_adab:HOME_ADB,food_adab:FOOD_ADB};
+  const DATA={fajr:FAJR,jumma:JUMMA,durood_pak:DUROOD_PAK,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH,post_salah:POST_SALAH,morning_wake:MORNING_WAKE,relief_debt:RELIEF_DEBT,istikhara:ISTIKHARA,rabbana:RABBANA,safar:SAFAR,home_adab:HOME_ADB,food_adab:FOOD_ADB,masjid_adab:MASJID_ADB};
   const steps=DATA[sec],st=S[sec];
   if(!steps || !st) return;
   const step=steps[st.idx];
@@ -8545,7 +8631,7 @@ function p3UpdateHub(){
     const tEl = st.querySelector('[data-hub="today"]');
     if(tEl) tEl.textContent = formatStreakNumber(taps, S.lang);
     let doneTotal = 0;
-    ['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana','safar','home_adab','food_adab'].forEach(k => { if(S[k] && S[k].done) doneTotal += S[k].done.filter(Boolean).length; });
+    ['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana','safar','home_adab','food_adab','masjid_adab'].forEach(k => { if(S[k] && S[k].done) doneTotal += S[k].done.filter(Boolean).length; });
     if(S.asr && S.asr.done) doneTotal++;
     if(S.tasbeeh && S.tasbeeh.sets) doneTotal += S.tasbeeh.sets;
     if(customAzkar) doneTotal += customAzkar.filter(x => x.done || (x.target && x.cnt >= x.target)).length;
@@ -8758,7 +8844,7 @@ function p4OnbRender(){
     if(skip) skip.addEventListener('click', () => { p4OnbStep = 3; p4OnbRender(); });
   }catch(e){}
 }
-const ALL_DUA_DATA = {fajr:FAJR,jumma:JUMMA,durood_pak:DUROOD_PAK,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH,post_salah:POST_SALAH,morning_wake:MORNING_WAKE,relief_debt:RELIEF_DEBT,istikhara:ISTIKHARA,rabbana:RABBANA,safar:SAFAR,home_adab:HOME_ADB,food_adab:FOOD_ADB};
+const ALL_DUA_DATA = {fajr:FAJR,jumma:JUMMA,durood_pak:DUROOD_PAK,tauheed:TAUHEED,bedtime:BEDTIME,tawbah:TAWBAH,post_salah:POST_SALAH,morning_wake:MORNING_WAKE,relief_debt:RELIEF_DEBT,istikhara:ISTIKHARA,rabbana:RABBANA,safar:SAFAR,home_adab:HOME_ADB,food_adab:FOOD_ADB,masjid_adab:MASJID_ADB};
 
 /* ══ TAP ══ */
 /* ══ p7: ZAATI AUTO-RESET (user request: finish-all per cycle counts khud reset ho jayen) ══ */
@@ -8904,7 +8990,7 @@ function renderDrawer(){
   SECS.forEach(m => {
     if(!P9_AZKAR_ONLY.includes(m.id)) return;
     let prog='';
-    if(['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana','safar','home_adab','food_adab'].includes(m.id)&&S[m.id]?.done){const d=S[m.id].done.filter(Boolean).length;const tot={fajr:FAJR.length,jumma:JUMMA.length,durood_pak:DUROOD_PAK.length,tauheed:TAUHEED.length,bedtime:BEDTIME.length,tawbah:TAWBAH.length,post_salah:POST_SALAH.length,morning_wake:MORNING_WAKE.length,relief_debt:RELIEF_DEBT.length,istikhara:ISTIKHARA.length,rabbana:RABBANA.length,safar:SAFAR.length,home_adab:HOME_ADB.length,food_adab:FOOD_ADB.length}[m.id];if(d>0)prog=`<span style="color:var(--g2);font-size:.65rem">${d}/${tot}</span>`;}
+    if(['fajr','jumma','durood_pak','tauheed','bedtime','tawbah','post_salah','morning_wake','relief_debt','istikhara','rabbana','safar','home_adab','food_adab','masjid_adab'].includes(m.id)&&S[m.id]?.done){const d=S[m.id].done.filter(Boolean).length;const tot={fajr:FAJR.length,jumma:JUMMA.length,durood_pak:DUROOD_PAK.length,tauheed:TAUHEED.length,bedtime:BEDTIME.length,tawbah:TAWBAH.length,post_salah:POST_SALAH.length,morning_wake:MORNING_WAKE.length,relief_debt:RELIEF_DEBT.length,istikhara:ISTIKHARA.length,rabbana:RABBANA.length,safar:SAFAR.length,home_adab:HOME_ADB.length,food_adab:FOOD_ADB.length,masjid_adab:MASJID_ADB.length}[m.id];if(d>0)prog=`<span style="color:var(--g2);font-size:.65rem">${d}/${tot}</span>`;}
     if(m.id==='asr'&&S.asr.done)prog=`<span style="color:var(--g2);font-size:.7rem">✓</span>`;
     html += `<div class="dr-item${sec===m.id?' active':''}" data-sec="${m.id}"><span class="dr-icon">${m.icon}</span><span class="dr-name">${getLoc(m.title)}</span><span class="dr-ct">${getLoc(m.ct)}</span>${prog}</div>`;
   });
@@ -8934,6 +9020,7 @@ document.getElementById('restartBtn')?.addEventListener('click',()=>{
   if(sec==='safar')S.safar={idx:0,cnt:0,done:new Array(SAFAR.length).fill(false)};
   if(sec==='home_adab')S.home_adab={idx:0,cnt:0,done:new Array(HOME_ADB.length).fill(false)};
   if(sec==='food_adab')S.food_adab={idx:0,cnt:0,done:new Array(FOOD_ADB.length).fill(false)};
+  if(sec==='masjid_adab')S.masjid_adab={idx:0,cnt:0,done:new Array(MASJID_ADB.length).fill(false)};
   if(sec==='durood_pak')S.durood_pak={idx:0,cnt:0,done:new Array(DUROOD_PAK.length).fill(false)};
   if(sec==='tasbeeh')S.tasbeeh={ph:0,cnt:0,sets:0};
   save();
