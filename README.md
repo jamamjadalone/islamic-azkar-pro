@@ -1,7 +1,7 @@
 # Islamic Azkar Pro (اسلامک اذکار پرو)
 
 <p align="center">
-  <img src="icons/icon-512.png" alt="Islamic Azkar Pro Logo" width="128" height="128">
+  <img src="icons/icon-512-v2.png" alt="Islamic Azkar Pro Logo" width="128" height="128">
 </p>
 
 <p align="center">

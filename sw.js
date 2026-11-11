@@ -1,6 +1,6 @@
 /* Islamic Azkar Pro — Service Worker
    100% offline app shell. Network-first for navigation, stale-while-revalidate for static assets. */
-const CACHE = "azk-pro-v94-seo";
+const CACHE = "azk-pro-v95-icons";
 
 const CORE = [
 	"./",
@@ -17,11 +17,6 @@ const CORE = [
 	/* surah_N.json files precache NAHI — runtime pe on-demand fetch hote
 	   hain aur stale-while-revalidate unhe cache karta hai (pehli load ke
 	   baad 100% offline) */
-	/* old icon filenames bhi rakhe hain — already-installed users ke purane
-	SW caches un paths pe refer karte hain (backward compatibility) */
-	"./icons/icon-192.png",
-	"./icons/icon-512.png",
-	"./icons/apple-touch-icon.png",
 	"./fonts/al-majeed.ttf",
 	"./fonts/al-mushaf.ttf",
 	"./fonts/al-qalam.ttf",
