@@ -28,3 +28,4 @@ Instructions for any autonomous coding assistant (CLI, Termux, Codespaces, or ID
 13. **No file over 300 lines**: keep files small except the frozen monolith exception in Rule 8.
 14. **Check before writing**: before creating anything new, search the repo — reuse or extend an existing file/pattern instead of duplicating.
 15. **One folder per cleanup pass**: reorganize at most one folder per commit, never changing what the app does when opened. Runtime-referenced paths (`quran/`, `fonts/`, `assets/`, `icons/`) must not move.
+16. **PWA scope lock**: work ONLY on the PWA (`index.html`, `sw.js`, `manifest.json`, `quran/`, `fonts/`, `assets/`, `icons/`, docs/tools/data). NEVER touch `android/`, `windows/`, or any other non-PWA owner work-in-progress — not even to fix lint, line-caps, or organize it. If a quality gate flags files outside the PWA scope, report the finding and leave the files untouched; the owner handles those separately.
