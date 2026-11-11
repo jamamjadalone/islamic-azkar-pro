@@ -102,6 +102,12 @@ For desktop users, the app offers complete keyboard navigation:
 
 ---
 
+## Credits
+
+All third-party Quran texts and bundled Quranic fonts used in this app are properly credited to their owners. See the hub: [CREDITS.md](CREDITS.md) (details in onts/FONT-CREDITS.md and quran/full/CREDITS-*.md).
+
+---
+
 ## 📁 Project Structure
 
 ```text
