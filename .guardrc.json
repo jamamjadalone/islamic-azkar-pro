@@ -1,0 +1,4 @@
+{
+  "rule21_skip_dirs": ["android"],
+  "_note": "Owner decision (2026-11-12, AGENTS.md Rule 16): android/ is separate owner WIP outside the PWA scope — Rule 21 line-cap audit skips it for this project only. Other guard engines still audit the repo fully."
+}
