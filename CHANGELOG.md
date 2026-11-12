@@ -15,6 +15,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - GitHub polish: About description, 20 topics (misleading qibla-compass topic removed), 9 GitHub Releases for p21 content tags
 - `repo/r1-rules-v1` … `repo/i18n-inventory-v1`: repo organization (rules 8–15, tools/ + data/source-packs/ cleaner layout, beginner docs map)
 
+### Repo Hygiene Series (2026-11-11/12) — organization, credits, contributor docs
+
+- `repo/credits-contribution-v1`: full third-party attribution — `CREDITS.md` hub, `fonts/FONT-CREDITS.md` (6 TTFs + 2 woff, embedded name-table facts), `quran/full/CREDITS-tanzil.md`; README Credits section; CONTRIBUTING with test gates
+- `repo/r16-scope-lock-v1`: AGENTS.md Rule 16 — agent works on the PWA only; android/ and other owner WIP never touched
+- `repo/i1-icons-dedup-v1`: 3 byte-identical duplicate icon PNGs removed, sw.js precache synced + cache `azk-pro-v95-icons`, README icon refs updated (behavior unchanged, cache ~97 KB lighter)
+- CONTRIBUTING.md: pre-existing guide restored after accidental overwrite and merged with new sections
+- Save points: `chk/pre-reorg-2026-11-10`, `chk/pre-reorg-2026-11-11`
+
 ### Added
 
 - Permanent UI & Layout Architecture Lock: Visual hierarchy, navigation bar, pill selector, welcome cards, and modal components permanently frozen against future agent modifications
