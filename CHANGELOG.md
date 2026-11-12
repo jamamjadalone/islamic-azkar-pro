@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Content Series (2026-11-12) — per-language meanings wiring
+
+- `content/asma-mas-i18n-wiring-v1`: meaning resolvers for both name lists now check per-language packs (id/tr/fr/bn/ru/fa) before the EN fallback — groundwork for completing the remaining 9 meaning dicts (Allah's 99: bn/ru/fa; Prophet's 99: id/tr/fr/bn/ru/fa)
+- First language pack merged: Indonesian meanings for Asma-e-Muhammadiyah names 1–10 (`ASMA_MAS_ID`); more languages to follow
+
 ### Content Series (2026-11-12) — Asma-e-Muhammadiyah expanded 27 → 99
 
 - `asma/names-saw-99-v1`: the Names of the Prophet ﷺ section now carries the full 99-name devotional compilation — existing 27 verified entries preserved verbatim, 72 curated additions in three reference tiers: Quranic citations (e.g. 9:128, 35:23, 5:15, 22:75), contextual narration phrasing (Rule 12: روایت کے مفہوم کے مطابق), and the well-known Asma-e-Muhammadiyah compilation

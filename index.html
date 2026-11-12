@@ -5598,6 +5598,12 @@ const ASMA_MAS_EN = {
   99:'The Best of Humanity'
 };
 
+/* ID meanings pack (pattern: see ASMA_I18N per-lang packs) */
+const ASMA_MAS_ID = {
+  1:'Yang Terpuji',2:'Yang Paling Banyak Memuji',3:'Yang Dijanjikan Maqam Terpuji',4:'Hamba Allah yang istimewa',5:'Pembawa kabar gembira',
+  6:'Pemberi peringatan',7:'Saksi kebenaran kenabian',8:'Penyeru menuju Allah',9:'Pelita yang bercahaya',10:'Rasul Allah'
+};
+
 const ASMA_EN = {
   1:'The Most Gracious',2:'The Most Merciful',3:'The Sovereign King',4:'The Most Holy',5:'The Source of Peace',
   6:'The Granter of Security',7:'The Guardian',8:'The Almighty',9:'The Compeller',10:'The Supreme',
@@ -5691,15 +5697,24 @@ const ASMA_I18N_FR = {
 function getAsmaMeaning(a, l){
   let m = a.ur;
   if (l === 'ar') m = a.ar;
-  else if (l === 'id' && ASMA_I18N_ID[a.n]) m = ASMA_I18N_ID[a.n];
-  else if (l === 'tr' && ASMA_I18N_TR[a.n]) m = ASMA_I18N_TR[a.n];
-  else if (l === 'fr' && ASMA_I18N_FR[a.n]) m = ASMA_I18N_FR[a.n];
+  else if (l === 'id' && typeof ASMA_I18N_ID !== 'undefined' && ASMA_I18N_ID[a.n]) m = ASMA_I18N_ID[a.n];
+  else if (l === 'tr' && typeof ASMA_I18N_TR !== 'undefined' && ASMA_I18N_TR[a.n]) m = ASMA_I18N_TR[a.n];
+  else if (l === 'fr' && typeof ASMA_I18N_FR !== 'undefined' && ASMA_I18N_FR[a.n]) m = ASMA_I18N_FR[a.n];
+  else if (l === 'bn' && typeof ASMA_I18N_BN !== 'undefined' && ASMA_I18N_BN[a.n]) m = ASMA_I18N_BN[a.n];
+  else if (l === 'ru' && typeof ASMA_I18N_RU !== 'undefined' && ASMA_I18N_RU[a.n]) m = ASMA_I18N_RU[a.n];
+  else if (l === 'fa' && typeof ASMA_I18N_FA !== 'undefined' && ASMA_I18N_FA[a.n]) m = ASMA_I18N_FA[a.n];
   else if (l !== 'ur' && l !== 'ar' && typeof ASMA_EN !== 'undefined' && ASMA_EN[a.n]) m = ASMA_EN[a.n];
   return m;
 }
-/* p21-a: meaning resolver for ASMA_MAS (ur native; others fall to EN pack) */
+/* p21-a: meaning resolver for ASMA_MAS (ur native; others fall to per-lang packs, then EN) */
 function getAsmaSawMeaning(a, l){
   if (l === 'ur' || l === 'ar') return a.ur;
+  if (l === 'id' && typeof ASMA_MAS_ID !== 'undefined' && ASMA_MAS_ID[a.n]) return ASMA_MAS_ID[a.n];
+  if (l === 'tr' && typeof ASMA_MAS_TR !== 'undefined' && ASMA_MAS_TR[a.n]) return ASMA_MAS_TR[a.n];
+  if (l === 'fr' && typeof ASMA_MAS_FR !== 'undefined' && ASMA_MAS_FR[a.n]) return ASMA_MAS_FR[a.n];
+  if (l === 'bn' && typeof ASMA_MAS_BN !== 'undefined' && ASMA_MAS_BN[a.n]) return ASMA_MAS_BN[a.n];
+  if (l === 'ru' && typeof ASMA_MAS_RU !== 'undefined' && ASMA_MAS_RU[a.n]) return ASMA_MAS_RU[a.n];
+  if (l === 'fa' && typeof ASMA_MAS_FA !== 'undefined' && ASMA_MAS_FA[a.n]) return ASMA_MAS_FA[a.n];
   if (typeof ASMA_MAS_EN !== 'undefined' && ASMA_MAS_EN[a.n]) return ASMA_MAS_EN[a.n];
   return a.ur;
 }
