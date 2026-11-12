@@ -66,8 +66,9 @@ It operates with **zero external API dependencies**, has **no telemetry or track
 - **Tasbeeh-e-Fatima (33-33-34)**: Automatic 3-phase counter with haptic and audio completion chimes.
 - **40 Rabbana Duas (۴۰ ربنا)**: The complete 40 authentic Quranic supplications starting with Rabbana.
 
-### 4. Asma-ul-Husna (99 Names of Allah)
+### 4. Asma-ul-Husna (99 Names of Allah) & Asma-e-Muhammadiyah (99 Names of the Prophet ﷺ)
 - **Complete 99 Beautiful Names of Allah**: Luxury responsive cards with Arabic typography, authentic Urdu meanings, and Hadith virtue citation.
+- **99 Asma-e-Muhammadiyah**: Names of the Prophet ﷺ with per-name reference tiers (Quranic citation / contextual narration phrasing / the well-known devotional compilation).
 - **Integrated Wird Catalog**: Import any divine name directly into your personal list.
 
 ### 5. Custom Azkar Builder (ذاتی اذکار)

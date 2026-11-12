@@ -22,7 +22,7 @@
 - **26 surah pilihan**: Al-Fatihah, Ayat Kursi, Al-Kahf, Al-Mulk, Al-Waqiah, Ar-Rahman, Ad-Dukhan — dengan tipografi mushaf otentik dan pelestarian penuh tanda waqaf.
 - **Zikir sunnah harian**: setelah salat fardu, saat bangun tidur, sebelum tidur, Jumat, istighfar, dan istikharah.
 - **40 doa Rabbana** — koleksi komplet doa-doa Al-Quran.
-- **99 nama Allah** dan pilihan asma Nabi ﷺ.
+- **99 nama Allah** dan **99 Asma Nabi ﷺ** dengan rujukan tiap nama (Al-Quran / makna riwayat / kompilasi masyhur).
 - **Doa-doa adab kehidupan**: musafir, rumah, masjid, dan makan; doa saat cobaan, jenazah, cuaca, serta haji dan talbiyah.
 - **Daftar zikir pribadi Anda** dengan cadangan (backup).
 - **9 bahasa lengkap**: Urdu, Arab, Inggris, Indonesia, Turki, Prancis, Bengali, Rusia, dan Persia.

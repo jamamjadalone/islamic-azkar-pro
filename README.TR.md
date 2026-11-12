@@ -22,7 +22,7 @@
 - **26 mübarek sure**: Fatiha, Âyetü'l-Kürsî, Kehf, Mülk, Vâkıa, Rahmân, Duhân — özgün Pakistani Mushaf tipografisiyle, tüm vakif işaretleri korunarak.
 - **Günün sünnet zikirleri**: farz namazlardan sonra, uyanınca, yatarken, cuma, istiğfar ve istihare.
 - **40 Rabbena duası** — Kur'an'daki duaların eksiksiz derlemesi.
-- **Allah'ın 99 ismi** ve seçme Hz. Muhammed ﷺ isimleri.
+- **Allah'ın 99 ismi** ve **Hz. Muhammed ﷺ'in 99 ismi** — her isim için referansla (Kur'an / rivayetin anlamı / meşhur derleme).
 - **Hayatın her anına dualar**: yolculuk, ev, cami ve yemek adabı; sıkıntı anları, cenaze, hava durumu ve telbiye ile Hac.
 - **Kişisel zikir listeniz** — yedekleme özelliğiyle.
 - **9 tam dil**: Urduca, Arapça, İngilizce, Endonezce, Türkçe, Fransızca, Bengalce, Rusça ve Farsça.

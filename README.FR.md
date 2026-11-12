@@ -22,7 +22,7 @@
 - **26 sourates bénies** : Al-Fatiha, Ayat al-Kursi, Al-Kahf, Al-Mulk, Al-Waqiah, Ar-Rahman, Ad-Dukhan — typographie de mushaf authentique avec préservation complète des signes d'arrêt.
 - **Invocations quotidiennes recommandées** : après les prières obligatoires, au réveil, au coucher, le vendredi, la demande de pardon et la consultation (istikhara).
 - **Les 40 invocations « Rabbana »** — panneau coranique complet des supplications.
-- **Les 99 noms d'Allah** et une sélection de noms du Prophète ﷺ.
+- **Les 99 noms d'Allah** et les **99 noms du Prophète ﷺ** avec référence par nom (Quran / sens de la narration / compilation connue).
 - **Invocations des moments de la vie** : le voyage, le domicile, la mosquée et le repas ; les moments d'épreuve, les funérailles, la météo et le Hajj avec la talbiya.
 - **Votre liste personnelle d'invocations** avec sauvegarde.
 - **9 langues complètes** : ourdou, arabe, anglais, indonésien, turc, français, bengali, russe et persan.

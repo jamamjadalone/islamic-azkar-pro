@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Content Series (2026-11-12) — Asma-e-Muhammadiyah expanded 27 → 99
+
+- `asma/names-saw-99-v1`: the Names of the Prophet ﷺ section now carries the full 99-name devotional compilation — existing 27 verified entries preserved verbatim, 72 curated additions in three reference tiers: Quranic citations (e.g. 9:128, 35:23, 5:15, 22:75), contextual narration phrasing (Rule 12: روایت کے مفہوم کے مطابق), and the well-known Asma-e-Muhammadiyah compilation
+- English meanings extended to all 99 names (`ASMA_MAS_EN`); dashboard tile counts updated to 99 in all 9 languages; JSON-LD featureList updated
+- sw.js cache bump: `azk-pro-v95-icons` → `azk-pro-v96-asma-saw-99` (Rule 7)
+- README minis (7 languages) + main README feature list updated to the 99-name phrasing
+
 ### SEO Series (2026-11-10) — repo reach & multi-language discoverability
 
 - `seo/sitemap-hreflang-v1`: sitemap.xml expanded to 10 URLs with xhtml:link hreflang alternates (9 languages + x-default), fresh lastmod
