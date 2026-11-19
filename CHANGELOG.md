@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Week ending 2026-11-19
+
+- Commits: 6 | Files changed: 3
+- Breakdown: 6 feat
+- Data catalogs enriched (see individual entries above); service worker cache advanced each change.
+
+
 ### Content Series (2026-11-12) — per-language meanings wiring
 
 - `content/asma-mas-i18n-wiring-v1`: meaning resolvers for both name lists now check per-language packs (id/tr/fr/bn/ru/fa) before the EN fallback — groundwork for completing the remaining 9 meaning dicts (Allah's 99: bn/ru/fa; Prophet's 99: id/tr/fr/bn/ru/fa)
