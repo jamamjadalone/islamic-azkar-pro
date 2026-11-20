@@ -1,6 +1,6 @@
 /* Islamic Azkar Pro — Service Worker
    100% offline app shell. Network-first for navigation, stale-while-revalidate for static assets. */
-const CACHE = "azk-pro-v104-asma-i18n";
+const CACHE = "azk-pro-v105-asma-i18n";
 
 const CORE = [
 	"./",
