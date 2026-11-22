@@ -1,0 +1,16 @@
+{
+  "name": "lwh-core",
+  "version": "0.1.0",
+  "description": "Run any list of tasks to completion with a chain of worker subagents that hand off before their context fills up, and stop a run cleanly at any time. Works for code and for other kinds of work.",
+  "author": {
+    "name": "Hasan Aboul Hasan"
+  },
+  "license": "MIT",
+  "keywords": [
+    "orchestration",
+    "subagents",
+    "handoff",
+    "tasks",
+    "long-running"
+  ]
+}

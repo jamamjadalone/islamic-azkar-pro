@@ -1,0 +1,1897 @@
+{
+  "parts": [
+    {
+      "name": "Plan before you build",
+      "blocks": [
+        {
+          "name": "Plan first",
+          "what": "Write down what the app should do before any code is written, so the build has a clear target",
+          "applies": "every app",
+          "stage": "day-one",
+          "kind": "practice"
+        },
+        {
+          "name": "MVP",
+          "what": "Build the smallest version that is useful, and add the rest once it works",
+          "applies": "every app",
+          "stage": "day-one",
+          "kind": "practice"
+        }
+      ]
+    },
+    {
+      "name": "Set up the project right",
+      "blocks": [
+        {
+          "name": "Git",
+          "what": "Keeps a history of every change, so any mistake can be undone",
+          "applies": "every app",
+          "stage": "day-one",
+          "kind": "checkable",
+          "scope": "setup",
+          "proof": "test",
+          "check": "The project is a git repository, with its first commit on the work branch, not on the main branch."
+        },
+        {
+          "name": "Branches",
+          "what": "A separate line of work, so changes can be tried without touching the main version",
+          "applies": "every app",
+          "stage": "day-one",
+          "kind": "checkable",
+          "scope": "setup",
+          "proof": "test",
+          "check": "Build work happens on a branch, not directly on the main branch."
+        },
+        {
+          "name": "venv",
+          "what": "Gives a Python project its own set of packages, separate from every other project",
+          "applies": "the project uses Python",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "scope": "setup",
+          "proof": "test",
+          "check": "Packages install into an environment that belongs to this project only, and a fresh install from the requirements file works."
+        },
+        {
+          "name": "Env vars",
+          "what": "Settings that change per machine, such as keys and addresses, live outside the code",
+          "applies": "every app",
+          "stage": "day-one",
+          "kind": "checkable",
+          "scope": "setup",
+          "proof": "test",
+          "check": "Settings that differ per machine come from the environment, and the app starts from the example env file once its values are filled in."
+        },
+        {
+          "name": "Secrets",
+          "what": "Keys and passwords are kept out of the code, out of git and out of logs",
+          "applies": "every app",
+          "stage": "day-one",
+          "kind": "checkable",
+          "scope": "setup",
+          "proof": "test",
+          "check": "The real env file is ignored by git, the app reads every key and password from the environment, and the example env file holds no real values."
+        }
+      ]
+    },
+    {
+      "name": "Build with AI",
+      "blocks": [
+        {
+          "name": "CLAUDE.md",
+          "what": "A file of project rules that the AI reads at the start of every session",
+          "applies": "every app",
+          "stage": "day-one",
+          "kind": "checkable",
+          "scope": "setup",
+          "proof": "test",
+          "check": "CLAUDE.md exists, names the one check command, links to docs/plan.md, and lists the \"Rules every change follows\". The check command runs lint, type checks where the language has them, and every test, and it passes."
+        },
+        {
+          "name": "Agent memory",
+          "what": "Notes an AI assistant keeps between sessions, so it remembers facts about you or the project",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        },
+        {
+          "name": "Skills",
+          "what": "A packaged set of instructions an AI assistant follows to do one job the same way each time",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "name": "Keep the code clean",
+      "blocks": [
+        {
+          "name": "Modularity",
+          "what": "Split the code into small parts that each do one job",
+          "applies": "every app",
+          "stage": "day-one",
+          "kind": "checkable",
+          "scope": "cross-cutting",
+          "proof": "review",
+          "check": "Each file has one job that can be said in one line, and no file has become a catch-all."
+        },
+        {
+          "name": "Separation",
+          "what": "Separation of concerns: keep the screens, the business rules and the data access in separate places",
+          "applies": "every app",
+          "stage": "day-one",
+          "kind": "checkable",
+          "scope": "cross-cutting",
+          "proof": "review",
+          "check": "Screen code, business rules and data access live in separate places, and the rules can be tested without the screen."
+        }
+      ]
+    },
+    {
+      "name": "How your app fits together",
+      "blocks": [
+        {
+          "name": "Frontend & backend",
+          "what": "The frontend is what runs on the user's screen; the backend is what runs on the server",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        },
+        {
+          "name": "API",
+          "what": "A set of requests one program can send another, with agreed answers",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        },
+        {
+          "name": "Webhooks",
+          "what": "Another service calls your app when something happens there, such as a completed payment",
+          "applies": "another service must tell the app when something happens, such as a payment",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "A webhook with a missing or wrong signature is refused, and the same webhook delivered twice has the effect of one."
+        },
+        {
+          "name": "HTTP status codes",
+          "what": "The number every web answer carries to say whether the request worked, and if not, why",
+          "applies": "the app has an API",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "scope": "cross-cutting",
+          "proof": "test",
+          "check": "Errors return the matching status code (not found, not allowed, bad input), never a success code with an error inside."
+        },
+        {
+          "name": "Cookies",
+          "what": "Small pieces of data a website stores in the browser, often to remember who is logged in",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "name": "In front of your code",
+      "blocks": [
+        {
+          "name": "Middleware",
+          "what": "Code that runs on every request before it reaches a feature, such as a login check",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        },
+        {
+          "name": "Edge front door",
+          "what": "A service in front of your server that filters bad traffic and serves the app close to users",
+          "applies": "the app is going live on the internet",
+          "stage": "go-live",
+          "kind": "checkable"
+        }
+      ]
+    },
+    {
+      "name": "Data: store it well",
+      "blocks": [
+        {
+          "name": "Databases",
+          "what": "Store the app's data so it survives restarts and can be searched",
+          "applies": "the app stores data",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Data that must last is stored in a database and is still there after the app restarts."
+        },
+        {
+          "name": "JSON",
+          "what": "A plain-text format for structured data that almost every program can read",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        },
+        {
+          "name": "SQL",
+          "what": "The language used to ask a relational database for data and to change it",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        },
+        {
+          "name": "Data modeling",
+          "what": "Decide what kinds of things the app stores and how they link together",
+          "applies": "the app stores data",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "review",
+          "check": "Each kind of thing is stored once, related things are linked, and no fact is kept in two places that can disagree."
+        },
+        {
+          "name": "Migrations",
+          "what": "Files that record each change to the database's structure, so every copy can be brought up to date",
+          "applies": "the app uses a database with tables",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Every change to the tables is a migration file in the project, and a fresh database built from the migrations works with the app."
+        },
+        {
+          "name": "Transactions",
+          "what": "Group several changes so they all happen together, or none do",
+          "applies": "one action changes several records that must stay in step",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "When a save with several steps fails partway, none of its steps stay saved. A test forces the failure."
+        },
+        {
+          "name": "NoSQL",
+          "what": "Databases that store documents or key-value pairs instead of tables",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "name": "Security · principles",
+      "blocks": [
+        {
+          "name": "Threat modeling",
+          "what": "Ask what could go wrong, who might attack, and what would hurt most, before building",
+          "applies": "the app has logins, money or private data",
+          "stage": "day-one-if",
+          "kind": "practice"
+        },
+        {
+          "name": "Least privilege",
+          "what": "Give every key and account only the access it needs, nothing more",
+          "applies": "the app uses keys, database users or service accounts",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "review",
+          "check": "Each key and database user can do only what the app needs. No admin or root key is used while the app runs."
+        },
+        {
+          "name": "Secure defaults",
+          "what": "When a setting is missing, the app picks the safe choice",
+          "applies": "every app",
+          "stage": "day-one",
+          "kind": "checkable",
+          "scope": "cross-cutting",
+          "proof": "test",
+          "check": "With a setting missing, the app takes the safe path: debug mode off, new things private, access refused."
+        },
+        {
+          "name": "Secret rotation",
+          "what": "Replace keys on a schedule, and at once if one may have leaked",
+          "applies": "the app is live and uses long-lived keys",
+          "stage": "with-users",
+          "kind": "checkable"
+        }
+      ]
+    },
+    {
+      "name": "Security · identity",
+      "blocks": [
+        {
+          "name": "Authentication",
+          "what": "Checking who someone is, usually with a login",
+          "applies": "the app has logins",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "scope": "cross-cutting",
+          "proof": "test",
+          "check": "Pages and actions for logged-in users refuse a visitor who is not logged in, including direct requests that skip the screen."
+        },
+        {
+          "name": "Sessions vs JWT",
+          "what": "Two ways to remember a logged-in user: a record on the server, or a signed token the browser holds",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        },
+        {
+          "name": "OAuth 2.1",
+          "what": "Let people log in with an account they already have, such as Google, without giving you their password",
+          "applies": "users log in with Google or another provider",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Login through the provider works end to end, and the app never sees or stores the provider password."
+        },
+        {
+          "name": "Magic links",
+          "what": "Log in by clicking a one-time link sent by email, with no password",
+          "applies": "users log in with an email link",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "A login link works once and expires after a short time. A used or expired link shows a clear message."
+        },
+        {
+          "name": "Multi-factor auth",
+          "what": "Ask for a second proof, such as a code from a phone, on top of the password",
+          "applies": "accounts guard money or sensitive data",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "API keys",
+          "what": "Secret codes that let other programs use your app's API",
+          "applies": "the app gives keys to its users or to other programs",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "A new key is shown once and only its hash is stored. A revoked key stops working at once."
+        },
+        {
+          "name": "Unified principal",
+          "what": "One way to represent the caller, whether they came in by login or by API key, so every check treats them the same",
+          "applies": "callers arrive in more than one way, such as a login and an API key",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "CAPTCHA / Turnstile",
+          "what": "A check that tells people from bots on public forms",
+          "applies": "public forms attract bots",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Hashing",
+          "what": "Store a one-way fingerprint of a password, never the password itself",
+          "applies": "the app stores passwords",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Passwords are stored only as salted hashes made by a password-hashing function. No password appears in the database, logs or error messages."
+        },
+        {
+          "name": "Brute force",
+          "what": "Stop attackers from guessing passwords by trying again and again",
+          "applies": "users log in with a password",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Repeated wrong passwords for one account, or from one source, are slowed down or locked out."
+        }
+      ]
+    },
+    {
+      "name": "Security · access",
+      "blocks": [
+        {
+          "name": "Authorization",
+          "what": "Checking what a logged-in user is allowed to do",
+          "applies": "the app has logins",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "scope": "cross-cutting",
+          "proof": "test",
+          "check": "Every action checks on the server that this user may do it. Hiding a button does not count as the check."
+        },
+        {
+          "name": "Owner-only access",
+          "what": "Users can see and change only their own things",
+          "applies": "users have their own private data",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "scope": "cross-cutting",
+          "proof": "test",
+          "check": "A logged-in user who asks for another user's item by its id is refused, for reading, changing and deleting."
+        },
+        {
+          "name": "Role-based access",
+          "what": "Different kinds of users, such as admins and members, get different permissions",
+          "applies": "the app has more than one kind of user, such as admin and member",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Each role can do exactly its allowed actions. A test tries each forbidden action as each role."
+        }
+      ]
+    },
+    {
+      "name": "Security · web vulns",
+      "blocks": [
+        {
+          "name": "Input validation",
+          "what": "Check every piece of incoming data on the server before using it",
+          "applies": "the app accepts input from users or other systems",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "scope": "cross-cutting",
+          "proof": "test",
+          "check": "Every input is checked on the server for type, size and allowed values. Bad input gets a clear error and is never saved."
+        },
+        {
+          "name": "XSS",
+          "what": "Cross-site scripting: stop text a user typed from running as code in someone else's browser",
+          "applies": "a web app shows text that users typed",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "scope": "cross-cutting",
+          "proof": "test",
+          "check": "Text containing a script tag, saved by one user, shows as plain text to another user and does not run."
+        },
+        {
+          "name": "CSRF",
+          "what": "Cross-site request forgery: stop another site from acting through a logged-in user's browser",
+          "applies": "a web app keeps users logged in with cookies",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "scope": "cross-cutting",
+          "proof": "test",
+          "check": "A request that changes something, sent from another site without the app's token, is refused."
+        },
+        {
+          "name": "CORS",
+          "what": "Cross-origin resource sharing: decide which other sites may call your API from a browser",
+          "applies": "a browser frontend calls an API at a different address",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "The API allows only the app's own frontend addresses, and never every site together with logins."
+        },
+        {
+          "name": "SSRF",
+          "what": "Server-side request forgery: stop users from making your server fetch internal addresses",
+          "applies": "the server fetches addresses that users supply",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "A user-supplied address that points at this machine, a private network or a cloud metadata address is refused."
+        },
+        {
+          "name": "SQL injection",
+          "what": "Stop user input from being run as part of a database query",
+          "applies": "the app uses a SQL database",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "scope": "cross-cutting",
+          "proof": "test",
+          "check": "Every query passes user input as parameters. Input containing quotes and SQL words is treated as plain text."
+        },
+        {
+          "name": "Content Security Policy",
+          "what": "A rule the server sends that tells the browser which scripts and sources a page may load",
+          "applies": "a web app is going live",
+          "stage": "go-live",
+          "kind": "checkable"
+        },
+        {
+          "name": "Safe user HTML",
+          "what": "Clean formatted text from users so only harmless tags remain",
+          "applies": "users can post formatted text or HTML",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "User HTML is cleaned to an allowlist of tags before it is shown. Scripts and event handlers are stripped."
+        },
+        {
+          "name": "Path & upload safety",
+          "what": "Make sure uploaded files and user-given file names cannot reach places they should not",
+          "applies": "users upload files, or a file path comes from user input",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Uploads are limited by type and size and stored under a generated name, away from the app's source files (in an upload folder inside the project, or a storage service). A file name containing ../ cannot escape the upload folder."
+        },
+        {
+          "name": "Open redirect",
+          "what": "Stop links that bounce users through your site to a stranger's site",
+          "applies": "the app redirects to an address taken from a link, such as after login",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "A redirect target outside the app's own addresses is ignored."
+        }
+      ]
+    },
+    {
+      "name": "Security · data",
+      "blocks": [
+        {
+          "name": "TLS",
+          "what": "Encrypt traffic between the browser and the server; it is the padlock in the address bar",
+          "applies": "the app is going live on the internet",
+          "stage": "go-live",
+          "kind": "checkable"
+        },
+        {
+          "name": "Encryption at rest",
+          "what": "Encrypt stored data so a stolen disk or backup cannot be read",
+          "applies": "the app stores highly sensitive data",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Secure cookies",
+          "what": "Cookie settings that keep the login cookie away from scripts and other sites",
+          "applies": "a web app keeps users logged in with cookies",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "The login cookie is set with HttpOnly, Secure and SameSite."
+        },
+        {
+          "name": "PII minimization",
+          "what": "Collect only the personal data a feature actually needs",
+          "applies": "the app collects personal data",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "review",
+          "check": "Every personal field the app collects is used by a feature in the plan. Nothing is collected just in case."
+        },
+        {
+          "name": "Security headers",
+          "what": "Extra instructions the server sends that turn on the browser's built-in protections",
+          "applies": "a web app is going live",
+          "stage": "go-live",
+          "kind": "checkable"
+        },
+        {
+          "name": "Trusted client IP",
+          "what": "Work out the visitor's real address correctly when the app sits behind a proxy",
+          "applies": "the app sits behind a proxy and uses the visitor's address",
+          "stage": "go-live",
+          "kind": "checkable"
+        }
+      ]
+    },
+    {
+      "name": "Security · abuse & privacy",
+      "blocks": [
+        {
+          "name": "Signed device ID",
+          "what": "A tamper-proof way to recognise a returning visitor who has no account",
+          "applies": "the app must recognise visitors who have no account",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Honeypot",
+          "what": "A hidden trap, such as a field only bots fill in, that catches automated abuse",
+          "applies": "the app is live and being probed",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Audit trail",
+          "what": "A record of who changed what and when, for the actions that matter",
+          "applies": "staff change other people's data, or money moves",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Dependency scanning",
+          "what": "Check the packages the app uses against lists of known security problems",
+          "applies": "every app",
+          "stage": "day-one",
+          "kind": "checkable",
+          "scope": "setup",
+          "proof": "test",
+          "check": "The check command scans the project's packages for known security problems, and fails when it finds a serious one."
+        },
+        {
+          "name": "Secret scanning",
+          "what": "Search the code and its history for keys or passwords that were committed by mistake",
+          "applies": "every app",
+          "stage": "day-one",
+          "kind": "checkable",
+          "scope": "setup",
+          "proof": "test",
+          "check": "The check command scans the tracked files and the git history for keys and passwords, and fails when it finds one."
+        },
+        {
+          "name": "Data retention",
+          "what": "Decide how long personal data is kept, and delete it when the time is up",
+          "applies": "the app keeps personal data over time",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Consent management",
+          "what": "Ask visitors for permission before tracking them, where the law requires it",
+          "applies": "the app tracks visitors where consent is required",
+          "stage": "go-live",
+          "kind": "checkable"
+        }
+      ]
+    },
+    {
+      "name": "Design for failure",
+      "blocks": [
+        {
+          "name": "Design for failure",
+          "what": "Assume outside services will fail, and decide in advance what the app does when they do",
+          "applies": "the app depends on outside services",
+          "stage": "day-one-if",
+          "kind": "practice"
+        },
+        {
+          "name": "Bulkheads",
+          "what": "Keep parts of the system apart so one failing part cannot sink the rest",
+          "applies": "one failing part could take down the rest",
+          "stage": "at-scale",
+          "kind": "checkable"
+        },
+        {
+          "name": "Redundancy",
+          "what": "Run spare copies so one machine failing does not take the app down",
+          "applies": "downtime has become costly",
+          "stage": "at-scale",
+          "kind": "checkable"
+        },
+        {
+          "name": "Error budgets",
+          "what": "Agree how much downtime is acceptable, and slow new features when it is used up",
+          "applies": "a team must balance new features against stability",
+          "stage": "at-scale",
+          "kind": "practice"
+        },
+        {
+          "name": "Chaos testing",
+          "what": "Break parts of the system on purpose to prove it recovers",
+          "applies": "the app runs on several machines",
+          "stage": "at-scale",
+          "kind": "practice"
+        }
+      ]
+    },
+    {
+      "name": "Don't fall over",
+      "blocks": [
+        {
+          "name": "Timeouts",
+          "what": "Give every outside call a time limit, so a hanging service cannot freeze the app",
+          "applies": "the app calls outside services",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Every outside call has a time limit. With a service that hangs, the app gives up and tells the user."
+        },
+        {
+          "name": "Retry",
+          "what": "Try a failed call again after a short wait, a limited number of times",
+          "applies": "the app calls outside services",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "A call that fails briefly is retried a few times with growing waits, then gives up with a clear error. Errors that can never succeed are not retried."
+        },
+        {
+          "name": "Circuit breaker",
+          "what": "Stop calling a service that keeps failing, and try again later",
+          "applies": "an outside service fails often under real use",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Error handling",
+          "what": "Catch failures, show the user a plain message, and log the details",
+          "applies": "every app",
+          "stage": "day-one",
+          "kind": "checkable",
+          "scope": "cross-cutting",
+          "proof": "test",
+          "check": "A failure shows the user a plain message and is logged with detail. No raw error or stack trace reaches the screen."
+        },
+        {
+          "name": "Idempotency",
+          "what": "Make sure an action sent twice, by a double click or a retry, happens only once",
+          "applies": "an action must never happen twice, such as a payment, an order or an email",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "The same request sent twice, by a double click or a retry, has the effect of one."
+        },
+        {
+          "name": "Fallback",
+          "what": "Have a backup answer or service ready when the main one fails",
+          "applies": "a feature should keep working when one part fails",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Graceful degradation",
+          "what": "Keep the rest of a feature working when one part of it fails",
+          "applies": "a feature should keep working when one part fails",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Free-first cascade",
+          "what": "Try free sources of data first, and pay for a call only when they come up empty",
+          "applies": "the app pays per call for data it could often get free",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Concurrency gate",
+          "what": "Limit how many heavy requests run at the same time",
+          "applies": "heavy requests arrive faster than the app can serve them",
+          "stage": "at-scale",
+          "kind": "checkable"
+        },
+        {
+          "name": "Single-flight",
+          "what": "When many identical requests arrive together, do the work once and share the answer",
+          "applies": "many identical requests arrive at once",
+          "stage": "at-scale",
+          "kind": "checkable"
+        },
+        {
+          "name": "Per-host pacing",
+          "what": "Space out calls to each outside service so you stay under its rate limits",
+          "applies": "the app calls rate-limited outside services heavily",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Quota ledger",
+          "what": "Keep one shared count of a limited key's usage across all workers",
+          "applies": "several workers share one limited key",
+          "stage": "at-scale",
+          "kind": "checkable"
+        },
+        {
+          "name": "Load shedding",
+          "what": "Turn some requests away quickly when overloaded, so the rest still succeed",
+          "applies": "traffic can exceed capacity",
+          "stage": "at-scale",
+          "kind": "checkable"
+        },
+        {
+          "name": "Degrade under quota",
+          "what": "When a paid quota runs out, switch to a cheaper or reduced mode instead of failing",
+          "applies": "the app can run out of a paid quota",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Rate limiting",
+          "what": "Cap how many requests each caller can make in a period of time",
+          "applies": "the app is going live with public or costly endpoints",
+          "stage": "go-live",
+          "kind": "checkable"
+        }
+      ]
+    },
+    {
+      "name": "Staying up: jobs, health & data",
+      "blocks": [
+        {
+          "name": "Background jobs",
+          "what": "Run slow work outside the user's request, so the screen answers at once",
+          "applies": "some work the user does not watch takes longer than a few seconds, such as sending email, importing a file or building a report",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Slow work the user does not watch runs outside the request. The user gets an immediate response and can see whether the job finished or failed."
+        },
+        {
+          "name": "Dead-letter queue",
+          "what": "A place where jobs that keep failing are set aside for a person to look at",
+          "applies": "background jobs fail under real use",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Idempotent ingest",
+          "what": "Process each incoming message from another system only once, even if it arrives twice",
+          "applies": "the app receives messages from other systems",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "The same incoming message delivered twice is processed once."
+        },
+        {
+          "name": "Checkpoints",
+          "what": "Save progress in long jobs, so a restart continues instead of starting over",
+          "applies": "jobs run for many minutes",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Health probes",
+          "what": "A simple address that reports whether the app and what it depends on are working",
+          "applies": "the app is live and depends on outside services",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Heartbeats",
+          "what": "Regular still-alive signals from background workers, so a silent failure gets noticed",
+          "applies": "background workers run unattended",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Race conditions",
+          "what": "Bugs where two things happening at once give the wrong result, such as selling the last seat twice",
+          "applies": "two requests can change the same thing at once, such as stock, seats or a balance",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Two requests at the same moment for the last item: exactly one succeeds. A test fires them together."
+        },
+        {
+          "name": "Optimistic locking",
+          "what": "Detect when two people edited the same record, instead of one silently overwriting the other",
+          "applies": "two people can edit the same record",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Backups & restore drills",
+          "what": "Copy the data regularly, and practise restoring it so you know it works",
+          "applies": "the app is going live with data worth keeping",
+          "stage": "go-live",
+          "kind": "checkable"
+        }
+      ]
+    },
+    {
+      "name": "Performance · measure first",
+      "blocks": [
+        {
+          "name": "Profiling",
+          "what": "Measure where the time actually goes before trying to speed anything up",
+          "applies": "something is slow and the cause is unknown",
+          "stage": "with-users",
+          "kind": "practice"
+        },
+        {
+          "name": "Latency percentiles",
+          "what": "Measure how slow the slowest requests are, not just the average",
+          "applies": "speed must be measured under real traffic",
+          "stage": "at-scale",
+          "kind": "practice"
+        },
+        {
+          "name": "Load testing",
+          "what": "Send heavy fake traffic to find the breaking point before real users do",
+          "applies": "a traffic spike is expected",
+          "stage": "at-scale",
+          "kind": "practice"
+        },
+        {
+          "name": "Core Web Vitals",
+          "what": "Google's measures of how fast and stable a web page feels to visitors",
+          "applies": "public web pages are going live",
+          "stage": "go-live",
+          "kind": "checkable"
+        },
+        {
+          "name": "Slow-query monitoring",
+          "what": "Record database queries that take too long, so they can be fixed",
+          "applies": "the database is under real use",
+          "stage": "with-users",
+          "kind": "checkable"
+        }
+      ]
+    },
+    {
+      "name": "Performance · caching",
+      "blocks": [
+        {
+          "name": "Caching",
+          "what": "Keep the result of costly work so the next request can reuse it",
+          "applies": "the same costly work is repeated often",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Cache invalidation",
+          "what": "Remove or refresh cached data when the real data changes",
+          "applies": "the app caches data that changes",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Negative caching",
+          "what": "Remember that a lookup found nothing, so it is not repeated right away",
+          "applies": "lookups that find nothing are repeated often",
+          "stage": "at-scale",
+          "kind": "checkable"
+        },
+        {
+          "name": "Dynamic TTL",
+          "what": "Let each cached item expire at its own pace, depending on how fast it goes stale",
+          "applies": "cached items go stale at different speeds",
+          "stage": "at-scale",
+          "kind": "checkable"
+        },
+        {
+          "name": "HTTP caching & ETags",
+          "what": "Let browsers reuse a response they already have when it has not changed",
+          "applies": "clients fetch the same responses repeatedly",
+          "stage": "at-scale",
+          "kind": "checkable"
+        },
+        {
+          "name": "Semantic caching",
+          "what": "Reuse an AI answer when a new question means the same as an earlier one",
+          "applies": "many users ask an AI model similar questions",
+          "stage": "at-scale",
+          "kind": "checkable"
+        }
+      ]
+    },
+    {
+      "name": "Performance · database",
+      "blocks": [
+        {
+          "name": "Indexing",
+          "what": "Add lookup structures to the database so searches do not scan every row",
+          "applies": "tables have grown and lookups are slow",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "N+1 queries",
+          "what": "The slowdown when a list runs one database query per item instead of one for all",
+          "applies": "lists show related data from the database",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Loading a list runs a small, fixed number of queries, not one per item. A test counts them."
+        },
+        {
+          "name": "Query plans (EXPLAIN)",
+          "what": "Ask the database how it will run a query, to see why it is slow",
+          "applies": "a specific query is slow",
+          "stage": "with-users",
+          "kind": "practice"
+        },
+        {
+          "name": "Connection pooling",
+          "what": "Reuse a small set of database connections instead of opening a new one per request",
+          "applies": "the app is live and opens many database connections",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Read replicas",
+          "what": "Copies of the database that take the reading load off the main one",
+          "applies": "reads overload one database",
+          "stage": "at-scale",
+          "kind": "checkable"
+        },
+        {
+          "name": "Materialized views",
+          "what": "Store the result of an expensive query and refresh it from time to time",
+          "applies": "an expensive report is read often",
+          "stage": "at-scale",
+          "kind": "checkable"
+        },
+        {
+          "name": "Bulk operations",
+          "what": "Write many rows in one go instead of one at a time",
+          "applies": "the app writes many rows at once",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Pagination",
+          "what": "Load long lists one page at a time",
+          "applies": "a list can grow long",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Long lists load a page at a time. No request returns every row."
+        }
+      ]
+    },
+    {
+      "name": "Performance · concurrency",
+      "blocks": [
+        {
+          "name": "Async I/O",
+          "what": "Let one worker handle many waiting requests at once instead of waiting on each in turn",
+          "applies": "one worker must handle many waits at once",
+          "stage": "at-scale",
+          "kind": "checkable"
+        },
+        {
+          "name": "Bounded fan-out",
+          "what": "Run outside calls in parallel, but only a limited number at a time",
+          "applies": "the app runs many outside calls in parallel",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Debounce & throttle",
+          "what": "Wait for a pause, or cap the rate, before acting on rapid repeated triggers such as typing",
+          "applies": "the screen fires rapid triggers, such as search while typing",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Typing quickly in a live search sends one request after the pause, not one per key."
+        },
+        {
+          "name": "Pre-aggregation",
+          "what": "Keep counts and totals up to date as data changes, instead of adding them up on every request",
+          "applies": "counts and totals are slow to compute live",
+          "stage": "at-scale",
+          "kind": "checkable"
+        },
+        {
+          "name": "Load leveling",
+          "what": "Put bursts of work in a queue and process them at a steady pace",
+          "applies": "work arrives in spikes",
+          "stage": "at-scale",
+          "kind": "checkable"
+        }
+      ]
+    },
+    {
+      "name": "Performance · scale out",
+      "blocks": [
+        {
+          "name": "Load balancing",
+          "what": "Spread traffic across several servers",
+          "applies": "one server is no longer enough",
+          "stage": "at-scale",
+          "kind": "checkable"
+        },
+        {
+          "name": "Autoscaling",
+          "what": "Add and remove servers automatically as traffic rises and falls",
+          "applies": "traffic rises and falls a lot",
+          "stage": "at-scale",
+          "kind": "checkable"
+        },
+        {
+          "name": "Sharding",
+          "what": "Split one database's data across several databases",
+          "applies": "one database can no longer hold the data",
+          "stage": "at-scale",
+          "kind": "checkable"
+        },
+        {
+          "name": "CDN & edge",
+          "what": "Serve files from servers close to each user",
+          "applies": "users are far from the server",
+          "stage": "with-users",
+          "kind": "checkable"
+        }
+      ]
+    },
+    {
+      "name": "Performance · frontend",
+      "blocks": [
+        {
+          "name": "Code splitting",
+          "what": "Send the browser only the code the current page needs",
+          "applies": "the first page load has become heavy",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Image optimization",
+          "what": "Serve images at the right size and in the right format, so pages load fast",
+          "applies": "a web app with images is going live",
+          "stage": "go-live",
+          "kind": "checkable"
+        },
+        {
+          "name": "Compression",
+          "what": "Shrink responses before sending them, so they arrive faster",
+          "applies": "a web app is going live",
+          "stage": "go-live",
+          "kind": "checkable"
+        }
+      ]
+    },
+    {
+      "name": "Observability · signals",
+      "blocks": [
+        {
+          "name": "Structured logs",
+          "what": "Logs written in one consistent format, with a time, a level and a message, so they can be searched",
+          "applies": "every app",
+          "stage": "day-one",
+          "kind": "checkable",
+          "scope": "cross-cutting",
+          "proof": "review",
+          "check": "The app logs errors and key events with a time, a level and a message, and never logs a secret or a password."
+        },
+        {
+          "name": "Error tracking",
+          "what": "A service that collects errors from the live app and groups them, so none go unnoticed",
+          "applies": "the app is going live",
+          "stage": "go-live",
+          "kind": "checkable"
+        },
+        {
+          "name": "Metrics",
+          "what": "Numbers tracked over time, such as requests per minute or errors per hour",
+          "applies": "the app is live and its health must be watched",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Request IDs",
+          "what": "A unique id attached to each request, so its trail can be followed across logs",
+          "applies": "a problem must be followed across logs",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "New-error alerts",
+          "what": "A message to you when an error appears that has not been seen before",
+          "applies": "the app is live",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "The four golden signals",
+          "what": "Watch traffic, errors, speed and how full the system is; together they show its health",
+          "applies": "the app is live and its health must be watched",
+          "stage": "with-users",
+          "kind": "practice"
+        }
+      ]
+    },
+    {
+      "name": "Observability · dashboards",
+      "blocks": [
+        {
+          "name": "Per-job metrics",
+          "what": "Track how often each background job runs and fails, and how long it takes",
+          "applies": "background jobs run under real use",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Business metrics",
+          "what": "Track the numbers that show whether the app works for people, such as sign-ups and orders",
+          "applies": "the app is live",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Uptime monitoring",
+          "what": "An outside service that checks the app is reachable and tells you when it is not",
+          "applies": "the app is going live",
+          "stage": "go-live",
+          "kind": "checkable"
+        }
+      ]
+    },
+    {
+      "name": "Observability · alerting",
+      "blocks": [
+        {
+          "name": "Upstream probes",
+          "what": "Regular checks that the outside services the app depends on are working",
+          "applies": "the app is live and depends on outside services",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Actionable alerts",
+          "what": "Send an alert only when someone needs to act, and say what to do",
+          "applies": "the app is live and sends alerts",
+          "stage": "with-users",
+          "kind": "practice"
+        },
+        {
+          "name": "On-call and paging",
+          "what": "A rota of who responds when the app breaks out of hours",
+          "applies": "a team keeps the app running",
+          "stage": "at-scale",
+          "kind": "practice"
+        },
+        {
+          "name": "Runbooks",
+          "what": "Written steps for fixing problems that have happened before",
+          "applies": "the app is live and things have gone wrong before",
+          "stage": "with-users",
+          "kind": "practice"
+        }
+      ]
+    },
+    {
+      "name": "Observability · cost",
+      "blocks": [
+        {
+          "name": "Sampled logging",
+          "what": "Keep only a share of routine logs once there are too many to store",
+          "applies": "logs have become too large",
+          "stage": "at-scale",
+          "kind": "checkable"
+        },
+        {
+          "name": "Upstream call log",
+          "what": "Record every call to a paid outside service, with what it cost",
+          "applies": "the app calls paid outside services",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Per-request cost",
+          "what": "Work out what each request costs in paid services",
+          "applies": "each request costs real money",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Cost alerts",
+          "what": "Get a warning before a pay-per-use bill passes a limit you set",
+          "applies": "the app is going live and uses pay-per-use services",
+          "stage": "go-live",
+          "kind": "checkable"
+        }
+      ]
+    },
+    {
+      "name": "Observability · operations",
+      "blocks": [
+        {
+          "name": "Feature flags",
+          "what": "Switch features on or off without releasing new code",
+          "applies": "features must be switched without a new release",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Staged rollout",
+          "what": "Release to a small share of users first, then widen it",
+          "applies": "a bad release would hit many users",
+          "stage": "at-scale",
+          "kind": "practice"
+        },
+        {
+          "name": "Kill switch",
+          "what": "A way to turn a live feature off at once if it misbehaves",
+          "applies": "a live feature may need to be stopped fast",
+          "stage": "with-users",
+          "kind": "checkable"
+        }
+      ]
+    },
+    {
+      "name": "AI · fundamentals",
+      "blocks": [
+        {
+          "name": "Context window",
+          "what": "How much text an AI model can take in at once, counting both the question and the answer",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        },
+        {
+          "name": "Token counting",
+          "what": "AI models measure text in tokens, which are pieces of words, and charge by them",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        },
+        {
+          "name": "Sampling params",
+          "what": "Settings such as temperature that make an AI model's answers more varied or more predictable",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        },
+        {
+          "name": "Streaming",
+          "what": "Show an AI answer as it is being written, instead of after it is finished",
+          "applies": "users wait on screen for an AI answer",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "The AI answer appears on screen as it is generated, and a failure partway shows a clear message."
+        },
+        {
+          "name": "Prompt caching",
+          "what": "Let the AI provider reuse a long prompt you send often, so it costs less",
+          "applies": "the app sends the same long prompt often",
+          "stage": "with-users",
+          "kind": "checkable"
+        }
+      ]
+    },
+    {
+      "name": "AI · tools & output",
+      "blocks": [
+        {
+          "name": "Tool use",
+          "what": "Let an AI model call functions in your code, such as a search, to get facts or take actions",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        },
+        {
+          "name": "JSON mode",
+          "what": "A setting that makes an AI model reply in valid JSON",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        },
+        {
+          "name": "Structured output",
+          "what": "Make the AI reply in a fixed shape that your code checks before using it",
+          "applies": "the app's code uses an AI model's answer",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "AI output used by code is checked against a schema. A malformed answer is retried or refused, never passed on."
+        },
+        {
+          "name": "Model selection",
+          "what": "Pick the AI model that fits the job's cost and quality, and set that choice in one place",
+          "applies": "the app calls an AI model",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "review",
+          "check": "The model name is pinned in one setting, not scattered through the code or left to a moving default."
+        },
+        {
+          "name": "Non-determinism",
+          "what": "The same prompt can give different answers each time, so tests check facts, not wording",
+          "applies": "the app calls an AI model",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "review",
+          "check": "Tests of AI features assert facts that must hold, never the exact wording."
+        },
+        {
+          "name": "Multimodal input",
+          "what": "AI models that take images, audio or files as well as text",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "name": "AI · safety",
+      "blocks": [
+        {
+          "name": "Prompt injection",
+          "what": "Stop instructions hidden in content the AI reads from taking control of it",
+          "applies": "an AI model reads content its user did not write, or can take actions",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Text planted in content the AI reads, telling it to ignore its rules, does not change what the app does or reveal private data."
+        },
+        {
+          "name": "Jailbreak resistance",
+          "what": "Keep the AI within its rules when users try to talk it out of them",
+          "applies": "the public can chat with the app's AI",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Content moderation",
+          "what": "Check what users post, and what the AI writes, for harmful content",
+          "applies": "the public can post content or see AI output",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "PII redaction",
+          "what": "Remove personal details from text before it is sent to an AI model",
+          "applies": "personal data is sent to an AI model",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Personal details the model does not need are removed before the text is sent."
+        }
+      ]
+    },
+    {
+      "name": "AI · reliability & quality",
+      "blocks": [
+        {
+          "name": "Hallucinations",
+          "what": "When an AI model states something false with confidence",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        },
+        {
+          "name": "Output guardrails",
+          "what": "Check the AI's answer before acting on it or showing it as fact",
+          "applies": "AI output triggers actions or is shown as fact",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "AI output is checked before it is acted on, and an answer outside the allowed bounds is blocked."
+        },
+        {
+          "name": "Evals",
+          "what": "A set of test questions with known good answers, run to measure an AI feature's quality",
+          "applies": "an AI feature is central to the app",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Each prompt has a small set of example inputs with facts the answer must contain, run as a test."
+        },
+        {
+          "name": "LLM-as-judge",
+          "what": "Use one AI model to grade another's answers at volume",
+          "applies": "AI output quality must be graded at volume",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "A/B testing",
+          "what": "Show two versions to different users and measure which works better",
+          "applies": "there is enough traffic to compare two versions",
+          "stage": "at-scale",
+          "kind": "practice"
+        },
+        {
+          "name": "LLM tracing",
+          "what": "Record each AI call with its input, output, time and cost, to debug and improve it",
+          "applies": "AI features run under real use",
+          "stage": "with-users",
+          "kind": "checkable"
+        }
+      ]
+    },
+    {
+      "name": "AI · cost control",
+      "blocks": [
+        {
+          "name": "Budget caps",
+          "what": "A spending limit per user and overall that stops AI calls when it is reached",
+          "applies": "the app calls a paid AI model",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "A usage limit per user, and one overall, stops AI calls when reached and shows a clear message."
+        },
+        {
+          "name": "Batch API",
+          "what": "Send large AI jobs to run later at a lower price",
+          "applies": "large AI jobs can wait for their results",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Model routing",
+          "what": "Send each request to the cheapest AI model that can handle it",
+          "applies": "AI costs have become significant",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Unified interface",
+          "what": "One layer in your code that talks to every AI provider the same way",
+          "applies": "the app uses more than one AI provider",
+          "stage": "with-users",
+          "kind": "checkable"
+        }
+      ]
+    },
+    {
+      "name": "AI · retrieval & memory",
+      "blocks": [
+        {
+          "name": "Embeddings",
+          "what": "Numbers that capture what a piece of text means, so similar texts can be found",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        },
+        {
+          "name": "Vector database",
+          "what": "A database built to find the stored items closest in meaning to a query",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        },
+        {
+          "name": "RAG",
+          "what": "The AI first looks up relevant documents, then answers from them",
+          "applies": "an AI model answers from the app's own documents",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Answers come from the retrieved documents. A question with no matching document gets an honest 'I don't know', not an invented answer."
+        },
+        {
+          "name": "Chunking",
+          "what": "Split documents into small pieces so the right parts can be found and sent to the AI",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        },
+        {
+          "name": "Citations",
+          "what": "Show which documents an AI answer came from",
+          "applies": "an AI model answers from the app's own documents",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Each answer shows which documents it used, and each reference opens the right source."
+        },
+        {
+          "name": "Conversation memory",
+          "what": "Let an AI chat remember earlier messages, within the model's limits",
+          "applies": "the app has an AI chat",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "A follow-up question that depends on earlier messages is answered correctly, and a long chat stays within the model's limit."
+        },
+        {
+          "name": "Knowledge freshness",
+          "what": "Keep the documents the AI answers from up to date",
+          "applies": "the documents an AI model answers from keep changing",
+          "stage": "with-users",
+          "kind": "checkable"
+        }
+      ]
+    },
+    {
+      "name": "AI · agents & building with AI",
+      "blocks": [
+        {
+          "name": "Agent loop",
+          "what": "An AI that plans, acts, checks the result, and repeats until the job is done",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        },
+        {
+          "name": "MCP",
+          "what": "A standard way to connect AI assistants to tools and data sources",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        },
+        {
+          "name": "Autonomy guardrails",
+          "what": "Limits on what an AI agent may do without asking, and how many steps it may take",
+          "applies": "an AI model in the app can take actions that change things",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Actions that change or delete things need the user's approval, and each run has a cap on its number of steps."
+        },
+        {
+          "name": "Context engineering",
+          "what": "Choose carefully what the AI sees, so it has what it needs and nothing that distracts it",
+          "applies": "the term comes up",
+          "stage": "any",
+          "kind": "concept"
+        },
+        {
+          "name": "AI code review",
+          "what": "Have an AI review each change for bugs before it is kept",
+          "applies": "every app",
+          "stage": "day-one",
+          "kind": "practice"
+        },
+        {
+          "name": "Verify with AI",
+          "what": "Have the AI run and test what it built, instead of trusting that it works",
+          "applies": "every app",
+          "stage": "day-one",
+          "kind": "practice"
+        },
+        {
+          "name": "Live prompts",
+          "what": "Change the app's prompts without releasing new code",
+          "applies": "prompts need tuning while the app is live",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Prompt versioning",
+          "what": "Keep a history of prompt changes, so a bad change can be undone",
+          "applies": "prompts change while the app is live",
+          "stage": "with-users",
+          "kind": "checkable"
+        },
+        {
+          "name": "Safe templates",
+          "what": "Let users edit templates that only fill in blanks and can never run code",
+          "applies": "users can edit templates the app fills in",
+          "stage": "with-users",
+          "kind": "checkable"
+        }
+      ]
+    },
+    {
+      "name": "Get paid",
+      "blocks": [
+        {
+          "name": "Payments",
+          "what": "Take money through a payment provider, so card details never touch your app",
+          "applies": "the app takes payments",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Card details go straight to the payment provider, and the app never receives or stores a card number. A test-mode payment completes end to end."
+        },
+        {
+          "name": "Webhook fulfilment",
+          "what": "Grant what was bought only when the payment provider confirms the payment",
+          "applies": "the app takes payments",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Access is granted when the provider's signed webhook arrives, not when the browser returns. A fake webhook is refused, and a repeated one grants once."
+        },
+        {
+          "name": "Subscriptions",
+          "what": "Charge on a schedule, and give or remove access as the subscription changes",
+          "applies": "the app sells subscriptions",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Subscribing, renewing, cancelling and expiry each change the user's access correctly, driven by the provider's events in test mode."
+        },
+        {
+          "name": "Failed payments",
+          "what": "Handle a renewal that does not go through: tell the user, wait, then remove access",
+          "applies": "the app sells subscriptions",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "A failed renewal marks the account as past due, tells the user, and removes access after the grace period."
+        },
+        {
+          "name": "Money as cents",
+          "what": "Store amounts as whole numbers of the smallest unit, such as cents, to avoid rounding errors",
+          "applies": "the app stores or calculates money",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Amounts are stored and calculated as whole numbers of the smallest unit, such as cents. A test adds 10 cents and 20 cents and gets exactly 30, and a total over many items has no rounding drift."
+        }
+      ]
+    },
+    {
+      "name": "Features users expect",
+      "blocks": [
+        {
+          "name": "File uploads",
+          "what": "Let users upload files and get them back later",
+          "applies": "users upload files",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "A valid file uploads and can be opened again. A file that is too large or of the wrong type is refused with a clear message."
+        },
+        {
+          "name": "Full-text search",
+          "what": "Let users find items by the words inside them",
+          "applies": "users search the app's content",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Search finds items by words in their text, handles no results, and returns only what this user may see."
+        },
+        {
+          "name": "Realtime updates",
+          "what": "Show changes on screen as they happen, without a refresh",
+          "applies": "changes must appear without a refresh",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "A change made in one window appears in another within seconds without a refresh, and the connection recovers after it drops."
+        },
+        {
+          "name": "Scheduled jobs",
+          "what": "Run work at set times, such as a nightly report",
+          "applies": "some work runs on a clock",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "The job runs on schedule, a repeated or overlapping run does no double work, and a failure is logged."
+        },
+        {
+          "name": "Admin panel",
+          "what": "A private area where staff manage the app's data",
+          "applies": "the plan names a staff or admin role that manages the app's data",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Only admins can open the admin area. A normal user is refused on every admin page and action."
+        }
+      ]
+    },
+    {
+      "name": "Usable for everyone",
+      "blocks": [
+        {
+          "name": "Accessibility",
+          "what": "Make the app usable by everyone, including people who use a keyboard or a screen reader",
+          "applies": "the app has screens",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "scope": "cross-cutting",
+          "proof": "test",
+          "check": "Every page works by keyboard alone, form fields have labels, and an automated accessibility scan reports no serious problems."
+        },
+        {
+          "name": "Responsive design",
+          "what": "Make every screen work at every size, from phone to desktop",
+          "applies": "the app is used on different screen sizes",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "scope": "cross-cutting",
+          "proof": "test",
+          "check": "Every screen is usable at phone width: nothing cut off, no sideways scrolling, buttons large enough to tap."
+        },
+        {
+          "name": "Screen states",
+          "what": "Show something useful while data loads, when there is none, and when loading fails",
+          "applies": "the app has screens that load data",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "scope": "cross-cutting",
+          "proof": "test",
+          "check": "Every screen that loads data shows a loading state, an empty state and an error state. Tests force each one."
+        },
+        {
+          "name": "Localization",
+          "what": "Show the app in more than one language, including right-to-left ones where needed",
+          "applies": "the app must work in more than one language",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "All visible text comes from translation files. Switching language changes every screen, including right-to-left layout where the language needs it."
+        }
+      ]
+    },
+    {
+      "name": "Don't ship bugs",
+      "blocks": [
+        {
+          "name": "Environments",
+          "what": "Separate copies of the app for building, testing and real users, so tests never touch real data",
+          "applies": "the app is going live",
+          "stage": "go-live",
+          "kind": "checkable"
+        },
+        {
+          "name": "Store times in UTC",
+          "what": "Save every time on one standard clock, and convert it to each user's time zone when showing it",
+          "applies": "the app stores dates or times",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Times are stored in UTC and shown in the user's time zone. A test saves a time in one time zone and reads it in another, and both show the same moment."
+        }
+      ]
+    },
+    {
+      "name": "Get the details right",
+      "blocks": [
+        {
+          "name": "Debugging with AI",
+          "what": "Give the AI the exact error and the steps that cause it, and have it find the cause before changing code",
+          "applies": "every app",
+          "stage": "day-one",
+          "kind": "practice"
+        },
+        {
+          "name": "Component library",
+          "what": "One shared set of buttons, inputs and dialogs, so every screen looks and behaves the same",
+          "applies": "the app has screens",
+          "stage": "day-one-if",
+          "kind": "practice"
+        },
+        {
+          "name": "Guessable IDs",
+          "what": "Use ids in links that cannot be guessed by counting, such as 1, 2, 3",
+          "applies": "ids appear in links or in the API",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "Ids in links and API responses are not counting numbers. Changing an id by one finds nothing."
+        },
+        {
+          "name": "Account recovery",
+          "what": "A safe way for users who forgot their password to get back in",
+          "applies": "users log in with a password",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "A reset link works once and expires. The reset page gives the same answer whether or not the email has an account."
+        },
+        {
+          "name": "Soft delete",
+          "what": "Hide deleted items instead of erasing them at once, so they can be restored",
+          "applies": "the user wants deleted items to be restorable",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "proof": "test",
+          "check": "A deleted item disappears for the user and can be restored for a set period."
+        }
+      ]
+    },
+    {
+      "name": "Ship it & go live",
+      "blocks": [
+        {
+          "name": "Testing",
+          "what": "Automated checks that prove each feature works, so a break is caught before users see it",
+          "applies": "every app",
+          "stage": "day-one",
+          "kind": "checkable",
+          "scope": "cross-cutting",
+          "proof": "test",
+          "check": "Every feature has tests for the normal case and at least one failure case, and the check command runs them all."
+        },
+        {
+          "name": "Playwright",
+          "what": "Tests that use the app the way a person does, by clicking through it; Playwright is a common tool for this on the web",
+          "applies": "the app has screens",
+          "stage": "day-one-if",
+          "kind": "checkable",
+          "scope": "setup",
+          "proof": "test",
+          "check": "At least one test drives the real app the way a person would, and the check command runs it. Each run starts its own copy of the app and never reuses one that is already running."
+        },
+        {
+          "name": "CI/CD",
+          "what": "Run the checks automatically on every change, and release automatically when they pass",
+          "applies": "the app is going live",
+          "stage": "go-live",
+          "kind": "checkable"
+        },
+        {
+          "name": "Domain & DNS",
+          "what": "Your app's web address, and the settings that point it at your server",
+          "applies": "the app is going live on the internet",
+          "stage": "go-live",
+          "kind": "checkable"
+        }
+      ]
+    },
+    {
+      "name": "How your pages show up",
+      "blocks": [
+        {
+          "name": "noindex",
+          "what": "Tell search engines not to list private pages",
+          "applies": "a web app with private pages is going live",
+          "stage": "go-live",
+          "kind": "checkable"
+        },
+        {
+          "name": "Social preview",
+          "what": "The title, text and image that appear when someone shares a link to your app",
+          "applies": "public web pages are going live",
+          "stage": "go-live",
+          "kind": "checkable"
+        }
+      ]
+    }
+  ]
+}
